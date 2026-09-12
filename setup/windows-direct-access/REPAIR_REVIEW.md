@@ -7,3 +7,7 @@ September 12, 2026. Parent-observed host metadata showed SYSTEM and Administrato
 Independent same-model agent `/root/windows_direct_access/ssh_script_review` rereviewed the final source: passed, no remaining material source blocker found. This was not a distinct-model review. Neither implementation nor review agent executed the repair.
 
 Run the Windows parser before execution. Actual service startup, Mac authentication, restriction checks, and later rollback remain runtime verification requirements. If startup still fails, inspect service logs before another change.
+
+Follow-up: the first Windows attempt passed parsing and source verification, then stopped before mutation because Windows reports the deliberately disabled allow rule as `Enabled=False, PrimaryStatus=Inactive`. Live action, direction, protocol, port, addresses, and program matched the intended boundary. Preflight now requires that disabled/inactive state and the same exact filters; final readback requires `Enabled=True, PrimaryStatus=OK`. This is a representation correction, not a change to permitted access.
+
+The same independent review agent verified both follow-up edits and found no blocker. No execution was performed by that reviewer.

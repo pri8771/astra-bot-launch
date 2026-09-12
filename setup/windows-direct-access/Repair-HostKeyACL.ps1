@@ -64,7 +64,7 @@ if ($guardRule.Count -ne 1 -or [string]$guardRule[0].Enabled -ne 'True' -or [str
 $allowRule = Get-NetFirewallRule -PolicyStore ActiveStore -Name $allow
 $ports = $allowRule | Get-NetFirewallPortFilter
 $addresses = $allowRule | Get-NetFirewallAddressFilter
-if ([string]$allowRule.Action -ne 'Allow' -or [string]$allowRule.Direction -ne 'Inbound' -or [string]$allowRule.PrimaryStatus -ne 'OK' -or
+if ([string]$allowRule.Action -ne 'Allow' -or [string]$allowRule.Direction -ne 'Inbound' -or [string]$allowRule.Enabled -ne 'False' -or [string]$allowRule.PrimaryStatus -ne 'Inactive' -or
     [string]$ports.Protocol -ne 'TCP' -or [string]$ports.LocalPort -ne '2222' -or
     (@($addresses.LocalAddress) -join ',') -ne $windowsIP -or (@($addresses.RemoteAddress) -join ',') -ne $macIP -or
     ($allowRule | Get-NetFirewallApplicationFilter).Program -ine $sshd) { throw 'Scoped allow rule differs from the recorded setup.' }
@@ -118,7 +118,8 @@ try {
     $fingerprint = (& $keygen -lf ($hostKey + '.pub') 2>&1 | Out-String).Trim()
     if ($LASTEXITCODE -ne 0) { throw 'Cannot read the host public-key fingerprint.' }
     Enable-NetFirewallRule -Name $allow | Out-Null
-    if ([string](Get-NetFirewallRule -PolicyStore ActiveStore -Name $allow).Enabled -ne 'True') { throw 'Scoped allow rule did not become active.' }
+    $enabledRule = Get-NetFirewallRule -PolicyStore ActiveStore -Name $allow
+    if ([string]$enabledRule.Enabled -ne 'True' -or [string]$enabledRule.PrimaryStatus -ne 'OK') { throw 'Scoped allow rule did not become healthy and active.' }
     $receipt.Status = 'Local repair verified; Mac authentication pending'; $receipt['HostKeyBytesUnchanged'] = $true; $receipt['HostKeyFingerprint'] = $fingerprint
     Write-AtomicJson $receipt $receiptPath
     $state.Status = 'Listening - Mac authentication still requires verification'

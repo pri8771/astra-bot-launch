@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-09-12T21:03:37.136736+00:00",
+  "created_utc": "2026-09-12T21:08:51.901643+00:00",
   "files": {
     "ANTIGRAVITY_MAC.md": "741871d1c4de79c886be10d4379535723b9d8de5fd95a1297c5f18f86842967f",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
@@ -69,8 +69,8 @@
     "tasks/wait-how-big/TASKS.md": "41d6a7d81bce576fc6b37872396e71fc85f964e684c5b47ad79a5fd1d757bca1",
     "tasks/wait-how-big/queue.json": "371685ee2081099318a994f2a7ee08db93e5168b5ecced5b845f85f12c4c5996",
     "HOME_SERVER_NETWORK_NEW_CHAT.md": "7051339e06220508c3551a3fc2ba4105c2595958e96f12987dca9f3b61119e20",
-    "setup/windows-direct-access/Repair-HostKeyACL.ps1": "b2df4560c345afe890f561c0a6aa418f5b6403e26ce723e95a2f15061fda2d9e",
-    "setup/windows-direct-access/REPAIR_REVIEW.md": "addae365e0d5be47ff0128125b377ef16b1cc2fca22168bf149e9fa2069bed74"
+    "setup/windows-direct-access/Repair-HostKeyACL.ps1": "040dcce336ea2d89e4d5e49699afa0ffbbf338a95c0e525f63936d7b45e427e5",
+    "setup/windows-direct-access/REPAIR_REVIEW.md": "7b4ebf476b26690a3da077fdd5ec095ff96d48dc1d9543f158fe558a90dfa3e7"
   },
   "scope": "selected task/spec documents and preserved editorial reference; no runtime secrets"
 }
