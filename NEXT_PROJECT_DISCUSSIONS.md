@@ -1,6 +1,6 @@
 # Project discussions after the five bot plans
 
-2026-09-12. Proposed discussion order, not a new execution batch or authorization to displace the first three launches. Talk through one project, record its decisions and next deliverable, then move to the next. This list uses existing user priorities; current implementation state outside the bot audit needs a bounded refresh before claims or changes.
+2026-09-12. Owner accepted the next focus as **Kai, Pri 2.0 and Lipi**. Their evidence, goals, next steps and simple owner-direction contract are in `../kai-pri-lipi-focus-2026-09-12/` (cloud library: `focus/kai-pri-lipi/`). The remaining discussion order is proposed, not a new execution batch or authorization to displace launches. Talk through one project, record its decisions and next deliverable, then move to the next. Refresh relevant evidence before implementation claims.
 
 ## What the five folders contain
 

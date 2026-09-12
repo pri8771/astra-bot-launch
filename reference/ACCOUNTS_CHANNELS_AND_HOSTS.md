@@ -2,6 +2,8 @@
 
 Owner decision, 12 September 2026. This extends the OPO mission and shared bot operating policy. It is a plan and requested capability contract, not evidence of created accounts, public posts or a Windows migration.
 
+Latest host correction: **R730 is the central hub for Kai/local bots, Windows fallback, and the i9 Mac low-priority staging/secondary fallback only when useful now.** This supersedes older host-preference text below; no migration is claimed. Current owner-direction and focused plans: `../kai-pri-lipi-focus-2026-09-12/`.
+
 ## Latest authority
 
 Bots may identify useful platforms, request missing resources and create or reuse accounts where appropriate. The owner delegates routine account/credential organization; reuse this authorization rather than asking for general permission again. A platform-specific owner verification, required consent or unsupported integration remains an actual prerequisite. Do not invent identities or bypass a service's registration requirements. Existing budget limits remain; no paid subscription or broader access is inferred merely from account-creation authority.

@@ -1,6 +1,10 @@
 # First-three launch wave — current checkpoint
 
-Updated 2026-09-12T19:10:02.046513+00:00. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
+Updated 2026-09-12T19:29:00.586895+00:00. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
+
+## Latest direction
+
+The owner now wants the five bot launches before discussing Kai, Pri 2.0 and Lipi further. Follow `FIVE_BOT_KICKOFF.md`. Their focused evidence/direction files and optional i9 scripts are saved and parked. R730 is the central hub target; Windows fallback/available development worker; i9 low-priority staging/secondary fallback. No migration is claimed. Windows Cursor authentication is owner-reported and its browser showed authorization complete; actual Atlassian connector operation and sole-writer ownership still need verification. i9 TeamViewer screen was visible, command execution unverified. No new bot sessions were launched by this documentation turn.
 
 ## Done in this work
 

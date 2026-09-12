@@ -1,6 +1,6 @@
 # First three bot launches — shared worker context
 
-Owner priority, 12 September 2026: One Person Ops, Wait How Big and CommerceLint first. Windows is the primary development/execution target; mobile Mac is backup. Launchable products take priority over a general platform rewrite. Each mission needs real release/account/readback evidence; a running IDE is not a launched product.
+Owner launch priority, 12 September 2026: One Person Ops, Wait How Big and CommerceLint first. Latest host direction: R730 is the central hub for Kai/local bots; Windows is fallback and a development/inference worker; the Intel i9 Mac is staging and secondary fallback. This supersedes earlier Windows-primary bot-hub wording; migration is not complete. The owner also selected Kai, Pri 2.0 and Lipi for the current focused plans; read `../kai-pri-lipi-focus-2026-09-12/README.md` locally or `focus/kai-pri-lipi/README.md` in the cloud library. Launchable products take priority over a general platform rewrite. A running IDE is not a launched product.
 
 | Stream | Owned work | Packet |
 |---|---|---|

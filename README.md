@@ -1,6 +1,8 @@
 # Astra bot launch task library
 
-Private, portable instructions for One Person Ops, Wait How Big and CommerceLint first, then BidetFit and Guru. Start with `WAVE_STATUS.md`, `BOT_ROADMAPS.md` and `tasks/README.md`. This is the task/control repository, not all product source or proof of an operating dispatcher.
+Private, portable instructions for One Person Ops, Wait How Big and CommerceLint first, then BidetFit and Guru. **Current owner priority: kick off these five before further Kai/Pri/Lipi discussion.** Start with `FIVE_BOT_KICKOFF.md`, `WAVE_STATUS.md`, `BOT_ROADMAPS.md` and `tasks/README.md`. This is the task/control repository, not all product source or proof of an operating dispatcher.
+
+Target host roles are R730 central hub for Kai/local bots, Windows fallback/available development worker, and Intel i9 Mac low-priority staging/secondary fallback. Existing runtime ownership has not migrated. `focus/kai-pri-lipi/` preserves the three-project evidence and reusable owner-direction contract; those discussions are parked. `setup/i9/` holds optional tested setup scripts, not an i9 installation or running worker. Do not start redundant hardware/framework work instead of a useful launch.
 
 ## Product source homes
 
