@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-09-12T20:02:12.110049+00:00",
+  "created_utc": "2026-09-12T20:07:24.254894+00:00",
   "files": {
     "ANTIGRAVITY_MAC.md": "741871d1c4de79c886be10d4379535723b9d8de5fd95a1297c5f18f86842967f",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
@@ -52,6 +52,11 @@
     "setup/i9/03_verify.sh": "de372373a0896e5775b05fdc5f400942bfeeaf7035e9fd4190b9959996847c6d",
     "setup/i9/README.md": "6f39d2c6d35ac81885a25aed0bae3278dab03c521b592f9b8daf5e48ffd0c0db",
     "setup/i9/TEST_RECEIPT.md": "ffc6af35ada76498b9ed6e110a065646823f47e94788c6a069b57385c65117c0",
+    "setup/windows-direct-access/README.md": "4f7bfa0f37902ab0fdbcda1417e450904de40598b265d135f7dea23131bcdbaa",
+    "setup/windows-direct-access/REVIEW.md": "81a9f62dd87113c3bd9842e429a5b16fbc67b36e08fc39bcbdf010db97a0d5d0",
+    "setup/windows-direct-access/Rollback-DirectSSH.ps1": "444b6f36d5d2a9f77a6d428fa46ff754640c784b0714e6c21e85c96d6c9abf7c",
+    "setup/windows-direct-access/Setup-DirectSSH.ps1": "1965b21cf2c3e4f2a0c78380ece78ff2e910ad413a35bb8824b9db788cdc37a9",
+    "setup/windows-direct-access/astra_mac_ed25519.pub": "5bb5d87ad5818d8d60adfd69d781497f010a4b3da0adb6fe8661bdbd20edf1ff",
     "tasks/README.md": "e7fc8be2e29e49ab5aee219b999209bd966257b7797e740eef27529d9625230c",
     "tasks/bidetfit/TASKS.md": "1ca151a6153834d94f3906e419923368d7e6695ad512ca433a6b08c05919c9f8",
     "tasks/bidetfit/queue.json": "b18fd442f6fe0272ee9eca00425f66a66e17c9d1a5224c78ec1f9e950ed55048",
