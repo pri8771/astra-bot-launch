@@ -14,6 +14,10 @@ Target host roles are R730 central hub for Kai/local bots, Windows fallback/avai
 
 Each cloud or desktop worker needs its own authenticated local clone/worktree. `*_MAC.md` and `*_WINDOWS.md` are host-specific packets: their absolute paths do not exist automatically in a cloud job. Cloud workers should use the portable `tasks/<mission>/TASKS.md` and `queue.json`, resolve source repository and local checkout, set source_root_override in their own run receipt, and ask for a missing resource rather than invent it. Reference copies are under `reference/`; historical links back into the full Astra repository may be unavailable here. Do not start tasks requiring absent evidence.
 
+## Current execution authorization
+
+The owner resumed Windows release execution and requested a separate Windows Astra Ultra task to finish comprehensive autonomy plans for all five bots plus Lipi. Use `WINDOWS_RELEASE_EXECUTION.md` and `WINDOWS_ASTRA_ULTRA_HANDOVER.md`. The historical 22-task scope gap remains explicit, not a pause on specified release work. Windows/Jira setup is accepted. Actual worker/chat submissions require receiving-host receipts.
+
 ## Current gates
 
 22 task definitions are proposed, not Jira issues or admitted jobs. Root/Cursor readiness artifacts already exist locally; do not repeat them simply because they are not copied here. Mac Cursor's existing sole Jira writer could not resume and its connector reported needsAuth. The owner now reports Windows Cursor is authenticated with Atlassian; verify that route and reconcile or explicitly rebind one writer before issue mutations. No credentials are included.

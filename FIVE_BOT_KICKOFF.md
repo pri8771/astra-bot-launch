@@ -1,5 +1,7 @@
 # Kick off the five bots
 
+**Latest authorization:** the owner resumed Windows release work and requested a parallel Astra Ultra task to finish full autonomy plans for all five bots plus Lipi. Read `WINDOWS_RELEASE_EXECUTION.md` and `WINDOWS_ASTRA_ULTRA_HANDOVER.md`. The earlier 22-task completeness gap is acknowledged; it does not pause already-specified release work. Windows/Jira setup is accepted; do not repeat its audit.
+
 12 September 2026. Latest owner direction: start these five before discussing Kai, Pri 2.0 and Lipi further. Their planning packages exist; they are not five newly completed/operating businesses. Preserve any independently running service, especially CommerceLint, until its actual owner/state is checked. Kai/Pri/Lipi notes and optional i9 scripts are saved, not discarded; those lanes are parked for this kickoff.
 
 **Launch priority remains One Person Ops, Wait How Big and CommerceLint.** BidetFit and Guru follow the first useful releases. R730 is the eventual central hub for local bots, Windows fallback/available worker, and i9 low-priority staging/secondary fallback. Do not make new hardware setup or a shared framework rewrite a prerequisite for these launches.
