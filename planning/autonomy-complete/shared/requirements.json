@@ -1,0 +1,293 @@
+[
+  {
+    "id": "SH-X01",
+    "mission": "SH",
+    "requirement": "Source, admission, ownership and reuse contracts",
+    "task_ids": [
+      "SH-01"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "A second executor can validate one task's inputs and obtain a precise eligible/blocking reason.",
+      "Every source capability reused has an exact path/ref and proof scope; missing inputs have respondent and resume action."
+    ]
+  },
+  {
+    "id": "SH-A01",
+    "mission": "SH",
+    "requirement": "Durable state and atomic single-owner fencing",
+    "task_ids": [
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Schema/migration/backup commands and fixture restore receipt are reproducible.",
+      "Every acknowledged intent survives restart; storage failure disables affected dispatch.",
+      "Claim/fence audit includes failed contenders and broker enforcement.",
+      "No credential path can independently bypass current ownership; if it can, integration is not accepted."
+    ]
+  },
+  {
+    "id": "SH-A02",
+    "mission": "SH",
+    "requirement": "Deterministic event and due-time scheduling",
+    "task_ids": [
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "An unchanged 24-hour synthetic schedule produces zero model calls; actual deployed idle observation is separately required per mission.",
+      "Events and due windows have deterministic, documented wake reasons."
+    ]
+  },
+  {
+    "id": "SH-A03",
+    "mission": "SH",
+    "requirement": "Evidence-based decisions",
+    "task_ids": [
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Every selected action references real input evidence and an allowed mission objective.",
+      "No model output can grant permission or mark its own remote action verified."
+    ]
+  },
+  {
+    "id": "SH-A04",
+    "mission": "SH",
+    "requirement": "Eligible actions and receiving-system verification",
+    "task_ids": [
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Adapter can prove one match, qualified absence, or explicit unknown without guessing.",
+      "Unknown charged effects retain reserved spend; no duplicate charge/post/send/Jira mutation."
+    ]
+  },
+  {
+    "id": "SH-A05",
+    "mission": "SH",
+    "requirement": "Experiment evaluation and next decision",
+    "task_ids": [
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Original experiment and subsequent decisions remain traceable and immutable.",
+      "Real operating acceptance remains in six mission tasks with actual elapsed observations."
+    ]
+  },
+  {
+    "id": "SH-A06",
+    "mission": "SH",
+    "requirement": "Owner direction revision acknowledgement",
+    "task_ids": [
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Owner sees acknowledgement of actual consumed revision, not just saved file.",
+      "Question deduplication and safe pause boundary survive process loss."
+    ]
+  },
+  {
+    "id": "SH-A07",
+    "mission": "SH",
+    "requirement": "Missing-input questions and resume",
+    "task_ids": [
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Owner sees acknowledgement of actual consumed revision, not just saved file.",
+      "Question deduplication and safe pause boundary survive process loss."
+    ]
+  },
+  {
+    "id": "SH-A08",
+    "mission": "SH",
+    "requirement": "Jira and documentation outboxes",
+    "task_ids": [
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "A task cannot be marked admitted solely from queue placement or HTTP acknowledgement.",
+      "Every projection names its sole scope owner; history/actuals remain preserved."
+    ]
+  },
+  {
+    "id": "SH-A09",
+    "mission": "SH",
+    "requirement": "Bounded retry and independent review",
+    "task_ids": [
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Reviews distinguish independent same-model review from distinct-model approval.",
+      "Repair exhaustion is durable and no retry storm occurs."
+    ]
+  },
+  {
+    "id": "SH-A10",
+    "mission": "SH",
+    "requirement": "Deduplication",
+    "task_ids": [
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Adapter can prove one match, qualified absence, or explicit unknown without guessing.",
+      "Unknown charged effects retain reserved spend; no duplicate charge/post/send/Jira mutation."
+    ]
+  },
+  {
+    "id": "SH-A11",
+    "mission": "SH",
+    "requirement": "Uncertain-effect reconciliation",
+    "task_ids": [
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Adapter can prove one match, qualified absence, or explicit unknown without guessing.",
+      "Unknown charged effects retain reserved spend; no duplicate charge/post/send/Jira mutation."
+    ]
+  },
+  {
+    "id": "SH-A12",
+    "mission": "SH",
+    "requirement": "Windows process-tree cleanup",
+    "task_ids": [
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Actual Windows receipt proves tree cleanup, restart, one owner and independent startup.",
+      "Measured recovery target and observed limitations recorded; no claimed R730 migration."
+    ]
+  },
+  {
+    "id": "SH-A13",
+    "mission": "SH",
+    "requirement": "Restart and restore",
+    "task_ids": [
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Actual Windows receipt proves tree cleanup, restart, one owner and independent startup.",
+      "Measured recovery target and observed limitations recorded; no claimed R730 migration."
+    ]
+  },
+  {
+    "id": "SH-A14",
+    "mission": "SH",
+    "requirement": "Actionable alerts",
+    "task_ids": [
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "An operator can identify the affected task and execute a named recovery action.",
+      "Unknown or unobserved runtime state is not healthy/zero."
+    ]
+  },
+  {
+    "id": "SH-A15",
+    "mission": "SH",
+    "requirement": "Privacy and secret references",
+    "task_ids": [
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Artifacts contain secret references only; customer/order content stays access-controlled.",
+      "Each adapter has explicit input trust, egress and payload-size rules."
+    ]
+  },
+  {
+    "id": "SH-A16",
+    "mission": "SH",
+    "requirement": "Enforced model/tool/spend caps and zero idle inference",
+    "task_ids": [
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Caps are enforced outside the model at the effect boundary and survive restart.",
+      "No install, subscription, purchase or new paid quota is inferred from this plan."
+    ]
+  },
+  {
+    "id": "SH-A17",
+    "mission": "SH",
+    "requirement": "Exact-source review and real-cycle integration contract",
+    "task_ids": [
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Attributable verdict has exact source/test hashes and no unresolved critical findings.",
+      "Compatible shared version is available for native operator integrations; actual mission external receipts remain their own gates."
+    ]
+  },
+  {
+    "id": "SH-A18",
+    "mission": "SH",
+    "requirement": "Windows independent execution and optional R730 migration",
+    "task_ids": [
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md"
+    ],
+    "acceptance": [
+      "Actual Windows receipt proves tree cleanup, restart, one owner and independent startup.",
+      "Measured recovery target and observed limitations recorded; no claimed R730 migration.",
+      "Actual R730 migration/restore receipt exists per moved mission; Windows temporary independence already qualifies separately.",
+      "i9 remains deferred; no mobile Mac dependency; no unapproved installations/network changes."
+    ]
+  }
+]

@@ -1,0 +1,340 @@
+{
+  "observed_at": "2026-09-12T21:13:19.287Z",
+  "source": "Atlassian read-only bounded mission-summary JQL search; no descriptions or personal fields",
+  "proof_limits": "Matching candidates only; no permission, completion or admission assertion. Writer must compare scope and exact source.",
+  "isLast": true,
+  "issues": [
+    {
+      "key": "BOTS-1",
+      "summary": "CommerceLint Ops",
+      "status": "To Do",
+      "updated": "2026-08-31T17:31:28.525-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-2",
+      "summary": "Wait How Big Launch",
+      "status": "To Do",
+      "updated": "2026-08-31T16:10:26.147-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-4",
+      "summary": "One Person Ops",
+      "status": "To Do",
+      "updated": "2026-08-31T17:31:34.006-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-5",
+      "summary": "Build LangGraph monitor for CommerceLint operator loop",
+      "status": "In Progress",
+      "updated": "2026-09-04T21:09:12.752-0400",
+      "timetracking": {
+        "originalEstimate": "4h",
+        "remainingEstimate": "4h",
+        "originalEstimateSeconds": 14400,
+        "remainingEstimateSeconds": 14400
+      }
+    },
+    {
+      "key": "BOTS-6",
+      "summary": "Reconcile CommerceLint outreach evidence",
+      "status": "In Progress",
+      "updated": "2026-09-04T22:09:17.595-0400",
+      "timetracking": {
+        "originalEstimate": "1h",
+        "remainingEstimate": "1h",
+        "originalEstimateSeconds": 3600,
+        "remainingEstimateSeconds": 3600
+      }
+    },
+    {
+      "key": "BOTS-7",
+      "summary": "CommerceLint traffic + market-validation push",
+      "status": "To Do",
+      "updated": "2026-08-31T16:48:12.052-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-29",
+      "summary": "py3.12 regression test proving packaged startup; missing-key path exits WAIT_HOW_BIG_NOT_CONFIGURED",
+      "status": "In Review",
+      "updated": "2026-09-02T20:18:58.563-0400",
+      "timetracking": {
+        "remainingEstimate": "0m",
+        "timeSpent": "25m",
+        "remainingEstimateSeconds": 0,
+        "timeSpentSeconds": 1500
+      }
+    },
+    {
+      "key": "BOTS-58",
+      "summary": "[BM-E02] CommerceLint first continuation cycle",
+      "status": "To Do",
+      "updated": "2026-09-05T19:15:44.395-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-59",
+      "summary": "[BM-E03] Wait, How Big? first verified content cycle",
+      "status": "To Do",
+      "updated": "2026-09-05T19:15:50.696-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-60",
+      "summary": "[BM-E04] One Person Ops first service experiment",
+      "status": "To Do",
+      "updated": "2026-09-05T19:15:53.528-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-61",
+      "summary": "[BM-E05] Guru first trusted-content experiment",
+      "status": "To Do",
+      "updated": "2026-09-05T19:15:56.279-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-113",
+      "summary": "[BM-CL-03] CommerceLint: prepare the selected reviewable candidate",
+      "status": "In Review",
+      "updated": "2026-09-09T13:17:31.208-0400",
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      }
+    },
+    {
+      "key": "BOTS-114",
+      "summary": "[BM-CL-01] CommerceLint: establish current baseline",
+      "status": "In Review",
+      "updated": "2026-09-09T13:17:30.791-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-115",
+      "summary": "[BM-CL-02] CommerceLint: specify the first experiment and selection",
+      "status": "To Do",
+      "updated": "2026-09-06T15:06:43.540-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-116",
+      "summary": "[BM-CL-05] CommerceLint: close the observation, support and recovery cycle",
+      "status": "To Do",
+      "updated": "2026-09-09T13:17:24.188-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-117",
+      "summary": "[BM-WHB-01] Wait, How Big?: establish current baseline",
+      "status": "To Do",
+      "updated": "2026-09-06T15:06:48.382-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-118",
+      "summary": "[BM-CL-04] CommerceLint: qualify and verify the first permitted action",
+      "status": "To Do",
+      "updated": "2026-09-09T13:17:23.385-0400",
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      }
+    },
+    {
+      "key": "BOTS-119",
+      "summary": "[BM-WHB-04] Wait, How Big?: qualify and verify the first permitted action",
+      "status": "To Do",
+      "updated": "2026-09-09T13:17:24.992-0400",
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      }
+    },
+    {
+      "key": "BOTS-120",
+      "summary": "[BM-WHB-03] Wait, How Big?: prepare the selected reviewable candidate",
+      "status": "In Review",
+      "updated": "2026-09-09T13:17:31.318-0400",
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      }
+    },
+    {
+      "key": "BOTS-121",
+      "summary": "[BM-WHB-02] Wait, How Big?: specify the first experiment and selection",
+      "status": "To Do",
+      "updated": "2026-09-06T15:06:57.221-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-122",
+      "summary": "[BM-WHB-05] Wait, How Big?: close the observation, support and recovery cycle",
+      "status": "To Do",
+      "updated": "2026-09-09T13:17:25.965-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-128",
+      "summary": "[BM-GURU-02] Sadhana Notes: freeze persona and three-carousel contract",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:12.456-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-129",
+      "summary": "[BM-GURU-03] Sadhana Notes: prepare the three source-reviewed carousels",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:43.285-0400",
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      }
+    },
+    {
+      "key": "BOTS-130",
+      "summary": "[BM-GURU-01] Sadhana Notes: verify account, source and cultural-review inputs",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:17.291-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-131",
+      "summary": "[BM-AFF-01] BidetFit: reconcile existing source, operator and affiliate evidence",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:19.759-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-132",
+      "summary": "[BM-GURU-04] Sadhana Notes: publish and verify only the granted canary",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:25.235-0400",
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      }
+    },
+    {
+      "key": "BOTS-133",
+      "summary": "[BM-GURU-05] Sadhana Notes: close the 14-day trust and engagement review",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:27.948-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-134",
+      "summary": "[BM-AFF-04] BidetFit: qualify the exact permitted continuation action",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:31.076-0400",
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      }
+    },
+    {
+      "key": "BOTS-135",
+      "summary": "[BM-AFF-03] BidetFit: prepare the selected existing-product candidate",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:42.938-0400",
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      }
+    },
+    {
+      "key": "BOTS-136",
+      "summary": "[BM-AFF-02] BidetFit: select one existing-product continuation slice",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:31.661-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-138",
+      "summary": "[BM-AFF-05] BidetFit: close the bounded attribution and support review",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:32.759-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    }
+  ]
+}

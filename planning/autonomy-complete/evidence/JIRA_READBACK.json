@@ -1,0 +1,1857 @@
+{
+  "observed_at": "2026-09-12T21:13:05.833Z",
+  "source": "Atlassian searchJiraIssuesUsingJql read-only, one bounded page",
+  "proof_limits": "Issue metadata and links observed; no issue mutation, worklogs, acceptance certification, current source admission or actor attribution. Existing estimates are preserved snapshots, not new task estimates. All task bindings remain null pending designated writer reconciliation.",
+  "issues": [
+    {
+      "key": "BOTS-90",
+      "summary": "[KSO-T03] Qualify existing orchestration capabilities against direct tools",
+      "status": "In Review",
+      "updated": "2026-09-09T13:17:53.999-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-decision",
+        "portfolio-v3",
+        "scope-kai-and-shared-ops",
+        "source-kso-t03"
+      ],
+      "components": [
+        "Agent execution"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-89"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-88"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-91"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-93"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-92"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-95"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-92",
+      "summary": "[KSO-T07] Enforce scoped capability grants at the tool boundary",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:20.435-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-kai-and-shared-ops",
+        "source-kso-t07"
+      ],
+      "components": [
+        "Agent execution"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-95"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-91"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-90"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-93"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-97"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-99"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-101"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-94",
+      "summary": "[KSO-T06] Enforce one lease owner and replay-safe effect fencing",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:22.233-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-kai-and-shared-ops",
+        "source-kso-t06"
+      ],
+      "components": [
+        "Agent execution"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 55m",
+        "remainingEstimate": "1h 55m",
+        "originalEstimateSeconds": 6900,
+        "remainingEstimateSeconds": 6900
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-97"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-93"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-96"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-99"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-100",
+      "summary": "[KSO-T13] Prove worker loss, restore and current-host schedule fencing",
+      "status": "In Review",
+      "updated": "2026-09-09T11:17:45.454-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-kai-and-shared-ops",
+        "source-kso-t13"
+      ],
+      "components": [
+        "Agent execution"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 50m",
+        "remainingEstimate": "1h 50m",
+        "originalEstimateSeconds": 6600,
+        "remainingEstimateSeconds": 6600
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-96"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-99"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-102"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-103"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-90"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-91"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-93"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-92"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-95"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-96"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-86"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-87"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-89"
+        },
+        {
+          "type": "Relates",
+          "direction": "inward",
+          "key": "PT-88"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-111",
+      "summary": "[BM-002] Define mission contracts for existing and future cloud runtimes",
+      "status": "In Review",
+      "updated": "2026-09-09T11:17:46.906-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-architecture",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-002"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-112"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-113"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-120"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-125"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-129"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-135"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "PT-161"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-112",
+      "summary": "[BM-001] Resolve mission charters and first-cycle authority",
+      "status": "In Review",
+      "updated": "2026-09-09T11:17:47.028-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-decision",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-001"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-111"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-115"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-121"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-124"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-128"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-136"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "PT-161"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-114",
+      "summary": "[BM-CL-01] CommerceLint: establish current baseline",
+      "status": "In Review",
+      "updated": "2026-09-09T13:17:30.791-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-cl-01"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-115"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "PCH-139"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-117",
+      "summary": "[BM-WHB-01] Wait, How Big?: establish current baseline",
+      "status": "To Do",
+      "updated": "2026-09-06T15:06:48.382-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-whb-01"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-121"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-124",
+      "summary": "[BM-OPO-02] Contract Check: freeze the exact validator, receipt and pilot contract",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:03.522-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-experiment",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-opo-02"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-112"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-123"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-125"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "PT-161"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-125",
+      "summary": "[BM-OPO-03] Contract Check: build the bounded static validator candidate",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:42.703-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-opo-03"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-111"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-124"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-126"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-126",
+      "summary": "[BM-OPO-04] Contract Check: qualify one approved static release",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:14.954-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-opo-04"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "BOTS-127"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-125"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-127",
+      "summary": "[BM-OPO-05] Contract Check: review the 14-day usefulness and revenue boundary",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:16.287-0400",
+      "labels": [
+        "implementation-hold",
+        "kind-outcome",
+        "portfolio-v3",
+        "scope-bot-missions",
+        "source-bm-opo-05"
+      ],
+      "components": [
+        "Mission operations"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-126"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "BOTS-137"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "BOTS-148",
+      "summary": "Reduce Cursor worker startup overhead and preserve streaming progress",
+      "status": "In Review",
+      "updated": "2026-09-11T15:06:00.197-0400",
+      "labels": [
+        "execution-overhead-20260907",
+        "portfolio-v3",
+        "scope-kai-and-shared-ops"
+      ],
+      "components": [
+        "Agent execution"
+      ],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "BOTS-141"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-63",
+      "summary": "[LIPI-T001] Refresh the four-product and storefront truth matrix",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:20.103-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t001"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-65"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-64",
+      "summary": "[LIPI-T003] Reconcile Meridian private supplier and Shopify variants",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:24.529-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t003"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-65"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-65",
+      "summary": "[LIPI-T002] Approve capsule membership and the staged launch contract",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:10.008-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-decision",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t002"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h",
+        "remainingEstimate": "1h",
+        "originalEstimateSeconds": 3600,
+        "remainingEstimateSeconds": 3600
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-63"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-64"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-68"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-67"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-66"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Relates",
+          "direction": "outward",
+          "key": "PT-161"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-66",
+      "summary": "[LIPI-T006] Reconcile Threshold Study wall-art sizes and production path",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:29.614-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t006"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-65"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-67",
+      "summary": "[LIPI-T005] Reconcile Open Current tote supplier and draft identity",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:31.326-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t005"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-65"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-68",
+      "summary": "[LIPI-T004] Reconcile Quiet Route private supplier and Shopify variants",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:45.714-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t004"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-65"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-69",
+      "summary": "[LIPI-T007] Calculate worst-case all-in economics for the retained capsule",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:50.501-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t007"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-68"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-64"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-66"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-67"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-71"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-70",
+      "summary": "[LIPI-T009] Prepare and obtain approval for the exact sample order",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:12.282-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t009"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "45m",
+        "remainingEstimate": "45m",
+        "originalEstimateSeconds": 2700,
+        "remainingEstimateSeconds": 2700
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-64"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-68"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-67"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-66"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-72"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-71",
+      "summary": "[LIPI-T008] Verify US shipping profiles and the conditional free-shipping threshold",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:54.061-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t008"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-75"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-79"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-72",
+      "summary": "[LIPI-T010] Inspect received samples and accept or narrow the capsule",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:14.725-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t010"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-70"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-73",
+      "summary": "[LIPI-T012] Stage one coordinated First Edition storefront cutover",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:16.718-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t012"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-75"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-76"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-80"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-79"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-74",
+      "summary": "[LIPI-T011] Complete capsule product content and media bindings",
+      "status": "In Review",
+      "updated": "2026-09-09T11:09:35.891-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t011"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-64"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-68"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-67"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-66"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-72"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-81"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-75",
+      "summary": "[LIPI-T013] Run checkout and transactional-path verification",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:18.929-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t013"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-71"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-76",
+      "summary": "[LIPI-T015] Verify responsive and assistive storefront behavior",
+      "status": "In Review",
+      "updated": "2026-09-09T11:09:54.925-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t015"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-77",
+      "summary": "[LIPI-T014] Approve policies, support routing and consent handling",
+      "status": "In Review",
+      "updated": "2026-09-09T11:09:59.812-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t014"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-75"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-65"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-80"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-81"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-84"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-78",
+      "summary": "[LIPI-T018] Review the exact replacement-launch candidate with the owner",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:21.129-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t018"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "45m",
+        "remainingEstimate": "45m",
+        "originalEstimateSeconds": 2700,
+        "remainingEstimateSeconds": 2700
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-69"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-71"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-72"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-75"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-76"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-80"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-79"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-81"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-82"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-79",
+      "summary": "[LIPI-T017] Rehearse private snapshot restore and catalog rollback",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:04.561-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t017"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-71"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-80",
+      "summary": "[LIPI-T016] Configure and validate the first-cycle measurement sheet",
+      "status": "In Review",
+      "updated": "2026-09-09T11:10:06.516-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t016"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h",
+        "remainingEstimate": "1h",
+        "originalEstimateSeconds": 3600,
+        "remainingEstimateSeconds": 3600
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-73"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-81",
+      "summary": "[LIPI-T021] Prepare three product-led organic posts and launch assets",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:21.338-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t021"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-74"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-85"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-78"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-82",
+      "summary": "[LIPI-T019] Apply the approved capsule and shared-surface cutover",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:29.887-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t019"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-83"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-78"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-83",
+      "summary": "[LIPI-T020] Verify public product, checkout and support destinations",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:32.305-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t020"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h",
+        "remainingEstimate": "1h",
+        "originalEstimateSeconds": 3600,
+        "remainingEstimateSeconds": 3600
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-82"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-85"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-86"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-84"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-84",
+      "summary": "[LIPI-T024] Complete first-cycle customer support and privacy review",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:35.779-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t024"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-77"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-83"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-87"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-85",
+      "summary": "[LIPI-T022] Publish and read back the three authorized organic posts",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:37.415-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t022"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "45m",
+        "remainingEstimate": "45m",
+        "originalEstimateSeconds": 2700,
+        "remainingEstimateSeconds": 2700
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-83"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-81"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-87"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-86",
+      "summary": "[LIPI-T023] Operate the first seven-day order and fulfillment cycle",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:39.336-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-task",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t023"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h 45m",
+        "remainingEstimate": "1h 45m",
+        "originalEstimateSeconds": 6300,
+        "remainingEstimateSeconds": 6300
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-83"
+        },
+        {
+          "type": "Blocks",
+          "direction": "outward",
+          "key": "LIPI-87"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    },
+    {
+      "key": "LIPI-87",
+      "summary": "[LIPI-T025] Close the first launch cycle and approve the next finite step",
+      "status": "In Review",
+      "updated": "2026-09-09T21:14:39.526-0400",
+      "labels": [
+        "cap-lipi-commerce",
+        "implementation-hold",
+        "kind-review",
+        "portfolio-v3",
+        "scope-lipi",
+        "source-lipi-t025"
+      ],
+      "components": [],
+      "timetracking": {
+        "originalEstimate": "1h",
+        "remainingEstimate": "1h",
+        "originalEstimateSeconds": 3600,
+        "remainingEstimateSeconds": 3600
+      },
+      "links": [
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-85"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-86"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "LIPI-84"
+        },
+        {
+          "type": "Blocks",
+          "direction": "inward",
+          "key": "PT-188"
+        }
+      ]
+    }
+  ]
+}
