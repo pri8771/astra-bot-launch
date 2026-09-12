@@ -1,6 +1,6 @@
 # First-three launch wave — current checkpoint
 
-Updated 2026-09-12. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
+Updated 2026-09-12T18:55:15.142222+00:00. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
 
 ## Done in this work
 
@@ -26,10 +26,14 @@ Cursor's final result reports its background capability-check shell hung; return
 
 1. Reconcile sole Jira writer. Cursor attempted the existing task `6046ab83-8402-47e3-b832-f4fe478da7f1`; resume failed because conversation state was unavailable, and its Atlassian MCP reported needsAuth. No Jira writes occurred. Restore authenticated ownership or explicitly retire/rebind that writer through one coordinator; do not silently start competing writers. The exact OPO outbox is ready for projection and readback.
 2. Confirm the exact OPO public domain/subdomain and qualified hosting/message-storage route; partial `shivangchordia` is insufficient. Source preservation is complete; public launch is not.
-3. The private control repository is published and remote main verified (`pri8771/astra-bot-launch`, initial `147c7fcb…`). Transfer/read back Windows packets, then launch the remaining named workers without duplicating finished readiness work. Use actual current cloud source pointers rather than legacy Mac-only paths.
+3. The private control repository is published and remote main verified (`pri8771/astra-bot-launch`, source snapshot `d699056bb74b96be22d8abd56cf330a085e0eb85`; later handoff-only revisions may follow). Transfer/read back Windows packets, then launch the remaining named workers without duplicating finished readiness work. Use actual current cloud source pointers rather than legacy Mac-only paths.
 4. Admit the smallest product slices and obtain separate attributable review, then publish/read back one OPO exchange service, one WHB post, and one CommerceLint useful conversion/offer improvement. Source/prompt/test artifacts are not revenue or audience results.
 5. Run the separate native Jira dashboard prompt after its diagnosis. The screenshots have 53 populated two-dimensional cells and a 1,276-issue pie; they are not reconciled live cohorts. Preserve unknown telemetry and original estimates.
 
 ## Deferred and unchanged
 
 BidetFit/Guru follow the first three. Unraid Windows share mapping and Plex help are queued. Pri 2.0, Digital Temple, Retell, existing services, schedules and old dispatcher caps are preserved. No new autonomous polling or Jira-sync service was installed. File task queues are proposed specifications, not execution admission or an operating cross-host claim service.
+
+Final source library includes 10 preserved Guru editorial assets as references. The old local CommerceLint clone is 356 commits behind the inspected live main: new workers must use fresh isolated source, never assume the old local tip is current. No new window/session on Windows or Antigravity was verified after the native control transport disconnected.
+
+Repository checkpoint: root documentation/task/receipt commit `6fb0f16e` (45 owned files). JSON/dependency validation passed for all five queues and 22 proposed task IDs. No estimates or completion were fabricated.

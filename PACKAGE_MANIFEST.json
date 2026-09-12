@@ -1,17 +1,17 @@
 {
-  "created_utc": "2026-09-12T18:54:35.244738+00:00",
+  "created_utc": "2026-09-12T18:56:50.659519+00:00",
   "files": {
-    "WAVE_STATUS.md": "e1b829df7a48546e10a45d36b766b608c86b5f7c17625cb866187e07dedcab78",
+    "WAVE_STATUS.md": "6c8102be9d949dfa9f6ba9e9ac76b9975e332c72994dc40c0e3e1b314386edec",
     "REPO_CLOUD_AUDIT.md": "830fd522c710953221d88c46a4a39d4f237973f468e27c72e1035de260c91906",
     "CLOUD_PUBLICATION.md": "7f4d9dd0a682c57f8f96d914f3eb5ff67e86ee27480cfbf4dfd8003ebe96c423",
-    "COMMON.md": "5bdd0c2612f47676c86b953630eb75462e9c787cc020359801a44c0c113a97fe",
+    "COMMON.md": "270a951b3688b0053c9f2f4d186103d9c162f828b30daeeb46cf668f1524c73e",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
     "CURSOR_MAC.md": "055943d008ddcbc053ada879cd8ab881383d3d9f46d10711e494b95d9dc8ce18",
     "CLAUDE_MAC.md": "bc97980495dbdaaccb3a6bf34ed93243ef588c9a1c1cff48b6d9effead3b50b3",
     "README.md": "837312661fde94512ce08b4b4cb778d9479433643629eb1ee990ae45fdd39bd6",
     "NEW_CHAT_PROMPT.md": "0494be937362ad6c5729a5bfe0ce2499e4c75c55290cccdb9957632c7d6d2439",
     "DASHBOARD_MASTER_PROMPT.md": "150ecc2fed34f2398eab40b6b21e893015f2269663c68f2793ea84436402f118",
-    "CURSOR_WINDOWS.md": "683fd5354d41d45f00b23af737fa93d79c36fd3aa3894aaf74347e7d699b8dc8",
+    "CURSOR_WINDOWS.md": "f6efbb4863348910438db0d288b1e7e35726853bb9eeb4be70cfacd3e264cb1b",
     "TASK_DIRECTORY_CONTRACT.md": "c27362e7cfa794b3a11df523ef1529ac2196d10f456ddbfe8172f445483d7415",
     "ANTIGRAVITY_MAC.md": "741871d1c4de79c886be10d4379535723b9d8de5fd95a1297c5f18f86842967f",
     "BOT_ROADMAPS.md": "9bf78725509e5c928d55e13e0b6d7ebd55a1d029ab606a9dcdf416583f8f40b9",
@@ -44,5 +44,5 @@
     "tasks/one-person-ops/TASKS.md": "8d6e06988782bd5822e8a9d90d41bc9cbb9b032b539c537d1f32816046e8d2ea",
     "tasks/one-person-ops/queue.json": "98b45a7670eee2aa9229e7bbed30601ae0a5ea93057493455dcc815f5b6ea6c5"
   },
-  "scope": "selected task/spec documents and 10 historical Guru editorial candidate files; no runtime secrets"
+  "scope": "selected task/spec documents and preserved editorial reference; no runtime secrets"
 }

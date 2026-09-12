@@ -2,7 +2,7 @@
 
 ## Objective
 
-Make the shortest evidence-backed path to a CommerceLint release from the Windows primary machine. Keep the work on CommerceLint; do not expand into OPO, WHB content, general fleet migration, or unattended operation. Root will provide the exact `autonomous_apps` repository identity/remote. Do not guess or clone a similarly named repository.
+Make the shortest evidence-backed path to a CommerceLint release from the Windows primary machine. Keep the work on CommerceLint; do not expand into OPO, WHB content, general fleet migration, or unattended operation. The exact `autonomous_apps` source remote is given below. Use a fresh isolated checkout; the old Mac clone was 356 commits behind the inspected live main.
 
 ## Starting facts
 
