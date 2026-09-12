@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-09-12T21:08:51.901643+00:00",
+  "created_utc": "2026-09-12T21:22:00.403464+00:00",
   "files": {
     "ANTIGRAVITY_MAC.md": "741871d1c4de79c886be10d4379535723b9d8de5fd95a1297c5f18f86842967f",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
@@ -52,10 +52,10 @@
     "setup/i9/03_verify.sh": "de372373a0896e5775b05fdc5f400942bfeeaf7035e9fd4190b9959996847c6d",
     "setup/i9/README.md": "6f39d2c6d35ac81885a25aed0bae3278dab03c521b592f9b8daf5e48ffd0c0db",
     "setup/i9/TEST_RECEIPT.md": "ffc6af35ada76498b9ed6e110a065646823f47e94788c6a069b57385c65117c0",
-    "setup/windows-direct-access/README.md": "4f7bfa0f37902ab0fdbcda1417e450904de40598b265d135f7dea23131bcdbaa",
+    "setup/windows-direct-access/README.md": "d81914fe3d08dfdae5d8b23ebd9ce83f62b1fa875ec30e77ed11beadd3c17eee",
     "setup/windows-direct-access/REVIEW.md": "81a9f62dd87113c3bd9842e429a5b16fbc67b36e08fc39bcbdf010db97a0d5d0",
     "setup/windows-direct-access/Rollback-DirectSSH.ps1": "444b6f36d5d2a9f77a6d428fa46ff754640c784b0714e6c21e85c96d6c9abf7c",
-    "setup/windows-direct-access/Setup-DirectSSH.ps1": "1965b21cf2c3e4f2a0c78380ece78ff2e910ad413a35bb8824b9db788cdc37a9",
+    "setup/windows-direct-access/Setup-DirectSSH.ps1": "0a20eca0d2856bd9f56508ee128c60ebd6ac15a294be8ee162d3a8b65e078977",
     "setup/windows-direct-access/astra_mac_ed25519.pub": "5bb5d87ad5818d8d60adfd69d781497f010a4b3da0adb6fe8661bdbd20edf1ff",
     "tasks/README.md": "e7fc8be2e29e49ab5aee219b999209bd966257b7797e740eef27529d9625230c",
     "tasks/bidetfit/TASKS.md": "1ca151a6153834d94f3906e419923368d7e6695ad512ca433a6b08c05919c9f8",
@@ -70,7 +70,10 @@
     "tasks/wait-how-big/queue.json": "371685ee2081099318a994f2a7ee08db93e5168b5ecced5b845f85f12c4c5996",
     "HOME_SERVER_NETWORK_NEW_CHAT.md": "7051339e06220508c3551a3fc2ba4105c2595958e96f12987dca9f3b61119e20",
     "setup/windows-direct-access/Repair-HostKeyACL.ps1": "040dcce336ea2d89e4d5e49699afa0ffbbf338a95c0e525f63936d7b45e427e5",
-    "setup/windows-direct-access/REPAIR_REVIEW.md": "7b4ebf476b26690a3da077fdd5ec095ff96d48dc1d9543f158fe558a90dfa3e7"
+    "setup/windows-direct-access/REPAIR_REVIEW.md": "7b4ebf476b26690a3da077fdd5ec095ff96d48dc1d9543f158fe558a90dfa3e7",
+    "setup/windows-direct-access/INSTALL_OBSERVATIONS.md": "199bfe8121d7537f9b9116ce095852f57f8ad794e26009c1ddd8c55046253e86",
+    "setup/windows-direct-access/INSTALLER_FIX_REVIEW.md": "d0e3d6e3df064d40237f43b9be7b0fd06eab0111f4f64d3988754b8a5dec4baf",
+    "setup/windows-direct-access/LIVE_STATUS.json": "d4b42ffce8f7559664dca6b63fde0d5b5c03f25df8a48b25c7cdf231e91b24f1"
   },
   "scope": "selected task/spec documents and preserved editorial reference; no runtime secrets"
 }

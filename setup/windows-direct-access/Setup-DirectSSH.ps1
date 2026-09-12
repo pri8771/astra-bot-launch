@@ -127,6 +127,15 @@ try {
     $generated = Start-Process -FilePath $keygen -ArgumentList ('-q -t ed25519 -f "' + $hostKeyPath + '" -N ""') -Wait -PassThru -NoNewWindow
     if ($generated.ExitCode -ne 0) { throw 'Host-key generation failed.' }
     Protect-File $hostKeyPath
+    # ssh-keygen adds an explicit creator ACE; /grant:r does not remove it.
+    $creatorSID = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+    if ($creatorSID -notin @('S-1-5-18', 'S-1-5-32-544')) {
+        Invoke-Checked icacls.exe @($hostKeyPath, '/remove:g', ('*' + $creatorSID))
+    }
+    $hostKeyRules = (Get-Acl -LiteralPath $hostKeyPath).GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier])
+    if (@($hostKeyRules | Where-Object { $_.IdentityReference.Value -notin @('S-1-5-18', 'S-1-5-32-544') }).Count) {
+        throw 'Host private key has an unexpected access entry; service will not be started.'
+    }
     Protect-File ($hostKeyPath + '.pub')
     $config = @"
 Port 2222
