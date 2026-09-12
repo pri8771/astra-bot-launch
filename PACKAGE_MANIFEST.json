@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-09-12T20:07:24.254894+00:00",
+  "created_utc": "2026-09-12T20:54:20.102652+00:00",
   "files": {
     "ANTIGRAVITY_MAC.md": "741871d1c4de79c886be10d4379535723b9d8de5fd95a1297c5f18f86842967f",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
@@ -67,7 +67,8 @@
     "tasks/one-person-ops/TASKS.md": "8d6e06988782bd5822e8a9d90d41bc9cbb9b032b539c537d1f32816046e8d2ea",
     "tasks/one-person-ops/queue.json": "98b45a7670eee2aa9229e7bbed30601ae0a5ea93057493455dcc815f5b6ea6c5",
     "tasks/wait-how-big/TASKS.md": "41d6a7d81bce576fc6b37872396e71fc85f964e684c5b47ad79a5fd1d757bca1",
-    "tasks/wait-how-big/queue.json": "371685ee2081099318a994f2a7ee08db93e5168b5ecced5b845f85f12c4c5996"
+    "tasks/wait-how-big/queue.json": "371685ee2081099318a994f2a7ee08db93e5168b5ecced5b845f85f12c4c5996",
+    "HOME_SERVER_NETWORK_NEW_CHAT.md": "7051339e06220508c3551a3fc2ba4105c2595958e96f12987dca9f3b61119e20"
   },
   "scope": "selected task/spec documents and preserved editorial reference; no runtime secrets"
 }
