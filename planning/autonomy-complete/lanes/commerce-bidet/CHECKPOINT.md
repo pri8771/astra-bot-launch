@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # CommerceLint and BidetFit final lane checkpoint
 
 Updated 2026-09-12T21:37:42.143404+00:00. Last observed control commit 0082604a0b87dd6f8eed73a909c24badfbc02b12; lane made no commits. Completed 12 CommerceLint and 14 BidetFit full executable task cards, 57 outcome/autonomy rows including A01-A18 per mission, current bounded evidence, mission plans, exact effect/input gates and historical/native Jira reconciliation. Source clones remain clean at CL ec4d10c0e02fc09465535a0b3da019a9c3f73bf9 and portfolio 02c3df999a2d052810e0f265d5cb40d865861042. Five existing CL CLI fixtures passed; no operator/source runtime launched.

@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-09-12T21:56:59.690494+00:00",
+  "repository": "https://github.com/pri8771/astra-bot-launch",
+  "repository_visibility": "private",
+  "visibility_evidence": "Successful GitHub connector get_repo inspection during this planning run, before push.",
+  "branch": "codex/autonomy-complete-six-missions-20260912",
+  "source_base": "3833a1b392b140f0a4f79ac4ba00e39dcad383fb",
+  "published_content_commit": "9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44",
+  "remote_content_commit_readback": "9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44",
+  "content_publication_verified": true,
+  "publication_method": "git push --set-upstream origin codex/autonomy-complete-six-missions-20260912; git ls-remote origin refs/heads/codex/autonomy-complete-six-missions-20260912",
+  "followup_metadata": "This receipt, portable Git-blob manifest, final continuity/audit receipts and reviewed trailing-space formatter correction are in a subsequent branch commit. A commit cannot embed its own hash. Resolve current branch HEAD and compare it with ls-remote to verify the metadata follow-up; the final task response records that verified HEAD.",
+  "published_content_manifest": "validation/PUBLISHED_CONTENT_MANIFEST.json",
+  "planning_result": {
+    "tasks": 110,
+    "requirements": 191,
+    "missions": 6,
+    "autonomy_per_mission": 18,
+    "independent_review_passes": 4,
+    "aggregate_parity_checks": 2600,
+    "unexplained_coverage_gaps": 0
+  },
+  "scope": "Only planning/autonomy-complete changes on the isolated branch. No merge to main, Jira writes, worker interruption, source implementation, provider mutation or runtime/business acceptance."
+}

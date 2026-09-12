@@ -1,8 +1,8 @@
 [
   {
     "path": "_tools/assemble.py",
-    "sha256": "6d52c5350b399c8d1e89622dae579fb3e94e6488c7637c5ae16a2cbd2f654118",
-    "bytes": 17058,
+    "sha256": "7422d6c0d6f71392e59018cfe8fadc3f41b47d9377f013f33b17b1f41a8172b0",
+    "bytes": 17067,
     "hash_scope": "working-file bytes"
   },
   {
@@ -25,14 +25,14 @@
   },
   {
     "path": "CHECKPOINT.md",
-    "sha256": "9d26b52cfe8f167355334a6637a1338080d64d076acd8fb9338372e6202f567d",
-    "bytes": 2482,
+    "sha256": "d6858b0220508736b7e599349f471aa290de6463343a4eb021d4a8c81fddd118",
+    "bytes": 3098,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "CONTINUE.md",
-    "sha256": "45ba5979cc707630b27881ff22e8ae572232f2fd990a14c39c6f878ad2d5432a",
-    "bytes": 2062,
+    "sha256": "2327bc563b4ae9dfe1633d7cfbf2397cebf297cd5a9a816d1d5e7015237066f8",
+    "bytes": 2710,
     "hash_scope": "working-file bytes"
   },
   {
@@ -793,14 +793,14 @@
   },
   {
     "path": "lanes/commerce-bidet/CHECKPOINT.md",
-    "sha256": "54aec4c7a85d98d5692bb60de2357b71c93facc07e797c58fe1afde78254014e",
-    "bytes": 1856,
+    "sha256": "6e78b5ea652cc5488d2c1716d31a7a82460221cc0baba34f8c2bc380601f9d9c",
+    "bytes": 2251,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "lanes/commerce-bidet/CONTINUE.md",
-    "sha256": "170f1c57a1493543a0ba4dd02bfb3979fd7dd539077a5c9ac0debd9efdab9425",
-    "bytes": 904,
+    "sha256": "aa06aa39f2d53cfd52203296ed69fee15df8ee2baa07f56fc2947a27dc6e317a",
+    "bytes": 1299,
     "hash_scope": "working-file bytes"
   },
   {
@@ -829,14 +829,14 @@
   },
   {
     "path": "lanes/lipi-guru/CHECKPOINT.md",
-    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
-    "bytes": 2099,
+    "sha256": "61167e7d17b19db756230fc00ace474b1553355bbe843c099df935478dc3d300",
+    "bytes": 2506,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "lanes/lipi-guru/CONTINUE.md",
-    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
-    "bytes": 1474,
+    "sha256": "8a5088581e9cfdc0fc319290397247e4fd3a5ce2efbcea4382b943106a979d48",
+    "bytes": 1876,
     "hash_scope": "working-file bytes"
   },
   {
@@ -847,14 +847,14 @@
   },
   {
     "path": "lanes/opo-whb/CHECKPOINT.md",
-    "sha256": "28fa096ba55b2b1cd812853a1788614cfd8c62ef7a9f7179fab9a1af34dd2d21",
-    "bytes": 5179,
+    "sha256": "b53e0225794698bab59b3b8a6a325844618d56796466d9517518b68c85cfcf5d",
+    "bytes": 6091,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "lanes/opo-whb/CONTINUE.md",
-    "sha256": "f6870df75eb7055385afbce0ddbad4a418e708c3d59d27e749377b73ded1d4f6",
-    "bytes": 4968,
+    "sha256": "92cdb5ef6b5fc900b1c626c789b08666e6e577dc424d93f26e8e5612060c6d9a",
+    "bytes": 5880,
     "hash_scope": "working-file bytes"
   },
   {
@@ -889,14 +889,14 @@
   },
   {
     "path": "lanes/opo-whb/REVIEW_SHARED.json",
-    "sha256": "801af4b39bf51ed9f380b492f9a0874a44cb1bfb513ebbcb05129dc300a96522",
-    "bytes": 50776,
+    "sha256": "0fc267df8eadecdf0029c0b05e6e3dc7e3e2641788edc12c1718425059c762a1",
+    "bytes": 52223,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "lanes/opo-whb/REVIEW_SHARED.md",
-    "sha256": "f5a56e9f09128085ae814e7411e5ef51df66463e9faca346fe378d1c3b94429c",
-    "bytes": 6023,
+    "sha256": "3697133af9500e9abda2c2c517f033b3e925186e5e4df9e8a2992e7934e5a78a",
+    "bytes": 6742,
     "hash_scope": "working-file bytes"
   },
   {
@@ -913,14 +913,14 @@
   },
   {
     "path": "missions/bidetfit/CHECKPOINT.md",
-    "sha256": "7503d5d0a4c5766c91596acb2716e9e3b96bbbacf1a1cded58529f26100f59f8",
-    "bytes": 2588,
+    "sha256": "b45efc8bad50b380a56a4b85f1e9d6ce44beb63f9f7b102735abb8d0842120ba",
+    "bytes": 2983,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/bidetfit/CONTINUE.md",
-    "sha256": "89568ebc0a26d119424c7ca030b0664f1931ced6e83c64359f2199810e6f6556",
-    "bytes": 1992,
+    "sha256": "9e84d876c6eb4260f3c93fbd20eb165cbe00546eae99114f6113a41f9f407117",
+    "bytes": 2387,
     "hash_scope": "working-file bytes"
   },
   {
@@ -973,14 +973,14 @@
   },
   {
     "path": "missions/commercelint/CHECKPOINT.md",
-    "sha256": "53e8aec951fa1f0e5fabd96a43d9f159a1ef28cffd915148463fb4095c9444a8",
-    "bytes": 2271,
+    "sha256": "f5749a05d8d6c473dc796205f4109d10fd3d54dfa9241dc1e55c5af795c06dcd",
+    "bytes": 2666,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/commercelint/CONTINUE.md",
-    "sha256": "9bf7e36fa3bb37c017da064034a2308d6c5754567b2599facf2ab8d49b57499f",
-    "bytes": 1904,
+    "sha256": "d719bdd8747c125b91e323ecb6fcddc05dce4628d13906c7d2607e7c982d33d2",
+    "bytes": 2299,
     "hash_scope": "working-file bytes"
   },
   {
@@ -1033,14 +1033,14 @@
   },
   {
     "path": "missions/guru/CHECKPOINT.md",
-    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
-    "bytes": 2099,
+    "sha256": "61167e7d17b19db756230fc00ace474b1553355bbe843c099df935478dc3d300",
+    "bytes": 2506,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/guru/CONTINUE.md",
-    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
-    "bytes": 1474,
+    "sha256": "8a5088581e9cfdc0fc319290397247e4fd3a5ce2efbcea4382b943106a979d48",
+    "bytes": 1876,
     "hash_scope": "working-file bytes"
   },
   {
@@ -1111,14 +1111,14 @@
   },
   {
     "path": "missions/lipi/CHECKPOINT.md",
-    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
-    "bytes": 2099,
+    "sha256": "61167e7d17b19db756230fc00ace474b1553355bbe843c099df935478dc3d300",
+    "bytes": 2506,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/lipi/CONTINUE.md",
-    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
-    "bytes": 1474,
+    "sha256": "8a5088581e9cfdc0fc319290397247e4fd3a5ce2efbcea4382b943106a979d48",
+    "bytes": 1876,
     "hash_scope": "working-file bytes"
   },
   {
@@ -1201,14 +1201,14 @@
   },
   {
     "path": "missions/opo/CHECKPOINT.md",
-    "sha256": "92967cbf1b5b260a542a5a8b3a58e1c77e69e667256dfbc883e7bb6e4019a776",
-    "bytes": 3003,
+    "sha256": "484c8d26dca8efc72c20d1640208fefd384cd395144598d272040cbb3dd443f3",
+    "bytes": 3399,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/opo/CONTINUE.md",
-    "sha256": "320a55e41a75e7cb56b746c73f36019d8f6d83e5af977cd492e5585c241ddcdb",
-    "bytes": 2406,
+    "sha256": "aa2fd231452248e5d3f8bdedd68fd5b2bc646ce20d7717db1232e80a95513b6b",
+    "bytes": 2802,
     "hash_scope": "working-file bytes"
   },
   {
@@ -1273,14 +1273,14 @@
   },
   {
     "path": "missions/whb/CHECKPOINT.md",
-    "sha256": "05cf3a312912784bc1baefa503090c51506108ba9c267adb5eb3b83a413ce92c",
-    "bytes": 3001,
+    "sha256": "59d5d70129b5f7e0ade5c7c84646b54c003d0f7041a067be206c1ed22da82bde",
+    "bytes": 3397,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "missions/whb/CONTINUE.md",
-    "sha256": "d212a55a8f57ee79752ed8d319e1962884f70d2b7f52abb9081f7ec108031a14",
-    "bytes": 2406,
+    "sha256": "8c8ae9a3913f743f1d9ddfe21e06b9914b267d5c95f89d57b9d8b1f7899fa113",
+    "bytes": 2802,
     "hash_scope": "working-file bytes"
   },
   {
@@ -1405,19 +1405,25 @@
   },
   {
     "path": "shared/TASKS.md",
-    "sha256": "d8cb0f3d891a456523509073adaafaffee7906473f08c0f0cc9c71fadc9b21f0",
-    "bytes": 55851,
+    "sha256": "007b161a2fa1cb674bdc65b34490915f97e345ff9b46f608ffa9d12274c77680",
+    "bytes": 55849,
     "hash_scope": "working-file bytes"
   },
   {
     "path": "validation/PLANNING_VALIDATION.json",
-    "sha256": "9d872a09f85b97c92c615322d4d3f73be0df1e1f00be5009d3b1cf72aabf2004",
+    "sha256": "068608ec617dbd43c6c84d663cdfae8c916d3cd5d47570654a0f66fc53d9758c",
     "bytes": 365,
     "hash_scope": "working-file bytes"
   },
   {
+    "path": "validation/PUBLISHED_CONTENT_MANIFEST.json",
+    "sha256": "f56de369cca799abb9b9a5752979ab8f23fbbb7df10987ce85f426319c61f446",
+    "bytes": 65618,
+    "hash_scope": "working-file bytes"
+  },
+  {
     "path": "validation/REVIEW_MANIFEST_VALIDATION.json",
-    "sha256": "a2a6d1e64597220e601bcd979177402a106bcf29c284f2b35fab3f80669342c5",
+    "sha256": "4cb49aeec9f43573d28ddaf0db26ca075c8df16c56f3a882e1bff193849a8b64",
     "bytes": 1290,
     "hash_scope": "working-file bytes"
   }

@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # Lipi and Guru lane checkpoint
 Updated: 2026-09-12T21:46:13.0989489Z
 Last root commit observed: 52a6bf0953b375b13da9fa3266a59e9166a58e39 (no lane commits or pushes).

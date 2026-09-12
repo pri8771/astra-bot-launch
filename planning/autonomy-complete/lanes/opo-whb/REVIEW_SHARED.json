@@ -170,8 +170,8 @@
     },
     {
       "path": "shared/TASKS.md",
-      "sha256": "d8cb0f3d891a456523509073adaafaffee7906473f08c0f0cc9c71fadc9b21f0",
-      "bytes": 55851,
+      "sha256": "007b161a2fa1cb674bdc65b34490915f97e345ff9b46f608ffa9d12274c77680",
+      "bytes": 55849,
       "role": "reviewed_core",
       "hash_scope": "working-file bytes"
     },
@@ -184,8 +184,8 @@
     },
     {
       "path": "_tools/assemble.py",
-      "sha256": "6d52c5350b399c8d1e89622dae579fb3e94e6488c7637c5ae16a2cbd2f654118",
-      "bytes": 17058,
+      "sha256": "7422d6c0d6f71392e59018cfe8fadc3f41b47d9377f013f33b17b1f41a8172b0",
+      "bytes": 17067,
       "role": "reviewed_core",
       "hash_scope": "working-file bytes"
     },
@@ -1226,5 +1226,34 @@
       "hash_scope": "working-file bytes"
     }
   ],
-  "manifest_scope": "Exact working-file byte SHA256. Core documents were read; mission task/requirement/evidence/gate files are parity inputs only in this shared review. Generated outputs and current immutable records were compared. Mutable audit, validation, status, checkpoint and publication receipts are excluded."
+  "manifest_scope": "Exact working-file byte SHA256. Core documents were read; mission task/requirement/evidence/gate files are parity inputs only in this shared review. Generated outputs and current immutable records were compared. Mutable audit, validation, status, checkpoint and publication receipts are excluded.",
+  "post_publication_addenda": [
+    {
+      "reviewed_at": "2026-09-12T21:55:57.283141+00:00",
+      "published_content_commit": "9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44",
+      "reviewer_agent": "/root/opo_whb",
+      "scope": "Focused post-publication formatting rereview of exactly two changed lines. No full parity rerun or aggregate regeneration.",
+      "finding": "The shared card formatter now removes trailing whitespace from rendered Markdown lines, and its only affected existing card line removes the space after empty Dependencies.",
+      "checks": {
+        "exact_two_line_deltas_verified_against_published_commit": true,
+        "all_other_155_manifest_files_byte_unchanged": true,
+        "task_graph_queue_coverage_estimate_and_outbox_semantics_unchanged": true
+      },
+      "manifest_updates": [
+        {
+          "path": "shared/TASKS.md",
+          "prior_sha256": "d8cb0f3d891a456523509073adaafaffee7906473f08c0f0cc9c71fadc9b21f0",
+          "sha256": "007b161a2fa1cb674bdc65b34490915f97e345ff9b46f608ffa9d12274c77680",
+          "bytes": 55849
+        },
+        {
+          "path": "_tools/assemble.py",
+          "prior_sha256": "6d52c5350b399c8d1e89622dae579fb3e94e6488c7637c5ae16a2cbd2f654118",
+          "sha256": "7422d6c0d6f71392e59018cfe8fadc3f41b47d9377f013f33b17b1f41a8172b0",
+          "bytes": 17067
+        }
+      ],
+      "verdict": "PASS_FOR_PLANNING_UNCHANGED"
+    }
+  ]
 }

@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # WHB checkpoint
 
 Updated 2026-09-12T21:25:57.929857+00:00. Control last commit/base 8559dea0fec755333321b06e28d845795c737030; lane has made no commit. Unit 1 complete: full handover and bounded source/task/policy intake. Unit 2 complete: fresh source/provenance/archive qualification and evidence ledger. Unit 3 complete: 12 complete executable cards, 8 substantive outcome rows plus all18 separate autonomy requirements, input/effect gates, current Jira matching proposals and full continuing-operation plan.

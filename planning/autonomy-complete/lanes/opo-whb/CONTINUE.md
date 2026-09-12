@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # Continue OPO / WHB lane
 
 Control checkout outputs/astra-bot-launch, last commit 8559dea0fec755333321b06e28d845795c737030. Own only missions/opo/, missions/whb/ and lanes/opo-whb/. Read AUTHORING_CONTRACT.md then mission CHECKPOINT.md. Source clones work/opo-planning-source and work/whb-planning-source are read-only and unmodified. Generator scratch is work/opo_whb_plan.py; rerunning overwrites lane output, so preserve any subsequent manual review fixes first.
@@ -24,3 +26,5 @@ Shared-review unit 3 complete (2026-09-12T21:50:19.187984+00:00): independent sh
 Encoding repair unit complete (2026-09-12T21:53:06.229786+00:00): REVIEW_CL_BF.md converted losslessly from Windows-1252 to UTF-8; three em-dash characters and every other text codepoint retained, including CRLF line endings. Strict UTF-8 decode and exact original-byte reconstruction pass. REVIEW_CL_BF.json is byte-identical; frozen mission/shared files untouched. Receipt: REVIEW_CL_BF_ENCODING_FIX.json. Next: root final artifact audit/publication.
 
 Formatting follow-up (2026-09-12T21:53:41.305123+00:00): removed intra-table blank lines and excess consecutive blanks in REVIEW_CL_BF.md. All nonempty lines and 16 hash entries match exactly; UTF-8 and CRLF retained. Updated encoding/formatting receipt records final SHA256 699737c233c6080ee9364307f668073f0fc2364c504f7562190d6da137441046. JSON review and frozen source files remain unchanged. Next: root final audit/publication.
+
+Post-publication formatting unit complete (2026-09-12T21:55:57.283141+00:00): reviewed exactly two whitespace-only card-format deltas against published content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44. Refreshed only _tools/assemble.py and shared/TASKS.md manifest entries in REVIEW_SHARED.json, with addendum in JSON/MD. Other 155 manifest files byte-identical; semantics/verdict unchanged. No aggregate regeneration/full parity/runtime runs. Next: root metadata and portable Git manifest publication.

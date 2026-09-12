@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # Continue WHB
 
 Read CHECKPOINT.md, PLAN.md and AUTHORING_CONTRACT.md at planning root. Work only missions/whb/ and lane opo-whb. Last control commit 8559dea0fec755333321b06e28d845795c737030; no lane commits. Mission task JSON is canonical; TASKS.md mirrors full cards, requirements.json maps outcomes and A01-A18, evidence.json records current proof limits and inputs.json defines exact gates.

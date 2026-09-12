@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # BidetFit checkpoint
 
 Updated 2026-09-12T21:29:59.820012+00:00. Planning unit complete: bounded fresh-source evidence intake, full plan, 14 complete task cards in JSON/Markdown, 29 outcome/autonomy requirement rows, effect gates, unresolved inputs and historical/current Jira reconciliation. All A01-A18 have mission-specific tasks plus shared anchors. Last control commit 3833a1b; no lane commit made. Inspected source: 02c3df999a2d052810e0f265d5cb40d865861042. No runtime effects or source changes.

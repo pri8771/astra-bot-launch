@@ -1,3 +1,5 @@
+Final integration status, 2026-09-12: planning review and all-six coverage are complete. The private content commit 9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44 was published and read back exactly. Root CHECKPOINT.md, CONTINUE.md, reviews/REVIEW_SUMMARY.md and PUBLICATION_RECEIPT.json supersede earlier pending-review/publication notes below. Runtime and business acceptance remain future work.
+
 # Continue Lipi and Guru planning
 Bundles ready for root independent review and aggregate integration. Start with PLAN.md, TASKS.json, requirements.json and UNRESOLVED_INPUTS.md in each mission. Lipi RETAINED_RECONCILIATION.md maps all LIPI-63–87 accepted-local versus external residuals. Current source/test evidence is in EVIDENCE.md and fresh-main-readiness.json.
 

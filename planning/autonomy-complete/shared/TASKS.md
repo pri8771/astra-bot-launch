@@ -16,7 +16,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Evidence Refs:** TASK_DIRECTORY_CONTRACT.md; WINDOWS_RELEASE_EXECUTION.md; evidence/JIRA_READBACK.json
 
-**Dependencies:** 
+**Dependencies:**
 
 **Prerequisite Inputs:** SH-I01: exact-source admission and writer scope; SH-I02: current capability/resource/budget grant
 

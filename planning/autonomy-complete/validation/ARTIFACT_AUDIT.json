@@ -1,7 +1,7 @@
 {
-  "observed_at": "2026-09-12T21:54:24.763367+00:00",
+  "observed_at": "2026-09-12T21:57:37.202930+00:00",
   "source_base": "3833a1b392b140f0a4f79ac4ba00e39dcad383fb",
-  "file_count": 237,
+  "file_count": 238,
   "changed_outside_owned_path": [],
   "scope": "Bounded common-secret-pattern and format/ownership check; not comprehensive security certification or runtime verification",
   "findings": [],

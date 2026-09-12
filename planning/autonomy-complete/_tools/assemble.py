@@ -123,7 +123,7 @@ def cards(folder,tasks):
     for t in tasks:
         text.extend([f'## {t["id"]} — {t["title"]}',''])
         for k in REQUIRED[3:]:
-            text.extend([f'**{k.replace("_"," ").title()}:** {render(t[k])}',''])
+            text.extend([f'**{k.replace("_"," ").title()}:** {render(t[k])}'.rstrip(),''])
     (folder/'TASKS.md').write_text('\n'.join(text),encoding='utf-8')
 
 def assemble(groups,tasks,reqs,by,levels):

@@ -1,0 +1,1440 @@
+{
+  "content_commit": "9e01a1fbdf4c1b8d0dfaf0e62cc6eb3e3646cb44",
+  "hash_scope": "Exact Git blob content in published content commit, independent of Windows working-tree CRLF conversion. Later review/status/formatting metadata are recorded by subsequent branch commits.",
+  "files": [
+    {
+      "path": "planning/autonomy-complete/ARCHITECTURE.md",
+      "git_blob_oid": "487ab9a864c19a56df4dd16fbf4838989e30012d",
+      "bytes": 14051,
+      "sha256": "e658c0ef9b283be7b0396a6d70df018b25700afa741a8b8c58849f27fc9a000a"
+    },
+    {
+      "path": "planning/autonomy-complete/AUTHORING_CONTRACT.md",
+      "git_blob_oid": "18fb4c03d0410979f20855a864903f0118ded64b",
+      "bytes": 4954,
+      "sha256": "214e701306118ed962134c0eac2ce05fdeac0015e9d5a7441848689a758f2754"
+    },
+    {
+      "path": "planning/autonomy-complete/CHECKPOINT.md",
+      "git_blob_oid": "517520c907d286b62488185fd29f978bd5e8553d",
+      "bytes": 2470,
+      "sha256": "e83537d2cac791fdaa859b12fbbcb34f33b481956141c5e29ff6e8f5244ca117"
+    },
+    {
+      "path": "planning/autonomy-complete/CONTINUE.md",
+      "git_blob_oid": "7ac50890812c7e949aecf145dd36fcd8662e6e3e",
+      "bytes": 2052,
+      "sha256": "f1fb2c72c8e72a4b355494fa4233b95ecb8f6f46cc6e9955c7a00dd9f9d8f9d6"
+    },
+    {
+      "path": "planning/autonomy-complete/COVERAGE_MATRIX.md",
+      "git_blob_oid": "a8de7b9cd211020a839db1e61c76e773b92aa50a",
+      "bytes": 111464,
+      "sha256": "6c5d7ed3b2ae63ee0830d5bf60b23de0140b592b7b09f75bc0a418019f1169f1"
+    },
+    {
+      "path": "planning/autonomy-complete/DEPENDENCY_GRAPH.json",
+      "git_blob_oid": "0ebe725ff0e3ee0a4f017d74ad15698c7ff60c41",
+      "bytes": 98474,
+      "sha256": "8ed4f7c66fd8d48d9fb90237e89c89caf2cee39cac157212663ca31a2f29369e"
+    },
+    {
+      "path": "planning/autonomy-complete/DEPENDENCY_GRAPH.md",
+      "git_blob_oid": "320e7bb67a77eb76d4c894dfa6451752a10058e0",
+      "bytes": 43183,
+      "sha256": "d139d9705028a8c70139415aaadc64d1945f906566cc06046a89b453e416b14d"
+    },
+    {
+      "path": "planning/autonomy-complete/ESTIMATES.md",
+      "git_blob_oid": "06d3b54268d22110c27237ce7b1095a520f83746",
+      "bytes": 982,
+      "sha256": "1baa7937335840f8380bdae318d34b9b5de916dcce0c156d949748ef75db34df"
+    },
+    {
+      "path": "planning/autonomy-complete/EXECUTION_ACCEPTANCE.md",
+      "git_blob_oid": "6f02707e27c88259f869ef36be40a47e12609087",
+      "bytes": 4634,
+      "sha256": "9d680ad3efaba9b049738ef01a6587d7b5e9805bf12d9c3f9be98b6159771fef"
+    },
+    {
+      "path": "planning/autonomy-complete/PERMISSIONS_AND_INPUTS.md",
+      "git_blob_oid": "c50700a9a626f6cd422910fe650a7656885cc739",
+      "bytes": 8843,
+      "sha256": "b0a09bc74e187c8d9fbbf4927d68b053c79b790cd2b4e6bb06ac5effd8a22f72"
+    },
+    {
+      "path": "planning/autonomy-complete/README.md",
+      "git_blob_oid": "b09eb65b4da154ea8e31281b3d165bdaa619b3f0",
+      "bytes": 7444,
+      "sha256": "2565011a579a5933933914c9a8780f4652ed99537d5364eded8d81eaa51aee15"
+    },
+    {
+      "path": "planning/autonomy-complete/RELEASE_QUEUE.json",
+      "git_blob_oid": "99d1aa63f00c437074a9bf17df1553ef9c81c646",
+      "bytes": 85117,
+      "sha256": "16d302733bfa2badb3c52c85c62218c5796f700708afe51ae7f60a1d141f4a68"
+    },
+    {
+      "path": "planning/autonomy-complete/RELEASE_QUEUE.md",
+      "git_blob_oid": "a9e88072649b6f191323bd88194c91563b0895ae",
+      "bytes": 3355,
+      "sha256": "eeb0ec93e652eaf2eb8df1deb228ce05819afceea3ff6f360b291993124fdeaa"
+    },
+    {
+      "path": "planning/autonomy-complete/_tools/assemble.py",
+      "git_blob_oid": "e5d759f196bcafb7903a85b41c770c8b865b9ae4",
+      "bytes": 17058,
+      "sha256": "6d52c5350b399c8d1e89622dae579fb3e94e6488c7637c5ae16a2cbd2f654118"
+    },
+    {
+      "path": "planning/autonomy-complete/_tools/audit_artifacts.py",
+      "git_blob_oid": "c422cde9846cbd0ee2c0f6d2521fafcc4a179139",
+      "bytes": 3094,
+      "sha256": "e6c0f29d5b765966fc61433eff7080df9507e7446e6881d03699ff79ff7615f5"
+    },
+    {
+      "path": "planning/autonomy-complete/evidence/INTAKE_AND_OWNERSHIP.md",
+      "git_blob_oid": "cce60e765d853059385f4ee069c6e51ac7f9a404",
+      "bytes": 3044,
+      "sha256": "8aa6bae6b2986737c7042e947e089d11a8c44faf2264d7c44e6d24cb9e5be2b4"
+    },
+    {
+      "path": "planning/autonomy-complete/evidence/JIRA_MISSION_SEARCH.json",
+      "git_blob_oid": "e27165328c238a2a83530c1ff94de624e8da076a",
+      "bytes": 10862,
+      "sha256": "85e03e98781c6760fe133d37da66f971c902e22a49bd50f9361d8a901c8c5bd2"
+    },
+    {
+      "path": "planning/autonomy-complete/evidence/JIRA_READBACK.json",
+      "git_blob_oid": "c1ab4fd135fb5596d8cb2894efe1d01fa4c07c48",
+      "bytes": 45364,
+      "sha256": "62687ab2dea5f046980544bc17ff7d29e8f3b126772ac00403457be79c88e6fc"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/README.md",
+      "git_blob_oid": "bcb4e38d1dd38dfa9775c9dc2fe1644c30db1d6c",
+      "bytes": 2142,
+      "sha256": "ab5dc137dd87f9f69729d63c4157d043d966e22d2b01da8e277c50e019cede31"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/bf-v1.jsonl",
+      "git_blob_oid": "99b61dc9b9dd3c3f0caf175ec0cea9bc993178e8",
+      "bytes": 82229,
+      "sha256": "3dc1727b50266f7f7e4513bf7c958e9419eaa95da4912245bbad471046a68bab"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/cl-v1.jsonl",
+      "git_blob_oid": "d7067f2d91dec30e80e8a4a37cf286fe264d55c4",
+      "bytes": 70918,
+      "sha256": "a5a5af9f9e13426a32281e6a99593f02984cf0d3a3e54545331466b9bdb12f6a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/guru-v1.jsonl",
+      "git_blob_oid": "273ab3eb4f742b87fd75383a41702f38761abcfb",
+      "bytes": 95777,
+      "sha256": "9f7d31b87249c2582fbd7b5d0ea86dfd31c1016fb80570b3dcb9d241eef031bd"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/lipi-v1.jsonl",
+      "git_blob_oid": "c598efbcd7203e0a8d392953a3312df2162e3bcc",
+      "bytes": 148526,
+      "sha256": "c6d2f088f0fe51e13235380915331c331a7af71b593fbf705011f0d3c41507fa"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/opo-v1.jsonl",
+      "git_blob_oid": "9dbd1b8436230a826d10d3ac17b0702c4844525b",
+      "bytes": 78663,
+      "sha256": "193bd4d474f0319a241892ac28067ee5e173d93b1f3fc7e059615cec25e250c7"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-01-1aa29ead0c7b2be9a97c.json",
+      "git_blob_oid": "4cd7dcd5be759621691be7897b83fce44594e288",
+      "bytes": 5702,
+      "sha256": "4213442f3d38b127400f0ac85a575b729d73d50ba6e19d09efcbdac467432ba3"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-02-7b0f683fbded78a5ee18.json",
+      "git_blob_oid": "5103ca432c3181168e675604d43970a0b8678e20",
+      "bytes": 6173,
+      "sha256": "509684941eab33883ee92a63fc8fde143a4609a013d43fc92791b0250c506daa"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-03-babc3532594fa388b93c.json",
+      "git_blob_oid": "d98202a30badbfdb22e06f6ddbbb76a0ccd86c86",
+      "bytes": 6242,
+      "sha256": "792e077fb1e0c423ee6b270ddd8f9670af94869723a8d4ca45b7007b812a21d1"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-04-e5b5fb1fe1783017f5a5.json",
+      "git_blob_oid": "76736df5901803c48ad1e7f073618ae90bc412aa",
+      "bytes": 6111,
+      "sha256": "f9be0e9c7bfe20deb77bb9939095e344f042eb54668d1c39032b19c45fb09a2a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-05-15903cf356a53fd1483a.json",
+      "git_blob_oid": "7cb1705d1dfa60d461bf3a3f018d5520e0069ebd",
+      "bytes": 6234,
+      "sha256": "d1346892ebb8de6528f10236a5a69aebca6c59086877c1cdb8281f00fb659b7f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-06-0cf069923b8d165c721c.json",
+      "git_blob_oid": "c7b2a7f8cd36cfcaddc57168da0101bd04161d86",
+      "bytes": 5998,
+      "sha256": "0ffee3caee5f3c1d8361edf6787ac4ad58a1eb50e17f3c90553b5b26312bd12a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-07-2444dbc90b453276e585.json",
+      "git_blob_oid": "db08af90ea5dacfb255e128eab9ee238095b0726",
+      "bytes": 6184,
+      "sha256": "16ee6b6abac262ba97cedad347b4f2df6077a7c2aec9dd03c7cd2cd6689cc5d0"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-08-c0b33e3bce3658444191.json",
+      "git_blob_oid": "fe4f57f47fb0467e6d538047613c2ac22e19458d",
+      "bytes": 6758,
+      "sha256": "451c6a0fb7b14a5d7709c451373248f163aa38bb9e784c10a328b3d56ebefda6"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-09-41bfcdea4c2e3f8e9460.json",
+      "git_blob_oid": "e2ec9343c9564fc02ebee06b0b7506ec018a58fc",
+      "bytes": 6316,
+      "sha256": "5d277a9455bfa03d00d09a2e81945b79e72ba669e81039932ab507b703c36b6a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-10-4040220f630883987640.json",
+      "git_blob_oid": "80dfa4d7eaea79b80c9ca823948b3f11650019b1",
+      "bytes": 5982,
+      "sha256": "e560a61f570495372a07e0d80fb2eaf9ddc5ae77812b9952e50fd9037142ac84"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-11-ba6d164fe152b9e7e9b9.json",
+      "git_blob_oid": "5265198e9ce0e0968350ac628434cc09305c6cb7",
+      "bytes": 7147,
+      "sha256": "7e6300f78ed1be1df87b511cd22b751cab6f3181a681a25ef577a1d81dfbf39a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-12-957017631171a178b683.json",
+      "git_blob_oid": "378eff31f4f2af211460dc33f9ecf8f275e88912",
+      "bytes": 6614,
+      "sha256": "0eecb03b26c4204509ff58af610307bed3eff47be314fd8017862e3d2f21f1bd"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-13-385b27cccb67d7c3831a.json",
+      "git_blob_oid": "382c0e5b13cffd2a497e1b303d9e0ff8317ddc70",
+      "bytes": 7139,
+      "sha256": "c63d0df11a253638ef7f1c7ea60f1f2d15a18b0e25445bf05a3ddfc1c80cd821"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/BF-14-921de4c5b896e524cfc1.json",
+      "git_blob_oid": "d07c1c1ae12d783691178519791be63619c87717",
+      "bytes": 7731,
+      "sha256": "ffd32d5ae95711de4dcb4516c7e76008f837188f59e5e09b11de7cff2379e1ac"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-01-4aa1981e9ed7e6d3980b.json",
+      "git_blob_oid": "0c16f0de4fc44534151f9feae871aeb5662dc4dc",
+      "bytes": 5859,
+      "sha256": "8d99959651b2c75efebec3ab53e96719c6bc6718586d048639ccc82e82fe7627"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-02-ea4505526347948df5c3.json",
+      "git_blob_oid": "e13efaab4ce0eb2d0a338bd6268bdbda2752d3d7",
+      "bytes": 6020,
+      "sha256": "adae3f0988bf2fc70ad0833fafd4ab1023c4843567e6d0564e31eaf55b90d358"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-03-045bfe039a4c90a5503b.json",
+      "git_blob_oid": "783d8b89f61d6cc01b62d095ddb4143f73c263b0",
+      "bytes": 6275,
+      "sha256": "3a0267ce852b355c426cd665307d159926b35f1bebb862ea56fe2669f332ae04"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-04-0c2dcd410cf758be5d5b.json",
+      "git_blob_oid": "1524f5c1f32dc7f024440a83e4e5413544f9ff96",
+      "bytes": 6274,
+      "sha256": "853690e84d9f02770e277a9398d2bb228394b155eba99b62947e7208ebb68a81"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-05-b6433fae342ac2d04783.json",
+      "git_blob_oid": "d0045c068bea9894f06b2bbcb76a50612bd99669",
+      "bytes": 6197,
+      "sha256": "3927b7880cdbc8b746b3038a6edacea77a2ae0456380333e589e777bd3976d78"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-06-60364950924f66ef896e.json",
+      "git_blob_oid": "9effc5da4ad32bc31c71804bc46c43fe9188daa7",
+      "bytes": 6684,
+      "sha256": "d4696e711744de2d04d574ea22db22e4447216b3278c1df769ec576c6969576f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-07-65742b203e2f3690529d.json",
+      "git_blob_oid": "f84c2f44022dbeb3b605abc9b6a423d141d7601f",
+      "bytes": 7403,
+      "sha256": "8b9dc9582ea255bb5ae83bac50ab0c69ecf8dce7b5907acddc803f904619ce98"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-08-824ab4e03e8f026a7091.json",
+      "git_blob_oid": "55265074f4b7a17d818057785b1e50c22b63cef5",
+      "bytes": 6696,
+      "sha256": "f2ce922b1e3bd215336246c648a99bbe2bd0b8c3a01c0488550ae2fb29ae747d"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-09-1226dff20bb4ae0a19c3.json",
+      "git_blob_oid": "9f8c4c49e115ba5872a0ec03ab9484ead9f900fa",
+      "bytes": 5877,
+      "sha256": "8056b00357e2943e379aa25938ddbe0e727bbb25399eb5f0bfd2b0a2c33a954c"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-10-1db37beaa3a38d221e96.json",
+      "git_blob_oid": "8f5200d231e09165fff50bbb9e4b39c50bdc8e46",
+      "bytes": 7144,
+      "sha256": "c64e8ac764b24cac75378bd62fd15154cad232c4d39b62539a1a45ab9b495a2f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-11-ce6764069d47cc72f76d.json",
+      "git_blob_oid": "85e18c9bff81ba5e49e24908e0fb132fd6a50046",
+      "bytes": 6333,
+      "sha256": "cd4b77d49f1087b19c0635127aa06ab0bcf570b239edf3c3f071b814f292c6c3"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/CL-12-ea9fccf757739df6e489.json",
+      "git_blob_oid": "98796645f76440cba93de668c63ca357af3d37a4",
+      "bytes": 7004,
+      "sha256": "5feb285e84dac0f557e87e79657a2ed6c32b76586a8aeda765163aeca928c94e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-01-b66082b5bb2ce7f79f92.json",
+      "git_blob_oid": "87fa23dda082487611074f945a8082beab9e9a08",
+      "bytes": 5714,
+      "sha256": "4b8509bc1f07ef09bafbf8d4ac672dc272432885b301098396f09801b16ddb22"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-02-510810afcf5d4db68e29.json",
+      "git_blob_oid": "c0a42214362f1c4403a8fa83ab5960214cd6d9df",
+      "bytes": 5645,
+      "sha256": "d9205f28d47673c1f402643806ad8deb1992325a9d466adfbd6cc37074696c37"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-03-0f77c5c28037ec10119c.json",
+      "git_blob_oid": "e6e5d1291812b4abc98969a0a35b4abc32cfcc7f",
+      "bytes": 5810,
+      "sha256": "bcfc40fb3cd177dd5b51a2cf9a97b72382f057df7372918acbe3f093de3a59e9"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-04-e95aa732ec0e0b1cf099.json",
+      "git_blob_oid": "10e980537abdeb5ad1273a9b5a0e1f5b60d6c2fa",
+      "bytes": 5712,
+      "sha256": "6e1305227b7e75c4627ed916c9b045b1c79d938ad4a638e800e1dc79a3f01c62"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-05-0dc9dfc19a85fef72e39.json",
+      "git_blob_oid": "a5bbaf82a3a8eb3bd88eec5cb5d8d848660cc805",
+      "bytes": 6047,
+      "sha256": "e120d4b149f7d9d88f150f9e7bf4ff71586724fd4d9289acbd62952b6cc6bed3"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-06-7854bae16fd4744d9902.json",
+      "git_blob_oid": "6764dcf39f8d56485352cd42c8a7f3dc6139929c",
+      "bytes": 6422,
+      "sha256": "b9c5ba389661cd2d79dd336b90178642bd83d855791acfdce21411e89b62a44d"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-07-576dccffb1f42c6246e2.json",
+      "git_blob_oid": "f369f59a917c31095da2bb341cf8f08e71f8dcd6",
+      "bytes": 5642,
+      "sha256": "386662deb1582ae121a06b7462c5044b15698370e686f1105c95e39fb8f0b4d4"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-08-e9088d99fb68e6b99c26.json",
+      "git_blob_oid": "10b6d924696e5937381ff49b6e7837135d6cf797",
+      "bytes": 7116,
+      "sha256": "f0e0cad2f2fe8d5997655feae361f029f22ee1333d36daaf0d70c2bd3afeb11a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-09-32698843a73579c70de8.json",
+      "git_blob_oid": "8214cff995cac73dc44ed5681e3378383515e1a9",
+      "bytes": 6614,
+      "sha256": "380977aeab6d35e0baee3025120f5f0b82776860180404f34426cd3c93c655b5"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-10-266f14086e801379506a.json",
+      "git_blob_oid": "bfad776cf33d22622cd63fdd7852c4cf1b03707f",
+      "bytes": 5727,
+      "sha256": "6cf3cd500c517499e260f8abba940b3c1e1c3bb1e56fc0e4b991a733938761c2"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-11-3ce05c012c49981849c9.json",
+      "git_blob_oid": "9c3079056f6fb9e3b6d778c65688f25a7d613c06",
+      "bytes": 5957,
+      "sha256": "4c0412089bd6d7202b3537308238b2758b01a895e3c99deb1e5a62dcbab0bb25"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-12-9c811a9456d939ca11b4.json",
+      "git_blob_oid": "1512bdd5801e98a05830945e1e7c4c9b2a21b0bf",
+      "bytes": 5741,
+      "sha256": "89484971f3e4fc9aace9bffde3d9bc74f3e81913cf398fc4467e33426cd87f6e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-13-0f41de04e89a3e37ffe2.json",
+      "git_blob_oid": "64746b708f8c405ab10c2158e40cba36e0b93579",
+      "bytes": 5761,
+      "sha256": "8600d098fd48c6e1f4868783334bc534631b9cb9bd64b2ff2975f896870d0c71"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-14-ac948ca484d3798de1d7.json",
+      "git_blob_oid": "fc72a29be47630d0825c955f55170f03b2055e18",
+      "bytes": 6080,
+      "sha256": "7dbe1282c3400ee58d1753426195d9ef2b5c21a1ed8c1b9050c2cf92805b162f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-15-9d623c165470ab8ee67c.json",
+      "git_blob_oid": "eead45ffd15529e748225ed44844042d1608ef77",
+      "bytes": 8197,
+      "sha256": "e3b96b0e4c2c8777352a4b63976137c7b7aeeb9c5bfa123a36080ca4f733af37"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-16-1e1d7355ee19e4467dcc.json",
+      "git_blob_oid": "aff998b71ef0d4b8b19a35662c255d580d5fe5b5",
+      "bytes": 6190,
+      "sha256": "9fa63d1fddb35d3382df10d761c050e43b0bf23770bfaec60c7418f052cc802e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/GURU-17-d2e9b268341e1dd5dc1d.json",
+      "git_blob_oid": "39da5f5bf95ed233219ffe4b54a3712e4ce4c7ac",
+      "bytes": 7264,
+      "sha256": "5effb95c6ceb9e85c5f9e69b4ad0bad4e28acd0469f0c4dc44c796ad47f59d48"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-01-e4e11dd484505e117205.json",
+      "git_blob_oid": "93bbb98d4093ac021c1578b51d090242a2cf7dbc",
+      "bytes": 6614,
+      "sha256": "efdc00940692050745e05dd263175567d1b80d3e771605132e5bccbf31233e57"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-02-3dc51e8b2ec3a03d16fa.json",
+      "git_blob_oid": "3ac7c0466c7e6e479788543fb2312e4b59a3172d",
+      "bytes": 5386,
+      "sha256": "a9a92ac945f52a6749988d631939169c9b58973f1b3cd6fc4d627f950ae81421"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-03-f4df3e7e5a9c20a2b9ac.json",
+      "git_blob_oid": "cbeb3b543ac2e4f9f50012bd2a8c09388aa17a81",
+      "bytes": 6162,
+      "sha256": "a3fc2bfaa1870765a8acf6d4af63ae05bbff02014f94704ac5bf1022b6eacf00"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-04-10115065189f66694101.json",
+      "git_blob_oid": "275c181bba181c50e721015d0306e4ba88674219",
+      "bytes": 6185,
+      "sha256": "7d8b37ce7c4655d0d216314aef5adad7c8aa96145ca8f5061a0635516b1005fc"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-05-575512704dccfcb41a11.json",
+      "git_blob_oid": "61a3ef40e6cd5cc0429f67308fc64d06588a89f0",
+      "bytes": 6189,
+      "sha256": "4f53ec7ff8b559925a5234fd9621c6877dc30b59f139b986936e461ec01617eb"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-06-909b88053db883b2d00b.json",
+      "git_blob_oid": "fd2cd14fa4e8dcc6ccd1c2f372e1b9fecf274f4f",
+      "bytes": 6202,
+      "sha256": "8eaa84275bce5fe89acedb729a0dd062a6f762e11dc252fee65f95f1b8a34e97"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-07-2e8bfda66a6ee6dda9fb.json",
+      "git_blob_oid": "9010c1dd61de70c3c0aa7d08c6031f7c65e9ea14",
+      "bytes": 9651,
+      "sha256": "8a5e68233af500346a4e43443fda054cb55d745055c7200c739090bc9dbdd552"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-08-418a433bec2a9722d064.json",
+      "git_blob_oid": "e3cf0f4ab4fe6981a925ab8a14119de30198d928",
+      "bytes": 6044,
+      "sha256": "4afd022a5975bfdb7f386ef61a3850d8b517088a1b5770ee6140a21c51d26d4d"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-09-c7030918b59a7f74b53a.json",
+      "git_blob_oid": "f28c42600a44abffe5439dbb1263b3c862f831df",
+      "bytes": 5853,
+      "sha256": "e929731841b9ef5244755617621ba7f68c0355b1310f091e0811af0fffab4532"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-10-f83b8f3b0239b0e48c91.json",
+      "git_blob_oid": "70465eeaad704a4ed53dce2d77b1be38355181e4",
+      "bytes": 6220,
+      "sha256": "92af26a4300fd593c25975ea13d74cae806d7e4fb9b20ad44b27030ae7c295c6"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-11-1bab0411229cced359f1.json",
+      "git_blob_oid": "2107e896fcac66d88d5d7ee6b19cc82e66d8636a",
+      "bytes": 6121,
+      "sha256": "fb8e7c2d8a8b86327a209a20f00cb7022b01735410defa4124ef512910d49da4"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-12-8ab354306ab670a6e527.json",
+      "git_blob_oid": "409d69cff365938f5f831eb8c057d919812a309c",
+      "bytes": 6666,
+      "sha256": "9b186ef06f4ec0430b20310ffa87096a8a8ffc46dcf5ed23f4077fe89d0e7558"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-13-c99ebbd6022c712aa11e.json",
+      "git_blob_oid": "4d890e6d7fd003e60434bb3a4c5ad150a44b8bfa",
+      "bytes": 5890,
+      "sha256": "654ab551c603af3e1c7fed42fc67d73a981cae935f96e461c2bd176c72929974"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-14-10707f6285186d641135.json",
+      "git_blob_oid": "3e565068ce6e40ea6f8a4702762636ca4bb607db",
+      "bytes": 5986,
+      "sha256": "87ca3001f5828056b2fe5076045e0b8498379a6497f61d93943e091baebe19d3"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-15-f9e68d5bd3982df77d3d.json",
+      "git_blob_oid": "540dd37a6bf778f5438d798a6f611e9f65b76dce",
+      "bytes": 6936,
+      "sha256": "9057b08f6928c73bbd7cb77d2347069d02b84be3bcc27aff950b1a999905c8dd"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-16-c9098225b9bbddd90bb9.json",
+      "git_blob_oid": "e47194a45cf9f53ba2872df6a80e7b5be16559a1",
+      "bytes": 9971,
+      "sha256": "bee325b4b3800fecc092ee1723d7aedf13af7480679f7adff7256ec3481a1b20"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-17-24d3fcc7c5a64874252c.json",
+      "git_blob_oid": "bb1062e335301ad0e9d26e7aae697aa9cdfbdab1",
+      "bytes": 7302,
+      "sha256": "8181ecff962640aca5c1222ab856ed6d4ded55eb22ff0afc0a80baa61c096194"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-18-c6c8d888ce45e4de1ecc.json",
+      "git_blob_oid": "f748a0cd0dc308211abbcfd20867c1225a8365aa",
+      "bytes": 7000,
+      "sha256": "22c68650e7970e7f8f7afb7697820b0384422b794cb1bbc58846255857b11e55"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-19-e18c52d7b3890fd49ca8.json",
+      "git_blob_oid": "0b6506c814bf31523644f73a897705ee3fa428c4",
+      "bytes": 6917,
+      "sha256": "06c0a9ea446a6ea44f7ce8c1e1ef971295aff1a832703d9b04c2a78f812fbc54"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-20-f8541ad9f040c68c01c3.json",
+      "git_blob_oid": "d2ee5d60657b264862dc12a6ca487e8cce90ca9e",
+      "bytes": 7950,
+      "sha256": "939bd4e5d39c15333ac42539476398766e49b612afb6e1896f3069556a1e75b8"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-21-04d0596ea01b645b356a.json",
+      "git_blob_oid": "90e849ef4644b45a4ead63d07193fa0e321a4497",
+      "bytes": 6414,
+      "sha256": "8379c2f3701c3ceb1e8cbf0e7d67cd1afc9dcd6d28b5af2e434a6e0a870a1a1b"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-22-0557bc4a0480262818cd.json",
+      "git_blob_oid": "8f8e7610cdfc73d201d3e033b83387ac073b137e",
+      "bytes": 7050,
+      "sha256": "4581cc321e08413fdc48d7af086597468aa73fa99f6934a6fa7e4749dcbcd730"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-23-4e9e4657888d132b9b99.json",
+      "git_blob_oid": "7cd88b1525993bcf38e4c81680ea3630a06bbeb7",
+      "bytes": 9807,
+      "sha256": "0d0e753afb4252a5511529d7d62307e9e2c02a6c43173d93d2b2517585fca874"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/LIPI-24-466c19f291ab0272c54f.json",
+      "git_blob_oid": "e061e46ecb29a57c3dfc17d6ca547c53302e3d5a",
+      "bytes": 6856,
+      "sha256": "2cf9f95f83ae7109b55c3225936fd42530f87f08b5d3c1a42950dcb1bfadbcdc"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-01-37f7cfc9b62f7fb77bba.json",
+      "git_blob_oid": "1dd15f369c91d4224ddc91bd3eb0d6d195beecd3",
+      "bytes": 5552,
+      "sha256": "fe284ea6f68b8e0b2660e6eb3c6d5ef0f586a93cbc69180ea37e91b458383400"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-02-dbd39db7b43d6f370d5c.json",
+      "git_blob_oid": "f44277965eb80e496e1069a73108c25dbbef1a65",
+      "bytes": 5375,
+      "sha256": "1930ed49138f0e61b1bb958713fce3bff6e8e932e8de1a7515f261e5d85b3156"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-03-a6673d9a1ac96bdbfcd1.json",
+      "git_blob_oid": "f332449b3ec805986b065bb4cdb4fc9126b5c078",
+      "bytes": 5843,
+      "sha256": "b7438b50a06b924f61418f0587ac27e4e512bf8e1b9b5b8c18d919ee4878bb44"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-04-41edce11f43dce2cb5e7.json",
+      "git_blob_oid": "753c5845c6ea5855e54e5941bd7b32cb6b6f41e4",
+      "bytes": 5720,
+      "sha256": "7643f0ff147ca608bbcfb76701ac2c168fcce00a3358d698ce19f56e65a07c91"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-05-855d6bad8ce643065fcb.json",
+      "git_blob_oid": "4e0bf3a2ee2a9a7de15765d7201941cbf2b8b1f6",
+      "bytes": 5487,
+      "sha256": "2a372931697c33758027dddaf38c219d2457b8b55eca86062b27ab26ff633005"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-06-44e2ff50ae8dd99f94a1.json",
+      "git_blob_oid": "ad4f34c9f3b78dce19a45cf72609933bacd62923",
+      "bytes": 5704,
+      "sha256": "83fa26bf6d520d7d0b07fd994f09e5d9f4c3e386b72dba397858e5e8ae2206ff"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-07-cb00c6e7def6abc02364.json",
+      "git_blob_oid": "4e7c9cac2321c76651263cd8fc19186037b23e06",
+      "bytes": 6127,
+      "sha256": "6f26bc7aa199f6d4cb0edd52f819634b246b9ea36d5291c2d5cdabf1423eacd5"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-08-b5cbdfe2e966c1581fe3.json",
+      "git_blob_oid": "e12ce9dc6a89f2ec223b3eeb3c275f7c850eb832",
+      "bytes": 5857,
+      "sha256": "f1d126c008a9398ae1b1fbb40c62b7f77c8e8f8314c0bb9f4f2784e45580ccf4"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-09-00b4ff84a31013af871e.json",
+      "git_blob_oid": "ba9372f53b178ae48944e64d06d7ecaf8d6cf83e",
+      "bytes": 5724,
+      "sha256": "f5421a17594a0985b55f6a4082fd3647a8404797c4c5bdc539136edd8d78271d"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-10-a996148f4ac467c612fd.json",
+      "git_blob_oid": "c3e379fe2baecdd691a9d070dc8fc498babc37e8",
+      "bytes": 5399,
+      "sha256": "52bd1ed47fb227bf444f1394e270472f7cdb28e763f8c3026f1173c9faee1503"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-11-f881ee079513f3204d0f.json",
+      "git_blob_oid": "1cf00f2e7688f12b25726191d14eb88910572710",
+      "bytes": 5794,
+      "sha256": "a4b21dfd223fcaa3bb4b58d5470827ca99727032d78e6e5fdc101eac8bc0034e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-12-d42b93717220b4ec42a2.json",
+      "git_blob_oid": "689c427edb5f9e8978e28ea3719931657468e1e2",
+      "bytes": 5602,
+      "sha256": "58eeaed8530058a6d6b3a2cfc4002208c811c39ec6cadb247a72afa18cabfb59"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-13-c170f09b1798e737aad0.json",
+      "git_blob_oid": "447fdc61bc088b9cdc74f74e37b500b111ec5d82",
+      "bytes": 5642,
+      "sha256": "72969c67ac31be91dce4ddde632ecbf96e3ed6fd99c70564fd576829f68d8b35"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-14-082b4bcf138168ddae2f.json",
+      "git_blob_oid": "de5fbd8a577b758f80ae6ea20542cf47743fdc4e",
+      "bytes": 6504,
+      "sha256": "69b55741c1e8d5e69fe10f54eeddb9d8bc9a7893fe8edcb057e00a5d1f9a9081"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/OPO-15-d6e9da9601b63995869d.json",
+      "git_blob_oid": "e2bcfcb6714c99fd7cafc1541baae712ca4d0ba1",
+      "bytes": 6143,
+      "sha256": "808d96b37c3aa1a52e1abbe4e23474328a241cfbde1d3707de1d6833caaa7a24"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-01-938b89be3ef1a3c64c7f.json",
+      "git_blob_oid": "87da663ba114bd11a9296c91617b89d0c75ec96d",
+      "bytes": 5464,
+      "sha256": "f47f9801e4975adfa92a739359a3fac1390484a79e5961dfb4ebddf1050b2c34"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-02-ce2429816dbb1f3f4c7a.json",
+      "git_blob_oid": "7add4bb749fef72fa26c7601529b6be1b5f73a33",
+      "bytes": 5150,
+      "sha256": "8288db91b5d45078dd867ed2fa059ecffdad72829e54868da63543a9ea1e8a6f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-03-6880763679be0a67226a.json",
+      "git_blob_oid": "7f48b096c699657d2170113d712976ebb60be72e",
+      "bytes": 5184,
+      "sha256": "3c0a0c42a2840c62a6dfa7397dab49e90a9285ace73c5695c9cc1dc0da7a5c3e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-04-a14c651ca590a63a4981.json",
+      "git_blob_oid": "43b0524935969d4b2adb6cd56cccd97ea59ccba0",
+      "bytes": 5123,
+      "sha256": "35fb28fb759494a1c98d90a3765bd8c5129ed9a35a70b36b062ba723fc80ff65"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-05-88427b025d329dce2b9f.json",
+      "git_blob_oid": "ba8190f2271550a5b5fc951c3970b6c72c8ae1d9",
+      "bytes": 5227,
+      "sha256": "7b3aa69fd623dbe8ec48ef74efcc802a216660936a65a78b4097ee8866728cce"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-06-918f2a75349a14e89c34.json",
+      "git_blob_oid": "d76f2fcdc2e5a523db49a03f7526f641165c3ae7",
+      "bytes": 5299,
+      "sha256": "3e07c98314a49709da359362e9a40b27fc3979cdf693465eeb4763de14d6f77a"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-07-91d0690cfa0eb43a62d9.json",
+      "git_blob_oid": "4578e6ee293165424b75f4748b901e2b33485c6a",
+      "bytes": 5210,
+      "sha256": "45d075d29568a2994649e932980fc87875fd6f31c4b480c5368718092a77c2b5"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-08-05a9dce68da410b2e83b.json",
+      "git_blob_oid": "9dd8707aa5929d81b5f5017b296d04aa81c9ad48",
+      "bytes": 5192,
+      "sha256": "f9e5ca16bae5595261c2f2e330b6f9f08d6fad7176e0e9009837c7f9bd6cf798"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-09-b6d7a2ed2bb26093f4d1.json",
+      "git_blob_oid": "6e4da55d5b88bdb1a7e44f65256bc603e67700eb",
+      "bytes": 5340,
+      "sha256": "2470a77fddcf882e3b897c65a9aa34bdff312fa29bd4248587eb49e5fa00b5b0"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-10-5edbaffca0dd2578224c.json",
+      "git_blob_oid": "bfcaa6d4238a15258c75fee5cb2d94f04c67a083",
+      "bytes": 5048,
+      "sha256": "9421565848a25f3ab4c546df995bbc1421e73db42058a6fb7767babbd2942279"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-11-156ec203ba3f7861b6e6.json",
+      "git_blob_oid": "b5cf6ffb80b6ebcdf63cd983d99e995c72c6ff60",
+      "bytes": 5477,
+      "sha256": "8cf6d484c81d3729a1701344f2b2190469f18c7130f06bb3e94c3bc2e6c30db6"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-12-5848a32cd7399d4d9768.json",
+      "git_blob_oid": "065ac4fb0322582f615f9771955995ba0fc84537",
+      "bytes": 5073,
+      "sha256": "bf2940c08ee38d9073d58b906bc5a32c3f3a881826cbf9a6225716fe0cbe0a7b"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-13-40983e0963e24de51ba6.json",
+      "git_blob_oid": "8ba9854b36b46a06d3e89a19b751c996ab4e17af",
+      "bytes": 5214,
+      "sha256": "fbbf7e8872f70bc014b29f3c30d1560808695e89c98a8bf4124aed9a7b801f83"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-14-81dc46657266ed570546.json",
+      "git_blob_oid": "a4ce3ae0fe0ab21a9c2dca47e9455e7b8db96209",
+      "bytes": 5314,
+      "sha256": "7b91dc81426048f945dff49c3f7a70b979b2449b4af4187cb5c03292e1d3676b"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-15-470d02e7db92d7c20bbf.json",
+      "git_blob_oid": "8845b7272c3479280dc3ad4ab27867ad28814e0c",
+      "bytes": 5454,
+      "sha256": "a60271d886c42f0d0e1e64052736b088943856fde080853f831cdd808168d8fe"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/SH-16-ea3f24c5e37dac3232c6.json",
+      "git_blob_oid": "c2a7e5999945a225974b76adc29af541aedfdc94",
+      "bytes": 5373,
+      "sha256": "6296adcc0997bf42a796f787128f9bc552264797fb60d750d27710f8ff597333"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-01-bc001aee66e4edf6e0f3.json",
+      "git_blob_oid": "c25632b8637d8965d12d5c54f0c52bb4fb33a849",
+      "bytes": 5375,
+      "sha256": "00b74fca264361a8ac6456fc98db5ce287cd34a8edc680d9b9d767e9c2684ba0"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-02-0dd3e695981cc769b04b.json",
+      "git_blob_oid": "982ab72fb6e3bc1d370657ad4c8cdb814f539f25",
+      "bytes": 5855,
+      "sha256": "9c7a0f3d27d80e5cda8d13b2aa466c5d6ae0a69970faceb9ec94d4f5e2e4c2e9"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-03-ef9cafa58610f47b6240.json",
+      "git_blob_oid": "8fa2154688288297671dbf3d4231cbcddcc13fec",
+      "bytes": 5776,
+      "sha256": "c24855e772e631cc478e732baa50007d4686f01dcbe4df4d53350c0230b6e66f"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-04-b7de74eb91fcdc0db107.json",
+      "git_blob_oid": "d50488306dee11310d579b7d0c3946aeddc092ec",
+      "bytes": 5887,
+      "sha256": "df317a369c97b4af3b7bae48418c78c57aaef166e6debe8884638eb599bce745"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-05-7475aa4ecdcae81a7d23.json",
+      "git_blob_oid": "d4085c3315d2a2ae951ba6d3d3b36fd3cc34aa12",
+      "bytes": 5786,
+      "sha256": "5e8bec5ebf99cf014f903e065be640e798d26288a1fcd5b36ed30aef3161ed19"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-06-f1ad66a0099f69f54048.json",
+      "git_blob_oid": "1ca2fdcc2ada4e9b9a4f19b274b54b22ab780345",
+      "bytes": 5688,
+      "sha256": "9330590332bcb484b9803394f6e3cb3cd351e1661c3f4f6594115b1f5f380424"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-07-c0f1e826a9c2cf6716e5.json",
+      "git_blob_oid": "b860b8a8dfc001a5500d7b3120772b1d5fbdb675",
+      "bytes": 5495,
+      "sha256": "a3314b95a3542e50bf7b13d084118d0088ee36d27a0e7ccdf3f54c36a746a46e"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-08-172036fa4497a89db62e.json",
+      "git_blob_oid": "274b1c475e00891004a71082478bd582ec80c94f",
+      "bytes": 5963,
+      "sha256": "fdf96a6b0c3b6545786dcecff941946ccff17d2133ea5a39933e2bc2e1d919f1"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-09-b83688b71a4071f995b7.json",
+      "git_blob_oid": "8c6c61eb94c1b9d04a609515409da95c52ba0f0d",
+      "bytes": 5566,
+      "sha256": "1e8a17d587b1e575b35a6aa9dd9a083af90aca75ae13391391e828a2f8ca4ec0"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-10-0b91f4c960d1512115f4.json",
+      "git_blob_oid": "8df1c90ebb6ecd447a21f711b5fa0b65918bdee4",
+      "bytes": 5530,
+      "sha256": "ebc74ee40b06324a62cc25e08102eba377b82841448a23e3a6d920ccee174b65"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-11-62b70087cc95b30ec72e.json",
+      "git_blob_oid": "2cf6cbfcaa53d6031f2429a271f5d9bcc06b21e5",
+      "bytes": 6266,
+      "sha256": "4eb326415a4db4ed387e4be180a040671e7dcb6c891ecf9576203301a2b18c41"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/records/WHB-12-b32d6333df0b6bdca9ce.json",
+      "git_blob_oid": "16712090a6ed665b2dd69abdf09859e3f7bd0442",
+      "bytes": 6237,
+      "sha256": "edf75acadb161e0cb03d2b483b7ab0b5e1833f17333546c51419dff5070f65ab"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/sh-v1.jsonl",
+      "git_blob_oid": "5b4f011388f1d8d1440665453a5c2c5e45507f1b",
+      "bytes": 75884,
+      "sha256": "768998dfcf443f426562b2b381bdeb81aed7bbcbde7cd605570071e406e4b6ff"
+    },
+    {
+      "path": "planning/autonomy-complete/jira-outbox/whb-v1.jsonl",
+      "git_blob_oid": "5c89ecd7b68897486074850bfbcaa278a855770d",
+      "bytes": 63116,
+      "sha256": "a4f7e8203e9581213b7b64c41f61ea0d451d292b602c656195c6486a8b8a4f80"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/commerce-bidet/CHECKPOINT.md",
+      "git_blob_oid": "87fb39e44ec170effe46a40d1ee39ded8f134899",
+      "bytes": 1847,
+      "sha256": "6b16067b90dcaaa40d3049a18c40356d60dc325991d5d5ed510f0e6c16c1efb9"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/commerce-bidet/CONTINUE.md",
+      "git_blob_oid": "9ec545934b57459a04d854d0fae58f1956726b30",
+      "bytes": 899,
+      "sha256": "88a7a627cdb803c910cbcb7d22e7e94c25d41576aaa375b408da488182243e07"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/commerce-bidet/LOCAL_VALIDATION.json",
+      "git_blob_oid": "3c651149a39147ab145e2781533a658bd0db0d14",
+      "bytes": 237,
+      "sha256": "fa42a86241ba2a68a10b87734d2e673bd80b4e522c96e81e37848bcee3f4d58c"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/commerce-bidet/REVIEW_OPO_WHB.json",
+      "git_blob_oid": "c0a3db63b77bc82db2dc9c60b8af0e14ec1b1c19",
+      "bytes": 6289,
+      "sha256": "a7466547cf4512058e80da10e1c7891d80d2716ca1b4f883a1b1396b7d1cd0ce"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/commerce-bidet/REVIEW_OPO_WHB.md",
+      "git_blob_oid": "b6f539b8b38c803ab5901a1abbcdbfc79768cef5",
+      "bytes": 4203,
+      "sha256": "9c60ea7dfc32628144fcf1d3285d1bb0a0d957b274ab355528614886dfc30e0c"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/lipi-guru/CHECKPOINT.md",
+      "git_blob_oid": "31b9de9bbbc86823d843f57c5cc2c6259ad2def0",
+      "bytes": 2098,
+      "sha256": "57977451defefa34d99d07d19008ef81e44566f24b3918793cf50e47057b73b2"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/lipi-guru/CONTINUE.md",
+      "git_blob_oid": "43fb0a9d550fcae20ca6f6eef9a2b7631de01e9e",
+      "bytes": 1473,
+      "sha256": "ff48fc548186331328570db0723846484108dc6c4b88954ee8bd19ef0db6c3f6"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/lipi-guru/VALIDATION.json",
+      "git_blob_oid": "7b81c6aa13e35665ea5154ef4c7907061c6ce8e7",
+      "bytes": 541,
+      "sha256": "cc168e2190a06b675489f93c07d651fb5ad173ab27a4b5482e20f25851354dbd"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/lipi-guru/build_plans.py",
+      "git_blob_oid": "a28fb75476a46bb7f2980b7e1b2126d4414fdb1d",
+      "bytes": 115128,
+      "sha256": "da959c2146a7c538b2392d7a2228b6477a938147a06f2bb5e468f8639f0e8fc9"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/CHECKPOINT.md",
+      "git_blob_oid": "4ab690b0f476d0c6617a07856861686997c4c492",
+      "bytes": 5157,
+      "sha256": "594943f8061aa586fb259e4f915540fd816f3f9a72fe0455ace15fe1b22b3614"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/CONTINUE.md",
+      "git_blob_oid": "4897be3b9902bdf7db493ba36813d2b0f92f919a",
+      "bytes": 4946,
+      "sha256": "c09e5e75fc71a3de8a2c5b6d75ce17db29157b40f3adeaa55a7fd0489d8fad16"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/LOCAL_VALIDATION.json",
+      "git_blob_oid": "1b4cf845af087ccff3a09dec7b9a6cbf9f32c640",
+      "bytes": 571,
+      "sha256": "19b8f96bf3e370ebfd1a52cbf9c68eee85b02c196ff96d734eff8470685f8326"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_CL_BF.json",
+      "git_blob_oid": "56060c9adf09d391f002c4833b7cb835c589577c",
+      "bytes": 6534,
+      "sha256": "b755f0ce353c4cc8b713602aacac0cf799643e86dd22577874426bfc0dd122cf"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_CL_BF.md",
+      "git_blob_oid": "91989cd3de8178e32cfca9cafe728f89bca14e84",
+      "bytes": 5532,
+      "sha256": "725d8f50f31a10d7a57461855271435cc9f287a313aa0ca7fe32dffa827d068a"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_CL_BF_CHECKS.json",
+      "git_blob_oid": "06317dc0141f49b92d10546cbf0f41c4fb189ec7",
+      "bytes": 483,
+      "sha256": "2fa7c77f030164461a9442ba19492fb381774b17dce33f026bd756aeda525aa8"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_CL_BF_ENCODING_FIX.json",
+      "git_blob_oid": "6ade889f0886d16ec99b3f3c3a3ab11361b36eca",
+      "bytes": 1522,
+      "sha256": "8d57b906c26f657a221c98a0282716d14b4317848c0fdb9af1a118eeffd29a31"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_SHARED.json",
+      "git_blob_oid": "3f63c74f44c48f593a323de60cc80bfc0f2b8beb",
+      "bytes": 49546,
+      "sha256": "7c4589fdd71c7a0baaac34e61603f8bb67db95556d2e75109d97c91996e8bda1"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_SHARED.md",
+      "git_blob_oid": "7536a3f9c02e1931176357ae48a0bc247c65be35",
+      "bytes": 5974,
+      "sha256": "0ac934f0681253629d253f295c77fbd5343f3c5f1bd7205c74cf01f49392473c"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_SHARED_CHECKS.json",
+      "git_blob_oid": "9858135c4c5a851bfad1a0a82d53e8be2d107ffc",
+      "bytes": 1188,
+      "sha256": "eba96646e536e58bf5c24e1fe13e7bdd158c09d13bfb5bae1742480e63fa0e88"
+    },
+    {
+      "path": "planning/autonomy-complete/lanes/opo-whb/REVIEW_SHARED_PARITY.json",
+      "git_blob_oid": "b2cd28468d9b5175ebedf26c71e35ea45f0f7c22",
+      "bytes": 42448,
+      "sha256": "1a482680c0a7baf1870ed2cf93e751fcd3f04e7db31e1e5a6d43e97bb9b1081f"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/CHECKPOINT.md",
+      "git_blob_oid": "1eb742768f58a3e4ded492834463bade16cb198b",
+      "bytes": 2574,
+      "sha256": "b648e0898881832294436393c4714e5cebde1e80cf0191c3307f85d35c536ddf"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/CONTINUE.md",
+      "git_blob_oid": "7f1b4c75fb59c93064e97d2dfc3ce11ee59df560",
+      "bytes": 1980,
+      "sha256": "00888612d2d437b7ba4f815ba52a38359f04140a777ec32f284cb6c291eb8490"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/EVIDENCE.md",
+      "git_blob_oid": "e55ca655d8b7a622012eb610418c7978c62164d4",
+      "bytes": 6685,
+      "sha256": "1869e50c0f0c31fe980b7a69b002e723c182cb9450f5edd1172aa239472e8291"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "fe22ef08ce6b1d628fe11bd5f08e79c23a8a41ee",
+      "bytes": 4002,
+      "sha256": "610b8d3a8a5fe8d59729c80832eea1b9d7b493dc1416089e409e91c8f9dd6ee3"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/PLAN.md",
+      "git_blob_oid": "a4007df6ae6381763a52ac96fec1ed4e49cfbf5d",
+      "bytes": 8703,
+      "sha256": "bf091be12aebefecddc2a54e98d327f605f51b41e4f5fea1cc3c793eb142b1a8"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/TASKS.json",
+      "git_blob_oid": "a93b83d436f0302b653a2069d53132aa33cae2b0",
+      "bytes": 70106,
+      "sha256": "f4e6111ab9444e22bc9bb852433b3222a2feb9a1567ae258a766da91a1ac9cf2"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/TASKS.md",
+      "git_blob_oid": "da72b08ffd6260d23b57af9339e9404868803b86",
+      "bytes": 59398,
+      "sha256": "84b3398d14349d28f54058c3c5f03c4e599444f1714eaba155a1f6d6a470a48b"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "72d1a2c45fe43054b98e5a35c5c990f0d7ace8ec",
+      "bytes": 4338,
+      "sha256": "70bfd6365499f75541957c706d0631f1fa6234b86856534a44f20a2d460038c0"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/evidence.json",
+      "git_blob_oid": "3d8552c8af1dec8276b6d38dad3c994419cd1ff9",
+      "bytes": 6326,
+      "sha256": "be0c78056b29afea8c3c275b2c822b2174f43a288fd1840d1d9bc766abed84d8"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/bidetfit/requirements.json",
+      "git_blob_oid": "839b3190ae77b3c3bc97da1b3938b1f44a848a26",
+      "bytes": 24015,
+      "sha256": "d7a39ff309dec1f2b5eaf33443686854e810d269af9d3037b942576d0435e6a7"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/CHECKPOINT.md",
+      "git_blob_oid": "ab0387f5c568523e8707dbec4db52ce1efc02687",
+      "bytes": 2257,
+      "sha256": "d5bc17005aaaaa2d4e94010d8698478495c62296c0ee77c9fdfd07cb26853bdf"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/CONTINUE.md",
+      "git_blob_oid": "8ce70fe82d5809398df4418c55d077ef35126471",
+      "bytes": 1892,
+      "sha256": "b4259d3acb796f46fb5604e34f03ee50be34c2660a1ba14a788f99d14bf2941c"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/EVIDENCE.md",
+      "git_blob_oid": "8f607dc08d7d17559dd828d183345eec0192da2e",
+      "bytes": 7497,
+      "sha256": "86687739579e7dea636fe70505aee37dc5ac72e25ef2cb239d8a953afe7ed9ba"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "e984b70097d1ac2b596fda4cdaf251ef3ea5e2aa",
+      "bytes": 2994,
+      "sha256": "83d146ff62e888ff54d6cadecec757a0e1a945f3f6b3aae84307ebeec7f00d8a"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/PLAN.md",
+      "git_blob_oid": "63b01b67f328b57372a463dbae38c06fcbfc564c",
+      "bytes": 7302,
+      "sha256": "84fc484eac5caa2c8c762e75e82a31ab9eb6bf1a89b6508d265d893bddc66499"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/TASKS.json",
+      "git_blob_oid": "d508e5f566bf9155d0b607b75743576c1cf13e66",
+      "bytes": 60550,
+      "sha256": "693df6d2b876104c44957d54652c2637e3c73e2a0935e69cd40acd8a40280264"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/TASKS.md",
+      "git_blob_oid": "1a5ab93b9525288b85a59825afae3b4597b9e0c0",
+      "bytes": 51552,
+      "sha256": "cd26dedc7b48d34c06f3d5f90c28260b4ca623b438614c058503af4217aebb0e"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "0b89b90aa58684133d842192a5a554c8ee22f9cc",
+      "bytes": 4067,
+      "sha256": "9b867212dd0cf0c11769e3c967788096d8dab104153e256e82de934ee8df6867"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/evidence.json",
+      "git_blob_oid": "a2e29957f1f7070933d8225238d245e7240a0dad",
+      "bytes": 7222,
+      "sha256": "2c22ac15fd7560f892557e00caefc7866f0f44169eceafce3ecb02e3e03b5193"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/commercelint/requirements.json",
+      "git_blob_oid": "f83c2026f64a6885a7da83199835c0a746c3cece",
+      "bytes": 24550,
+      "sha256": "d2bb97cde83f11fe23fe22c60863879ab5a6aae2f9282eb53d41df7b15051b79"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/CHECKPOINT.md",
+      "git_blob_oid": "31b9de9bbbc86823d843f57c5cc2c6259ad2def0",
+      "bytes": 2098,
+      "sha256": "57977451defefa34d99d07d19008ef81e44566f24b3918793cf50e47057b73b2"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/CONTINUE.md",
+      "git_blob_oid": "43fb0a9d550fcae20ca6f6eef9a2b7631de01e9e",
+      "bytes": 1473,
+      "sha256": "ff48fc548186331328570db0723846484108dc6c4b88954ee8bd19ef0db6c3f6"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/EVIDENCE.md",
+      "git_blob_oid": "72b41a009f993db2f069ce73573cfaed75e72d33",
+      "bytes": 3276,
+      "sha256": "c0abc415b872f6aeaa7a59471e8e76d32dd075656bd25c668c35a6c42b1c46c7"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "fd7450bd9b0518ad02e3f5dcb4336a36b1067c00",
+      "bytes": 2079,
+      "sha256": "126d81e263f46e7f175c5294472a33d81826fc26e870ecfab3f3d3f8adebb1ff"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/PLAN.md",
+      "git_blob_oid": "901706d19915e6d56f7e2ab1c130b304463aa0ce",
+      "bytes": 12063,
+      "sha256": "ca7c1c8249e54abd18b3f5266df808a213917e21f725e8645f47ade7c0fb4ddd"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/TASKS.json",
+      "git_blob_oid": "ddc1de0d8116522c2190dc595920e1d098a8e00a",
+      "bytes": 83966,
+      "sha256": "dfb6f465b37985699a6f1bacf5c7932b0d9d9880c4fca8f2044878f516fcc6c7"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/TASKS.md",
+      "git_blob_oid": "46441e2e55ec023decca4437daccde2f233817cb",
+      "bytes": 64195,
+      "sha256": "b808ce040f3a3b8c7ffdcfb938e75600d29ab7dfbd98f08deae478e709b40e9a"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "c14d4061c33bc8c0778d184cf380964b1de4396e",
+      "bytes": 6248,
+      "sha256": "26c3eb54f9b2a032a4200c08f84884eef8b91bc67449fefdca3d9583469c8165"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/effect-gates.json",
+      "git_blob_oid": "8cc2b982b27e5bc20a3f59d65442d46aa3088fde",
+      "bytes": 1754,
+      "sha256": "ed65a98c6e9acd942fae2ea90be14ce6176e717df247d4216a486859f1448308"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/evidence.json",
+      "git_blob_oid": "b0c12100f8b7c7c47b44c88fbb02caab9f8f5624",
+      "bytes": 3616,
+      "sha256": "fed1ff8dcc4d41fd037b73a3ad49ce17cd49bd61c02e760501112d6fbff156a1"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/inputs.json",
+      "git_blob_oid": "07743baa61594b0a2c90c44a464a52759fcca103",
+      "bytes": 5163,
+      "sha256": "b63b58ea873c3ed00589344202b6e00e7d9f7a35fdfa2f6786e31b153a3b1e63"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/jira-candidate-metadata.json",
+      "git_blob_oid": "9b27e72af077ecaf8a51bde9f9bd2c3179204829",
+      "bytes": 2339,
+      "sha256": "3f4c18ac8f9d2bde65d58360bea3a1197ccb53a865c2fc257e6d2eab49f79d4c"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/guru/requirements.json",
+      "git_blob_oid": "aca5dd6085506a23509b89efa0541a50d94f13f2",
+      "bytes": 18714,
+      "sha256": "62ab5aa059bb902ba70767eb796fead60cc54431f8817dba8b9a1921e73a229f"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/CHECKPOINT.md",
+      "git_blob_oid": "31b9de9bbbc86823d843f57c5cc2c6259ad2def0",
+      "bytes": 2098,
+      "sha256": "57977451defefa34d99d07d19008ef81e44566f24b3918793cf50e47057b73b2"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/CONTINUE.md",
+      "git_blob_oid": "43fb0a9d550fcae20ca6f6eef9a2b7631de01e9e",
+      "bytes": 1473,
+      "sha256": "ff48fc548186331328570db0723846484108dc6c4b88954ee8bd19ef0db6c3f6"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/EVIDENCE.md",
+      "git_blob_oid": "9e12537f081ccb18fdf8de77dca5462c2ef10fc8",
+      "bytes": 5905,
+      "sha256": "61bbb15cc59400304238cf59b95346b835b722f49de8af9c6e637a2cdc92a7e0"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "c3ce780f231103945fc6c8e328ad9f369df11bdf",
+      "bytes": 4537,
+      "sha256": "2a98af9fc11dbca47115e8270e27783dafe9a0a5d972fd099c8bf9eda2cf010e"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/PLAN.md",
+      "git_blob_oid": "58fb025fea768a3dcde7a1b0d8ebe6ef24cf6e4a",
+      "bytes": 13651,
+      "sha256": "f0c72af780da429983525c1f68cb0e00151b0b30ea7c816a1745eeb00ac53e6d"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/RETAINED_RECONCILIATION.md",
+      "git_blob_oid": "6ac1f277806322604fafeff893b01cbb33bef4fe",
+      "bytes": 5186,
+      "sha256": "bc99b6dfdc53dda016a519a2d8d8bf6b55d920dee78e48ecfb2c4d39feae3079"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/TASKS.json",
+      "git_blob_oid": "f13b8c2045a3de022fa741c2988d0aac08e5be92",
+      "bytes": 134677,
+      "sha256": "3dbc3c611d64407aeea094a724cb21a9f1ed3cbc253ebe62744e57c6e9d1dc16"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/TASKS.md",
+      "git_blob_oid": "2397bbf090e1465eaf2e90a56c85de3046b81a4e",
+      "bytes": 97536,
+      "sha256": "485d5e56601cd8c44d106970cb5f163fecdaf6afe9c2171bf932700ff323a216"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "559ecaf282296c7f555d1aa5ea74e9b122dcb301",
+      "bytes": 8761,
+      "sha256": "cbbcbf0e7b0979bc0dad55d2ce4f2785e72ce81698290e77092eac6915ea3e9e"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/effect-gates.json",
+      "git_blob_oid": "dec5e5e6280831d0544ab1e28847a9d89628b5cb",
+      "bytes": 3515,
+      "sha256": "967e298215fe6103294a93ef90017324d6bdbf6fec4253527a975f61062bddb4"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/evidence.json",
+      "git_blob_oid": "5c391b6ba753d2d2deceec71539d142d49aca1ca",
+      "bytes": 6618,
+      "sha256": "9ea242a74be9aa96900b105a30548ea86868f2acf82ce1e9c83beade597cd58d"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/fresh-main-readiness.json",
+      "git_blob_oid": "fd1a46e95c82c47a6e7f38be68c59a1920414b34",
+      "bytes": 6152,
+      "sha256": "3cee575d1bb2e3c0a94483e27821268e686ca0e9d31c6681b04539fdf5573a36"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/inputs.json",
+      "git_blob_oid": "60f4198f4424439560586f5f046361f993515138",
+      "bytes": 7035,
+      "sha256": "479064cbf54d7e0a09d6d40d1dd4e9fb3fc55324bf9a5a3ca02883cf9144e7b3"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/jira-candidate-metadata.json",
+      "git_blob_oid": "ded12fbf7f88496f3ee7bbc30dffcd675c2e0656",
+      "bytes": 29456,
+      "sha256": "96f4c9d266a9d1a9be5dabd11405ce74d5eb741c186e9c3fce98ebff16af9242"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/lipi/requirements.json",
+      "git_blob_oid": "86897321e6e03613326ca579960e6b5f362a9914",
+      "bytes": 23979,
+      "sha256": "9cb8e38e7e5de32466215059d57e967c192255eb65877155f96e0fb686bb1508"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/CHECKPOINT.md",
+      "git_blob_oid": "e38802fd2a229e832d21d732186dc3922933cac5",
+      "bytes": 2987,
+      "sha256": "ee66860f911785620fe11b8b448d6fedbbbb06b1d86af91b658e4ee08470f7b9"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/CONTINUE.md",
+      "git_blob_oid": "eed7cf3cacfbdac0aaaacb1e1eb078a791fb8a65",
+      "bytes": 2392,
+      "sha256": "2833d4f727be0e2c603766cedd1166671011d2a72f3ad740c486220dfce1e602"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/EVIDENCE.md",
+      "git_blob_oid": "ab5a27a37dbd2f1ea39864530c229a85130ab7ee",
+      "bytes": 5017,
+      "sha256": "8a69c45e98baac998b2ad52f9fda4427452db4b12635addb65109c0ed6730557"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "305a291ae547013691626f14da202c9a46f76438",
+      "bytes": 3184,
+      "sha256": "32673646e64539dee9796f421afc132ae97f072af869731a35d953b91a6bbdb7"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/PLAN.md",
+      "git_blob_oid": "91cbdfbc8465f81f26ea7d66be4812649905324c",
+      "bytes": 10208,
+      "sha256": "f547692d14b469806c3aec6b24e8e4a9248bb18c6a74ccfb942878f943a4e867"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/TASKS.json",
+      "git_blob_oid": "1ba50b4734ad899d40c1deeeb5cc1743332e3e9b",
+      "bytes": 66974,
+      "sha256": "a463cd64193463137209d90889f5dba3123fc864afc56ee6c74a99574d4292d3"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/TASKS.md",
+      "git_blob_oid": "1e522621ae0ee2debb7fae2b622526110bccf22a",
+      "bytes": 57867,
+      "sha256": "fcfc78a2a3c84538a8ba850e7f67f0a0a49d1d89acc6ed33023ccdbd31a5cc84"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "d3a7cd9e680ebdb261d0028ac7628203e7e5e3b3",
+      "bytes": 4414,
+      "sha256": "ca9d39e33bbba2be3b869f5cf84cd5d8357dd91859deb391bbd1a77464ecb165"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/evidence.json",
+      "git_blob_oid": "39e056da9493edaefd44e3884a48fb025f3a6bec",
+      "bytes": 5376,
+      "sha256": "eb47f6df3964c6198bdaf2dbbcf1cc5b64b685e0ddf5cbd22ae8fcaaed288314"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/inputs.json",
+      "git_blob_oid": "d8f66087e636d0711034ec44fd09d03ddb1d7e9e",
+      "bytes": 4799,
+      "sha256": "e5e1cfa93932e0b7e726806f79938ed8556d8f0abdbe40e9c85f6436819b9ae9"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/jira-candidates.json",
+      "git_blob_oid": "4d3aa3c0e5b7b226b3e3a4f94c64ecffc1f0a6ee",
+      "bytes": 5423,
+      "sha256": "9cd23a11def22e2a8732ac623abc5913c3bf1fd031021ace02c354bbfc3430e9"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/opo/requirements.json",
+      "git_blob_oid": "df8f5a1605bceb557565847a0b6dc1d8a8c0132d",
+      "bytes": 14526,
+      "sha256": "af3f8d375bba229a851dca8b2fc2d5a1601d96b94dd5ef54c5be3e871a236144"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/CHECKPOINT.md",
+      "git_blob_oid": "7547f62922a874c6a413d99bb5fb09f24e9d49fd",
+      "bytes": 2985,
+      "sha256": "84262d82dc9e85cd44d0fb898c586a29ccfc30690aae2873a43f269d05a20970"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/CONTINUE.md",
+      "git_blob_oid": "23e91f57c661f6d39b6ef5b660f0586ae663889a",
+      "bytes": 2392,
+      "sha256": "7eb38bde6c38506aec21d263e98a31c757dc6d6fd99fa703708ad6a58fa68a2f"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/EVIDENCE.md",
+      "git_blob_oid": "bee8ec004d07c26502d8f858edee33620734b2f6",
+      "bytes": 6109,
+      "sha256": "9b62da61a10f762a0a6e58776a6adcf632fc59f2797352c5bc52dfa8ce52ca9b"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/JIRA_RECONCILIATION.md",
+      "git_blob_oid": "8b62be8348e5ab0069a85434f05638921860a109",
+      "bytes": 3469,
+      "sha256": "ce721b82766af46f4f31ddd7b7241f4a0421c41d0e176a4bfff89c7fe4c48ffe"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/PLAN.md",
+      "git_blob_oid": "21f5f3f79d3e1ca424eaffe003053b6e6dff9878",
+      "bytes": 10130,
+      "sha256": "8003ccb0a1fae374c77d6bdbbe213f7873e157c16434cdb045f30c8480694640"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/TASKS.json",
+      "git_blob_oid": "fd12b974426efc4b8884dffb9c42a109c8a2452b",
+      "bytes": 53805,
+      "sha256": "ec09512092fd7513b597ac295b8aa29f5f214974a73517aecd6b3245fe9ac6cf"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/TASKS.md",
+      "git_blob_oid": "31b08122fe8b2995e92bcab009f0a032a8d0f9e4",
+      "bytes": 46483,
+      "sha256": "b7ec69fd5941d07b92c5d51ab6c4956445f7a440d449d0a861ce169e2a86d2e9"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/UNRESOLVED_INPUTS.md",
+      "git_blob_oid": "96ce80279a9b11d9a238fd35d9036e41973a79b2",
+      "bytes": 4248,
+      "sha256": "a42356c27ece5e76437331a44032dacc98245f3e1fcb038ea18b2979682e8475"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/evidence.json",
+      "git_blob_oid": "bf094c8e0a8d8edf830241c080219a6cebffc916",
+      "bytes": 6448,
+      "sha256": "acf6ec108071de05aa784c1a67d0be35075550e72c8baad8b83becc7920f9cfb"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/inputs.json",
+      "git_blob_oid": "1321ff7aab9f99a7b24287aacfd56a896eb38a36",
+      "bytes": 4633,
+      "sha256": "8e53e754c8021f5d7dfc3bc38b44877f7c2446685bb0dd88e9f8933568c50ab3"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/jira-candidates.json",
+      "git_blob_oid": "bbd2b3b43ebc8031485b9fa0ae72c93d68377fd7",
+      "bytes": 2576,
+      "sha256": "2e24c60936b2a87435f5b933e86738b06a241dc2076613f513a0f45c81a7a658"
+    },
+    {
+      "path": "planning/autonomy-complete/missions/whb/requirements.json",
+      "git_blob_oid": "b3f2572ff69edb4e352b4faf78583ad85b94db0f",
+      "bytes": 13168,
+      "sha256": "7b1c571e526a54830cf4018191cf62a6cd8f0dd96a5f3feded93c5a8fc1cfa14"
+    },
+    {
+      "path": "planning/autonomy-complete/reviews/REVIEW_LIPI_GURU.json",
+      "git_blob_oid": "107bed37aadd1bdcf73f2af72636d787983d980a",
+      "bytes": 8307,
+      "sha256": "65e5607d9861b805e04cd92a3542f0871df115e2e66391be09d7316e102a2f16"
+    },
+    {
+      "path": "planning/autonomy-complete/reviews/REVIEW_LIPI_GURU.md",
+      "git_blob_oid": "8585e955d7e47c04d01df273ba09f3e7aefdd547",
+      "bytes": 1139,
+      "sha256": "6f79e542204d41626401f7331f931f9b473531f0a1a1ca9dadddda996567632c"
+    },
+    {
+      "path": "planning/autonomy-complete/reviews/REVIEW_SUMMARY.md",
+      "git_blob_oid": "3ef4f758b8caf069039e76f3f1079a6b8e2a8744",
+      "bytes": 5144,
+      "sha256": "dba046ecee752757ad066db6cfd4e933d4b12eca2d8a6dd3b9b876dba492c702"
+    },
+    {
+      "path": "planning/autonomy-complete/reviews/ROOT_FINDINGS.md",
+      "git_blob_oid": "057390856c930526e854bc2ea4dfd99785cde196",
+      "bytes": 2783,
+      "sha256": "c24269c7c29f6885eccf2da4296d5dff8240ec3838b595252c4660ec0b62cb61"
+    },
+    {
+      "path": "planning/autonomy-complete/shared/TASKS.json",
+      "git_blob_oid": "cab0a0f1d4b71202d9ec2b1000c6e661525230c1",
+      "bytes": 63802,
+      "sha256": "f65dfee29733ba4e3da2fd07920a93c29b356ff37d6cecc35f797a20cbcfcb66"
+    },
+    {
+      "path": "planning/autonomy-complete/shared/TASKS.md",
+      "git_blob_oid": "d6d6c1ca87559bb2e4ea029b907e3d548bae31ea",
+      "bytes": 55208,
+      "sha256": "94217377138e90867c107f085441e0f5ddb3ebf430a893723629d58913a6249a"
+    },
+    {
+      "path": "planning/autonomy-complete/shared/requirements.json",
+      "git_blob_oid": "db4c0ebeefcc8753b408f9053d1c1a7051b27ccd",
+      "bytes": 8366,
+      "sha256": "c234c65e315d8856510c7864aa423ca2a01652fb2c0a84f0e263854ea721063e"
+    },
+    {
+      "path": "planning/autonomy-complete/validation/ARTIFACT_AUDIT.json",
+      "git_blob_oid": "a536f642ee99a581410d3f7febf216d8e747bfe5",
+      "bytes": 347,
+      "sha256": "5017b67c43f98d95ba15eddded72e9eeb166a8e85b4c09c43bc7c4f321a05aa8"
+    },
+    {
+      "path": "planning/autonomy-complete/validation/ARTIFACT_HASHES.json",
+      "git_blob_oid": "cced9a3a51f22a08c2fd7400532b5d36f5030321",
+      "bytes": 48445,
+      "sha256": "752ef97c5d9eb38b81bc66397d6fa4d06df24b0c92514f62f4db512fa6610693"
+    },
+    {
+      "path": "planning/autonomy-complete/validation/PLANNING_VALIDATION.json",
+      "git_blob_oid": "f8109c7cc8955cb3519acf38612742b78a98f57c",
+      "bytes": 354,
+      "sha256": "9c1541cf72864e45cebac0d1d56fabdf980a4056cbf98921965b59e0e49aa58c"
+    },
+    {
+      "path": "planning/autonomy-complete/validation/REVIEW_MANIFEST_VALIDATION.json",
+      "git_blob_oid": "ae4b6823a53f11d3475093f74436b9ed62c0f003",
+      "bytes": 1254,
+      "sha256": "21eb3b8bc74b924c81ca43aa1f2bbaaf345aa48ae0088dce6291bb35539c9536"
+    }
+  ]
+}
