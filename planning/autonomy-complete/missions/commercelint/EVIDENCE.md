@@ -1,0 +1,87 @@
+# CommerceLint evidence and proof limits
+
+Inspection recorded 2026-09-12T21:29:59.820012+00:00. Fresh source clones were read-only. Only explicitly reported tests were executed. No runtime/operator scripts, workflow dispatch, account mutation, message, payment or deployment was performed.
+
+## CL-E01
+
+Repository/source: `pri8771/autonomous_apps`. Ref: `ec4d10c0e02fc09465535a0b3da019a9c3f73bf9`. Paths: `README.md; MISSION.md; config/business.json; docs/service.json`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed.
+
+Fresh read-only shallow clone inspected 2026-09-12. Product charter targets verified net cash; existing free browser/CLI and $49 scoped audit up to 15 public URLs plus one clarification round. Payment URL is empty. Official source clock is Aug 24-Nov 21; no reset planned.
+
+Proof limits: Repository content is current at inspected commit, not live account, deployment or payment qualification. Commercial result is not established.
+
+## CL-E02
+
+Repository/source: `pri8771/autonomous_apps`. Ref: `ec4d10c0e02fc09465535a0b3da019a9c3f73bf9`. Paths: `operator/main.py; operator/growth_planner.py; .github/workflows/hourly-operator.yml; growth-planner.yml; watchdog.yml; state/CONTROL.json`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed.
+
+Existing bounded deterministic operator chooses ready tasks, has max attempts, RUN/PAUSE/STOP and persisted run logs; growth planner replenishes templated work. Actions state writers share concurrency group commercelint-state-writers. Workflow shell retries include fresh-state reruns. Current action handlers are asset checks, content publish and social queue generation.
+
+Proof limits: No workflow dispatched or existing worker contacted. Static inspection does not prove live scheduler health, transactional cross-host fencing, owner revision acknowledgement or complete business autonomy.
+
+## CL-E03
+
+Repository/source: `pri8771/autonomous_apps`. Ref: `ec4d10c0e02fc09465535a0b3da019a9c3f73bf9`. Paths: `docs/scanner.html; cli/commercelint.py; tests/test_cli.py; tests/fixtures/; docs/assets/analytics.js; tests/test_analytics.py`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: implemented_tested, local_only, cloud_backed.
+
+Five existing CLI fixture tests passed locally using python -B -m unittest discover -s tests -p test_cli.py -v (0.067 seconds reported). Browser scanner source has analyzeMarkup, local lastReport, JSON download, escaped output and optional consent-gated analytics; URL retrieval uses AllOrigins and 18-second abort.
+
+Proof limits: Only five CLI tests executed, not browser interaction or analytics suite. Tests use synthetic local fixtures; no real store scan, live conversion or source release verified. URL proxy data boundary needs explicit qualification.
+
+## CL-E04
+
+Repository/source: `pri8771/autonomous_apps`. Ref: `ec4d10c0e02fc09465535a0b3da019a9c3f73bf9`. Paths: `operator/lead_intake.py; .github/workflows/lead-intake.yml; coordination/HANDOFF.md; COORDINATION.md`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed.
+
+Public GitHub request intake validates public hosts, scans one public page, maintains lead IDs and generates scoped preliminary response; workflow posts comment after persistence. Existing ownership assigns state and integration to scheduled operator. Public/private CRM separation and unresolved historical sent-message discrepancy are documented.
+
+Proof limits: No private CRM/mail read; no real request or comment delivery inspected. Source workflow has no demonstrated persisted destination-comment receipt/reconciliation; readback/idempotency are tasks, not claimed capabilities. Historical claim expiry cannot substitute for new fence acceptance.
+
+## CL-E05
+
+Repository/source: `pri8771/autonomous_apps`. Ref: `ec4d10c0e02fc09465535a0b3da019a9c3f73bf9`. Paths: `docs/founding-audit.html; docs/sample-audit.html; docs/service.json; config/business.json; coordination/HANDOFF.md`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed, historical.
+
+Retained offer, sample/backlog and scope-before-payment path exist. Handoff records unverified payment route, private CRM, blocked Gmail and unqualified social route. Source config defines zero pre-revenue spend and one bundled reinvestment up to 50% available settled cash per genuine new revenue event.
+
+Proof limits: Offer and policy inspection is current source; dated account/CRM/balance claims remain historical. No merchant eligibility, actual delivery, customer agreement, revenue or new communication authority verified.
+
+## CL-E06
+
+Repository/source: `pri8771/priyanshchordia.com`. Ref: `02c3df999a2d052810e0f265d5cb40d865861042`. Paths: `scripts/sync_commercelint.py; .github/workflows/pages.yml; .github/workflows/bidetfit-pages-overlay.yml; deployments/commercelint-production.json`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed, historical.
+
+Portfolio mounts autonomous_apps docs at /commercelint with canonical/privacy checks. Saved deployment receipt verified_at 2026-09-12T19:28:27Z names source 2de53155e56aa851d02858f24d2a2102dd4da5e2 and portfolio 5686a152903ca8231a335ab449f18eccc60c0371; this differs from inspected tips and must be preserved.
+
+Proof limits: Saved receipt is producer evidence, not this planner live verification or proof current inspected tip is deployed. Web tool refused opening public scanner URL as unsafe/non-retryable; no alternate service check attempted.
+
+## CL-E07
+
+Repository/source: `pri8771/astra-bot-launch`. Ref: `3833a1b`. Paths: `WINDOWS_ASTRA_ULTRA_HANDOVER.md; WINDOWS_RELEASE_EXECUTION.md; reference/AUTONOMOUS_EXPERIMENTS.md; focus/kai-pri-lipi/OWNER_DIRECTION.md`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: cloud_backed.
+
+Read full root handover and bounded release/roadmap/autonomy/owner-direction/task contracts. Wider planning is separate from useful releases; planner is outbox-only and must explicitly map all autonomy behavior.
+
+Proof limits: These are planning/authority documents, not installed shared runtime or proof the worker consumed a direction.
+
+## CL-E08
+
+Repository/source: `pri8771/astra-bot-launch`. Ref: `3833a1b`. Paths: `planning/autonomy-complete/evidence/JIRA_READBACK.json; JIRA_MISSION_SEARCH.json`.
+
+Observed at: 2026-09-12T21:29:59.820012+00:00. Classification: live_observed, local_only.
+
+Root supplied current read-only Jira metadata snapshot at 2026-09-12T21:13:19.287Z with matching candidates; BOTS-114 remains a baseline candidate with original estimate 5400 seconds and links including PCH-139.
+
+Proof limits: This lane consumed root saved readback; no Jira write or full source/spec admission. Candidate association is not final task binding; exact native scope requires sole writer.
+
+Historical focused mission returns referenced by the root task bundle are not present in this isolated control checkout; this plan uses the current bounded source inspection and retained source-specific records rather than ingesting unrelated history. Worker-return consumption remains an admission interface, not a request to interrupt workers.
+
+Classification note: cloud_backed establishes exact inspected repository source. historical applies to producer snapshots or old account/outcome claims even when the containing source was just read. live_observed applies only to the named current read, and implemented_tested only to the explicitly executed local tests.

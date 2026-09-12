@@ -1,0 +1,88 @@
+[
+  {
+    "key": "BOTS-117",
+    "summary": "[BM-WHB-01] Wait, How Big?: establish current baseline",
+    "status": "To Do",
+    "updated": "2026-09-06T15:06:48.382-0400",
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    }
+  },
+  {
+    "key": "BOTS-2",
+    "summary": "Wait How Big Launch",
+    "status": "To Do",
+    "updated": "2026-08-31T16:10:26.147-0400",
+    "timetracking": {}
+  },
+  {
+    "key": "BOTS-29",
+    "summary": "py3.12 regression test proving packaged startup; missing-key path exits WAIT_HOW_BIG_NOT_CONFIGURED",
+    "status": "In Review",
+    "updated": "2026-09-02T20:18:58.563-0400",
+    "timetracking": {
+      "remainingEstimate": "0m",
+      "timeSpent": "25m",
+      "remainingEstimateSeconds": 0,
+      "timeSpentSeconds": 1500
+    }
+  },
+  {
+    "key": "BOTS-59",
+    "summary": "[BM-E03] Wait, How Big? first verified content cycle",
+    "status": "To Do",
+    "updated": "2026-09-05T19:15:50.696-0400",
+    "timetracking": {}
+  },
+  {
+    "key": "BOTS-119",
+    "summary": "[BM-WHB-04] Wait, How Big?: qualify and verify the first permitted action",
+    "status": "To Do",
+    "updated": "2026-09-09T13:17:24.992-0400",
+    "timetracking": {
+      "originalEstimate": "1h 40m",
+      "remainingEstimate": "1h 40m",
+      "originalEstimateSeconds": 6000,
+      "remainingEstimateSeconds": 6000
+    }
+  },
+  {
+    "key": "BOTS-120",
+    "summary": "[BM-WHB-03] Wait, How Big?: prepare the selected reviewable candidate",
+    "status": "In Review",
+    "updated": "2026-09-09T13:17:31.318-0400",
+    "timetracking": {
+      "originalEstimate": "2h",
+      "remainingEstimate": "2h",
+      "originalEstimateSeconds": 7200,
+      "remainingEstimateSeconds": 7200
+    }
+  },
+  {
+    "key": "BOTS-121",
+    "summary": "[BM-WHB-02] Wait, How Big?: specify the first experiment and selection",
+    "status": "To Do",
+    "updated": "2026-09-06T15:06:57.221-0400",
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    }
+  },
+  {
+    "key": "BOTS-122",
+    "summary": "[BM-WHB-05] Wait, How Big?: close the observation, support and recovery cycle",
+    "status": "To Do",
+    "updated": "2026-09-09T13:17:25.965-0400",
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    }
+  }
+]

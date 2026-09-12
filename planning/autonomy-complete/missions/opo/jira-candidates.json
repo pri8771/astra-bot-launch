@@ -1,0 +1,241 @@
+[
+  {
+    "key": "BOTS-112",
+    "summary": "[BM-001] Resolve mission charters and first-cycle authority",
+    "status": "In Review",
+    "updated": "2026-09-09T11:17:47.028-0400",
+    "labels": [
+      "implementation-hold",
+      "kind-decision",
+      "portfolio-v3",
+      "scope-bot-missions",
+      "source-bm-001"
+    ],
+    "components": [
+      "Mission operations"
+    ],
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    },
+    "links": [
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-111"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-115"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-121"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-124"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-128"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-136"
+      },
+      {
+        "type": "Relates",
+        "direction": "outward",
+        "key": "PT-161"
+      }
+    ]
+  },
+  {
+    "key": "BOTS-124",
+    "summary": "[BM-OPO-02] Contract Check: freeze the exact validator, receipt and pilot contract",
+    "status": "To Do",
+    "updated": "2026-09-06T15:07:03.522-0400",
+    "labels": [
+      "implementation-hold",
+      "kind-experiment",
+      "portfolio-v3",
+      "scope-bot-missions",
+      "source-bm-opo-02"
+    ],
+    "components": [
+      "Mission operations"
+    ],
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    },
+    "links": [
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-112"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-123"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-125"
+      },
+      {
+        "type": "Relates",
+        "direction": "outward",
+        "key": "PT-161"
+      }
+    ]
+  },
+  {
+    "key": "BOTS-125",
+    "summary": "[BM-OPO-03] Contract Check: build the bounded static validator candidate",
+    "status": "In Review",
+    "updated": "2026-09-09T13:18:42.703-0400",
+    "labels": [
+      "implementation-hold",
+      "kind-task",
+      "portfolio-v3",
+      "scope-bot-missions",
+      "source-bm-opo-03"
+    ],
+    "components": [
+      "Mission operations"
+    ],
+    "timetracking": {
+      "originalEstimate": "2h",
+      "remainingEstimate": "2h",
+      "originalEstimateSeconds": 7200,
+      "remainingEstimateSeconds": 7200
+    },
+    "links": [
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-111"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-124"
+      },
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-126"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "PT-188"
+      }
+    ]
+  },
+  {
+    "key": "BOTS-126",
+    "summary": "[BM-OPO-04] Contract Check: qualify one approved static release",
+    "status": "To Do",
+    "updated": "2026-09-09T13:18:14.954-0400",
+    "labels": [
+      "implementation-hold",
+      "kind-task",
+      "portfolio-v3",
+      "scope-bot-missions",
+      "source-bm-opo-04"
+    ],
+    "components": [
+      "Mission operations"
+    ],
+    "timetracking": {
+      "originalEstimate": "1h 40m",
+      "remainingEstimate": "1h 40m",
+      "originalEstimateSeconds": 6000,
+      "remainingEstimateSeconds": 6000
+    },
+    "links": [
+      {
+        "type": "Blocks",
+        "direction": "outward",
+        "key": "BOTS-127"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-125"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "PT-188"
+      }
+    ]
+  },
+  {
+    "key": "BOTS-127",
+    "summary": "[BM-OPO-05] Contract Check: review the 14-day usefulness and revenue boundary",
+    "status": "To Do",
+    "updated": "2026-09-09T13:18:16.287-0400",
+    "labels": [
+      "implementation-hold",
+      "kind-outcome",
+      "portfolio-v3",
+      "scope-bot-missions",
+      "source-bm-opo-05"
+    ],
+    "components": [
+      "Mission operations"
+    ],
+    "timetracking": {
+      "originalEstimate": "1h 30m",
+      "remainingEstimate": "1h 30m",
+      "originalEstimateSeconds": 5400,
+      "remainingEstimateSeconds": 5400
+    },
+    "links": [
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "BOTS-126"
+      },
+      {
+        "type": "Relates",
+        "direction": "outward",
+        "key": "BOTS-137"
+      },
+      {
+        "type": "Blocks",
+        "direction": "inward",
+        "key": "PT-188"
+      }
+    ]
+  },
+  {
+    "key": "BOTS-4",
+    "summary": "One Person Ops",
+    "status": "To Do",
+    "updated": "2026-08-31T17:31:34.006-0400",
+    "timetracking": {}
+  },
+  {
+    "key": "BOTS-60",
+    "summary": "[BM-E04] One Person Ops first service experiment",
+    "status": "To Do",
+    "updated": "2026-09-05T19:15:53.528-0400",
+    "timetracking": {}
+  }
+]

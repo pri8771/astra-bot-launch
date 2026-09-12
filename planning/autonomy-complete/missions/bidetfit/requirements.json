@@ -1,0 +1,621 @@
+[
+  {
+    "id": "BF-O01",
+    "mission": "BF",
+    "requirement": "Preserve retained product, stable governance records and exclusive ownership",
+    "task_ids": [
+      "BF-01"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05",
+      "BF-E07"
+    ],
+    "acceptance": [
+      "BF-01: Each retained capability has a reuse or targeted verification disposition.",
+      "BF-01: PCH/BOTS estimates, actuals and accepted evidence are preserved, with unresolved duplicate scope assigned to sole writer."
+    ]
+  },
+  {
+    "id": "BF-O02",
+    "mission": "BF",
+    "requirement": "Dated primary manufacturer evidence with freshness and source correction",
+    "task_ids": [
+      "BF-02",
+      "BF-04"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E03",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-02: Each exact-model result has dated source links and a reason; unsupported fit guarantees are absent.",
+      "BF-02: Unknown or conflicting evidence produces a useful next measurement/manufacturer-verification step.",
+      "BF-04: Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "BF-04: An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence."
+    ]
+  },
+  {
+    "id": "BF-O03",
+    "mission": "BF",
+    "requirement": "Conservative exact-model/category compatibility with useful uncertainty",
+    "task_ids": [
+      "BF-02",
+      "BF-03"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E03",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-02: Each exact-model result has dated source links and a reason; unsupported fit guarantees are absent.",
+      "BF-02: Unknown or conflicting evidence produces a useful next measurement/manufacturer-verification step.",
+      "BF-03: Visitor completes a useful category or exact-model check and can compare evidence/unknowns without a false fit guarantee.",
+      "BF-03: Saved local report and printable sheet support a later manufacturer conversation without requiring an account."
+    ]
+  },
+  {
+    "id": "BF-O04",
+    "mission": "BF",
+    "requirement": "Accessible measurement, comparison and private local saved-result journey",
+    "task_ids": [
+      "BF-03"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E03"
+    ],
+    "acceptance": [
+      "BF-03: Visitor completes a useful category or exact-model check and can compare evidence/unknowns without a false fit guarantee.",
+      "BF-03: Saved local report and printable sheet support a later manufacturer conversation without requiring an account."
+    ]
+  },
+  {
+    "id": "BF-O05",
+    "mission": "BF",
+    "requirement": "Original sourced guides, source refresh, broken-link checks and corrections",
+    "task_ids": [
+      "BF-04"
+    ],
+    "evidence_refs": [
+      "BF-E03",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-04: Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "BF-04: An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence."
+    ]
+  },
+  {
+    "id": "BF-O06",
+    "mission": "BF",
+    "requirement": "Approved eligible affiliate routing and clear disclosures",
+    "task_ids": [
+      "BF-05"
+    ],
+    "evidence_refs": [
+      "BF-E04",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-05: Each active affiliate link has current approval/terms/account/product/page evidence and receiving-link verification.",
+      "BF-05: With no approval, checker and non-affiliate guides remain releasable and commission capability stays explicitly disabled."
+    ]
+  },
+  {
+    "id": "BF-O07",
+    "mission": "BF",
+    "requirement": "Qualified acquisition, completed-check usefulness and permitted referral measurement",
+    "task_ids": [
+      "BF-06",
+      "BF-11"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E04"
+    ],
+    "acceptance": [
+      "BF-06: Scorecard distinguishes helpful completed checks, uncertain guidance, permitted referrals and money.",
+      "BF-06: One declared usefulness/acquisition intervention can be measured honestly despite partial analytics coverage.",
+      "BF-11: Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+      "BF-11: Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+      "BF-11: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "BF-O08",
+    "mission": "BF",
+    "requirement": "Pending/approved/reversed/paid commissions and cash reconciled separately",
+    "task_ids": [
+      "BF-07"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E04"
+    ],
+    "acceptance": [
+      "BF-07: A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "BF-07: Affiliate click/estimated sale never becomes commission or cash automatically."
+    ]
+  },
+  {
+    "id": "BF-O09",
+    "mission": "BF",
+    "requirement": "Private draft-first support and explicit merchant return/refund authority boundary",
+    "task_ids": [
+      "BF-08"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-08: Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "BF-08: Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied."
+    ]
+  },
+  {
+    "id": "BF-O10",
+    "mission": "BF",
+    "requirement": "Repeated evidence-to-next-experiment operation and ongoing strategy evaluation",
+    "task_ids": [
+      "BF-11",
+      "BF-14"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E04",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-11: Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+      "BF-11: Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+      "BF-11: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "BF-14: Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "BF-14: Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ]
+  },
+  {
+    "id": "BF-O11",
+    "mission": "BF",
+    "requirement": "Reviewed public release and cross-venture recovery through existing overlay",
+    "task_ids": [
+      "BF-12"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03"
+    ],
+    "acceptance": [
+      "BF-12: Independent review and public readback identify exact released source and useful complete checker journey.",
+      "BF-12: Release with no active affiliate links is valid useful-product delivery; it does not establish commission or runtime autonomy."
+    ]
+  },
+  {
+    "id": "BF-A01",
+    "mission": "BF",
+    "requirement": "Durable mission state, atomic single-owner claims and stale-owner fencing",
+    "task_ids": [
+      "BF-01",
+      "BF-09",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E05",
+      "BF-E07"
+    ],
+    "acceptance": [
+      "BF-01: Each retained capability has a reuse or targeted verification disposition.",
+      "BF-01: PCH/BOTS estimates, actuals and accepted evidence are preserved, with unresolved duplicate scope assigned to sole writer.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check."
+    ]
+  },
+  {
+    "id": "BF-A02",
+    "mission": "BF",
+    "requirement": "Deterministic event/due scheduling, evidence versions and no idle inference",
+    "task_ids": [
+      "BF-04",
+      "BF-09",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "BF-E02",
+      "BF-E03",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-04: Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "BF-04: An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check."
+    ]
+  },
+  {
+    "id": "BF-A03",
+    "mission": "BF",
+    "requirement": "Evidence-grounded decision with provenance and uncertainty",
+    "task_ids": [
+      "BF-02",
+      "BF-04",
+      "BF-06",
+      "BF-11",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-02: Each exact-model result has dated source links and a reason; unsupported fit guarantees are absent.",
+      "BF-02: Unknown or conflicting evidence produces a useful next measurement/manufacturer-verification step.",
+      "BF-04: Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "BF-04: An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence.",
+      "BF-06: Scorecard distinguishes helpful completed checks, uncertain guidance, permitted referrals and money.",
+      "BF-06: One declared usefulness/acquisition intervention can be measured honestly despite partial analytics coverage.",
+      "BF-11: Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+      "BF-11: Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+      "BF-11: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "BF-A04",
+    "mission": "BF",
+    "requirement": "Eligible action execution and receiving-system verification",
+    "task_ids": [
+      "BF-04",
+      "BF-05",
+      "BF-07",
+      "BF-09",
+      "BF-12",
+      "BF-14",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-04: Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "BF-04: An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence.",
+      "BF-05: Each active affiliate link has current approval/terms/account/product/page evidence and receiving-link verification.",
+      "BF-05: With no approval, checker and non-affiliate guides remain releasable and commission capability stays explicitly disabled.",
+      "BF-07: A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "BF-07: Affiliate click/estimated sale never becomes commission or cash automatically.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check.",
+      "BF-12: Independent review and public readback identify exact released source and useful complete checker journey.",
+      "BF-12: Release with no active affiliate links is valid useful-product delivery; it does not establish commission or runtime autonomy.",
+      "BF-14: Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "BF-14: Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ]
+  },
+  {
+    "id": "BF-A05",
+    "mission": "BF",
+    "requirement": "Experiment evaluation and justified next decision",
+    "task_ids": [
+      "BF-11",
+      "BF-14",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E04",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-11: Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+      "BF-11: Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+      "BF-11: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "BF-14: Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "BF-14: Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ]
+  },
+  {
+    "id": "BF-A06",
+    "mission": "BF",
+    "requirement": "Owner nudges with acknowledged consumed direction revision",
+    "task_ids": [
+      "BF-10",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-10: Owner can see exact consumed direction and concrete next action.",
+      "BF-10: A validated answer resumes only dependent job; governed documentation outboxes project once with native readback."
+    ]
+  },
+  {
+    "id": "BF-A07",
+    "mission": "BF",
+    "requirement": "Persisted missing-input question, validated answer and checkpoint resume",
+    "task_ids": [
+      "BF-08",
+      "BF-10",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-08: Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "BF-08: Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied.",
+      "BF-10: Owner can see exact consumed direction and concrete next action.",
+      "BF-10: A validated answer resumes only dependent job; governed documentation outboxes project once with native readback."
+    ]
+  },
+  {
+    "id": "BF-A08",
+    "mission": "BF",
+    "requirement": "Jira/documentation outbox and sole-writer native readback",
+    "task_ids": [
+      "BF-10",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-10: Owner can see exact consumed direction and concrete next action.",
+      "BF-10: A validated answer resumes only dependent job; governed documentation outboxes project once with native readback."
+    ]
+  },
+  {
+    "id": "BF-A09",
+    "mission": "BF",
+    "requirement": "Bounded retries and attributable finite repair/review",
+    "task_ids": [
+      "BF-09",
+      "BF-13",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check.",
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A10",
+    "mission": "BF",
+    "requirement": "Event and external-effect deduplication",
+    "task_ids": [
+      "BF-05",
+      "BF-07",
+      "BF-08",
+      "BF-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E05",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-05: Each active affiliate link has current approval/terms/account/product/page evidence and receiving-link verification.",
+      "BF-05: With no approval, checker and non-affiliate guides remain releasable and commission capability stays explicitly disabled.",
+      "BF-07: A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "BF-07: Affiliate click/estimated sale never becomes commission or cash automatically.",
+      "BF-08: Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "BF-08: Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check."
+    ]
+  },
+  {
+    "id": "BF-A11",
+    "mission": "BF",
+    "requirement": "Uncertain-effect destination reconciliation before retry",
+    "task_ids": [
+      "BF-07",
+      "BF-08",
+      "BF-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-07: A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "BF-07: Affiliate click/estimated sale never becomes commission or cash automatically.",
+      "BF-08: Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "BF-08: Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check."
+    ]
+  },
+  {
+    "id": "BF-A12",
+    "mission": "BF",
+    "requirement": "Windows-native process-tree cleanup and timeout receipt",
+    "task_ids": [
+      "BF-13",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A13",
+    "mission": "BF",
+    "requirement": "Crash/restart and backup restore without lost or duplicate effects",
+    "task_ids": [
+      "BF-13",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A14",
+    "mission": "BF",
+    "requirement": "Actionable incident alerts with unchanged-state suppression",
+    "task_ids": [
+      "BF-13",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A15",
+    "mission": "BF",
+    "requirement": "Private-data boundaries, retention and secret references",
+    "task_ids": [
+      "BF-03",
+      "BF-06",
+      "BF-08",
+      "BF-13",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-03: Visitor completes a useful category or exact-model check and can compare evidence/unknowns without a false fit guarantee.",
+      "BF-03: Saved local report and printable sheet support a later manufacturer conversation without requiring an account.",
+      "BF-06: Scorecard distinguishes helpful completed checks, uncertain guidance, permitted referrals and money.",
+      "BF-06: One declared usefulness/acquisition intervention can be measured honestly despite partial analytics coverage.",
+      "BF-08: Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "BF-08: Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied.",
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A16",
+    "mission": "BF",
+    "requirement": "Enforced model/tool/time/spend limits and zero idle inference",
+    "task_ids": [
+      "BF-07",
+      "BF-09",
+      "BF-13",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E04",
+      "BF-E05"
+    ],
+    "acceptance": [
+      "BF-07: A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "BF-07: Affiliate click/estimated sale never becomes commission or cash automatically.",
+      "BF-09: Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "BF-09: Changed/due evidence selects useful work automatically and records verified result/next check.",
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ]
+  },
+  {
+    "id": "BF-A17",
+    "mission": "BF",
+    "requirement": "Exact-source independent review and repeated real end-to-end acceptance",
+    "task_ids": [
+      "BF-12",
+      "BF-14",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-12: Independent review and public readback identify exact released source and useful complete checker journey.",
+      "BF-12: Release with no active affiliate links is valid useful-product delivery; it does not establish commission or runtime autonomy.",
+      "BF-14: Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "BF-14: Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ]
+  },
+  {
+    "id": "BF-A18",
+    "mission": "BF",
+    "requirement": "Independent Windows execution and optional fenced R730 migration",
+    "task_ids": [
+      "BF-13",
+      "BF-14",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05",
+      "BF-E06"
+    ],
+    "acceptance": [
+      "BF-13: Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "BF-13: Actionable-alert and private-data tests pass for every enabled mission adapter.",
+      "BF-14: Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "BF-14: Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ]
+  }
+]

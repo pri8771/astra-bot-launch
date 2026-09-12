@@ -1,0 +1,88 @@
+[
+  {
+    "id": "OPO-E01",
+    "repository": "https://github.com/pri8771/astra-bot-launch",
+    "ref": "8559dea0fec755333321b06e28d845795c737030",
+    "path": "WINDOWS_ASTRA_ULTRA_HANDOVER.md; WINDOWS_RELEASE_EXECUTION.md; reference/OPO_AGENT_BUSINESS.md; reference/MISSION_GOALS.md",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Latest six-mission scope assigns OPO agent revenue business plus cross-platform followers/exposure; dedicated Windows OPO writer owns source/Jira, planner outbox only.",
+    "proof_limits": "Authority/task contracts, not execution or live acceptance. Flat handover is equivalent resolved file; supplied nested path absent."
+  },
+  {
+    "id": "OPO-E02",
+    "repository": "https://github.com/pri8771/one-person-ops",
+    "ref": "cb20a06a1344c8c017afa0b4bc9565377a99db63",
+    "path": "AGENTS.md; SOURCE_PROVENANCE.json; git tree",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Fresh independent clone at cb20a06a. All 30 preserved file hashes match exact Git blobs; 23 Windows text worktree files differ from stored hashes due to CRLF checkout. Assets, legacy dirty-file provenance and historical Sites binding preserved. No current server message API/store/operator exists in inspected tree.",
+    "proof_limits": "Executed check is Git-blob SHA256 comparison only; no npm tests/build or live site check. Source read shows absence in bounded tree, not absence of another worker branch. Preserve fresh worker returns."
+  },
+  {
+    "id": "OPO-E03",
+    "repository": "https://github.com/pri8771/one-person-ops",
+    "ref": "cb20a06a1344c8c017afa0b4bc9565377a99db63",
+    "path": "app/page.tsx; app/calculator/calculate.ts; app/calculator/Calculator.tsx; tests/calculator.test.ts; tests/trust.test.ts; package.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Legacy storefront shell, static free ZIP, deterministic ROI calculator and source tests are reusable. Package scripts expose lint/test/build; no dependency installation or source test executed.",
+    "proof_limits": "Source presence is not implemented_tested runtime acceptance. Contract Check implementation is not in this snapshot; optional retained source remains unqualified."
+  },
+  {
+    "id": "OPO-E04",
+    "repository": "https://github.com/pri8771/one-person-ops",
+    "ref": "cb20a06a1344c8c017afa0b4bc9565377a99db63",
+    "path": "README.md; app/page.tsx; app/privacy/page.tsx; app/support/page.tsx; app/terms/page.tsx; .openai/hosting.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Checkout is configuration-gated; README describes staged Lemon Squeezy primary/Polar fallback and no live processor URL. Saved Sites deployment is owner-only. Historical brand support reference does not prove mailbox control or exact hostname.",
+    "proof_limits": "No payment, hosting permission, public domain/DNS, storage, support delivery or account access verified. Read only hosting-binding presence, no deployment."
+  },
+  {
+    "id": "OPO-E05",
+    "repository": "https://github.com/pri8771/astra-bot-launch",
+    "ref": "8559dea0fec755333321b06e28d845795c737030",
+    "path": "reference/AUTONOMOUS_EXPERIMENTS.md; reference/ACCOUNTS_CHANNELS_AND_HOSTS.md",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Owner contract requires genuine voluntary agents, logged communication, versioned direction, single-writer experiments, gross follows separate from unique audience and deterministic zero-idle-inference operation.",
+    "proof_limits": "Desired architecture and source account policies; no current runtime operation demonstrated."
+  },
+  {
+    "id": "OPO-E06",
+    "repository": "https://github.com/pri8771/astra-bot-launch",
+    "ref": "8559dea0fec755333321b06e28d845795c737030",
+    "path": "planning/autonomy-complete/evidence/JIRA_READBACK.json; planning/autonomy-complete/evidence/JIRA_MISSION_SEARCH.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed",
+      "live_observed"
+    ],
+    "finding": "Root read-only Jira metadata observed 2026-09-12T21:13Z: BOTS-124-127 remain Contract Check-specific, BOTS-112 charter, BOTS-4/60 OPO umbrella/first service candidates.",
+    "proof_limits": "Consumed root native metadata, not source admission, descriptions or permission. No mutations. Unknown bindings remain null; original estimates/actuals preserved."
+  },
+  {
+    "id": "OPO-E07",
+    "repository": "https://help.x.com",
+    "ref": null,
+    "path": "https://help.x.com/en/rules-and-policies/x-automation",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "live_observed"
+    ],
+    "finding": "Official X automation rules checked in current planning turn require prior written explicit X approval for AI automated reply bots. Original posts and other platform capabilities require their own qualified routes.",
+    "proof_limits": "Public rule evidence, not actual OPO eligibility. No account read/write performed; executor revalidates rules at action time."
+  }
+]

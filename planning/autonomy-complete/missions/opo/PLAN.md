@@ -1,0 +1,51 @@
+# One Person Ops: complete product and autonomous-operation plan
+
+OPO is an agent-facing service business that can earn real revenue, with a separate requested experiment in cumulative followers and exposure across useful channels. The initial implementation is a useful discovery/service/conversation release; genuine outside-agent demand, paid demand and sustainable economics remain observed business outcomes. The old solo-operator storefront and optional Contract Check are reusable candidates, not the mission definition.
+
+The bounded current source is the preserved private one-person-ops ref cb20a06a1344c8c017afa0b4bc9565377a99db63. Its 30 provenance hashes pass against exact Git blobs. Windows CRLF checkout changes 23 text-file byte hashes, so review and release manifests must identify the byte representation. The source has a Next/React/Vinext shell, free ZIP, deterministic ROI calculator, staged checkout and source tests. This lane ran only a provenance hash check, not npm/source/runtime tests. Public hostname, durable hosted storage, outside-agent adoption, merchant and current channel capability are unverified. Do not infer missing worker-branch features from this preserved snapshot: first consume the existing OPO worker return once and reuse accepted matching work.
+
+## Product and customer/agent journeys
+
+An outside agent or human reads a plain HTML explanation and versioned capability document, sees available bounded services and limits, submits a versioned request/proposal, obtains durable conversation/request IDs, and retrieves an attributable result or understandable rejection. An operator-authenticated reply is linked to the actual accepted inbound message. Identity is unknown, self-declared or evidenced; no bot bio or synthetic test establishes a real agent. The actor retains its own operator's authority. External text, links and patches are data and cannot grant shell/repo/credential access or unbounded spending. Contributions enter an isolated proposal/review path.
+
+The concrete initial service candidate wraps the existing deterministic ROI calculation for agent clients because its source is inspectable now. OPO-04 compares it with any returned qualified Contract Check candidate and genuine requests before selecting the advertised offer. The permanent business may instead evolve toward validated normalization/validation work after evidence. The sequence is useful outcome -> transparent offer -> qualified payer/payment -> delivered value -> support/refund -> net receipts, with a useful free service available while merchant capability is unresolved. The legacy $9 kit is historical pricing, not an assumed price for the new offer. A message board, stated willingness to pay, self-tests and paid-looking redirects cannot count as revenue.
+
+A selected qualified social route announces useful capabilities and links the exact public service. Additional GitHub, Substack or LinkedIn channels need a stated audience hypothesis and supported owner-controlled route. Gross cross-platform follows and per-post impressions are measured by their platform definitions; subscribers, unique users, agent claims, returning use, conversations and transactions are separate. Original posts and voluntary website replies remain distinct from optional X AI reply bots, whose written platform eligibility is unverified.
+
+## Useful releases and dependency queue
+
+1. OPO-01 performs bounded admission/reuse reconciliation. OPO-02 discovery and OPO-03 durable intake can run in disjoint paths; OPO-04 integrates their service contract. OPO-05 provides the specific offer and economics. OPO-09 releases that useful public service when exact hostname/storage/security facts pass; missing domain keeps preview and implementation useful.
+2. OPO-06 qualifies merchant/payment independently; OPO-07 completes free fulfillment first and activates its paid/refund branch only after OPO-06 and effect grants. OPO-08 enables one qualified distribution route and continues optional channel experiments independently. No all-platform or payment prerequisite blocks the free product.
+3. OPO-10 binds durable events/claims, OPO-11 business decisions, OPO-12 effects, OPO-13 direction/outboxes and OPO-14 Windows recovery to shared SH capabilities. These dependencies apply to later autonomy integration and do not pause the dedicated worker's already-authorized useful release.
+4. OPO-15 validates two repeated cycles and preserves separate prepared, implemented, reviewed, released, autonomously operating and observed business outcome states. Future decisions reuse these adapters and finite task templates, not another unlimited launch roadmap.
+
+Task cards and requirements.json define the executable dependency graph. Paid fulfillment's additional OPO-06 prerequisite is explicit in that branch; free fulfillment remains ready. Shared source ownership and active-worker interfaces remain with the dedicated owner-started OPO Windows session. This planner writes only its planning tree and immutable proposals.
+
+## Actual autonomy integrations
+
+| Requirements | Mission integration | Concrete behavior |
+|---|---|---|
+| A01–A02 | OPO-10 | Atomic conversation/job/event storage, mission/epoch claim, message.accepted and metrics.updated events, next_check_at/evidence fingerprint; no unchanged idle inference. |
+| A03/A05/A16 | OPO-11 | Compare request mix, repeat use and cost to select service/offer/channel experiment; predeclare baseline/window/limits; classify supported/unsupported/inconclusive and choose next work within reserved budgets. |
+| A04/A10/A11 | OPO-12 | Separate response, service, deploy, social, delivery and refund capabilities; durable attempt before send and destination/result hash verification; unknown acceptance reconciles before retry. |
+| A06–A08 | OPO-13 | Acknowledge exact owner revision, reuse pending domain question, validated answer resumes only dependent job; one OPO writer receives experiment/outcome/review outboxes. |
+| A09/A12–A15/A18 | OPO-14 | Finite repairs/retries, Windows process-tree stop, backup/restore and fenced takeover, actionable alerts, host secret refs/private records and optional R730 qualification. |
+| A17 | OPO-15 | Exact-source independent review, two real allowed effect cycles, owner amendment and crash/restart evidence; synthetic and commercial evidence remain separate. |
+
+## Repeatable cycle and exceptions
+
+First cycle: a legitimate outside-format request, or new aggregate evidence after the declared window, becomes an immutable observation. The operator chooses a bounded service/discovery hypothesis with an alternative and recorded expected value. It emits an experiment outbox, waits for native registration readback, checks direction/capability/budget/fence, executes the service or qualified distribution action, and verifies result/delivery/public receipt. After the predeclared window it evaluates qualified requests, useful completions, repeat use and economic evidence. Next decision may adopt the service, fix confusing schema, change the offer, test one qualified channel, stop a low-value tactic, or wait for a named missing input/evidence trigger. No fresh owner launch prompt is required.
+
+Second cycle must use that first evidence and show another qualified action/result/evaluation. If no outside request appears, an authorized distribution action can prove external effect automation, while outside-agent adoption remains unproven. A paid branch needs an actual authorized transaction, correctly fulfilled result, provider fees/refunds and independently reconciled receipts. No test charge, synthetic agent or timing window is converted to revenue or a worklog.
+
+Owner direction example: revision 7 says pause paid offers and prioritize free format conversion. The operator acknowledges 7, blocks unsent payment effects, preserves already-made commitments for reconciliation/support, and only resumes paid work on a later valid revision. A visitor cannot issue this command. A hostname answer resolves the existing question only after exact origin and authority validation. A crash after response/payment acceptance but before local write is resolved by destination key, not duplicate send. Restart restores claims and due work with a new fencing epoch; old host cannot retain writes. Privacy deletion leaves bounded redacted lineage. Store failures or unknown effect outcomes create one actionable alert, not repeated model polling.
+
+## Deployment, measurement and ongoing operation
+
+Use the preserved source's Sites workflow when authoring/deploying. Explicitly qualify public hosting plus server/storage capabilities before choosing production persistence. Keep local transactional fixtures as local evidence. Windows is temporary independent execution; Mac disconnection must not stop it. The optional R730 hub migration uses shared versioned state, locally provisioned secrets, fenced handoff and rollback, and is not a launch prerequisite. i9 remains deferred.
+
+Maintain a daily/due cheap health collector, source/capability expiry triggers, request/service outcome ledger, support queue, predeclared experiment windows and periodic economic reconciliation. Start with one active experiment and at most one eligible reasoning pass per day when material evidence exists, bounded by approved budget; urgent factual/security/failure events may warrant a separately eligible bounded decision. Persist metric coverage and unknown costs, actual model/tool/host usage, delivery quality and repeated use. Independent review is renewed when source/offer/action changes. Support, refunds, corrections and next experiment selection make this continuing business operation, not only a launch.
+
+All exact external gates and useful independent alternatives are in UNRESOLVED_INPUTS.md. No runtime, account, public launch, revenue or autonomous operation is claimed complete by this plan.
+
+Runtime acceptance requires two completed and verified real allowed cycles. A durable evidence wait is correct operation when inputs are insufficient, but does not complete this two-cycle acceptance. Source-test fixtures and actual outside adoption or business results remain distinct evidence classes.

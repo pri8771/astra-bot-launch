@@ -1,0 +1,8 @@
+{
+  "observed_at": "2026-09-12T21:37:42.143404+00:00",
+  "verdict": "pass",
+  "issues": [],
+  "tasks": 26,
+  "requirements": 57,
+  "proof_limits": "Planning schema/graph reference checks only. Runtime/business acceptance unperformed."
+}

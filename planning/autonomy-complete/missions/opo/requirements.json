@@ -1,0 +1,498 @@
+[
+  {
+    "id": "OPO-O01",
+    "mission": "OPO",
+    "requirement": "Preserve source and bind the current agent business",
+    "task_ids": [
+      "OPO-01"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E02",
+      "OPO-E06"
+    ],
+    "acceptance": [
+      "One current source/spec/owner binding and explicit reuse decisions exist.",
+      "Every unresolved capability has an input ID and independent next work."
+    ]
+  },
+  {
+    "id": "OPO-O02",
+    "mission": "OPO",
+    "requirement": "Readable discovery and open versioned agent interface",
+    "task_ids": [
+      "OPO-02"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E03"
+    ],
+    "acceptance": [
+      "A standards-agnostic client can discover one valid request/response contract from anonymous HTML and JSON.",
+      "Existing resources and attribution remain usable; no new opaque private protocol is required."
+    ]
+  },
+  {
+    "id": "OPO-O03",
+    "mission": "OPO",
+    "requirement": "Durable safe conversations and authenticated controls",
+    "task_ids": [
+      "OPO-03"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E03"
+    ],
+    "acceptance": [
+      "Persistent threaded request/reply intake and bounded rejection evidence work in a qualified storage environment.",
+      "Public and internal conversation views expose only the allowed records, with edit/moderation/deletion lineage."
+    ]
+  },
+  {
+    "id": "OPO-O04",
+    "mission": "OPO",
+    "requirement": "Useful bounded deterministic service and attributable result",
+    "task_ids": [
+      "OPO-04"
+    ],
+    "evidence_refs": [
+      "OPO-E03",
+      "OPO-E06"
+    ],
+    "acceptance": [
+      "One useful service has real execution, verifiable outputs and bounded resource cost.",
+      "Contract Check remains an optional evidence-selected service, not a forced business identity."
+    ]
+  },
+  {
+    "id": "OPO-O05",
+    "mission": "OPO",
+    "requirement": "Concrete value offer, pricing, terms and economics",
+    "task_ids": [
+      "OPO-05"
+    ],
+    "evidence_refs": [
+      "OPO-E03",
+      "OPO-E04"
+    ],
+    "acceptance": [
+      "A specific reviewable offer and honest free alternative are available.",
+      "Acceptance distinguishes willingness to pay, requested quote, payment and delivered value."
+    ]
+  },
+  {
+    "id": "OPO-O06",
+    "mission": "OPO",
+    "requirement": "Qualified payment, fulfillment, refunds and honest revenue accounting",
+    "task_ids": [
+      "OPO-06",
+      "OPO-07"
+    ],
+    "evidence_refs": [
+      "OPO-E04",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Qualified checkout yields an independently verified payment record or exact unresolved merchant gate.",
+      "No revenue claim occurs before real settled/authorized payment evidence; refunds/fees retained separately.",
+      "End-to-end delivery/support works for the useful free release.",
+      "Paid fulfillment/refund acceptance is separately gated by OPO-06 and exact provider receipts; no fabricated commercial validation."
+    ]
+  },
+  {
+    "id": "OPO-O07",
+    "mission": "OPO",
+    "requirement": "Support and continuing service quality",
+    "task_ids": [
+      "OPO-07"
+    ],
+    "evidence_refs": [
+      "OPO-E04",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "End-to-end delivery/support works for the useful free release.",
+      "Paid fulfillment/refund acceptance is separately gated by OPO-06 and exact provider receipts; no fabricated commercial validation."
+    ]
+  },
+  {
+    "id": "OPO-O08",
+    "mission": "OPO",
+    "requirement": "Qualified multichannel distribution and honest audience attribution",
+    "task_ids": [
+      "OPO-08"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "At least one eligible useful distribution route has exact-account delivery/readback or explicit blocked effect with ready content.",
+      "Per-channel exposure and qualified agent participation are measured separately from transactions."
+    ]
+  },
+  {
+    "id": "OPO-O09",
+    "mission": "OPO",
+    "requirement": "Verified useful public release and rollback",
+    "task_ids": [
+      "OPO-09"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E02",
+      "OPO-E04"
+    ],
+    "acceptance": [
+      "A useful public service has exact source review, destination receipt and working recovery.",
+      "Shared autonomy tasks do not delay already-authorized useful worker releases; payment/channel gates apply to their own effects."
+    ]
+  },
+  {
+    "id": "OPO-O10",
+    "mission": "OPO",
+    "requirement": "Repeated autonomous business experiments and genuine outside-agent evidence",
+    "task_ids": [
+      "OPO-11",
+      "OPO-15"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Each decision stores observed facts, chosen hypothesis, an alternative, constraints, next due/action and outcome classification.",
+      "Second experiment is chosen from first-cycle evidence without a fresh launch prompt.",
+      "Runtime autonomy acceptance includes repeated operation, owner direction, restart and exact-source independent review.",
+      "Real outside-agent use/revenue only reported when their own evidence exists; absent adoption is honestly inconclusive, not fabricated completion."
+    ]
+  },
+  {
+    "id": "OPO-A01",
+    "mission": "OPO",
+    "requirement": "Durable state, single-owner claims and fencing",
+    "task_ids": [
+      "OPO-10",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E05"
+    ],
+    "acceptance": [
+      "OPO event processing is replay-safe, durable and independent of the mobile Mac.",
+      "Events reopen only materially changed or due work with explicit ownership."
+    ]
+  },
+  {
+    "id": "OPO-A02",
+    "mission": "OPO",
+    "requirement": "Deterministic event/due scheduling with zero idle inference",
+    "task_ids": [
+      "OPO-10",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E05"
+    ],
+    "acceptance": [
+      "OPO event processing is replay-safe, durable and independent of the mobile Mac.",
+      "Events reopen only materially changed or due work with explicit ownership."
+    ]
+  },
+  {
+    "id": "OPO-A03",
+    "mission": "OPO",
+    "requirement": "Evidence-based mission decisions",
+    "task_ids": [
+      "OPO-11",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Each decision stores observed facts, chosen hypothesis, an alternative, constraints, next due/action and outcome classification.",
+      "Second experiment is chosen from first-cycle evidence without a fresh launch prompt."
+    ]
+  },
+  {
+    "id": "OPO-A04",
+    "mission": "OPO",
+    "requirement": "Eligible action execution and receiving-system verification",
+    "task_ids": [
+      "OPO-12",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Every admitted action has a durable attempt and result verified at the appropriate destination.",
+      "Uncertainty creates reconciliation work instead of blind retry."
+    ]
+  },
+  {
+    "id": "OPO-A05",
+    "mission": "OPO",
+    "requirement": "Experiment evaluation and next decisions",
+    "task_ids": [
+      "OPO-11",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Each decision stores observed facts, chosen hypothesis, an alternative, constraints, next due/action and outcome classification.",
+      "Second experiment is chosen from first-cycle evidence without a fresh launch prompt."
+    ]
+  },
+  {
+    "id": "OPO-A06",
+    "mission": "OPO",
+    "requirement": "Owner nudges and acknowledged direction revisions",
+    "task_ids": [
+      "OPO-13",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E06"
+    ],
+    "acceptance": [
+      "Direction and missing-input handling survive restart without question spam or authority confusion.",
+      "OPO proposals never use the combined parent as a competing issue writer."
+    ]
+  },
+  {
+    "id": "OPO-A07",
+    "mission": "OPO",
+    "requirement": "Missing-input questions, validation and safe resume",
+    "task_ids": [
+      "OPO-13",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E06"
+    ],
+    "acceptance": [
+      "Direction and missing-input handling survive restart without question spam or authority confusion.",
+      "OPO proposals never use the combined parent as a competing issue writer."
+    ]
+  },
+  {
+    "id": "OPO-A08",
+    "mission": "OPO",
+    "requirement": "Durable Jira and documentation outboxes",
+    "task_ids": [
+      "OPO-13",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E06"
+    ],
+    "acceptance": [
+      "Direction and missing-input handling survive restart without question spam or authority confusion.",
+      "OPO proposals never use the combined parent as a competing issue writer."
+    ]
+  },
+  {
+    "id": "OPO-A09",
+    "mission": "OPO",
+    "requirement": "Bounded retries, repairs and reviews",
+    "task_ids": [
+      "OPO-14",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  },
+  {
+    "id": "OPO-A10",
+    "mission": "OPO",
+    "requirement": "Deduplication of jobs and external effects",
+    "task_ids": [
+      "OPO-12",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Every admitted action has a durable attempt and result verified at the appropriate destination.",
+      "Uncertainty creates reconciliation work instead of blind retry."
+    ]
+  },
+  {
+    "id": "OPO-A11",
+    "mission": "OPO",
+    "requirement": "Uncertain-effect reconciliation before retry",
+    "task_ids": [
+      "OPO-06",
+      "OPO-12",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "OPO-E04",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Qualified checkout yields an independently verified payment record or exact unresolved merchant gate.",
+      "No revenue claim occurs before real settled/authorized payment evidence; refunds/fees retained separately.",
+      "Every admitted action has a durable attempt and result verified at the appropriate destination.",
+      "Uncertainty creates reconciliation work instead of blind retry."
+    ]
+  },
+  {
+    "id": "OPO-A12",
+    "mission": "OPO",
+    "requirement": "Windows process-tree cleanup and stop",
+    "task_ids": [
+      "OPO-14",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  },
+  {
+    "id": "OPO-A13",
+    "mission": "OPO",
+    "requirement": "Restart, backup and restore",
+    "task_ids": [
+      "OPO-14",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  },
+  {
+    "id": "OPO-A14",
+    "mission": "OPO",
+    "requirement": "Actionable deduplicated alerts",
+    "task_ids": [
+      "OPO-14",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  },
+  {
+    "id": "OPO-A15",
+    "mission": "OPO",
+    "requirement": "Privacy, isolation and secret references",
+    "task_ids": [
+      "OPO-03",
+      "OPO-14",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E02",
+      "OPO-E03",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Persistent threaded request/reply intake and bounded rejection evidence work in a qualified storage environment.",
+      "Public and internal conversation views expose only the allowed records, with edit/moderation/deletion lineage.",
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  },
+  {
+    "id": "OPO-A16",
+    "mission": "OPO",
+    "requirement": "Enforced model/tool/spend limits and zero idle inference",
+    "task_ids": [
+      "OPO-11",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Each decision stores observed facts, chosen hypothesis, an alternative, constraints, next due/action and outcome classification.",
+      "Second experiment is chosen from first-cycle evidence without a fresh launch prompt."
+    ]
+  },
+  {
+    "id": "OPO-A17",
+    "mission": "OPO",
+    "requirement": "Exact-source independent review and real repeated end-to-end cycles",
+    "task_ids": [
+      "OPO-15",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Runtime autonomy acceptance includes repeated operation, owner direction, restart and exact-source independent review.",
+      "Real outside-agent use/revenue only reported when their own evidence exists; absent adoption is honestly inconclusive, not fabricated completion."
+    ]
+  },
+  {
+    "id": "OPO-A18",
+    "mission": "OPO",
+    "requirement": "Independent Windows operation and optional R730 migration",
+    "task_ids": [
+      "OPO-14",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "acceptance": [
+      "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+      "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+    ]
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "WHB-I01",
+    "required": "Exact Buffer organization and X channel/brand identity with current access",
+    "respondent_or_source": "Retained public identities are candidates; current registry/readback",
+    "blocked_effect": "Publication and profile changes",
+    "independent_work": "Source/math/editorial/package and mocked tests",
+    "validation": "Verify exact organization/channel/account rather than first service; no unrelated identities",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I02",
+    "required": "Supported credential provisioning and explicit current publication grant",
+    "respondent_or_source": "Existing owner-controlled secure facility/qualified platform requirements",
+    "blocked_effect": "Live publisher credential and writes",
+    "independent_work": "Offline/dry-run implementation with publishing disabled",
+    "validation": "Reuse routine owner grant where sufficient; satisfy actual provider/owner verification steps, never emit credential values",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I03",
+    "required": "Current supported API schema/media capability, allowed route, platform entitlement and zero-cash limits",
+    "respondent_or_source": "Official Buffer/X documentation plus account capability readback",
+    "blocked_effect": "Original post/cancel/correction action",
+    "independent_work": "Prepared reviewed piece and fixture receipts",
+    "validation": "Validate exact fields/action scopes and receiving account; no paid plan or unsupported browser automation",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I04",
+    "required": "Primary factual sources, asset rights/provenance and attributable independent editorial review",
+    "respondent_or_source": "Public sources/retained assets and assigned reviewer",
+    "blocked_effect": "Approval of factual content/asset",
+    "independent_work": "Research sourced candidate and recompute math",
+    "validation": "Every claim and asset hash review passes before publication; queue does not supply scientific evidence",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I05",
+    "required": "Allowed metrics route, fresh baseline, coverage and experiment window",
+    "respondent_or_source": "Account analytics/API or authenticated export owner",
+    "blocked_effect": "Audience evaluation claiming real measured result",
+    "independent_work": "Fixture analysis, predeclared metric contract and future content research",
+    "validation": "Timestamp exact account/content/window; unavailable metrics stay unknown and may require alternative measurable experiment",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I06",
+    "required": "Native Jira matching/admission and exclusive release/scheduler owner",
+    "respondent_or_source": "Windows combined release parent",
+    "blocked_effect": "Unregistered experiment effects or conflicting workflow edits",
+    "independent_work": "Planner outboxes and independent engineering/research",
+    "validation": "Preserve BOTS-29 25m actuals and other historical estimates; native scope/source readback before effects",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I07",
+    "required": "X written explicit approval/consent for optional AI automated replies",
+    "respondent_or_source": "Platform approval if this tactic is selected",
+    "blocked_effect": "AI automated replies only",
+    "independent_work": "Original permitted posting, correction drafts, engagement reading",
+    "validation": "Verify platform evidence; do not treat existing owner account authority as X reply approval",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I08",
+    "required": "Finite approved model/tool budget and zero monetary spend rule",
+    "respondent_or_source": "Existing budget registry",
+    "blocked_effect": "Model/tool use beyond known allowance",
+    "independent_work": "Deterministic validation and cheap idle scheduling",
+    "validation": "Reserve cost/token limits before call and block unavailable/paid fallback; record actual usage",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "WHB-I09",
+    "required": "Qualified R730 target and recorded fenced operator cutover",
+    "respondent_or_source": "Shared SH-16 and mission owner",
+    "blocked_effect": "Optional host migration only",
+    "independent_work": "Independent Windows runtime and isolated backup restore",
+    "validation": "Demonstrate old owner fenced, receipt reconciliation, target-local credential refs and rollback",
+    "status": "unresolved_at_planning"
+  }
+]

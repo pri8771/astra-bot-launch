@@ -1,0 +1,83 @@
+[
+  {
+    "id": "OPO-I01",
+    "required": "Exact full public hostname/domain and verified hosting/DNS authority",
+    "respondent_or_source": "Existing pending owner domain question; do not repeat",
+    "blocked_effect": "OPO-09 public deploy; OPO-08 destination referral",
+    "independent_work": "Prepare preview/discovery/API/offer and storage tests",
+    "validation": "Validate owner answer, exact HTTPS origin, Sites binding and anonymous readback; never infer from support email",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I02",
+    "required": "Qualified persistent public server/store with retention, backup and cost limit",
+    "respondent_or_source": "OPO release owner/host capability registry",
+    "blocked_effect": "Public message intake and deployed restart autonomy",
+    "independent_work": "Implement/test transactional local adapter and migration fixtures",
+    "validation": "Prove durable remote writes/restore on selected host; local SQLite fixture is not public hosting evidence",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I03",
+    "required": "Operator authentication, brand support route, moderation/retention policy and secret refs",
+    "respondent_or_source": "Owner-controlled registry/qualified host",
+    "blocked_effect": "Public personal data intake and support delivery",
+    "independent_work": "Build redacted fixture, controls and privacy contract",
+    "validation": "Verify least-scope access and recovery; do not request secrets pasted in chat",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I04",
+    "required": "Eligible merchant, offer price/currency/payout/tax/refund grant and verified provider route",
+    "respondent_or_source": "Existing merchant candidates plus owner only for missing provider obligations",
+    "blocked_effect": "Payment activation, paid fulfillment and refunds",
+    "independent_work": "Ship useful free offer/service; implement test-mode adapters",
+    "validation": "Read exact merchant/provider scope, verify checkout/order receipt; real charge/refund requires bounded amount authority",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I05",
+    "required": "Actual OPO channel identities and supported original publication/analytics route",
+    "respondent_or_source": "Existing account registry and platform readback",
+    "blocked_effect": "Social publication/account edits",
+    "independent_work": "Prepare original content and scorecard; keep optional channels independent",
+    "validation": "Bind exact account/resource and current allowed method; do not select WHB or personal account",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I06",
+    "required": "X written approval plus applicable consent for AI automated replies",
+    "respondent_or_source": "Platform-specific approval record, if this optional tactic is selected",
+    "blocked_effect": "AI automated replies only",
+    "independent_work": "Publish eligible original announcements; draft relevant replies and website responses",
+    "validation": "Verify written X approval and consent capability; general owner grant is insufficient platform eligibility",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I07",
+    "required": "Explicit finite model/tool/compute/storage/cash budgets and actual model capability",
+    "respondent_or_source": "Current owner budget registry, preserve existing limits",
+    "blocked_effect": "Inference or costs not covered by known authority",
+    "independent_work": "Run deterministic/no-cost planning and fixtures",
+    "validation": "Bind allowance IDs and reserve before use; unknown/exhausted paid budget blocks without fallback",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I08",
+    "required": "Native source/scope/Jira experiment admission and nonconflicting release ownership",
+    "respondent_or_source": "Dedicated owner-started OPO Windows writer",
+    "blocked_effect": "Unregistered experiment external effects and conflicting source integration",
+    "independent_work": "All planner outboxes, independent admitted code/observation",
+    "validation": "Match existing issues, preserve estimates/actuals, store real native readback; no planner writes",
+    "status": "unresolved_at_planning"
+  },
+  {
+    "id": "OPO-I09",
+    "required": "Qualified R730 target/portable state version and controlled host transfer",
+    "respondent_or_source": "Shared SH-16 and recorded mission owner",
+    "blocked_effect": "Optional R730 migration only",
+    "independent_work": "Independent Windows operation and backup rehearsal",
+    "validation": "Fence old owner, reconcile effects, inject target-local secret references and retain rollback",
+    "status": "unresolved_at_planning"
+  }
+]

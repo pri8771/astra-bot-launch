@@ -1,0 +1,101 @@
+[
+  {
+    "id": "WHB-E01",
+    "repository": "https://github.com/pri8771/astra-bot-launch",
+    "ref": "8559dea0fec755333321b06e28d845795c737030",
+    "path": "WINDOWS_ASTRA_ULTRA_HANDOVER.md; WINDOWS_RELEASE_EXECUTION.md; BOT_ROADMAPS.md; reference/MISSION_GOALS.md",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "WHB is priority X-first engaged audience mission with a substantive repeatable sourced editorial release; optional channels are not launch prerequisites. Planner must preserve release worker ownership.",
+    "proof_limits": "Desired scope and authority, not runtime acceptance."
+  },
+  {
+    "id": "WHB-E02",
+    "repository": "https://github.com/pri8771/orchestrator",
+    "ref": "270ccb5a59e053df1ec5f415358b03f93bf9c69e",
+    "path": "wait-how-big-social/README.md; operator/README.md; operator/state.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Fresh clone at 270ccb5a retains August 31 accounts/bootstrap claims. State version1 paused=false, anchor_utc=null, last_run_utc=null, awaiting_accounts_and_buffer_key, posts empty.",
+    "proof_limits": "Current repository bytes checked; account connection/key absence, historical zero baselines, failed run33342049065 and media validity are historical statements not live checked facts."
+  },
+  {
+    "id": "WHB-E03",
+    "repository": "https://github.com/pri8771/orchestrator",
+    "ref": "270ccb5a59e053df1ec5f415358b03f93bf9c69e",
+    "path": "wait-how-big-social/operator/operator_bundle.zip!operator.py; !queue.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Archive inspected via ZIP streams only; two safe relative members, 15650-byte operator.py and 10930-byte queue.json. SHA256 058a5fa940a5ab88da54084ee92ff9d783fb0039aae5c4904da212221dcf4009 matches workflow. Code has Buffer org/channel queries, media HEAD, cap10, history-based dedupe, scheduling and kill switch. Queue has 13 IDs WHB-000..012 and no claim/source/review ledger.",
+    "proof_limits": "No extraction, import, execution, network call, media playback or runtime test. Historical H.264/AAC and factual accuracy unverified. Source code is reusable but not accepted/live."
+  },
+  {
+    "id": "WHB-E04",
+    "repository": "https://github.com/pri8771/orchestrator",
+    "ref": "270ccb5a59e053df1ec5f415358b03f93bf9c69e",
+    "path": ".github/workflows/wait-how-big-operator.yml; operator_bundle.zip!operator.py",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Workflow points to operator.py, cron 17 */3 * * *, ubuntu-latest and contents-write state commit. Code selects first organization/first matching service and requires all3; history limited first100; state writes directly; dry-run records scheduled with id dry-run; no public readback or durable fencing.",
+    "proof_limits": "Static source qualification of concrete gaps; workflow run/state not modified or dispatched. Existing separate branch/accepted startup fix may exist; BOTS-29 needs exact-source reconciliation before repeating work."
+  },
+  {
+    "id": "WHB-E05",
+    "repository": "https://github.com/pri8771/orchestrator",
+    "ref": "270ccb5a59e053df1ec5f415358b03f93bf9c69e",
+    "path": "operator_bundle.zip!queue.json; wait-how-big-social/README.md",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Candidate captions/media URLs/relative hours exist, including million-vs-billion seconds and Earth-Moon scale examples. No source references, factual review or accessible transcript fields are supplied in queue items.",
+    "proof_limits": "Theme and queue metadata only; no claim or media scientifically validated, no current public engagement measured."
+  },
+  {
+    "id": "WHB-E06",
+    "repository": "https://github.com/pri8771/orchestrator",
+    "ref": "270ccb5a59e053df1ec5f415358b03f93bf9c69e",
+    "path": "global_resource.py; procutil.py",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Generic resource broker uses SQLite WAL/BEGIN IMMEDIATE and UUID tokens but deliberately fails open on DB/misconfiguration errors; it caps local process resources, not external effect fencing. procutil explicitly POSIX-only with os.killpg/session semantics.",
+    "proof_limits": "Read-only targeted reuse assessment, no tests run. Neither module satisfies Windows process-tree or fail-closed mission spending/host ownership contract unchanged."
+  },
+  {
+    "id": "WHB-E07",
+    "repository": "https://github.com/pri8771/astra-bot-launch",
+    "ref": "8559dea0fec755333321b06e28d845795c737030",
+    "path": "planning/autonomy-complete/evidence/JIRA_READBACK.json; planning/autonomy-complete/evidence/JIRA_MISSION_SEARCH.json",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "cloud_backed",
+      "live_observed"
+    ],
+    "finding": "Root observed current Jira metadata: BOTS-117 baseline,119 action,120 candidate,121 experiment,122 closure,59 umbrella and29 startup regression. BOTS-29 In Review retains 1500s/25m actual and 0 remaining.",
+    "proof_limits": "No matching keys assigned or Jira writes. Metadata does not prove accepted source is on main or runtime fixed; original actuals/estimates are preserved evidence."
+  },
+  {
+    "id": "WHB-E08",
+    "repository": "https://developers.buffer.com; https://help.x.com",
+    "ref": null,
+    "path": "https://developers.buffer.com/guides/data-model.html; https://developers.buffer.com/reference.html; https://help.x.com/en/rules-and-policies/x-automation",
+    "observed_at": "2026-09-12T21:25:57.929857+00:00",
+    "classification": [
+      "live_observed"
+    ],
+    "finding": "Official Buffer documentation confirms organization -> exact channel -> post identity flow and channel-bound createPost; official X rules require written explicit approval for AI automated reply bots.",
+    "proof_limits": "Public docs read in current planning turn. No credential, account feature entitlement, pricing, video payload compatibility or analytics route validated. Recheck exact API/schema and per-account capability before executing."
+  }
+]

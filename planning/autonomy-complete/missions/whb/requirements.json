@@ -1,0 +1,475 @@
+[
+  {
+    "id": "WHB-O01",
+    "mission": "WHB",
+    "requirement": "Preserved qualified source and X-first mission/account contract",
+    "task_ids": [
+      "WHB-01"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E02",
+      "WHB-E07"
+    ],
+    "acceptance": [
+      "A single source/owner/mission contract and reuse plan exists without changing the active operator.",
+      "Historical accounts and state are not asserted current."
+    ]
+  },
+  {
+    "id": "WHB-O02",
+    "mission": "WHB",
+    "requirement": "Safe working reusable publisher package and bootstrap",
+    "task_ids": [
+      "WHB-02"
+    ],
+    "evidence_refs": [
+      "WHB-E02",
+      "WHB-E03",
+      "WHB-E04"
+    ],
+    "acceptance": [
+      "Existing publisher starts safely and exact-account X-only dry-run can be qualified.",
+      "Scheduled publishing cannot begin simply because a usable credential appears."
+    ]
+  },
+  {
+    "id": "WHB-O03",
+    "mission": "WHB",
+    "requirement": "Accurate original sourced editorial queue with accessible assets",
+    "task_ids": [
+      "WHB-03"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E05"
+    ],
+    "acceptance": [
+      "An independently reviewed accurate explainer is ready without needing account access.",
+      "Queue candidates cannot publish on old relative timing alone."
+    ]
+  },
+  {
+    "id": "WHB-O04",
+    "mission": "WHB",
+    "requirement": "Correct-account publication with provider/public receipts",
+    "task_ids": [
+      "WHB-04"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "One eligible real publication has both provider and correct-account destination receipts.",
+      "Absent external access yields a reviewed ready candidate and explicit gate, never a launch claim."
+    ]
+  },
+  {
+    "id": "WHB-O05",
+    "mission": "WHB",
+    "requirement": "Trustworthy relevant engagement and audience measurements",
+    "task_ids": [
+      "WHB-05"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "Audience evidence is timestamped, interpretable and linked to the exact content/experiment.",
+      "Correction and moderation actions retain lineage and platform authority."
+    ]
+  },
+  {
+    "id": "WHB-O06",
+    "mission": "WHB",
+    "requirement": "Corrections, moderation and continuing factual trust",
+    "task_ids": [
+      "WHB-05"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "Audience evidence is timestamped, interpretable and linked to the exact content/experiment.",
+      "Correction and moderation actions retain lineage and platform authority."
+    ]
+  },
+  {
+    "id": "WHB-O07",
+    "mission": "WHB",
+    "requirement": "Substantive public editorial release and next-content pipeline",
+    "task_ids": [
+      "WHB-06"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E03",
+      "WHB-E07"
+    ],
+    "acceptance": [
+      "Substantive editorial operation has a useful public piece, usable next pipeline and recovery.",
+      "Release does not wait for SH runtime completion or all three historical channels."
+    ]
+  },
+  {
+    "id": "WHB-O08",
+    "mission": "WHB",
+    "requirement": "Repeated autonomous audience experiments and next decisions",
+    "task_ids": [
+      "WHB-08",
+      "WHB-12"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E03",
+      "WHB-E05",
+      "WHB-E07",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "The second content decision is attributable to actual observed evidence and original audience goal.",
+      "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success.",
+      "WHB runtime autonomy is demonstrated independently from content performance and growth.",
+      "Real audience growth/return interest is reported only from observed metrics, including inconclusive or negative results."
+    ]
+  },
+  {
+    "id": "WHB-A01",
+    "mission": "WHB",
+    "requirement": "Durable state, single-owner claims and fencing",
+    "task_ids": [
+      "WHB-07",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "WHB can resume editorial/publication/evaluation states from durable events safely.",
+      "Schedule is cheap and mission-specific instead of repeated generative cron."
+    ]
+  },
+  {
+    "id": "WHB-A02",
+    "mission": "WHB",
+    "requirement": "Deterministic event/due scheduling with zero idle inference",
+    "task_ids": [
+      "WHB-07",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "WHB can resume editorial/publication/evaluation states from durable events safely.",
+      "Schedule is cheap and mission-specific instead of repeated generative cron."
+    ]
+  },
+  {
+    "id": "WHB-A03",
+    "mission": "WHB",
+    "requirement": "Evidence-based mission decisions",
+    "task_ids": [
+      "WHB-08",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "The second content decision is attributable to actual observed evidence and original audience goal.",
+      "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success."
+    ]
+  },
+  {
+    "id": "WHB-A04",
+    "mission": "WHB",
+    "requirement": "Eligible action execution and receiving-system verification",
+    "task_ids": [
+      "WHB-04",
+      "WHB-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "One eligible real publication has both provider and correct-account destination receipts.",
+      "Absent external access yields a reviewed ready candidate and explicit gate, never a launch claim.",
+      "Every autonomous WHB effect is bound to reviewed bytes, exact resource and durable outcome.",
+      "Unknown result never triggers blind reposting."
+    ]
+  },
+  {
+    "id": "WHB-A05",
+    "mission": "WHB",
+    "requirement": "Experiment evaluation and next decisions",
+    "task_ids": [
+      "WHB-08",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "The second content decision is attributable to actual observed evidence and original audience goal.",
+      "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success."
+    ]
+  },
+  {
+    "id": "WHB-A06",
+    "mission": "WHB",
+    "requirement": "Owner nudges and acknowledged direction revisions",
+    "task_ids": [
+      "WHB-10",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E07"
+    ],
+    "acceptance": [
+      "WHB acknowledges owner direction and resumes exact work without recurring input questions.",
+      "No planner or mission child becomes a competing Jira writer."
+    ]
+  },
+  {
+    "id": "WHB-A07",
+    "mission": "WHB",
+    "requirement": "Missing-input questions, validation and safe resume",
+    "task_ids": [
+      "WHB-10",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E07"
+    ],
+    "acceptance": [
+      "WHB acknowledges owner direction and resumes exact work without recurring input questions.",
+      "No planner or mission child becomes a competing Jira writer."
+    ]
+  },
+  {
+    "id": "WHB-A08",
+    "mission": "WHB",
+    "requirement": "Durable Jira and documentation outboxes",
+    "task_ids": [
+      "WHB-10",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E07"
+    ],
+    "acceptance": [
+      "WHB acknowledges owner direction and resumes exact work without recurring input questions.",
+      "No planner or mission child becomes a competing Jira writer."
+    ]
+  },
+  {
+    "id": "WHB-A09",
+    "mission": "WHB",
+    "requirement": "Bounded retries, repairs and reviews",
+    "task_ids": [
+      "WHB-11",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  },
+  {
+    "id": "WHB-A10",
+    "mission": "WHB",
+    "requirement": "Deduplication of jobs and external effects",
+    "task_ids": [
+      "WHB-04",
+      "WHB-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "One eligible real publication has both provider and correct-account destination receipts.",
+      "Absent external access yields a reviewed ready candidate and explicit gate, never a launch claim.",
+      "Every autonomous WHB effect is bound to reviewed bytes, exact resource and durable outcome.",
+      "Unknown result never triggers blind reposting."
+    ]
+  },
+  {
+    "id": "WHB-A11",
+    "mission": "WHB",
+    "requirement": "Uncertain-effect reconciliation before retry",
+    "task_ids": [
+      "WHB-04",
+      "WHB-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "One eligible real publication has both provider and correct-account destination receipts.",
+      "Absent external access yields a reviewed ready candidate and explicit gate, never a launch claim.",
+      "Every autonomous WHB effect is bound to reviewed bytes, exact resource and durable outcome.",
+      "Unknown result never triggers blind reposting."
+    ]
+  },
+  {
+    "id": "WHB-A12",
+    "mission": "WHB",
+    "requirement": "Windows process-tree cleanup and stop",
+    "task_ids": [
+      "WHB-11",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  },
+  {
+    "id": "WHB-A13",
+    "mission": "WHB",
+    "requirement": "Restart, backup and restore",
+    "task_ids": [
+      "WHB-11",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  },
+  {
+    "id": "WHB-A14",
+    "mission": "WHB",
+    "requirement": "Actionable deduplicated alerts",
+    "task_ids": [
+      "WHB-11",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  },
+  {
+    "id": "WHB-A15",
+    "mission": "WHB",
+    "requirement": "Privacy, isolation and secret references",
+    "task_ids": [
+      "WHB-11",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  },
+  {
+    "id": "WHB-A16",
+    "mission": "WHB",
+    "requirement": "Enforced model/tool/spend limits and zero idle inference",
+    "task_ids": [
+      "WHB-08",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "The second content decision is attributable to actual observed evidence and original audience goal.",
+      "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success."
+    ]
+  },
+  {
+    "id": "WHB-A17",
+    "mission": "WHB",
+    "requirement": "Exact-source independent review and real repeated end-to-end cycles",
+    "task_ids": [
+      "WHB-12",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E03",
+      "WHB-E07",
+      "WHB-E08"
+    ],
+    "acceptance": [
+      "WHB runtime autonomy is demonstrated independently from content performance and growth.",
+      "Real audience growth/return interest is reported only from observed metrics, including inconclusive or negative results."
+    ]
+  },
+  {
+    "id": "WHB-A18",
+    "mission": "WHB",
+    "requirement": "Independent Windows operation and optional R730 migration",
+    "task_ids": [
+      "WHB-11",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ]
+  }
+]

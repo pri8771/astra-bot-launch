@@ -1,0 +1,586 @@
+[
+  {
+    "id": "CL-O01",
+    "mission": "CL",
+    "requirement": "Reuse the current source, operator and release ownership with qualified capability/admission evidence",
+    "task_ids": [
+      "CL-01"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E06",
+      "CL-E08"
+    ],
+    "acceptance": [
+      "CL-01: Exact source/ref and current owner are recorded; every reused capability has bounded proof and a verification action.",
+      "CL-01: Product tasks can proceed under their existing release admission; wider autonomy dependencies do not halt the running operator."
+    ]
+  },
+  {
+    "id": "CL-O02",
+    "mission": "CL",
+    "requirement": "Useful accurate scanner/CLI findings with explicit scope and failure states",
+    "task_ids": [
+      "CL-02"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E03"
+    ],
+    "acceptance": [
+      "CL-02: A visitor produces, understands, saves/restores and exports a prioritized report and follows a concrete next step.",
+      "CL-02: Each failure explains retry/paste/manual verification without asserting a storefront defect from retrieval failure."
+    ]
+  },
+  {
+    "id": "CL-O03",
+    "mission": "CL",
+    "requirement": "Saved scan/request continuity and verified result delivery",
+    "task_ids": [
+      "CL-02",
+      "CL-03"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E03",
+      "CL-E04"
+    ],
+    "acceptance": [
+      "CL-02: A visitor produces, understands, saves/restores and exports a prioritized report and follows a concrete next step.",
+      "CL-02: Each failure explains retry/paste/manual verification without asserting a storefront defect from retrieval failure.",
+      "CL-03: One authorized real inbound request yields one verified public or scoped private response receipt.",
+      "CL-03: Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+      "CL-03: Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release."
+    ]
+  },
+  {
+    "id": "CL-O04",
+    "mission": "CL",
+    "requirement": "Concrete scoped offer with capacity, terms and truthful sample",
+    "task_ids": [
+      "CL-04"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E04",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-04: A complete sample defect pack and verifiable fulfillment run exist with observable quality gates.",
+      "CL-04: An authorized real order, when available, can be delivered and supported from saved evidence; no order or satisfaction is invented."
+    ]
+  },
+  {
+    "id": "CL-O05",
+    "mission": "CL",
+    "requirement": "Verified fulfillment, clarification and eligible payment/refund handling",
+    "task_ids": [
+      "CL-04",
+      "CL-05"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-04: A complete sample defect pack and verifiable fulfillment run exist with observable quality gates.",
+      "CL-04: An authorized real order, when available, can be delivered and supported from saved evidence; no order or satisfaction is invented.",
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+    ]
+  },
+  {
+    "id": "CL-O06",
+    "mission": "CL",
+    "requirement": "Verified net cash after fees/refunds/expenses with bounded reinvestment",
+    "task_ids": [
+      "CL-05"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+    ]
+  },
+  {
+    "id": "CL-O07",
+    "mission": "CL",
+    "requirement": "Qualified acquisition and consent-aware conversion evidence",
+    "task_ids": [
+      "CL-06"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E03",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-06: Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+      "CL-06: One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+      "CL-06: Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment."
+    ]
+  },
+  {
+    "id": "CL-O08",
+    "mission": "CL",
+    "requirement": "Measured business experiments with honest evidence and alternatives",
+    "task_ids": [
+      "CL-06",
+      "CL-10"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E03",
+      "CL-E05",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-06: Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+      "CL-06: One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+      "CL-06: Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment.",
+      "CL-10: Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+      "CL-10: At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+      "CL-10: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "CL-O09",
+    "mission": "CL",
+    "requirement": "Reviewed useful release through existing route with rollback/public readback",
+    "task_ids": [
+      "CL-07"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E06"
+    ],
+    "acceptance": [
+      "CL-07: Exact-source independent review, deployment receipt and public readback identify the same selected product version.",
+      "CL-07: Useful release can be accepted with payment taking disabled and broader autonomy still pending.",
+      "CL-07: Offline request/acquisition code readiness and reviewed candidates are separate from conditional live capability receipts; useful release cannot deadlock waiting for an intervention that requires that release."
+    ]
+  },
+  {
+    "id": "CL-O10",
+    "mission": "CL",
+    "requirement": "Ongoing repeat use, offer/product/acquisition improvement and repeat autonomous cycles",
+    "task_ids": [
+      "CL-10",
+      "CL-12"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-10: Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+      "CL-10: At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+      "CL-10: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "CL-12: Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+      "CL-12: Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+    ]
+  },
+  {
+    "id": "CL-A01",
+    "mission": "CL",
+    "requirement": "Durable mission state, atomic single-owner claims and stale-owner fencing",
+    "task_ids": [
+      "CL-01",
+      "CL-08",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E06",
+      "CL-E08"
+    ],
+    "acceptance": [
+      "CL-01: Exact source/ref and current owner are recorded; every reused capability has bounded proof and a verification action.",
+      "CL-01: Product tasks can proceed under their existing release admission; wider autonomy dependencies do not halt the running operator.",
+      "CL-08: Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+      "CL-08: Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+      "CL-08: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "CL-A02",
+    "mission": "CL",
+    "requirement": "Deterministic event/due scheduling, evidence versions and no idle inference",
+    "task_ids": [
+      "CL-08",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04"
+    ],
+    "acceptance": [
+      "CL-08: Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+      "CL-08: Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+      "CL-08: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "CL-A03",
+    "mission": "CL",
+    "requirement": "Evidence-grounded decision with provenance and uncertainty",
+    "task_ids": [
+      "CL-06",
+      "CL-10",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E03",
+      "CL-E05",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-06: Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+      "CL-06: One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+      "CL-06: Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment.",
+      "CL-10: Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+      "CL-10: At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+      "CL-10: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ]
+  },
+  {
+    "id": "CL-A04",
+    "mission": "CL",
+    "requirement": "Eligible action execution and receiving-system verification",
+    "task_ids": [
+      "CL-03",
+      "CL-05",
+      "CL-07",
+      "CL-12",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E05",
+      "CL-E06",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-03: One authorized real inbound request yields one verified public or scoped private response receipt.",
+      "CL-03: Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+      "CL-03: Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release.",
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated.",
+      "CL-07: Exact-source independent review, deployment receipt and public readback identify the same selected product version.",
+      "CL-07: Useful release can be accepted with payment taking disabled and broader autonomy still pending.",
+      "CL-07: Offline request/acquisition code readiness and reviewed candidates are separate from conditional live capability receipts; useful release cannot deadlock waiting for an intervention that requires that release.",
+      "CL-12: Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+      "CL-12: Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+    ]
+  },
+  {
+    "id": "CL-A05",
+    "mission": "CL",
+    "requirement": "Experiment evaluation and justified next decision",
+    "task_ids": [
+      "CL-10",
+      "CL-12",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-10: Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+      "CL-10: At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+      "CL-10: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "CL-12: Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+      "CL-12: Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+    ]
+  },
+  {
+    "id": "CL-A06",
+    "mission": "CL",
+    "requirement": "Owner nudges with acknowledged consumed direction revision",
+    "task_ids": [
+      "CL-09",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-09: Owner sees the exact revision consumed and concrete next action or bounded blocker.",
+      "CL-09: Answered missing input resumes saved work without restarting unrelated fulfilled jobs; matching outboxes project once."
+    ]
+  },
+  {
+    "id": "CL-A07",
+    "mission": "CL",
+    "requirement": "Persisted missing-input question, validated answer and checkpoint resume",
+    "task_ids": [
+      "CL-09",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-09: Owner sees the exact revision consumed and concrete next action or bounded blocker.",
+      "CL-09: Answered missing input resumes saved work without restarting unrelated fulfilled jobs; matching outboxes project once."
+    ]
+  },
+  {
+    "id": "CL-A08",
+    "mission": "CL",
+    "requirement": "Jira/documentation outbox and sole-writer native readback",
+    "task_ids": [
+      "CL-09",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-09: Owner sees the exact revision consumed and concrete next action or bounded blocker.",
+      "CL-09: Answered missing input resumes saved work without restarting unrelated fulfilled jobs; matching outboxes project once."
+    ]
+  },
+  {
+    "id": "CL-A09",
+    "mission": "CL",
+    "requirement": "Bounded retries and attributable finite repair/review",
+    "task_ids": [
+      "CL-08",
+      "CL-11",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-08: Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+      "CL-08: Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+      "CL-08: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A10",
+    "mission": "CL",
+    "requirement": "Event and external-effect deduplication",
+    "task_ids": [
+      "CL-03",
+      "CL-05",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-03: One authorized real inbound request yields one verified public or scoped private response receipt.",
+      "CL-03: Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+      "CL-03: Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release.",
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+    ]
+  },
+  {
+    "id": "CL-A11",
+    "mission": "CL",
+    "requirement": "Uncertain-effect destination reconciliation before retry",
+    "task_ids": [
+      "CL-03",
+      "CL-05",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E05"
+    ],
+    "acceptance": [
+      "CL-03: One authorized real inbound request yields one verified public or scoped private response receipt.",
+      "CL-03: Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+      "CL-03: Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release.",
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+    ]
+  },
+  {
+    "id": "CL-A12",
+    "mission": "CL",
+    "requirement": "Windows-native process-tree cleanup and timeout receipt",
+    "task_ids": [
+      "CL-11",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A13",
+    "mission": "CL",
+    "requirement": "Crash/restart and backup restore without lost or duplicate effects",
+    "task_ids": [
+      "CL-11",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A14",
+    "mission": "CL",
+    "requirement": "Actionable incident alerts with unchanged-state suppression",
+    "task_ids": [
+      "CL-11",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A15",
+    "mission": "CL",
+    "requirement": "Private-data boundaries, retention and secret references",
+    "task_ids": [
+      "CL-02",
+      "CL-06",
+      "CL-11",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E03",
+      "CL-E04",
+      "CL-E05",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-02: A visitor produces, understands, saves/restores and exports a prioritized report and follows a concrete next step.",
+      "CL-02: Each failure explains retry/paste/manual verification without asserting a storefront defect from retrieval failure.",
+      "CL-06: Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+      "CL-06: One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+      "CL-06: Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment.",
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A16",
+    "mission": "CL",
+    "requirement": "Enforced model/tool/time/spend limits and zero idle inference",
+    "task_ids": [
+      "CL-05",
+      "CL-08",
+      "CL-11",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E05",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-05: Payment taking remains gated until actual merchant route and scope are verified.",
+      "CL-05: Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated.",
+      "CL-08: Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+      "CL-08: Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+      "CL-08: Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority.",
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ]
+  },
+  {
+    "id": "CL-A17",
+    "mission": "CL",
+    "requirement": "Exact-source independent review and repeated real end-to-end acceptance",
+    "task_ids": [
+      "CL-07",
+      "CL-12",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E06",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-07: Exact-source independent review, deployment receipt and public readback identify the same selected product version.",
+      "CL-07: Useful release can be accepted with payment taking disabled and broader autonomy still pending.",
+      "CL-07: Offline request/acquisition code readiness and reviewed candidates are separate from conditional live capability receipts; useful release cannot deadlock waiting for an intervention that requires that release.",
+      "CL-12: Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+      "CL-12: Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+    ]
+  },
+  {
+    "id": "CL-A18",
+    "mission": "CL",
+    "requirement": "Independent Windows execution and optional fenced R730 migration",
+    "task_ids": [
+      "CL-11",
+      "CL-12",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "acceptance": [
+      "CL-11: Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "CL-11: Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained.",
+      "CL-12: Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+      "CL-12: Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+    ]
+  }
+]

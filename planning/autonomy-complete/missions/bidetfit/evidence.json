@@ -1,0 +1,90 @@
+[
+  {
+    "id": "BF-E01",
+    "repository": "pri8771/priyanshchordia.com",
+    "ref": "02c3df999a2d052810e0f265d5cb40d865861042",
+    "path": "ventures/bidetfit/AGENTS.md; MISSION.md; STATE.json; docs/PROJECT_DOCUMENTATION.md; docs/STATUS.md; docs/TASKS.md; DECISIONS.md; RUNBOOK.md; DIARY.md latest entry",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Fresh clone inspected; required AGENTS and project docs read. Retained 11-page static beta and separate operator are present. STATE updated 2026-09-12T20:32:17Z claims live/healthy, zero approvals and cash; experiment current_day remains 2. Docs separate draft-first support from seller authority and record disconnected mailbox/private store/model.",
+    "proof_limits": "Source/state claims are not planner live service or financial verification. Dated zeros and stale day are not current measured business outcomes. No source/state mutation or operator execution occurred."
+  },
+  {
+    "id": "BF-E02",
+    "repository": "pri8771/priyanshchordia.com",
+    "ref": "02c3df999a2d052810e0f265d5cb40d865861042",
+    "path": "ventures/bidetfit/scripts/operator.py; .github/workflows/bidetfit-operator.yml; .github/workflows/bidetfit-pages-overlay.yml; ventures/bidetfit/RUNBOOK.md",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Six-hour deterministic Python health operator validates files/CSV/status, honors KILL_SWITCH/paused/stopped, records runs/state/diary. Actions concurrency group bidetfit-operator serializes that workflow; overlay rebuilds portfolio and mounts both missions.",
+    "proof_limits": "Did not run script because it writes source state even in local mode. No cross-host fencing, model decision/runtime or current external effect qualification established; no duplicate scheduler should be introduced."
+  },
+  {
+    "id": "BF-E03",
+    "repository": "pri8771/priyanshchordia.com",
+    "ref": "02c3df999a2d052810e0f265d5cb40d865861042",
+    "path": "ventures/bidetfit/public/assets/fit-checker.js; public/fit-checker.html; public/how-to-measure.html; research/SOURCES.md",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed"
+    ],
+    "finding": "Existing broad checker classifies construction, geometry, plumbing, power and inch measurements, with uncertain/high-risk outcomes and no guaranteed exact-model fit. Research ledger is dated August 25; no exact toilet-by-bidet model database present in inspected subtree.",
+    "proof_limits": "Source inspected only; browser tests not executed. Broad screening constants do not establish exact product compatibility. Web tool refused opening public checker URL; current deployment interaction not observed."
+  },
+  {
+    "id": "BF-E04",
+    "repository": "pri8771/priyanshchordia.com",
+    "ref": "02c3df999a2d052810e0f265d5cb40d865861042",
+    "path": "ventures/bidetfit/AFFILIATE_PROGRAMS.csv; AFFILIATE_LINKS.csv; public/disclosure.html; MISSION.md",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Program table holds dated researched terms with not_applied/not_approved statuses; link registry has header only. Disclosure says no beta affiliate links, near-link disclosure required later, and pending/approved/reversed/paid/cash separate. Zero-cash start and 50% rolling-24-hour reinvestment cap are explicit.",
+    "proof_limits": "No program terms/approval/account/transaction checked except live manufacturer source below; table economics are historical research, not current offer or eligibility. No commission/revenue claim made."
+  },
+  {
+    "id": "BF-E05",
+    "repository": "pri8771/priyanshchordia.com",
+    "ref": "02c3df999a2d052810e0f265d5cb40d865861042",
+    "path": "ventures/bidetfit/docs/TASKS.md; docs/TRACKER_LINKS.csv; docs/work_items/BF-034.md; DECISIONS.md",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Historical canonical BF-001..033 links map PCH-92..124; BF-034 maps PCH-127, parent PCH-90. Existing schema/model data, analytics, affiliation, source tools, Jira control, private support, experiments, QA and runtime tasks overlap this plan. Historical customer seller actions BF-026..028 remain deferred.",
+    "proof_limits": "Native PCH status, estimates/actuals and Notion mirrors not freshly read here; preserve stored values and request current writer matching rather than inventing new keys or declaring all missing."
+  },
+  {
+    "id": "BF-E06",
+    "repository": "Bio Bidet official website",
+    "ref": "retrieved 2026-09-12",
+    "path": "https://biobidet.com/pages/compatibility",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "live_observed"
+    ],
+    "finding": "Primary manufacturer guide was retrieved in this planning session. It supplies bowl/bolt/tank measurement guidance and warns that deep French-curve/specialty models need model-specific confirmation. It also exposes an affiliate-program link.",
+    "proof_limits": "This is one current general manufacturer source, not exact-model database or product testing. Affiliate-program link is discovery only, not application acceptance or terms qualification. No dimensional rule is generalized to all brands."
+  },
+  {
+    "id": "BF-E07",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "WINDOWS_ASTRA_ULTRA_HANDOVER.md; WINDOWS_RELEASE_EXECUTION.md; tasks/bidetfit/TASKS.md; planning/autonomy-complete/evidence/JIRA_MISSION_SEARCH.json",
+    "observed_at": "2026-09-12T21:29:59.820012+00:00",
+    "classification": [
+      "cloud_backed",
+      "live_observed"
+    ],
+    "finding": "Current handover permits complete planning while separate release workers proceed; BidetFit goes into first free engineering lane under release parent. Root current Jira snapshot supplies BOTS-131/134/135/136/138 as scope-matching candidates.",
+    "proof_limits": "No runtime dispatch/admission or task reassignment made by planner; older deferred wording is historical sequencing, not authority to stop current operation."
+  }
+]
