@@ -48,6 +48,10 @@ def validate(groups):
             if not isinstance(t.get(key),list) or not t[key]: errors.append(f'{t["id"]}: needs nonempty array {key}')
         for dep in t.get('dependencies',[]):
             if dep not in by: errors.append(f'{t["id"]}: unknown dependency {dep}')
+        for branch in t.get('conditional_dependencies',[]):
+            for dep in branch.get('dependencies',[]):
+                if dep not in by: errors.append(f'{t["id"]}: unknown conditional dependency {dep}')
+            if not branch.get('condition') or not branch.get('acceptance'): errors.append(f'{t["id"]}: conditional branch lacks condition/acceptance')
         for req in t.get('requirement_ids',[]):
             if req not in byreq: errors.append(f'{t["id"]}: unknown requirement {req}')
         e=t.get('estimate',{})
@@ -96,13 +100,15 @@ def assemble(groups,tasks,reqs,by,levels):
         deps=sorted({d for tid in r['task_ids'] for d in by[tid]['dependencies']})
         matrix.append(f'| {r["id"]} | {cell(r["requirement"])} | {links} | {cell(deps) or "None"} | {cell(r["acceptance"])} | {cell(r["evidence_refs"])} |')
     (ROOT/'COVERAGE_MATRIX.md').write_text('\n'.join(matrix)+'\n',encoding='utf-8')
-    graph={'schema_version':1,'kind':'implementation_DAG_not_running_schedule','nodes':[{'id':t['id'],'mission':t['mission'],'title':t['title'],'dependencies':t['dependencies'],'acceptance':t['acceptance'],'task_file':paths[t['id']]} for t in tasks],'topological_levels':levels}
+    graph={'schema_version':1,'kind':'implementation_DAG_not_running_schedule','nodes':[{'id':t['id'],'mission':t['mission'],'title':t['title'],'dependencies':t['dependencies'],'conditional_dependencies':t.get('conditional_dependencies',[]),'acceptance':t['acceptance'],'task_file':paths[t['id']]} for t in tasks],'topological_levels':levels}
     write(ROOT/'DEPENDENCY_GRAPH.json',graph)
     dag=['# Reviewed dependency graph','','Machine-readable edges and acceptance are in DEPENDENCY_GRAPH.json. Every edge below is a predecessor required by the proposed task. These edges do not supersede current release-worker admissions. External input/effect gates are separately evaluated at action time; a blocked task never globally pauses unrelated lanes.','','| Task | Depends on | Proposed owner | Acceptance reference |','| --- | --- | --- | --- |']
     for level in levels:
         for tid in level:
             t=by[tid];dag.append(f'| {tid} | {cell(t["dependencies"]) or "None"} | {cell(t["owner_role"])} | [{t["title"]}]({paths[tid]}) |')
     dag+=['','Topological levels are implementation dependency order, not a calendar or authority to start all ready tasks. OPO/WHB/CL take priority; serialize shared portfolio deployment effects for CL/BF and all claimed paths. R730 migration is optional after Windows acceptance. Review verdicts are in reviews/.','']
+    for t in tasks:
+        if t.get('conditional_dependencies'): dag.extend([f'**{t["id"]} conditional branches:** {render(t["conditional_dependencies"])}',''])
     (ROOT/'DEPENDENCY_GRAPH.md').write_text('\n'.join(dag),encoding='utf-8')
     est=['# Planning estimates','','Ranges are active engineering hours for proposed residual scope including relevant tests/review. They are not Jira original estimates, actual work or elapsed observation windows. Reuse/delta matching must remove overlap before dispatch; totals below are gross planning envelopes, not a quote, schedule or guaranteed spend. Provider/owner/sample/shipping and low-traffic waits remain outside these totals.','','| Stream | Tasks | Low hours | High hours |','| --- | ---: | ---: | ---: |']
     for f,ts,_ in groups:
@@ -117,6 +123,9 @@ def assemble(groups,tasks,reqs,by,levels):
             proposals.append({'schema_version':1,'operation_id':f'autonomy-complete-20260912-v1-{t["id"]}','state':'proposal_only_no_write','requested_operation':'match_reuse_or_extend_then_readback; create only verified unmatched residual scope','internal_task_id':t['id'],'mission':t['mission'],'jira_key':None,'candidate_keys':t['jira']['candidates'],'writer':t['jira']['writer'],'matching_action':t['jira']['matching_action'],'task_spec_sha256':digest(t),'task_file':str((f/'TASKS.json').relative_to(ROOT)).replace('\\','/'),'payload':t,'preserve_native':['original_estimate','actuals','worklogs','accepted_artifacts','existing_links','history'],'forbidden':['automatic_null_field_clear','duplicate_issue_without_matching','fabricated_key','planner_jira_write','estimate_to_worklog','new_scope_admission_from_old_readback']})
         (out/f'{ts[0]["mission"].lower()}-v1.jsonl').write_text(''.join(json.dumps(p,ensure_ascii=False)+'\n' for p in proposals),encoding='utf-8')
     queue={'status':'planning_only_not_dispatched','priority':['OPO','WHB','CL','BF','GURU','LIPI'],'scope_rule':'Existing Windows release assignments continue independently. Planning tasks reconcile and consume their evidence before proposing duplicate work.','phases':[{'phase':0,'name':'Source/input/native-scope matching and independent preparation','tasks':levels[0]},{'phase':1,'name':'Useful native releases','selection':'Mission product tasks; OPO/WHB/CL first, BF/GURU next, Lipi product decisions in parallel; explicit per-task dependencies apply.'},{'phase':2,'name':'Shared mechanics and six native integrations','selection':'SH-01 through SH-15 and mission autonomy integrations, without blocking already-admitted useful releases.'},{'phase':3,'name':'Real receipts, two cycles, owner/restart acceptance','selection':'Mission external/runtime acceptance tasks; actual observation/fulfillment windows must elapse.'},{'phase':4,'name':'Optional central-hub migration','tasks':['SH-16']}],'topological_levels':levels,'tasks':[{'id':t['id'],'mission':t['mission'],'dependencies':t['dependencies'],'inputs':t['prerequisite_inputs'],'effect_gates':t['effect_gates'],'next_action':t['next_eligible_action'],'status':'planned_not_admitted'} for t in tasks]}
+    write(ROOT/'RELEASE_QUEUE.json',queue)
+    for item in queue['tasks']:
+        item['conditional_dependencies']=by[item['id']].get('conditional_dependencies',[])
     write(ROOT/'RELEASE_QUEUE.json',queue)
 
 def main():

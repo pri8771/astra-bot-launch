@@ -17,4 +17,6 @@ Unit 2 complete: shared architecture, sixteen executable shared task records and
 
 Last planning commit: `b94ade92dcce7cf6aa3f6850e90f83d7420676ab` (initial intake); unit 2 edits pending commit. Next action: materialize shared task cards, integrate mission task graphs, validate coverage and exact-source review. References: ARCHITECTURE.md, shared/TASKS.json, shared/requirements.json, PERMISSIONS_AND_INPUTS.md, EXECUTION_ACCEPTANCE.md, evidence/JIRA_READBACK.json, evidence/JIRA_MISSION_SEARCH.json.
 
+Unit 3 complete: shared human task cards, phased queue, outbox consumption contract and repeatable planning/artifact validators added. Bounded artifact audit passes with no changed paths outside planning/autonomy-complete/. OPO/WHB plans now contain 27 tasks and 54 coverage rows; root spot review requested explicit second-cycle completion and a machine-readable paid-fulfillment dependency. Other mission authors are completing their bundles. Last planning commit:8559dea0fec755333321b06e28d845795c737030. Next action: run the aggregate validator once all six bundles exist and obtain non-author cross-reviews.
+
 Planning completion, runtime operation and business validation are separate. None is claimed by this checkpoint.
