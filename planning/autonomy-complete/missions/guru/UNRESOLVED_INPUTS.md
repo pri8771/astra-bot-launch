@@ -1,0 +1,31 @@
+# Exact unresolved inputs and effect gates
+
+These are future execution prerequisites, not permission requests sent by this planner. Reuse valid existing specific grants; do not ask for generic authority again. Persist one question per input/revision and resume only after validated receipt. Silence is not approval. Missing inputs block only their dependent effect.
+
+| Input | Exact item | Respondent | Verification and resume | Useful independent work |
+|---|---|---|---|---|
+| GURU-I01 | Canonical Guru repository/root/base and current parent return | Windows four-mission parent | Reuse actual returned home; if absent record exact minimal reuse/new-home decision, source hash and disjoint path ownership before writes. Resume: GURU-01 | Research editorial/source requirements in planning without claiming runtime exists. |
+| GURU-I02 | Exact current public brand/persona decisions beyond X-first mission | Guru editorial owner/business owner | Reuse existing grants; bind actual brand identity and non-fictitious independent editorial description. X-first owner direction already established. Resume: GURU-02 | Prepare original source-based content concepts. |
+| GURU-I03 | Real source editions/passages and rights for specific claims | Editorial researcher/rights owner | Inspectable primary/contextual source, edition/translation, url/access date and rights basis; unsupported claims remain withheld. Resume: GURU-03–04 | Draft secular structure and research source gaps without fabricated quotes. |
+| GURU-I04 | Named cultural reviewer and actual exact-source independent review route | Editorial review coordinator; reviewers themselves | Reviewer identity/scope plus exact source/content/hash-bound approve/revise/withhold receipt; no inferred cultural expertise or self-review-as-independent. Resume: GURU-05; 15 | Prepare review packet and alternative candidates. |
+| GURU-I05 | Current exact Guru account ID/handle/admin/recovery ownership | Windows parent/account operator | Read existing registry and actual authenticated account; reuse routine account-organization authority; name any platform verification step. Resume: GURU-06 | Build isolated adapter with secret references and test fixtures. |
+| GURU-I06 | Supported X publishing/analytics entitlement, exact content scope and finite existing budget | Guru account operator/business owner | Current account/scope/user-context receipt, permitted API operations/quota, and exact current publication/cadence grant. No paid purchase implied. Resume: GURU-06; 08; 10; 15; 17 | Prepare source-reviewed content and native release manifest. |
+| GURU-I07 | Operation-specific moderation/correction grant and optional automated-reply qualification | Guru operator/business owner; X for AI reply permission | For original post corrections/deletion, exact applicable grant/readback. For AI automated replies additionally prior written explicit X approval, current recipient opt-in/summoning, opt-out and one-response rules. Resume: Effect branch of GURU-09 only | Draft response/correction and continue qualified original posts; reply permission not required for their acceptance. |
+| GURU-I08 | Current owner-direction/alert route and independent Windows operating envelope | Windows parent/runtime operator | Actual owner issuer/revision acknowledgement, host/storage/secret references, finite caps, one consumer and restore receipt; no Mac dependence. Resume: GURU-12–15 | File-backed direction/question/incident fixtures and package review. |
+| GURU-I09 | Evidence and exact scope for optional additional channel/format | Guru experiment owner/business owner | Evaluated audience demand, bounded hypothesis, new account/capability/rights/budget and baseline if expanding; otherwise explicit no-go. Resume: GURU-16 | Continue existing X-first source/content experiments. |
+
+## Gate applicability
+
+The effect_gates array on each task is the union of possible action classes. Apply only the gates whose condition matches the actual action. It is not an all-grants conjunction. Price-only or original-post operation does not need unrelated purchase/refund/discount/reply grants. Disabled classes remain blocked and unclaimed.
+
+Every applicable receipt includes mission/action/resource, authority source and revision, payload/source/review hashes, expected-before state, allowed amount/currency/cap when relevant, expiry, issuer, verifier, verified time, secret reference and exact resume target. Never place credentials, addresses, payment details or raw customer messages here.
+
+| Gate | Exact effect/authority | Resume/verification |
+|---|---|---|
+| GURU-G01 | X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget. | GURU-06, GURU-08, GURU-15, GURU-17; require actual destination readback after authorized effect. |
+| GURU-G02 | Religious/source claim publication only: exact source/rights, cultural and independent content review. | GURU-05, GURU-08, GURU-15, GURU-17; require actual destination readback after authorized effect. |
+| GURU-G03 | Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan. | GURU-08, GURU-15, GURU-17; require actual destination readback after authorized effect. |
+| GURU-G04 | Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval. | GURU-09, GURU-15; require actual destination readback after authorized effect. |
+| GURU-G05 | Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent. | GURU-16; require actual destination readback after authorized effect. |
+
+A source/read/proposal test cannot satisfy mutation/publication capability. A blocked/failure record completes only a preparation subunit; positive review, checks and real receipts are required to accept the claimed capability. Optional migration requires SH-16 only when transferring hosts. Windows useful release and operation do not depend on migration.

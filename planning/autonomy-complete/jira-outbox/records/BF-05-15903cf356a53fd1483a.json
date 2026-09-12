@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-05-15903cf356a53fd1483a944511c6b915b141b7ec1124aeb0b1b26da1a289f419",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-05",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-135",
+    "PCH-105"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "15903cf356a53fd1483a944511c6b915b141b7ec1124aeb0b1b26da1a289f419",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-05",
+    "mission": "BF",
+    "title": "Qualify affiliate programs and exact disclosed link routing",
+    "goal": "Enable only approved, eligible commercial referrals while preserving useful non-affiliate guidance.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/AFFILIATE_PROGRAMS.csv",
+      "ventures/bidetfit/AFFILIATE_LINKS.csv",
+      "ventures/bidetfit/scripts/affiliate_policy.py",
+      "ventures/bidetfit/public/disclosure.html",
+      "ventures/bidetfit/tests/test_affiliate_policy.py"
+    ],
+    "evidence_refs": [
+      "BF-E04",
+      "BF-E06"
+    ],
+    "dependencies": [
+      "BF-01",
+      "BF-02"
+    ],
+    "prerequisite_inputs": [
+      "BF-I02"
+    ],
+    "implementation_steps": [
+      "Recheck official program terms and prepare owner-ready applications using existing brand/account assets; record geography, traffic/content restrictions, commission definition, attribution, threshold, link rules and agreement revision.",
+      "Keep identity/tax/payout/agreements/CAPTCHA/2FA as exact non-delegable gates; never assert approval from a public program landing page.",
+      "Store approval evidence reference and validated exact tracking destination; permit only approved product, geography and page placement, with clear near-link disclosure.",
+      "Remove or suspend affected routing on approval expiry, changed terms, wrong destination or stale source confidence; retain editorial links/guide utility where eligible.",
+      "Check that rankings derive from fit evidence and user needs, never commission rate; no cloaking or route transformation without exact-term permission."
+    ],
+    "deliverables": [
+      "reverified program/application package",
+      "eligibility validator",
+      "link registry and disclosure test receipt"
+    ],
+    "tests": [
+      "not_applied/pending/rejected/expired/unverified states never activate tracking links.",
+      "Wrong geography, changed terms hash, unsupported link format or missing near-link disclosure fails release.",
+      "Review exact redirect/destination chain and manufacturer model; no test purchase or fabricated approval is required."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Each active affiliate link has current approval/terms/account/product/page evidence and receiving-link verification.",
+      "With no approval, checker and non-affiliate guides remain releasable and commission capability stays explicitly disabled."
+    ],
+    "rollback": "Deactivate only affected commercial links and restore editorial destinations; retain approval history and commission reconciliation.",
+    "next_eligible_action": "Reverify official terms and prepare application data without accepting agreements or submitting identity information.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Program approval/identity terms are external gates and may not be obtainable within an implementation sprint."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-135",
+        "PCH-105"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G03",
+      "BF-G04"
+    ],
+    "requirement_ids": [
+      "BF-O06",
+      "BF-A04",
+      "BF-A10"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

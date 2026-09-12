@@ -1,0 +1,1424 @@
+[
+  {
+    "path": "_tools/assemble.py",
+    "sha256": "6d52c5350b399c8d1e89622dae579fb3e94e6488c7637c5ae16a2cbd2f654118",
+    "bytes": 17058,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "_tools/audit_artifacts.py",
+    "sha256": "e6c0f29d5b765966fc61433eff7080df9507e7446e6881d03699ff79ff7615f5",
+    "bytes": 3094,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "ARCHITECTURE.md",
+    "sha256": "e658c0ef9b283be7b0396a6d70df018b25700afa741a8b8c58849f27fc9a000a",
+    "bytes": 14051,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "AUTHORING_CONTRACT.md",
+    "sha256": "214e701306118ed962134c0eac2ce05fdeac0015e9d5a7441848689a758f2754",
+    "bytes": 4954,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "CHECKPOINT.md",
+    "sha256": "9d26b52cfe8f167355334a6637a1338080d64d076acd8fb9338372e6202f567d",
+    "bytes": 2482,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "CONTINUE.md",
+    "sha256": "45ba5979cc707630b27881ff22e8ae572232f2fd990a14c39c6f878ad2d5432a",
+    "bytes": 2062,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "COVERAGE_MATRIX.md",
+    "sha256": "033dea1c2dc67275e08d4efd7e067a15faeb9376fcbf8edf8a30ec10d7f31a86",
+    "bytes": 111661,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "DEPENDENCY_GRAPH.json",
+    "sha256": "96e45a9a0a0170bbb9e585d672b85ebc57c5057a2c51db1a7306e65158762b85",
+    "bytes": 101433,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "DEPENDENCY_GRAPH.md",
+    "sha256": "bdccc41d5381a4f931d8ada0d7aa31f89d344ca2bd46d8f0519987aefc71dbde",
+    "bytes": 43385,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "ESTIMATES.md",
+    "sha256": "2bc90bf4999d963f006d5f95ce057f80d6034d9039f0daef607b063196f07cf7",
+    "bytes": 998,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "evidence/INTAKE_AND_OWNERSHIP.md",
+    "sha256": "8aa6bae6b2986737c7042e947e089d11a8c44faf2264d7c44e6d24cb9e5be2b4",
+    "bytes": 3044,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "evidence/JIRA_MISSION_SEARCH.json",
+    "sha256": "85e03e98781c6760fe133d37da66f971c902e22a49bd50f9361d8a901c8c5bd2",
+    "bytes": 10862,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "evidence/JIRA_READBACK.json",
+    "sha256": "62687ab2dea5f046980544bc17ff7d29e8f3b126772ac00403457be79c88e6fc",
+    "bytes": 45364,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "EXECUTION_ACCEPTANCE.md",
+    "sha256": "9d680ad3efaba9b049738ef01a6587d7b5e9805bf12d9c3f9be98b6159771fef",
+    "bytes": 4634,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/bf-v1.jsonl",
+    "sha256": "2f6521c21ec5e6ffd7cc3ce34fc125a6c85281406b99ea817a638c309fb3d67b",
+    "bytes": 82243,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/cl-v1.jsonl",
+    "sha256": "8e7d8df0f528863b42a6378a719ff5c254f4ab2712cce120057efb42884e426c",
+    "bytes": 70930,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/guru-v1.jsonl",
+    "sha256": "388fa50889dd03dd4ea1ff9d2bb921ea4bd7a2df6d5f6158e7a1c4e3f9f63f44",
+    "bytes": 95794,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/lipi-v1.jsonl",
+    "sha256": "a16fc5370d9423108121287ed7b381a6f9ec302cafcae7215f643c97a11db16a",
+    "bytes": 148550,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/opo-v1.jsonl",
+    "sha256": "a9ba6c1764722f97b710adc3df8784745e49ed616007b90225518784585fe0cf",
+    "bytes": 78678,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/README.md",
+    "sha256": "ab5dc137dd87f9f69729d63c4157d043d966e22d2b01da8e277c50e019cede31",
+    "bytes": 2142,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-01-1aa29ead0c7b2be9a97c.json",
+    "sha256": "60c2456b407b767aa65f2cc0a559eaca4b13171aa543307376a6b9de2e4f5113",
+    "bytes": 5813,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-02-7b0f683fbded78a5ee18.json",
+    "sha256": "b9ca761ec151e877ccdb0118a199d787f0b732bb2986f9a5119d9bdd055d7018",
+    "bytes": 6282,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-03-babc3532594fa388b93c.json",
+    "sha256": "1f1a906fba191495f4ab1bae37819a39b0b852f8210a76e4486831f1fdb1f3f5",
+    "bytes": 6354,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-04-e5b5fb1fe1783017f5a5.json",
+    "sha256": "503fc3d13b7d0af53ce45848b6389f7807ab2d9b81d3b581b6835321226a3a96",
+    "bytes": 6224,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-05-15903cf356a53fd1483a.json",
+    "sha256": "caf9dae02b70f987db460cb8e6270e18f27bb7b09e7cb56985e2ea04550e93d7",
+    "bytes": 6348,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-06-0cf069923b8d165c721c.json",
+    "sha256": "d23dfb289eeb0cdf214301532328bc8b7405c76c1e2ef17dddc19f2258026f09",
+    "bytes": 6110,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-07-2444dbc90b453276e585.json",
+    "sha256": "f62ceae944aac27107f73bc5005c8b192ef2a896fbab77c7f5c381003fb92456",
+    "bytes": 6299,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-08-c0b33e3bce3658444191.json",
+    "sha256": "ac735bd865e91cabe40cd31320df5b190548882874eab5d85c7604ef0259923b",
+    "bytes": 6892,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-09-41bfcdea4c2e3f8e9460.json",
+    "sha256": "f1f2fab06f0ad52536d9db6bcbe1de2f19d18730524ee3f9c642662092b53907",
+    "bytes": 6440,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-10-4040220f630883987640.json",
+    "sha256": "fa26432eb3d2d9ee27bf9b08e2a39c0a338516a79d2d069233981d98cbf058f4",
+    "bytes": 6093,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-11-ba6d164fe152b9e7e9b9.json",
+    "sha256": "168ca3f5d98a3c1692c17355eae212df0eee422ab9f36734de58d99074401311",
+    "bytes": 7268,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-12-957017631171a178b683.json",
+    "sha256": "5376f794d506adb50ce57dc5c86980c37e431f8fb0e17209d0483866934b4ce0",
+    "bytes": 6741,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-13-385b27cccb67d7c3831a.json",
+    "sha256": "23cc54ee207084ce9db4b5828fecc32252ab391f2b680db1e4d30b9d5824e0c9",
+    "bytes": 7277,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/BF-14-921de4c5b896e524cfc1.json",
+    "sha256": "d698afac241b5837765c9df6131271c59a017198852f93a5deeec98065b986c9",
+    "bytes": 7874,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-01-4aa1981e9ed7e6d3980b.json",
+    "sha256": "c57aa2102f6ab7ceaa59801f181256867c456eeccbf0e1654fc5de7d4c9c226f",
+    "bytes": 5972,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-02-ea4505526347948df5c3.json",
+    "sha256": "c0c50997cfc78d363792c2bec5651fdaa551153d7245f3f1c3ac971d3671ed47",
+    "bytes": 6125,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-03-045bfe039a4c90a5503b.json",
+    "sha256": "d5f9337db7e16786ba7637e4b9a6ef11833ca40201c9afb16346eb683d40dcd4",
+    "bytes": 6390,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-04-0c2dcd410cf758be5d5b.json",
+    "sha256": "7557484ac96914a5cc4bc3a5175c1da43233cc899ddc3bbff2a7539325b3e5e8",
+    "bytes": 6391,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-05-b6433fae342ac2d04783.json",
+    "sha256": "b4eaa52b9cd6c704f59b056b5808bbe5ac524a4562dbc3e21d9c4bbf1ac4a52f",
+    "bytes": 6315,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-06-60364950924f66ef896e.json",
+    "sha256": "6e87b2f54b97471b4f13801b104a6ce95d0945ec2b9912e6b041932fa86ad643",
+    "bytes": 6806,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-07-65742b203e2f3690529d.json",
+    "sha256": "024aa0bcf62bfa21b5c59c2e905fbac58625736023fe2c809325506b0a3c2216",
+    "bytes": 7529,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-08-824ab4e03e8f026a7091.json",
+    "sha256": "a92fc40eb65c607fa2d2c8a38f81f143acf3134a0c516431d3dad2a937db3fb9",
+    "bytes": 6820,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-09-1226dff20bb4ae0a19c3.json",
+    "sha256": "1d59b438bb4850d63c6649c9d78cc85ed9e636c847dcce3e77634dc536c1ae9b",
+    "bytes": 5988,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-10-1db37beaa3a38d221e96.json",
+    "sha256": "ca9e9933dfb88df81534f8c1ac0e05fe729a9c1c86a280530aea68a81fa08f38",
+    "bytes": 7265,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-11-ce6764069d47cc72f76d.json",
+    "sha256": "b6bad97967a0a71dcabbf31f3552726e06caa2b4dec120a3a43ccbc6172b7a7f",
+    "bytes": 6460,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/CL-12-ea9fccf757739df6e489.json",
+    "sha256": "7b5f2c5169e69b1fcb6e41cc75d57c7a05dd2cb864ce9536992dd31d58ef419c",
+    "bytes": 7135,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-01-b66082b5bb2ce7f79f92.json",
+    "sha256": "16543987d6af8a53aa9715de7775021b360a55b270d57eb154a081f2810f17e4",
+    "bytes": 5820,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-02-510810afcf5d4db68e29.json",
+    "sha256": "d0b20e256b7f9b3222119b4ae7e70bf8a3e9f1a651c9455e71898b1827e9beb7",
+    "bytes": 5749,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-03-0f77c5c28037ec10119c.json",
+    "sha256": "a40683cf932bcef8bee7e4aecba0cbdd938adab9f3c09db35bbf9d2338733a75",
+    "bytes": 5917,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-04-e95aa732ec0e0b1cf099.json",
+    "sha256": "6af447ab8f747127edfb15452df055f77afebf72b9621372a631d16416cc018b",
+    "bytes": 5817,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-05-0dc9dfc19a85fef72e39.json",
+    "sha256": "da0d9047c49ba84c5a8d43edab91f6f37515502837b391a83626827ffddc47f0",
+    "bytes": 6171,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-06-7854bae16fd4744d9902.json",
+    "sha256": "52771c367f1b506a7b2cff2ee47cb965d0629c674c1398d41d079b65c7cb48c5",
+    "bytes": 6545,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-07-576dccffb1f42c6246e2.json",
+    "sha256": "c3536d982be209ad8528ed3a6e7dbd72a936c1b62614209cb34692ff10c04782",
+    "bytes": 5749,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-08-e9088d99fb68e6b99c26.json",
+    "sha256": "ee511c1cb1f56818e07b4db61a01d7236f755e11694fa74ce1cc1a2db272b650",
+    "bytes": 7268,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-09-32698843a73579c70de8.json",
+    "sha256": "f8fb39ae553e97e4245494c7d9c5b4f19c6a2a929058de20aef5a413e88cef8a",
+    "bytes": 6738,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-10-266f14086e801379506a.json",
+    "sha256": "d692d40165d54ea961f296685bc58bf012835b775ba8b3040ac67ffc401b9416",
+    "bytes": 5837,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-11-3ce05c012c49981849c9.json",
+    "sha256": "6a47926edb2fa7147a3f9d2a8925c02918589289e6b5da48621cd20fb1f572dc",
+    "bytes": 6071,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-12-9c811a9456d939ca11b4.json",
+    "sha256": "cdda09e07a71c70d4958045780d74f99cc11c553bafc0b2b2e59c27ceb62309c",
+    "bytes": 5848,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-13-0f41de04e89a3e37ffe2.json",
+    "sha256": "cdec3e38a14e518c10aebbaf77818dd2d7190b8b980e7ab606dbc1cde55dadbf",
+    "bytes": 5872,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-14-ac948ca484d3798de1d7.json",
+    "sha256": "ac2483d94e95b0824b6f94c5c39e6c7932d3ea1a332911ecbd9ae2e8218eefe1",
+    "bytes": 6200,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-15-9d623c165470ab8ee67c.json",
+    "sha256": "e9c075bd79d34f323d1ea3e6d6b4506189dd59445b03c860dcac32b37e6a84df",
+    "bytes": 8366,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-16-1e1d7355ee19e4467dcc.json",
+    "sha256": "fa0e404f5621a4dd959f7b2156a7a63b3184c122c0bdccbec93da2642091444b",
+    "bytes": 6305,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/GURU-17-d2e9b268341e1dd5dc1d.json",
+    "sha256": "8d281214610df870dc0df9e9c353be61426ffc6695c5e8650530f8caa458e787",
+    "bytes": 7408,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-01-e4e11dd484505e117205.json",
+    "sha256": "671d2b10769429402a784aab34d9462303e7b67c44d6811dbcfb126b77e4c29d",
+    "bytes": 6768,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-02-3dc51e8b2ec3a03d16fa.json",
+    "sha256": "67a753277bc1c63a14329baf8458b65771fc653dfb0a53084d9cdbe9f2675b23",
+    "bytes": 5490,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-03-f4df3e7e5a9c20a2b9ac.json",
+    "sha256": "44a5b118e0df53b1a64016f35104a36bac6576dd593b63cbdb692c84c12b834c",
+    "bytes": 6281,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-04-10115065189f66694101.json",
+    "sha256": "3f8a2ad0a0abcebbb5148d1f32f6bcb76ab7630710f99a946510b7b4259ca365",
+    "bytes": 6304,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-05-575512704dccfcb41a11.json",
+    "sha256": "21db864971fd1173581e29e9b58f945af99ea2498b3af61e42906fb2e20582a7",
+    "bytes": 6308,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-06-909b88053db883b2d00b.json",
+    "sha256": "3d5b5912117f69f45ae23a4714fac853077b15746d9d73e2c5b0044f54fe489a",
+    "bytes": 6321,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-07-2e8bfda66a6ee6dda9fb.json",
+    "sha256": "880498e9b353790dfd7cabfa3e7b859e2813bab0e9c309762f5d1a7d814d875b",
+    "bytes": 9821,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-08-418a433bec2a9722d064.json",
+    "sha256": "12d8ddaf5d9b222212973fd4ad4d0f1f3d4166c0ebf0a07622232b4ef74868fe",
+    "bytes": 6164,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-09-c7030918b59a7f74b53a.json",
+    "sha256": "272e2f704a659b7f62da07f80823f6644554443595a5dd8e8913e7ea8ab37b8e",
+    "bytes": 5971,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-10-f83b8f3b0239b0e48c91.json",
+    "sha256": "09b526c1bb824b885522de0f19158b662db9aeeee96291d3971cef6c8b297027",
+    "bytes": 6344,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-11-1bab0411229cced359f1.json",
+    "sha256": "c92637adb2ff6f0244205747395c4b9c5729cba02d5cac35540e074f2b84eb07",
+    "bytes": 6242,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-12-8ab354306ab670a6e527.json",
+    "sha256": "83124f30cd36424ea5617f94f96de7f127166f6c91bd6e352c2bb8730b49db2f",
+    "bytes": 6801,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-13-c99ebbd6022c712aa11e.json",
+    "sha256": "f6b12426d5a6149bb997ab362b0771b15ae2545ff98b3bd9b7320062a092f201",
+    "bytes": 6014,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-14-10707f6285186d641135.json",
+    "sha256": "a13281f2cbec3c8b735fa4f94086c7887b70a5f0ad76d435f71cb852adac4d27",
+    "bytes": 6106,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-15-f9e68d5bd3982df77d3d.json",
+    "sha256": "0fb8e4d28f63ddc9709cd7df8197b81a8b7091401b8a69baf3cba43b8e290362",
+    "bytes": 7074,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-16-c9098225b9bbddd90bb9.json",
+    "sha256": "9ab5040df10d1a68d330ba04e9697081943282e8038c1926812a99bd853bc9d3",
+    "bytes": 10174,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-17-24d3fcc7c5a64874252c.json",
+    "sha256": "5bc58dfe59345b79e7d6f8128c5b914bf563a841e3af2b99e93a72436fa229a2",
+    "bytes": 7450,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-18-c6c8d888ce45e4de1ecc.json",
+    "sha256": "aafb1e2d4799bb0c8d9833ee890959440e3cebad87cf735058d62d6c84d9f2b6",
+    "bytes": 7139,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-19-e18c52d7b3890fd49ca8.json",
+    "sha256": "10aa6912e3dc61fae8230a1e8453c39f06a6f019985f5e3538006561d2d2f8de",
+    "bytes": 7051,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-20-f8541ad9f040c68c01c3.json",
+    "sha256": "61a3ed3d6b54aab77f0b932c45770a01c25c3b462ff6f968088ac292f059386f",
+    "bytes": 8108,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-21-04d0596ea01b645b356a.json",
+    "sha256": "cffad69b666a3729ba2d86f6cd34896e4805c5c3d45ca6934641c9276204a587",
+    "bytes": 6537,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-22-0557bc4a0480262818cd.json",
+    "sha256": "b930cf71ec37e2bd32f95a68aca1dc3f0042df46de7fab156d4f2abc07ed5f86",
+    "bytes": 7190,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-23-4e9e4657888d132b9b99.json",
+    "sha256": "eb305e6c21e277f80bba79052d7d5642318ce4b335e48d175349b58d74017262",
+    "bytes": 10007,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/LIPI-24-466c19f291ab0272c54f.json",
+    "sha256": "47d247721765ed078de997eeb0324d5974b5b9b000543da80594e865209fdcad",
+    "bytes": 6982,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-01-37f7cfc9b62f7fb77bba.json",
+    "sha256": "c497ad02646e7e9a1a696a30f3773ddb2cc6998ba1ad7311a6e52a5e3999f410",
+    "bytes": 5662,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-02-dbd39db7b43d6f370d5c.json",
+    "sha256": "7d1e8d58b90f77f2f724eb462c44cf225f04d20f94e7da65f0ad981cdb79531f",
+    "bytes": 5476,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-03-a6673d9a1ac96bdbfcd1.json",
+    "sha256": "b852b75237faf3f7c3177ad8aac5e07102ed396bd4c0ca6f3edd597e39a51c98",
+    "bytes": 5951,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-04-41edce11f43dce2cb5e7.json",
+    "sha256": "85062a07cafd874b9c331a9b1e6c3d2bc78d33cb962744ad20835b1040ed0386",
+    "bytes": 5825,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-05-855d6bad8ce643065fcb.json",
+    "sha256": "5f2ff1bdd2b1b132e1e8e95c92068c16965bc7c311d61fc2e695862f1f9779d8",
+    "bytes": 5594,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-06-44e2ff50ae8dd99f94a1.json",
+    "sha256": "75b3eb882b504305226a734ae70a8d23dff7e8f619d6452d117ce15f576fa6c7",
+    "bytes": 5815,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-07-cb00c6e7def6abc02364.json",
+    "sha256": "17f4f48274577003bdad33b8e23edb4e32a87868b233d16e8281cff3e1ea3813",
+    "bytes": 6248,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-08-b5cbdfe2e966c1581fe3.json",
+    "sha256": "be3766d92fe20a2c403438f805dc701b36c2359044297df679db0c445c8117f4",
+    "bytes": 5966,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-09-00b4ff84a31013af871e.json",
+    "sha256": "12dd39416afbfe863b09ef92c29acd12b75e53c97bf1f8595a28254a392e9746",
+    "bytes": 5839,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-10-a996148f4ac467c612fd.json",
+    "sha256": "18564109393cda1f4e3c6c30b398a65a56ec93f09e161e532c34895c86c37d12",
+    "bytes": 5501,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-11-f881ee079513f3204d0f.json",
+    "sha256": "b443eed45e07540b0ec4ca546decc2792ed4e590a430dea4d4817de9a1d95b47",
+    "bytes": 5910,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-12-d42b93717220b4ec42a2.json",
+    "sha256": "ffcef61ea451d44eab928deb2be769da74b8a05955cb9d8f6724071c35771611",
+    "bytes": 5714,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-13-c170f09b1798e737aad0.json",
+    "sha256": "d02bd799356a16ff31d86c67ba22668aa88ec1a78099e6a08f74063712ecd983",
+    "bytes": 5747,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-14-082b4bcf138168ddae2f.json",
+    "sha256": "5edd77c9f00fcc67d66d5d50eb0b2b0905f9fe1e2b9b78f85f50634fbb91be4c",
+    "bytes": 6629,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/OPO-15-d6e9da9601b63995869d.json",
+    "sha256": "83d1df1c838775b960161af55b460217d5e91abd053067a43218e71442e6ea85",
+    "bytes": 6263,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-01-938b89be3ef1a3c64c7f.json",
+    "sha256": "1ee160f4e32f7879a9939841a95801e2d2ecc47b9e192da7ffccb47aa78d86fa",
+    "bytes": 5577,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-02-ce2429816dbb1f3f4c7a.json",
+    "sha256": "37067c1dde67c23f8f1ab69d6a92054fbcbbffd8727b0f7facb4ed6793fc16f2",
+    "bytes": 5256,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-03-6880763679be0a67226a.json",
+    "sha256": "36127f0f82939b6720e7a002d124cd0a8af6e6ada9ea09d3e26c859cab683058",
+    "bytes": 5294,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-04-a14c651ca590a63a4981.json",
+    "sha256": "598163095a82864e6f979f052a06c2a09375cc40ba9f30ca8f2cd8af89e4838c",
+    "bytes": 5233,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-05-88427b025d329dce2b9f.json",
+    "sha256": "cf0950ac51944dcb15df31c35c60fec7614a0ef465eae63b5cfed563ae8effe7",
+    "bytes": 5335,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-06-918f2a75349a14e89c34.json",
+    "sha256": "5c311d8bcab129dff0fdff080e6f89c4f7f90e4c91b4147bc0ef1706bc432b09",
+    "bytes": 5409,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-07-91d0690cfa0eb43a62d9.json",
+    "sha256": "07bf01e8a5f2c7cf15078ed424376ad7aaa0643e83d9e34c251d04b2c40a2c3a",
+    "bytes": 5318,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-08-05a9dce68da410b2e83b.json",
+    "sha256": "8521e4d261ccacfed826f5ba289a16f4d4a1e42acd337c92a16224583442670b",
+    "bytes": 5299,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-09-b6d7a2ed2bb26093f4d1.json",
+    "sha256": "4089a735a21f23948213eafe4d197a1ff4dfb0b377ba2bce849d5500b84f1e2f",
+    "bytes": 5448,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-10-5edbaffca0dd2578224c.json",
+    "sha256": "892a2f1be2d1733b7a4e19d5581579e22092dc18e45981cd4128d7bd8678cdbc",
+    "bytes": 5156,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-11-156ec203ba3f7861b6e6.json",
+    "sha256": "b290baa7cd3f98618419842d934bd5aae4fe4aa57e1b2fed26aaf18471a7f815",
+    "bytes": 5593,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-12-5848a32cd7399d4d9768.json",
+    "sha256": "34f631c31398d345f69d9850fa09f3684e9258dd232503fa828523023e271aad",
+    "bytes": 5180,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-13-40983e0963e24de51ba6.json",
+    "sha256": "ed41ee700bebc3d5c3f8d5e3c931ff70a9d4308c1457e2006d9cbad268aa98a5",
+    "bytes": 5325,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-14-81dc46657266ed570546.json",
+    "sha256": "e1333ba777e427ff43f31808b0c256489e4197b526240cb7713ed5aea13641ee",
+    "bytes": 5422,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-15-470d02e7db92d7c20bbf.json",
+    "sha256": "01635294e5f7a53d85043593ce309be8760abedd8ca598734994beb916ee7617",
+    "bytes": 5570,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/SH-16-ea3f24c5e37dac3232c6.json",
+    "sha256": "3b32a68b4ca7f7bf87d3762551797f2cd99183b6cc3944ca6fd8b6927ec68a95",
+    "bytes": 5482,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-01-bc001aee66e4edf6e0f3.json",
+    "sha256": "9b9350b87f163898a7fd2c64d9e2de23d5077d61e78b5efe1d316fcb959188a4",
+    "bytes": 5479,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-02-0dd3e695981cc769b04b.json",
+    "sha256": "9027ac43e0f17cfebed880b2a0c9ecc53ef4cc749c33547dba0a7b700fbafc91",
+    "bytes": 5962,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-03-ef9cafa58610f47b6240.json",
+    "sha256": "4a1b8f30a9977d72a3b30ca908d79e9e3291f271d2d373cc0883707b979951fa",
+    "bytes": 5881,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-04-b7de74eb91fcdc0db107.json",
+    "sha256": "5126a3540fdd75887bc9dcb63e7d55f63a7861b5fa2bea2653243035adc6440c",
+    "bytes": 6002,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-05-7475aa4ecdcae81a7d23.json",
+    "sha256": "fa730bc227471faba417fbe4fb5eb34aa76b02fcf38db1f9f01bade5e64cbf9f",
+    "bytes": 5899,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-06-f1ad66a0099f69f54048.json",
+    "sha256": "64975ff65d7310909c036ee9e0dc5e02566419c303b352bd3f5e570f019c0107",
+    "bytes": 5804,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-07-c0f1e826a9c2cf6716e5.json",
+    "sha256": "10cc0c69ec28c77abe245949ddc425ae054855be6f5803e215d1e8dfddb28fe9",
+    "bytes": 5598,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-08-172036fa4497a89db62e.json",
+    "sha256": "6429a13689dd1e890f3c5387879d1e365bbc0c11c28622ca4c03ac951a834624",
+    "bytes": 6081,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-09-b83688b71a4071f995b7.json",
+    "sha256": "8cff379afdd592d3bca4381303574ac0a995fac0540856371aa712d6e8233ced",
+    "bytes": 5677,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-10-0b91f4c960d1512115f4.json",
+    "sha256": "0ffad4c3f91d966fac674488f5d18898a78edc6ce518562676859081a416f096",
+    "bytes": 5634,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-11-62b70087cc95b30ec72e.json",
+    "sha256": "e064aa1ee482e9d12902518840345a79bc190f0a884098c7a67fab5ba2a3c273",
+    "bytes": 6389,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/records/WHB-12-b32d6333df0b6bdca9ce.json",
+    "sha256": "302fc6efb32bc98c8b5074fcf57f471e6f82ad2b79378c2d83a6429528e01ff8",
+    "bytes": 6363,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/sh-v1.jsonl",
+    "sha256": "785cd60b620de561185810b1feaa9dfc03adcaa082fc36617a15427012f697c7",
+    "bytes": 75900,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "jira-outbox/whb-v1.jsonl",
+    "sha256": "4fcb077ecba5dd934dab5279d2719b8bfd251cabfa696f7aabe3d6da4542da88",
+    "bytes": 63128,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/commerce-bidet/CHECKPOINT.md",
+    "sha256": "54aec4c7a85d98d5692bb60de2357b71c93facc07e797c58fe1afde78254014e",
+    "bytes": 1856,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/commerce-bidet/CONTINUE.md",
+    "sha256": "170f1c57a1493543a0ba4dd02bfb3979fd7dd539077a5c9ac0debd9efdab9425",
+    "bytes": 904,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/commerce-bidet/LOCAL_VALIDATION.json",
+    "sha256": "cbc35678efae93fe69b6635ac9f13101c9489ea9f15a6a5e4fe7c769dff95421",
+    "bytes": 245,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/commerce-bidet/REVIEW_OPO_WHB.json",
+    "sha256": "dc9c6664a099834fd4aea588e501be650f2d8e13053a3ad62399f3334b863d2d",
+    "bytes": 6441,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/commerce-bidet/REVIEW_OPO_WHB.md",
+    "sha256": "b4828874917ba51f2b1a82087ba496b95bb56e85f6acda9529a5f157e47b9ceb",
+    "bytes": 4243,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/lipi-guru/build_plans.py",
+    "sha256": "da959c2146a7c538b2392d7a2228b6477a938147a06f2bb5e468f8639f0e8fc9",
+    "bytes": 115128,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/lipi-guru/CHECKPOINT.md",
+    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
+    "bytes": 2099,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/lipi-guru/CONTINUE.md",
+    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
+    "bytes": 1474,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/lipi-guru/VALIDATION.json",
+    "sha256": "f18e1613098748c162373bfdff771afe09ef3d5edf539c6070b8a8c3a7124258",
+    "bytes": 562,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/CHECKPOINT.md",
+    "sha256": "28fa096ba55b2b1cd812853a1788614cfd8c62ef7a9f7179fab9a1af34dd2d21",
+    "bytes": 5179,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/CONTINUE.md",
+    "sha256": "f6870df75eb7055385afbce0ddbad4a418e708c3d59d27e749377b73ded1d4f6",
+    "bytes": 4968,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/LOCAL_VALIDATION.json",
+    "sha256": "0bb0ed7686936d24c40d1acc04761333d396a217f96db24cea9f3c6e268c4bd3",
+    "bytes": 594,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_CL_BF.json",
+    "sha256": "b3dfa558fd23b314b91bb0790223d33a5d619701ba5fe84ce4996960999a3a99",
+    "bytes": 6617,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_CL_BF.md",
+    "sha256": "699737c233c6080ee9364307f668073f0fc2364c504f7562190d6da137441046",
+    "bytes": 5598,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_CL_BF_CHECKS.json",
+    "sha256": "9a38fe3ac0ae1d3bf2478e22c99d827122be633cc65cffbae346f6b078f86b1e",
+    "bytes": 511,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_CL_BF_ENCODING_FIX.json",
+    "sha256": "28441cc188c5e520769701309ed14a3d5912f956c6f804c2a9c7987dc9a97848",
+    "bytes": 1554,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_SHARED.json",
+    "sha256": "801af4b39bf51ed9f380b492f9a0874a44cb1bfb513ebbcb05129dc300a96522",
+    "bytes": 50776,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_SHARED.md",
+    "sha256": "f5a56e9f09128085ae814e7411e5ef51df66463e9faca346fe378d1c3b94429c",
+    "bytes": 6023,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_SHARED_CHECKS.json",
+    "sha256": "91c3e1d78588c824bfbe0e4f942a862de53be40f4fa0734b5ed42b7f4ab8d436",
+    "bytes": 1223,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "lanes/opo-whb/REVIEW_SHARED_PARITY.json",
+    "sha256": "3f72141544e2d8cc451e70f2c9ffc07cbc76a86c4e0897dbbf2a506b5898a521",
+    "bytes": 43595,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/CHECKPOINT.md",
+    "sha256": "7503d5d0a4c5766c91596acb2716e9e3b96bbbacf1a1cded58529f26100f59f8",
+    "bytes": 2588,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/CONTINUE.md",
+    "sha256": "89568ebc0a26d119424c7ca030b0664f1931ced6e83c64359f2199810e6f6556",
+    "bytes": 1992,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/evidence.json",
+    "sha256": "14648e4bd1e457f91335ab3ee739bd24aa4b7e4f5afd1502b43d2f964c8e1f03",
+    "bytes": 6416,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/EVIDENCE.md",
+    "sha256": "1e204b0ad7ba6af520a672f2e0a7f9e5e3b12d7223b9c188c53fd60328922539",
+    "bytes": 6761,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/JIRA_RECONCILIATION.md",
+    "sha256": "9049925d72675f7fa56e47c12337e6fa1123fe0139cf1d7242c9a37aa0f628f0",
+    "bytes": 4034,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/PLAN.md",
+    "sha256": "c9853c2580fa8f6136f33956f63742e527be6d6df41d4895d30412b21dfe5d23",
+    "bytes": 8732,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/requirements.json",
+    "sha256": "3add93988956f75063a5c09dffb6f1d7a48ef88abd43b31c593aa2c9363a3e04",
+    "bytes": 24636,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/TASKS.json",
+    "sha256": "f49c4633b3067ee28da9998be528cfcbce56a4eb031eff1ccac53f4fc1e8cf2e",
+    "bytes": 71300,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/TASKS.md",
+    "sha256": "45f8e7506bfb9d1495ffa9c719ea8fd41c1891820b235abd5da862fcb506b3b7",
+    "bytes": 60079,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/bidetfit/UNRESOLVED_INPUTS.md",
+    "sha256": "92a410a74dfc64502a6ce82f5e12e86008b92db8ae8baf8e49fd5c603f9156e2",
+    "bytes": 4368,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/CHECKPOINT.md",
+    "sha256": "53e8aec951fa1f0e5fabd96a43d9f159a1ef28cffd915148463fb4095c9444a8",
+    "bytes": 2271,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/CONTINUE.md",
+    "sha256": "9bf7e36fa3bb37c017da064034a2308d6c5754567b2599facf2ab8d49b57499f",
+    "bytes": 1904,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/evidence.json",
+    "sha256": "28f34d0ba21d5079b4faf6f4c67d9814824429b7dcd80c18708c8ef565c71806",
+    "bytes": 7325,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/EVIDENCE.md",
+    "sha256": "5288121d6d1b2516108138e22c0ecdec0f707fe92bcf16b160e0bbe4666936db",
+    "bytes": 7583,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/JIRA_RECONCILIATION.md",
+    "sha256": "95ac24c81ae12f668df4f4d72663723e4f049d232fa26ca6e3c5303286ec4d22",
+    "bytes": 3017,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/PLAN.md",
+    "sha256": "d6868e77e7fe1fea3e097a959e3e63e694826591ad1303a3d60e64ba9df6204c",
+    "bytes": 7329,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/requirements.json",
+    "sha256": "3c38408c5abd05504b71ce51346f69a37f872601b88cfc1cc76510438b5eb9c0",
+    "bytes": 25136,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/TASKS.json",
+    "sha256": "254b0d6465c3aeb22e1665ffb3ef5737146747a173a3291f85e0407255a58067",
+    "bytes": 61571,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/TASKS.md",
+    "sha256": "e7866b75fbc4fa60b00f71590e0ceb4a375b812bbbd39423932dc780d6241d57",
+    "bytes": 52141,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/commercelint/UNRESOLVED_INPUTS.md",
+    "sha256": "74b6ee97e3f256af2a87634924c0a086448bcbc9e1bb62a399c180bdc5a188af",
+    "bytes": 4095,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/CHECKPOINT.md",
+    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
+    "bytes": 2099,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/CONTINUE.md",
+    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
+    "bytes": 1474,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/effect-gates.json",
+    "sha256": "0253b169e2dcd8b063792c73d2fa258f19de98604795d1956655cc1f45ba8961",
+    "bytes": 1810,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/evidence.json",
+    "sha256": "581ff8632d5cffb4e362bf94ebbf6b13099e472354273eb610faac215f3621d3",
+    "bytes": 3683,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/EVIDENCE.md",
+    "sha256": "603869e215e4bb7ed2512eb93fa078563472a87a92a031520d92100e14b9d7f4",
+    "bytes": 3334,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/inputs.json",
+    "sha256": "8f0fedb53400125d9dc65bcbf0d98d9197f8dbb2152d1d2ba97f889b79156c19",
+    "bytes": 5255,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/jira-candidate-metadata.json",
+    "sha256": "5e861f6889f945f2936f913910e45930b444d3f144d88b8213ed107726e1a5f6",
+    "bytes": 2415,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/JIRA_RECONCILIATION.md",
+    "sha256": "7a9c01fbf031f4cf2eaf9cac420b66ba960011ba5e330b8cefc4b55cbe946d86",
+    "bytes": 2097,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/PLAN.md",
+    "sha256": "c89b01aac9155f70358c7bc21d48bfcf059350fda3e34b1abcfa002bcc37976c",
+    "bytes": 12132,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/requirements.json",
+    "sha256": "4f30949860cffa12778429b600649fc9ccdf4363446e144704a357334bb82469",
+    "bytes": 19252,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/TASKS.json",
+    "sha256": "c02f9065419eba041652e43edb9aed5d3c8c0552363cce55cc83ffb88aa04c19",
+    "bytes": 85454,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/TASKS.md",
+    "sha256": "28a1f790a5a92fcf76340be2a6587b2bd817a010d2b4cf6691f2e3d72d96067b",
+    "bytes": 65054,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/guru/UNRESOLVED_INPUTS.md",
+    "sha256": "ec2255f5da497242b9b628a9c61c14ae5836c160308990eccb313015b32ae815",
+    "bytes": 6279,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/CHECKPOINT.md",
+    "sha256": "eaa5858ba4d450d0fe8b2ef38f25a8fb55d253ffc28581ca0c5a676e8d7b36d7",
+    "bytes": 2099,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/CONTINUE.md",
+    "sha256": "5661617e9eb22a3e981e6070a2816678b6f69f7ee1cd4f40a49ece72c9a22ea7",
+    "bytes": 1474,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/effect-gates.json",
+    "sha256": "e978508ea8c5333ec9e6bbac2981fdffd829608ec654553a3181ce1565205bc1",
+    "bytes": 3632,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/evidence.json",
+    "sha256": "547eb170beacf0299112f4cd445ecddf29df5fb4fe1653579e655050cb9831ba",
+    "bytes": 6736,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/EVIDENCE.md",
+    "sha256": "652362831d63b3d49ac32861edc1b0f6e58faa30718a87a744047cff0b9b6f7d",
+    "bytes": 6007,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/fresh-main-readiness.json",
+    "sha256": "7817d77cac8712806d5ef4a193da732398721e41b9df05f64d9d3e0163fe8ad7",
+    "bytes": 6338,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/inputs.json",
+    "sha256": "70b3ef1b31e0a7c02aa0fa854975e7129c6a4b2c44cfda8ecf84c6f1aba59bdf",
+    "bytes": 7157,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/jira-candidate-metadata.json",
+    "sha256": "76bbd2b295e34ba123b855c06ec8bb5a8b4371060a03c700d7e5cc13c8485812",
+    "bytes": 30670,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/JIRA_RECONCILIATION.md",
+    "sha256": "e9283fabef6924f5d33f685763c9fd259588b680a22a99f16bc5a89adefe6bb5",
+    "bytes": 4574,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/PLAN.md",
+    "sha256": "98ae1018b5de48fad819d9494797b3c24af09731079f190c73c289c01302fc6a",
+    "bytes": 13721,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/requirements.json",
+    "sha256": "de311dba5c87f8d90dc81a57ab8b5672f9a360830e7fb325ee0a93682b43f8b5",
+    "bytes": 24586,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/RETAINED_RECONCILIATION.md",
+    "sha256": "66ca5aa15fa8b9a4cb7f38165d9fc3f89ccb6d8f79fa8fde9d7cc66d8d837b70",
+    "bytes": 5223,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/TASKS.json",
+    "sha256": "751fe220169c6393a2aad8e431e5885ef55368318903d5c2cd5c5c2f710485f0",
+    "bytes": 137139,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/TASKS.md",
+    "sha256": "2c2fe2c970fbabec2f58a1279e3ab2dfbc9433cdec98baba9b9faf64fdf30c5b",
+    "bytes": 98820,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/lipi/UNRESOLVED_INPUTS.md",
+    "sha256": "07e30cf3d02a06133762e915ace23456067f6bd7c1c01b29e58b30321d2ea1fe",
+    "bytes": 8799,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/CHECKPOINT.md",
+    "sha256": "92967cbf1b5b260a542a5a8b3a58e1c77e69e667256dfbc883e7bb6e4019a776",
+    "bytes": 3003,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/CONTINUE.md",
+    "sha256": "320a55e41a75e7cb56b746c73f36019d8f6d83e5af977cd492e5585c241ddcdb",
+    "bytes": 2406,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/evidence.json",
+    "sha256": "83a9fc55397eaee1b8155323af3c941805df42022f78296aa2a0fcec4486d4db",
+    "bytes": 5464,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/EVIDENCE.md",
+    "sha256": "f247b0a468a8e909a56a9a8f6d02061da1f50096f3c7e653c8820b2577914e03",
+    "bytes": 5078,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/inputs.json",
+    "sha256": "e3df33020bb97b353c7f1f551910af3baebcf8d61816e7b4bb846a92300e49c0",
+    "bytes": 4882,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/jira-candidates.json",
+    "sha256": "eddf12166a7bbf3e31073ea9e57a09ef84afda9fa7d10f2f7753a0aadad737d4",
+    "bytes": 5664,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/JIRA_RECONCILIATION.md",
+    "sha256": "b8dd222423ffdfd6e4cb5622c60b5bb602f9cfeca4e90bd49383979f7b787e46",
+    "bytes": 3215,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/PLAN.md",
+    "sha256": "19df380e8b9de5464661184a447fef05d9c57bca7666debf9a8dbee355ded59f",
+    "bytes": 10259,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/requirements.json",
+    "sha256": "f95030598453ffc0ec077d3a33fa19989e0ef3c1ea9c3d9f3a5173d1c44d5487",
+    "bytes": 15024,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/TASKS.json",
+    "sha256": "3fdab398f5e87c662c1bc19e1ba076b45cadddd6a35d9c75abb3672ec9739c82",
+    "bytes": 68149,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/TASKS.md",
+    "sha256": "bd3c0d06bfe3689a725d3b444b5f48836b95b95066eca54e138f55cca867b7e5",
+    "bytes": 58663,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/opo/UNRESOLVED_INPUTS.md",
+    "sha256": "bb37a5fda37f21949b9f7e7666413e480569444553a0b266d3682251dd2a7d8f",
+    "bytes": 4489,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/CHECKPOINT.md",
+    "sha256": "05cf3a312912784bc1baefa503090c51506108ba9c267adb5eb3b83a413ce92c",
+    "bytes": 3001,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/CONTINUE.md",
+    "sha256": "d212a55a8f57ee79752ed8d319e1962884f70d2b7f52abb9081f7ec108031a14",
+    "bytes": 2406,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/evidence.json",
+    "sha256": "55355f473bc44680cd11c9143252c28e09a2a02c93baf0c8be13aa1562370f86",
+    "bytes": 6549,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/EVIDENCE.md",
+    "sha256": "db6dbe9c3d3ba5b18883c54aba93448fa930ac2e58c341ded5476c42969e5d38",
+    "bytes": 6178,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/inputs.json",
+    "sha256": "2e7a3d68790c345572e4cde0d7383384ffaefe2d961a0c1659ba5963e66b1cd0",
+    "bytes": 4716,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/jira-candidates.json",
+    "sha256": "a21a271575238da5bb535e491ff8cc91c286273d077a36338d856274af17ed38",
+    "bytes": 2664,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/JIRA_RECONCILIATION.md",
+    "sha256": "f3882af9176b0df328a4dfbc87771004df3e9805094c84b2eb13eea5a4d79183",
+    "bytes": 3502,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/PLAN.md",
+    "sha256": "ec80731e334dac25173ed671e6f6f05eae254b815fe01c185b864cefba6d4ea5",
+    "bytes": 10183,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/requirements.json",
+    "sha256": "7cd2a879d664e9dadf98bebb068d8554363182017e17a4c88ace53a9f62008fe",
+    "bytes": 13643,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/TASKS.json",
+    "sha256": "fbf0eb6a9c411f548ef925c3482be570b69c5d1f74878bb44a5427c7af63b8f4",
+    "bytes": 54757,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/TASKS.md",
+    "sha256": "e1e5cdd56f5c29005aa020821d5500cad2b013df8a33d54ee42ad47374f10d84",
+    "bytes": 47110,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "missions/whb/UNRESOLVED_INPUTS.md",
+    "sha256": "dbe7ee69c1281739adc073be385a466ef52a7aa2f0f06f621530102b033d17cd",
+    "bytes": 4323,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "PERMISSIONS_AND_INPUTS.md",
+    "sha256": "b0a09bc74e187c8d9fbbf4927d68b053c79b790cd2b4e6bb06ac5effd8a22f72",
+    "bytes": 8843,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "README.md",
+    "sha256": "2565011a579a5933933914c9a8780f4652ed99537d5364eded8d81eaa51aee15",
+    "bytes": 7444,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "RELEASE_QUEUE.json",
+    "sha256": "67c02b1251c47c26e6ea59b722cbddca203644b144c30eae729deed6fb65ecf8",
+    "bytes": 88030,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "RELEASE_QUEUE.md",
+    "sha256": "eeb0ec93e652eaf2eb8df1deb228ce05819afceea3ff6f360b291993124fdeaa",
+    "bytes": 3355,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "reviews/REVIEW_LIPI_GURU.json",
+    "sha256": "e2ca56a3785c6d815bb906e7b22b2810d2488c40e9fcff25b936f1d81f295a3b",
+    "bytes": 8496,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "reviews/REVIEW_LIPI_GURU.md",
+    "sha256": "ce3b69d2e2f0bbf30401bac866447887afc01dfcee8c6c4d41bc0c3bd6ccd240",
+    "bytes": 1146,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "reviews/REVIEW_SUMMARY.md",
+    "sha256": "dba046ecee752757ad066db6cfd4e933d4b12eca2d8a6dd3b9b876dba492c702",
+    "bytes": 5144,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "reviews/ROOT_FINDINGS.md",
+    "sha256": "43a8f1bda0ef6eac87c2bf9ac1f4274ffdee846be146072bb7ec2d703840b263",
+    "bytes": 2801,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "shared/requirements.json",
+    "sha256": "c234c65e315d8856510c7864aa423ca2a01652fb2c0a84f0e263854ea721063e",
+    "bytes": 8366,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "shared/TASKS.json",
+    "sha256": "b0114e6e8bad4ecfc2f85e3ba5d4f2cb590e601ff42e09781f154c99ba018b98",
+    "bytes": 65051,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "shared/TASKS.md",
+    "sha256": "d8cb0f3d891a456523509073adaafaffee7906473f08c0f0cc9c71fadc9b21f0",
+    "bytes": 55851,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "validation/PLANNING_VALIDATION.json",
+    "sha256": "9d872a09f85b97c92c615322d4d3f73be0df1e1f00be5009d3b1cf72aabf2004",
+    "bytes": 365,
+    "hash_scope": "working-file bytes"
+  },
+  {
+    "path": "validation/REVIEW_MANIFEST_VALIDATION.json",
+    "sha256": "a2a6d1e64597220e601bcd979177402a106bcf29c284f2b35fab3f80669342c5",
+    "bytes": 1290,
+    "hash_scope": "working-file bytes"
+  }
+]

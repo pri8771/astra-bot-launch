@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-04-0c2dcd410cf758be5d5bff7decebcc6bb6d8b1a76262ffcf3240fc3df43346f1",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-04",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-115",
+    "BOTS-116"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "0c2dcd410cf758be5d5bff7decebcc6bb6d8b1a76262ffcf3240fc3df43346f1",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-04",
+    "mission": "CL",
+    "title": "Operationalize the scoped audit offer and fulfillment",
+    "goal": "Make the existing $49 up-to-15-public-URLs audit deliverable truthful, repeatable and supportable before accepting obligations.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "docs/founding-audit.html",
+      "docs/sample-audit.html",
+      "docs/service.json",
+      "docs/downloads/commercelint-audit-report-template.md",
+      "operator/fulfillment.py",
+      "config/offer-policy.json",
+      "tests/test_fulfillment.py"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E04",
+      "CL-E05"
+    ],
+    "dependencies": [
+      "CL-01",
+      "CL-02"
+    ],
+    "prerequisite_inputs": [
+      "CL-I03"
+    ],
+    "implementation_steps": [
+      "Reuse current offer and defect-pack template; specify scope agreement, sample selection, exclusions, turnaround, one clarification round, cancellation/refund terms and capacity.",
+      "Build scoped audit jobs for visible versus structured values, variants, policies and representative catalog evidence; any uninspected feed/checkout remains explicitly unverified.",
+      "Persist intake->scope accepted->queued->evidence complete->reviewed->delivered->clarification closed with revision and private receipt references.",
+      "Generate prioritized repair backlog with reproduction and acceptance steps; require independent artifact QA before delivery; bounded clarification/support is tied to agreed scope.",
+      "Define follow-on remediation/agency QA as separately scoped proposals from actual defects and repeat demand; do not silently change free scanner claims."
+    ],
+    "deliverables": [
+      "offer/terms and capacity policy",
+      "fulfillment adapter",
+      "reviewed sample pack",
+      "order lifecycle contract"
+    ],
+    "tests": [
+      "Fixture order of 15 URLs stays within budget/scope; over-scope or private access enters needs-input without fetching.",
+      "Reviewer can reproduce each sampled defect and distinguish real from illustrative sample.",
+      "A capacity-full state blocks paid intake while free scans and waiting list remain useful; delivery acknowledgement is reconciled once."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "A complete sample defect pack and verifiable fulfillment run exist with observable quality gates.",
+      "An authorized real order, when available, can be delivered and supported from saved evidence; no order or satisfaction is invented."
+    ],
+    "rollback": "Stop new paid intake, preserve accepted obligations, restore prior offer content and reconcile or hand off open orders under their accepted terms.",
+    "next_eligible_action": "Prepare the scope/capacity contract and fixture fulfillment pack; keep payments disabled until CL-05 eligibility passes.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 30,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Actual delivery timing and customer acceptance require a real agreed order; planning hours exclude waiting."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-115",
+        "BOTS-116"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G03",
+      "CL-G04"
+    ],
+    "requirement_ids": [
+      "CL-O04",
+      "CL-O05"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

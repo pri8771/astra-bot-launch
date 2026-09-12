@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-12-b32d6333df0b6bdca9ce8e3255f916e59a50414178b55df5b1aafcb331873d9e",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-12",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-59",
+    "BOTS-122"
+  ],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "b32d6333df0b6bdca9ce8e3255f916e59a50414178b55df5b1aafcb331873d9e",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-12",
+    "mission": "WHB",
+    "title": "Prove repeated autonomous editorial cycles",
+    "goal": "Demonstrate observation through next decision twice with real correct-account receipts and independent review.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/docs/acceptance/cycles.json",
+      "wait-how-big-social/docs/acceptance/review.md",
+      "tests/test_whb_full_cycle.py"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E03",
+      "WHB-E07",
+      "WHB-E08"
+    ],
+    "dependencies": [
+      "WHB-06",
+      "WHB-08",
+      "WHB-09",
+      "WHB-10",
+      "WHB-11",
+      "SH-15"
+    ],
+    "prerequisite_inputs": [
+      "WHB-I01",
+      "WHB-I02",
+      "WHB-I03",
+      "WHB-I05",
+      "WHB-I06",
+      "WHB-I08"
+    ],
+    "implementation_steps": [
+      "Run labeled offline cycle and crash/owner-revision fixtures on exact reviewed source; archive pipeline lineage from factual source to publication version.",
+      "Under qualified zero-cash account grants, observe baseline, register an experiment, select/review/publish one excellent piece, verify actual public account/content/permalink and collect the declared measurement window.",
+      "Evaluate and autonomously choose the next justified experiment without a new launch prompt; complete and verify a second real receiving-system cycle, owner pause/resume and crash/restart. If evidence remains insufficient, persist bounded waiting with a next trigger. Waiting is a valid operational state, but runtime autonomy acceptance remains incomplete until the second real allowed cycle completes; audience/business validation is a separate evidence outcome."
+    ],
+    "deliverables": [
+      "two-cycle evidence",
+      "public receipts",
+      "owner/restart tests",
+      "independent exact-source review",
+      "next decision"
+    ],
+    "tests": [
+      "Two cycle traces connect observation -> decision -> registered reviewed action -> actual public receipt -> evaluation -> next decision.",
+      "Reviewer identity/model/source hash and verification independently match the published candidate; synthetic fixtures cannot satisfy real receipt acceptance.",
+      "Pause after approval and crash after post acceptance cause no duplicate or wrong-account post; idle periods consume zero inference."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "WHB runtime autonomy is demonstrated independently from content performance and growth.",
+      "Real audience growth/return interest is reported only from observed metrics, including inconclusive or negative results."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-59",
+        "BOTS-122"
+      ],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "WHB-I01",
+      "WHB-I02",
+      "WHB-I03",
+      "WHB-I05",
+      "WHB-I06",
+      "WHB-I08"
+    ],
+    "requirement_ids": [
+      "WHB-A17",
+      "WHB-O08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

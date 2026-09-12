@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-07-c0f1e826a9c2cf6716e5e7295f280dcecf06b22d54a64e34e6e54b42fde17e49",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-07",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "c0f1e826a9c2cf6716e5e7295f280dcecf06b22d54a64e34e6e54b42fde17e49",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-07",
+    "mission": "WHB",
+    "title": "Integrate durable editorial jobs and deterministic scheduling",
+    "goal": "Editorial decisions, publication and metric windows use durable single-owner state.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/autonomy/state.py",
+      "wait-how-big-social/autonomy/events.py",
+      "wait-how-big-social/autonomy/schedule.json",
+      "tests/test_whb_events.py"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "dependencies": [
+      "WHB-02",
+      "WHB-03",
+      "SH-02",
+      "SH-03",
+      "SH-04"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Map candidate.sourced, review.approved, source.changed, publish.accepted, publish.verified, publish.failed, metrics.updated, experiment.due and direction.changed to durable source-versioned events.",
+      "Bind candidates/experiments/attempts/receipts to transactional mission state and fencing epoch; replace loose state JSON as authoritative state through a versioned one-time import preserving historical emptiness/receipts.",
+      "Use deterministic due checks with next_check_at/evidence_version/decision_fingerprint, per-channel posting capacity and explicit enabled channels. No inference while queue/metrics/source are unchanged and decision not due."
+    ],
+    "deliverables": [
+      "durable event adapter",
+      "state migration",
+      "idle/race/replay tests"
+    ],
+    "tests": [
+      "Two hosts racing an approved piece produce one eligible owner; stale owner cannot publish after takeover.",
+      "State migration replay is idempotent and labels historical empty/dry-run records correctly.",
+      "24-hour simulated idle plus repeated identical metrics events generates zero model calls."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "WHB can resume editorial/publication/evaluation states from durable events safely.",
+      "Schedule is cheap and mission-specific instead of repeated generative cron."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 7,
+      "high": 13,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "WHB-A01",
+      "WHB-A02"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

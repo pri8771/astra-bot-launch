@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-14-81dc46657266ed57054656cb30e200faaf5425bdf10d6e26c5d773dc0ab3ba6a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-14",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "81dc46657266ed57054656cb30e200faaf5425bdf10d6e26c5d773dc0ab3ba6a",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-14",
+    "mission": "SH",
+    "title": "Enforce model, tool and monetary limits at dispatch",
+    "goal": "Prevent unbounded usage and silent paid fallback, with truthful cost accounting.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/limits/",
+      "tests/autonomy/limits/"
+    ],
+    "evidence_refs": [
+      "reference/AUTONOMOUS_EXPERIMENTS.md",
+      "reference/WINDOWS_PRIMARY_READINESS.md"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02",
+      "SH-05"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Define job/mission/day ceilings for model tokens/time, tool calls/pages, money/currency and concurrent experiments; unknown monetary authority blocks paid effects.",
+      "Atomically reserve worst-case authorized cost before dispatch; reconcile actuals/refunds/released reservations without losing unknown-effect liability.",
+      "Route deterministic tasks without model, use only qualified existing local/cloud profiles; unavailable profile queues work.",
+      "Record actual model/provider/effort/host/tokens and cost or null reason; shared author totals once, observation waits never worklogs."
+    ],
+    "deliverables": [
+      "Enforce model, tool and monetary limits at dispatch implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Concurrent reservations cannot exceed cap; missing/exhausted cap rejects dispatch; restart preserves counters.",
+      "Provider/model fallback cannot occur implicitly; zero-idle test reports no inference calls; absent telemetry remains null."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Caps are enforced outside the model at the effect boundary and survive restart.",
+      "No install, subscription, purchase or new paid quota is inferred from this plan."
+    ],
+    "rollback": "Disable paid/model dispatch, keep deterministic eligible reads and settle reservations against actual receipts.",
+    "next_eligible_action": "Define job/mission/day ceilings for model tokens/time, tool calls/pages, money/currency and concurrent experiments; unknown monetary authority blocks paid effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A16"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

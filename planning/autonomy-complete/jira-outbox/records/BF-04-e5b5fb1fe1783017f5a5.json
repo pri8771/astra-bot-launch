@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-04-e5b5fb1fe1783017f5a582d3af85adfc29c5b320c765b186d8527e0528b42025",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-04",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-135",
+    "PCH-106"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "e5b5fb1fe1783017f5a582d3af85adfc29c5b320c765b186d8527e0528b42025",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-04",
+    "mission": "BF",
+    "title": "Refresh sources, correct guides and detect broken links",
+    "goal": "Keep product guidance current through changed-source events and reviewed corrections.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/source_refresh.py",
+      "ventures/bidetfit/scripts/content_review.py",
+      "ventures/bidetfit/research/review-policy.json",
+      "ventures/bidetfit/public/corrections.html",
+      "ventures/bidetfit/tests/test_source_refresh.py"
+    ],
+    "evidence_refs": [
+      "BF-E03",
+      "BF-E06"
+    ],
+    "dependencies": [
+      "BF-02",
+      "BF-03"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Assign review TTL and next_check_at per source: product drawing stability, discontinued model and changed terms receive distinct triggers; conditional GET/hash checks avoid model calls on unchanged pages.",
+      "Collect source HTTP/redirect/content hash within allowed read limits; broken links, changed dimensions and conflict create evidence-review jobs, never automatic claim rewrites.",
+      "Generate focused guide changes from reviewed model evidence; check unique usefulness, dates, attribution, one H1/canonical, accessible links and disclosed limits.",
+      "Mark stale decisive source uncertain immediately; publish reviewed correction note referencing affected model/result versions through the existing release owner.",
+      "Retain editorial queue and source provenance; prioritize retrofit edge cases instead of duplicative generic best-product pages."
+    ],
+    "deliverables": [
+      "source collector/review policy",
+      "corrections pipeline",
+      "link/source tests"
+    ],
+    "tests": [
+      "304/same hash causes no model call; changed dimension invalidates affected results and queues exactly one review.",
+      "404/redirect to unrelated merchant or lost source evidence removes confidence and prevents commercial routing dependent on it.",
+      "Guide fixture with unsupported testing claim, absent review date or broken local link fails release validation."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Each source has a freshness policy, due event, reviewed change disposition and next check.",
+      "An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence."
+    ],
+    "rollback": "Suspend disputed model recommendations and revert affected guide to last reviewed version; preserve correction trail.",
+    "next_eligible_action": "Implement conditional-fetch fixtures and stale-result invalidation offline.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Primary source availability affects individual records, not offline validator or unaffected guides."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-135",
+        "PCH-106"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G02"
+    ],
+    "requirement_ids": [
+      "BF-O02",
+      "BF-O05",
+      "BF-A02",
+      "BF-A03",
+      "BF-A04"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

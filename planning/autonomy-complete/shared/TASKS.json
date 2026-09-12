@@ -68,10 +68,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-X01"
@@ -143,10 +143,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A01"
@@ -220,10 +220,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A01"
@@ -297,10 +297,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A02"
@@ -374,10 +374,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A03"
@@ -451,10 +451,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A04",
@@ -530,10 +530,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A05"
@@ -605,10 +605,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A06",
@@ -683,10 +683,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A08"
@@ -760,10 +760,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A09"
@@ -841,10 +841,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A12",
@@ -919,10 +919,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A14"
@@ -997,10 +997,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A15"
@@ -1074,10 +1074,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A16"
@@ -1159,10 +1159,10 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A17"
@@ -1236,11 +1236,11 @@
       "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
     },
     "effect_gates": [
-      "SH-G01 admission/ownership",
-      "SH-G02 scoped capability",
-      "SH-G03 exact-source review",
-      "SH-G09 migration",
-      "SH-G04 budgets"
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G09",
+      "SH-G04"
     ],
     "requirement_ids": [
       "SH-A18"

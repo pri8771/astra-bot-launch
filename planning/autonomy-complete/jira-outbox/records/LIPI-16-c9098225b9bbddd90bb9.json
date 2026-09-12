@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-16-c9098225b9bbddd90bb9fe76bd3bce61f65a22dbf9167d46761a55d59d65e76f",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-16",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "c9098225b9bbddd90bb9fe76bd3bce61f65a22dbf9167d46761a55d59d65e76f",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-16",
+    "mission": "LIPI",
+    "title": "Execute eligible commerce actions with durable approvals",
+    "goal": "Implement real permitted mutations without widening the existing read-only MCP service.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/actions/commerce/",
+      "services/lipi-autonomy/test/actions/commerce/"
+    ],
+    "evidence_refs": [
+      "LIPI-E03",
+      "LIPI-E04",
+      "LIPI-E05"
+    ],
+    "dependencies": [
+      "LIPI-07",
+      "LIPI-15",
+      "SH-05",
+      "SH-06",
+      "SH-10",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03",
+      "LIPI-I10"
+    ],
+    "implementation_steps": [
+      "Reuse ActionEnvelope canonical payload/expected-before/policy binding as a contract; replace process-local consumed-token Set semantics at the adapter boundary with shared transactional durable consumption and fenced claim.",
+      "Implement a strict allowlist for current authorized price changes and separately gated product/private mapping/publication/discount/order/refund actions. Verify destination shop, current direction, reviewed exact source, margin result, quota and grant immediately before effect.",
+      "Persist intent before submission, then provider operation ID and exact readback. On timeout reconcile provider state/order/payment ID first; never blindly replay a charged order or price mutation. Log before/after margin math and writer-bound Jira/worklog receipt as existing price authority requires."
+    ],
+    "deliverables": [
+      "effect eligibility matrix",
+      "commerce action adapters",
+      "durable mutation/reconciliation ledger"
+    ],
+    "tests": [
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Authorized price change can be observed at destination with current≥20% worst-case contribution.",
+      "Refund/replacement cap remains$0 and discounts/publication/customer sends stay gated; generic shell/HTTP does not become an effect tool."
+    ],
+    "rollback": "Pause action intake and reconcile pending effect; reversible field rollback itself rechecks current authority/economics.",
+    "next_eligible_action": "LIPI-20 may schedule a bounded permitted merchandising experiment; other action classes wait for exact grants.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 8,
+      "high": 14,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Action credentials and durable single-use approval integration"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G01",
+      "LIPI-G02",
+      "LIPI-G03",
+      "LIPI-G04",
+      "LIPI-G05",
+      "LIPI-G06",
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O13",
+      "LIPI-A01",
+      "LIPI-A03",
+      "LIPI-A04",
+      "LIPI-A09",
+      "LIPI-A10",
+      "LIPI-A11",
+      "LIPI-A16"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Live price change requiring existing Jira/worklog before/after projection.",
+        "dependencies": [
+          "SH-09"
+        ],
+        "acceptance": "Verify current writer admission and required price logging evidence before the price effect. An unrelated refund, purchase, publish, marketing grant is not required for price-only scope."
+      }
+    ],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G01",
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant."
+      },
+      {
+        "gate_id": "LIPI-G02",
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval."
+      },
+      {
+        "gate_id": "LIPI-G03",
+        "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules."
+      },
+      {
+        "gate_id": "LIPI-G04",
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant."
+      },
+      {
+        "gate_id": "LIPI-G05",
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only."
+      },
+      {
+        "gate_id": "LIPI-G06",
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback."
+      },
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+        "gates": [
+          "LIPI-G01"
+        ]
+      },
+      {
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+        "gates": [
+          "LIPI-G02"
+        ]
+      },
+      {
+        "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+        "gates": [
+          "LIPI-G03"
+        ]
+      },
+      {
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+        "gates": [
+          "LIPI-G04"
+        ]
+      },
+      {
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+        "gates": [
+          "LIPI-G05"
+        ]
+      },
+      {
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+        "gates": [
+          "LIPI-G06"
+        ]
+      },
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

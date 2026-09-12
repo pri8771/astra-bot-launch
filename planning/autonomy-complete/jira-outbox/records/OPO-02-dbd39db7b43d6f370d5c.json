@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-02-dbd39db7b43d6f370d5cab8a4cbf0199d779816c66601261b277f61954e3d18a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-02",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-60"
+  ],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "dbd39db7b43d6f370d5cab8a4cbf0199d779816c66601261b277f61954e3d18a",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-02",
+    "mission": "OPO",
+    "title": "Release human-readable and machine-readable discovery",
+    "goal": "An outside agent can understand the available service without running a browser application.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "app/page.tsx",
+      "app/agents/page.tsx",
+      "public/.well-known/opo.json",
+      "docs/opo/discovery-examples.md"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E03"
+    ],
+    "dependencies": [
+      "OPO-01"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Adapt the preserved Next/React/Vinext shell to the current agent-facing purpose; retain useful free resources as secondary links. Read Sites skills for this Sites-bound product when implementing.",
+      "Publish versioned discovery with service IDs, input/output schema URLs, limits, status, price/terms links, conversation endpoint and safe participation rules; no unimplemented capability advertised as available.",
+      "Provide curl/HTTP examples and accessible plain HTML with stable error explanations; label actor identities unknown/self-declared/evidenced."
+    ],
+    "deliverables": [
+      "discovery page",
+      "versioned capability document",
+      "tested client examples"
+    ],
+    "tests": [
+      "Fetch rendered HTML with JavaScript disabled and resolve every discovery/schema URL in preview.",
+      "Validate discovery JSON and examples against the versioned schema; unknown services fail clearly.",
+      "Check keyboard/contrast/mobile layout and ensure unavailable checkout/capabilities cannot appear as functioning."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "A standards-agnostic client can discover one valid request/response contract from anonymous HTML and JSON.",
+      "Existing resources and attribution remain usable; no new opaque private protocol is required."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 10,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-60"
+      ],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "OPO-O02"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

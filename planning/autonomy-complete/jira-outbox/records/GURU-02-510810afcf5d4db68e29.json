@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-02-510810afcf5d4db68e29f94be7dd85debd473399f6c046c63311f073787976e7",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-02",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-128"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "510810afcf5d4db68e29f94be7dd85debd473399f6c046c63311f073787976e7",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-02",
+    "mission": "GURU",
+    "title": "Define audience, editorial promise and X-first charter",
+    "goal": "Make Guru a useful independent Hindu-spirituality editorial project with a clear ongoing audience objective.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/ops/charter/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E02"
+    ],
+    "dependencies": [
+      "GURU-01"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I02"
+    ],
+    "implementation_steps": [
+      "Bind latest owner X-first direction and engaged Hindu-spirituality audience objective; keep Sadhana/Instagram as optional references, not mandatory identity or channel.",
+      "Choose a bounded initial English editorial promise: contextual source-based reflections and practical questions for interested adults; document traditions/interpretations and uncertainty, avoid false guru/human authority and exclude Digital Temple.",
+      "Define trust/engagement outcomes and audience questions before content: what readers find clear/useful, what context is missing, and which topics warrant the next sourced piece. Reuse current owner grants and name only real remaining inputs."
+    ],
+    "deliverables": [
+      "editorial charter and persona",
+      "first audience hypothesis",
+      "scope/exclusion matrix"
+    ],
+    "tests": [
+      "Historical Instagram-only freeze cannot override current X-first direction.",
+      "Persona/bio cannot claim personal spiritual experiences, credentials, miracles or religious authority."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Mission success is engaged truthful audience, not follower-to-revenue inference.",
+      "Editorial language, voice, scope and correction standard are executable content checks."
+    ],
+    "rollback": "Restore prior draft charter; never rewrite historical mission decisions.",
+    "next_eligible_action": "GURU-03 source research and GURU-04 content production.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 2,
+      "high": 4,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Audience format and account identity may require bounded decision"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-128"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O02"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-03-6880763679be0a67226a26f02d4172c916ae107c8f0465d6e44463238d678d8e",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-03",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-94"
+  ],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "6880763679be0a67226a26f02d4172c916ae107c8f0465d6e44463238d678d8e",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-03",
+    "mission": "SH",
+    "title": "Enforce single-owner claims and effect fencing",
+    "goal": "Reject stale owners at the actual mutation boundary even after lease expiry or network partition.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/claims/",
+      "tests/autonomy/claims/"
+    ],
+    "evidence_refs": [
+      "TASK_DIRECTORY_CONTRACT.md",
+      "missions/whb/EVIDENCE.md"
+    ],
+    "dependencies": [
+      "SH-02"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Implement atomic claim and resource reservations with mission/task/scope, worker, expiry and monotonically increasing epoch.",
+      "Put credential-bearing effect dispatch behind one broker; enforce epoch and current grant just before send.",
+      "For existing cloud operators admit a non-mutating bridge first; transfer ownership only after draining/revoking old route and reconciling pending effects.",
+      "Require process/credential fencing and destination reconciliation before expiry takeover; failure blocks that scope."
+    ],
+    "deliverables": [
+      "Enforce single-owner claims and effect fencing implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Race two claimants: exactly one wins and stale epoch cannot dispatch.",
+      "Partition old owner across expiry; restored old worker and bypass route cannot mutate; kill verification failure denies takeover."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Claim/fence audit includes failed contenders and broker enforcement.",
+      "No credential path can independently bypass current ownership; if it can, integration is not accepted."
+    ],
+    "rollback": "Disable new broker dispatch, reconcile inflight actions, fence new owner and restore one previously qualified owner.",
+    "next_eligible_action": "Implement atomic claim and resource reservations with mission/task/scope, worker, expiry and monotonically increasing epoch.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 24,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-94"
+      ],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A01"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-09-12T21:36:00.337278+00:00",
+  "control_commit_at_check": "0082604a0b87dd6f8eed73a909c24badfbc02b12",
+  "counts": {
+    "opo": {
+      "tasks": 15,
+      "requirements": 28,
+      "evidence": 7,
+      "inputs": 9
+    },
+    "whb": {
+      "tasks": 12,
+      "requirements": 26,
+      "evidence": 8,
+      "inputs": 9
+    }
+  },
+  "global_tasks_seen": 109,
+  "hard_and_conditional_dag_checked": true,
+  "errors": [],
+  "passed": true,
+  "source_runtime_checks": "Planning JSON/reference/graph checks only; no runtime/source tests/live effects"
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-23-4e9e4657888d132b9b998a90815f67f00d3ef3b52094eb58601403b8311998d6",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-23",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-86",
+    "LIPI-87"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "4e9e4657888d132b9b998a90815f67f00d3ef3b52094eb58601403b8311998d6",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-23",
+    "mission": "LIPI",
+    "title": "Prove repeated end-to-end autonomous commerce cycles",
+    "goal": "Demonstrate operation, owner steering and recovery separately from launch and revenue.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/acceptance/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E03",
+      "LIPI-E04",
+      "LIPI-E06"
+    ],
+    "dependencies": [
+      "LIPI-14",
+      "LIPI-17",
+      "LIPI-18",
+      "LIPI-20",
+      "LIPI-21",
+      "LIPI-22",
+      "SH-15"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03",
+      "LIPI-I10"
+    ],
+    "implementation_steps": [
+      "Freeze exact source/task/policy hashes and independent reviewer identity; execute an authorized live observation→decision→permitted action→receiving-system readback→evaluation→next-action cycle.",
+      "Repeat from the next due/event trigger without a new launch prompt. Exercise actual owner pause/resume/reprioritize plus crash after an accepted effect and restore without duplication; document model/tool/cost attribution.",
+      "Retain real7-day operations evidence when that window elapses. If there are no real customers/orders, prove permitted price/content/read observation routes but leave paid-order/delivery/revenue business acceptance open; never buy merely to manufacture sales."
+    ],
+    "deliverables": [
+      "exact-source independent review",
+      "two-cycle runtime receipts",
+      "direction/restart evidence",
+      "separate operating/business readiness report"
+    ],
+    "tests": [
+      "Each link uses actual event/action/destination IDs; synthetic fault fixtures are separately labeled.",
+      "Independent reviewer reproduces source checks and reconciles every uncertain effect; unresolved repair after 2 attempts prevents autonomy acceptance."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Autonomous operation requires TWO completed real allowed observation-decision-action-verified-result-next-decision cycles, plus actual owner direction, recovery and bounded usage. A scheduled wait or second prepared decision is valid operation but cannot substitute for the second completed real cycle.",
+      "Paid/fulfilled demand and profitability stay separate measured criteria; blocked effect does not become success."
+    ],
+    "rollback": "Stop new autonomous effects, retain read-only monitoring if allowed and hand exceptions to owner; restore qualified prior operator.",
+    "next_eligible_action": "Continue the accepted finite experiment queue; reopen failed gates with targeted tasks, not a fresh inventory.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 8,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Real authorized effects, reviewer and observation windows"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-86",
+        "LIPI-87"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G01",
+      "LIPI-G02",
+      "LIPI-G04",
+      "LIPI-G05",
+      "LIPI-G06",
+      "LIPI-G07",
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O13",
+      "LIPI-A09",
+      "LIPI-A13",
+      "LIPI-A17",
+      "LIPI-A18"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G01",
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant."
+      },
+      {
+        "gate_id": "LIPI-G02",
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval."
+      },
+      {
+        "gate_id": "LIPI-G04",
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant."
+      },
+      {
+        "gate_id": "LIPI-G05",
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only."
+      },
+      {
+        "gate_id": "LIPI-G06",
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback."
+      },
+      {
+        "gate_id": "LIPI-G07",
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled."
+      },
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+        "gates": [
+          "LIPI-G01"
+        ]
+      },
+      {
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+        "gates": [
+          "LIPI-G02"
+        ]
+      },
+      {
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+        "gates": [
+          "LIPI-G04"
+        ]
+      },
+      {
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+        "gates": [
+          "LIPI-G05"
+        ]
+      },
+      {
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+        "gates": [
+          "LIPI-G06"
+        ]
+      },
+      {
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+        "gates": [
+          "LIPI-G07"
+        ]
+      },
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

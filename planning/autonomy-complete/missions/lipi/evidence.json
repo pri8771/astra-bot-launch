@@ -1,0 +1,118 @@
+[
+  {
+    "id": "LIPI-E01",
+    "repository": "pri8771/lipi-standard-store",
+    "ref": "0d896016f2fa113ce07e504bc5d6528717598b5f",
+    "path": "AGENTS.md; MEMORY.md; ops/DECISIONS.md",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "live_observed"
+    ],
+    "finding": "Fresh private remote main cloned clean; Windows store execution decision and English-first brand/source ownership read. Current remote heads also include4e77ab6 and 52954f1.",
+    "proof_limits": "Repository observation only; old runtime/store claims in MEMORY are historical. No source mutation, worker contact or live store read."
+  },
+  {
+    "id": "LIPI-E02",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "focus/kai-pri-lipi/LIPI_EVIDENCE.md; directions/lipi.md",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "historical",
+      "cloud_backed"
+    ],
+    "finding": "Retained Sept12 04:31:30 return reports25 LIPI-63–87 local contracts satisfied, 56 aggregate checks, readiness false, 7 records/23 unknowns. Sample packet null totals and natural tote hint conflict remain documented.",
+    "proof_limits": "Raw retained return and exact37c447b commit unavailable from current remote (not our ref); no proof of current merge, live sales or completed external acceptance."
+  },
+  {
+    "id": "LIPI-E03",
+    "repository": "pri8771/lipi-standard-store",
+    "ref": "0d896016f2fa113ce07e504bc5d6528717598b5f",
+    "path": "services/lipi-control-plane/README.md; src/mcp/tool-registry.ts; src/domain/action-envelope.ts; tools/verify_openclaw_control_plane.py",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "implemented_tested"
+    ],
+    "finding": "Source inspected and structural verifier executed:28 required files, 11 allowlisted tools, readonly/mock only, disconnected providers, no mutation executor. ActionEnvelope approval consumes an in-memory Set and is not durable effect execution.",
+    "proof_limits": "TypeScript unit suite not executed or dependencies installed; structural pass is not runtime/live provider acceptance."
+  },
+  {
+    "id": "LIPI-E04",
+    "repository": "pri8771/lipi-standard-store",
+    "ref": "0d896016f2fa113ce07e504bc5d6528717598b5f",
+    "path": "ops/BUSINESS_RULES.md; outputs/unit-economics-template.md; ops/STATE.md; ops/DECISIONS.md",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Binding 20% all-in floor, 10% net item revenue reserve, $99 conditional free-US-shipping, conditional price authority, owner-only discounts/refunds/replacements/purchases/customer sends, no paid ads. Held/failed≤12h, unshipped3 business days, reply target1 business day.",
+    "proof_limits": "Dated owner rules are retained authority, not current provider costs/legal determination/live store state. Historical tax decision preserved without new advice."
+  },
+  {
+    "id": "LIPI-E05",
+    "repository": "pri8771/lipi-standard-store",
+    "ref": "0d896016f2fa113ce07e504bc5d6528717598b5f",
+    "path": "tools/check_launch_readiness.py; planning/autonomy-complete/missions/lipi/fresh-main-readiness.json",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "implemented_tested"
+    ],
+    "finding": "Executed fresh main aggregate:31/31 pass, repository_consistent true, launch_candidate_ready false, 7 records(6 verification_pending, 1 blocked), 23 unknowns; control structural check passed.",
+    "proof_limits": "Initial system Python lacked Pillow and default encoding caused fixture error; bundled Python with PYTHONUTF8=1 resolved without installs/source edits.31 is this revision, not retained 56. No live platform checks."
+  },
+  {
+    "id": "LIPI-E06",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "focus/kai-pri-lipi/OWNER_DIRECTION.md; HOST_PLAN.md; LIPI_EVIDENCE.md",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Owner direction contract is recorded-not-consumed. Sept7 watchdog removal supersedes stale Mac active-watchdog notes; R730 target, Windows temporary independent execution, i9 deferred.",
+    "proof_limits": "No actual running direction consumer or current host health verified. Kai/Pri only shared capability boundaries, not additional roadmaps."
+  },
+  {
+    "id": "LIPI-E07",
+    "repository": "pri8771/lipi-standard-store",
+    "ref": "52954f1f3d07f160a414713250923993a7d5f3f5",
+    "path": "quality/session4/capsule-media/retained-candidate-contract.json",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Current cloud branch inspected:Meridian/Open Current/Threshold Study baseline, Quiet Route conditional, final_membership_decided false, sample_approved false, publication_ready false. Main lacks session12h/session24h retained contracts.",
+    "proof_limits": "Read git blob only; branch36-check hosted claim not rerun. Exact later25-contract state remains a targeted reconciliation gap."
+  },
+  {
+    "id": "LIPI-E08",
+    "repository": "Atlassian read-only snapshot",
+    "ref": null,
+    "path": "planning/autonomy-complete/evidence/JIRA_READBACK.json",
+    "observed_at": "2026-09-12T21:13:05.833Z",
+    "classification": [
+      "live_observed",
+      "local_only"
+    ],
+    "finding": "Root read-only observation2026-09-12T21:13:05.833Z:all 25 LIPI-63–87 issues In Review; original estimates preserved, actual time absent.",
+    "proof_limits": "Metadata is not acceptance, worklog, source admission or permission to write. Exact task bindings remain null and Lipi writer needs designation."
+  },
+  {
+    "id": "LIPI-E09",
+    "repository": "Official provider documentation",
+    "ref": "observed2026-09-12",
+    "path": "https://shopify.dev/docs/api/admin-graphql/latest ; https://developers.printful.com/docs/v2-beta/",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "live_observed"
+    ],
+    "finding": "Shopify official current GraphQL reference and Printful official V2 beta documentation read as adapter qualification sources.",
+    "proof_limits": "No account entitlement, credentials, paid route or provider availability established. Executor must pin supported API version and exact capability before use; beta docs are not production approval."
+  }
+]

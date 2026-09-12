@@ -1,0 +1,122 @@
+[
+  {
+    "id": "LIPI-I01",
+    "mission": "LIPI",
+    "required_input": "Exact missing retained 37c447b contract/return artifacts and latest worker source admission",
+    "respondent": "Existing Lipi execution coordinator/source owner",
+    "verification": "Supply only named session12h/session24h and Sept12 return hashes through existing Windows/private handoff; compare to clean main and session4. No old-Mac fetch.",
+    "resume_action": "LIPI-01",
+    "independent_work": "Use current 31-check main and existing source/art as qualified within their scope.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I02",
+    "mission": "LIPI",
+    "required_input": "Final retained capsule membership, including Quiet Route retain/exclude",
+    "respondent": "Business owner",
+    "verification": "One current signed/versioned decision bound to concrete membership, designs and sample/cost facts; reuse any valid existing exact decision.",
+    "resume_action": "LIPI-02; actual branch of LIPI-07",
+    "independent_work": "Model separate scenarios and qualify available product mappings.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I03",
+    "mission": "LIPI",
+    "required_input": "Current shop/provider identity, scoped access, variant mappings and observations",
+    "respondent": "Lipi operator/business owner for required account verification",
+    "verification": "Read actual intended Shopify/Printful account and exact product/variant/cost/availability. Use owner Chrome when browser needed; do not copy sessions/secrets. New provider grants must be scoped.",
+    "resume_action": "LIPI-03–06; 15–17",
+    "independent_work": "Build adapters, redacted fixtures, content and mapping comparison forms.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I04",
+    "mission": "LIPI",
+    "required_input": "Current fees, shipping, mixed-cart behavior, currency and economics inputs",
+    "respondent": "Lipi operator; business owner for changed rules",
+    "verification": "Dated provider/account receipts with quote expiry and all-in calculations. Keep unknowns null and dated tax owner posture separate.",
+    "resume_action": "LIPI-07; 12; 20",
+    "independent_work": "Run assumed sensitivity/boundary fixtures labeled synthetic.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I05",
+    "mission": "LIPI",
+    "required_input": "Exact sample/charged-test purchase grant and current total",
+    "respondent": "Business owner",
+    "verification": "Concrete provider IDs/variants/art hash/quantity, total including shipping/fees, currency, cap, expiry and delivery-reference. No standing sample budget.",
+    "resume_action": "LIPI-08; charged branch of 12",
+    "independent_work": "Repair quote packet and continue storefront/runtime work.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I06",
+    "mission": "LIPI",
+    "required_input": "Delivered sample and attributable physical inspection",
+    "respondent": "Receiving owner/physical reviewer",
+    "verification": "Actual order/tracking-delivery match, physical observations/photos and accepted/narrowed/rejected SKU decisions.",
+    "resume_action": "LIPI-09; final launch claims",
+    "independent_work": "Complete private content, policy, economics and recovery work.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I07",
+    "mission": "LIPI",
+    "required_input": "Remaining policy/consent/support route decisions and per-case remedies",
+    "respondent": "Business owner; Lipi support operator prepares",
+    "verification": "Exact policy/version receipt, real support destination/consent flow, approved draft/send/refund or replacement for that case. Chargebacks remain owner-only.",
+    "resume_action": "LIPI-11; 18",
+    "independent_work": "Draft accurate policy/case packets and validate privacy without sends.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I08",
+    "mission": "LIPI",
+    "required_input": "Exact current replacement launch/cutover decision",
+    "respondent": "Business owner after independent reviewer",
+    "verification": "One complete candidate with source/artifact/policy/economics/sample/checkout hashes, shop/public domain, preimage, scope and rollback.",
+    "resume_action": "LIPI-13–14",
+    "independent_work": "Rehearse private restore and fix candidate.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I09",
+    "mission": "LIPI",
+    "required_input": "Designated Lipi Jira writer identity and scope",
+    "respondent": "Owner/designated execution coordinator",
+    "verification": "Explicit Lipi writer role and native issue/source/spec readback; never implicitly assign to four-bot parent or unavailable old Mac writer.",
+    "resume_action": "LIPI-01; 21; new implementation admissions andprice logging",
+    "independent_work": "Complete immutable matching/delta proposals and preserve current estimates.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I10",
+    "mission": "LIPI",
+    "required_input": "Admitted Windows runtime/storage/secret references, finite model/tool limits and owner alert route",
+    "respondent": "Lipi runtime operator and existing account/budget owner",
+    "verification": "Current host independent execution, source/claim receipt, private storage permissions, backup proof, allowed caps and destination acknowledgement.",
+    "resume_action": "LIPI-15–16; 20–23",
+    "independent_work": "Package fixtures and default-denied caps; durable file alerts.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I11",
+    "mission": "LIPI",
+    "required_input": "Current organic account, content/cadence grant and supported route",
+    "respondent": "Lipi marketing operator/business owner",
+    "verification": "Exact intended handle/account, post/media/landing hashes, granted cadence, consent for lifecycle and receiving-system publication/analytics receipt. Paid ads disabled.",
+    "resume_action": "LIPI-19",
+    "independent_work": "Prepare source-grounded product assets and voluntary discovery questions.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "LIPI-I12",
+    "mission": "LIPI",
+    "required_input": "Specific India supplier/product/US-route evidence and any contact/pilot authority",
+    "respondent": "Business owner; qualified supplier/reviewer; legal/import professional when needed",
+    "verification": "Dated primary identity/product/quality/capacity/landed-cost/delivery/return facts; exact supplier outreach/purchase grant and owner/professional legal declarations only if needed.",
+    "resume_action": "LIPI-24",
+    "independent_work": "Research publicly available primary evidence and compare scenarios with unknowns explicit.",
+    "status": "unresolved_or_requires_current_receipt"
+  }
+]

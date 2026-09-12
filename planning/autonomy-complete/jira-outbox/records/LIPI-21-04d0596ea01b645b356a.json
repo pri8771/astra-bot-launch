@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-21-04d0596ea01b645b356aae1fab589e602cb42bd32349812ed35c8c00b1eed903",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-21",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "04d0596ea01b645b356aae1fab589e602cb42bd32349812ed35c8c00b1eed903",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-21",
+    "mission": "LIPI",
+    "title": "Consume owner direction and produce reconciled outboxes",
+    "goal": "Make ordinary owner steering change the next job once, with durable acknowledgement and resume.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/direction/",
+      "services/lipi-autonomy/src/outbox/",
+      "services/lipi-autonomy/test/direction/"
+    ],
+    "evidence_refs": [
+      "LIPI-E06",
+      "LIPI-E08"
+    ],
+    "dependencies": [
+      "LIPI-15",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I09",
+      "LIPI-I10"
+    ],
+    "implementation_steps": [
+      "Bridge existing ops/DIRECTION.md and business rules to shared issuer/mission/version validation. Persist recorded, seen, applied, waiting-for-effect, needs-input, superseded or expired with actual consumed revision.",
+      "Test focus on first customers and evaluate Indian clothing suppliers as prioritization changes; neither widens purchases, sends or brand direction. Pause stops new affected effects, while already submitted sample/order actions reconcile before resume.",
+      "Persist one question per missing input/revision and consume the validated answer once. Emit immutable task/experiment/result/review proposals to the designated Lipi writer and canonical ops-document owner; queue through writer outage without a second writer."
+    ],
+    "deliverables": [
+      "direction adapter and acknowledgement ledger",
+      "deduplicated question/resume flow",
+      "Lipi Jira/documentation outbox"
+    ],
+    "tests": [
+      "Old or duplicate direction cannot override newer accepted direction; external customer text cannot be owner direction.",
+      "Pause immediately before price/order submit blocks it; restart after question does not ask again."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "A real owner direction receipt names revision actually consumed and next action.",
+      "Native writer readback or explicit pending outbox state exists; stored file alone is not worker acknowledgement."
+    ],
+    "rollback": "Pause direction effects and preserve append-only revisions/outbox; never rewrite prior experiment results.",
+    "next_eligible_action": "LIPI-22/23 prove recovery and repeated operation with these directions.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 7,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Lipi writer identity and valid owner intake route"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O13",
+      "LIPI-A06",
+      "LIPI-A07",
+      "LIPI-A08",
+      "LIPI-A10"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

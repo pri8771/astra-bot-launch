@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-16-ea3f24c5e37dac3232c6f685555ee6279ddc4c67feb7b681e51913feecebaccb",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-16",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "ea3f24c5e37dac3232c6f685555ee6279ddc4c67feb7b681e51913feecebaccb",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-16",
+    "mission": "SH",
+    "title": "Qualify optional R730 central-hub migration and fallback",
+    "goal": "Move qualified ownership and recoverable state one mission at a time without gating Windows releases.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/hosts/r730/",
+      "tests/autonomy/hosts/r730/"
+    ],
+    "evidence_refs": [
+      "focus/kai-pri-lipi/HOST_PLAN.md",
+      "WINDOWS_ASTRA_ULTRA_HANDOVER.md"
+    ],
+    "dependencies": [
+      "SH-11",
+      "SH-15"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant",
+      "SH-I04: R730 destination/service/backup qualification"
+    ],
+    "implementation_steps": [
+      "Verify current R730 capacity/storage/backup/official application route and required service identity; propose exact changes and reuse existing approvals.",
+      "Stage versioned source/schema/config templates and provision scoped host-local secrets without exporting credential stores.",
+      "Drain old mission owner, disable/revoke its mutation route, reconcile in-flight effects, snapshot and restore to new hub.",
+      "Advance ownership epoch, verify one allowed effect/readback and restart, then rehearse fenced rollback without concurrent owners."
+    ],
+    "deliverables": [
+      "Qualify optional R730 central-hub migration and fallback implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Partition old host during migration: no second effect owner; unresolved old action blocks promotion.",
+      "Restore checksum/schema/credentials verified; one correct-account receipt and next due decision; rollback has no duplicated effect."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Actual R730 migration/restore receipt exists per moved mission; Windows temporary independence already qualifies separately.",
+      "i9 remains deferred; no mobile Mac dependency; no unapproved installations/network changes."
+    ],
+    "rollback": "Fence R730, reconcile all inflight effects, restore known Windows/current-cloud owner and re-read destination before resuming.",
+    "next_eligible_action": "Verify current R730 capacity/storage/backup/official application route and required service identity; propose exact changes and reuse existing approvals.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 24,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "High: host capacity, scope, credential and takeover evidence pending"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G09",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A18"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

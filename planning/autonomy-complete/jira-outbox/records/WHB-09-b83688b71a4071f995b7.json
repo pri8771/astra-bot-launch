@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-09-b83688b71a4071f995b7d926a81d41d66bdf496df12a955270a387c550a86daa",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-09",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "b83688b71a4071f995b7d926a81d41d66bdf496df12a955270a387c550a86daa",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-09",
+    "mission": "WHB",
+    "title": "Bind publisher and corrections to shared effect controls",
+    "goal": "Autonomous publishing inherits review, account, action-key and uncertain-effect protection.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/autonomy/actions.py",
+      "tests/test_whb_autonomous_actions.py"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E08"
+    ],
+    "dependencies": [
+      "WHB-04",
+      "WHB-05",
+      "WHB-07",
+      "SH-06"
+    ],
+    "prerequisite_inputs": [
+      "WHB-I01",
+      "WHB-I02",
+      "WHB-I03",
+      "WHB-I07"
+    ],
+    "implementation_steps": [
+      "Register create/schedule/cancel/correct/profile-change capabilities separately by exact account/content/version, approved route, budget and scope. Public content review approval must match bytes at execution.",
+      "Adapt existing publisher/receipt reconciliation to shared action intent/attempt/receipt protocol; treat provider acknowledgement, public readback and audience measurement as separate states.",
+      "Require direction revision, owner fence and registered experiment evidence immediately before effects; failures create bounded reconciliation work and do not silently switch accounts or platforms."
+    ],
+    "deliverables": [
+      "effect capability integration",
+      "fault-injection and review binding evidence"
+    ],
+    "tests": [
+      "Review-to-publish content change, old owner epoch, changed destination and expired grant all block.",
+      "Accepted-before-crash public piece reconciles once; duplicate delivery of same action does not create another post.",
+      "An unqualified AI reply/profile action is rejected while an already-qualified original-post capability can remain eligible."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Every autonomous WHB effect is bound to reviewed bytes, exact resource and durable outcome.",
+      "Unknown result never triggers blind reposting."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 10,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "WHB-I01",
+      "WHB-I02",
+      "WHB-I03",
+      "WHB-I06",
+      "WHB-I07"
+    ],
+    "requirement_ids": [
+      "WHB-A04",
+      "WHB-A10",
+      "WHB-A11"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

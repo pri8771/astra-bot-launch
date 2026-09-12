@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-09-1226dff20bb4ae0a19c359642d95d4a647a9d2d70779819318efda2241ce8b30",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-09",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-5",
+    "BOTS-7"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "1226dff20bb4ae0a19c359642d95d4a647a9d2d70779819318efda2241ce8b30",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-09",
+    "mission": "CL",
+    "title": "Consume owner direction, questions and documentation outboxes",
+    "goal": "Make owner nudges change the next decision once and resume blocked work from the accepted answer.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/owner_direction.py",
+      "operator/autonomy_outbox.py",
+      "config/direction-schema.json",
+      "tests/test_owner_direction.py"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E07"
+    ],
+    "dependencies": [
+      "CL-08",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Map owner-authenticated directions to mission charter revision and current CONTROL RUN/PAUSE/STOP state; persist recorded/seen/applied/waiting-reconciliation/needs-input acknowledgements.",
+      "Example: prioritize agency repeat audits reorders future candidates; pause acquisition blocks pending sends while submitted comments/payments reconcile.",
+      "Ask once for a permitted storefront URL or accepted-order merchant route; reuse still-valid answers, bind answer identity/revision and resume only dependent job.",
+      "Write experiment-before-action and result/review outboxes keyed by payload hash for sole Jira writer; queue documentation projection during outage and require experiment admission readback before external launch."
+    ],
+    "deliverables": [
+      "direction/question handlers",
+      "mission outbox schema",
+      "revision/resume acceptance receipts"
+    ],
+    "tests": [
+      "Duplicate direction and answer delivery applies once; superseding nudge wins without rewriting old experiment evidence.",
+      "Pause received immediately before effect denies submission; if already submitted records waiting-for-reconciliation.",
+      "Unavailable Jira writer or unanswered question produces one pending entry and no repeated notification/model loop."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Owner sees the exact revision consumed and concrete next action or bounded blocker.",
+      "Answered missing input resumes saved work without restarting unrelated fulfilled jobs; matching outboxes project once."
+    ],
+    "rollback": "Pause affected adapter and preserve all direction revisions/outbox IDs; replay only unacknowledged safe projections after readback.",
+    "next_eligible_action": "Build direction fixtures for agency-priority, pause and missing storefront URL.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 18,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Trusted input route and writer acknowledgement must be qualified separately."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-5",
+        "BOTS-7"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G01",
+      "CL-G09"
+    ],
+    "requirement_ids": [
+      "CL-A06",
+      "CL-A07",
+      "CL-A08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "GURU-E01",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "reference/MISSION_GOALS.md; WINDOWS_RELEASE_EXECUTION.md; BOT_ROADMAPS.md; REPO_CLOUD_AUDIT.md",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Owner current Guru mission is engaged Hindu-spirituality audience, X-first. Editorial candidates are preserved; no runnable canonical Guru home established. Four-mission release parent owns Guru integration and Jira writes.",
+    "proof_limits": "Release-worker changes after base unobserved; future executor must consume exact return. No live account/publication/audience/runtime claim."
+  },
+  {
+    "id": "GURU-E02",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "reference/guru-sadhana-candidate/SOURCE_PROVENANCE.json and10 named candidate files",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical",
+      "implemented_tested"
+    ],
+    "finding": "All10 canonical Git blob SHA256 values verified against preserved source252d0bf18d11c47484ffcc2ab0a8ea56203a7076. Three4-slide/caption/alt drafts exist; source ledger empty, named reviewer/account null, WITHHELD, publication blocked, no schedule.",
+    "proof_limits": "SHA verification proves preservation only. Windows checkout CRLF hashes differ; exact Git blobs match. Historical Instagram-only contract superseded by current X-first direction."
+  },
+  {
+    "id": "GURU-E03",
+    "repository": "Official X documentation",
+    "ref": "observed2026-09-12",
+    "path": "https://docs.x.com/x-api/posts/manage-tweets/introduction ; https://help.x.com/en/rules-and-policies/x-automation",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "live_observed"
+    ],
+    "finding": "Official manage-post route exists for authenticated users; current self-serve replies require summon via mention/quote. AI-powered automated reply bots require prior written explicit X approval; opt-in/opt-out and duplication constraints apply.",
+    "proof_limits": "No Guru entitlement/account or paid allowance verified. Reply drafting remains useful while automated replies are gated. No platform automation invoked."
+  },
+  {
+    "id": "GURU-E04",
+    "repository": "pri8771/astra-bot-launch",
+    "ref": "3833a1b",
+    "path": "focus/kai-pri-lipi/OWNER_DIRECTION.md; reference/ACCOUNTS_CHANNELS_AND_HOSTS.md; tasks/guru/queue.json",
+    "observed_at": "2026-09-12T21:44:56.968975+00:00",
+    "classification": [
+      "cloud_backed",
+      "historical"
+    ],
+    "finding": "Versioned owner directions, account isolation, outboxes and independent Windows/R730 migration are proposed contracts; 4 old Guru tasks do not fully decompose autonomy.",
+    "proof_limits": "Saved records do not prove runtime consumes directions, account capabilities or active writer acknowledgement."
+  },
+  {
+    "id": "GURU-E05",
+    "repository": "Atlassian read-only snapshot",
+    "ref": null,
+    "path": "planning/autonomy-complete/evidence/JIRA_MISSION_SEARCH.json",
+    "observed_at": "2026-09-12T21:13:19.287Z",
+    "classification": [
+      "live_observed",
+      "local_only"
+    ],
+    "finding": "Root observed BOTS-61/128/129/130/132/133 and their existing summaries/status/estimates; 129 In Review, others To Do at snapshot.",
+    "proof_limits": "Metadata is not current acceptance or a source-bound task association; all new task keys remain null pending Windows parent reconciliation."
+  }
+]

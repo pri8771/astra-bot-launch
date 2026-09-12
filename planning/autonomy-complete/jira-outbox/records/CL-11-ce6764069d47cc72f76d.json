@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-11-ce6764069d47cc72f76d62b9e28f4fdc06060c6cb77f0d7274ec694901686563",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-11",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-5",
+    "BOTS-6"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "ce6764069d47cc72f76d62b9e28f4fdc06060c6cb77f0d7274ec694901686563",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-11",
+    "mission": "CL",
+    "title": "Qualify mission recovery, privacy, alerts and budget enforcement",
+    "goal": "Keep independent Windows work recoverable and bounded across failures without duplicate business effects.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/runtime_limits.py",
+      "operator/recovery_adapter.py",
+      "config/autonomy-limits.json",
+      "tests/test_runtime_faults.py",
+      "coordination/autonomy/windows-runbook.md"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04",
+      "CL-E07"
+    ],
+    "dependencies": [
+      "CL-08",
+      "CL-09",
+      "SH-10",
+      "SH-11",
+      "SH-12",
+      "SH-13",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "CL-I06"
+    ],
+    "implementation_steps": [
+      "Wire Windows process-tree termination and timeout receipt to every scanner/model/tool child; preserve authoritative job checkpoint before process cleanup.",
+      "Restore from encrypted host-local backups and replay event cursor into same authoritative store; reconcile in-flight delivery/payment/deployment before lease takeover.",
+      "Enforce per-job, mission and daily model/tool/time limits with unknown budget fail-closed; use existing zero-dollar grants, no unapproved paid fallback.",
+      "Redact private CRM/customer/HTML data, store only secret references, test deletion/retention and keep private runtime outside public repository.",
+      "Emit one actionable alert per changed incident with job, failed prerequisite, owner action and resume pointer; suppress identical failures until change."
+    ],
+    "deliverables": [
+      "Windows fault/restore report",
+      "limits/privacy policy",
+      "alert adapter",
+      "backup/recovery runbook"
+    ],
+    "tests": [
+      "Kill parent with child process alive: process tree terminates and receipt/checkpoint survives.",
+      "Restore after power loss and stale host return does not duplicate a comment/payment; quota exhaustion stops before next paid/tool effect.",
+      "Secret/PII canaries never reach Git/Jira/public logs; retry count and two repair limit are enforced.",
+      "Mac-disconnected interval retains Windows execution and one actionable incident; unchanging failure sends no repeated alerts."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+      "Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+    ],
+    "rollback": "Quarantine affected adapter, retain journal and read-only reconciliation, restore last good config only with same fence authority.",
+    "next_eligible_action": "Run non-effect child-process and backup fixtures on Windows; do not stop existing workers.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 28,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Actual Windows service identity/storage and model access require capability qualification."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-5",
+        "BOTS-6"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G03",
+      "CL-G08",
+      "CL-G09"
+    ],
+    "requirement_ids": [
+      "CL-A09",
+      "CL-A12",
+      "CL-A13",
+      "CL-A14",
+      "CL-A15",
+      "CL-A16",
+      "CL-A18"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

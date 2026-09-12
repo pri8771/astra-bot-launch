@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-09-12T21:51:32.778924+00:00",
+  "hash_scope": "Exact current Windows working-file bytes; Git text normalization may change clone representation. Review manifests explicitly identify the representation.",
+  "reviews": [
+    {
+      "review": "lanes/commerce-bidet/REVIEW_OPO_WHB.json",
+      "review_sha256": "dc9c6664a099834fd4aea588e501be650f2d8e13053a3ad62399f3334b863d2d",
+      "verdict": "pass",
+      "manifest_files": 16,
+      "mismatches": []
+    },
+    {
+      "review": "lanes/opo-whb/REVIEW_CL_BF.json",
+      "review_sha256": "b3dfa558fd23b314b91bb0790223d33a5d619701ba5fe84ce4996960999a3a99",
+      "verdict": "pass_for_planning",
+      "manifest_files": 16,
+      "mismatches": []
+    },
+    {
+      "review": "reviews/REVIEW_LIPI_GURU.json",
+      "review_sha256": "e2ca56a3785c6d815bb906e7b22b2810d2488c40e9fcff25b936f1d81f295a3b",
+      "verdict": "pass_for_planning",
+      "manifest_files": 24,
+      "mismatches": []
+    },
+    {
+      "review": "lanes/opo-whb/REVIEW_SHARED.json",
+      "review_sha256": "801af4b39bf51ed9f380b492f9a0874a44cb1bfb513ebbcb05129dc300a96522",
+      "verdict": "PASS_FOR_PLANNING",
+      "manifest_files": 157,
+      "mismatches": []
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

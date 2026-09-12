@@ -1,0 +1,117 @@
+[
+  {
+    "id": "LIPI-G01",
+    "mission": "LIPI",
+    "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+    "task_ids": [
+      "LIPI-03",
+      "LIPI-04",
+      "LIPI-05",
+      "LIPI-06",
+      "LIPI-10",
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G02",
+    "mission": "LIPI",
+    "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+    "task_ids": [
+      "LIPI-07",
+      "LIPI-16",
+      "LIPI-20",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G03",
+    "mission": "LIPI",
+    "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+    "task_ids": [
+      "LIPI-07",
+      "LIPI-16"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G04",
+    "mission": "LIPI",
+    "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+    "task_ids": [
+      "LIPI-08",
+      "LIPI-09",
+      "LIPI-12",
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-23",
+      "LIPI-24"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G05",
+    "mission": "LIPI",
+    "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+    "task_ids": [
+      "LIPI-11",
+      "LIPI-12",
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-18",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G06",
+    "mission": "LIPI",
+    "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+    "task_ids": [
+      "LIPI-13",
+      "LIPI-14",
+      "LIPI-16",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G07",
+    "mission": "LIPI",
+    "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+    "task_ids": [
+      "LIPI-19",
+      "LIPI-20",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G08",
+    "mission": "LIPI",
+    "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-18",
+      "LIPI-20",
+      "LIPI-21",
+      "LIPI-22",
+      "LIPI-23"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "LIPI-G09",
+    "mission": "LIPI",
+    "condition": "Supplier contact/import/pilot/catalog expansion only: exact outreach/purchase/import declaration authority and owner-approved scope; offline research is independent.",
+    "task_ids": [
+      "LIPI-24"
+    ],
+    "status": "requires_applicable_current_receipt"
+  }
+]

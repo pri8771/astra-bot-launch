@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-14-ac948ca484d3798de1d71141f6077efe66d8d96e58ee97a3683ff3d8d93b86ed",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-14",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "ac948ca484d3798de1d71141f6077efe66d8d96e58ee97a3683ff3d8d93b86ed",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-14",
+    "mission": "GURU",
+    "title": "Package independent Windows runtime and safe restore",
+    "goal": "Run Guru through Windows interruptions with one account consumer and no Mac dependency.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/ops/windows/",
+      "guru/tests/recovery/",
+      "guru/ops/migration/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E04"
+    ],
+    "dependencies": [
+      "GURU-07",
+      "GURU-08",
+      "GURU-12",
+      "GURU-13",
+      "SH-10",
+      "SH-11"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I08"
+    ],
+    "implementation_steps": [
+      "Package pinned source/config and durable state paths; qualify Windows startup, working directory, UTF8, log redaction, process-tree timeout cleanup and host-local credentials.",
+      "Fault-test before publish, after external accept, before receipt persist, during partial thread and during owner pause; fence old owner, reconcile real destination, restore backup/cursors/consumed grants and resume one eligible job.",
+      "Prove operation with mobile Mac disconnected. Prepare optional R730 transfer manifest, stop/fence/source/backup checksum and rollback acceptance, without deploying or making it a launch requirement; i9 remains deferred."
+    ],
+    "deliverables": [
+      "Windows deployment/runbook",
+      "recovery and stale-owner evidence",
+      "optional R730 migration contract"
+    ],
+    "tests": [
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "One independent Windows job and controlled restart preserve receipts and one consumer.",
+      "R730 migration is proposed/qualified separately; host presence is not execution proof."
+    ],
+    "rollback": "Stop and fence only new Guru consumer, reconcile pending effects and restore last known-good state/package.",
+    "next_eligible_action": "GURU-15 demonstrates repeated real cycles.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current Windows integration and storage qualification"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O10",
+      "GURU-A09",
+      "GURU-A11",
+      "GURU-A12",
+      "GURU-A13",
+      "GURU-A18"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Optional R730 migration only; Windows original-post autonomy is independent.",
+        "dependencies": [
+          "SH-16"
+        ],
+        "acceptance": "Qualify target, restore checksum and exclusive ownership with receiving-host receipt before migration."
+      }
+    ],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

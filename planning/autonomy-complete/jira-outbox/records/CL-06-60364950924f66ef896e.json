@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-06-60364950924f66ef896e85103fc7fbcad5d1bbbb63e966f983c58c9bbf88c532",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-06",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-113",
+    "BOTS-115",
+    "BOTS-118"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "60364950924f66ef896e85103fc7fbcad5d1bbbb63e966f983c58c9bbf88c532",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-06",
+    "mission": "CL",
+    "title": "Connect qualified acquisition and consent-aware funnel evidence",
+    "goal": "Acquire relevant merchants/agencies through allowed routes and measure useful scans, accepted scope and money without fabricated traffic.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/acquisition.py",
+      "operator/analytics_collector.py",
+      "docs/assets/analytics.js",
+      "config/acquisition-policy.json",
+      "tests/test_acquisition.py",
+      "tests/test_analytics.py"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E03",
+      "CL-E05"
+    ],
+    "dependencies": [
+      "CL-01",
+      "CL-02",
+      "CL-04"
+    ],
+    "prerequisite_inputs": [
+      "CL-I05"
+    ],
+    "implementation_steps": [
+      "Reuse existing consent-gated GA4 configuration, CRM public/private distinction and deployment IndexNow route; verify data access before claiming live counts.",
+      "Define events with denominators: consent-eligible visits, completed scans, evidence downloads, explicit requests, accepted scopes, delivered orders and settled revenue; exclude internal tests and unknown actor categories.",
+      "Prepare one relevant guide/CLI/agency hypothesis and a bounded prospect/draft cohort; every send requires exact channel/account and explicit communication authority, existing recipient limits and opt-out handling.",
+      "Collect aggregate analytics and private CRM activity through scoped adapters; reconcile the historical sent-message disagreement from narrowly verified records, without bulk mail reads.",
+      "Record acquisition source and attribution confidence; missing access/counts stay null, and nonconsenting visitors are not silently treated as measured drop-offs."
+    ],
+    "deliverables": [
+      "event metric dictionary",
+      "aggregate collector",
+      "qualified acquisition proposal and source artifact",
+      "consent test receipt"
+    ],
+    "tests": [
+      "Consent denied yields no GA network calls; consent granted sends allowlisted non-sensitive properties only.",
+      "Duplicate visitor/request events, internal fixtures, revoked consent and unavailable metrics do not inflate qualified conversion.",
+      "Unapproved send/account, duplicate recipient and exhausted cap deny publication/outreach; drafts remain executable."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+      "One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+      "Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment."
+    ],
+    "rollback": "Revert only the intervention, suppress pending sends and retain baseline/observations; keep original consent controls.",
+    "next_eligible_action": "Define event denominators and build one source-grounded no-send acquisition candidate.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 24,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "GA4/CRM route and explicit send authority may be unavailable; content and fixtures proceed."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-113",
+        "BOTS-115",
+        "BOTS-118"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G02",
+      "CL-G06"
+    ],
+    "requirement_ids": [
+      "CL-O07",
+      "CL-O08",
+      "CL-A03",
+      "CL-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

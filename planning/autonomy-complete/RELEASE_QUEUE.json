@@ -1,0 +1,2913 @@
+{
+  "status": "planning_only_not_dispatched",
+  "priority": [
+    "OPO",
+    "WHB",
+    "CL",
+    "BF",
+    "GURU",
+    "LIPI"
+  ],
+  "scope_rule": "Existing Windows release assignments continue independently. Planning tasks reconcile and consume their evidence before proposing duplicate work.",
+  "phases": [
+    {
+      "phase": 0,
+      "name": "Source/input/native-scope matching and independent preparation",
+      "tasks": [
+        "BF-01",
+        "CL-01",
+        "GURU-01",
+        "LIPI-01",
+        "OPO-01",
+        "SH-01",
+        "WHB-01"
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "Useful native releases",
+      "selection": "Mission product tasks; OPO/WHB/CL first, BF/GURU next, Lipi product decisions in parallel; explicit per-task dependencies apply."
+    },
+    {
+      "phase": 2,
+      "name": "Shared mechanics and six native integrations",
+      "selection": "SH-01 through SH-15 and mission autonomy integrations, without blocking already-admitted useful releases."
+    },
+    {
+      "phase": 3,
+      "name": "Real receipts, two cycles, owner/restart acceptance",
+      "selection": "Mission external/runtime acceptance tasks; actual observation/fulfillment windows must elapse."
+    },
+    {
+      "phase": 4,
+      "name": "Optional central-hub migration",
+      "tasks": [
+        "SH-16"
+      ]
+    }
+  ],
+  "topological_levels": [
+    [
+      "BF-01",
+      "CL-01",
+      "GURU-01",
+      "LIPI-01",
+      "OPO-01",
+      "SH-01",
+      "WHB-01"
+    ],
+    [
+      "BF-02",
+      "CL-02",
+      "GURU-02",
+      "GURU-06",
+      "LIPI-02",
+      "LIPI-03",
+      "LIPI-04",
+      "LIPI-05",
+      "LIPI-06",
+      "LIPI-07",
+      "LIPI-11",
+      "LIPI-24",
+      "OPO-02",
+      "OPO-03",
+      "SH-02",
+      "WHB-02",
+      "WHB-03"
+    ],
+    [
+      "BF-03",
+      "BF-05",
+      "CL-03",
+      "CL-04",
+      "GURU-03",
+      "LIPI-08",
+      "LIPI-10",
+      "OPO-04",
+      "SH-03",
+      "SH-04",
+      "SH-08",
+      "SH-09",
+      "SH-13",
+      "WHB-04"
+    ],
+    [
+      "BF-04",
+      "BF-06",
+      "BF-08",
+      "CL-05",
+      "CL-06",
+      "CL-07",
+      "CL-08",
+      "GURU-04",
+      "GURU-07",
+      "LIPI-09",
+      "LIPI-15",
+      "OPO-05",
+      "OPO-10",
+      "SH-05",
+      "SH-06",
+      "SH-12",
+      "WHB-05",
+      "WHB-07"
+    ],
+    [
+      "BF-07",
+      "BF-09",
+      "BF-12",
+      "CL-09",
+      "GURU-05",
+      "GURU-09",
+      "GURU-10",
+      "GURU-12",
+      "LIPI-12",
+      "LIPI-18",
+      "LIPI-21",
+      "OPO-06",
+      "OPO-07",
+      "OPO-08",
+      "OPO-09",
+      "OPO-13",
+      "SH-07",
+      "SH-10",
+      "SH-11",
+      "SH-14",
+      "WHB-06",
+      "WHB-09",
+      "WHB-10"
+    ],
+    [
+      "BF-10",
+      "CL-10",
+      "CL-11",
+      "GURU-08",
+      "GURU-11",
+      "GURU-13",
+      "GURU-17",
+      "LIPI-13",
+      "LIPI-16",
+      "LIPI-19",
+      "OPO-11",
+      "OPO-12",
+      "SH-15",
+      "WHB-08",
+      "WHB-11"
+    ],
+    [
+      "BF-11",
+      "BF-13",
+      "CL-12",
+      "GURU-14",
+      "GURU-16",
+      "LIPI-14",
+      "LIPI-17",
+      "LIPI-22",
+      "OPO-14",
+      "SH-16",
+      "WHB-12"
+    ],
+    [
+      "BF-14",
+      "GURU-15",
+      "LIPI-20",
+      "OPO-15"
+    ],
+    [
+      "LIPI-23"
+    ]
+  ],
+  "tasks": [
+    {
+      "id": "SH-01",
+      "mission": "SH",
+      "dependencies": [],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Inspect exact portable returns and mission evidence; match reusable interfaces and accepted tests, record absent artifacts without fetching old Mac.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-02",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Implement local transactional tables and unique mission/event/revision keys with append-only attempt/receipt history.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-03",
+      "mission": "SH",
+      "dependencies": [
+        "SH-02"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Implement atomic claim and resource reservations with mission/task/scope, worker, expiry and monotonically increasing epoch.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-04",
+      "mission": "SH",
+      "dependencies": [
+        "SH-02"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Add due index, event cursor, next_check_at and decision fingerprint bound to evidence+charter+spec versions.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-05",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-04"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Define observation trust/synthetic labels and concise decision records: rationale, alternatives, evidence IDs, selected action or no-action reason.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-06",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-03"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Persist exact payload/account/source/review hash, stable action ID and budget reservation before sending.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-07",
+      "mission": "SH",
+      "dependencies": [
+        "SH-05",
+        "SH-06",
+        "SH-09"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Persist predeclared baseline/hypothesis/intervention/comparison/window/exposure/guardrails/budget and writer readback before new action.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-08",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Implement file input with authenticated issuer binding; optional later ingress uses same schema, not new private assistant roadmap.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-09",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Implement atomic immutable proposal files with operation ID, spec/payload hash and predecessor; local deterministic schema and secret checks.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-10",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-06"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Persist attempt counters across restart; retry only classified transient read failures or confirmed-absent effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-11",
+      "mission": "SH",
+      "dependencies": [
+        "SH-02",
+        "SH-03",
+        "SH-06",
+        "SH-13"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Implement Job Object process creation/assignment before resume, kill-on-close, non-inherited handles and finite limits; fail closed on unsupported assignment.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-12",
+      "mission": "SH",
+      "dependencies": [
+        "SH-02",
+        "SH-08"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Define incidents for unknown effect, failed receipt, stale source/provider, expired grant, storage/restore fault and exhausted limit.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-13",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Define data inventory/retention/access/delete/export for mission payloads and hashed public receipts.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-14",
+      "mission": "SH",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-05"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Define job/mission/day ceilings for model tokens/time, tool calls/pages, money/currency and concurrent experiments; unknown monetary authority blocks paid effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-15",
+      "mission": "SH",
+      "dependencies": [
+        "SH-03",
+        "SH-04",
+        "SH-06",
+        "SH-07",
+        "SH-08",
+        "SH-09",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "next_action": "Freeze candidate source and evidence manifest; commission independent qualified reviewer and record actual identity without inventing distinct-model approval.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "SH-16",
+      "mission": "SH",
+      "dependencies": [
+        "SH-11",
+        "SH-15"
+      ],
+      "inputs": [
+        "SH-I01: exact-source admission and writer scope",
+        "SH-I02: current capability/resource/budget grant",
+        "SH-I04: R730 destination/service/backup qualification"
+      ],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G09",
+        "SH-G04"
+      ],
+      "next_action": "Verify current R730 capacity/storage/backup/official application route and required service identity; propose exact changes and reuse existing approvals.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-01",
+      "mission": "OPO",
+      "dependencies": [],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-02",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-01"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-03",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-01"
+      ],
+      "inputs": [
+        "OPO-I02",
+        "OPO-I03"
+      ],
+      "effect_gates": [
+        "OPO-I02",
+        "OPO-I03"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-04",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-02",
+        "OPO-03"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-05",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-01",
+        "OPO-04"
+      ],
+      "inputs": [
+        "OPO-I04"
+      ],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-06",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-05"
+      ],
+      "inputs": [
+        "OPO-I04"
+      ],
+      "effect_gates": [
+        "OPO-I04",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-07",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-03",
+        "OPO-04",
+        "OPO-05"
+      ],
+      "inputs": [
+        "OPO-I03",
+        "OPO-I04"
+      ],
+      "effect_gates": [
+        "OPO-I04",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Any payment-dependent fulfillment, paid entitlement, refund or real-money accounting effect; free fulfillment branch is independent.",
+          "dependencies": [
+            "OPO-06"
+          ],
+          "acceptance": "OPO-06 merchant/payment acceptance and exact amount/currency/order/grant/provider receipt verified before paid branch; absent gate leaves free delivery eligible and paid acceptance incomplete."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-08",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-02",
+        "OPO-05"
+      ],
+      "inputs": [
+        "OPO-I01",
+        "OPO-I05",
+        "OPO-I06"
+      ],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I05",
+        "OPO-I06",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-09",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-02",
+        "OPO-03",
+        "OPO-04",
+        "OPO-05"
+      ],
+      "inputs": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I03"
+      ],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I03",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-10",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-03",
+        "OPO-04",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-11",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-05",
+        "OPO-07",
+        "OPO-10",
+        "SH-05",
+        "SH-07",
+        "SH-14"
+      ],
+      "inputs": [
+        "OPO-I07"
+      ],
+      "effect_gates": [
+        "OPO-I07",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-12",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-07",
+        "OPO-08",
+        "OPO-10",
+        "SH-06"
+      ],
+      "inputs": [
+        "OPO-I04",
+        "OPO-I05",
+        "OPO-I08"
+      ],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I04",
+        "OPO-I05",
+        "OPO-I06",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-13",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-10",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [
+        "OPO-I08"
+      ],
+      "effect_gates": [
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-14",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-10",
+        "OPO-12",
+        "OPO-13",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13"
+      ],
+      "inputs": [
+        "OPO-I02",
+        "OPO-I03",
+        "OPO-I07",
+        "OPO-I09"
+      ],
+      "effect_gates": [
+        "OPO-I09"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; independent Windows recovery and runtime acceptance do not depend on migration.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Before target cutover qualify target host/storage, fence old owner, reconcile uncertain effects, inject target-local secret references and verify equivalent receipts/rollback. If target unavailable, complete Windows acceptance and retain migration pending."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "OPO-15",
+      "mission": "OPO",
+      "dependencies": [
+        "OPO-09",
+        "OPO-11",
+        "OPO-12",
+        "OPO-13",
+        "OPO-14",
+        "SH-15"
+      ],
+      "inputs": [
+        "OPO-I07",
+        "OPO-I08"
+      ],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I03",
+        "OPO-I05",
+        "OPO-I07",
+        "OPO-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-01",
+      "mission": "WHB",
+      "dependencies": [],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-02",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-01"
+      ],
+      "inputs": [
+        "WHB-I01"
+      ],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-03",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-01"
+      ],
+      "inputs": [
+        "WHB-I04"
+      ],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-04",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03"
+      ],
+      "inputs": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03"
+      ],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-05",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-03",
+        "WHB-04"
+      ],
+      "inputs": [
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I07"
+      ],
+      "effect_gates": [
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I07",
+        "WHB-I06"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-06",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03",
+        "WHB-04",
+        "WHB-05"
+      ],
+      "inputs": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03"
+      ],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-07",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-08",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-05",
+        "WHB-07",
+        "SH-05",
+        "SH-07",
+        "SH-14"
+      ],
+      "inputs": [
+        "WHB-I05",
+        "WHB-I08"
+      ],
+      "effect_gates": [
+        "WHB-I05",
+        "WHB-I06",
+        "WHB-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-09",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-04",
+        "WHB-05",
+        "WHB-07",
+        "SH-06"
+      ],
+      "inputs": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I07"
+      ],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06",
+        "WHB-I07"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-10",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-07",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [
+        "WHB-I06"
+      ],
+      "effect_gates": [
+        "WHB-I06"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-11",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-07",
+        "WHB-09",
+        "WHB-10",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13"
+      ],
+      "inputs": [
+        "WHB-I08",
+        "WHB-I09"
+      ],
+      "effect_gates": [
+        "WHB-I09"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; independent Windows recovery and runtime acceptance do not depend on migration.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Before target cutover qualify target host/storage, fence old owner, reconcile uncertain effects, inject target-local secret references and verify equivalent receipts/rollback. If target unavailable, complete Windows acceptance and retain migration pending."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "WHB-12",
+      "mission": "WHB",
+      "dependencies": [
+        "WHB-06",
+        "WHB-08",
+        "WHB-09",
+        "WHB-10",
+        "WHB-11",
+        "SH-15"
+      ],
+      "inputs": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I06",
+        "WHB-I08"
+      ],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I06",
+        "WHB-I08"
+      ],
+      "next_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-01",
+      "mission": "CL",
+      "dependencies": [],
+      "inputs": [
+        "CL-I01"
+      ],
+      "effect_gates": [
+        "CL-G01"
+      ],
+      "next_action": "Read the current release return and prepare scope-matching outbox; do not dispatch a scheduler.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-02",
+      "mission": "CL",
+      "dependencies": [
+        "CL-01"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Build fixture-based result/restore changes in an admitted isolated source worktree.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-03",
+      "mission": "CL",
+      "dependencies": [
+        "CL-01",
+        "CL-02"
+      ],
+      "inputs": [
+        "CL-I02"
+      ],
+      "effect_gates": [
+        "CL-G02",
+        "CL-G03"
+      ],
+      "next_action": "Implement durable intent and destination lookup against captured request fixtures before any authorized response test.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-04",
+      "mission": "CL",
+      "dependencies": [
+        "CL-01",
+        "CL-02"
+      ],
+      "inputs": [
+        "CL-I03"
+      ],
+      "effect_gates": [
+        "CL-G03",
+        "CL-G04"
+      ],
+      "next_action": "Prepare the scope/capacity contract and fixture fulfillment pack; keep payments disabled until CL-05 eligibility passes.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-05",
+      "mission": "CL",
+      "dependencies": [
+        "CL-03",
+        "CL-04"
+      ],
+      "inputs": [
+        "CL-I04"
+      ],
+      "effect_gates": [
+        "CL-G04",
+        "CL-G05"
+      ],
+      "next_action": "Implement deterministic sandbox ledger and adapter contract; queue one merchant-readiness question only when an accepted scope makes it necessary.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-06",
+      "mission": "CL",
+      "dependencies": [
+        "CL-01",
+        "CL-02",
+        "CL-04"
+      ],
+      "inputs": [
+        "CL-I05"
+      ],
+      "effect_gates": [
+        "CL-G02",
+        "CL-G06"
+      ],
+      "next_action": "Define event denominators and build one source-grounded no-send acquisition candidate.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-07",
+      "mission": "CL",
+      "dependencies": [
+        "CL-02",
+        "CL-04"
+      ],
+      "inputs": [
+        "CL-I01"
+      ],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G07"
+      ],
+      "next_action": "Prepare candidate manifest and route-specific acceptance bundle for release owner; do not change its assignment.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Enable the new request intake/response adapter in this release; scanner/result/offer release and preserved previously qualified route remain independent.",
+          "dependencies": [
+            "CL-03"
+          ],
+          "acceptance": "Require CL-03 adapter fixture/readback qualification for the enabled response capability; real inbound-request evidence is its own capability acceptance, not a prerequisite for scanner utility deployment."
+        },
+        {
+          "condition": "Enable the new acquisition/analytics adapter or claim its actual intervention acceptance; public scanner/result/offer deployment remains independent.",
+          "dependencies": [
+            "CL-06"
+          ],
+          "acceptance": "Qualify consent-aware collector/allowed channel before enabling it. With absent customer/channel evidence, release the useful product with existing consent controls and reviewed acquisition drafts only."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-08",
+      "mission": "CL",
+      "dependencies": [
+        "CL-01",
+        "CL-03",
+        "SH-01",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "inputs": [
+        "CL-I06"
+      ],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G08"
+      ],
+      "next_action": "Implement adapter against shared contract fixtures; keep it disconnected from existing production triggers until admission.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-09",
+      "mission": "CL",
+      "dependencies": [
+        "CL-08",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G09"
+      ],
+      "next_action": "Build direction fixtures for agency-priority, pause and missing storefront URL.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-10",
+      "mission": "CL",
+      "dependencies": [
+        "CL-04",
+        "CL-06",
+        "CL-08",
+        "CL-09",
+        "SH-05",
+        "SH-07"
+      ],
+      "inputs": [],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G06",
+        "CL-G08"
+      ],
+      "next_action": "Draft two bounded hypotheses using verified current denominators; implement decision tests against sparse and contradictory evidence.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-11",
+      "mission": "CL",
+      "dependencies": [
+        "CL-08",
+        "CL-09",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "inputs": [
+        "CL-I06"
+      ],
+      "effect_gates": [
+        "CL-G03",
+        "CL-G08",
+        "CL-G09"
+      ],
+      "next_action": "Run non-effect child-process and backup fixtures on Windows; do not stop existing workers.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "CL-12",
+      "mission": "CL",
+      "dependencies": [
+        "CL-07",
+        "CL-10",
+        "CL-11",
+        "SH-06",
+        "SH-15"
+      ],
+      "inputs": [
+        "CL-I07"
+      ],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G02",
+        "CL-G07",
+        "CL-G08"
+      ],
+      "next_action": "Assemble exact-source acceptance protocol and reserve a permitted non-spending real cycle with the existing owner.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Payment, refund or real-money autonomy acceptance; free source/product/acquisition cycles remain independent.",
+          "dependencies": [
+            "CL-05"
+          ],
+          "acceptance": "Complete merchant/payment qualification and actual provider/fulfillment receipts before accepting this capability. Missing gate leaves it disabled and money validation incomplete."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-01",
+      "mission": "BF",
+      "dependencies": [],
+      "inputs": [
+        "BF-I01"
+      ],
+      "effect_gates": [
+        "BF-G01"
+      ],
+      "next_action": "Prepare writer matching from retained BF-to-PCH table and current BOTS candidates.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-02",
+      "mission": "BF",
+      "dependencies": [
+        "BF-01"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Implement source/schema fixture and seed a bounded manufacturer-grounded model set.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-03",
+      "mission": "BF",
+      "dependencies": [
+        "BF-01",
+        "BF-02"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Build browser fixtures around existing broad checker and integrate reviewed evidence schema.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-04",
+      "mission": "BF",
+      "dependencies": [
+        "BF-02",
+        "BF-03"
+      ],
+      "inputs": [],
+      "effect_gates": [
+        "BF-G02"
+      ],
+      "next_action": "Implement conditional-fetch fixtures and stale-result invalidation offline.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-05",
+      "mission": "BF",
+      "dependencies": [
+        "BF-01",
+        "BF-02"
+      ],
+      "inputs": [
+        "BF-I02"
+      ],
+      "effect_gates": [
+        "BF-G03",
+        "BF-G04"
+      ],
+      "next_action": "Reverify official terms and prepare application data without accepting agreements or submitting identity information.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-06",
+      "mission": "BF",
+      "dependencies": [
+        "BF-03"
+      ],
+      "inputs": [
+        "BF-I03"
+      ],
+      "effect_gates": [
+        "BF-G05"
+      ],
+      "next_action": "Implement allowlisted event schema and denominator fixtures before connecting analytics.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-07",
+      "mission": "BF",
+      "dependencies": [
+        "BF-05",
+        "BF-06"
+      ],
+      "inputs": [
+        "BF-I04"
+      ],
+      "effect_gates": [
+        "BF-G04",
+        "BF-G06"
+      ],
+      "next_action": "Implement duplicate/reversal/payout fixtures against the five-state ledger.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-08",
+      "mission": "BF",
+      "dependencies": [
+        "BF-02",
+        "BF-03"
+      ],
+      "inputs": [
+        "BF-I05"
+      ],
+      "effect_gates": [
+        "BF-G07",
+        "BF-G08"
+      ],
+      "next_action": "Implement redacted draft-only fixtures and policy denial for seller actions; prepare one missing-mailbox input record.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-09",
+      "mission": "BF",
+      "dependencies": [
+        "BF-01",
+        "BF-04",
+        "SH-01",
+        "SH-02",
+        "SH-03",
+        "SH-04",
+        "SH-06"
+      ],
+      "inputs": [
+        "BF-I06"
+      ],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G09"
+      ],
+      "next_action": "Build mission-specific event mapping against shared runtime fixtures without attaching production schedule.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-10",
+      "mission": "BF",
+      "dependencies": [
+        "BF-09",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G10"
+      ],
+      "next_action": "Implement French-curve-priority, pause-affiliate and missing-approval fixtures.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-11",
+      "mission": "BF",
+      "dependencies": [
+        "BF-06",
+        "BF-09",
+        "BF-10",
+        "SH-05",
+        "SH-07"
+      ],
+      "inputs": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G05",
+        "BF-G09"
+      ],
+      "next_action": "Prepare a measurement-tool versus current-flow protocol from current aggregate baseline and implement sparse-evidence fixtures.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "BF-12",
+      "mission": "BF",
+      "dependencies": [
+        "BF-03",
+        "BF-04",
+        "BF-06"
+      ],
+      "inputs": [
+        "BF-I01"
+      ],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G11"
+      ],
+      "next_action": "Prepare exact candidate and release evidence request for existing overlay owner.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "This release activates or changes affiliate tracking links. A non-affiliate guide/checker release does not require merchant approval.",
+          "effect_gates": [
+            "BF-G03",
+            "BF-G04"
+          ],
+          "acceptance": "Before commercial link activation verify exact approval/terms/product/geography/destination/disclosure; missing gate keeps those links disabled while useful guidance releases."
+        }
+      ]
+    },
+    {
+      "id": "BF-13",
+      "mission": "BF",
+      "dependencies": [
+        "BF-09",
+        "BF-10",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "inputs": [
+        "BF-I06"
+      ],
+      "effect_gates": [
+        "BF-G09",
+        "BF-G10"
+      ],
+      "next_action": "Run local non-effect process-tree/restore and budget fixtures using approved host runtime.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Enable or test live private support mailbox/customer-data/model route. Public source/product Windows runtime and redacted fixtures remain independent.",
+          "effect_gates": [
+            "BF-G07",
+            "BF-G08"
+          ],
+          "acceptance": "Qualify exact mailbox/private store/model/retention and any send authority before enabling support; disabled support cannot block Windows source/product recovery acceptance."
+        }
+      ]
+    },
+    {
+      "id": "BF-14",
+      "mission": "BF",
+      "dependencies": [
+        "BF-11",
+        "BF-12",
+        "BF-13",
+        "SH-15"
+      ],
+      "inputs": [
+        "BF-I07"
+      ],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G09",
+        "BF-G11"
+      ],
+      "next_action": "Prepare exact-source acceptance protocol and a permitted non-spending source/product cycle.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Affiliate/commission autonomy acceptance; non-affiliate source/product cycles remain independent.",
+          "dependencies": [
+            "BF-05",
+            "BF-07"
+          ],
+          "acceptance": "Current program eligibility and actual commission/cash evidence required; absent approval or transaction data leaves financial capability unvalidated."
+        },
+        {
+          "condition": "Private support or low-risk support-send autonomy acceptance; source/product cycles remain independent.",
+          "dependencies": [
+            "BF-08"
+          ],
+          "acceptance": "Private draft pilot and exact optional send authority/receipts must pass before this capability is accepted."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-01",
+      "mission": "GURU",
+      "dependencies": [],
+      "inputs": [
+        "GURU-I01"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-02–06 prepare the repeatable editorial and account contract.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-02",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-01"
+      ],
+      "inputs": [
+        "GURU-I02"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-03 source research and GURU-04 content production.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-03",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-02"
+      ],
+      "inputs": [
+        "GURU-I03"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-04 prepares original candidates and GURU-05 obtains cultural review.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-04",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-02",
+        "GURU-03"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "GURU-05 source/cultural review and GURU-08 publication when grants pass.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-05",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-03",
+        "GURU-04"
+      ],
+      "inputs": [
+        "GURU-I04"
+      ],
+      "effect_gates": [
+        "GURU-G02"
+      ],
+      "next_action": "GURU-08 can publish a qualified candidate; source changes return to GURU-03.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-06",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-01"
+      ],
+      "inputs": [
+        "GURU-I05",
+        "GURU-I06"
+      ],
+      "effect_gates": [
+        "GURU-G01"
+      ],
+      "next_action": "GURU-07 runtime ingestion and GURU-08 approved publication.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-07",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-01",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "GURU-08/10/11 run publication, measurement and subsequent decisions.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-08",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-05",
+        "GURU-06",
+        "GURU-07",
+        "SH-06",
+        "SH-10"
+      ],
+      "inputs": [
+        "GURU-I06"
+      ],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03"
+      ],
+      "next_action": "GURU-10 observes declared metrics; GURU-09 handles concerns.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-09",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-06",
+        "SH-12",
+        "SH-13"
+      ],
+      "inputs": [
+        "GURU-I07"
+      ],
+      "effect_gates": [
+        "GURU-G04"
+      ],
+      "next_action": "GURU-11 uses aggregate concerns and useful questions to select next editorial work.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+          "gates": [
+            "GURU-G04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-10",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-04",
+        "SH-13"
+      ],
+      "inputs": [
+        "GURU-I06"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-11 evaluates at the frozen window boundary.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-11",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-04",
+        "GURU-07",
+        "GURU-10",
+        "SH-05",
+        "SH-07",
+        "SH-09"
+      ],
+      "inputs": [],
+      "effect_gates": [],
+      "next_action": "Admit selected research/content/correction task and repeat.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-12",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-07",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [
+        "GURU-I08"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-14/15 prove restart and real direction acceptance.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-13",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "inputs": [
+        "GURU-I06",
+        "GURU-I08"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-14 qualified deployment and GURU-15 acceptance.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-14",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-07",
+        "GURU-08",
+        "GURU-12",
+        "GURU-13",
+        "SH-10",
+        "SH-11"
+      ],
+      "inputs": [
+        "GURU-I08"
+      ],
+      "effect_gates": [],
+      "next_action": "GURU-15 demonstrates repeated real cycles.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration only; Windows original-post autonomy is independent.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Qualify target, restore checksum and exclusive ownership with receiving-host receipt before migration."
+        }
+      ],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "GURU-15",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-08",
+        "GURU-09",
+        "GURU-10",
+        "GURU-11",
+        "GURU-12",
+        "GURU-13",
+        "GURU-14",
+        "SH-15"
+      ],
+      "inputs": [
+        "GURU-I04",
+        "GURU-I06",
+        "GURU-I08"
+      ],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03",
+        "GURU-G04"
+      ],
+      "next_action": "Continue finite editorial experiments or run GURU-16 only when its hypothesis is admitted.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        },
+        {
+          "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+          "gates": [
+            "GURU-G04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-16",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-11"
+      ],
+      "inputs": [
+        "GURU-I09"
+      ],
+      "effect_gates": [
+        "GURU-G05"
+      ],
+      "next_action": "Run the admitted finite channel test through the same claim/action/review/measurement interfaces, then return to GURU-11.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent.",
+          "gates": [
+            "GURU-G05"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GURU-17",
+      "mission": "GURU",
+      "dependencies": [
+        "GURU-04",
+        "GURU-05",
+        "GURU-06"
+      ],
+      "inputs": [
+        "GURU-I06"
+      ],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03"
+      ],
+      "next_action": "GURU-10/11 evaluate this piece; GURU-07/08 integrate repeated autonomous operation separately.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-01",
+      "mission": "LIPI",
+      "dependencies": [],
+      "inputs": [
+        "LIPI-I01",
+        "LIPI-I09"
+      ],
+      "effect_gates": [],
+      "next_action": "Run LIPI-02 and separate variant/economics preparation on the admitted source; missing external evidence blocks only its dependent effect.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "LIPI-02",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I02"
+      ],
+      "effect_gates": [],
+      "next_action": "Proceed to LIPI-03–06 for retained/conditional candidates and LIPI-24 independently.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": []
+    },
+    {
+      "id": "LIPI-03",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I03"
+      ],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "next_action": "Feed verified identities into LIPI-07/08; withheld variants stay excluded.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-04",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I03"
+      ],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "next_action": "Feed verified identities into LIPI-07/08; withheld variants stay excluded.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-05",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I03"
+      ],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "next_action": "Feed verified identities into LIPI-07/08; withheld variants stay excluded.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-06",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I03"
+      ],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "next_action": "Feed verified identities into LIPI-07/08; withheld variants stay excluded.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-07",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I04"
+      ],
+      "effect_gates": [
+        "LIPI-G02",
+        "LIPI-G03"
+      ],
+      "next_action": "Produce exact purchase quote in LIPI-08; price execution only through LIPI-16.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Actual retained-capsule launch/price/shipping economics; offline scenario modeling is independent.",
+          "dependencies": [
+            "LIPI-02"
+          ],
+          "acceptance": "Bind owner-accepted membership. Require positive exact variant mapping for every included product and exclude explicitly rejected/withheld variants. Conditional Quiet Route never blocks the other accepted capsule products."
+        },
+        {
+          "condition": "Meridian is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-03"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Open Current is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-04"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Quiet Route is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-05"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Threshold Study is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-06"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        }
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+          "gates": [
+            "LIPI-G03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-08",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-02",
+        "LIPI-07"
+      ],
+      "inputs": [
+        "LIPI-I05"
+      ],
+      "effect_gates": [
+        "LIPI-G04"
+      ],
+      "next_action": "LIPI-09 tracks delivery and physical inspection; unrelated storefront/runtime work continues.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-09",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-08"
+      ],
+      "inputs": [
+        "LIPI-I06"
+      ],
+      "effect_gates": [
+        "LIPI-G04"
+      ],
+      "next_action": "LIPI-10/12 finish sample-bound content and purchase journey; alternate design experiment may be proposed.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-10",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-02",
+        "LIPI-07"
+      ],
+      "inputs": [
+        "LIPI-I03"
+      ],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "next_action": "LIPI-11 policy and LIPI-12 checkout qualify alongside the final physical sample binding.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-11",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I07"
+      ],
+      "effect_gates": [
+        "LIPI-G05"
+      ],
+      "next_action": "LIPI-12 checkout and LIPI-18 support use the accepted version.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-12",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-07",
+        "LIPI-09",
+        "LIPI-10",
+        "LIPI-11"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I04",
+        "LIPI-I05"
+      ],
+      "effect_gates": [
+        "LIPI-G04",
+        "LIPI-G05"
+      ],
+      "next_action": "LIPI-13 review/restore and LIPI-14 release; LIPI-17 observes fulfillment.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-13",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-10",
+        "LIPI-11",
+        "LIPI-12"
+      ],
+      "inputs": [
+        "LIPI-I08"
+      ],
+      "effect_gates": [
+        "LIPI-G06"
+      ],
+      "next_action": "LIPI-14 applies only the approved cutover.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-14",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-13"
+      ],
+      "inputs": [
+        "LIPI-I08"
+      ],
+      "effect_gates": [
+        "LIPI-G06"
+      ],
+      "next_action": "LIPI-19 authorized organic distribution and LIPI-17/18 operations start when admitted.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-15",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01",
+        "SH-02",
+        "SH-03",
+        "SH-04",
+        "SH-13"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G08"
+      ],
+      "next_action": "LIPI-16 actions and LIPI-17/18 routines consume these events.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-16",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-07",
+        "LIPI-15",
+        "SH-05",
+        "SH-06",
+        "SH-10",
+        "SH-14"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G02",
+        "LIPI-G03",
+        "LIPI-G04",
+        "LIPI-G05",
+        "LIPI-G06",
+        "LIPI-G08"
+      ],
+      "next_action": "LIPI-20 may schedule a bounded permitted merchandising experiment; other action classes wait for exact grants.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Live price change requiring existing Jira/worklog before/after projection.",
+          "dependencies": [
+            "SH-09"
+          ],
+          "acceptance": "Verify current writer admission and required price logging evidence before the price effect. An unrelated refund, purchase, publish, marketing grant is not required for price-only scope."
+        }
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+          "gates": [
+            "LIPI-G03"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-17",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "SH-12"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I07"
+      ],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G04",
+        "LIPI-G05"
+      ],
+      "next_action": "LIPI-18 handles support proposals; LIPI-20 evaluates delivery and contribution evidence.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-18",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-11",
+        "LIPI-15",
+        "SH-08",
+        "SH-12",
+        "SH-13"
+      ],
+      "inputs": [
+        "LIPI-I07"
+      ],
+      "effect_gates": [
+        "LIPI-G05",
+        "LIPI-G08"
+      ],
+      "next_action": "LIPI-20 uses redacted aggregate support/defect rates and proposes changes within rules.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-19",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-10",
+        "LIPI-11",
+        "SH-06",
+        "SH-07"
+      ],
+      "inputs": [
+        "LIPI-I11"
+      ],
+      "effect_gates": [
+        "LIPI-G07"
+      ],
+      "next_action": "LIPI-20 evaluates objections/conversion and queues the next finite product/content experiment.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Actual organic publication linking to the capsule; offline content/discovery preparation proceeds.",
+          "dependencies": [
+            "LIPI-14"
+          ],
+          "acceptance": "The exact current product/landing destination must be publicly verified and sale-eligible before sending traffic."
+        }
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-20",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "LIPI-17",
+        "LIPI-18",
+        "LIPI-19",
+        "SH-05",
+        "SH-07",
+        "SH-09"
+      ],
+      "inputs": [
+        "LIPI-I04",
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G02",
+        "LIPI-G07",
+        "LIPI-G08"
+      ],
+      "next_action": "Dispatch the selected task through admission/fencing, or persist one missing-input question and wait cheaply.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-21",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-15",
+        "SH-08",
+        "SH-09"
+      ],
+      "inputs": [
+        "LIPI-I09",
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G08"
+      ],
+      "next_action": "LIPI-22/23 prove recovery and repeated operation with these directions.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-22",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "LIPI-21",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "inputs": [
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G08"
+      ],
+      "next_action": "LIPI-23 independent exact-source autonomy acceptance; optional SH-16 migration later.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; Windows acceptance is independent.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Qualify target storage/backup/secret references, fence previous owner, reconcile pending effects and prove new-host receipt/rollback before cutover."
+        }
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-23",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-14",
+        "LIPI-17",
+        "LIPI-18",
+        "LIPI-20",
+        "LIPI-21",
+        "LIPI-22",
+        "SH-15"
+      ],
+      "inputs": [
+        "LIPI-I03",
+        "LIPI-I10"
+      ],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G02",
+        "LIPI-G04",
+        "LIPI-G05",
+        "LIPI-G06",
+        "LIPI-G07",
+        "LIPI-G08"
+      ],
+      "next_action": "Continue the accepted finite experiment queue; reopen failed gates with targeted tasks, not a fresh inventory.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        },
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LIPI-24",
+      "mission": "LIPI",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "inputs": [
+        "LIPI-I12"
+      ],
+      "effect_gates": [
+        "LIPI-G04",
+        "LIPI-G09"
+      ],
+      "next_action": "Run approved bounded supplier pilot or continue current capsule and recheck a named missing fact only when evidence can change.",
+      "status": "planned_not_admitted",
+      "conditional_dependencies": [],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Supplier contact/import/pilot/catalog expansion only: exact outreach/purchase/import declaration authority and owner-approved scope; offline research is independent.",
+          "gates": [
+            "LIPI-G09"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-16-1e1d7355ee19e4467dcc2d6cbc1cbdffe0af214e84c18aaee0ac48ef45f44476",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-16",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "1e1d7355ee19e4467dcc2d6cbc1cbdffe0af214e84c18aaee0ac48ef45f44476",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-16",
+    "mission": "GURU",
+    "title": "Evaluate later format or channel expansion without mission drift",
+    "goal": "Keep long-term growth executable while preserving current X-first priority and evidence boundaries.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/ops/expansion/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E02",
+      "GURU-E03"
+    ],
+    "dependencies": [
+      "GURU-11"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I09"
+    ],
+    "implementation_steps": [
+      "Only after evaluated demand proposes a specific benefit, compare one adjacent format/channel against current X audience evidence, cost, rights, moderation and supported publishing/measurement route.",
+      "Reuse Sadhana carousel structure if culturally reviewed and suited to the selected channel; establish exact brand account/capability and new baseline rather than treating old Instagram selection as authority.",
+      "Predeclare bounded experiment, resource/grant needs and continuation/stop decision. Keep monetization an optional separately justified future offer; exclude Digital Temple, unsolicited outreach, fake followers and paid spend without exact new scope."
+    ],
+    "deliverables": [
+      "one-channel/format expansion decision",
+      "account/capability and metric plan",
+      "admitted next experiment or explicit no-go"
+    ],
+    "tests": [
+      "New channel cannot reuse another mission credentials or count its followers as unique people.",
+      "No expansion can bypass source/cultural review or known budgets."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Expansion has evidence-based rationale, concrete tasks/gates and independent path to stop.",
+      "X-first useful operation remains available if expansion is rejected or blocked."
+    ],
+    "rollback": "Stop new channel scheduling and preserve original X experiment baseline/account.",
+    "next_eligible_action": "Run the admitted finite channel test through the same claim/action/review/measurement interfaces, then return to GURU-11.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 3,
+      "high": 6,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Demand evidence and optional account capability"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "GURU-G05"
+    ],
+    "requirement_ids": [
+      "GURU-O11"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "GURU-G05",
+        "condition": "Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent.",
+        "gates": [
+          "GURU-G05"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

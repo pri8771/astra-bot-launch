@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-24-466c19f291ab0272c54f3dfa35c7de2ab6ac3738d6b970c685a136d102d2eaa0",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-24",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "466c19f291ab0272c54f3dfa35c7de2ab6ac3738d6b970c685a136d102d2eaa0",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-24",
+    "mission": "LIPI",
+    "title": "Evaluate India-to-US apparel as a separate supplier experiment",
+    "goal": "Test the owner supplier hypothesis without assuming Printful proves India sourcing or replacing the catalog.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/supplier-hypothesis/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04",
+      "LIPI-E06"
+    ],
+    "dependencies": [
+      "LIPI-01"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I12"
+    ],
+    "implementation_steps": [
+      "Create a supplier comparison for an actual specific garment and US delivery route: manufacturer identity, provenance/material/size claims, design rights, MOQ/customization, capacity, packaging, delivery/tracking, returns address and defect terms; mark unavailable facts unknown.",
+      "Use dated primary supplier/carrier/customs evidence to estimate full landed economics, FX, freight/duties/fees/returns and cash exposure separately from current Printful formulas. Obtain qualified owner/professional determinations for legal/import declarations; no outreach or purchase without exact authority.",
+      "Predeclare one sample/pilot with budget and physical/delivery/20%-floor acceptance; compare with current capsule. After actual approved sample, accept/narrow/reject route and schedule next evidence collection; do not change English-first brand/catalog claims absent new owner decision."
+    ],
+    "deliverables": [
+      "supplier hypothesis and evidence matrix",
+      "landed-cost sensitivity model",
+      "concrete sample/pilot decision and next experiment"
+    ],
+    "tests": [
+      "A Printful mapping cannot populate an India supplier claim.",
+      "Unknown duties/return costs or missing provenance prevent profitability/US-delivery promise."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Specific supplier/product route has evidence or a precise collection task for each gap.",
+      "Offline research/model is useful now; contact, purchase/import and catalog changes remain separate gates with receipts."
+    ],
+    "rollback": "Archive rejected hypothesis while preserving evidence; no existing capsule or provider account change.",
+    "next_eligible_action": "Run approved bounded supplier pilot or continue current capsule and recheck a named missing fact only when evidence can change.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 10,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Supplier quotes, legal/import review and real sample lead time"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G04",
+      "LIPI-G09"
+    ],
+    "requirement_ids": [
+      "LIPI-O14"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G04",
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant."
+      },
+      {
+        "gate_id": "LIPI-G09",
+        "condition": "Supplier contact/import/pilot/catalog expansion only: exact outreach/purchase/import declaration authority and owner-approved scope; offline research is independent."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+        "gates": [
+          "LIPI-G04"
+        ]
+      },
+      {
+        "condition": "Supplier contact/import/pilot/catalog expansion only: exact outreach/purchase/import declaration authority and owner-approved scope; offline research is independent.",
+        "gates": [
+          "LIPI-G09"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

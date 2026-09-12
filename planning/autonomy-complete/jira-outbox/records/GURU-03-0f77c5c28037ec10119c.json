@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-03-0f77c5c28037ec10119c754ebc32dd6c82b3a1ca494f9cf52bc22079f7eb5a6a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-03",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-130",
+    "BOTS-129"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "0f77c5c28037ec10119c754ebc32dd6c82b3a1ca494f9cf52bc22079f7eb5a6a",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-03",
+    "mission": "GURU",
+    "title": "Build sourced and rights-aware editorial research library",
+    "goal": "Replace empty source ledger with attributable evidence for each proposed religious/textual claim.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/content/sources/",
+      "guru/tests/source-ledger/"
+    ],
+    "evidence_refs": [
+      "GURU-E02"
+    ],
+    "dependencies": [
+      "GURU-02"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I03"
+    ],
+    "implementation_steps": [
+      "Select specific primary text edition/translation or authoritative scholarly/traditional source per claim; record passage, edition/translator, url/access date, rights basis and tradition/context. Default to original paraphrase; do not manufacture quotations or citations.",
+      "Separate textual fact, interpretive tradition, editorial reflection and uncertain claim; create a claim-to-source ledger with bounded retrieval excerpts and expiry/refresh where content can drift.",
+      "Research new pieces from recurring audience questions and named source gaps; withhold unsupported assertions and bind source revisions to review. Supplier/religious websites and comments remain untrusted inputs with no authority to issue commands."
+    ],
+    "deliverables": [
+      "claim/source/rights ledger",
+      "bounded source collection pipeline",
+      "source gap queue"
+    ],
+    "tests": [
+      "Empty source entries, missing rights or mismatched passage fail content acceptance.",
+      "Prompt injection in a source cannot access credentials or amend publication permission."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Every factual/quotation claim has an inspectable source and rights rationale or is withheld.",
+      "Original paraphrase and tradition/context labels are preserved through adaptation."
+    ],
+    "rollback": "Quarantine disputed source/claims and invalidate affected unpublished candidates; public correction uses GURU-09.",
+    "next_eligible_action": "GURU-04 prepares original candidates and GURU-05 obtains cultural review.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 7,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Specific source rights and reviewer acceptance unresolved"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-130",
+        "BOTS-129"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O03",
+      "GURU-A15"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

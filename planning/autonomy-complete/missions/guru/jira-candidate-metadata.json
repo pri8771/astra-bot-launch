@@ -1,0 +1,76 @@
+{
+  "observed_at": [
+    "2026-09-12T21:13:05.833Z",
+    "2026-09-12T21:13:19.287Z"
+  ],
+  "bindings": "all null pending designated writer",
+  "issues": [
+    {
+      "key": "BOTS-61",
+      "summary": "[BM-E05] Guru first trusted-content experiment",
+      "status": "To Do",
+      "updated": "2026-09-05T19:15:56.279-0400",
+      "timetracking": {}
+    },
+    {
+      "key": "BOTS-128",
+      "summary": "[BM-GURU-02] Sadhana Notes: freeze persona and three-carousel contract",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:12.456-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-129",
+      "summary": "[BM-GURU-03] Sadhana Notes: prepare the three source-reviewed carousels",
+      "status": "In Review",
+      "updated": "2026-09-09T13:18:43.285-0400",
+      "timetracking": {
+        "originalEstimate": "2h",
+        "remainingEstimate": "2h",
+        "originalEstimateSeconds": 7200,
+        "remainingEstimateSeconds": 7200
+      }
+    },
+    {
+      "key": "BOTS-130",
+      "summary": "[BM-GURU-01] Sadhana Notes: verify account, source and cultural-review inputs",
+      "status": "To Do",
+      "updated": "2026-09-06T15:07:17.291-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    },
+    {
+      "key": "BOTS-132",
+      "summary": "[BM-GURU-04] Sadhana Notes: publish and verify only the granted canary",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:25.235-0400",
+      "timetracking": {
+        "originalEstimate": "1h 40m",
+        "remainingEstimate": "1h 40m",
+        "originalEstimateSeconds": 6000,
+        "remainingEstimateSeconds": 6000
+      }
+    },
+    {
+      "key": "BOTS-133",
+      "summary": "[BM-GURU-05] Sadhana Notes: close the 14-day trust and engagement review",
+      "status": "To Do",
+      "updated": "2026-09-09T13:18:27.948-0400",
+      "timetracking": {
+        "originalEstimate": "1h 30m",
+        "remainingEstimate": "1h 30m",
+        "originalEstimateSeconds": 5400,
+        "remainingEstimateSeconds": 5400
+      }
+    }
+  ]
+}

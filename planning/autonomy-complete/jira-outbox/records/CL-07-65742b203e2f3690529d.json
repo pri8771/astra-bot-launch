@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-07-65742b203e2f3690529dac3d3500004be632415722331632a8e6dad45d244228",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-07",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-116"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "65742b203e2f3690529dac3d3500004be632415722331632a8e6dad45d244228",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-07",
+    "mission": "CL",
+    "title": "Release through the preserved portfolio deployment route",
+    "goal": "Ship qualified product improvements with exact source and public readback while preserving other ventures.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "coordination/autonomy/release-contract.json",
+      "coordination/autonomy/release-receipts/"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E06"
+    ],
+    "dependencies": [
+      "CL-02",
+      "CL-04"
+    ],
+    "prerequisite_inputs": [
+      "CL-I01"
+    ],
+    "implementation_steps": [
+      "Submit source candidate to existing CommerceLint operator/release owner; deployment owner reserves portfolio production scope shared with BidetFit, never concurrent competing deployments.",
+      "Require reviewed immutable autonomous_apps source and portfolio mount revision; consume existing sync_commercelint.py and pages.yml rather than starting another route.",
+      "Verify homepage, scanner, offer, service JSON, privacy, result path, canonical/legacy redirect and intended assets at public destination; compare release receipt to selected commit. Keep unqualified new request/acquisition capabilities disabled, preserve existing qualified routes and never require a real inbound customer or outbound message before useful utility deployment.",
+      "Run one permitted real scan plus representative local edge fixtures; perform rollback to prior reviewed source through the same deployment owner and verify restoration."
+    ],
+    "deliverables": [
+      "release interface contract",
+      "review/source manifest",
+      "real public readback and rollback receipts"
+    ],
+    "tests": [
+      "Release/source hash mismatch blocks release; current source HEAD alone is not proof of live version.",
+      "Smoke checks include both CL and BF critical routes because portfolio deployment is shared.",
+      "A failed or ambiguous deployment is reconciled by workflow/artifact/public readback before retry.",
+      "Absent real inbound request, unavailable channel permission and no acquisition receipt do not block scanner/result/offer deployment; disabled new adapters cannot send or claim completed live acceptance."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Exact-source independent review, deployment receipt and public readback identify the same selected product version.",
+      "Useful release can be accepted with payment taking disabled and broader autonomy still pending.",
+      "Offline request/acquisition code readiness and reviewed candidates are separate from conditional live capability receipts; useful release cannot deadlock waiting for an intervention that requires that release."
+    ],
+    "rollback": "Existing deployment owner restores prior reviewed artifact and verifies both ventures; preserve customer/action ledger.",
+    "next_eligible_action": "Prepare candidate manifest and route-specific acceptance bundle for release owner; do not change its assignment.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Shared portfolio destination must be serialized by existing deployment owner."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-116"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G01",
+      "CL-G07"
+    ],
+    "requirement_ids": [
+      "CL-O09",
+      "CL-A04",
+      "CL-A17"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Enable the new request intake/response adapter in this release; scanner/result/offer release and preserved previously qualified route remain independent.",
+        "dependencies": [
+          "CL-03"
+        ],
+        "acceptance": "Require CL-03 adapter fixture/readback qualification for the enabled response capability; real inbound-request evidence is its own capability acceptance, not a prerequisite for scanner utility deployment."
+      },
+      {
+        "condition": "Enable the new acquisition/analytics adapter or claim its actual intervention acceptance; public scanner/result/offer deployment remains independent.",
+        "dependencies": [
+          "CL-06"
+        ],
+        "acceptance": "Qualify consent-aware collector/allowed channel before enabling it. With absent customer/channel evidence, release the useful product with existing consent controls and reviewed acquisition drafts only."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

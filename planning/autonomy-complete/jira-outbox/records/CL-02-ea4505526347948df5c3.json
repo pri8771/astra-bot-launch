@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-02-ea4505526347948df5c3adb86c3b6442b75f9379257a60067b4b58c3529b88c2",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-02",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-115"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "ea4505526347948df5c3adb86c3b6442b75f9379257a60067b4b58c3529b88c2",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-02",
+    "mission": "CL",
+    "title": "Complete reliable scan and saved useful-result continuity",
+    "goal": "Turn pasted HTML or a permitted public page into actionable evidence that survives navigation without implying a full commerce audit.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "docs/scanner.html",
+      "docs/assets/scanner-result.js",
+      "cli/commercelint.py",
+      "tests/test_scanner_contract.py",
+      "tests/browser/scanner.spec.js"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E03"
+    ],
+    "dependencies": [
+      "CL-01"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Reuse analyzeMarkup, the CLI checks, JSON export and browser last-report storage; version result schema with observed/expected values, severity, repair owner and limitations.",
+      "Provide restore/export/delete controls with explicit local storage retention and a safe fallback when storage is unavailable; never retain pasted HTML without a stated local opt-in.",
+      "Keep paste mode useful without network; disclose that URL mode uses an external retrieval service, reject private/credential-bearing URLs and provide bounded timeout/CORS/size/redirect failure states.",
+      "Add keyboard/screen-reader flows, clear malformed/multiple Product/Offer handling and result-to-offer context using an opaque local request reference."
+    ],
+    "deliverables": [
+      "versioned result schema",
+      "browser/CLI fixtures and receipts",
+      "accessible saved report flow"
+    ],
+    "tests": [
+      "Run existing five CLI fixtures and browser cases for malformed JSON-LD, missing Offer, multiple products, empty input, HTML injection, unavailable storage and reload.",
+      "Network interception shows zero HTML/URL/title leakage to analytics and zero requests in paste mode; URL timeout gives paste fallback.",
+      "Local result restore retains schema/version and deletion removes stored result; displayed score never claims rendered checkout or variant validation."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "A visitor produces, understands, saves/restores and exports a prioritized report and follows a concrete next step.",
+      "Each failure explains retry/paste/manual verification without asserting a storefront defect from retrieval failure."
+    ],
+    "rollback": "Restore previous scanner assets and preserve export compatibility; migrate or invalidate only unsupported cached schema versions with a visible explanation.",
+    "next_eligible_action": "Build fixture-based result/restore changes in an admitted isolated source worktree.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 22,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Browser harness availability and safe retrieval design need qualification; no paid proxy required."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-115"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "CL-O02",
+      "CL-O03",
+      "CL-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

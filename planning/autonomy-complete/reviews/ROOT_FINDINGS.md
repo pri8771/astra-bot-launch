@@ -10,8 +10,8 @@ Reviewer: /root (Codex parent, separate from mission authors). Model/effort inhe
 | Real inbound/channel adoption gated useful scanner deployment | CL-07 via CL-03/CL-06 | Fixed after peer review: source/candidate readiness and conditional live receipt requirements are separate. |
 | Affiliate/private support gates applied to public-only operation | BF-12/BF-13 | Fixed after peer review: operation-specific conditional gates and disabled-capability tests. |
 | Mission business horizon was preserved in evidence but missing a due action | CL-08/CL-10 | Fixed after peer review: exact deadline event and continue/change/stop with valid extension required for further effects. |
-| Conditional Quiet Route/provider and generic effect gates could overblock other Lipi capabilities | Lipi economics/actions/acceptance | Author repair requested; final exact-source recheck recorded in REVIEW_SUMMARY.md. |
-| Shared runtime was on the first useful Guru publication path | Guru publication/integration | Author repair requested; native release and shared autonomy integration must remain separate. |
+| Conditional Quiet Route/provider and generic effect gates could overblock other Lipi capabilities | Lipi economics/actions/acceptance | Fixed: included-product conditional dependencies and action-class gates prevent unrelated grants from blocking permitted capabilities. Positive real acceptance remains required. |
+| Shared runtime was on the first useful Guru publication path | Guru publication/integration | Fixed: GURU-17 provides existing-parent native first release; GURU-07/08 provide later shared integration. |
 
 A preliminary encoding concern in root's display was withdrawn: the review command used Python's Windows default text encoding; explicit UTF-8 read showed correct artifact bytes. No source encoding corruption was established. Machine validation requires canonical mission IDs and explicit UTF-8 parsing.
 

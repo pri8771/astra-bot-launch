@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-22-0557bc4a0480262818cda23a1c6892308b29c3bdd90d1b9bded41de519ae8075",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-22",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "0557bc4a0480262818cda23a1c6892308b29c3bdd90d1b9bded41de519ae8075",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-22",
+    "mission": "LIPI",
+    "title": "Qualify independent Windows operations and recovery",
+    "goal": "Run one bounded Lipi operator without a Mac dependency or duplicate consumer.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/ops/windows/",
+      "services/lipi-autonomy/test/recovery/",
+      "ops/autonomy/recovery/"
+    ],
+    "evidence_refs": [
+      "LIPI-E03",
+      "LIPI-E06"
+    ],
+    "dependencies": [
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-21",
+      "SH-10",
+      "SH-11",
+      "SH-12",
+      "SH-13",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I10"
+    ],
+    "implementation_steps": [
+      "Package pinned dependencies/config with host-local credential references, private data paths and Windows process-tree/job-object timeout cleanup; keep existing readonly service isolation and old watchdog removal evidence distinct from current health.",
+      "Register explicit finite due jobs only after admission. Enforce per-run model/tool/token/time/currency caps, 0 idle inference, 2-repair maximum and actionable alert state transitions; P0 chargeback and 12h fulfillment deadlines use cheap timers.",
+      "Inject crash before submit, after provider accepts, before readback, after state commit and during owner pause; restore checkpoint/backup, cursor, claims, consumed grants and outbox, fence former owner and reconcile pending effects before takeover. Produce optional R730 migration manifest and rollback; no migration/i9 prerequisite."
+    ],
+    "deliverables": [
+      "Windows service/runbook package",
+      "fault/restore evidence",
+      "alert/budget/isolation qualification",
+      "optional R730 manifest"
+    ],
+    "tests": [
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "One Windows cycle runs with mobile Mac disconnected and produces correct receipts.",
+      "Backup restore preserves one consumer, all pending effect knowledge and no cross-mission secret/customer access."
+    ],
+    "rollback": "Disable only the new Lipi consumer, fence it, reconcile pending effects and restore last verified package/state; never awaken removed Mac watchdog.",
+    "next_eligible_action": "LIPI-23 independent exact-source autonomy acceptance; optional SH-16 migration later.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 11,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current Windows runtime and host-local credentials unverified"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O13",
+      "LIPI-A09",
+      "LIPI-A11",
+      "LIPI-A12",
+      "LIPI-A13",
+      "LIPI-A14",
+      "LIPI-A15",
+      "LIPI-A16",
+      "LIPI-A18"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Optional R730 migration or host transfer only; Windows acceptance is independent.",
+        "dependencies": [
+          "SH-16"
+        ],
+        "acceptance": "Qualify target storage/backup/secret references, fence previous owner, reconcile pending effects and prove new-host receipt/rollback before cutover."
+      }
+    ],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

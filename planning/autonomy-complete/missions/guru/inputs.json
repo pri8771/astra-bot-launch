@@ -1,0 +1,92 @@
+[
+  {
+    "id": "GURU-I01",
+    "mission": "GURU",
+    "required_input": "Canonical Guru repository/root/base and current parent return",
+    "respondent": "Windows four-mission parent",
+    "verification": "Reuse actual returned home; if absent record exact minimal reuse/new-home decision, source hash and disjoint path ownership before writes.",
+    "resume_action": "GURU-01",
+    "independent_work": "Research editorial/source requirements in planning without claiming runtime exists.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I02",
+    "mission": "GURU",
+    "required_input": "Exact current public brand/persona decisions beyond X-first mission",
+    "respondent": "Guru editorial owner/business owner",
+    "verification": "Reuse existing grants; bind actual brand identity and non-fictitious independent editorial description. X-first owner direction already established.",
+    "resume_action": "GURU-02",
+    "independent_work": "Prepare original source-based content concepts.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I03",
+    "mission": "GURU",
+    "required_input": "Real source editions/passages and rights for specific claims",
+    "respondent": "Editorial researcher/rights owner",
+    "verification": "Inspectable primary/contextual source, edition/translation, url/access date and rights basis; unsupported claims remain withheld.",
+    "resume_action": "GURU-03–04",
+    "independent_work": "Draft secular structure and research source gaps without fabricated quotes.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I04",
+    "mission": "GURU",
+    "required_input": "Named cultural reviewer and actual exact-source independent review route",
+    "respondent": "Editorial review coordinator; reviewers themselves",
+    "verification": "Reviewer identity/scope plus exact source/content/hash-bound approve/revise/withhold receipt; no inferred cultural expertise or self-review-as-independent.",
+    "resume_action": "GURU-05; 15",
+    "independent_work": "Prepare review packet and alternative candidates.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I05",
+    "mission": "GURU",
+    "required_input": "Current exact Guru account ID/handle/admin/recovery ownership",
+    "respondent": "Windows parent/account operator",
+    "verification": "Read existing registry and actual authenticated account; reuse routine account-organization authority; name any platform verification step.",
+    "resume_action": "GURU-06",
+    "independent_work": "Build isolated adapter with secret references and test fixtures.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I06",
+    "mission": "GURU",
+    "required_input": "Supported X publishing/analytics entitlement, exact content scope and finite existing budget",
+    "respondent": "Guru account operator/business owner",
+    "verification": "Current account/scope/user-context receipt, permitted API operations/quota, and exact current publication/cadence grant. No paid purchase implied.",
+    "resume_action": "GURU-06; 08; 10; 15; 17",
+    "independent_work": "Prepare source-reviewed content and native release manifest.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I07",
+    "mission": "GURU",
+    "required_input": "Operation-specific moderation/correction grant and optional automated-reply qualification",
+    "respondent": "Guru operator/business owner; X for AI reply permission",
+    "verification": "For original post corrections/deletion, exact applicable grant/readback. For AI automated replies additionally prior written explicit X approval, current recipient opt-in/summoning, opt-out and one-response rules.",
+    "resume_action": "Effect branch of GURU-09 only",
+    "independent_work": "Draft response/correction and continue qualified original posts; reply permission not required for their acceptance.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I08",
+    "mission": "GURU",
+    "required_input": "Current owner-direction/alert route and independent Windows operating envelope",
+    "respondent": "Windows parent/runtime operator",
+    "verification": "Actual owner issuer/revision acknowledgement, host/storage/secret references, finite caps, one consumer and restore receipt; no Mac dependence.",
+    "resume_action": "GURU-12–15",
+    "independent_work": "File-backed direction/question/incident fixtures and package review.",
+    "status": "unresolved_or_requires_current_receipt"
+  },
+  {
+    "id": "GURU-I09",
+    "mission": "GURU",
+    "required_input": "Evidence and exact scope for optional additional channel/format",
+    "respondent": "Guru experiment owner/business owner",
+    "verification": "Evaluated audience demand, bounded hypothesis, new account/capability/rights/budget and baseline if expanding; otherwise explicit no-go.",
+    "resume_action": "GURU-16",
+    "independent_work": "Continue existing X-first source/content experiments.",
+    "status": "unresolved_or_requires_current_receipt"
+  }
+]

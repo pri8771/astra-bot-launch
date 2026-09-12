@@ -1,0 +1,56 @@
+[
+  {
+    "id": "GURU-G01",
+    "mission": "GURU",
+    "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+    "task_ids": [
+      "GURU-06",
+      "GURU-08",
+      "GURU-15",
+      "GURU-17"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "GURU-G02",
+    "mission": "GURU",
+    "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+    "task_ids": [
+      "GURU-05",
+      "GURU-08",
+      "GURU-15",
+      "GURU-17"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "GURU-G03",
+    "mission": "GURU",
+    "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+    "task_ids": [
+      "GURU-08",
+      "GURU-15",
+      "GURU-17"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "GURU-G04",
+    "mission": "GURU",
+    "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+    "task_ids": [
+      "GURU-09",
+      "GURU-15"
+    ],
+    "status": "requires_applicable_current_receipt"
+  },
+  {
+    "id": "GURU-G05",
+    "mission": "GURU",
+    "condition": "Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent.",
+    "task_ids": [
+      "GURU-16"
+    ],
+    "status": "requires_applicable_current_receipt"
+  }
+]

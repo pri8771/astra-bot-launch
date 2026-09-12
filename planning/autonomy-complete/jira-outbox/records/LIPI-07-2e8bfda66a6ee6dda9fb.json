@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-07-2e8bfda66a6ee6dda9fbfd16dc8e3d75b1b6974847c65bb02e81ec24789b0521",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-07",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-69",
+    "LIPI-71"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "2e8bfda66a6ee6dda9fbfd16dc8e3d75b1b6974847c65bb02e81ec24789b0521",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-07",
+    "mission": "LIPI",
+    "title": "Enforce all-in economics and US cart shipping",
+    "goal": "Make every permitted selling basket satisfy the binding 20% floor with 10% reserve before price or shipping action.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/economics/",
+      "services/lipi-autonomy/test/economics/",
+      "ops/autonomy/economics/"
+    ],
+    "evidence_refs": [
+      "LIPI-E04",
+      "LIPI-E05"
+    ],
+    "dependencies": [
+      "LIPI-01"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03",
+      "LIPI-I04"
+    ],
+    "implementation_steps": [
+      "Reuse the standardized integer-cents method: R=P−D; total revenue=R+customer shipping; contribution subtracts supplier product/decoration/shipping, platform allocation, variable/fixed payment/channel fees, 10%×R reserve and actual absorbed costs. Do not use retired30% caution as floor or 2–5% reserve hypotheses. Contribution percent=contribution/(R+customer shipping); reject nonpositive denominator. Represent cents and rate arithmetic exactly using integer/rational intermediates and round only the final displayed money; threshold comparisons use unrounded values. Collected/remitted pass-through tax is excluded from revenue; fee bases follow actual provider rules. Preserve dated owner no-collection posture as an assumption and include any actually absorbed/import cost only when evidenced.",
+      "Refresh fee rules, exact variant costs and US destination/service quotes; enumerate single-item, mixed-cart, high-cost-size, discounts and $98.99/$99/$99.01 after-discount threshold cases without double counting shipping.",
+      "Fail closed for unknown/stale inputs, prohibited discount+merchant-paid-shipping stack or any allowed basket below 20%. Compile a signed policy/economics result and exact price proposal; $99 free-US-shipping remains disabled until mixed-cart proof and existing approval. Preserve owner tax record without supplying a legal determination."
+    ],
+    "deliverables": [
+      "versioned margin evaluator",
+      "shipping matrix and quote freshness policy",
+      "price/shipping decision packet"
+    ],
+    "tests": [
+      "Boundary fixtures at 19.99/20.00/20.01% and null fee fail/pass correctly with no intermediate rounding.",
+      "Mixed supplier/cart shipments cannot be treated as linear single-item shipping; stale or changed cost invalidates queued price action."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Every permitted basket clears 20% under current evidenced assumptions; failing baskets cannot sell under the proposed configuration.",
+      "Reserve remains 10% until owner revisits after 100 actual orders; economic and tax unknowns stay explicit."
+    ],
+    "rollback": "Revert proposed calculations/config to previous admitted policy; a live price rollback must itself satisfy current margin authority.",
+    "next_eligible_action": "Produce exact purchase quote in LIPI-08; price execution only through LIPI-16.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current quotes, fees and threshold behavior missing"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-69",
+        "LIPI-71"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G02",
+      "LIPI-G03"
+    ],
+    "requirement_ids": [
+      "LIPI-O04"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Actual retained-capsule launch/price/shipping economics; offline scenario modeling is independent.",
+        "dependencies": [
+          "LIPI-02"
+        ],
+        "acceptance": "Bind owner-accepted membership. Require positive exact variant mapping for every included product and exclude explicitly rejected/withheld variants. Conditional Quiet Route never blocks the other accepted capsule products."
+      },
+      {
+        "condition": "Meridian is included in the actual permitted selling/sample basket.",
+        "dependencies": [
+          "LIPI-03"
+        ],
+        "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+      },
+      {
+        "condition": "Open Current is included in the actual permitted selling/sample basket.",
+        "dependencies": [
+          "LIPI-04"
+        ],
+        "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+      },
+      {
+        "condition": "Quiet Route is included in the actual permitted selling/sample basket.",
+        "dependencies": [
+          "LIPI-05"
+        ],
+        "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+      },
+      {
+        "condition": "Threshold Study is included in the actual permitted selling/sample basket.",
+        "dependencies": [
+          "LIPI-06"
+        ],
+        "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+      }
+    ],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G02",
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval."
+      },
+      {
+        "gate_id": "LIPI-G03",
+        "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+        "gates": [
+          "LIPI-G02"
+        ]
+      },
+      {
+        "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+        "gates": [
+          "LIPI-G03"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

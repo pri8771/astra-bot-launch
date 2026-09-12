@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-14-921de4c5b896e524cfc1038427dce0e366f4133831468b2e3ee22ad5cb55e407",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-14",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-138",
+    "PCH-120",
+    "PCH-124",
+    "PCH-127"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "921de4c5b896e524cfc1038427dce0e366f4133831468b2e3ee22ad5cb55e407",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-14",
+    "mission": "BF",
+    "title": "Prove repeated real fit-business autonomy and migration readiness",
+    "goal": "Qualify autonomous observation-to-next-decision behavior separately from commission success.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/docs/autonomy/acceptance-plan.json",
+      "ventures/bidetfit/docs/autonomy/acceptance-receipts/",
+      "ventures/bidetfit/docs/autonomy/migration-interface.json"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E06"
+    ],
+    "dependencies": [
+      "BF-11",
+      "BF-12",
+      "BF-13",
+      "SH-15"
+    ],
+    "prerequisite_inputs": [
+      "BF-I07"
+    ],
+    "implementation_steps": [
+      "Require exact-source independent reviewer and product/source/fault receipts before any real cycle.",
+      "Cycle 1 observes actual primary-source status and permitted aggregate use, decides admitted source/guide improvement, releases one reviewed useful correction or source-backed page and verifies receiving URL.",
+      "Cycle 2 starts from next due/new real evidence without owner launch, evaluates source/usefulness result and completes a second justified real eligible action with receiving-system verification and next decision. A durable no-action wait is valid operation but cannot complete the two-cycle runtime acceptance.",
+      "Exercise owner focus French-curve direction, pause pending affiliate effect, answer a missing-input question and crash after release submission; recover original receipt and acknowledge consumed revision.",
+      "Prove Windows with Mac disconnected; optional R730 SH-16 migration requires one restored store, stopped/fenced former owner, equivalent receipts and unchanged budgets. No i9/cloud billing prerequisite.",
+      "Qualify affiliate/commission and support capabilities separately when gates resolve; real receipts are required and missing sales never block honest completion of an inconclusive usefulness experiment."
+    ],
+    "deliverables": [
+      "two real cycle bundles",
+      "reviewer-authored acceptance",
+      "owner/crash receipts",
+      "conditional R730 transfer contract"
+    ],
+    "tests": [
+      "Two consecutive completed real cycle IDs each link observation, decision, eligible action, receiving-system verification, evaluation and next decision; waiting or synthetic action cannot replace either real cycle.",
+      "Two real permitted external product effects are exercised; synthetic traffic, invented model measurements and test commissions never count as demand.",
+      "All A01-A18 mission integration tests and independent source review bind exact commit/artifact.",
+      "Unavailable program/support authority remains disabled with executable resume tasks; runtime acceptance names the enabled capability set."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+      "Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+    ],
+    "rollback": "Withdraw unsupported capability acceptance, pause new effects and retain useful product under existing owner.",
+    "next_eligible_action": "Prepare exact-source acceptance protocol and a permitted non-spending source/product cycle.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 18,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Real evidence timing and eligible destination access determine elapsed acceptance window."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-138",
+        "PCH-120",
+        "PCH-124",
+        "PCH-127"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01",
+      "BF-G02",
+      "BF-G09",
+      "BF-G11"
+    ],
+    "requirement_ids": [
+      "BF-O10",
+      "BF-A04",
+      "BF-A05",
+      "BF-A17",
+      "BF-A18"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Affiliate/commission autonomy acceptance; non-affiliate source/product cycles remain independent.",
+        "dependencies": [
+          "BF-05",
+          "BF-07"
+        ],
+        "acceptance": "Current program eligibility and actual commission/cash evidence required; absent approval or transaction data leaves financial capability unvalidated."
+      },
+      {
+        "condition": "Private support or low-risk support-send autonomy acceptance; source/product cycles remain independent.",
+        "dependencies": [
+          "BF-08"
+        ],
+        "acceptance": "Private draft pilot and exact optional send authority/receipts must pass before this capability is accepted."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

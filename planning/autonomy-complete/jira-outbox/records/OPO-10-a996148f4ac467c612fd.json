@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-10-a996148f4ac467c612fdfb1d781751a7011c93a2c30696485e990dff4c0e8d93",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-10",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "a996148f4ac467c612fdfb1d781751a7011c93a2c30696485e990dff4c0e8d93",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-10",
+    "mission": "OPO",
+    "title": "Integrate durable mission jobs and deterministic events",
+    "goal": "Message, job, payment and observation events schedule eligible work with a single fenced owner.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "operator/opo/events.py",
+      "operator/opo/state.py",
+      "operator/opo/schedule.json",
+      "tests/opo/test_events.py"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E05"
+    ],
+    "dependencies": [
+      "OPO-03",
+      "OPO-04",
+      "SH-02",
+      "SH-03",
+      "SH-04"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Map message.accepted, service.completed, payment.verified, delivery.failed, support.opened, metrics.updated, experiment.due and direction.changed into shared durable events with source revisions.",
+      "Bind mission jobs/experiments/receipts and append-only decisions to transactional state; claim by mission/resource/epoch and reject stale ownership on state and effect writes.",
+      "Schedule cheap due checks with next_check_at/evidence_version/decision_fingerprint; retain one active experiment default and avoid any model call for unchanged not-due input."
+    ],
+    "deliverables": [
+      "mission state/event integration",
+      "deterministic schedule",
+      "race/replay/idle evidence"
+    ],
+    "tests": [
+      "Two Windows processes race for the same conversation job: one owner executes; expired owner cannot finish after fenced takeover.",
+      "Replay webhook/event and restart before acknowledgement: exactly one eligible job and stable next due time.",
+      "A 24-hour synthetic idle clock makes zero inference calls and no outbound effects."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "OPO event processing is replay-safe, durable and independent of the mobile Mac.",
+      "Events reopen only materially changed or due work with explicit ownership."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 8,
+      "high": 14,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "OPO-A01",
+      "OPO-A02"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

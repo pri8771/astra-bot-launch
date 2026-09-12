@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-13-385b27cccb67d7c3831a3e3b0782e87966357267709ad0a31b5fdf90623196e7",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-13",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "PCH-122",
+    "PCH-123",
+    "PCH-127"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "385b27cccb67d7c3831a3e3b0782e87966357267709ad0a31b5fdf90623196e7",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-13",
+    "mission": "BF",
+    "title": "Qualify Windows recovery, privacy, alerts and limits",
+    "goal": "Survive crashes and resource failures without duplicate referrals, sends or state corruption.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/runtime_limits.py",
+      "ventures/bidetfit/scripts/recovery_adapter.py",
+      "ventures/bidetfit/config/runtime-limits.json",
+      "ventures/bidetfit/tests/test_recovery.py",
+      "ventures/bidetfit/docs/autonomy/windows-runbook.md"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "dependencies": [
+      "BF-09",
+      "BF-10",
+      "SH-10",
+      "SH-11",
+      "SH-12",
+      "SH-13",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "BF-I06"
+    ],
+    "implementation_steps": [
+      "Enforce Windows child-process tree termination, job deadlines, deterministic retry limits, finite model repairs and durable checkpoints.",
+      "Restore encrypted private state and public-safe projections using one authoritative claim; reconcile publication/send/affiliate activation after uncertain completion before new ownership.",
+      "Enforce model/tool/daily budget, zero idle inference and exact zero-budget/rolling-cash policy; approved existing runtime only, no Cloud billing/paid route assumed from historical architecture.",
+      "Test secret references, private ticket retention/deletion and source-content injection; keep PII/photos/measurements outside Git/Jira/public logs.",
+      "Alert once on changed actionable source hazard, missing approval, broken workflow, quota or ledger mismatch with owner action and resume pointer; keep unchanged waits quiet."
+    ],
+    "deliverables": [
+      "fault and restore receipts",
+      "privacy/limits implementation",
+      "Windows operations runbook"
+    ],
+    "tests": [
+      "Kill parent/child and restore mid-source-change: one job resumes and stale model record stays uncertain.",
+      "Crash after approved link release or permitted send triggers destination reconciliation, no duplicate effect.",
+      "Quota exhausted or unknown denies inference/action; unchanged incident has one notification; PII canaries do not appear in public artifacts.",
+      "Windows completes bounded job with Mac disconnected and produces process cleanup/restore receipts.",
+      "With support disabled and no mailbox/customer store/model connection, Windows public-source/product fault and restore acceptance remains executable; support intake and sends remain denied."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+      "Actionable-alert and private-data tests pass for every enabled mission adapter."
+    ],
+    "rollback": "Disable newly affected adapter, preserve durable evidence and perform read-only reconciliation; return only to fenced known owner.",
+    "next_eligible_action": "Run local non-effect process-tree/restore and budget fixtures using approved host runtime.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 28,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Windows private store/model credentials must be qualified; current health operator stays intact."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "PCH-122",
+        "PCH-123",
+        "PCH-127"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G09",
+      "BF-G10"
+    ],
+    "requirement_ids": [
+      "BF-A09",
+      "BF-A12",
+      "BF-A13",
+      "BF-A14",
+      "BF-A15",
+      "BF-A16",
+      "BF-A18"
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Enable or test live private support mailbox/customer-data/model route. Public source/product Windows runtime and redacted fixtures remain independent.",
+        "effect_gates": [
+          "BF-G07",
+          "BF-G08"
+        ],
+        "acceptance": "Qualify exact mailbox/private store/model/retention and any send authority before enabling support; disabled support cannot block Windows source/product recovery acceptance."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

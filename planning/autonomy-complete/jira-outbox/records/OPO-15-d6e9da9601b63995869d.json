@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-15-d6e9da9601b63995869d34aad4d8a1329807a60565a170ad96d4e3db59b9755c",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-15",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-60",
+    "BOTS-127"
+  ],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "d6e9da9601b63995869d34aad4d8a1329807a60565a170ad96d4e3db59b9755c",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-15",
+    "mission": "OPO",
+    "title": "Prove two autonomous service-business cycles",
+    "goal": "Independent review demonstrates the whole cycle and its next decision with genuine external receipts.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "docs/opo/acceptance/cycles.json",
+      "docs/opo/acceptance/review.md",
+      "tests/opo/test_full_cycle.py"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "dependencies": [
+      "OPO-09",
+      "OPO-11",
+      "OPO-12",
+      "OPO-13",
+      "OPO-14",
+      "SH-15"
+    ],
+    "prerequisite_inputs": [
+      "OPO-I07",
+      "OPO-I08"
+    ],
+    "implementation_steps": [
+      "Recheck exact released source and run labeled synthetic discovery/request/fulfillment cycle with crash points; keep these separate from real adoption.",
+      "Within qualified grants, observe a legitimate external request or a declared observation window, decide/register/execute a useful service or distribution experiment, verify actual receiving-system receipt and evaluate evidence.",
+      "Without a new launch instruction, select and complete a second justified real allowed cycle; include an authenticated owner amendment, pause/resume and restart. A durable evidence wait with a precise due/trigger is a valid operational state, but runtime autonomy acceptance remains incomplete until the second real allowed cycle is completed and verified. Genuine outside-agent adoption and paid business outcome remain separately pending if absent."
+    ],
+    "deliverables": [
+      "cycle traces",
+      "real destination receipts",
+      "distinct independent review",
+      "next experiment or evidence-wait record"
+    ],
+    "tests": [
+      "Trace every transition observation -> decision -> registered action -> verified receipt -> evaluation -> next decision for two cycles.",
+      "Independent reviewer reproduces source/hash/test selection and inspects real receipts; synthetic markers cannot satisfy external/business criteria.",
+      "Direction and crash tests show no duplicate response/post/charge and zero idle inference between eligible decisions."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Runtime autonomy acceptance includes repeated operation, owner direction, restart and exact-source independent review.",
+      "Real outside-agent use/revenue only reported when their own evidence exists; absent adoption is honestly inconclusive, not fabricated completion."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-60",
+        "BOTS-127"
+      ],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [
+      "OPO-I01",
+      "OPO-I02",
+      "OPO-I03",
+      "OPO-I05",
+      "OPO-I07",
+      "OPO-I08"
+    ],
+    "requirement_ids": [
+      "OPO-A17",
+      "OPO-O10"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

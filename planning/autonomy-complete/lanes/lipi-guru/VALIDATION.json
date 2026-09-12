@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-09-12T21:45:31.434729+00:00",
+  "classification": "local planning validation;not independent review or runtime acceptance",
+  "counts": {
+    "LIPI": {
+      "tasks": 24,
+      "requirements": 32,
+      "autonomy": 18
+    },
+    "GURU": {
+      "tasks": 17,
+      "requirements": 29,
+      "autonomy": 18
+    }
+  },
+  "errors": [],
+  "task_sha256": {
+    "lipi": "751fe220169c6393a2aad8e431e5885ef55368318903d5c2cd5c5c2f710485f0",
+    "guru": "c02f9065419eba041652e43edb9aed5d3c8c0552363cce55cc83ffb88aa04c19"
+  }
+}

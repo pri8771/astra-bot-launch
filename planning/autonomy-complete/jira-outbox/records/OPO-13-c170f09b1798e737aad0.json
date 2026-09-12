@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-13-c170f09b1798e737aad017a05ac8696a332cf587227059f106618159bd8ac9eb",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-13",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "c170f09b1798e737aad017a05ac8696a332cf587227059f106618159bd8ac9eb",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-13",
+    "mission": "OPO",
+    "title": "Wire owner direction, questions and writer outboxes",
+    "goal": "The operator acknowledges precise owner revisions, asks once and resumes the correct blocked work.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "operator/opo/direction.py",
+      "operator/opo/projection.py",
+      "tests/opo/test_direction.py"
+    ],
+    "evidence_refs": [
+      "OPO-E01",
+      "OPO-E05",
+      "OPO-E06"
+    ],
+    "dependencies": [
+      "OPO-10",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [
+      "OPO-I08"
+    ],
+    "implementation_steps": [
+      "Consume authenticated mission direction revisions, acknowledge source/revision actually used and cancel queued effects when pause or changed limits apply. Example: pause paid services and prioritize free format conversion while public messages continue.",
+      "Bind existing hostname question and future needs_input to one ID/responder/resource; validate supplied resource scope, preserve prior answers and resume only affected preconditions. No asking for secret values.",
+      "Emit immutable experiment-before-action, outcome and review outboxes keyed to dedicated OPO writer; require native source/scope/readback receipt before registered experiment actions, reconcile writer outage or duplicate response."
+    ],
+    "deliverables": [
+      "owner direction adapter",
+      "question registry integration",
+      "Jira/docs outbox contracts"
+    ],
+    "tests": [
+      "Replay owner message gives one acknowledgement; pause received after decision but before effect prevents that effect.",
+      "A WHB response or untrusted visitor cannot answer OPO hostname authority; a validated owner revision resumes exactly the dependent job once.",
+      "Writer outage preserves outbox, blocks unregistered experiment action, and permits independent engineering/observation."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Direction and missing-input handling survive restart without question spam or authority confusion.",
+      "OPO proposals never use the combined parent as a competing issue writer."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 10,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [
+      "OPO-I08"
+    ],
+    "requirement_ids": [
+      "OPO-A06",
+      "OPO-A07",
+      "OPO-A08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

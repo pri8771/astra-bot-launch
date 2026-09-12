@@ -1,0 +1,2959 @@
+{
+  "schema_version": 1,
+  "kind": "implementation_DAG_not_running_schedule",
+  "nodes": [
+    {
+      "id": "SH-01",
+      "mission": "SH",
+      "title": "Bind capability, source, ownership and admission contracts",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A second executor can validate one task's inputs and obtain a precise eligible/blocking reason.",
+        "Every source capability reused has an exact path/ref and proof scope; missing inputs have respondent and resume action."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-02",
+      "mission": "SH",
+      "title": "Persist events, jobs, attempts and consistent snapshots",
+      "dependencies": [
+        "SH-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Schema/migration/backup commands and fixture restore receipt are reproducible.",
+        "Every acknowledged intent survives restart; storage failure disables affected dispatch."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-03",
+      "mission": "SH",
+      "title": "Enforce single-owner claims and effect fencing",
+      "dependencies": [
+        "SH-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Claim/fence audit includes failed contenders and broker enforcement.",
+        "No credential path can independently bypass current ownership; if it can, integration is not accepted."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-04",
+      "mission": "SH",
+      "title": "Schedule only changed events and due decisions",
+      "dependencies": [
+        "SH-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "An unchanged 24-hour synthetic schedule produces zero model calls; actual deployed idle observation is separately required per mission.",
+        "Events and due windows have deterministic, documented wake reasons."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-05",
+      "mission": "SH",
+      "title": "Persist evidence-based business decisions",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Every selected action references real input evidence and an allowed mission objective.",
+        "No model output can grant permission or mark its own remote action verified."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-06",
+      "mission": "SH",
+      "title": "Execute effects with deduplication and destination reconciliation",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Adapter can prove one match, qualified absence, or explicit unknown without guessing.",
+        "Unknown charged effects retain reserved spend; no duplicate charge/post/send/Jira mutation."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-07",
+      "mission": "SH",
+      "title": "Register experiments, evaluate and choose the next finite action",
+      "dependencies": [
+        "SH-05",
+        "SH-06",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Original experiment and subsequent decisions remain traceable and immutable.",
+        "Real operating acceptance remains in six mission tasks with actual elapsed observations."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-08",
+      "mission": "SH",
+      "title": "Consume owner direction and resume answered questions once",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Owner sees acknowledgement of actual consumed revision, not just saved file.",
+        "Question deduplication and safe pause boundary survive process loss."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-09",
+      "mission": "SH",
+      "title": "Compile immutable Jira and documentation outboxes",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A task cannot be marked admitted solely from queue placement or HTTP acknowledgement.",
+        "Every projection names its sole scope owner; history/actuals remain preserved."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-10",
+      "mission": "SH",
+      "title": "Bound retries, reviews and repairs",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Reviews distinguish independent same-model review from distinct-model approval.",
+        "Repair exhaustion is durable and no retry storm occurs."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-11",
+      "mission": "SH",
+      "title": "Qualify Windows runner, independent startup and restore",
+      "dependencies": [
+        "SH-02",
+        "SH-03",
+        "SH-06",
+        "SH-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Actual Windows receipt proves tree cleanup, restart, one owner and independent startup.",
+        "Measured recovery target and observed limitations recorded; no claimed R730 migration."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-12",
+      "mission": "SH",
+      "title": "Deliver actionable incidents and operational status",
+      "dependencies": [
+        "SH-02",
+        "SH-08"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "An operator can identify the affected task and execute a named recovery action.",
+        "Unknown or unobserved runtime state is not healthy/zero."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-13",
+      "mission": "SH",
+      "title": "Enforce mission privacy, secrets and source trust boundaries",
+      "dependencies": [
+        "SH-01",
+        "SH-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Artifacts contain secret references only; customer/order content stays access-controlled.",
+        "Each adapter has explicit input trust, egress and payload-size rules."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-14",
+      "mission": "SH",
+      "title": "Enforce model, tool and monetary limits at dispatch",
+      "dependencies": [
+        "SH-01",
+        "SH-02",
+        "SH-05"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Caps are enforced outside the model at the effect boundary and survive restart.",
+        "No install, subscription, purchase or new paid quota is inferred from this plan."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-15",
+      "mission": "SH",
+      "title": "Review shared faults and qualify integration harness",
+      "dependencies": [
+        "SH-03",
+        "SH-04",
+        "SH-06",
+        "SH-07",
+        "SH-08",
+        "SH-09",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Attributable verdict has exact source/test hashes and no unresolved critical findings.",
+        "Compatible shared version is available for native operator integrations; actual mission external receipts remain their own gates."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "SH-16",
+      "mission": "SH",
+      "title": "Qualify optional R730 central-hub migration and fallback",
+      "dependencies": [
+        "SH-11",
+        "SH-15"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "SH-G01",
+        "SH-G02",
+        "SH-G03",
+        "SH-G09",
+        "SH-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Actual R730 migration/restore receipt exists per moved mission; Windows temporary independence already qualifies separately.",
+        "i9 remains deferred; no mobile Mac dependency; no unapproved installations/network changes."
+      ],
+      "task_file": "shared/TASKS.md"
+    },
+    {
+      "id": "OPO-01",
+      "mission": "OPO",
+      "title": "Bind preserved source and current agent-business contract",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "One current source/spec/owner binding and explicit reuse decisions exist.",
+        "Every unresolved capability has an input ID and independent next work."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-02",
+      "mission": "OPO",
+      "title": "Release human-readable and machine-readable discovery",
+      "dependencies": [
+        "OPO-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A standards-agnostic client can discover one valid request/response contract from anonymous HTML and JSON.",
+        "Existing resources and attribution remain usable; no new opaque private protocol is required."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-03",
+      "mission": "OPO",
+      "title": "Implement durable conversations and authenticated controls",
+      "dependencies": [
+        "OPO-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I02",
+        "OPO-I03"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Persistent threaded request/reply intake and bounded rejection evidence work in a qualified storage environment.",
+        "Public and internal conversation views expose only the allowed records, with edit/moderation/deletion lineage."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-04",
+      "mission": "OPO",
+      "title": "Deliver one deterministic service with attributable results",
+      "dependencies": [
+        "OPO-02",
+        "OPO-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "One useful service has real execution, verifiable outputs and bounded resource cost.",
+        "Contract Check remains an optional evidence-selected service, not a forced business identity."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-05",
+      "mission": "OPO",
+      "title": "Define a concrete agent-service offer and economic decision",
+      "dependencies": [
+        "OPO-01",
+        "OPO-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A specific reviewable offer and honest free alternative are available.",
+        "Acceptance distinguishes willingness to pay, requested quote, payment and delivered value."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-06",
+      "mission": "OPO",
+      "title": "Qualify merchant checkout and payment reconciliation",
+      "dependencies": [
+        "OPO-05"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I04",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Qualified checkout yields an independently verified payment record or exact unresolved merchant gate.",
+        "No revenue claim occurs before real settled/authorized payment evidence; refunds/fees retained separately."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-07",
+      "mission": "OPO",
+      "title": "Complete fulfillment, support, refunds and accounting",
+      "dependencies": [
+        "OPO-03",
+        "OPO-04",
+        "OPO-05"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Any payment-dependent fulfillment, paid entitlement, refund or real-money accounting effect; free fulfillment branch is independent.",
+          "dependencies": [
+            "OPO-06"
+          ],
+          "acceptance": "OPO-06 merchant/payment acceptance and exact amount/currency/order/grant/provider receipt verified before paid branch; absent gate leaves free delivery eligible and paid acceptance incomplete."
+        }
+      ],
+      "effect_gates": [
+        "OPO-I04",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "End-to-end delivery/support works for the useful free release.",
+        "Paid fulfillment/refund acceptance is separately gated by OPO-06 and exact provider receipts; no fabricated commercial validation."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-08",
+      "mission": "OPO",
+      "title": "Add qualified distribution and honest channel attribution",
+      "dependencies": [
+        "OPO-02",
+        "OPO-05"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I05",
+        "OPO-I06",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "At least one eligible useful distribution route has exact-account delivery/readback or explicit blocked effect with ready content.",
+        "Per-channel exposure and qualified agent participation are measured separately from transactions."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-09",
+      "mission": "OPO",
+      "title": "Ship and verify the useful public service release",
+      "dependencies": [
+        "OPO-02",
+        "OPO-03",
+        "OPO-04",
+        "OPO-05"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I03",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A useful public service has exact source review, destination receipt and working recovery.",
+        "Shared autonomy tasks do not delay already-authorized useful worker releases; payment/channel gates apply to their own effects."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-10",
+      "mission": "OPO",
+      "title": "Integrate durable mission jobs and deterministic events",
+      "dependencies": [
+        "OPO-03",
+        "OPO-04",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "OPO event processing is replay-safe, durable and independent of the mobile Mac.",
+        "Events reopen only materially changed or due work with explicit ownership."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-11",
+      "mission": "OPO",
+      "title": "Implement evidence-led offer and product experiments",
+      "dependencies": [
+        "OPO-05",
+        "OPO-07",
+        "OPO-10",
+        "SH-05",
+        "SH-07",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I07",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each decision stores observed facts, chosen hypothesis, an alternative, constraints, next due/action and outcome classification.",
+        "Second experiment is chosen from first-cycle evidence without a fresh launch prompt."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-12",
+      "mission": "OPO",
+      "title": "Integrate eligible service and external effect receipts",
+      "dependencies": [
+        "OPO-07",
+        "OPO-08",
+        "OPO-10",
+        "SH-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I04",
+        "OPO-I05",
+        "OPO-I06",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Every admitted action has a durable attempt and result verified at the appropriate destination.",
+        "Uncertainty creates reconciliation work instead of blind retry."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-13",
+      "mission": "OPO",
+      "title": "Wire owner direction, questions and writer outboxes",
+      "dependencies": [
+        "OPO-10",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Direction and missing-input handling survive restart without question spam or authority confusion.",
+        "OPO proposals never use the combined parent as a competing issue writer."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-14",
+      "mission": "OPO",
+      "title": "Qualify Windows operations, recovery and privacy",
+      "dependencies": [
+        "OPO-10",
+        "OPO-12",
+        "OPO-13",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; independent Windows recovery and runtime acceptance do not depend on migration.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Before target cutover qualify target host/storage, fence old owner, reconcile uncertain effects, inject target-local secret references and verify equivalent receipts/rollback. If target unavailable, complete Windows acceptance and retain migration pending."
+        }
+      ],
+      "effect_gates": [
+        "OPO-I09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Windows start/restart/restore/stop has evidence, bounded failure and actionable alerting.",
+        "Optional R730 acceptance proves fenced takeover; migration is neither claimed nor a release prerequisite."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "OPO-15",
+      "mission": "OPO",
+      "title": "Prove two autonomous service-business cycles",
+      "dependencies": [
+        "OPO-09",
+        "OPO-11",
+        "OPO-12",
+        "OPO-13",
+        "OPO-14",
+        "SH-15"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "OPO-I01",
+        "OPO-I02",
+        "OPO-I03",
+        "OPO-I05",
+        "OPO-I07",
+        "OPO-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Runtime autonomy acceptance includes repeated operation, owner direction, restart and exact-source independent review.",
+        "Real outside-agent use/revenue only reported when their own evidence exists; absent adoption is honestly inconclusive, not fabricated completion."
+      ],
+      "task_file": "missions/opo/TASKS.md"
+    },
+    {
+      "id": "WHB-01",
+      "mission": "WHB",
+      "title": "Bind source, current account and retained startup work",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A single source/owner/mission contract and reuse plan exists without changing the active operator.",
+        "Historical accounts and state are not asserted current."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-02",
+      "mission": "WHB",
+      "title": "Repair and package the existing publisher safely",
+      "dependencies": [
+        "WHB-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Existing publisher starts safely and exact-account X-only dry-run can be qualified.",
+        "Scheduled publishing cannot begin simply because a usable credential appears."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-03",
+      "mission": "WHB",
+      "title": "Build a sourced editorial queue and scientific validation",
+      "dependencies": [
+        "WHB-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "An independently reviewed accurate explainer is ready without needing account access.",
+        "Queue candidates cannot publish on old relative timing alone."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-04",
+      "mission": "WHB",
+      "title": "Implement account-bound publication and real receipts",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "One eligible real publication has both provider and correct-account destination receipts.",
+        "Absent external access yields a reviewed ready candidate and explicit gate, never a launch claim."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-05",
+      "mission": "WHB",
+      "title": "Add trustworthy audience measurement and corrections",
+      "dependencies": [
+        "WHB-03",
+        "WHB-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I07",
+        "WHB-I06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Audience evidence is timestamped, interpretable and linked to the exact content/experiment.",
+        "Correction and moderation actions retain lineage and platform authority."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-06",
+      "mission": "WHB",
+      "title": "Ship editorial and publishing release with review and rollback",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03",
+        "WHB-04",
+        "WHB-05"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Substantive editorial operation has a useful public piece, usable next pipeline and recovery.",
+        "Release does not wait for SH runtime completion or all three historical channels."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-07",
+      "mission": "WHB",
+      "title": "Integrate durable editorial jobs and deterministic scheduling",
+      "dependencies": [
+        "WHB-02",
+        "WHB-03",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "WHB can resume editorial/publication/evaluation states from durable events safely.",
+        "Schedule is cheap and mission-specific instead of repeated generative cron."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-08",
+      "mission": "WHB",
+      "title": "Implement audience experiments and justified next content decisions",
+      "dependencies": [
+        "WHB-05",
+        "WHB-07",
+        "SH-05",
+        "SH-07",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I05",
+        "WHB-I06",
+        "WHB-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "The second content decision is attributable to actual observed evidence and original audience goal.",
+        "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-09",
+      "mission": "WHB",
+      "title": "Bind publisher and corrections to shared effect controls",
+      "dependencies": [
+        "WHB-04",
+        "WHB-05",
+        "WHB-07",
+        "SH-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I06",
+        "WHB-I07"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Every autonomous WHB effect is bound to reviewed bytes, exact resource and durable outcome.",
+        "Unknown result never triggers blind reposting."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-10",
+      "mission": "WHB",
+      "title": "Integrate owner nudges, questions and Jira documentation",
+      "dependencies": [
+        "WHB-07",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "WHB acknowledges owner direction and resumes exact work without recurring input questions.",
+        "No planner or mission child becomes a competing Jira writer."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-11",
+      "mission": "WHB",
+      "title": "Add Windows recovery, bounded retries, alerts and isolation",
+      "dependencies": [
+        "WHB-07",
+        "WHB-09",
+        "WHB-10",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; independent Windows recovery and runtime acceptance do not depend on migration.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Before target cutover qualify target host/storage, fence old owner, reconcile uncertain effects, inject target-local secret references and verify equivalent receipts/rollback. If target unavailable, complete Windows acceptance and retain migration pending."
+        }
+      ],
+      "effect_gates": [
+        "WHB-I09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+        "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "WHB-12",
+      "mission": "WHB",
+      "title": "Prove repeated autonomous editorial cycles",
+      "dependencies": [
+        "WHB-06",
+        "WHB-08",
+        "WHB-09",
+        "WHB-10",
+        "WHB-11",
+        "SH-15"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "WHB-I01",
+        "WHB-I02",
+        "WHB-I03",
+        "WHB-I05",
+        "WHB-I06",
+        "WHB-I08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "WHB runtime autonomy is demonstrated independently from content performance and growth.",
+        "Real audience growth/return interest is reported only from observed metrics, including inconclusive or negative results."
+      ],
+      "task_file": "missions/whb/TASKS.md"
+    },
+    {
+      "id": "CL-01",
+      "mission": "CL",
+      "title": "Admit existing product and operator capabilities without replacement",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G01"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Exact source/ref and current owner are recorded; every reused capability has bounded proof and a verification action.",
+        "Product tasks can proceed under their existing release admission; wider autonomy dependencies do not halt the running operator."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-02",
+      "mission": "CL",
+      "title": "Complete reliable scan and saved useful-result continuity",
+      "dependencies": [
+        "CL-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A visitor produces, understands, saves/restores and exports a prioritized report and follows a concrete next step.",
+        "Each failure explains retry/paste/manual verification without asserting a storefront defect from retrieval failure."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-03",
+      "mission": "CL",
+      "title": "Make request intake and verified response delivery restart-safe",
+      "dependencies": [
+        "CL-01",
+        "CL-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G02",
+        "CL-G03"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "One authorized real inbound request yields one verified public or scoped private response receipt.",
+        "Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+        "Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-04",
+      "mission": "CL",
+      "title": "Operationalize the scoped audit offer and fulfillment",
+      "dependencies": [
+        "CL-01",
+        "CL-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G03",
+        "CL-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A complete sample defect pack and verifiable fulfillment run exist with observable quality gates.",
+        "An authorized real order, when available, can be delivered and supported from saved evidence; no order or satisfaction is invented."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-05",
+      "mission": "CL",
+      "title": "Qualify payments, refunds and settled cash accounting",
+      "dependencies": [
+        "CL-03",
+        "CL-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G04",
+        "CL-G05"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Payment taking remains gated until actual merchant route and scope are verified.",
+        "Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-06",
+      "mission": "CL",
+      "title": "Connect qualified acquisition and consent-aware funnel evidence",
+      "dependencies": [
+        "CL-01",
+        "CL-02",
+        "CL-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G02",
+        "CL-G06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Funnel scorecard connects acquired qualified use to scoped demand and paid fulfillment with coverage/attribution limits.",
+        "One admitted useful acquisition intervention has destination evidence; message drafts are never counted as sent.",
+        "Offline candidate/metric readiness is established by consent/denominator tests and reviewed draft. Actual acquisition intervention/destination receipt is conditional on release and channel authority; absent demand or permission does not block useful utility deployment."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-07",
+      "mission": "CL",
+      "title": "Release through the preserved portfolio deployment route",
+      "dependencies": [
+        "CL-02",
+        "CL-04"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Enable the new request intake/response adapter in this release; scanner/result/offer release and preserved previously qualified route remain independent.",
+          "dependencies": [
+            "CL-03"
+          ],
+          "acceptance": "Require CL-03 adapter fixture/readback qualification for the enabled response capability; real inbound-request evidence is its own capability acceptance, not a prerequisite for scanner utility deployment."
+        },
+        {
+          "condition": "Enable the new acquisition/analytics adapter or claim its actual intervention acceptance; public scanner/result/offer deployment remains independent.",
+          "dependencies": [
+            "CL-06"
+          ],
+          "acceptance": "Qualify consent-aware collector/allowed channel before enabling it. With absent customer/channel evidence, release the useful product with existing consent controls and reviewed acquisition drafts only."
+        }
+      ],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G07"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Exact-source independent review, deployment receipt and public readback identify the same selected product version.",
+        "Useful release can be accepted with payment taking disabled and broader autonomy still pending.",
+        "Offline request/acquisition code readiness and reviewed candidates are separate from conditional live capability receipts; useful release cannot deadlock waiting for an intervention that requires that release."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-08",
+      "mission": "CL",
+      "title": "Integrate durable events, ownership and due decisions into existing operator",
+      "dependencies": [
+        "CL-01",
+        "CL-03",
+        "SH-01",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+        "Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+        "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-09",
+      "mission": "CL",
+      "title": "Consume owner direction, questions and documentation outboxes",
+      "dependencies": [
+        "CL-08",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Owner sees the exact revision consumed and concrete next action or bounded blocker.",
+        "Answered missing input resumes saved work without restarting unrelated fulfilled jobs; matching outboxes project once."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-10",
+      "mission": "CL",
+      "title": "Evaluate experiments and select the next profitable-use hypothesis",
+      "dependencies": [
+        "CL-04",
+        "CL-06",
+        "CL-08",
+        "CL-09",
+        "SH-05",
+        "SH-07"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G06",
+        "CL-G08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+        "At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+        "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-11",
+      "mission": "CL",
+      "title": "Qualify mission recovery, privacy, alerts and budget enforcement",
+      "dependencies": [
+        "CL-08",
+        "CL-09",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "CL-G03",
+        "CL-G08",
+        "CL-G09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Recovery drill proves restart/restore, ownership fencing and zero unknown effects replayed.",
+        "Measured model/tool counters, redaction, private storage boundaries and actionable-alert receipts are retained."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "CL-12",
+      "mission": "CL",
+      "title": "Prove repeated real operation and optional hub transfer",
+      "dependencies": [
+        "CL-07",
+        "CL-10",
+        "CL-11",
+        "SH-06",
+        "SH-15"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Payment, refund or real-money autonomy acceptance; free source/product/acquisition cycles remain independent.",
+          "dependencies": [
+            "CL-05"
+          ],
+          "acceptance": "Complete merchant/payment qualification and actual provider/fulfillment receipts before accepting this capability. Missing gate leaves it disabled and money validation incomplete."
+        }
+      ],
+      "effect_gates": [
+        "CL-G01",
+        "CL-G02",
+        "CL-G07",
+        "CL-G08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Runtime autonomous-operation claim is limited to exercised eligible capabilities, with owner-direction and restart proof.",
+        "Business-validation status remains unvalidated unless actual paid-and-fulfilled evidence exists; no guarantee of revenue."
+      ],
+      "task_file": "missions/commercelint/TASKS.md"
+    },
+    {
+      "id": "BF-01",
+      "mission": "BF",
+      "title": "Reconcile retained product, tracker history and execution ownership",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G01"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each retained capability has a reuse or targeted verification disposition.",
+        "PCH/BOTS estimates, actuals and accepted evidence are preserved, with unresolved duplicate scope assigned to sole writer."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-02",
+      "mission": "BF",
+      "title": "Build exact-model compatibility evidence and deterministic rules",
+      "dependencies": [
+        "BF-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each exact-model result has dated source links and a reason; unsupported fit guarantees are absent.",
+        "Unknown or conflicting evidence produces a useful next measurement/manufacturer-verification step."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-03",
+      "mission": "BF",
+      "title": "Integrate useful checker, comparison and measurement journeys",
+      "dependencies": [
+        "BF-01",
+        "BF-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Visitor completes a useful category or exact-model check and can compare evidence/unknowns without a false fit guarantee.",
+        "Saved local report and printable sheet support a later manufacturer conversation without requiring an account."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-04",
+      "mission": "BF",
+      "title": "Refresh sources, correct guides and detect broken links",
+      "dependencies": [
+        "BF-02",
+        "BF-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G02"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each source has a freshness policy, due event, reviewed change disposition and next check.",
+        "An actual changed or expired source can lead to one correction with receiving-page readback and preserved prior evidence."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-05",
+      "mission": "BF",
+      "title": "Qualify affiliate programs and exact disclosed link routing",
+      "dependencies": [
+        "BF-01",
+        "BF-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G03",
+        "BF-G04"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each active affiliate link has current approval/terms/account/product/page evidence and receiving-link verification.",
+        "With no approval, checker and non-affiliate guides remain releasable and commission capability stays explicitly disabled."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-06",
+      "mission": "BF",
+      "title": "Measure useful completed checks and attributable referrals",
+      "dependencies": [
+        "BF-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G05"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Scorecard distinguishes helpful completed checks, uncertain guidance, permitted referrals and money.",
+        "One declared usefulness/acquisition intervention can be measured honestly despite partial analytics coverage."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-07",
+      "mission": "BF",
+      "title": "Reconcile commission lifecycle and collected cash",
+      "dependencies": [
+        "BF-05",
+        "BF-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G04",
+        "BF-G06"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+        "Affiliate click/estimated sale never becomes commission or cash automatically."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-08",
+      "mission": "BF",
+      "title": "Deliver private draft-first support and explicit merchant handoff",
+      "dependencies": [
+        "BF-02",
+        "BF-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G07",
+        "BF-G08"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+        "Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-09",
+      "mission": "BF",
+      "title": "Integrate durable mission events into the existing six-hour operator",
+      "dependencies": [
+        "BF-01",
+        "BF-04",
+        "SH-01",
+        "SH-02",
+        "SH-03",
+        "SH-04",
+        "SH-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+        "Changed/due evidence selects useful work automatically and records verified result/next check."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-10",
+      "mission": "BF",
+      "title": "Acknowledge owner changes, ask once and project governed documentation",
+      "dependencies": [
+        "BF-09",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G10"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Owner can see exact consumed direction and concrete next action.",
+        "A validated answer resumes only dependent job; governed documentation outboxes project once with native readback."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-11",
+      "mission": "BF",
+      "title": "Evaluate usefulness, acquisition and affiliate experiments",
+      "dependencies": [
+        "BF-06",
+        "BF-09",
+        "BF-10",
+        "SH-05",
+        "SH-07"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G05",
+        "BF-G09"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+        "Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+        "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-12",
+      "mission": "BF",
+      "title": "Release reviewed guidance through the existing portfolio overlay",
+      "dependencies": [
+        "BF-03",
+        "BF-04",
+        "BF-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G11"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "This release activates or changes affiliate tracking links. A non-affiliate guide/checker release does not require merchant approval.",
+          "effect_gates": [
+            "BF-G03",
+            "BF-G04"
+          ],
+          "acceptance": "Before commercial link activation verify exact approval/terms/product/geography/destination/disclosure; missing gate keeps those links disabled while useful guidance releases."
+        }
+      ],
+      "acceptance": [
+        "Independent review and public readback identify exact released source and useful complete checker journey.",
+        "Release with no active affiliate links is valid useful-product delivery; it does not establish commission or runtime autonomy."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-13",
+      "mission": "BF",
+      "title": "Qualify Windows recovery, privacy, alerts and limits",
+      "dependencies": [
+        "BF-09",
+        "BF-10",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "BF-G09",
+        "BF-G10"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Enable or test live private support mailbox/customer-data/model route. Public source/product Windows runtime and redacted fixtures remain independent.",
+          "effect_gates": [
+            "BF-G07",
+            "BF-G08"
+          ],
+          "acceptance": "Qualify exact mailbox/private store/model/retention and any send authority before enabling support; disabled support cannot block Windows source/product recovery acceptance."
+        }
+      ],
+      "acceptance": [
+        "Independent host execution, backup restore, stale-owner rejection and bounded costs are demonstrated.",
+        "Actionable-alert and private-data tests pass for every enabled mission adapter."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "BF-14",
+      "mission": "BF",
+      "title": "Prove repeated real fit-business autonomy and migration readiness",
+      "dependencies": [
+        "BF-11",
+        "BF-12",
+        "BF-13",
+        "SH-15"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Affiliate/commission autonomy acceptance; non-affiliate source/product cycles remain independent.",
+          "dependencies": [
+            "BF-05",
+            "BF-07"
+          ],
+          "acceptance": "Current program eligibility and actual commission/cash evidence required; absent approval or transaction data leaves financial capability unvalidated."
+        },
+        {
+          "condition": "Private support or low-risk support-send autonomy acceptance; source/product cycles remain independent.",
+          "dependencies": [
+            "BF-08"
+          ],
+          "acceptance": "Private draft pilot and exact optional send authority/receipts must pass before this capability is accepted."
+        }
+      ],
+      "effect_gates": [
+        "BF-G01",
+        "BF-G02",
+        "BF-G09",
+        "BF-G11"
+      ],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Autonomous-operation claim is supported for exercised source/product/measurement routes with restart and owner-direction proof.",
+        "Financial validation is claimed only from real approved/reversed/paid/cash evidence; helpful launch does not imply revenue."
+      ],
+      "task_file": "missions/bidetfit/TASKS.md"
+    },
+    {
+      "id": "GURU-01",
+      "mission": "GURU",
+      "title": "Choose and bind canonical Guru implementation home",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Exact product repository/root/base is recorded before implementation.",
+        "Retained drafts remain withheld and historical; no current account/runtime claim is inferred."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-02",
+      "mission": "GURU",
+      "title": "Define audience, editorial promise and X-first charter",
+      "dependencies": [
+        "GURU-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Mission success is engaged truthful audience, not follower-to-revenue inference.",
+        "Editorial language, voice, scope and correction standard are executable content checks."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-03",
+      "mission": "GURU",
+      "title": "Build sourced and rights-aware editorial research library",
+      "dependencies": [
+        "GURU-02"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Every factual/quotation claim has an inspectable source and rights rationale or is withheld.",
+        "Original paraphrase and tradition/context labels are preserved through adaptation."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-04",
+      "mission": "GURU",
+      "title": "Implement original accessible content production queue",
+      "dependencies": [
+        "GURU-02",
+        "GURU-03"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each candidate is original, inspectable and appropriate for the actual X format.",
+        "No publication/schedule success is inferred from draft creation."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-05",
+      "mission": "GURU",
+      "title": "Implement attributable cultural and independent review",
+      "dependencies": [
+        "GURU-03",
+        "GURU-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G02"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Only exact approved payloads reach publication eligibility.",
+        "Cultural concern has a named owner and finite next action while unrelated drafts proceed."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-06",
+      "mission": "GURU",
+      "title": "Qualify supported account-bound X access",
+      "dependencies": [
+        "GURU-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Current intended-account read receipt and supported capabilities must be verified before capability acceptance. A precise unavailable gate completes intake only, not access acceptance.",
+        "Draft/offline editorial work remains executable without publish access."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-07",
+      "mission": "GURU",
+      "title": "Integrate durable editorial state, claims and cheap scheduling",
+      "dependencies": [
+        "GURU-01",
+        "SH-02",
+        "SH-03",
+        "SH-04"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "A restart-safe next-work selector progresses source→review→eligible action without repeated owner launch prompts.",
+        "Missing account/reviewer blocks only related effects and schedules useful offline work."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-08",
+      "mission": "GURU",
+      "title": "Publish reviewed content and verify the real destination",
+      "dependencies": [
+        "GURU-05",
+        "GURU-06",
+        "GURU-07",
+        "SH-06",
+        "SH-10"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        }
+      ],
+      "acceptance": [
+        "One real authorized correct-account piece has receiving-system evidence.",
+        "Next reviewed piece can run from a scheduled/event trigger with the same controls."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-09",
+      "mission": "GURU",
+      "title": "Operate moderation, correction and permitted engagement",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-06",
+        "SH-12",
+        "SH-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G04"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+          "gates": [
+            "GURU-G04"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Every material concern gets one actionable owner/reviewer route and status.",
+        "Corrections are verified at destination; reply drafts are not counted as sent engagement."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-10",
+      "mission": "GURU",
+      "title": "Collect trustworthy engagement and audience observations",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-04",
+        "SH-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Baseline and every observation have dates, source and coverage.",
+        "No follower-to-revenue or traffic-to-trust claim is fabricated."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-11",
+      "mission": "GURU",
+      "title": "Evaluate editorial experiments and automatically choose the next",
+      "dependencies": [
+        "GURU-04",
+        "GURU-07",
+        "GURU-10",
+        "SH-05",
+        "SH-07",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Two completed decision cycles produce reviewed next work or an evidence wait with clear due trigger.",
+        "No revenue promise or excluded-product conversion is introduced."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-12",
+      "mission": "GURU",
+      "title": "Consume owner direction, questions and documentation outboxes",
+      "dependencies": [
+        "GURU-07",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Actual consumed revision, next action and affected experiment are observable.",
+        "Unchanged unresolved input sends no repeated question; writer status is pending until native readback."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-13",
+      "mission": "GURU",
+      "title": "Enforce mission privacy, usage limits and alerts",
+      "dependencies": [
+        "GURU-06",
+        "GURU-07",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Budget and data boundaries are executable and attributable.",
+        "Blocked effect leaves source/editorial offline work eligible."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-14",
+      "mission": "GURU",
+      "title": "Package independent Windows runtime and safe restore",
+      "dependencies": [
+        "GURU-07",
+        "GURU-08",
+        "GURU-12",
+        "GURU-13",
+        "SH-10",
+        "SH-11"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration only; Windows original-post autonomy is independent.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Qualify target, restore checksum and exclusive ownership with receiving-host receipt before migration."
+        }
+      ],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "One independent Windows job and controlled restart preserve receipts and one consumer.",
+        "R730 migration is proposed/qualified separately; host presence is not execution proof."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-15",
+      "mission": "GURU",
+      "title": "Accept repeated real editorial autonomy with independent review",
+      "dependencies": [
+        "GURU-08",
+        "GURU-09",
+        "GURU-10",
+        "GURU-11",
+        "GURU-12",
+        "GURU-13",
+        "GURU-14",
+        "SH-15"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03",
+        "GURU-G04"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        },
+        {
+          "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+          "gates": [
+            "GURU-G04"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Original-post autonomous operation requires TWO completed real allowed observation-decision-publication-verified-result-evaluation-next-decision cycles, actual owner steering and restart. A wait or prepared second candidate does not substitute. Reply automation is an optional separately gated class.",
+        "Audience growth is honestly observed, not guaranteed or inferred from generated content."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-16",
+      "mission": "GURU",
+      "title": "Evaluate later format or channel expansion without mission drift",
+      "dependencies": [
+        "GURU-11"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G05"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Optional additional channel/format effect only: evidence-based experiment, new exact account/route and grant/budget. X-first operation remains independent.",
+          "gates": [
+            "GURU-G05"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Expansion has evidence-based rationale, concrete tasks/gates and independent path to stop.",
+        "X-first useful operation remains available if expansion is rejected or blocked."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "GURU-17",
+      "mission": "GURU",
+      "title": "Deliver the useful native Guru release through its existing parent",
+      "dependencies": [
+        "GURU-04",
+        "GURU-05",
+        "GURU-06"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "GURU-G01",
+        "GURU-G02",
+        "GURU-G03"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "X account read/publish capability for the requested operation only: intended account, supported route, scope, quota and existing budget.",
+          "gates": [
+            "GURU-G01"
+          ]
+        },
+        {
+          "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+          "gates": [
+            "GURU-G02"
+          ]
+        },
+        {
+          "condition": "Original post/media/thread publication only: exact current account/content/cadence grant and reversible correction plan.",
+          "gates": [
+            "GURU-G03"
+          ]
+        }
+      ],
+      "acceptance": [
+        "The exact qualified piece is publicly verified on its intended account or existing verified receipt is reused.",
+        "Native useful release is recorded separately from GURU-15 autonomous-operation acceptance."
+      ],
+      "task_file": "missions/guru/TASKS.md"
+    },
+    {
+      "id": "LIPI-01",
+      "mission": "LIPI",
+      "title": "Bind current source to accepted Lipi residuals",
+      "dependencies": [],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Each LIPI-63–87 row says reused artifact, source availability, external residual and next owner.",
+        "Jira key remains null until designated writer returns current readback."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-02",
+      "mission": "LIPI",
+      "title": "Resolve capsule membership and design acceptance",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [],
+      "conditional_effect_gates": [],
+      "acceptance": [
+        "Membership state is explicit for every candidate.",
+        "Owner decision receipt or a single persisted unanswered question exists without blocking independent engineering."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-03",
+      "mission": "LIPI",
+      "title": "Qualify Meridian cap provider identity",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+        "No source hint or mockup is treated as current provider truth."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-04",
+      "mission": "LIPI",
+      "title": "Qualify Open Current tote provider identity",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+        "No source hint or mockup is treated as current provider truth."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-05",
+      "mission": "LIPI",
+      "title": "Qualify Quiet Route jogger provider identity",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+        "No source hint or mockup is treated as current provider truth."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-06",
+      "mission": "LIPI",
+      "title": "Qualify Threshold Study print provider identity",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+        "No source hint or mockup is treated as current provider truth."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-07",
+      "mission": "LIPI",
+      "title": "Enforce all-in economics and US cart shipping",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Actual retained-capsule launch/price/shipping economics; offline scenario modeling is independent.",
+          "dependencies": [
+            "LIPI-02"
+          ],
+          "acceptance": "Bind owner-accepted membership. Require positive exact variant mapping for every included product and exclude explicitly rejected/withheld variants. Conditional Quiet Route never blocks the other accepted capsule products."
+        },
+        {
+          "condition": "Meridian is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-03"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Open Current is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-04"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Quiet Route is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-05"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        },
+        {
+          "condition": "Threshold Study is included in the actual permitted selling/sample basket.",
+          "dependencies": [
+            "LIPI-06"
+          ],
+          "acceptance": "Current exact mapping/cost/availability evidence for that included product must pass before treating its actual economics as qualified; otherwise its basket remains blocked, while unrelated scenarios continue."
+        }
+      ],
+      "effect_gates": [
+        "LIPI-G02",
+        "LIPI-G03"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+          "gates": [
+            "LIPI-G03"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Every permitted basket clears 20% under current evidenced assumptions; failing baskets cannot sell under the proposed configuration.",
+        "Reserve remains 10% until owner revisits after 100 actual orders; economic and tax unknowns stay explicit."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-08",
+      "mission": "LIPI",
+      "title": "Prepare and execute only an approved exact sample order",
+      "dependencies": [
+        "LIPI-02",
+        "LIPI-07"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G04"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Sample purchase matches exact authorized identities and total, or remains clearly awaiting the one required decision.",
+        "Receipt is provider-observed; preparing a packet is not purchasing or delivery."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-09",
+      "mission": "LIPI",
+      "title": "Inspect delivered samples and narrow quality claims",
+      "dependencies": [
+        "LIPI-08"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G04"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each launch SKU has attributable physical acceptance or remains withheld.",
+        "Inspection result is linked to the same provider order and product configuration."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-10",
+      "mission": "LIPI",
+      "title": "Finish product content and coordinated storefront candidate",
+      "dependencies": [
+        "LIPI-02",
+        "LIPI-07"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        }
+      ],
+      "acceptance": [
+        "All candidate surfaces agree on approved identity and available variants.",
+        "Responsive/accessibility residuals are explicit and owned, not hidden behind passed source checks."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-11",
+      "mission": "LIPI",
+      "title": "Bind policies, consent and support decisions",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G05"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each policy field has current evidence/owner decision or a precise unresolved input.",
+        "Contact/support and consent states survive reopen and route to an accountable owner."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-12",
+      "mission": "LIPI",
+      "title": "Verify checkout and transactional journey",
+      "dependencies": [
+        "LIPI-07",
+        "LIPI-09",
+        "LIPI-10",
+        "LIPI-11"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G04",
+        "LIPI-G05"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Relevant edge cases pass on exact candidate and a separately identified real or test order receipt exists.",
+        "Real payment/fulfillment acceptance remains open if only a test route was used."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-13",
+      "mission": "LIPI",
+      "title": "Review exact release and rehearse rollback",
+      "dependencies": [
+        "LIPI-10",
+        "LIPI-11",
+        "LIPI-12"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G06"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Exact-source independent review and private recovery must pass; failed/withheld review leaves release acceptance incomplete.",
+        "Owner can approve one complete current candidate without unspecified future changes."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-14",
+      "mission": "LIPI",
+      "title": "Apply approved capsule cutover and verify public destinations",
+      "dependencies": [
+        "LIPI-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G06"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Approved capsule and consistent shared surfaces are publicly verified. Any partial cutover keeps release acceptance incomplete until reconciled and repaired or rolled back.",
+        "Release is distinct from autonomous operation or sales validation."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-15",
+      "mission": "LIPI",
+      "title": "Connect durable commerce observations and due events",
+      "dependencies": [
+        "LIPI-01",
+        "SH-02",
+        "SH-03",
+        "SH-04",
+        "SH-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "One current authorized read is persisted with provenance and repeat idle ticks show0 model calls.",
+        "Missing providers yield explicit stale/unknown state and one resource question."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-16",
+      "mission": "LIPI",
+      "title": "Execute eligible commerce actions with durable approvals",
+      "dependencies": [
+        "LIPI-07",
+        "LIPI-15",
+        "SH-05",
+        "SH-06",
+        "SH-10",
+        "SH-14"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Live price change requiring existing Jira/worklog before/after projection.",
+          "dependencies": [
+            "SH-09"
+          ],
+          "acceptance": "Verify current writer admission and required price logging evidence before the price effect. An unrelated refund, purchase, publish, marketing grant is not required for price-only scope."
+        }
+      ],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G02",
+        "LIPI-G03",
+        "LIPI-G04",
+        "LIPI-G05",
+        "LIPI-G06",
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Discount change or free-shipping activation only: exact action-time owner grant, mixed-cart economics and cadence/expiry rules.",
+          "gates": [
+            "LIPI-G03"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Authorized price change can be observed at destination with current≥20% worst-case contribution.",
+        "Refund/replacement cap remains$0 and discounts/publication/customer sends stay gated; generic shell/HTTP does not become an effect tool."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-17",
+      "mission": "LIPI",
+      "title": "Operate fulfillment and inventory exceptions",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "SH-12"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G04",
+        "LIPI-G05"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Each observed order has current joined lifecycle or named mapping gap.",
+        "A synthetic held-order test and an actual authorized provider observation prove routing; zero real orders stays zero with order-cycle validation pending."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-18",
+      "mission": "LIPI",
+      "title": "Operate support, refunds and privacy exceptions",
+      "dependencies": [
+        "LIPI-11",
+        "LIPI-15",
+        "SH-08",
+        "SH-12",
+        "SH-13"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G05",
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Draft-only behavior and $0 remedy cap are enforced by code.",
+        "Each handled case has owner decision and real delivery/remedy receipt or clearly pending status; no SLA claim from generating a draft alone."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-19",
+      "mission": "LIPI",
+      "title": "Run repeatable organic acquisition and customer discovery",
+      "dependencies": [
+        "LIPI-10",
+        "LIPI-11",
+        "SH-06",
+        "SH-07"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Actual organic publication linking to the capsule; offline content/discovery preparation proceeds.",
+          "dependencies": [
+            "LIPI-14"
+          ],
+          "acceptance": "The exact current product/landing destination must be publicly verified and sale-eligible before sending traffic."
+        }
+      ],
+      "effect_gates": [
+        "LIPI-G07"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        }
+      ],
+      "acceptance": [
+        "One authorized post has exact real destination evidence and attribution. A fully prepared offline candidate is preparation only and does not satisfy publication acceptance.",
+        "Acquisition is tied to profitable delivered-order objective; impressions do not become revenue."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-20",
+      "mission": "LIPI",
+      "title": "Evaluate commerce experiments and choose continuing actions",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "LIPI-17",
+        "LIPI-18",
+        "LIPI-19",
+        "SH-05",
+        "SH-07",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G02",
+        "LIPI-G07",
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Two consecutive finite decision cycles preserve original hypotheses and generate eligible next actions or timed evidence waits.",
+        "Financial and growth outcomes remain measured, including honest inconclusive/negative results."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-21",
+      "mission": "LIPI",
+      "title": "Consume owner direction and produce reconciled outboxes",
+      "dependencies": [
+        "LIPI-15",
+        "SH-08",
+        "SH-09"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "A real owner direction receipt names revision actually consumed and next action.",
+        "Native writer readback or explicit pending outbox state exists; stored file alone is not worker acknowledgement."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-22",
+      "mission": "LIPI",
+      "title": "Qualify independent Windows operations and recovery",
+      "dependencies": [
+        "LIPI-15",
+        "LIPI-16",
+        "LIPI-21",
+        "SH-10",
+        "SH-11",
+        "SH-12",
+        "SH-13",
+        "SH-14"
+      ],
+      "conditional_dependencies": [
+        {
+          "condition": "Optional R730 migration or host transfer only; Windows acceptance is independent.",
+          "dependencies": [
+            "SH-16"
+          ],
+          "acceptance": "Qualify target storage/backup/secret references, fence previous owner, reconcile pending effects and prove new-host receipt/rollback before cutover."
+        }
+      ],
+      "effect_gates": [
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "One Windows cycle runs with mobile Mac disconnected and produces correct receipts.",
+        "Backup restore preserves one consumer, all pending effect knowledge and no cross-mission secret/customer access."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-23",
+      "mission": "LIPI",
+      "title": "Prove repeated end-to-end autonomous commerce cycles",
+      "dependencies": [
+        "LIPI-14",
+        "LIPI-17",
+        "LIPI-18",
+        "LIPI-20",
+        "LIPI-21",
+        "LIPI-22",
+        "SH-15"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G01",
+        "LIPI-G02",
+        "LIPI-G04",
+        "LIPI-G05",
+        "LIPI-G06",
+        "LIPI-G07",
+        "LIPI-G08"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+          "gates": [
+            "LIPI-G01"
+          ]
+        },
+        {
+          "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+          "gates": [
+            "LIPI-G02"
+          ]
+        },
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+          "gates": [
+            "LIPI-G05"
+          ]
+        },
+        {
+          "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+          "gates": [
+            "LIPI-G06"
+          ]
+        },
+        {
+          "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+          "gates": [
+            "LIPI-G07"
+          ]
+        },
+        {
+          "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+          "gates": [
+            "LIPI-G08"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Autonomous operation requires TWO completed real allowed observation-decision-action-verified-result-next-decision cycles, plus actual owner direction, recovery and bounded usage. A scheduled wait or second prepared decision is valid operation but cannot substitute for the second completed real cycle.",
+        "Paid/fulfilled demand and profitability stay separate measured criteria; blocked effect does not become success."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    },
+    {
+      "id": "LIPI-24",
+      "mission": "LIPI",
+      "title": "Evaluate India-to-US apparel as a separate supplier experiment",
+      "dependencies": [
+        "LIPI-01"
+      ],
+      "conditional_dependencies": [],
+      "effect_gates": [
+        "LIPI-G04",
+        "LIPI-G09"
+      ],
+      "conditional_effect_gates": [
+        {
+          "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+          "gates": [
+            "LIPI-G04"
+          ]
+        },
+        {
+          "condition": "Supplier contact/import/pilot/catalog expansion only: exact outreach/purchase/import declaration authority and owner-approved scope; offline research is independent.",
+          "gates": [
+            "LIPI-G09"
+          ]
+        }
+      ],
+      "acceptance": [
+        "Specific supplier/product route has evidence or a precise collection task for each gap.",
+        "Offline research/model is useful now; contact, purchase/import and catalog changes remain separate gates with receipts."
+      ],
+      "task_file": "missions/lipi/TASKS.md"
+    }
+  ],
+  "topological_levels": [
+    [
+      "BF-01",
+      "CL-01",
+      "GURU-01",
+      "LIPI-01",
+      "OPO-01",
+      "SH-01",
+      "WHB-01"
+    ],
+    [
+      "BF-02",
+      "CL-02",
+      "GURU-02",
+      "GURU-06",
+      "LIPI-02",
+      "LIPI-03",
+      "LIPI-04",
+      "LIPI-05",
+      "LIPI-06",
+      "LIPI-07",
+      "LIPI-11",
+      "LIPI-24",
+      "OPO-02",
+      "OPO-03",
+      "SH-02",
+      "WHB-02",
+      "WHB-03"
+    ],
+    [
+      "BF-03",
+      "BF-05",
+      "CL-03",
+      "CL-04",
+      "GURU-03",
+      "LIPI-08",
+      "LIPI-10",
+      "OPO-04",
+      "SH-03",
+      "SH-04",
+      "SH-08",
+      "SH-09",
+      "SH-13",
+      "WHB-04"
+    ],
+    [
+      "BF-04",
+      "BF-06",
+      "BF-08",
+      "CL-05",
+      "CL-06",
+      "CL-07",
+      "CL-08",
+      "GURU-04",
+      "GURU-07",
+      "LIPI-09",
+      "LIPI-15",
+      "OPO-05",
+      "OPO-10",
+      "SH-05",
+      "SH-06",
+      "SH-12",
+      "WHB-05",
+      "WHB-07"
+    ],
+    [
+      "BF-07",
+      "BF-09",
+      "BF-12",
+      "CL-09",
+      "GURU-05",
+      "GURU-09",
+      "GURU-10",
+      "GURU-12",
+      "LIPI-12",
+      "LIPI-18",
+      "LIPI-21",
+      "OPO-06",
+      "OPO-07",
+      "OPO-08",
+      "OPO-09",
+      "OPO-13",
+      "SH-07",
+      "SH-10",
+      "SH-11",
+      "SH-14",
+      "WHB-06",
+      "WHB-09",
+      "WHB-10"
+    ],
+    [
+      "BF-10",
+      "CL-10",
+      "CL-11",
+      "GURU-08",
+      "GURU-11",
+      "GURU-13",
+      "GURU-17",
+      "LIPI-13",
+      "LIPI-16",
+      "LIPI-19",
+      "OPO-11",
+      "OPO-12",
+      "SH-15",
+      "WHB-08",
+      "WHB-11"
+    ],
+    [
+      "BF-11",
+      "BF-13",
+      "CL-12",
+      "GURU-14",
+      "GURU-16",
+      "LIPI-14",
+      "LIPI-17",
+      "LIPI-22",
+      "OPO-14",
+      "SH-16",
+      "WHB-12"
+    ],
+    [
+      "BF-14",
+      "GURU-15",
+      "LIPI-20",
+      "OPO-15"
+    ],
+    [
+      "LIPI-23"
+    ]
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "blocking_categories": [
+    "provider-record evidence",
+    "lifecycle verification",
+    "organic release verification",
+    "private theme final-candidate verification",
+    "private commerce and rollback verification",
+    "policy, tax, and operational review"
+  ],
+  "catalog": {
+    "publication_ready": false,
+    "record_contract_ready": true,
+    "records": 7,
+    "status_counts": {
+      "blocked": 1,
+      "verification_pending": 6
+    },
+    "unknowns": 23
+  },
+  "commerce_runbook_pending_checks": 34,
+  "launch_candidate_ready": false,
+  "lifecycle_pending_checks": 10,
+  "organic_pending_checks": 12,
+  "policy_review_pending_checks": 15,
+  "private_theme_placeholders": [],
+  "repository_consistent": true,
+  "scope": "checked-in private evidence only; live platforms and owner gates require separate verification",
+  "theme_audit_pending_checks": 10,
+  "verifiers": [
+    {
+      "name": "verify_control_plane.py",
+      "passed": true,
+      "summary": "PASS: control plane valid; 48 required files; MEMORY.md 70 lines"
+    },
+    {
+      "name": "verify_day1_marketing_assets.py",
+      "passed": true,
+      "summary": "PASS feed-background | 1080x1350 | RGB PNG | 1904341 bytes | sha256=3c451b5a6237\u2026"
+    },
+    {
+      "name": "verify_first_edition_utms.py",
+      "passed": true,
+      "summary": "PASS instagram/objects-for-everyday-rituals | medium=organic-social | campaign=first-edition | candidate=/collections/first-edition"
+    },
+    {
+      "name": "verify_analytics_scorecard.py",
+      "passed": true,
+      "summary": "PASS: aggregate weekly analytics scorecard contract"
+    },
+    {
+      "name": "verify_replacement_economics.py",
+      "passed": true,
+      "summary": "PASS Standard Tee \u2014 Field Mark, S\u2013XL | gross=$21.51 (56.6%) | absorbed-shipping=$16.76 (44.1%)"
+    },
+    {
+      "name": "verify_dsg004_economics_boundary.py",
+      "passed": true,
+      "summary": "PASS: DSG-004 cross-source economics boundary"
+    },
+    {
+      "name": "verify_replacement_catalog_copy.py",
+      "passed": true,
+      "summary": "PASS: replacement catalog copy contract"
+    },
+    {
+      "name": "verify_customer_help_source.py",
+      "passed": true,
+      "summary": "PASS: private customer-help source contract"
+    },
+    {
+      "name": "verify_english_first_cutover_source.py",
+      "passed": true,
+      "summary": "PASS: English-first SEO/accessibility cutover source"
+    },
+    {
+      "name": "verify_lifecycle_message_source.py",
+      "passed": true,
+      "summary": "PASS: English-first lifecycle source contract"
+    },
+    {
+      "name": "verify_week1_organic_source.py",
+      "passed": true,
+      "summary": "PASS: English-first Week 1 organic source contract"
+    },
+    {
+      "name": "verify_week1_day1_asset_binding.py",
+      "passed": true,
+      "summary": "PASS: Week 1 Day 1 local asset binding"
+    },
+    {
+      "name": "verify_week1_supporting_editorial_cards.py",
+      "passed": true,
+      "summary": "PASS: Week 1 supporting editorial cards"
+    },
+    {
+      "name": "verify_mkt_anl_release_boundaries.py",
+      "passed": true,
+      "summary": "PASS: private MKT/ANL release boundaries"
+    },
+    {
+      "name": "verify_customer_surface_boundaries.py",
+      "passed": true,
+      "summary": "PASS: private customer-surface cross-source boundaries"
+    },
+    {
+      "name": "verify_english_first_hero_assets.py",
+      "passed": true,
+      "summary": "PASS: local hero asset contract"
+    },
+    {
+      "name": "verify_private_theme_audit.py",
+      "passed": true,
+      "summary": "PASS: private theme responsive/accessibility evidence contract"
+    },
+    {
+      "name": "verify_post_activation_runbook.py",
+      "passed": true,
+      "summary": "PASS: private commerce QA and rollback runbook contract"
+    },
+    {
+      "name": "verify_policy_draft.py",
+      "passed": true,
+      "summary": "PASS: private policy review bridge contract"
+    },
+    {
+      "name": "verify_superseded_launch_docs.py",
+      "passed": true,
+      "summary": "PASS: superseded launch-document boundaries"
+    },
+    {
+      "name": "verify_legacy_taxonomy_plan.py",
+      "passed": true,
+      "summary": "PASS: legacy taxonomy plan is fail-closed and archival"
+    },
+    {
+      "name": "verify_superseded_commerce_setup.py",
+      "passed": true,
+      "summary": "PASS: superseded commerce setup is fail-closed and archival"
+    },
+    {
+      "name": "verify_devanagari_artifact_boundaries.py",
+      "passed": true,
+      "summary": "PASS: Devanagari artifact boundaries are fail-closed"
+    },
+    {
+      "name": "verify_private_catalog_fixture.py",
+      "passed": true,
+      "summary": "PASS: private catalog fixture source"
+    },
+    {
+      "name": "verify_private_hero_fallback.py",
+      "passed": true,
+      "summary": "PASS: private hero fallback is exact, compact, static, asset-free, and non-cultural"
+    },
+    {
+      "name": "verify_replacement_catalog_production_bundle.py",
+      "passed": true,
+      "summary": "PASS field-mark-v1-4500x5400.png | 4500x5400 | RGBA | 300 DPI | bounds=(1190, 1040, 3310, 3860) | sha256=524a00ccc6e0\u2026"
+    },
+    {
+      "name": "verify_replacement_record_contract.py",
+      "passed": true,
+      "summary": "PASS: private replacement record contract"
+    },
+    {
+      "name": "verify_web001_source_alignment.py",
+      "passed": true,
+      "summary": "PASS: WEB-001 repository source alignment"
+    },
+    {
+      "name": "verify_upload_blocker_state.py",
+      "passed": true,
+      "summary": "PASS: private Printful batch state contract"
+    },
+    {
+      "name": "verify_current_control_plane_snapshot.py",
+      "passed": true,
+      "summary": "PASS: current control-plane snapshot"
+    },
+    {
+      "name": "verify_prd007_cross_contract.py",
+      "passed": true,
+      "summary": "PASS: PRD-007 assortment, Split Signal source art, ten-product copy, five-template economics, two verified Split Signal merchandising members, four Shopify Draft contracts, and three Off Hours delivery cards stay aligned; activation, promotion, and publication gates remain closed"
+    }
+  ]
+}

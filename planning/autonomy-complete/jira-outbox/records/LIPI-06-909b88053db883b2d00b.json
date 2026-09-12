@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-06-909b88053db883b2d00b31216fc0d4cd8f5539f47ddb3e12db01fa551e2b6774",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-06",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-66"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "909b88053db883b2d00b31216fc0d4cd8f5539f47ddb3e12db01fa551e2b6774",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-06",
+    "mission": "LIPI",
+    "title": "Qualify Threshold Study print provider identity",
+    "goal": "Reconcile the existing product instead of duplicating supplier templates or drafts.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/providers/threshold-study/"
+    ],
+    "evidence_refs": [
+      "LIPI-E03",
+      "LIPI-E04",
+      "LIPI-E07"
+    ],
+    "dependencies": [
+      "LIPI-01"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03"
+    ],
+    "implementation_steps": [
+      "Use retained identity only as the search anchor: Threshold Study01 12×16, one finish; exact production file and supplier size/finish mapping remain explicit. Refresh exact shop/store, product, variant, SKU, size/color, technique, placement, art hash and provider region.",
+      "Read current Shopify Draft/channel/media/retail values and Printful sync-variant/fulfillment status through the qualified route; compare both sides and isolate each mismatch.",
+      "Prepare an exact before/after repair for only mismatched private mapping or media. Reuse existing grants if sufficient; live changes require the applicable scoped capability and hash-bound receipt."
+    ],
+    "deliverables": [
+      "variant-level joined provider mapping",
+      "dated cost/availability/media evidence",
+      "bounded correction proposal"
+    ],
+    "tests": [
+      "Variant-count, SKU, color/size, production hash and one-to-one mapping comparisons fail on missing/duplicate/mismatched IDs.",
+      "Reopen/read both receiving systems after any authorized correction; Draft status and zero channels stay explicit until launch."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+      "No source hint or mockup is treated as current provider truth."
+    ],
+    "rollback": "Restore only the exact private field mapping from captured prior state if reversible and authorized; do not delete provider records or unpublish automatically.",
+    "next_eligible_action": "Feed verified identities into LIPI-07/08; withheld variants stay excluded.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 2,
+      "high": 5,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Provider access/availability and mapping controls require current verification"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-66"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G01"
+    ],
+    "requirement_ids": [
+      "LIPI-O03"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G01",
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+        "gates": [
+          "LIPI-G01"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

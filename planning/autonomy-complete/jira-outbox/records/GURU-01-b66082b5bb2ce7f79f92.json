@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-01-b66082b5bb2ce7f79f92c212b815c2a60628ac53a10c14aab2f6d98d8ad325f6",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-01",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-61",
+    "BOTS-130"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "b66082b5bb2ce7f79f92c212b815c2a60628ac53a10c14aab2f6d98d8ad325f6",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-01",
+    "mission": "GURU",
+    "title": "Choose and bind canonical Guru implementation home",
+    "goal": "Preserve editorial provenance and establish exact source/path ownership for executable work.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/ops/home-decision.json",
+      "guru/ops/admission/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E02",
+      "GURU-E04"
+    ],
+    "dependencies": [],
+    "prerequisite_inputs": [
+      "GURU-I01"
+    ],
+    "implementation_steps": [
+      "Read the four-mission parent return once for an already-created Guru home; reuse it if current source and ownership are verified.",
+      "If still absent, propose reusing pri8771/bots under guru/ as the minimal default or a separately deployable owner repository when justified; record exact repo/root/base and source owners before creating product files. Do not assume guru/sadhana-notes exists.",
+      "Hash the 10 preserved canonical Git blobs and bind accepted editorial imports with origin revision252d0bf18d11c47484ffcc2ab0a8ea56203a7076. Reconcile BOTS-61/128/129/130/132/133 via the current Windows parent; no competing Jira writer."
+    ],
+    "deliverables": [
+      "canonical home decision receipt",
+      "source/provenance and ownership manifest",
+      "Jira matching proposal"
+    ],
+    "tests": [
+      "All10 Git blob SHA256 values match SOURCE_PROVENANCE; Windows CRLF bytes are not falsely called source corruption.",
+      "Unresolved home blocks product writes but not editorial source work in the assigned planning lane."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Exact product repository/root/base is recorded before implementation.",
+      "Retained drafts remain withheld and historical; no current account/runtime claim is inferred."
+    ],
+    "rollback": "Withdraw only proposed home/admission; preserve imported provenance and source.",
+    "next_eligible_action": "GURU-02–06 prepare the repeatable editorial and account contract.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 2,
+      "high": 4,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Canonical home and worker return currently unverified"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-61",
+        "BOTS-130"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O01"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-06-918f2a75349a14e89c343d05121d54f289f434a111467678654eedbcdd4151d3",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-06",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "918f2a75349a14e89c343d05121d54f289f434a111467678654eedbcdd4151d3",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-06",
+    "mission": "SH",
+    "title": "Execute effects with deduplication and destination reconciliation",
+    "goal": "Provide reusable prepare/dispatch/verify/reconcile interfaces for mission-native effect adapters.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/effects/",
+      "tests/autonomy/effects/"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md",
+      "reference/AUTONOMOUS_EXPERIMENTS.md"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02",
+      "SH-03"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Persist exact payload/account/source/review hash, stable action ID and budget reservation before sending.",
+      "Define adapter capability matrix for idempotency, client reference lookup, readback lag, cancellation and pagination.",
+      "Implement bounded receiving-system readback; accepted/scheduled/public/delivered/refunded are distinct provider states.",
+      "After timeout or crash retain unknown effect and reservation; query destination before any retry; unresolved ambiguity requires intervention."
+    ],
+    "deliverables": [
+      "Execute effects with deduplication and destination reconciliation implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Crash before send, after remote success before receipt, and after receipt commit; no duplicate effect in idempotent fixture.",
+      "Provider without lookup remains unknown and is not retried; wrong account/readback payload fails; stale token denied."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Adapter can prove one match, qualified absence, or explicit unknown without guessing.",
+      "Unknown charged effects retain reserved spend; no duplicate charge/post/send/Jira mutation."
+    ],
+    "rollback": "Pause adapter, reconcile all inflight effects; restore code/config only for reversible local state, use separately granted corrective action for remote effects.",
+    "next_eligible_action": "Persist exact payload/account/source/review hash, stable action ID and budget reservation before sending.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 32,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A04",
+      "SH-A10",
+      "SH-A11"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

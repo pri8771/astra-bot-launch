@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-05-0dc9dfc19a85fef72e3953ed130424eb1948344966f9fdd5c5d8f63e5d22c588",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-05",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-130",
+    "BOTS-129"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "0dc9dfc19a85fef72e3953ed130424eb1948344966f9fdd5c5d8f63e5d22c588",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-05",
+    "mission": "GURU",
+    "title": "Implement attributable cultural and independent review",
+    "goal": "Make quality approval a real named decision bound to exact content.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/src/review/",
+      "guru/tests/review/",
+      "guru/ops/reviews/"
+    ],
+    "evidence_refs": [
+      "GURU-E02"
+    ],
+    "dependencies": [
+      "GURU-03",
+      "GURU-04"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I04"
+    ],
+    "implementation_steps": [
+      "Identify the actual cultural reviewer and scope of expertise; obtain acceptance of claim context, translation/paraphrase and depiction. Retained WITHHELD status remains until this receipt exists.",
+      "Request independent source/technical review with reviewer identity/model/host and exact source/content hashes; cultural and technical review are distinct responsibilities.",
+      "Persist approve/revise/withhold and reasons, repair at most2 times, then ask one specific unresolved question or stop affected candidate. Never label same-author/model self-check as independent review."
+    ],
+    "deliverables": [
+      "review adapter/state transition",
+      "cultural and technical receipts",
+      "bounded repair packets"
+    ],
+    "tests": [
+      "Null reviewer, old content hash or merely copied historical approval cannot admit publication.",
+      "Third review attempt is refused unless a newly admitted scope explicitly grants it."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Only exact approved payloads reach publication eligibility.",
+      "Cultural concern has a named owner and finite next action while unrelated drafts proceed."
+    ],
+    "rollback": "Invalidate affected approval and withhold candidate; preserve completed review history.",
+    "next_eligible_action": "GURU-08 can publish a qualified candidate; source changes return to GURU-03.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 3,
+      "high": 5,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Named cultural reviewer and attributable independent review"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-130",
+        "BOTS-129"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "GURU-G02"
+    ],
+    "requirement_ids": [
+      "GURU-O05",
+      "GURU-A09",
+      "GURU-A17"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "GURU-G02",
+        "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Religious/source claim publication only: exact source/rights, cultural and independent content review.",
+        "gates": [
+          "GURU-G02"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

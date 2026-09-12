@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-09-12T21:53:06.229786+00:00",
+  "file": "lanes/opo-whb/REVIEW_CL_BF.md",
+  "change": "Lossless Windows-1252 to UTF-8 byte encoding conversion. Original non-ASCII bytes were three 0x97 em dashes; text codepoints and CRLF line endings retained.",
+  "before": {
+    "sha256": "9d653d1b630d8751ec4839e2b8a5db7c1470c81affd6a5bf0398073782ef3db5",
+    "bytes": 5638
+  },
+  "checks": {
+    "utf8_strict_decode": true,
+    "same_decoded_text": true,
+    "roundtrip_reconstructs_all_original_bytes": true,
+    "line_endings_retained": true,
+    "review_json_byte_identical": true
+  },
+  "external_or_runtime_effects": false,
+  "encoding_conversion_after": {
+    "sha256": "7f09e091a31ebb981f9a4e3ad86837a20ec7a1c2cc2376f9be0415f87b52f871",
+    "bytes": 5644
+  },
+  "formatting_followup": {
+    "checked_at": "2026-09-12T21:53:41.305123+00:00",
+    "change": "Removed intra-table blank lines and collapsed excess consecutive blank lines. All nonempty lines, including all 16 hashes, are exact text matches; all line endings remain CRLF.",
+    "nonempty_lines_byte_content_identical": true,
+    "table_header_separator_and_16_rows_contiguous": true
+  },
+  "after": {
+    "sha256": "699737c233c6080ee9364307f668073f0fc2364c504f7562190d6da137441046",
+    "bytes": 5598
+  },
+  "checks_scope": "The checks object describes the lossless encoding-conversion stage before the separately recorded formatting follow-up. The final after hash includes intentional blank-line removal; all nonempty lines are unchanged."
+}

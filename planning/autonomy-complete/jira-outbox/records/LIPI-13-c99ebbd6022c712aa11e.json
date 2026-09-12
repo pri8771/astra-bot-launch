@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-13-c99ebbd6022c712aa11e072687d52503b1c8bbeca6bbb3f2718fe3cc673a67f1",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-13",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-78",
+    "LIPI-79"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "c99ebbd6022c712aa11e072687d52503b1c8bbeca6bbb3f2718fe3cc673a67f1",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-13",
+    "mission": "LIPI",
+    "title": "Review exact release and rehearse rollback",
+    "goal": "Make launch a reviewable candidate with a tested recovery procedure.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/release/review/",
+      "ops/autonomy/release/restore/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04"
+    ],
+    "dependencies": [
+      "LIPI-10",
+      "LIPI-11",
+      "LIPI-12"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I08"
+    ],
+    "implementation_steps": [
+      "Capture current theme/catalog/channel/policy/discount snapshot without secrets and hash the exact candidate, cost inputs, sample acceptance and checkout evidence.",
+      "Rehearse private restore from the snapshot; distinguish technical rollback capability from permission to change public or irreversible orders.",
+      "Obtain attributable independent technical/content review and concrete owner launch decision covering exact catalog/shared surfaces. Limit repairs to2 and invalidate approval if payload drifts."
+    ],
+    "deliverables": [
+      "review receipt",
+      "private restore evidence",
+      "exact owner launch packet"
+    ],
+    "tests": [
+      "Restore reproduces snapshot hashes and preserves order/payment receipts.",
+      "Unreviewed file or changed price/mapping invalidates candidate admission."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Exact-source independent review and private recovery must pass; failed/withheld review leaves release acceptance incomplete.",
+      "Owner can approve one complete current candidate without unspecified future changes."
+    ],
+    "rollback": "Keep existing live state; restore private candidate only; no forced refund or deletion.",
+    "next_eligible_action": "LIPI-14 applies only the approved cutover.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 3,
+      "high": 6,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Independent reviewer and exact owner launch decision"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-78",
+        "LIPI-79"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G06"
+    ],
+    "requirement_ids": [
+      "LIPI-O09",
+      "LIPI-A17"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G06",
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+        "gates": [
+          "LIPI-G06"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

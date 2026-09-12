@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-14-10707f6285186d641135f5a781e537b2e8b1adc10fb84cf1167919f7225d27a9",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-14",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-82",
+    "LIPI-83"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "10707f6285186d641135f5a781e537b2e8b1adc10fb84cf1167919f7225d27a9",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-14",
+    "mission": "LIPI",
+    "title": "Apply approved capsule cutover and verify public destinations",
+    "goal": "Release the accepted purchase-ready capsule with real public readback.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/release/cutover/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04"
+    ],
+    "dependencies": [
+      "LIPI-13"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I08"
+    ],
+    "implementation_steps": [
+      "Reserve the one store writer and compare current live preconditions to approved snapshot; apply approved products/channels/collections/shared surfaces in the declared sequence.",
+      "Read public product/variant prices, Search/Cart/About/contact/policies/Forms and checkout back from the actual domain; verify the intended shop and theme, not a preview.",
+      "Record per-surface success/uncertain/failure; stop dependent acquisition on inconsistency and use the approved rollback decision with readback, leaving irreversible receipts intact."
+    ],
+    "deliverables": [
+      "cutover receipt manifest",
+      "public destination evidence",
+      "accepted live release ID"
+    ],
+    "tests": [
+      "Stale owner/changed live preconditions abort before mutation.",
+      "Partial cutover and restart reconcile each surface; no second publication or blind whole-store overwrite."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Approved capsule and consistent shared surfaces are publicly verified. Any partial cutover keeps release acceptance incomplete until reconciled and repaired or rolled back.",
+      "Release is distinct from autonomous operation or sales validation."
+    ],
+    "rollback": "Execute only approved reversible theme/catalog rollback from captured prior values; escalate irreversible/customer effects.",
+    "next_eligible_action": "LIPI-19 authorized organic distribution and LIPI-17/18 operations start when admitted.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 2,
+      "high": 5,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Exact launch grant and provider availability"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-82",
+        "LIPI-83"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G06"
+    ],
+    "requirement_ids": [
+      "LIPI-O09"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G06",
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Public product/theme/catalog/shared-surface cutover only: exact independent review, owner launch grant, preimage and reversible rollback.",
+        "gates": [
+          "LIPI-G06"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

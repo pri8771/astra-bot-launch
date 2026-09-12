@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-13-0f41de04e89a3e37ffe267ba34fe46a92b675ffa45f9aec183bac33fc3cbbbac",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-13",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "0f41de04e89a3e37ffe267ba34fe46a92b675ffa45f9aec183bac33fc3cbbbac",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-13",
+    "mission": "GURU",
+    "title": "Enforce mission privacy, usage limits and alerts",
+    "goal": "Keep a small editorial operation bounded, isolated and understandable when intervention is needed.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/src/policy/",
+      "guru/tests/policy/",
+      "guru/ops/limits/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E03",
+      "GURU-E04"
+    ],
+    "dependencies": [
+      "GURU-06",
+      "GURU-07",
+      "SH-12",
+      "SH-13",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I06",
+      "GURU-I08"
+    ],
+    "implementation_steps": [
+      "Store only secret references and minimal public post/aggregate data; separate Guru identity, credentials and runtime storage from Kai/Pri/Lipi/other missions. Never export private chat data or infer sensitive-faith profiles.",
+      "Enforce approved local/model/tool/time/token/currency and content/review limits at job/tool boundaries. Measure actual model/version/host/usage; deny unknown paid route or implicit fallback and record0 idle inference.",
+      "Emit actionable alerts only for meaningful change: cultural/source concern, wrong-account attempt, grant failure, unreconciled effect, quota exhaustion or recovery failure. Deduplicate and clear alerts with evidence; do not alert on every unchanged wait."
+    ],
+    "deliverables": [
+      "privacy/usage policy adapter",
+      "alert routing and deduplication",
+      "sanitized audit records"
+    ],
+    "tests": [
+      "Prompt injection and cross-mission credential lookups are rejected.",
+      "Exhausted cap prevents a paid action and repeated unchanged faults produce one alert."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Budget and data boundaries are executable and attributable.",
+      "Blocked effect leaves source/editorial offline work eligible."
+    ],
+    "rollback": "Disable affected integration and purge only according to retention policy; preserve minimal audit evidence.",
+    "next_eligible_action": "GURU-14 qualified deployment and GURU-15 acceptance.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 7,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Owner-approved caps and alert destination"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O10",
+      "GURU-A14",
+      "GURU-A15",
+      "GURU-A16"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-10-f83b8f3b0239b0e48c91d527a87c82bf4e109c1672048d3ecdf1f4bd291e323b",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-10",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-73",
+    "LIPI-74",
+    "LIPI-76"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "f83b8f3b0239b0e48c91d527a87c82bf4e109c1672048d3ecdf1f4bd291e323b",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-10",
+    "mission": "LIPI",
+    "title": "Finish product content and coordinated storefront candidate",
+    "goal": "Reuse existing art/theme work and make all customer surfaces tell the same verified product story.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/storefront/candidate/",
+      "services/lipi-autonomy/test/storefront-contract/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04"
+    ],
+    "dependencies": [
+      "LIPI-02",
+      "LIPI-07"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03"
+    ],
+    "implementation_steps": [
+      "Stage exact capsule copy, care/size information, official media/alt bindings and truthful shipping language; bind final media to LIPI-09 acceptance before publication.",
+      "Create a coordinated manifest for product status/channels, collections, Search/Cart, About, metadata, navigation/contact, Forms popup and lifecycle copy; preserve existing theme IDs as historical search anchors, not live truth.",
+      "Run private preview responsive and semantic tests, keyboard focus/escape/return, error/empty states, reduced motion and actual NVDA/device checks. Distinguish real assistive-device evidence from automated DOM checks."
+    ],
+    "deliverables": [
+      "exact release-candidate surface manifest",
+      "content/media and accessibility evidence",
+      "targeted remediation list"
+    ],
+    "tests": [
+      "No legacy character-led identities, generic mockup names, inactive discount claims or inaccessible purchase controls leak from the candidate.",
+      "Public/shared surfaces are not changed one-at-a-time as private QA."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "All candidate surfaces agree on approved identity and available variants.",
+      "Responsive/accessibility residuals are explicit and owned, not hidden behind passed source checks."
+    ],
+    "rollback": "Restore private candidate files and previous preview; shared public cutover belongs only to LIPI-14.",
+    "next_eligible_action": "LIPI-11 policy and LIPI-12 checkout qualify alongside the final physical sample binding.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 8,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Live shared surfaces and actual assistive QA remain unverified"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-73",
+        "LIPI-74",
+        "LIPI-76"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G01"
+    ],
+    "requirement_ids": [
+      "LIPI-O06"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G01",
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+        "gates": [
+          "LIPI-G01"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

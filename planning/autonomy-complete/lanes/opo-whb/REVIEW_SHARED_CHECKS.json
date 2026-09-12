@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-09-12T21:43:38.631131+00:00",
+  "scope": "Pure planning validation and in-memory negative mutations; reviewed assembler exercised only in fresh workspace work/ scratch with one synthetic SH task. No root generated artifacts, source/runtime scripts or external APIs executed.",
+  "base_task_count": 69,
+  "base_errors": [],
+  "gate_cases": {
+    "unknown_gate": {
+      "rejected": true,
+      "errors": [
+        "SH-01: unresolved/noncanonical effect gate SH-G999"
+      ]
+    },
+    "prefix_gate": {
+      "rejected": true,
+      "errors": [
+        "SH-01: unresolved/noncanonical effect gate SH-G0"
+      ]
+    },
+    "invalid_conditional_gate": {
+      "rejected": true,
+      "errors": [
+        "SH-01: conditional gate lacks condition",
+        "SH-01: unresolved/noncanonical effect gate SH-G999"
+      ]
+    }
+  },
+  "outbox_cases": {
+    "same_spec_replay_stable": true,
+    "changed_spec_new_id_and_predecessor": true,
+    "prior_record_bytes_preserved": true,
+    "tampered_record_rejected": true,
+    "scratch_path": "C:\\Users\\Priyansh Chordia\\Documents\\Codex\\2026-09-12\\read-d-ast\\work\\review-shared-outbox-2noynmsp"
+  },
+  "passed": true
+}

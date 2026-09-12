@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-03-babc3532594fa388b93cbb9873aa986ca1da058c1a49a3b4476a7bd165bc97c3",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-03",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-135",
+    "PCH-107",
+    "PCH-121"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "babc3532594fa388b93cbb9873aa986ca1da058c1a49a3b4476a7bd165bc97c3",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-03",
+    "mission": "BF",
+    "title": "Integrate useful checker, comparison and measurement journeys",
+    "goal": "Help a visitor identify their toilet, enter measurements and understand compatible/uncertain outcomes accessibly.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/public/fit-checker.html",
+      "ventures/bidetfit/public/assets/fit-checker.js",
+      "ventures/bidetfit/public/how-to-measure.html",
+      "ventures/bidetfit/public/model-identification.html",
+      "ventures/bidetfit/public/measurement-sheet.html",
+      "ventures/bidetfit/tests/browser/checker.spec.js"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E03"
+    ],
+    "dependencies": [
+      "BF-01",
+      "BF-02"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Reuse present category checker and guidance; layer exact-model selection and compare up to three eligible products using source-backed constraints.",
+      "Validate nonnegative realistic measurements, units, missing/contradictory fields and tolerance boundaries; never turn missing basics into likely fit.",
+      "Show source review date, decisive rules, unresolved unknowns, manufacturer verification and merchant return-policy reminder for every result.",
+      "Provide printable measurement/photo checklist without uploading images or exact private measurements; optional browser-only save/export/delete makes repeated use practical.",
+      "Test responsive keyboard/screen-reader flows, reset, unavailable storage, no-JS explanatory fallback and no implied electrical/plumbing certification."
+    ],
+    "deliverables": [
+      "integrated checker/comparison",
+      "measurement and model-identification tools",
+      "browser/accessibility receipts"
+    ],
+    "tests": [
+      "Boundary/negative/zero/extreme values and mismatched bowl shape are rejected or uncertain; French-curve, concealed plumbing, wall-hung and no-outlet fixtures explain concrete next steps.",
+      "No affiliate eligibility changes fit score; source-missing product cannot get a confident fit result.",
+      "Browser network inspection shows no measurement or photo leakage; report restore/delete and accessible focus pass."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Visitor completes a useful category or exact-model check and can compare evidence/unknowns without a false fit guarantee.",
+      "Saved local report and printable sheet support a later manufacturer conversation without requiring an account."
+    ],
+    "rollback": "Restore prior reviewed checker and keep source corrections; remove only unsupported new model choices.",
+    "next_eligible_action": "Build browser fixtures around existing broad checker and integrate reviewed evidence schema.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 14,
+      "high": 26,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Browser harness and exact-model evidence are dependencies; existing category utility remains reusable."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-135",
+        "PCH-107",
+        "PCH-121"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "BF-O03",
+      "BF-O04",
+      "BF-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

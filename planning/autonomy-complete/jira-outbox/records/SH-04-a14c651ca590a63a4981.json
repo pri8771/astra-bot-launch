@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-04-a14c651ca590a63a4981846f6d81bbcc6ddf96d96442fd0134e363cffb8a5e5f",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-04",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-148"
+  ],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "a14c651ca590a63a4981846f6d81bbcc6ddf96d96442fd0134e363cffb8a5e5f",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-04",
+    "mission": "SH",
+    "title": "Schedule only changed events and due decisions",
+    "goal": "Make deterministic wakeups and zero idle inference measurable.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/scheduler/",
+      "tests/autonomy/scheduler/"
+    ],
+    "evidence_refs": [
+      "reference/AUTONOMOUS_EXPERIMENTS.md",
+      "WINDOWS_RELEASE_EXECUTION.md"
+    ],
+    "dependencies": [
+      "SH-02"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Add due index, event cursor, next_check_at and decision fingerprint bound to evidence+charter+spec versions.",
+      "Coalesce duplicate webhooks/timer ticks; dispatch only eligible changed or due jobs with bounded collector pages/time.",
+      "Use existing CL/BF timers as ingress until an explicit ownership transfer; avoid second schedulers.",
+      "Persist needs_input/waiting_for_evidence and next justified observation; model calls occur only through SH-14."
+    ],
+    "deliverables": [
+      "Schedule only changed events and due decisions implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Advance fake clock across not-due, due, duplicate and changed input cases; exact inference eligibility counts match.",
+      "Restart at due time and deliver webhook twice; one evaluation job; clock skew never extends stale ownership."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "An unchanged 24-hour synthetic schedule produces zero model calls; actual deployed idle observation is separately required per mission.",
+      "Events and due windows have deterministic, documented wake reasons."
+    ],
+    "rollback": "Disable new trigger and restore last qualified native collector with its cursor and one owner.",
+    "next_eligible_action": "Add due index, event cursor, next_check_at and decision fingerprint bound to evidence+charter+spec versions.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 8,
+      "high": 16,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-148"
+      ],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A02"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

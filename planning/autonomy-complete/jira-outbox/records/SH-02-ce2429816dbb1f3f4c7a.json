@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-02-ce2429816dbb1f3f4c7a325fb85772001646079cb77c8bdd00f1580de2a3b2f8",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-02",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "ce2429816dbb1f3f4c7a325fb85772001646079cb77c8bdd00f1580de2a3b2f8",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-02",
+    "mission": "SH",
+    "title": "Persist events, jobs, attempts and consistent snapshots",
+    "goal": "Preserve acknowledged observations, action intent and revision history across process loss.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/ledger/",
+      "tests/autonomy/ledger/"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md",
+      "reference/WINDOWS_PRIMARY_READINESS.md"
+    ],
+    "dependencies": [
+      "SH-01"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Implement local transactional tables and unique mission/event/revision keys with append-only attempt/receipt history.",
+      "Use schema migrations with checksums and forward/backward-read rules; fsync acknowledged intent under selected durability mode.",
+      "Implement consistent snapshot/restore and replay into materialized job views; keep private payloads outside Git.",
+      "Add compare-and-set job state transitions and bounded SQLITE_BUSY handling; never fail open on persistence errors."
+    ],
+    "deliverables": [
+      "Persist events, jobs, attempts and consistent snapshots implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Kill before and after commit; acknowledged rows survive, uncommitted attempts cannot masquerade as dispatched.",
+      "Replay duplicate/out-of-order events and restore snapshot; no duplicate jobs, broken references or erased revisions."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Schema/migration/backup commands and fixture restore receipt are reproducible.",
+      "Every acknowledged intent survives restart; storage failure disables affected dispatch."
+    ],
+    "rollback": "Stop consumers, restore known schema-compatible snapshot in reconciliation mode and recover later effects from destinations.",
+    "next_eligible_action": "Implement local transactional tables and unique mission/event/revision keys with append-only attempt/receipt history.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A01"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

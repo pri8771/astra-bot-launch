@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-05-b6433fae342ac2d047832d79853c48a5423ea64470a9778c74303491361d3a51",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-05",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-116",
+    "BOTS-118"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "b6433fae342ac2d047832d79853c48a5423ea64470a9778c74303491361d3a51",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-05",
+    "mission": "CL",
+    "title": "Qualify payments, refunds and settled cash accounting",
+    "goal": "Accept eligible scoped payments and reconcile funds, fees, refunds and fulfillment separately.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/payments.py",
+      "operator/financial_ledger.py",
+      "config/payment-policy.json",
+      "tests/test_payments.py",
+      "tests/test_financial_ledger.py"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E05"
+    ],
+    "dependencies": [
+      "CL-03",
+      "CL-04"
+    ],
+    "prerequisite_inputs": [
+      "CL-I04"
+    ],
+    "implementation_steps": [
+      "After a prospect accepts scope, reuse owner merchant route if eligible; collect only credential references, exact account/currency/capability and signed webhook/lookup contract.",
+      "Create invoice or checkout intent keyed to accepted order revision and idempotency key; verify receiving merchant account and provider transaction state.",
+      "Reconcile authorized/captured/settled/refunded/disputed states, fees and cash actually received; append adjustments instead of rewriting history.",
+      "Bind scoped refund eligibility, identity/policy and amount limit to provider action; preserve unknown response and reconcile before retry.",
+      "Enforce zero pre-revenue spending and one bundled reinvestment event capped at 50% available settled cash, preserving reserve and rejecting transaction splitting."
+    ],
+    "deliverables": [
+      "payment/refund adapter",
+      "private financial ledger",
+      "sandbox results and eligible provider receipts",
+      "cash reserve policy"
+    ],
+    "tests": [
+      "Sandbox duplicate webhook, delayed settlement, partial/full refund, charge timeout and fee correction fixtures preserve exact cents and no duplicate charge/refund.",
+      "Wrong account, unsigned webhook, unaccepted scope and unknown budget deny effect.",
+      "Provider reconciliation readback matches ledger balances; settled funds differ from pending payout and invoice totals."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Payment taking remains gated until actual merchant route and scope are verified.",
+      "Any revenue claim includes actual provider cash receipt, fees/refunds and linked fulfilled value; lack of transactions remains unvalidated."
+    ],
+    "rollback": "Disable checkout/invoice creation; retain reconciliation and fulfill existing obligations; never auto-refund merely because a deployment rolls back.",
+    "next_eligible_action": "Implement deterministic sandbox ledger and adapter contract; queue one merchant-readiness question only when an accepted scope makes it necessary.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 30,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Merchant onboarding is non-delegable where provider requires it; no new account/budget assumed."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-116",
+        "BOTS-118"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G04",
+      "CL-G05"
+    ],
+    "requirement_ids": [
+      "CL-O05",
+      "CL-O06",
+      "CL-A04",
+      "CL-A10",
+      "CL-A11",
+      "CL-A16"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

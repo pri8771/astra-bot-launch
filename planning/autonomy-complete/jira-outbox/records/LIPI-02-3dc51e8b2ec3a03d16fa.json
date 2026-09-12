@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-02-3dc51e8b2ec3a03d16fa336c33c7e0f8d333db7d9f46b5ffd95cc97f919e5ba0",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-02",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-65"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "3dc51e8b2ec3a03d16fa336c33c7e0f8d333db7d9f46b5ffd95cc97f919e5ba0",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-02",
+    "mission": "LIPI",
+    "title": "Resolve capsule membership and design acceptance",
+    "goal": "Produce one exact coherent capsule proposal using existing production art and approved brand direction.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/capsule/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04",
+      "LIPI-E07"
+    ],
+    "dependencies": [
+      "LIPI-01"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I02"
+    ],
+    "implementation_steps": [
+      "Retain Meridian, Open Current and Threshold Study12×16 as the proposal, with Quiet Route explicitly retain/exclude/conditional; do not promote proposal to owner approval.",
+      "Review production files, dimensions, placement, mockup bindings and usage claims against exact product contracts; preserve English-first premium American direction and excluded Hindi/Devanagari assets.",
+      "Present owner one concrete membership decision with all remaining cost/sample facts; apply only that signed/versioned decision and identify replacement work for rejected items."
+    ],
+    "deliverables": [
+      "capsule membership and design matrix",
+      "owner decision packet"
+    ],
+    "tests": [
+      "A conditional or rejected SKU cannot enter publication/sample payloads.",
+      "Every visual references exact art hash and variant; legacy glyph assets remain outside public candidate."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Membership state is explicit for every candidate.",
+      "Owner decision receipt or a single persisted unanswered question exists without blocking independent engineering."
+    ],
+    "rollback": "Restore prior proposal revision; no public catalog mutation belongs to this task.",
+    "next_eligible_action": "Proceed to LIPI-03–06 for retained/conditional candidates and LIPI-24 independently.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 2,
+      "high": 4,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Owner membership answer missing"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-65"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "LIPI-O02"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

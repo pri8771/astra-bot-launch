@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-10-4040220f630883987640154876dd76d53073a17617466421551e5dfc96bc4a0f",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-10",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "PCH-108",
+    "PCH-122"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "4040220f630883987640154876dd76d53073a17617466421551e5dfc96bc4a0f",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-10",
+    "mission": "BF",
+    "title": "Acknowledge owner changes, ask once and project governed documentation",
+    "goal": "Make direction and unresolved inputs actionable without repeated questioning or lost governance history.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/owner_direction.py",
+      "ventures/bidetfit/scripts/documentation_outbox.py",
+      "ventures/bidetfit/tests/test_direction.py"
+    ],
+    "evidence_refs": [
+      "BF-E02",
+      "BF-E05"
+    ],
+    "dependencies": [
+      "BF-09",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Validate owner/mission and direction revision; example focus French-curve confidence reprioritizes unstarted evidence work, while pause affiliate links blocks activation before effect.",
+      "Preserve recorded/seen/applied/waiting-for-reconciliation/needs-input states and old experiment protocols; bridge current kill switch without making external content authoritative.",
+      "Ask once for exact merchant approval, analytics property or private support mailbox only when needed; bind answer to question/owner and resume dependent work from checkpoint.",
+      "Generate immutable BF work-item/Jira outboxes and Notion/documentation mirror proposals, with source/spec hashes and links; designated writer handles native matching/readback.",
+      "Keep historical BF-001..034 accepted artifacts/estimates/actuals; new planning BF-01..14 IDs remain separate until admitted mapping."
+    ],
+    "deliverables": [
+      "direction/question implementation",
+      "Jira/Notion outbox schema",
+      "pause/resume and mirror-outage receipts"
+    ],
+    "tests": [
+      "Duplicate nudge/answer changes work once; newer revision supersedes older one and survives restart.",
+      "Paused link activation never occurs; already submitted effect enters reconciliation.",
+      "Writer/mirror outage queues one operation; no task claims Done while required synchronization remains unresolved."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Owner can see exact consumed direction and concrete next action.",
+      "A validated answer resumes only dependent job; governed documentation outboxes project once with native readback."
+    ],
+    "rollback": "Pause affected dispatch and preserve revision/outbox journal; reconcile destination projections before resuming.",
+    "next_eligible_action": "Implement French-curve-priority, pause-affiliate and missing-approval fixtures.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Writer and Notion route qualification may differ; useful offline preparation continues."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "PCH-108",
+        "PCH-122"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01",
+      "BF-G10"
+    ],
+    "requirement_ids": [
+      "BF-A06",
+      "BF-A07",
+      "BF-A08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

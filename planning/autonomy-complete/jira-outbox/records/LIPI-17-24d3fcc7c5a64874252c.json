@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-17-24d3fcc7c5a64874252cc2b393e353559510cb7e11ed5c5aba0eb087187b3c9b",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-17",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-86"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "24d3fcc7c5a64874252cc2b393e353559510cb7e11ed5c5aba0eb087187b3c9b",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-17",
+    "mission": "LIPI",
+    "title": "Operate fulfillment and inventory exceptions",
+    "goal": "Track every actual paid order through provider acceptance, shipment, delivery and exceptions.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/fulfillment/",
+      "services/lipi-autonomy/test/fulfillment/",
+      "ops/autonomy/fulfillment/"
+    ],
+    "evidence_refs": [
+      "LIPI-E04",
+      "LIPI-E05"
+    ],
+    "dependencies": [
+      "LIPI-15",
+      "LIPI-16",
+      "SH-12"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03",
+      "LIPI-I07"
+    ],
+    "implementation_steps": [
+      "Join Shopify order line IDs to exact Printful synced variants and provider order/status; distinguish paid, held, accepted, shipped, delivered, returned and canceled states without putting addresses in Git.",
+      "Use deterministic deadlines for held/failed escalation within 12h, unshipped after 3 business days drafting, and carrier exceptions; record due business calendar/time zone and receipt-derived timestamps.",
+      "Prepare replenishment/mapping/unavailability remedies and proactive notice drafts. No unapproved resubmit/purchase, substitution, automatic unpublish, delivery promise or customer send; ask once for the exact exception decision."
+    ],
+    "deliverables": [
+      "order lifecycle reconciler",
+      "SLA/exception queue",
+      "owner remedy proposals"
+    ],
+    "tests": [
+      "Duplicate shipment events cannot duplicate a notice or second provider order.",
+      "Provider cancellation after payment and out-of-stock event leave explicit unresolved effect with actionable deadline alert."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Each observed order has current joined lifecycle or named mapping gap.",
+      "A synthetic held-order test and an actual authorized provider observation prove routing; zero real orders stays zero with order-cycle validation pending."
+    ],
+    "rollback": "Suspend fulfillment actions, preserve observations and hand unresolved orders to the owner with provider IDs.",
+    "next_eligible_action": "LIPI-18 handles support proposals; LIPI-20 evaluates delivery and contribution evidence.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Real orders/provider status and owner exception decisions"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-86"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G01",
+      "LIPI-G04",
+      "LIPI-G05"
+    ],
+    "requirement_ids": [
+      "LIPI-O10",
+      "LIPI-A04",
+      "LIPI-A11",
+      "LIPI-A14"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G01",
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant."
+      },
+      {
+        "gate_id": "LIPI-G04",
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant."
+      },
+      {
+        "gate_id": "LIPI-G05",
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "External shop/provider read or private mapping change only: intended account, current scoped supported route and any required existing grant.",
+        "gates": [
+          "LIPI-G01"
+        ]
+      },
+      {
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+        "gates": [
+          "LIPI-G04"
+        ]
+      },
+      {
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+        "gates": [
+          "LIPI-G05"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

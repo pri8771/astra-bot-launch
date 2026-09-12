@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-10-1db37beaa3a38d221e96bab6de0fc5d7e056758d373493cb633312dc9155effa",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-10",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-118",
+    "BOTS-5"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "1db37beaa3a38d221e96bab6de0fc5d7e056758d373493cb633312dc9155effa",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-10",
+    "mission": "CL",
+    "title": "Evaluate experiments and select the next profitable-use hypothesis",
+    "goal": "Continuously choose justified product, offer or acquisition work from observed business evidence.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/experiment_engine.py",
+      "config/experiment-policy.json",
+      "coordination/autonomy/experiment-template.json",
+      "tests/test_experiment_engine.py"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E07"
+    ],
+    "dependencies": [
+      "CL-04",
+      "CL-06",
+      "CL-08",
+      "CL-09",
+      "SH-05",
+      "SH-07"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Predeclare baseline, hypothesis, alternatives, exact intervention, denominator, useful exposure criterion, window, stop rule and budget from current qualified traffic; do not copy old 500-visitor heuristic as a universal threshold.",
+      "First candidate compares a clearer defect-to-repair result/offer path or focused agency sample; choose from measured bottleneck rather than generating more guides automatically.",
+      "Evaluate supported/not-supported/inconclusive/invalidated and retain confounders; select adopt/revert/one bounded extension/stop plus next candidate or explicit no-action.",
+      "Connect scope acceptance, delivered value, repeat use and settled cash as separate evidence; without payment proof optimize useful demand while leaving commercial validation open.",
+      "A price/remediation/channel change stays within existing scope and explicit grants; preserve original hypothesis and dated amendment when owner direction changes active work.",
+      "At mission_horizon_due, close the original 90-day accounting/experiment window and issue a reviewed continue/change/stop decision. New experiments or external expansion after the horizon require a valid owner charter extension; without it pause new effects while reconciling existing obligations and preserving useful offline work and original results."
+    ],
+    "deliverables": [
+      "experiment schema/engine",
+      "predeclared first protocol",
+      "evaluation/next-action receipts"
+    ],
+    "tests": [
+      "Clock advance before window/threshold triggers no premature evaluation; insufficient traffic closes inconclusive or one justified extension without fabricated sample.",
+      "Bad measurement coverage invalidates conversion claim; zero paid receipts cannot yield revenue success.",
+      "Closed experiment generates one reviewed next decision and cannot relaunch the same action on replay.",
+      "At 2026-11-22T04:59:59Z, one terminal review is due; absent valid extension denies new experiment effects after expiry. A validated extension creates a new dated charter/window and never rewrites original cash/results or abandons accepted customer obligations."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Each closed experiment has an attributable evaluation and next decision linked to actual observations.",
+      "At least two consecutive cycles can run from new evidence/due events without new owner prompting, while no-evidence state stays idle.",
+      "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ],
+    "rollback": "Stop next experiment effects; retain original protocol/measurements and restore selected intervention only through release owner.",
+    "next_eligible_action": "Draft two bounded hypotheses using verified current denominators; implement decision tests against sparse and contradictory evidence.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 14,
+      "high": 26,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Traffic volume governs elapsed evidence window; software can qualify with labeled fixtures first."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-118",
+        "BOTS-5"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G01",
+      "CL-G06",
+      "CL-G08"
+    ],
+    "requirement_ids": [
+      "CL-O08",
+      "CL-O10",
+      "CL-A03",
+      "CL-A05"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

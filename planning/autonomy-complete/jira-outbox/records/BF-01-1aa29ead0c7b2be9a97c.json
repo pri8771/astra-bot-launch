@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-01-1aa29ead0c7b2be9a97ceb34c53a4ecde36bd374a8c7a84f5a8213665157cffd",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-01",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-131",
+    "BOTS-134",
+    "PCH-90",
+    "PCH-127"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "1aa29ead0c7b2be9a97ceb34c53a4ecde36bd374a8c7a84f5a8213665157cffd",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-01",
+    "mission": "BF",
+    "title": "Reconcile retained product, tracker history and execution ownership",
+    "goal": "Admit current source while preserving working guide/checker, historical BF/PCH records and separate release ownership.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/docs/autonomy/admission.json",
+      "ventures/bidetfit/docs/autonomy/capabilities.json",
+      "ventures/bidetfit/docs/autonomy/reconciliation.md"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05",
+      "BF-E07"
+    ],
+    "dependencies": [],
+    "prerequisite_inputs": [
+      "BF-I01"
+    ],
+    "implementation_steps": [
+      "Record inspected ref and compare newer release return; read AGENTS, mission/state/docs/runbook/latest diary and qualify existing checker, six-hour operator and overlay individually.",
+      "Distinguish planning BF-01 style IDs from canonical historical BF-001..BF-034; request native PCH and BOTS matching without duplicate creation.",
+      "Preserve current source clock/start/end and correct stale day/count projections only from dated evidence; zero metrics from old docs are not measured current zero.",
+      "Record current operator owner, release lane admission, repository-only effects and optional runtime handoff boundary; no new scheduler or existing task interruption."
+    ],
+    "deliverables": [
+      "source/capability manifest",
+      "native matching outbox",
+      "admission receipt"
+    ],
+    "tests": [
+      "Manifest classifies tested code, dated state claims and missing live capabilities separately.",
+      "Admission rejects source/hash/owner mismatch and requires native writer readback for exact implementation scope."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Each retained capability has a reuse or targeted verification disposition.",
+      "PCH/BOTS estimates, actuals and accepted evidence are preserved, with unresolved duplicate scope assigned to sole writer."
+    ],
+    "rollback": "Withdraw only new admission; retain historical records and current deterministic operator.",
+    "next_eligible_action": "Prepare writer matching from retained BF-to-PCH table and current BOTS candidates.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 3,
+      "high": 6,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Current BF release lane and tracker cross-project scope must be reconciled."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-131",
+        "BOTS-134",
+        "PCH-90",
+        "PCH-127"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01"
+    ],
+    "requirement_ids": [
+      "BF-O01",
+      "BF-A01"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

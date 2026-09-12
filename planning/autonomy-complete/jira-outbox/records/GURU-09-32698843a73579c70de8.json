@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-09-32698843a73579c70de89fe9078b31f48a3e3bfa4f11aa20fdf0dc251d2c8b29",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-09",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "32698843a73579c70de89fe9078b31f48a3e3bfa4f11aa20fdf0dc251d2c8b29",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-09",
+    "mission": "GURU",
+    "title": "Operate moderation, correction and permitted engagement",
+    "goal": "Respond to real concerns while preserving trust and platform permission boundaries.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/src/moderation/",
+      "guru/tests/moderation/",
+      "guru/ops/corrections/"
+    ],
+    "evidence_refs": [
+      "GURU-E02",
+      "GURU-E03"
+    ],
+    "dependencies": [
+      "GURU-06",
+      "GURU-07",
+      "SH-06",
+      "SH-12",
+      "SH-13"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I07"
+    ],
+    "implementation_steps": [
+      "Collect permitted mentions/replies/flags tied to published IDs, store minimum references and classify cultural/source error, identity confusion, abuse and genuine topic requests; do not infer an individual religion.",
+      "Draft grounded responses and correction notices, route cultural/source concerns to named reviewer and pause affected claims. Preserve original post/content and corrected version with transparent rationale.",
+      "Enable only explicitly authorized correction/delete/moderation actions with receiving-system receipts. AI automated replies require prior written explicit X approval plus current recipient opt-in/summoning and opt-out rules; default to owner-reviewed drafts. No unsolicited DMs, keyword outreach, follow loops or sensitive-faith targeting."
+    ],
+    "deliverables": [
+      "moderation and correction queue",
+      "account-bound correction receipts",
+      "engagement permission checks"
+    ],
+    "tests": [
+      "Malicious comment cannot change policy or obtain private data.",
+      "Duplicate interaction, opt-out, unsummoned self-serve reply or missing X AI-reply approval prevents automated reply."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Every material concern gets one actionable owner/reviewer route and status.",
+      "Corrections are verified at destination; reply drafts are not counted as sent engagement."
+    ],
+    "rollback": "Pause automated interaction and preserve evidence; public restoration/deletion is a separate authorized act.",
+    "next_eligible_action": "GURU-11 uses aggregate concerns and useful questions to select next editorial work.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 8,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Moderation scope and platform reply permissions"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "GURU-G04"
+    ],
+    "requirement_ids": [
+      "GURU-O07",
+      "GURU-A04",
+      "GURU-A11",
+      "GURU-A14",
+      "GURU-A15"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "GURU-G04",
+        "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Reply/moderation/correction/delete effect only: operation-specific grant. Automated AI replies additionally require written explicit X approval and applicable opt-in/summon/opt-out rules; original-post autonomy does not depend on reply approval.",
+        "gates": [
+          "GURU-G04"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

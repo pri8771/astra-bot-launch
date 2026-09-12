@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-12-5848a32cd7399d4d9768b3ad4e5ed84f9cc85f0fb6b82763337ca8ed2313bd13",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-12",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "5848a32cd7399d4d9768b3ad4e5ed84f9cc85f0fb6b82763337ca8ed2313bd13",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-12",
+    "mission": "SH",
+    "title": "Deliver actionable incidents and operational status",
+    "goal": "Surface meaningful failures and owner decisions without repetitive messages.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/alerts/",
+      "tests/autonomy/alerts/"
+    ],
+    "evidence_refs": [
+      "focus/kai-pri-lipi/OWNER_DIRECTION.md",
+      "ARCHITECTURE.md"
+    ],
+    "dependencies": [
+      "SH-02",
+      "SH-08"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Define incidents for unknown effect, failed receipt, stale source/provider, expired grant, storage/restore fault and exhausted limit.",
+      "Persist incident fingerprint, severity, affected task and useful next action; deduplicate until material change.",
+      "Use owner-authorized delivery channel with receipt/ack, file queue if unavailable; store no private content in Git.",
+      "Expose separate prepared/reviewed/released/autonomous/business-result states using evidence-backed summaries."
+    ],
+    "deliverables": [
+      "Deliver actionable incidents and operational status implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Repeated same fault creates one notification; material escalation/new evidence can create one revision.",
+      "Delivery timeout reconciles or remains pending, never falsely acknowledged; channel outage preserves file incident."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "An operator can identify the affected task and execute a named recovery action.",
+      "Unknown or unobserved runtime state is not healthy/zero."
+    ],
+    "rollback": "Disable faulty notifier, retain file incident queue and last acknowledged state.",
+    "next_eligible_action": "Define incidents for unknown effect, failed receipt, stale source/provider, expired grant, storage/restore fault and exhausted limit.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A14"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

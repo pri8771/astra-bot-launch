@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-03-045bfe039a4c90a5503ba1ca3fcab0e218e7b5b60443d5951f5d147e4588cfe8",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-03",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-115",
+    "BOTS-116"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "045bfe039a4c90a5503ba1ca3fcab0e218e7b5b60443d5951f5d147e4588cfe8",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-03",
+    "mission": "CL",
+    "title": "Make request intake and verified response delivery restart-safe",
+    "goal": "Persist a qualified request through scan, clarification and delivered result without duplicate comments or public private-data exposure.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/lead_intake.py",
+      "operator/request_delivery.py",
+      "operator/request_ledger.py",
+      ".github/workflows/lead-intake.yml",
+      "tests/test_request_delivery.py"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E04"
+    ],
+    "dependencies": [
+      "CL-01",
+      "CL-02"
+    ],
+    "prerequisite_inputs": [
+      "CL-I02"
+    ],
+    "implementation_steps": [
+      "Reuse public GitHub request form, public-host validation and preliminary findings; distinguish public request fields from private customer records.",
+      "Add immutable request revision, event ID, consent/source, scope, job/attempt IDs and response artifact hash; use private storage for private delivery and public-safe projections only.",
+      "Persist response intent before effect; identify intended repository/issue and use an action-ID marker plus receiving-system comment lookup/readback before retry.",
+      "Process edited request/missing-URL answers once, preserving earlier evidence; verify rendered destination response belongs to intended request; advance fulfilled/needs-input only from receipts."
+    ],
+    "deliverables": [
+      "request/response ledger schema",
+      "delivery and reconciliation adapter",
+      "fault-injection and real receipt bundle"
+    ],
+    "tests": [
+      "Replayed opened/edited events increment neither lead count nor verified response count twice.",
+      "Kill after comment creation but before local acknowledgement; recovery locates same comment ID/body hash and never posts again.",
+      "SSRF/redirect/private URL and injection fixtures fail closed; rejected requests do not leak submitted private material into public summaries."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "One authorized real inbound request yields one verified public or scoped private response receipt.",
+      "Synthetic request fixtures are labeled; durable states remain separate from commercial lead and revenue counts.",
+      "Offline adapter readiness is established by request/delivery/replay fixtures and review. A permitted real inbound request is required only to accept live response capability; its absence does not block scanner/result/offer release."
+    ],
+    "rollback": "Disable new response delivery, preserve intent and receipts, reconcile in-flight response, continue existing public utility.",
+    "next_eligible_action": "Implement durable intent and destination lookup against captured request fixtures before any authorized response test.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 14,
+      "high": 26,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Receiving-system read permissions and private storage gate private intake only."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-115",
+        "BOTS-116"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G02",
+      "CL-G03"
+    ],
+    "requirement_ids": [
+      "CL-O03",
+      "CL-A04",
+      "CL-A10",
+      "CL-A11"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

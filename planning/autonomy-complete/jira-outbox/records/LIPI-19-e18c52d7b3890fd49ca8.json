@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-19-e18c52d7b3890fd49ca8422d89c58eaf5e3e014a7fe58e8abd9881b311f1b683",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-19",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-81",
+    "LIPI-85"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "e18c52d7b3890fd49ca8422d89c58eaf5e3e014a7fe58e8abd9881b311f1b683",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-19",
+    "mission": "LIPI",
+    "title": "Run repeatable organic acquisition and customer discovery",
+    "goal": "Turn the existing asset pack into a measurable first-sale and repeat-use motion.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/marketing/",
+      "services/lipi-autonomy/test/marketing/",
+      "ops/autonomy/marketing/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04"
+    ],
+    "dependencies": [
+      "LIPI-10",
+      "LIPI-11",
+      "SH-06",
+      "SH-07"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I11"
+    ],
+    "implementation_steps": [
+      "Reuse three product-led assets and select one owner-controlled eligible organic channel; bind exact handle/account, product availability, media rights/alt, landing URL, UTM and consent. Prepare content offline before LIPI-14; publishing depends on verified live destination.",
+      "Predeclare one question: whether a product-detail/use-case post yields qualified product visits, cart/checkouts and purchase inquiries. Collect voluntary non-sensitive objections about quality, shipping, fit and price; do not invent customer commitments or send unsolicited outreach.",
+      "Publish only the exact approved content/cadence through supported route and verify permalink/payload/account. Keep paid ads closed and lifecycle messages consent-bound/owner-controlled; queue next reviewed asset and declared observation due time."
+    ],
+    "deliverables": [
+      "repeatable content/discovery queue",
+      "qualified channel adapter",
+      "post and landing receipt chain"
+    ],
+    "tests": [
+      "Unavailable product, stale quote/claim, wrong account, missing consent or absent publication grant blocks send.",
+      "Duplicate publication timeout reconciles existing post; UTM/test traffic exclusion works."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "One authorized post has exact real destination evidence and attribution. A fully prepared offline candidate is preparation only and does not satisfy publication acceptance.",
+      "Acquisition is tied to profitable delivered-order objective; impressions do not become revenue."
+    ],
+    "rollback": "Pause future posts; corrections/deletion require exact authority and destination verification; retain published evidence.",
+    "next_eligible_action": "LIPI-20 evaluates objections/conversion and queues the next finite product/content experiment.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current channel identity, permission and live product destination"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-81",
+        "LIPI-85"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G07"
+    ],
+    "requirement_ids": [
+      "LIPI-O11",
+      "LIPI-A04"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Actual organic publication linking to the capsule; offline content/discovery preparation proceeds.",
+        "dependencies": [
+          "LIPI-14"
+        ],
+        "acceptance": "The exact current product/landing destination must be publicly verified and sale-eligible before sending traffic."
+      }
+    ],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G07",
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+        "gates": [
+          "LIPI-G07"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

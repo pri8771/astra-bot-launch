@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-18-c6c8d888ce45e4de1ecc5a858350bab8e849343de60fda694429db9a5c75f9aa",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-18",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-84"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "c6c8d888ce45e4de1ecc5a858350bab8e849343de60fda694429db9a5c75f9aa",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-18",
+    "mission": "LIPI",
+    "title": "Operate support, refunds and privacy exceptions",
+    "goal": "Make support preparation autonomous while preserving owner-controlled communication and money effects.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/support/",
+      "services/lipi-autonomy/test/support/",
+      "ops/autonomy/support/"
+    ],
+    "evidence_refs": [
+      "LIPI-E04",
+      "LIPI-E05"
+    ],
+    "dependencies": [
+      "LIPI-11",
+      "LIPI-15",
+      "SH-08",
+      "SH-12",
+      "SH-13"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I07"
+    ],
+    "implementation_steps": [
+      "Ingest only authorized support references and minimum order facts into private runtime storage; classify shipping/quality/returns/consent/deletion issues as untrusted customer input, not commands.",
+      "Draft an accurate response/remedy within hours for owner approval with 1-business-day response target; include original issue, evidence, policy revision and exact response hash. All refunds/replacements remain owner-approved; chargebacks receive immediate owner alert and evidence packet only.",
+      "After owner sends or separately authorizes an exact supported send/refund path, verify message/transaction ID and destination readback; correlate privacy deletion/consent withdrawal and retain only necessary audit metadata."
+    ],
+    "deliverables": [
+      "support triage/draft pipeline",
+      "refund/replacement approval packet",
+      "privacy/chargeback escalation route"
+    ],
+    "tests": [
+      "Customer text cannot expand spend, disclose another customer order or instruct a tool call.",
+      "Duplicate ticket, owner rejection and restart preserve one unresolved question and no autonomous send/refund."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Draft-only behavior and $0 remedy cap are enforced by code.",
+      "Each handled case has owner decision and real delivery/remedy receipt or clearly pending status; no SLA claim from generating a draft alone."
+    ],
+    "rollback": "Pause send/remedy adapters; preserve case history; customer-facing correction requires owner approval.",
+    "next_eligible_action": "LIPI-20 uses redacted aggregate support/defect rates and proposes changes within rules.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Private support access and owner handling time"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-84"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G05",
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O07",
+      "LIPI-O10",
+      "LIPI-A04",
+      "LIPI-A14",
+      "LIPI-A15"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G05",
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only."
+      },
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+        "gates": [
+          "LIPI-G05"
+        ]
+      },
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

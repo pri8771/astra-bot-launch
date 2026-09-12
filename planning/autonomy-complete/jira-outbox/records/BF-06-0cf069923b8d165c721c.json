@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-06-0cf069923b8d165c721c3739ee2ac85d284ba2ab8dbc8dde546022af163694e2",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-06",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-136",
+    "PCH-104"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "0cf069923b8d165c721c3739ee2ac85d284ba2ab8dbc8dde546022af163694e2",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-06",
+    "mission": "BF",
+    "title": "Measure useful completed checks and attributable referrals",
+    "goal": "Establish privacy-conscious product and acquisition measurements with explicit coverage.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/metrics_collector.py",
+      "ventures/bidetfit/public/assets/analytics.js",
+      "ventures/bidetfit/docs/autonomy/metric-contract.json",
+      "ventures/bidetfit/tests/test_metrics.py"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E04"
+    ],
+    "dependencies": [
+      "BF-03"
+    ],
+    "prerequisite_inputs": [
+      "BF-I03"
+    ],
+    "implementation_steps": [
+      "Qualify existing owner-controlled Search Console/analytics route; preserve zero-cost and separate venture identity from CommerceLint and excluded assets.",
+      "Define completed-check, uncertain-result, next-measurement, report-export, permitted affiliate-click and returning-use metrics with denominators, consent/coverage and internal-test exclusions.",
+      "Collect only aggregate category/result/source IDs; exact measurements, photos, customer identifiers and private source queries never enter public analytics.",
+      "Freeze baseline/window and readback provenance; missing permissions or unavailable data remain null, not copied zero from dated STATE/METRICS.",
+      "Prepare a search-intent/measurement-tool acquisition candidate and verify indexability/canonical/sitemap using existing deployment routes, not purchased traffic."
+    ],
+    "deliverables": [
+      "measurement dictionary/collector",
+      "privacy fixtures",
+      "indexing and experiment baseline"
+    ],
+    "tests": [
+      "Denied consent produces no optional measurement calls; allowed payload schema rejects measurements, photos and identifiers.",
+      "Duplicate event/internal synthetic check never increases qualified external-use denominator.",
+      "Imported collector timestamp/coverage distinguish zero observed events from no data access."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Scorecard distinguishes helpful completed checks, uncertain guidance, permitted referrals and money.",
+      "One declared usefulness/acquisition intervention can be measured honestly despite partial analytics coverage."
+    ],
+    "rollback": "Disable optional tracking, preserve public utility and prior aggregate baseline with coverage limits.",
+    "next_eligible_action": "Implement allowlisted event schema and denominator fixtures before connecting analytics.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 18,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Analytics verification may need owner action; offline metric contract and fixture collector proceed."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-136",
+        "PCH-104"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G05"
+    ],
+    "requirement_ids": [
+      "BF-O07",
+      "BF-A03",
+      "BF-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

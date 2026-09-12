@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-08-05a9dce68da410b2e83b83f9d339c5827cbe3e6624a32ca3da9a2f33b7061a6c",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-08",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "05a9dce68da410b2e83b83f9d339c5827cbe3e6624a32ca3da9a2f33b7061a6c",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-08",
+    "mission": "SH",
+    "title": "Consume owner direction and resume answered questions once",
+    "goal": "Translate validated owner revisions into acknowledged execution changes and scoped missing-input resumes.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/direction/",
+      "tests/autonomy/direction/"
+    ],
+    "evidence_refs": [
+      "focus/kai-pri-lipi/OWNER_DIRECTION.md"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Implement file input with authenticated issuer binding; optional later ingress uses same schema, not new private assistant roadmap.",
+      "Persist recorded/seen/applied/waiting_for_reconciliation/needs_input/superseded/expired states and consumed revision.",
+      "Recheck pause/changed direction at job start and before effect; amend experiments without rewriting results.",
+      "Create stable scoped question IDs, reuse valid prior answers, bind respondent and answer evidence, wake dependent jobs only."
+    ],
+    "deliverables": [
+      "Consume owner direction and resume answered questions once implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Duplicate/superseding/pause directions across restart apply once; untrusted external message cannot expand grants.",
+      "Silence leaves input pending, wrong-issuer answer rejected, valid answer resumes exact job once; unrelated job remains eligible."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Owner sees acknowledgement of actual consumed revision, not just saved file.",
+      "Question deduplication and safe pause boundary survive process loss."
+    ],
+    "rollback": "Disable faulty ingress, retain direction log and accepted prior revision; reconcile submitted effects before resume.",
+    "next_eligible_action": "Implement file input with authenticated issuer binding; optional later ingress uses same schema, not new private assistant roadmap.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 18,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A06",
+      "SH-A07"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

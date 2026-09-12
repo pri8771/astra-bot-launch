@@ -1,0 +1,607 @@
+[
+  {
+    "id": "LIPI-O01",
+    "mission": "LIPI",
+    "requirement": "Reuse accepted 25 local contracts and reconcile current source/external residuals",
+    "task_ids": [
+      "LIPI-01"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Each LIPI-63–87 row says reused artifact, source availability, external residual and next owner.",
+      "Jira key remains null until designated writer returns current readback."
+    ]
+  },
+  {
+    "id": "LIPI-O02",
+    "mission": "LIPI",
+    "requirement": "Approved capsule/design direction and exact membership",
+    "task_ids": [
+      "LIPI-02"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Membership state is explicit for every candidate.",
+      "Owner decision receipt or a single persisted unanswered question exists without blocking independent engineering."
+    ]
+  },
+  {
+    "id": "LIPI-O03",
+    "mission": "LIPI",
+    "requirement": "Accurate variant-level Shopify/Printful product mappings",
+    "task_ids": [
+      "LIPI-03",
+      "LIPI-04",
+      "LIPI-05",
+      "LIPI-06"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+      "No source hint or mockup is treated as current provider truth.",
+      "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+      "No source hint or mockup is treated as current provider truth.",
+      "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+      "No source hint or mockup is treated as current provider truth.",
+      "Each intended variant either has current matching mapping/fulfillment evidence or an exact blocked reason.",
+      "No source hint or mockup is treated as current provider truth."
+    ]
+  },
+  {
+    "id": "LIPI-O04",
+    "mission": "LIPI",
+    "requirement": "Worst-case 20% all-in contribution with 10% reserve and evidenced US shipping",
+    "task_ids": [
+      "LIPI-07"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Every permitted basket clears 20% under current evidenced assumptions; failing baskets cannot sell under the proposed configuration.",
+      "Reserve remains 10% until owner revisits after 100 actual orders; economic and tax unknowns stay explicit."
+    ]
+  },
+  {
+    "id": "LIPI-O05",
+    "mission": "LIPI",
+    "requirement": "Purchase-ready sample decision, authorized order and physical delivery/quality acceptance",
+    "task_ids": [
+      "LIPI-08",
+      "LIPI-09"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Sample purchase matches exact authorized identities and total, or remains clearly awaiting the one required decision.",
+      "Receipt is provider-observed; preparing a packet is not purchasing or delivery.",
+      "Each launch SKU has attributable physical acceptance or remains withheld.",
+      "Inspection result is linked to the same provider order and product configuration."
+    ]
+  },
+  {
+    "id": "LIPI-O06",
+    "mission": "LIPI",
+    "requirement": "Consistent accessible product content, media and coordinated storefront",
+    "task_ids": [
+      "LIPI-10"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "All candidate surfaces agree on approved identity and available variants.",
+      "Responsive/accessibility residuals are explicit and owned, not hidden behind passed source checks."
+    ]
+  },
+  {
+    "id": "LIPI-O07",
+    "mission": "LIPI",
+    "requirement": "Policies, consent, privacy and accountable customer support",
+    "task_ids": [
+      "LIPI-11",
+      "LIPI-18"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Each policy field has current evidence/owner decision or a precise unresolved input.",
+      "Contact/support and consent states survive reopen and route to an accountable owner.",
+      "Draft-only behavior and $0 remedy cap are enforced by code.",
+      "Each handled case has owner decision and real delivery/remedy receipt or clearly pending status; no SLA claim from generating a draft alone."
+    ]
+  },
+  {
+    "id": "LIPI-O08",
+    "mission": "LIPI",
+    "requirement": "Correct checkout, payment and transactional journey",
+    "task_ids": [
+      "LIPI-12"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Relevant edge cases pass on exact candidate and a separately identified real or test order receipt exists.",
+      "Real payment/fulfillment acceptance remains open if only a test route was used."
+    ]
+  },
+  {
+    "id": "LIPI-O09",
+    "mission": "LIPI",
+    "requirement": "Reviewed launch, restore and real public cutover/readback",
+    "task_ids": [
+      "LIPI-13",
+      "LIPI-14"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Exact-source independent review and private recovery must pass; failed/withheld review leaves release acceptance incomplete.",
+      "Owner can approve one complete current candidate without unspecified future changes.",
+      "Approved capsule and consistent shared surfaces are publicly verified. Any partial cutover keeps release acceptance incomplete until reconciled and repaired or rolled back.",
+      "Release is distinct from autonomous operation or sales validation."
+    ]
+  },
+  {
+    "id": "LIPI-O10",
+    "mission": "LIPI",
+    "requirement": "Actual fulfillment, inventories/exceptions and owner-gated remedies",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-17",
+      "LIPI-18"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "One current authorized read is persisted with provenance and repeat idle ticks show0 model calls.",
+      "Missing providers yield explicit stale/unknown state and one resource question.",
+      "Each observed order has current joined lifecycle or named mapping gap.",
+      "A synthetic held-order test and an actual authorized provider observation prove routing; zero real orders stays zero with order-cycle validation pending.",
+      "Draft-only behavior and $0 remedy cap are enforced by code.",
+      "Each handled case has owner decision and real delivery/remedy receipt or clearly pending status; no SLA claim from generating a draft alone."
+    ]
+  },
+  {
+    "id": "LIPI-O11",
+    "mission": "LIPI",
+    "requirement": "Organic first-customer acquisition and repeatable content/discovery",
+    "task_ids": [
+      "LIPI-19"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "One authorized post has exact real destination evidence and attribution. A fully prepared offline candidate is preparation only and does not satisfy publication acceptance.",
+      "Acquisition is tied to profitable delivered-order objective; impressions do not become revenue."
+    ]
+  },
+  {
+    "id": "LIPI-O12",
+    "mission": "LIPI",
+    "requirement": "Measured profitable delivered orders, customer experience and continuing experiments",
+    "task_ids": [
+      "LIPI-20"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Two consecutive finite decision cycles preserve original hypotheses and generate eligible next actions or timed evidence waits.",
+      "Financial and growth outcomes remain measured, including honest inconclusive/negative results."
+    ]
+  },
+  {
+    "id": "LIPI-O13",
+    "mission": "LIPI",
+    "requirement": "Real bounded autonomous commerce operation with course correction and recovery",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-21",
+      "LIPI-22",
+      "LIPI-23"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "One current authorized read is persisted with provenance and repeat idle ticks show0 model calls.",
+      "Missing providers yield explicit stale/unknown state and one resource question.",
+      "Authorized price change can be observed at destination with current≥20% worst-case contribution.",
+      "Refund/replacement cap remains$0 and discounts/publication/customer sends stay gated; generic shell/HTTP does not become an effect tool.",
+      "A real owner direction receipt names revision actually consumed and next action.",
+      "Native writer readback or explicit pending outbox state exists; stored file alone is not worker acknowledgement.",
+      "One Windows cycle runs with mobile Mac disconnected and produces correct receipts.",
+      "Backup restore preserves one consumer, all pending effect knowledge and no cross-mission secret/customer access.",
+      "Autonomous operation requires TWO completed real allowed observation-decision-action-verified-result-next-decision cycles, plus actual owner direction, recovery and bounded usage. A scheduled wait or second prepared decision is valid operation but cannot substitute for the second completed real cycle.",
+      "Paid/fulfilled demand and profitability stay separate measured criteria; blocked effect does not become success."
+    ]
+  },
+  {
+    "id": "LIPI-O14",
+    "mission": "LIPI",
+    "requirement": "Separate evidence-based India-to-US supplier/product pilot hypothesis",
+    "task_ids": [
+      "LIPI-24"
+    ],
+    "evidence_refs": [
+      "LIPI-E01"
+    ],
+    "acceptance": [
+      "Specific supplier/product route has evidence or a precise collection task for each gap.",
+      "Offline research/model is useful now; contact, purchase/import and catalog changes remain separate gates with receipts."
+    ]
+  },
+  {
+    "id": "LIPI-A01",
+    "mission": "LIPI",
+    "requirement": "Durable single-owner state, claims and fencing",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-16",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Duplicate/out-of-order webhook and cursor restart produce one state transition without losing new evidence.",
+      "Wrong shop, stale timestamp, invalid authenticity or malformed payload cannot modify authority or leak PII.",
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect."
+    ]
+  },
+  {
+    "id": "LIPI-A02",
+    "mission": "LIPI",
+    "requirement": "Deterministic event/due scheduling and zero unchanged-input inference",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-20",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Duplicate/out-of-order webhook and cursor restart produce one state transition without losing new evidence.",
+      "Wrong shop, stale timestamp, invalid authenticity or malformed payload cannot modify authority or leak PII.",
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment."
+    ]
+  },
+  {
+    "id": "LIPI-A03",
+    "mission": "LIPI",
+    "requirement": "Persist evidence-based decisions and source fingerprints",
+    "task_ids": [
+      "LIPI-16",
+      "LIPI-20",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment."
+    ]
+  },
+  {
+    "id": "LIPI-A04",
+    "mission": "LIPI",
+    "requirement": "Execute only eligible effects and verify receiving-system result",
+    "task_ids": [
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-18",
+      "LIPI-19",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Duplicate shipment events cannot duplicate a notice or second provider order.",
+      "Provider cancellation after payment and out-of-stock event leave explicit unresolved effect with actionable deadline alert.",
+      "Customer text cannot expand spend, disclose another customer order or instruct a tool call.",
+      "Duplicate ticket, owner rejection and restart preserve one unresolved question and no autonomous send/refund.",
+      "Unavailable product, stale quote/claim, wrong account, missing consent or absent publication grant blocks send.",
+      "Duplicate publication timeout reconciles existing post; UTM/test traffic exclusion works."
+    ]
+  },
+  {
+    "id": "LIPI-A05",
+    "mission": "LIPI",
+    "requirement": "Evaluate experiments and select the next finite decision",
+    "task_ids": [
+      "LIPI-20",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment."
+    ]
+  },
+  {
+    "id": "LIPI-A06",
+    "mission": "LIPI",
+    "requirement": "Consume owner nudges and acknowledge the actual revision",
+    "task_ids": [
+      "LIPI-21",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Old or duplicate direction cannot override newer accepted direction; external customer text cannot be owner direction.",
+      "Pause immediately before price/order submit blocks it; restart after question does not ask again."
+    ]
+  },
+  {
+    "id": "LIPI-A07",
+    "mission": "LIPI",
+    "requirement": "Ask once for missing input, validate answer and resume",
+    "task_ids": [
+      "LIPI-21",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Old or duplicate direction cannot override newer accepted direction; external customer text cannot be owner direction.",
+      "Pause immediately before price/order submit blocks it; restart after question does not ask again."
+    ]
+  },
+  {
+    "id": "LIPI-A08",
+    "mission": "LIPI",
+    "requirement": "Automatic immutable Jira/documentation outboxes and native readback",
+    "task_ids": [
+      "LIPI-20",
+      "LIPI-21",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment.",
+      "Old or duplicate direction cannot override newer accepted direction; external customer text cannot be owner direction.",
+      "Pause immediately before price/order submit blocks it; restart after question does not ask again."
+    ]
+  },
+  {
+    "id": "LIPI-A09",
+    "mission": "LIPI",
+    "requirement": "Bound retries and attributable review/repair attempts",
+    "task_ids": [
+      "LIPI-16",
+      "LIPI-22",
+      "LIPI-23",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback.",
+      "Each link uses actual event/action/destination IDs; synthetic fault fixtures are separately labeled.",
+      "Independent reviewer reproduces source checks and reconciles every uncertain effect; unresolved repair after 2 attempts prevents autonomy acceptance."
+    ]
+  },
+  {
+    "id": "LIPI-A10",
+    "mission": "LIPI",
+    "requirement": "Deduplicate events, actions and outgoing projections",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-21",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Duplicate/out-of-order webhook and cursor restart produce one state transition without losing new evidence.",
+      "Wrong shop, stale timestamp, invalid authenticity or malformed payload cannot modify authority or leak PII.",
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Old or duplicate direction cannot override newer accepted direction; external customer text cannot be owner direction.",
+      "Pause immediately before price/order submit blocks it; restart after question does not ask again."
+    ]
+  },
+  {
+    "id": "LIPI-A11",
+    "mission": "LIPI",
+    "requirement": "Reconcile uncertain external effects before retry or takeover",
+    "task_ids": [
+      "LIPI-08",
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-22",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Null total, changed color/design, expired quote or cap overrun blocks submission.",
+      "Crash after submit resolves the existing provider order rather than placing a second order.",
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Duplicate shipment events cannot duplicate a notice or second provider order.",
+      "Provider cancellation after payment and out-of-stock event leave explicit unresolved effect with actionable deadline alert.",
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ]
+  },
+  {
+    "id": "LIPI-A12",
+    "mission": "LIPI",
+    "requirement": "Windows process-tree cleanup and bounded execution",
+    "task_ids": [
+      "LIPI-22",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ]
+  },
+  {
+    "id": "LIPI-A13",
+    "mission": "LIPI",
+    "requirement": "Crash/restart/checkpoint/backup restore without lost effects",
+    "task_ids": [
+      "LIPI-22",
+      "LIPI-23",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback.",
+      "Each link uses actual event/action/destination IDs; synthetic fault fixtures are separately labeled.",
+      "Independent reviewer reproduces source checks and reconciles every uncertain effect; unresolved repair after 2 attempts prevents autonomy acceptance."
+    ]
+  },
+  {
+    "id": "LIPI-A14",
+    "mission": "LIPI",
+    "requirement": "Actionable alerts and quiet unchanged states",
+    "task_ids": [
+      "LIPI-17",
+      "LIPI-18",
+      "LIPI-22",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Duplicate shipment events cannot duplicate a notice or second provider order.",
+      "Provider cancellation after payment and out-of-stock event leave explicit unresolved effect with actionable deadline alert.",
+      "Customer text cannot expand spend, disclose another customer order or instruct a tool call.",
+      "Duplicate ticket, owner rejection and restart preserve one unresolved question and no autonomous send/refund.",
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ]
+  },
+  {
+    "id": "LIPI-A15",
+    "mission": "LIPI",
+    "requirement": "Privacy, secret references and cross-mission isolation",
+    "task_ids": [
+      "LIPI-15",
+      "LIPI-18",
+      "LIPI-22",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Duplicate/out-of-order webhook and cursor restart produce one state transition without losing new evidence.",
+      "Wrong shop, stale timestamp, invalid authenticity or malformed payload cannot modify authority or leak PII.",
+      "Customer text cannot expand spend, disclose another customer order or instruct a tool call.",
+      "Duplicate ticket, owner rejection and restart preserve one unresolved question and no autonomous send/refund.",
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ]
+  },
+  {
+    "id": "LIPI-A16",
+    "mission": "LIPI",
+    "requirement": "Enforced model/tool/token/time/spend limits and zero idle inference",
+    "task_ids": [
+      "LIPI-16",
+      "LIPI-20",
+      "LIPI-22",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Restart after grant validation cannot reuse consumed grant or admit stale fencing token.",
+      "Unknown budget, changed variant cost, different shop, missing price logging admission or expired grant prevents effect.",
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment.",
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback."
+    ]
+  },
+  {
+    "id": "LIPI-A17",
+    "mission": "LIPI",
+    "requirement": "Exact-source independent review and repeated real end-to-end cycles",
+    "task_ids": [
+      "LIPI-13",
+      "LIPI-23",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Restore reproduces snapshot hashes and preserves order/payment receipts.",
+      "Unreviewed file or changed price/mapping invalidates candidate admission.",
+      "Each link uses actual event/action/destination IDs; synthetic fault fixtures are separately labeled.",
+      "Independent reviewer reproduces source checks and reconciles every uncertain effect; unresolved repair after 2 attempts prevents autonomy acceptance."
+    ]
+  },
+  {
+    "id": "LIPI-A18",
+    "mission": "LIPI",
+    "requirement": "Independent Windows operation and optional fenced R730 migration",
+    "task_ids": [
+      "LIPI-22",
+      "LIPI-23",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "LIPI-E03"
+    ],
+    "acceptance": [
+      "Killing the parent terminates its owned process tree only; unrelated release workers survive.",
+      "Stale owner cannot execute after restore; idle interval records0 inference and exhausted budget prevents paid fallback.",
+      "Each link uses actual event/action/destination IDs; synthetic fault fixtures are separately labeled.",
+      "Independent reviewer reproduces source checks and reconciles every uncertain effect; unresolved repair after 2 attempts prevents autonomy acceptance."
+    ]
+  }
+]

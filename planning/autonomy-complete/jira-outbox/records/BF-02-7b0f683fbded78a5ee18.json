@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-02-7b0f683fbded78a5ee18b66de80bd57be1c3cb4148ec3f6f88aafa4b36367d6d",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-02",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-135",
+    "PCH-106"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "7b0f683fbded78a5ee18b66de80bd57be1c3cb4148ec3f6f88aafa4b36367d6d",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-02",
+    "mission": "BF",
+    "title": "Build exact-model compatibility evidence and deterministic rules",
+    "goal": "Make fit conclusions traceable to specific manufacturer models and dated dimensions rather than generalized thresholds.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/data/compatibility.schema.json",
+      "ventures/bidetfit/data/compatibility.json",
+      "ventures/bidetfit/research/source-ledger.json",
+      "ventures/bidetfit/scripts/validate_compatibility.py",
+      "ventures/bidetfit/tests/test_compatibility.py"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E03",
+      "BF-E06"
+    ],
+    "dependencies": [
+      "BF-01"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Define toilet/bidet model IDs and revisions, region, dimensions/units/tolerance, geometry, mounting/plumbing/power requirements, source URL/document/page, retrieval date/hash, reviewed claims and unknowns.",
+      "Seed a bounded representative set from current primary manufacturer drawings: normal round/elongated plus French-curve/skirted exceptions; each record includes supported, conflicting or unknown conclusion.",
+      "Require two-person/source-domain review of extracted facts; retailer guidance remains secondary and physical testing is never inferred.",
+      "Implement unit conversion and product-specific checks; stale, missing or contradictory decisive dimensions downgrade to needs-verification and name the missing measurement.",
+      "Generate comparison facts from evidence without using commission rate in fit ranking; preserve source revisions and correction history."
+    ],
+    "deliverables": [
+      "schema and seeded model records",
+      "source ledger and validator",
+      "reviewed rule fixtures"
+    ],
+    "tests": [
+      "Metric/imperial, boundary tolerance, incomplete dimension, model alias and conflicting source fixtures return deterministic conservative conclusions.",
+      "Removing required source or expiring it prevents a supported exact-model result.",
+      "Reviewer independently traces each seeded numerical requirement to primary source locator and extraction hash."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Each exact-model result has dated source links and a reason; unsupported fit guarantees are absent.",
+      "Unknown or conflicting evidence produces a useful next measurement/manufacturer-verification step."
+    ],
+    "rollback": "Revert affected evidence revision/rules to last reviewed snapshot; downgrade dependent results to uncertain and retain corrections.",
+    "next_eligible_action": "Implement source/schema fixture and seed a bounded manufacturer-grounded model set.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 16,
+      "high": 30,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Primary drawings may be inaccessible; represent unavailable models as unknown rather than delaying schema or inventing facts."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-135",
+        "PCH-106"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "BF-O02",
+      "BF-O03",
+      "BF-A03"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-05-88427b025d329dce2b9f79755a057cbeab34e8fa1fc426be2811a343505c5406",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-05",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "88427b025d329dce2b9f79755a057cbeab34e8fa1fc426be2811a343505c5406",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-05",
+    "mission": "SH",
+    "title": "Persist evidence-based business decisions",
+    "goal": "Turn bounded new evidence into a valid decision without allowing a model to invent authority or outcomes.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/decisions/",
+      "tests/autonomy/decisions/"
+    ],
+    "evidence_refs": [
+      "reference/MISSION_GOALS.md",
+      "reference/AUTONOMOUS_EXPERIMENTS.md"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02",
+      "SH-04"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Define observation trust/synthetic labels and concise decision records: rationale, alternatives, evidence IDs, selected action or no-action reason.",
+      "Build deterministic eligibility and bounded prompt assembly excluding private unrelated content; accept typed proposals only.",
+      "Validate current mission goal, metric denominators, available capability and evidence provenance before promotion.",
+      "Route ambiguous consequential choices to qualified review within remaining budget; unresolvable proposals become a precise input gap."
+    ],
+    "deliverables": [
+      "Persist evidence-based business decisions implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Inject instructions into scan text/comment/source: proposal cannot change grant, mission or destination.",
+      "Unknown metrics remain null; synthetic visitors cannot become outside demand; invalid schema yields bounded rejection."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Every selected action references real input evidence and an allowed mission objective.",
+      "No model output can grant permission or mark its own remote action verified."
+    ],
+    "rollback": "Pin last accepted policy, archive rejected decision and requeue only on corrected evidence/revision.",
+    "next_eligible_action": "Define observation trust/synthetic labels and concise decision records: rationale, alternatives, evidence IDs, selected action or no-action reason.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 8,
+      "high": 16,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A03"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

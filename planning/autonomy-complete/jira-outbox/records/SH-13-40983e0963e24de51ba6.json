@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-13-40983e0963e24de51ba64cc5e5d9ce777257932e4045b6699230de51b3e9b499",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-13",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-92"
+  ],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "40983e0963e24de51ba64cc5e5d9ce777257932e4045b6699230de51b3e9b499",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-13",
+    "mission": "SH",
+    "title": "Enforce mission privacy, secrets and source trust boundaries",
+    "goal": "Keep each mission's credentials and customer data scoped while allowing sanitized shared evidence.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/security/",
+      "tests/autonomy/security/"
+    ],
+    "evidence_refs": [
+      "reference/ACCOUNTS_CHANNELS_AND_HOSTS.md",
+      "CLOUD_PUBLICATION.md"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Define data inventory/retention/access/delete/export for mission payloads and hashed public receipts.",
+      "Inject secrets by host-local reference; effect broker restricts resource scope and prevents secrets entering logs/prompts/outboxes.",
+      "Validate webhook signatures/replay, URL/protocol/redirect egress policy and untrusted content boundaries in adapters.",
+      "Provide redaction/sanitization before private Git publication and restore; no Kai/Pri personal-data export."
+    ],
+    "deliverables": [
+      "Enforce mission privacy, secrets and source trust boundaries implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Cross-mission read, forged webhook, private-network URL/redirect, secret-containing exception and over-retention fixtures fail safely.",
+      "Deletion removes eligible payloads while retaining minimal audit identifiers; backups follow declared retention."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Artifacts contain secret references only; customer/order content stays access-controlled.",
+      "Each adapter has explicit input trust, egress and payload-size rules."
+    ],
+    "rollback": "Revoke affected scoped capability, quarantine payloads and rotate only demonstrated exposed secret via authorized route.",
+    "next_eligible_action": "Define data inventory/retention/access/delete/export for mission payloads and hashed public receipts.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-92"
+      ],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

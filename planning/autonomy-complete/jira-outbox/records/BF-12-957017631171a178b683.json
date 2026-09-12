@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-12-957017631171a178b68311c03622d6a322a1f8ba642a36fa886a2781c5f4b27e",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-12",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-136",
+    "PCH-98",
+    "PCH-121"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "957017631171a178b68311c03622d6a322a1f8ba642a36fa886a2781c5f4b27e",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-12",
+    "mission": "BF",
+    "title": "Release reviewed guidance through the existing portfolio overlay",
+    "goal": "Verify the intended BidetFit artifact and recovery without colliding with CommerceLint deployment.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/docs/autonomy/release-contract.json",
+      "ventures/bidetfit/docs/autonomy/release-receipts/"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E03"
+    ],
+    "dependencies": [
+      "BF-03",
+      "BF-04",
+      "BF-06"
+    ],
+    "prerequisite_inputs": [
+      "BF-I01"
+    ],
+    "implementation_steps": [
+      "Submit reviewed candidate to existing release owner; reserve pri8771/priyanshchordia.com:deployment with the existing four-bot parent. Wait only for an actual in-flight conflicting deployment, never all CommerceLint task completion.",
+      "Reuse bidetfit-pages-overlay.yml and existing build/mount; bind immutable portfolio source and mounted CommerceLint source to one artifact manifest.",
+      "Verify homepage, checker, source-backed outcome, measurement pages, disclosures, privacy, canonical/sitemap and both ventures critical routes.",
+      "Require eligibility validator for any newly activated tracking link; if approval missing release non-affiliate utility.",
+      "Rehearse prior-artifact restoration and public readback through same deployment owner; reconcile uncertain workflow status before retry."
+    ],
+    "deliverables": [
+      "source/release manifests",
+      "public usability/readback receipt",
+      "cross-venture rollback receipt"
+    ],
+    "tests": [
+      "Conflicting portfolio deployment ownership blocks this effect only; fixture/browser work continues.",
+      "Wrong artifact/source hash, unsupported source claim or unapproved commercial link fails gate.",
+      "Rollback restores both CL and BF critical routes with saved receipt.",
+      "No approved merchant/program or commission report: non-affiliate checker release passes product gate and zero tracking links activate."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Independent review and public readback identify exact released source and useful complete checker journey.",
+      "Release with no active affiliate links is valid useful-product delivery; it does not establish commission or runtime autonomy."
+    ],
+    "rollback": "Existing deployment owner restores last reviewed combined artifact, preserving state/commission receipts.",
+    "next_eligible_action": "Prepare exact candidate and release evidence request for existing overlay owner.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Shared portfolio production destination is serialized; no worker schedule change is authorized by this plan."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-136",
+        "PCH-98",
+        "PCH-121"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01",
+      "BF-G02",
+      "BF-G11"
+    ],
+    "requirement_ids": [
+      "BF-O11",
+      "BF-A04",
+      "BF-A17"
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "This release activates or changes affiliate tracking links. A non-affiliate guide/checker release does not require merchant approval.",
+        "effect_gates": [
+          "BF-G03",
+          "BF-G04"
+        ],
+        "acceptance": "Before commercial link activation verify exact approval/terms/product/geography/destination/disclosure; missing gate keeps those links disabled while useful guidance releases."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

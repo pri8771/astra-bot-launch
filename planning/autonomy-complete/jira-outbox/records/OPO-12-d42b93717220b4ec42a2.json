@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-12-d42b93717220b4ec42a2d4e76403d63764852655856a517dd1b1c6995925844a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-12",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "d42b93717220b4ec42a2d4e76403d63764852655856a517dd1b1c6995925844a",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-12",
+    "mission": "OPO",
+    "title": "Integrate eligible service and external effect receipts",
+    "goal": "Autonomous responses, releases, posts and payment-related actions execute only with verified destinations.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "operator/opo/actions.py",
+      "operator/opo/reconcile.py",
+      "tests/opo/test_actions.py"
+    ],
+    "evidence_refs": [
+      "OPO-E05",
+      "OPO-E07"
+    ],
+    "dependencies": [
+      "OPO-07",
+      "OPO-08",
+      "OPO-10",
+      "SH-06"
+    ],
+    "prerequisite_inputs": [
+      "OPO-I04",
+      "OPO-I05",
+      "OPO-I08"
+    ],
+    "implementation_steps": [
+      "Register separate action capabilities for internal service job, website reply, release, channel post, hosted checkout creation, delivery and refund; bind account/host/resource, revision, budget and exact content/result hash.",
+      "Write durable attempt before send, verify service result or provider/public receiving-system identity after send and retain queued/accepted/sent/verified distinctions. Payment branches require completed OPO-06.",
+      "Derive action key from mission/experiment/version/action/resource; reconcile unknown provider outcomes by stable key/receipts before retry and prevent cross-mission adapter credentials."
+    ],
+    "deliverables": [
+      "mission action registry",
+      "reconciliation adapters",
+      "fault-injection receipts"
+    ],
+    "tests": [
+      "Kill between effect acceptance and ledger write: resumed operator locates existing reply/post/payment and never doubles it.",
+      "Mutated destination, stale direction or stale fencing token blocks the action.",
+      "No public/paid action occurs for dry-run records, incomplete Jira registration or unqualified account."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Every admitted action has a durable attempt and result verified at the appropriate destination.",
+      "Uncertainty creates reconciliation work instead of blind retry."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 9,
+      "high": 16,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [
+      "OPO-I01",
+      "OPO-I02",
+      "OPO-I04",
+      "OPO-I05",
+      "OPO-I06",
+      "OPO-I08"
+    ],
+    "requirement_ids": [
+      "OPO-A04",
+      "OPO-A10",
+      "OPO-A11"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-09-b6d7a2ed2bb26093f4d1e2e1b77015ecc5ed222824bc8f2d9cf36c1ea2e38c9a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-09",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "b6d7a2ed2bb26093f4d1e2e1b77015ecc5ed222824bc8f2d9cf36c1ea2e38c9a",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-09",
+    "mission": "SH",
+    "title": "Compile immutable Jira and documentation outboxes",
+    "goal": "Project plans and outcomes through designated writers with matching, deduplication and readback.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/outbox/",
+      "tests/autonomy/outbox/"
+    ],
+    "evidence_refs": [
+      "TASK_DIRECTORY_CONTRACT.md",
+      "WINDOWS_RELEASE_EXECUTION.md",
+      "evidence/JIRA_READBACK.json"
+    ],
+    "dependencies": [
+      "SH-01",
+      "SH-02"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Implement atomic immutable proposal files with operation ID, spec/payload hash and predecessor; local deterministic schema and secret checks.",
+      "Partition OPO vs four-bot writer queues; leave Lipi/shared writer unbound until designated; no fallback to old Mac writer.",
+      "Writer reconciles existing matches, allowed fields, original estimates/actuals, dependencies and accountable roles before admission.",
+      "Persist preimage, attempt and native readback; reconcile uncertain issue/comment effect by operation ID before retry; accepted docs use same evidence references."
+    ],
+    "deliverables": [
+      "Compile immutable Jira and documentation outboxes implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "Replay same proposal and timeout after remote apply; simulated writer makes one effect and returns one matching readback.",
+      "Null candidate key cannot clear issue fields; spec revision invalidates old admission; outage leaves independent preparation runnable."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "A task cannot be marked admitted solely from queue placement or HTTP acknowledgement.",
+      "Every projection names its sole scope owner; history/actuals remain preserved."
+    ],
+    "rollback": "Stop projection, retain immutable proposals and native preimages; corrective Jira change is separately reviewed by rightful writer.",
+    "next_eligible_action": "Implement atomic immutable proposal files with operation ID, spec/payload hash and predecessor; local deterministic schema and secret checks.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 10,
+      "high": 20,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

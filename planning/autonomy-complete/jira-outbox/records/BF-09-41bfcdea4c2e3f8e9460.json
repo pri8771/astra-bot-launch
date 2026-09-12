@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-09-41bfcdea4c2e3f8e94609e20fdbddc5f378496618e07d389a97953ca6c0dc147",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-09",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-138",
+    "PCH-127",
+    "PCH-108"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "41bfcdea4c2e3f8e94609e20fdbddc5f378496618e07d389a97953ca6c0dc147",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-09",
+    "mission": "BF",
+    "title": "Integrate durable mission events into the existing six-hour operator",
+    "goal": "Extend deterministic health automation with a fenced evidence/action adapter and no idle model polling.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/autonomy_adapter.py",
+      "ventures/bidetfit/scripts/operator.py",
+      "ventures/bidetfit/config/autonomy.json",
+      "ventures/bidetfit/tests/test_autonomy.py"
+    ],
+    "evidence_refs": [
+      "BF-E02",
+      "BF-E03"
+    ],
+    "dependencies": [
+      "BF-01",
+      "BF-04",
+      "SH-01",
+      "SH-02",
+      "SH-03",
+      "SH-04",
+      "SH-06"
+    ],
+    "prerequisite_inputs": [
+      "BF-I06"
+    ],
+    "implementation_steps": [
+      "Retain existing operator, kill switch, durable logs and six-hour trigger; add source_changed, source_review_due, completed_check_aggregate, program_terms_changed, commission_report_due, support_received and owner_direction events.",
+      "Persist mission job/experiment/action IDs, atomic checkpoint, evidence hash, next_check_at and decision fingerprint in shared authoritative store; public STATE stays sanitized projection.",
+      "Use one exclusive fenced owner for effect scopes; Actions concurrency alone is not cross-host authority, and Windows must not become duplicate scheduler.",
+      "Dispatch only admitted source review, guide correction, eligibility refresh, aggregate collection and support draft actions; route external publication/referrals/messages through qualified adapters.",
+      "Bound retries and queue size and return deterministic no-action for unchanged evidence; migrate legacy state with dated provenance rather than erasing it."
+    ],
+    "deliverables": [
+      "event/ownership adapter",
+      "state migration contract",
+      "fencing/dedup/schedule fixtures"
+    ],
+    "tests": [
+      "100 identical due polls yield zero model calls and no duplicate source-review job.",
+      "Simultaneous owner claims accept one token; stale token cannot publish a correction or activate affiliate link.",
+      "Crash before/after checkpoint retains one action intent and consistent source/event cursor."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Existing six-hour operator is preserved or explicitly fenced into the new adapter under its owner.",
+      "Changed/due evidence selects useful work automatically and records verified result/next check."
+    ],
+    "rollback": "Pause new adapter, reconcile uncertain effects, leave old qualified health operator authoritative until explicit transfer.",
+    "next_eligible_action": "Build mission-specific event mapping against shared runtime fixtures without attaching production schedule.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 18,
+      "high": 32,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Shared store/claims and host capability integration are required only for broader autonomy, not beta release."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-138",
+        "PCH-127",
+        "PCH-108"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01",
+      "BF-G09"
+    ],
+    "requirement_ids": [
+      "BF-A01",
+      "BF-A02",
+      "BF-A04",
+      "BF-A09",
+      "BF-A10",
+      "BF-A11",
+      "BF-A16"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

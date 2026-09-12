@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-12-9c811a9456d939ca11b4fe338560afe8a204479621c7656ae1a276c65757e522",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-12",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "9c811a9456d939ca11b4fe338560afe8a204479621c7656ae1a276c65757e522",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-12",
+    "mission": "GURU",
+    "title": "Consume owner direction, questions and documentation outboxes",
+    "goal": "Make pause, resume and audience/topic changes durable and acknowledged once.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/src/direction/",
+      "guru/src/outbox/",
+      "guru/tests/direction/"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "dependencies": [
+      "GURU-07",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I08"
+    ],
+    "implementation_steps": [
+      "Consume authenticated mission DIRECTION.md version at job start and before effects; persist seen/applied/pending-reconciliation/needs-input/superseded states.",
+      "Exercise pause Guru publishing, focus on the Bhagavad Gita with specific source context, and make posts shorter; scope changes affect unstarted work and preserve old experiments. Do not reinterpret shorter tone as permission to remove source context.",
+      "Persist one source/reviewer/account question keyed by input revision, validate answer and resume dependent work. Write immutable Jira/content/experiment/review/result proposals to the Windows parent; writer outage queues and later reconciles native readback without another writer."
+    ],
+    "deliverables": [
+      "owner-direction acknowledgement",
+      "question/answer resume ledger",
+      "Jira/documentation outbox"
+    ],
+    "tests": [
+      "Duplicate/older owner direction and untrusted audience comments cannot change current authority.",
+      "Pause after post submit reconciles actual post; it does not assert canceled."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Actual consumed revision, next action and affected experiment are observable.",
+      "Unchanged unresolved input sends no repeated question; writer status is pending until native readback."
+    ],
+    "rollback": "Pause new directional effects while retaining revision and receipt history.",
+    "next_eligible_action": "GURU-14/15 prove restart and real direction acceptance.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 6,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current owner intake and writer receipt route"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O10",
+      "GURU-A06",
+      "GURU-A07",
+      "GURU-A08",
+      "GURU-A10"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

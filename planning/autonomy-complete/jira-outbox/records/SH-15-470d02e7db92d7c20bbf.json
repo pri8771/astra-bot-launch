@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-SH-15-470d02e7db92d7c20bbfe08661f5311cc659ab89fb8fbe95f1e4a583df8177eb",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "SH-15",
+  "mission": "SH",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback",
+  "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+  "task_spec_sha256": "470d02e7db92d7c20bbfe08661f5311cc659ab89fb8fbe95f1e4a583df8177eb",
+  "task_file": "shared/TASKS.json",
+  "payload": {
+    "id": "SH-15",
+    "mission": "SH",
+    "title": "Review shared faults and qualify integration harness",
+    "goal": "Provide exact-source independent acceptance of common mechanics before each mission claims autonomy.",
+    "status": "planned",
+    "owner_role": "Future admitted shared-runtime implementer; independent reviewer; designated shared Jira writer pending",
+    "source_repo": "pri8771/astra-bot-launch (proposed runtime home; SH-01 binds accepted equivalents)",
+    "owned_paths": [
+      "runtime/autonomy/acceptance/",
+      "tests/autonomy/acceptance/"
+    ],
+    "evidence_refs": [
+      "ARCHITECTURE.md",
+      "AUTHORING_CONTRACT.md"
+    ],
+    "dependencies": [
+      "SH-03",
+      "SH-04",
+      "SH-06",
+      "SH-07",
+      "SH-08",
+      "SH-09",
+      "SH-10",
+      "SH-11",
+      "SH-12",
+      "SH-13",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "SH-I01: exact-source admission and writer scope",
+      "SH-I02: current capability/resource/budget grant"
+    ],
+    "implementation_steps": [
+      "Freeze candidate source and evidence manifest; commission independent qualified reviewer and record actual identity without inventing distinct-model approval.",
+      "Run fault matrix for duplicate/out-of-order events, wrong account/mission, stale owner, pause, limits, crashes at all effect boundaries, restore gap and writer outage.",
+      "Use fixtures only for shared semantics; publish synthetic labels and map remaining real receipt requirements to mission acceptance tasks.",
+      "Issue versioned compatibility contract and repair only findings within bounded budget."
+    ],
+    "deliverables": [
+      "Review shared faults and qualify integration harness implementation and versioned contract",
+      "Exact-source test/receipt manifest and executor return"
+    ],
+    "tests": [
+      "All fault cases pass at exact candidate hash; mutation of a candidate invalidates review.",
+      "Every mission has an integration path and real-cycle criteria; common fixture success cannot set its runtime/business state complete."
+    ],
+    "review": {
+      "identity": "Independent reviewer records actual model/provider/effort and author distinction; distinct-model approval only when evidenced",
+      "source_binding": "Reviewed source/spec/test/artifact SHA256; changed bytes invalidate approval",
+      "max_targeted_repairs": 2,
+      "verdict": "Accept or request bounded repair with unresolved criteria; no synthetic-as-real claims"
+    },
+    "acceptance": [
+      "Attributable verdict has exact source/test hashes and no unresolved critical findings.",
+      "Compatible shared version is available for native operator integrations; actual mission external receipts remain their own gates."
+    ],
+    "rollback": "Withdraw candidate version, pin prior approved version; affected integrations wait while independent releases continue.",
+    "next_eligible_action": "Freeze candidate source and evidence manifest; commission independent qualified reviewer and record actual identity without inventing distinct-model approval.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 24,
+      "assumptions": [
+        "Active implementation, relevant tests and one review plus bounded repair; excludes owner/provider/elapsed observation wait",
+        "Reuse qualified existing native operators and accepted contracts; do not sum duplicate scope after writer reconciliation"
+      ],
+      "dependency_risk": "Medium to high: existing-source qualification, writer admission and per-adapter limitations may narrow or amend scope"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission",
+      "writer": "Shared scope writer designation required; planner outbox-only; never old-Mac fallback"
+    },
+    "effect_gates": [
+      "SH-G01",
+      "SH-G02",
+      "SH-G03",
+      "SH-G04"
+    ],
+    "requirement_ids": [
+      "SH-A17"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

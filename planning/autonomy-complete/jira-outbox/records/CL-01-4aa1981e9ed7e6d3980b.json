@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-01-4aa1981e9ed7e6d3980b664cd155293958202b6ee4fb628e50d8eb751d55bb5f",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-01",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-114",
+    "BOTS-5",
+    "BOTS-6",
+    "BOTS-7",
+    "PCH-139"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "4aa1981e9ed7e6d3980b664cd155293958202b6ee4fb628e50d8eb751d55bb5f",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-01",
+    "mission": "CL",
+    "title": "Admit existing product and operator capabilities without replacement",
+    "goal": "Bind useful existing capabilities to a current source and exclusive execution contract, consuming release-worker returns when available.",
+    "status": "reuse_and_verify",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "coordination/autonomy/admission.json",
+      "coordination/autonomy/capabilities.json",
+      "coordination/autonomy/source-manifest.json"
+    ],
+    "evidence_refs": [
+      "CL-E01",
+      "CL-E02",
+      "CL-E06",
+      "CL-E08"
+    ],
+    "dependencies": [],
+    "prerequisite_inputs": [
+      "CL-I01"
+    ],
+    "implementation_steps": [
+      "Compare fresh source with the inspected ref and any returned release manifest; qualify scanner, CLI, lead intake, operator, watchdog and deployment map individually.",
+      "Read existing coordination claim and latest run metadata read-only at admission; record active owner and allowed action scopes without changing schedules.",
+      "Ask the designated Jira writer to match BOTS and PCH scope and return current native fields, source/spec hash and path reservation; retain accepted work.",
+      "Record same-business integration interface: runtime proposals enter the existing operator; a later takeover requires destination reconciliation and fencing before activation."
+    ],
+    "deliverables": [
+      "source-manifest.json",
+      "capabilities.json",
+      "admission request and writer readback"
+    ],
+    "tests": [
+      "Manifest validates every capability against source path/ref and test or receipt limits; absent payment and private CRM evidence remain unknown.",
+      "Reject admission for a conflicting path owner, wrong source hash, unqualified account or stale release receipt."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Exact source/ref and current owner are recorded; every reused capability has bounded proof and a verification action.",
+      "Product tasks can proceed under their existing release admission; wider autonomy dependencies do not halt the running operator."
+    ],
+    "rollback": "Revoke only the new admission/proposal version; leave existing scheduler, source and deployment ownership intact.",
+    "next_eligible_action": "Read the current release return and prepare scope-matching outbox; do not dispatch a scheduler.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 3,
+      "high": 6,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Current active owner and newer release changes may require a narrow rebase."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-114",
+        "BOTS-5",
+        "BOTS-6",
+        "BOTS-7",
+        "PCH-139"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G01"
+    ],
+    "requirement_ids": [
+      "CL-O01",
+      "CL-A01"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

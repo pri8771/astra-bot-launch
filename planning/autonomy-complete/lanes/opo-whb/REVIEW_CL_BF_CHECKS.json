@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "commercelint": {
+      "tasks": 12,
+      "requirements": 28,
+      "outcomes": 10,
+      "evidence": 8,
+      "new_estimate_hours": [
+        147,
+        272
+      ]
+    },
+    "bidetfit": {
+      "tasks": 14,
+      "requirements": 29,
+      "outcomes": 11,
+      "evidence": 7,
+      "new_estimate_hours": [
+        169,
+        316
+      ]
+    }
+  },
+  "errors": [],
+  "unserialized_exact_path_collisions": [],
+  "global_task_count": 109,
+  "passed": true
+}

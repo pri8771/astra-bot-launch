@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-11-62b70087cc95b30ec72e02e72e72eecbbecae848ad4973b8e4ddf2c6df2e6a1d",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-11",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "62b70087cc95b30ec72e02e72e72eecbbecae848ad4973b8e4ddf2c6df2e6a1d",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-11",
+    "mission": "WHB",
+    "title": "Add Windows recovery, bounded retries, alerts and isolation",
+    "goal": "WHB operates independently and survives faults without cross-account effects.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/autonomy/windows-service.json",
+      "wait-how-big-social/autonomy/ops.py",
+      "wait-how-big-social/docs/restore-runbook.md",
+      "tests/test_whb_recovery.py"
+    ],
+    "evidence_refs": [
+      "WHB-E03",
+      "WHB-E04",
+      "WHB-E06"
+    ],
+    "dependencies": [
+      "WHB-07",
+      "WHB-09",
+      "WHB-10",
+      "SH-10",
+      "SH-11",
+      "SH-12",
+      "SH-13"
+    ],
+    "prerequisite_inputs": [
+      "WHB-I08",
+      "WHB-I09"
+    ],
+    "implementation_steps": [
+      "Use shared Windows process-tree execution and host-local state/secret references; do not copy POSIX procutil.py unchanged or modify existing release scheduler without recorded ownership handoff.",
+      "Define finite transport retry versus identity/content/permission stop, max two reviewed repair attempts, timeout, storage backup/restore and alerts for rejected posts, unresolved send, expired account capability and exhausted budget.",
+      "Exercise Mac-disconnected operation and optional R730 fenced takeover with portable state/evidence manifest and locally injected credential references; retain Windows fallback, keep i9 deferred."
+    ],
+    "deliverables": [
+      "Windows operations profile",
+      "restore/isolation evidence",
+      "optional migration acceptance"
+    ],
+    "tests": [
+      "Child/grandchild held-pipe fault terminates within bound and preserves actionable failed attempt.",
+      "Backup restore after unknown publish reconciles provider/public receipt before new ownership posts.",
+      "Secret-bearing exception fixture is redacted; unrelated OPO account cannot be selected; unchanged alerts do not repeat."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Windows scheduling/recovery/stop and alerting have mission-specific evidence.",
+      "Optional R730 portability is defined and tested only when target is qualified; release continues independently."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 12,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "WHB-I09"
+    ],
+    "requirement_ids": [
+      "WHB-A09",
+      "WHB-A12",
+      "WHB-A13",
+      "WHB-A14",
+      "WHB-A15",
+      "WHB-A18"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Optional R730 migration or host transfer only; independent Windows recovery and runtime acceptance do not depend on migration.",
+        "dependencies": [
+          "SH-16"
+        ],
+        "acceptance": "Before target cutover qualify target host/storage, fence old owner, reconcile uncertain effects, inject target-local secret references and verify equivalent receipts/rollback. If target unavailable, complete Windows acceptance and retain migration pending."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-10-266f14086e801379506a04d8f41ec5d4017d95709d8bb44cf88310eb24864b54",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-10",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-133"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "266f14086e801379506a04d8f41ec5d4017d95709d8bb44cf88310eb24864b54",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-10",
+    "mission": "GURU",
+    "title": "Collect trustworthy engagement and audience observations",
+    "goal": "Measure actual audience outcomes without inventing unavailable reach or identity facts.",
+    "status": "planned",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/src/measurement/",
+      "guru/tests/measurement/",
+      "guru/ops/metrics/"
+    ],
+    "evidence_refs": [
+      "GURU-E01",
+      "GURU-E03"
+    ],
+    "dependencies": [
+      "GURU-06",
+      "GURU-07",
+      "SH-04",
+      "SH-13"
+    ],
+    "prerequisite_inputs": [
+      "GURU-I06"
+    ],
+    "implementation_steps": [
+      "Declare account/post universe, start/end time, baseline and collection route before experiment; collect follower counts, per-post impressions where accessible, replies/bookmarks or other actual supported metrics with definitions and coverage.",
+      "Record meaningful engagement as source-relevant questions, voluntary usefulness feedback and repeat interactions using aggregate/minimized references. Separate own tests and unknown/bot/human status; do not claim religious affiliation.",
+      "Use due-time collection/cursors and provider rate limits, retain missing values as null and distinguish gross cross-platform follows from unique people if a later channel is added."
+    ],
+    "deliverables": [
+      "versioned metric contract",
+      "aggregate observations with provenance",
+      "data completeness report"
+    ],
+    "tests": [
+      "Missing impressions are null, not zero; sum of per-post unique reach cannot become unique audience.",
+      "Replay of an observation does not double count followers or interactions."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Baseline and every observation have dates, source and coverage.",
+      "No follower-to-revenue or traffic-to-trust claim is fabricated."
+    ],
+    "rollback": "Stop collection and retain approved aggregate records per retention policy; invalidate affected derived metrics.",
+    "next_eligible_action": "GURU-11 evaluates at the frozen window boundary.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 7,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Current analytics entitlement and elapsed window"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-133"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O08",
+      "GURU-A02"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

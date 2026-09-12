@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-GURU-04-e95aa732ec0e0b1cf099e34f5ed82f073b4ee18e80a7c32fdb3eba8fb8235592",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "GURU-04",
+  "mission": "GURU",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-129"
+  ],
+  "writer": "Windows four-mission release parent; planner outbox only",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "e95aa732ec0e0b1cf099e34f5ed82f073b4ee18e80a7c32fdb3eba8fb8235592",
+  "task_file": "missions/guru/TASKS.json",
+  "payload": {
+    "id": "GURU-04",
+    "mission": "GURU",
+    "title": "Implement original accessible content production queue",
+    "goal": "Create a repeatable next-piece pipeline using retained structures without copying their obsolete channel constraints.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Guru editorial/engineering executor, admitted by Windows four-mission parent",
+    "source_repo": "Canonical Guru repository and root selected and receipt-bound in GURU-01; not currently established",
+    "owned_paths": [
+      "guru/content/candidates/",
+      "guru/src/editorial/",
+      "guru/tests/editorial/"
+    ],
+    "evidence_refs": [
+      "GURU-E02"
+    ],
+    "dependencies": [
+      "GURU-02",
+      "GURU-03"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Adapt pause/reading/gratitude structures into original X-first candidate posts or threads with exact source links, context and accessible media/alt; do not falsely present the secular placeholder drafts as sourced Hindu teachings.",
+      "Implement draft→source_checked→cultural_review→technical_review→approved→scheduled→published states keyed by immutable content/hash. Prepare one excellent piece plus at least2 distinct next candidates rather than stopping at a canary.",
+      "Bound generation/revision work to the admitted content brief, 2 targeted repair rounds and measured model usage. Maintain a content calendar with due dates and freshness, not an idle generation loop."
+    ],
+    "deliverables": [
+      "original first piece and 2 next candidates",
+      "editorial state machine",
+      "accessibility/content checks"
+    ],
+    "tests": [
+      "Wrong source/alt, bad thread order, unsupported assertion or duplicate content blocks scheduling.",
+      "A source/wording change after review returns candidate to affected review state."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Each candidate is original, inspectable and appropriate for the actual X format.",
+      "No publication/schedule success is inferred from draft creation."
+    ],
+    "rollback": "Return candidate to draft and preserve versions; no public deletion.",
+    "next_eligible_action": "GURU-05 source/cultural review and GURU-08 publication when grants pass.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Qualified source and reviewer inputs"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-129"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Windows four-mission release parent; planner outbox only"
+    },
+    "effect_gates": [],
+    "requirement_ids": [
+      "GURU-O04",
+      "GURU-A16"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [],
+    "conditional_effect_gates": [],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

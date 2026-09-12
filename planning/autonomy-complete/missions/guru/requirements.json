@@ -1,0 +1,538 @@
+[
+  {
+    "id": "GURU-O01",
+    "mission": "GURU",
+    "requirement": "Verified canonical implementation home and preserved editorial provenance",
+    "task_ids": [
+      "GURU-01"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Exact product repository/root/base is recorded before implementation.",
+      "Retained drafts remain withheld and historical; no current account/runtime claim is inferred."
+    ]
+  },
+  {
+    "id": "GURU-O02",
+    "mission": "GURU",
+    "requirement": "X-first independent Hindu-spirituality editorial identity with meaningful audience goal",
+    "task_ids": [
+      "GURU-02"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Mission success is engaged truthful audience, not follower-to-revenue inference.",
+      "Editorial language, voice, scope and correction standard are executable content checks."
+    ]
+  },
+  {
+    "id": "GURU-O03",
+    "mission": "GURU",
+    "requirement": "Accurate sourced rights-aware contextual claims",
+    "task_ids": [
+      "GURU-03"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Every factual/quotation claim has an inspectable source and rights rationale or is withheld.",
+      "Original paraphrase and tradition/context labels are preserved through adaptation."
+    ]
+  },
+  {
+    "id": "GURU-O04",
+    "mission": "GURU",
+    "requirement": "Original accessible first piece plus repeatable next-content production",
+    "task_ids": [
+      "GURU-04"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Each candidate is original, inspectable and appropriate for the actual X format.",
+      "No publication/schedule success is inferred from draft creation."
+    ]
+  },
+  {
+    "id": "GURU-O05",
+    "mission": "GURU",
+    "requirement": "Named cultural and independent exact-content review",
+    "task_ids": [
+      "GURU-05"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Only exact approved payloads reach publication eligibility.",
+      "Cultural concern has a named owner and finite next action while unrelated drafts proceed."
+    ]
+  },
+  {
+    "id": "GURU-O06",
+    "mission": "GURU",
+    "requirement": "Correct-account supported publishing capability",
+    "task_ids": [
+      "GURU-06",
+      "GURU-08",
+      "GURU-17"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Current intended-account read receipt and supported capabilities must be verified before capability acceptance. A precise unavailable gate completes intake only, not access acceptance.",
+      "Draft/offline editorial work remains executable without publish access.",
+      "One real authorized correct-account piece has receiving-system evidence.",
+      "Next reviewed piece can run from a scheduled/event trigger with the same controls.",
+      "The exact qualified piece is publicly verified on its intended account or existing verified receipt is reused.",
+      "Native useful release is recorded separately from GURU-15 autonomous-operation acceptance."
+    ]
+  },
+  {
+    "id": "GURU-O07",
+    "mission": "GURU",
+    "requirement": "Real publication, moderation, correction and qualified engagement receipts",
+    "task_ids": [
+      "GURU-08",
+      "GURU-09",
+      "GURU-17"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "One real authorized correct-account piece has receiving-system evidence.",
+      "Next reviewed piece can run from a scheduled/event trigger with the same controls.",
+      "Every material concern gets one actionable owner/reviewer route and status.",
+      "Corrections are verified at destination; reply drafts are not counted as sent engagement.",
+      "The exact qualified piece is publicly verified on its intended account or existing verified receipt is reused.",
+      "Native useful release is recorded separately from GURU-15 autonomous-operation acceptance."
+    ]
+  },
+  {
+    "id": "GURU-O08",
+    "mission": "GURU",
+    "requirement": "Trustworthy follower, exposure, usefulness and trust measurement",
+    "task_ids": [
+      "GURU-10"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Baseline and every observation have dates, source and coverage.",
+      "No follower-to-revenue or traffic-to-trust claim is fabricated."
+    ]
+  },
+  {
+    "id": "GURU-O09",
+    "mission": "GURU",
+    "requirement": "Finite audience experiments and repeated next decisions",
+    "task_ids": [
+      "GURU-11"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Two completed decision cycles produce reviewed next work or an evidence wait with clear due trigger.",
+      "No revenue promise or excluded-product conversion is introduced."
+    ]
+  },
+  {
+    "id": "GURU-O10",
+    "mission": "GURU",
+    "requirement": "Owner-directed bounded independent autonomous Windows operation",
+    "task_ids": [
+      "GURU-07",
+      "GURU-12",
+      "GURU-13",
+      "GURU-14",
+      "GURU-15"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "A restart-safe next-work selector progresses source→review→eligible action without repeated owner launch prompts.",
+      "Missing account/reviewer blocks only related effects and schedules useful offline work.",
+      "Actual consumed revision, next action and affected experiment are observable.",
+      "Unchanged unresolved input sends no repeated question; writer status is pending until native readback.",
+      "Budget and data boundaries are executable and attributable.",
+      "Blocked effect leaves source/editorial offline work eligible.",
+      "One independent Windows job and controlled restart preserve receipts and one consumer.",
+      "R730 migration is proposed/qualified separately; host presence is not execution proof.",
+      "Original-post autonomous operation requires TWO completed real allowed observation-decision-publication-verified-result-evaluation-next-decision cycles, actual owner steering and restart. A wait or prepared second candidate does not substitute. Reply automation is an optional separately gated class.",
+      "Audience growth is honestly observed, not guaranteed or inferred from generated content."
+    ]
+  },
+  {
+    "id": "GURU-O11",
+    "mission": "GURU",
+    "requirement": "Evidence-led later format/channel growth without excluded mission drift",
+    "task_ids": [
+      "GURU-16"
+    ],
+    "evidence_refs": [
+      "GURU-E01"
+    ],
+    "acceptance": [
+      "Expansion has evidence-based rationale, concrete tasks/gates and independent path to stop.",
+      "X-first useful operation remains available if expansion is rejected or blocked."
+    ]
+  },
+  {
+    "id": "GURU-A01",
+    "mission": "GURU",
+    "requirement": "Durable single-owner state, claims and fencing",
+    "task_ids": [
+      "GURU-07",
+      "GURU-08",
+      "SH-02",
+      "SH-03"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate events/review deliveries create one eligible task; stale owner fails at action boundary.",
+      "Due wait with unchanged evidence incurs0 model calls.",
+      "Crash after external acceptance before local commit yields one post after reconciliation.",
+      "A superseding owner pause or changed content review stops new post actions."
+    ]
+  },
+  {
+    "id": "GURU-A02",
+    "mission": "GURU",
+    "requirement": "Deterministic event/due scheduling and zero unchanged-input inference",
+    "task_ids": [
+      "GURU-07",
+      "GURU-10",
+      "SH-04"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate events/review deliveries create one eligible task; stale owner fails at action boundary.",
+      "Due wait with unchanged evidence incurs0 model calls.",
+      "Missing impressions are null, not zero; sum of per-post unique reach cannot become unique audience.",
+      "Replay of an observation does not double count followers or interactions."
+    ]
+  },
+  {
+    "id": "GURU-A03",
+    "mission": "GURU",
+    "requirement": "Persist evidence-based decisions and source fingerprints",
+    "task_ids": [
+      "GURU-07",
+      "GURU-11",
+      "SH-05"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate events/review deliveries create one eligible task; stale owner fails at action boundary.",
+      "Due wait with unchanged evidence incurs0 model calls.",
+      "Negative/inconclusive experiment retains valid evidence and leads to one bounded next decision.",
+      "Same evidence/direction fingerprint creates no duplicate experiment or idle model call."
+    ]
+  },
+  {
+    "id": "GURU-A04",
+    "mission": "GURU",
+    "requirement": "Execute only eligible effects and verify receiving-system result",
+    "task_ids": [
+      "GURU-08",
+      "GURU-09",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Crash after external acceptance before local commit yields one post after reconciliation.",
+      "A superseding owner pause or changed content review stops new post actions.",
+      "Malicious comment cannot change policy or obtain private data.",
+      "Duplicate interaction, opt-out, unsummoned self-serve reply or missing X AI-reply approval prevents automated reply."
+    ]
+  },
+  {
+    "id": "GURU-A05",
+    "mission": "GURU",
+    "requirement": "Evaluate experiments and select the next finite decision",
+    "task_ids": [
+      "GURU-11",
+      "SH-07"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Negative/inconclusive experiment retains valid evidence and leads to one bounded next decision.",
+      "Same evidence/direction fingerprint creates no duplicate experiment or idle model call."
+    ]
+  },
+  {
+    "id": "GURU-A06",
+    "mission": "GURU",
+    "requirement": "Consume owner nudges and acknowledge the actual revision",
+    "task_ids": [
+      "GURU-12",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate/older owner direction and untrusted audience comments cannot change current authority.",
+      "Pause after post submit reconciles actual post; it does not assert canceled."
+    ]
+  },
+  {
+    "id": "GURU-A07",
+    "mission": "GURU",
+    "requirement": "Ask once for missing input, validate answer and resume",
+    "task_ids": [
+      "GURU-12",
+      "SH-08"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate/older owner direction and untrusted audience comments cannot change current authority.",
+      "Pause after post submit reconciles actual post; it does not assert canceled."
+    ]
+  },
+  {
+    "id": "GURU-A08",
+    "mission": "GURU",
+    "requirement": "Automatic immutable Jira/documentation outboxes and native readback",
+    "task_ids": [
+      "GURU-11",
+      "GURU-12",
+      "SH-09"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Negative/inconclusive experiment retains valid evidence and leads to one bounded next decision.",
+      "Same evidence/direction fingerprint creates no duplicate experiment or idle model call.",
+      "Duplicate/older owner direction and untrusted audience comments cannot change current authority.",
+      "Pause after post submit reconciles actual post; it does not assert canceled."
+    ]
+  },
+  {
+    "id": "GURU-A09",
+    "mission": "GURU",
+    "requirement": "Bound retries and attributable review/repair attempts",
+    "task_ids": [
+      "GURU-05",
+      "GURU-08",
+      "GURU-14",
+      "SH-10"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Null reviewer, old content hash or merely copied historical approval cannot admit publication.",
+      "Third review attempt is refused unless a newly admitted scope explicitly grants it.",
+      "Crash after external acceptance before local commit yields one post after reconciliation.",
+      "A superseding owner pause or changed content review stops new post actions.",
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists."
+    ]
+  },
+  {
+    "id": "GURU-A10",
+    "mission": "GURU",
+    "requirement": "Deduplicate events, actions and outgoing projections",
+    "task_ids": [
+      "GURU-07",
+      "GURU-08",
+      "GURU-12",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Duplicate events/review deliveries create one eligible task; stale owner fails at action boundary.",
+      "Due wait with unchanged evidence incurs0 model calls.",
+      "Crash after external acceptance before local commit yields one post after reconciliation.",
+      "A superseding owner pause or changed content review stops new post actions.",
+      "Duplicate/older owner direction and untrusted audience comments cannot change current authority.",
+      "Pause after post submit reconciles actual post; it does not assert canceled."
+    ]
+  },
+  {
+    "id": "GURU-A11",
+    "mission": "GURU",
+    "requirement": "Reconcile uncertain external effects before retry or takeover",
+    "task_ids": [
+      "GURU-08",
+      "GURU-09",
+      "GURU-14",
+      "SH-06"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Crash after external acceptance before local commit yields one post after reconciliation.",
+      "A superseding owner pause or changed content review stops new post actions.",
+      "Malicious comment cannot change policy or obtain private data.",
+      "Duplicate interaction, opt-out, unsummoned self-serve reply or missing X AI-reply approval prevents automated reply.",
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists."
+    ]
+  },
+  {
+    "id": "GURU-A12",
+    "mission": "GURU",
+    "requirement": "Windows process-tree cleanup and bounded execution",
+    "task_ids": [
+      "GURU-14",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists."
+    ]
+  },
+  {
+    "id": "GURU-A13",
+    "mission": "GURU",
+    "requirement": "Crash/restart/checkpoint/backup restore without lost effects",
+    "task_ids": [
+      "GURU-14",
+      "GURU-15",
+      "SH-11"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists.",
+      "Reviewer checks actual source and destination receipts, not author done-text.",
+      "At most2 repairs; absent cultural/real action/readback evidence prevents autonomy acceptance."
+    ]
+  },
+  {
+    "id": "GURU-A14",
+    "mission": "GURU",
+    "requirement": "Actionable alerts and quiet unchanged states",
+    "task_ids": [
+      "GURU-09",
+      "GURU-13",
+      "SH-12"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Malicious comment cannot change policy or obtain private data.",
+      "Duplicate interaction, opt-out, unsummoned self-serve reply or missing X AI-reply approval prevents automated reply.",
+      "Prompt injection and cross-mission credential lookups are rejected.",
+      "Exhausted cap prevents a paid action and repeated unchanged faults produce one alert."
+    ]
+  },
+  {
+    "id": "GURU-A15",
+    "mission": "GURU",
+    "requirement": "Privacy, secret references and cross-mission isolation",
+    "task_ids": [
+      "GURU-03",
+      "GURU-09",
+      "GURU-13",
+      "SH-13"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Empty source entries, missing rights or mismatched passage fail content acceptance.",
+      "Prompt injection in a source cannot access credentials or amend publication permission.",
+      "Malicious comment cannot change policy or obtain private data.",
+      "Duplicate interaction, opt-out, unsummoned self-serve reply or missing X AI-reply approval prevents automated reply.",
+      "Prompt injection and cross-mission credential lookups are rejected.",
+      "Exhausted cap prevents a paid action and repeated unchanged faults produce one alert."
+    ]
+  },
+  {
+    "id": "GURU-A16",
+    "mission": "GURU",
+    "requirement": "Enforced model/tool/token/time/spend limits and zero idle inference",
+    "task_ids": [
+      "GURU-04",
+      "GURU-07",
+      "GURU-13",
+      "SH-14"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Wrong source/alt, bad thread order, unsupported assertion or duplicate content blocks scheduling.",
+      "A source/wording change after review returns candidate to affected review state.",
+      "Duplicate events/review deliveries create one eligible task; stale owner fails at action boundary.",
+      "Due wait with unchanged evidence incurs0 model calls.",
+      "Prompt injection and cross-mission credential lookups are rejected.",
+      "Exhausted cap prevents a paid action and repeated unchanged faults produce one alert."
+    ]
+  },
+  {
+    "id": "GURU-A17",
+    "mission": "GURU",
+    "requirement": "Exact-source independent review and repeated real end-to-end cycles",
+    "task_ids": [
+      "GURU-05",
+      "GURU-15",
+      "SH-15"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Null reviewer, old content hash or merely copied historical approval cannot admit publication.",
+      "Third review attempt is refused unless a newly admitted scope explicitly grants it.",
+      "Reviewer checks actual source and destination receipts, not author done-text.",
+      "At most2 repairs; absent cultural/real action/readback evidence prevents autonomy acceptance."
+    ]
+  },
+  {
+    "id": "GURU-A18",
+    "mission": "GURU",
+    "requirement": "Independent Windows operation and optional fenced R730 migration",
+    "task_ids": [
+      "GURU-14",
+      "GURU-15",
+      "SH-11",
+      "SH-16"
+    ],
+    "evidence_refs": [
+      "GURU-E04"
+    ],
+    "acceptance": [
+      "Child process tree cleanup affects only owned Guru processes.",
+      "Restore never duplicates a post/response or restarts old listeners; 0 idle inference persists.",
+      "Reviewer checks actual source and destination receipts, not author done-text.",
+      "At most2 repairs; absent cultural/real action/readback evidence prevents autonomy acceptance."
+    ]
+  }
+]

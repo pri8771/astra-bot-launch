@@ -16,6 +16,7 @@ def main():
         if p.suffix not in {'.json','.jsonl','.md','.py','.txt','.mmd'}:findings.append(f'Unexpected artifact type: {rel}')
         try:text=data.decode('utf-8-sig')
         except UnicodeDecodeError:findings.append(f'Non-UTF8 artifact: {rel}');continue
+        if re.search(r'\u00e2[\u20ac\u2030]|\ufffd',text):findings.append(f'Possible damaged text encoding: {rel}')
         # Report paths/labels only, never suspected values.
         for label,pattern in [('private key',r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'),('GitHub token',r'\bgh[pousr]_[A-Za-z0-9]{30,}\b'),('Slack token',r'\bxox[baprs]-[A-Za-z0-9-]{20,}\b'),('AWS access key',r'\bAKIA[A-Z0-9]{16}\b')]:
             if re.search(pattern,text):findings.append(f'Suspected {label} in {rel}')

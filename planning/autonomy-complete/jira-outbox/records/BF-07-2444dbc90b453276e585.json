@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-07-2444dbc90b453276e58527ae95589860fdf91d634f921c032cc673fe9e38cb8a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-07",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-138",
+    "PCH-120"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "2444dbc90b453276e58527ae95589860fdf91d634f921c032cc673fe9e38cb8a",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-07",
+    "mission": "BF",
+    "title": "Reconcile commission lifecycle and collected cash",
+    "goal": "Keep pending, approved, reversed, paid and cash-received affiliate amounts separately verifiable.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/commission_import.py",
+      "ventures/bidetfit/scripts/commission_ledger.py",
+      "ventures/bidetfit/docs/autonomy/commission-schema.json",
+      "ventures/bidetfit/tests/test_commissions.py"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E04"
+    ],
+    "dependencies": [
+      "BF-05",
+      "BF-06"
+    ],
+    "prerequisite_inputs": [
+      "BF-I04"
+    ],
+    "implementation_steps": [
+      "Qualify approved merchant/network read-only export/API for transactions and payouts; store private evidence by reference and sanitized aggregate projection only.",
+      "Use merchant+transaction+event revision identities; append pending/approved/reversed/paid transitions, partial reversals, currency/FX basis, fees and payout reconciliation without double counting.",
+      "Record cash actually received separately from paid status; retain dates for earned-window versus cash-window attribution and report missing provider data as unknown.",
+      "Enforce no spend before collected cash and rolling 24-hour cap of 50% cash available at period start; pending approvals and payout estimates do not expand allowance.",
+      "Investigate mismatch once with next-check cursor; source commission disputes to network/merchant, not customer order mutation."
+    ],
+    "deliverables": [
+      "commission schema/importer/ledger",
+      "reconciliation fixtures",
+      "sanitized financial statement and private receipt references"
+    ],
+    "tests": [
+      "Duplicate/out-of-order exports, partial reversal after payout, multiple currencies and missing payout proof preserve reconciled balances.",
+      "Five ledger states remain separately reportable; paid with absent bank/provider cash receipt cannot count as collected cash.",
+      "Quota/spend check rejects attempts based on pending balance or repeated half-balance splitting."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "A real available report reconciles aggregate amounts to provider evidence and cash receipt references; no reports means unvalidated financial outcome.",
+      "Affiliate click/estimated sale never becomes commission or cash automatically."
+    ],
+    "rollback": "Stop imports or financial proposals, preserve raw private receipts and append corrections; do not overwrite prior statements.",
+    "next_eligible_action": "Implement duplicate/reversal/payout fixtures against the five-state ledger.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 24,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Actual program access and transaction reports depend on affiliate eligibility; fixtures remain executable."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-138",
+        "PCH-120"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G04",
+      "BF-G06"
+    ],
+    "requirement_ids": [
+      "BF-O08",
+      "BF-A04",
+      "BF-A10",
+      "BF-A11",
+      "BF-A16"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

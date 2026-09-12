@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-11-ba6d164fe152b9e7e9b9ea0f08e5817589c4139e8209c280af2fad68bb97cd22",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-11",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-138",
+    "PCH-120"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "ba6d164fe152b9e7e9b9ea0f08e5817589c4139e8209c280af2fad68bb97cd22",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-11",
+    "mission": "BF",
+    "title": "Evaluate usefulness, acquisition and affiliate experiments",
+    "goal": "Choose the next evidence-backed path toward legitimate commission rather than treating the first checker release as completion.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/scripts/experiment_engine.py",
+      "ventures/bidetfit/config/experiment-policy.json",
+      "ventures/bidetfit/tests/test_experiments.py",
+      "ventures/bidetfit/docs/autonomy/experiment-template.json"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E04"
+    ],
+    "dependencies": [
+      "BF-06",
+      "BF-09",
+      "BF-10",
+      "SH-05",
+      "SH-07"
+    ],
+    "prerequisite_inputs": [],
+    "implementation_steps": [
+      "Freeze a baseline and a first measurement-sheet or exact-model-result hypothesis with target audience, intervention, comparator, useful exposure threshold, window and stop rules from current traffic evidence.",
+      "Evaluate completed checks, resolved uncertainty, permitted referrals and commission states separately; do not infer revenue from clicks or evaluate affiliate conversion before eligible links.",
+      "Select adopt/revert/bounded-extension/stop and justify next source/model/guide/acquisition experiment using expected benefit, effort, uncertainty and allowed route.",
+      "Preserve sparse/negative results as inconclusive/not-supported and record confounders; refresh stale source guardrail immediately overrides commercial optimization.",
+      "Keep one active mission experiment by pilot default; increase only under noncontamination and existing capacity/authority; after the 90-day horizon create an explicit reviewed continue/change/stop decision rather than an endless unexamined schedule.",
+      "Derive the terminal horizon from the existing mission November 21, 2026 local final day. After reviewed continue/change/stop, new external experiment effects require a valid owner charter extension; absent it retain original results, reconcile existing receipts and continue offline source/draft work without silently extending the campaign."
+    ],
+    "deliverables": [
+      "experiment engine/template",
+      "first protocol and alternatives",
+      "evaluations/next decisions"
+    ],
+    "tests": [
+      "Missing traffic coverage yields unknown or invalidated outcome, not success; no approved commission yields no commercial validation.",
+      "New source hazard stops affected referral experiment while independent guide work remains eligible.",
+      "Closed protocol yields one next candidate or no-action and repeated evaluation cannot duplicate intervention.",
+      "At the original horizon, emit one review decision; without valid charter extension new experiment/referral changes remain paused. Extension preserves original dates, commission windows and review evidence."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Every experiment closes with reviewed evidence and an executable next decision or justified wait.",
+      "Repeated cycles progress toward helpful fit and legitimate money while honoring source confidence and permission gates.",
+      "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ],
+    "rollback": "Stop next effect and restore intervention through existing release owner, retaining observations and protocol amendments.",
+    "next_eligible_action": "Prepare a measurement-tool versus current-flow protocol from current aggregate baseline and implement sparse-evidence fixtures.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 14,
+      "high": 26,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Traffic/commission evidence determines elapsed windows; no arbitrary visitor threshold is fabricated."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-138",
+        "PCH-120"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G01",
+      "BF-G02",
+      "BF-G05",
+      "BF-G09"
+    ],
+    "requirement_ids": [
+      "BF-O07",
+      "BF-O10",
+      "BF-A03",
+      "BF-A05"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

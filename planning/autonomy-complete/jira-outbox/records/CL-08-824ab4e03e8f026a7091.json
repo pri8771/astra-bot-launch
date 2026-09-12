@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-CL-08-824ab4e03e8f026a7091a1b6a448c76fce528951ecc174104851822a94a83995",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "CL-08",
+  "mission": "CL",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-5",
+    "BOTS-6",
+    "BOTS-7"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "824ab4e03e8f026a7091a1b6a448c76fce528951ecc174104851822a94a83995",
+  "task_file": "missions/commercelint/TASKS.json",
+  "payload": {
+    "id": "CL-08",
+    "mission": "CL",
+    "title": "Integrate durable events, ownership and due decisions into existing operator",
+    "goal": "Extend the current operator into a fenced mission adapter with zero idle inference.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/autonomous_apps",
+    "owned_paths": [
+      "operator/autonomy_adapter.py",
+      "operator/main.py",
+      "operator/growth_planner.py",
+      "config/autonomy.json",
+      "tests/test_autonomy_events.py"
+    ],
+    "evidence_refs": [
+      "CL-E02",
+      "CL-E04"
+    ],
+    "dependencies": [
+      "CL-01",
+      "CL-03",
+      "SH-01",
+      "SH-02",
+      "SH-03",
+      "SH-04"
+    ],
+    "prerequisite_inputs": [
+      "CL-I06"
+    ],
+    "implementation_steps": [
+      "Bind existing hourly/growth/lead triggers to one authoritative mission claim and action ledger; map existing state IDs without deleting runs or resetting business clock.",
+      "Add event types request_received, scan_completed, scope_accepted, delivery_due, source_changed, metric_window_due, cash_settled and owner_direction_changed with dedup key/evidence revision.",
+      "Persist next_check_at, decision fingerprint, owner fence and checkpoint atomically; dispatch only eligible declared action types into existing route.",
+      "Keep existing Actions concurrency as local serialization; reject expired/stale host tokens and require reconciliation before Windows executor takeover.",
+      "Use deterministic observation collectors; unchanged or not-due evidence returns without a model invocation, with per-event retries and finite queue capacity.",
+      "Schedule mission_horizon_due from the preserved config/business.json deadline_at_utc 2026-11-22T04:59:59Z (November 21 local close), not a reset 90-day timer. Produce one durable decision event at the boundary."
+    ],
+    "deliverables": [
+      "mission event/action adapter",
+      "migration manifest",
+      "claim and schedule integration tests"
+    ],
+    "tests": [
+      "100 unchanged timer checks produce zero model calls and zero duplicated jobs.",
+      "Simultaneous Actions/Windows claims yield one accepted owner; stale token cannot deliver response or release content.",
+      "Duplicate event and crash at checkpoint boundary retain one job and monotonic event cursor.",
+      "Cross deadline with unchanged traffic: exactly one horizon event becomes due and no duplicate model decision appears on repeated polls; original start/deadline remain unchanged."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Existing operator remains the single mission effect owner or has a recorded fenced handoff.",
+      "Changed evidence/due work executes without a manual launch prompt while idle ticks stay deterministic.",
+      "Original mission clock is preserved and its end triggers one reviewed horizon decision; post-horizon effects require valid extension authority."
+    ],
+    "rollback": "Disable new adapter dispatch and return to prior qualified owner only after uncertain-effect reconciliation; preserve migrated records and cursor.",
+    "next_eligible_action": "Implement adapter against shared contract fixtures; keep it disconnected from existing production triggers until admission.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 18,
+      "high": 32,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Depends on shared transactional claims and Windows capability; no migration required for useful release."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-5",
+        "BOTS-6",
+        "BOTS-7"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "CL-G01",
+      "CL-G08"
+    ],
+    "requirement_ids": [
+      "CL-A01",
+      "CL-A02",
+      "CL-A09",
+      "CL-A16"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

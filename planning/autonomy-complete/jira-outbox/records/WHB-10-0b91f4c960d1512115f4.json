@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-10-0b91f4c960d1512115f407cb29e355da251239eae9ce4259191164e2140e9fed",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-10",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "0b91f4c960d1512115f407cb29e355da251239eae9ce4259191164e2140e9fed",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-10",
+    "mission": "WHB",
+    "title": "Integrate owner nudges, questions and Jira documentation",
+    "goal": "Changed direction can pause publishing and safely resume once exact missing inputs arrive.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/autonomy/direction.py",
+      "wait-how-big-social/autonomy/projection.py",
+      "tests/test_whb_direction.py"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E07"
+    ],
+    "dependencies": [
+      "WHB-07",
+      "SH-08",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [
+      "WHB-I06"
+    ],
+    "implementation_steps": [
+      "Consume authenticated WHB direction revisions and acknowledge exact consumed version; example pause scheduled posts, prioritize sourced astronomy and keep TikTok disabled. Preserve previous experiment evidence.",
+      "Reuse account/resource questions and issue one minimum needs_input record per missing item; validate responding owner and exact mission/resource before resuming. Source/review and offline packaging continue while access is absent.",
+      "Write experiment-before-action, outcome, review and documentation outboxes for the combined Windows parent only. Persist retries/dedupe and require native matching/source admission; preserve BOTS-29 historical actuals and all original estimates."
+    ],
+    "deliverables": [
+      "direction and question integration",
+      "Jira/docs outbox adapter",
+      "restart/dedupe tests"
+    ],
+    "tests": [
+      "Repeated pause input is acknowledged once; queued post cannot execute under older direction.",
+      "Answer naming a different organization fails validation and cannot authorize publication.",
+      "Writer outage leaves durable outbox and blocks only its unregistered effects; recovered readback resumes once."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "WHB acknowledges owner direction and resumes exact work without recurring input questions.",
+      "No planner or mission child becomes a competing Jira writer."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 5,
+      "high": 9,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "WHB-I06"
+    ],
+    "requirement_ids": [
+      "WHB-A06",
+      "WHB-A07",
+      "WHB-A08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

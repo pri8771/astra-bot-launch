@@ -38,7 +38,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: BOTS-90; BOTS-111; BOTS-112; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-X01
 
@@ -78,7 +78,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A01
 
@@ -118,7 +118,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: BOTS-94; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A01
 
@@ -158,7 +158,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: BOTS-148; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A02
 
@@ -198,7 +198,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A03
 
@@ -238,7 +238,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A04; SH-A10; SH-A11
 
@@ -278,7 +278,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A05
 
@@ -318,7 +318,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A06; SH-A07
 
@@ -358,7 +358,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A08
 
@@ -398,7 +398,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A09
 
@@ -438,7 +438,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: BOTS-100; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A12; SH-A13; SH-A18
 
@@ -478,7 +478,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A14
 
@@ -518,7 +518,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: BOTS-92; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A15
 
@@ -558,7 +558,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A16
 
@@ -598,7 +598,7 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G04
 
 **Requirement Ids:** SH-A17
 
@@ -638,6 +638,6 @@ Proposals only. Future exact-source admission and owned-path binding precede imp
 
 **Jira:** key: None; candidates: ; matching_action: Compare exact requested scope against current candidate descriptions/evidence; reuse or extend only the delta; preserve original estimates/actuals and native links; return current source-bound readback before admission; writer: Shared scope writer designation required; planner outbox-only; never old-Mac fallback
 
-**Effect Gates:** SH-G01 admission/ownership; SH-G02 scoped capability; SH-G03 exact-source review; SH-G09 migration; SH-G04 budgets
+**Effect Gates:** SH-G01; SH-G02; SH-G03; SH-G09; SH-G04
 
 **Requirement Ids:** SH-A18

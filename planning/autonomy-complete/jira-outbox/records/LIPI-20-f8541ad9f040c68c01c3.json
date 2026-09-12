@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-20-f8541ad9f040c68c01c3ff856104231eb99fc6dc9c0e53faee302667fddc365f",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-20",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-80",
+    "LIPI-87"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "f8541ad9f040c68c01c3ff856104231eb99fc6dc9c0e53faee302667fddc365f",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-20",
+    "mission": "LIPI",
+    "title": "Evaluate commerce experiments and choose continuing actions",
+    "goal": "Close each finite learning cycle with truthful outcomes and a justified executable next decision.",
+    "status": "planned",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "services/lipi-autonomy/src/experiments/",
+      "services/lipi-autonomy/test/experiments/",
+      "ops/autonomy/experiments/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04",
+      "LIPI-E05"
+    ],
+    "dependencies": [
+      "LIPI-15",
+      "LIPI-16",
+      "LIPI-17",
+      "LIPI-18",
+      "LIPI-19",
+      "SH-05",
+      "SH-07",
+      "SH-09"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I04",
+      "LIPI-I10"
+    ],
+    "implementation_steps": [
+      "Define immutable experiment baseline, hypothesis, target buyer/use case, intervention, allowed action/cost cap, data window, minimum evidence, stop rule and next_check_at before action; first cycle uses real7-day operations only after launch.",
+      "Reconcile qualified sessions, product views, cart/checkouts, paid and delivered orders, returns/defects, actual receipts/costs and owner interventions. Separate QA traffic, missing data, zero, refunds/chargebacks and gross/net contribution; do not count elapsed waiting as work.",
+      "At due evidence decide supported/unsupported/inconclusive and choose continue/change/stop with bounded next experiment: low qualified visits→new approved useful-content angle; visits/no carts→one product clarity/fit test; carts/no checkout→shipping clarity test; below-floor economics→hold affected action and price proposal; delivery defects→quality task. Queue selected task automatically without a new launch prompt."
+    ],
+    "deliverables": [
+      "aggregate scorecard",
+      "experiment evaluator and next-task selector",
+      "Jira/documentation experiment outbox"
+    ],
+    "tests": [
+      "Unknown analytics cannot become zero; synthetic orders cannot become revenue.",
+      "An unchanged evidence fingerprint produces0 inference and no duplicated next experiment."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Two consecutive finite decision cycles preserve original hypotheses and generate eligible next actions or timed evidence waits.",
+      "Financial and growth outcomes remain measured, including honest inconclusive/negative results."
+    ],
+    "rollback": "Pause experiment intervention and preserve baseline/results; return to prior admitted configuration only if safe and authorized.",
+    "next_eligible_action": "Dispatch the selected task through admission/fencing, or persist one missing-input question and wait cheaply.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 6,
+      "high": 10,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Real observation windows and customer outcomes excluded from effort"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-80",
+        "LIPI-87"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G02",
+      "LIPI-G07",
+      "LIPI-G08"
+    ],
+    "requirement_ids": [
+      "LIPI-O12",
+      "LIPI-A02",
+      "LIPI-A03",
+      "LIPI-A05",
+      "LIPI-A08",
+      "LIPI-A16"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G02",
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval."
+      },
+      {
+        "gate_id": "LIPI-G07",
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled."
+      },
+      {
+        "gate_id": "LIPI-G08",
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Live retail price change only: existing conditional owner authority, current worst-case 20% math, exact before/after and required Jira/worklog admission; no new generic price approval.",
+        "gates": [
+          "LIPI-G02"
+        ]
+      },
+      {
+        "condition": "Organic publication/lifecycle marketing effect only: actual account, exact content/cadence grant, live destination, consent where applicable; paid ads remain disabled.",
+        "gates": [
+          "LIPI-G07"
+        ]
+      },
+      {
+        "condition": "New runtime/startup/model/tool/alert route only: admitted source, exclusive owner, private storage, existing route and finite allowed caps; no monetary allowance inferred.",
+        "gates": [
+          "LIPI-G08"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

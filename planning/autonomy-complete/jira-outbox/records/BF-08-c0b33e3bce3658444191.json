@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-BF-08-c0b33e3bce3658444191d4d23f10e4615ef52c73dd37a8609b069b394a11a1d3",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "BF-08",
+  "mission": "BF",
+  "jira_key": null,
+  "candidate_keys": [
+    "PCH-109",
+    "PCH-110",
+    "PCH-111",
+    "PCH-112",
+    "PCH-113",
+    "PCH-114",
+    "PCH-115",
+    "PCH-116",
+    "PCH-123",
+    "PCH-124"
+  ],
+  "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only",
+  "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+  "task_spec_sha256": "c0b33e3bce3658444191d4d23f10e4615ef52c73dd37a8609b069b394a11a1d3",
+  "task_file": "missions/bidetfit/TASKS.json",
+  "payload": {
+    "id": "BF-08",
+    "mission": "BF",
+    "title": "Deliver private draft-first support and explicit merchant handoff",
+    "goal": "Support fit questions from approved evidence without becoming seller or making unauthorized commitments.",
+    "status": "planned",
+    "owner_role": "Designated Windows release parent assigns one admitted implementation owner; separate exact-source reviewer; existing scheduled operator retains integration/effect ownership",
+    "source_repo": "pri8771/priyanshchordia.com",
+    "owned_paths": [
+      "ventures/bidetfit/support/intake.py",
+      "ventures/bidetfit/support/tickets.py",
+      "ventures/bidetfit/support/drafts.py",
+      "ventures/bidetfit/support/policy.json",
+      "ventures/bidetfit/tests/test_support.py"
+    ],
+    "evidence_refs": [
+      "BF-E01",
+      "BF-E02",
+      "BF-E05"
+    ],
+    "dependencies": [
+      "BF-02",
+      "BF-03"
+    ],
+    "prerequisite_inputs": [
+      "BF-I05"
+    ],
+    "implementation_steps": [
+      "Reuse retained customer-operations architecture and taxonomy; qualify mailbox/private encrypted store/model route separately and keep runtime messages outside the public repository.",
+      "Ingest scoped support-label events into deduplicated threaded tickets with retention/deletion; classify uncertain fit, source correction, merchant return request and sensitive/safety escalation.",
+      "Generate cited draft responses that state unknowns and next measurements; run prompt-injection, privacy and factual QA against approved source ledger.",
+      "Pilot draft-only under explicit recipient/response authority; sending is a distinct gated adapter and requires approved low-risk category, template, canary limits and destination sent/readback.",
+      "Current affiliate role never cancels, returns, replaces or refunds merchant orders; preserve BF-026..028 as conditional future seller/delegation scope and route buyer to merchant with general guidance."
+    ],
+    "deliverables": [
+      "private intake/draft support implementation",
+      "source-grounded templates and escalation policy",
+      "draft-pilot/conditional send acceptance"
+    ],
+    "tests": [
+      "Repeated email event produces one private ticket/draft; secret/PII canary never reaches public/Jira logs.",
+      "Injection in email or manufacturer page cannot widen tools, access, spending or communication authority.",
+      "Return/refund demand yields general merchant handoff; no account/order action occurs.",
+      "Auto-send remains disabled until exact pilot review and authority gate; crash-after-send reconciles sent ID before retry."
+    ],
+    "review": {
+      "identity_requirement": "Reviewer-authored record with actual reviewer identity, model/effort and host; distinct-model qualification is required for runtime/release acceptance and is not supplied by this plan.",
+      "exact_source": "Bind immutable implementation commit, task/spec hash, artifact hashes, executed test receipts and any destination receipt. New source invalidates prior approval.",
+      "bounded_repairs": "At most two targeted repair/review cycles; unresolved findings become a linked blocked task, preserving attempts."
+    },
+    "acceptance": [
+      "Draft-only support produces useful reviewed answers and safe merchant escalation with private evidence.",
+      "Any later auto-send qualification is limited to approved categories with verified receipts; unsupported seller actions stay denied."
+    ],
+    "rollback": "Disable sends/intake as needed, preserve private tickets and fulfill pending approved support obligations through designated owner; never expose raw messages.",
+    "next_eligible_action": "Implement redacted draft-only fixtures and policy denial for seller actions; prepare one missing-mailbox input record.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 20,
+      "high": 36,
+      "assumptions": "New planning range for admitted implementation and bounded review; reuses evidenced assets; excludes observation waiting, non-delegable account work and shared-platform implementation. Not a replacement for historical Jira estimates or measured actuals.",
+      "dependency_risk": "Mailbox/private store/model access are unverified; offline redacted fixtures proceed without them."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "PCH-109",
+        "PCH-110",
+        "PCH-111",
+        "PCH-112",
+        "PCH-113",
+        "PCH-114",
+        "PCH-115",
+        "PCH-116",
+        "PCH-123",
+        "PCH-124"
+      ],
+      "matching_action": "Designated release writer compares this exact scope with current native issues and retained accepted artifacts; reuse/extend matching scope, create only missing linked scope; preserve original estimates, remaining estimates, actuals, statuses and history; return hash-bound native readback. Null is unknown, never a request to clear a field.",
+      "writer": "Windows release parent, sole writer for non-OPO missions; this lane is outbox-only"
+    },
+    "effect_gates": [
+      "BF-G07",
+      "BF-G08"
+    ],
+    "requirement_ids": [
+      "BF-O09",
+      "BF-A07",
+      "BF-A10",
+      "BF-A11",
+      "BF-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

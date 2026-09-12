@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-07-cb00c6e7def6abc023648f5812dcbfddee399b05a6af099380f28df0396c972a",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-07",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-127"
+  ],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "cb00c6e7def6abc023648f5812dcbfddee399b05a6af099380f28df0396c972a",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-07",
+    "mission": "OPO",
+    "title": "Complete fulfillment, support, refunds and accounting",
+    "goal": "A paid or free request reaches a verified useful result and support can resolve failures.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "lib/opo/fulfillment.ts",
+      "lib/opo/refunds.ts",
+      "lib/opo/accounting.ts",
+      "db/opo/003_fulfillment.sql",
+      "tests/opo/fulfillment.test.ts",
+      "docs/opo/support-runbook.md"
+    ],
+    "evidence_refs": [
+      "OPO-E04",
+      "OPO-E07"
+    ],
+    "dependencies": [
+      "OPO-03",
+      "OPO-04",
+      "OPO-05"
+    ],
+    "prerequisite_inputs": [
+      "OPO-I03",
+      "OPO-I04"
+    ],
+    "implementation_steps": [
+      "Create delivery receipt keyed to request/order/result hash with completion time, access expiry and client acknowledgement where available; payment-dependent branch must additionally satisfy OPO-06 before effect.",
+      "Implement support cases, retry failed deliveries within offer limits, cancellation/refund proposal-to-provider adapter and receiving-system reconciliation; separate refund authority and maximum amount.",
+      "Reconcile gross sales, fees, refunds, net collected cash, outstanding liability and compute costs; preserve provider currency/period and avoid converting synthetic jobs into demand."
+    ],
+    "deliverables": [
+      "fulfillment receipts",
+      "support/refund runbook",
+      "reconciled economic ledger"
+    ],
+    "tests": [
+      "Free and paid fixtures deliver once; payment-pending orders cannot take the paid branch.",
+      "Duplicate refund, crash after refund acceptance, expired delivery link and wrong order access preserve one outcome and correct permissions.",
+      "Accounting reconciles known fixtures and flags missing provider data rather than setting it to zero."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "End-to-end delivery/support works for the useful free release.",
+      "Paid fulfillment/refund acceptance is separately gated by OPO-06 and exact provider receipts; no fabricated commercial validation."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 8,
+      "high": 14,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-127"
+      ],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [
+      "OPO-I04",
+      "OPO-I08"
+    ],
+    "requirement_ids": [
+      "OPO-O06",
+      "OPO-O07"
+    ],
+    "conditional_dependencies": [
+      {
+        "condition": "Any payment-dependent fulfillment, paid entitlement, refund or real-money accounting effect; free fulfillment branch is independent.",
+        "dependencies": [
+          "OPO-06"
+        ],
+        "acceptance": "OPO-06 merchant/payment acceptance and exact amount/currency/order/grant/provider receipt verified before paid branch; absent gate leaves free delivery eligible and paid acceptance incomplete."
+      }
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

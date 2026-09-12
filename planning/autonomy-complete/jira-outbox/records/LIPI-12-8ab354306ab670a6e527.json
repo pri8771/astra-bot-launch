@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-LIPI-12-8ab354306ab670a6e527da9d4be2083d0b7a29ba4a95270ecf29f20690f4cdeb",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "LIPI-12",
+  "mission": "LIPI",
+  "jira_key": null,
+  "candidate_keys": [
+    "LIPI-75"
+  ],
+  "writer": "Lipi writer designation unresolved: LIPI-I09",
+  "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+  "task_spec_sha256": "8ab354306ab670a6e527da9d4be2083d0b7a29ba4a95270ecf29f20690f4cdeb",
+  "task_file": "missions/lipi/TASKS.json",
+  "payload": {
+    "id": "LIPI-12",
+    "mission": "LIPI",
+    "title": "Verify checkout and transactional journey",
+    "goal": "Prove a buyer can purchase the correct approved item and receive the correct order handoff.",
+    "status": "reuse_and_verify",
+    "owner_role": "Suggested Lipi executor, admitted by Lipi coordinator",
+    "source_repo": "pri8771/lipi-standard-store",
+    "owned_paths": [
+      "ops/autonomy/checkout/",
+      "services/lipi-autonomy/test/checkout/"
+    ],
+    "evidence_refs": [
+      "LIPI-E02",
+      "LIPI-E04"
+    ],
+    "dependencies": [
+      "LIPI-07",
+      "LIPI-09",
+      "LIPI-10",
+      "LIPI-11"
+    ],
+    "prerequisite_inputs": [
+      "LIPI-I03",
+      "LIPI-I04",
+      "LIPI-I05"
+    ],
+    "implementation_steps": [
+      "Exercise variant selection, quantity, cart persistence, discount rejection, US address/shipping, mixed cart, threshold, payment failure/cancel, confirmation and support links using private/test routes first.",
+      "Verify merchant/payment eligibility and exact charged-test allowance separately; do not use a synthetic checkout as a real payment or charge without authority.",
+      "For the authorized purchase canary, reconcile Shopify order/payment status, Printful mapping/hold state and transactional delivery receipt using secret/PII references only."
+    ],
+    "deliverables": [
+      "checkout scenario results",
+      "charge/test authority record",
+      "joined order/payment/provider receipt"
+    ],
+    "tests": [
+      "Wrong variant, stale price, unauthorized discount or below-floor basket blocks completion.",
+      "Payment timeout does not create a second charge/order; user sees useful failure and reconciliation status."
+    ],
+    "review": {
+      "identity_requirement": "Independent reviewer other than implementing author; record actual reviewer identity, model/version and host. Cultural reviewer identity is additionally required for Guru claims; no invented reviewer.",
+      "exact_source": "Bind source commit, task/spec SHA256, artifact hashes, policy revision and receiving-system receipts; any material change invalidates affected approval.",
+      "bounded_repairs": "At most two targeted repair/review attempts per admitted task, or a stricter existing limit. Unresolved failure becomes needs_input/blocked with evidence; never an unbounded loop."
+    },
+    "acceptance": [
+      "Relevant edge cases pass on exact candidate and a separately identified real or test order receipt exists.",
+      "Real payment/fulfillment acceptance remains open if only a test route was used."
+    ],
+    "rollback": "Restore staged checkout configuration; refunds, voids and cancellations use exact owner authorization and destination readback.",
+    "next_eligible_action": "LIPI-13 review/restore and LIPI-14 release; LIPI-17 observes fulfillment.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 4,
+      "high": 8,
+      "assumptions": "New incremental planning range, not original Jira estimate or worklog. Reuse accepted assets; elapsed shipping, review waiting, observation windows and provider verification are excluded.",
+      "dependency_risk": "Payment eligibility, sample acceptance and exact purchase allowance"
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "LIPI-75"
+      ],
+      "matching_action": "Designated writer compares current scope and retained acceptance, reuses matching issue or adds only genuine residual scope, preserves all original estimates/actuals, and returns native key/readback bound to this specification.",
+      "writer": "Lipi writer designation unresolved: LIPI-I09"
+    },
+    "effect_gates": [
+      "LIPI-G04",
+      "LIPI-G05"
+    ],
+    "requirement_ids": [
+      "LIPI-O08"
+    ],
+    "conditional_dependencies": [],
+    "effect_gate_applicability": [
+      {
+        "gate_id": "LIPI-G04",
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant."
+      },
+      {
+        "gate_id": "LIPI-G05",
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only."
+      }
+    ],
+    "conditional_effect_gates": [
+      {
+        "condition": "Sample/purchase/charged test/provider order or paid supplier action only: exact identities, total, currency, cap, expiry and owner grant.",
+        "gates": [
+          "LIPI-G04"
+        ]
+      },
+      {
+        "condition": "Policy publication, customer send, refund, replacement or chargeback handling only: apply the specific owner-controlled operation; refund/replacement autonomous cap0 and chargebacks owner-only.",
+        "gates": [
+          "LIPI-G05"
+        ]
+      }
+    ],
+    "effect_gate_semantics": "effect_gates is a capability-gate catalogue. Evaluate each conditional_effect_gates entry only for its named actual action class; never require all unrelated gates as a conjunction.",
+    "completion_rule": "A blocked/missing-input/failure record may finish a preparation subunit only. This task is not capability/release complete until its positive checks and relevant real effect acceptance pass. Disabled unrelated effect classes do not block a qualified allowed class; claimed scope is explicit."
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

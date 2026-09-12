@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-WHB-08-172036fa4497a89db62e43ec5f05da1b42f8c3e6ba8e2d4394e6150ca40304f2",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "WHB-08",
+  "mission": "WHB",
+  "jira_key": null,
+  "candidate_keys": [
+    "BOTS-121",
+    "BOTS-122"
+  ],
+  "writer": "Windows combined release parent; planner outbox only",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "172036fa4497a89db62e43ec5f05da1b42f8c3e6ba8e2d4394e6150ca40304f2",
+  "task_file": "missions/whb/TASKS.json",
+  "payload": {
+    "id": "WHB-08",
+    "mission": "WHB",
+    "title": "Implement audience experiments and justified next content decisions",
+    "goal": "The operator adapts topic, format, profile and channel tactics using actual audience evidence.",
+    "status": "planned",
+    "owner_role": "Windows combined release parent / admitted WHB lane",
+    "source_repo": "https://github.com/pri8771/orchestrator",
+    "owned_paths": [
+      "wait-how-big-social/autonomy/decisions.py",
+      "wait-how-big-social/autonomy/experiments.py",
+      "wait-how-big-social/autonomy/budgets.json",
+      "tests/test_whb_decisions.py"
+    ],
+    "evidence_refs": [
+      "WHB-E01",
+      "WHB-E05",
+      "WHB-E08"
+    ],
+    "dependencies": [
+      "WHB-05",
+      "WHB-07",
+      "SH-05",
+      "SH-07",
+      "SH-14"
+    ],
+    "prerequisite_inputs": [
+      "WHB-I05",
+      "WHB-I08"
+    ],
+    "implementation_steps": [
+      "Freeze first hypothesis: whether one concrete original scale explanation earns relevant responses/return interest; select its metric and minimum informative evidence from actual baseline, not universal sample thresholds.",
+      "Record alternative topic/hook/format, expected benefit, source/review cost, quality guardrails, zero-cash budget and window before action. Subsequent profile/image/channel changes require exact saved variants and independent grants, not broad source drift.",
+      "Evaluate supported/unsupported/inconclusive/invalidated and choose adopt/continue/change/extend/revert/stop; stop low-value repeated posting and wait cheaply if evidence cannot support a decision. Monetization is a later explicit offer hypothesis, not assumed sponsor income."
+    ],
+    "deliverables": [
+      "decision/experiment adapters",
+      "first and next experiment contracts",
+      "limit/evaluation tests"
+    ],
+    "tests": [
+      "Publication alone never equals audience growth; before/after change is not represented as causal proof.",
+      "Changing topic and avatar together is a bundled experiment with limits; baseline and original thresholds remain immutable.",
+      "Budget exhaustion, unavailable metrics and unchanged input cause bounded wait/block with no paid model fallback."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "The second content decision is attributable to actual observed evidence and original audience goal.",
+      "Low traffic/negative results are valid outcomes with explicit next choices, not manufactured success."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 7,
+      "high": 13,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [
+        "BOTS-121",
+        "BOTS-122"
+      ],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Windows combined release parent; planner outbox only"
+    },
+    "effect_gates": [
+      "WHB-I05",
+      "WHB-I06",
+      "WHB-I08"
+    ],
+    "requirement_ids": [
+      "WHB-A03",
+      "WHB-A05",
+      "WHB-A16",
+      "WHB-O08"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}

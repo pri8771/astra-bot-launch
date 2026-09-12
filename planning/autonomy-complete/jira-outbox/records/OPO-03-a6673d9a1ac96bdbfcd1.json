@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "operation_id": "autonomy-complete-20260912-OPO-03-a6673d9a1ac96bdbfcd1f589ce1355abe0a7a4aea70acc35c0dbe06de8dfe0bc",
+  "supersedes_operation_id": null,
+  "state": "proposal_only_no_write",
+  "requested_operation": "match_reuse_or_extend_then_readback; create only verified unmatched residual scope",
+  "internal_task_id": "OPO-03",
+  "mission": "OPO",
+  "jira_key": null,
+  "candidate_keys": [],
+  "writer": "Dedicated owner-started OPO Cursor Windows writer",
+  "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+  "task_spec_sha256": "a6673d9a1ac96bdbfcd1f589ce1355abe0a7a4aea70acc35c0dbe06de8dfe0bc",
+  "task_file": "missions/opo/TASKS.json",
+  "payload": {
+    "id": "OPO-03",
+    "mission": "OPO",
+    "title": "Implement durable conversations and authenticated controls",
+    "goal": "Public intake, threaded replies and operator actions survive restart with privacy and abuse boundaries.",
+    "status": "planned",
+    "owner_role": "OPO dedicated Windows release owner / admitted implementation lane",
+    "source_repo": "https://github.com/pri8771/one-person-ops",
+    "owned_paths": [
+      "app/api/v1/messages/route.ts",
+      "app/api/v1/conversations/[id]/route.ts",
+      "lib/opo/messages.ts",
+      "lib/opo/storage.ts",
+      "db/opo/001_messages.sql",
+      "app/operator/conversations/page.tsx",
+      "tests/opo/messages.test.ts"
+    ],
+    "evidence_refs": [
+      "OPO-E02",
+      "OPO-E03"
+    ],
+    "dependencies": [
+      "OPO-01"
+    ],
+    "prerequisite_inputs": [
+      "OPO-I02",
+      "OPO-I03"
+    ],
+    "implementation_steps": [
+      "Implement envelope protocol_version/message_id/conversation_id/actor_id/actor_type_claim/in_reply_to/intent/payload/source_refs/created_at and bounded schema validation.",
+      "Use a transactional persistent store behind an adapter: atomic message+conversation+event insert, unique channel/message key, thread authorization, optimistic revisions, bounded rejection receipts. Local test database is a durable local capability, not evidence of public hosting.",
+      "Add authenticated operator controls, limits, content sanitization, redacted public views, retention/deletion policy with tombstones and audit access; ignore authority instructions embedded in external input."
+    ],
+    "deliverables": [
+      "message API and migrations",
+      "operator conversation UI",
+      "privacy/retention contract",
+      "restart and access evidence"
+    ],
+    "tests": [
+      "Replay one message concurrently and after process restart: exactly one accepted record and a stable duplicate receipt.",
+      "Cross-conversation access, forged operator request, oversize payload, script markup, SSRF/private callback and secret-like input are rejected/redacted as specified.",
+      "Kill after DB commit before HTTP response; retry returns the existing message and thread history remains intact."
+    ],
+    "review": {
+      "identity_requirement": "A reviewer other than the implementer records actual identity, model/effort and host; distinct-model review when required by the admitted contract. Self-review does not qualify.",
+      "source_binding": "Review exact Git commit and SHA256 manifest of changed source/assets/config; distinguish Windows CRLF worktree bytes from Git blobs. Any repair invalidates affected prior approval.",
+      "bounded_repairs": "At most two repair/review attempts per candidate within admitted budget; unresolved failure creates one actionable block and leaves independent work eligible."
+    },
+    "acceptance": [
+      "Persistent threaded request/reply intake and bounded rejection evidence work in a qualified storage environment.",
+      "Public and internal conversation views expose only the allowed records, with edit/moderation/deletion lineage."
+    ],
+    "rollback": "Disable this capability, retain immutable evidence/receipts, restore the last reviewed source/config version and reconcile attempted external effects before any retry.",
+    "next_eligible_action": "Designated owner matches the proposed scope to current Jira/source and assigns disjoint paths; then perform implementation step 1. External gates block only the named effects.",
+    "estimate": {
+      "unit": "engineering_hours",
+      "low": 12,
+      "high": 22,
+      "assumptions": "New planning estimate, not historical estimate or worklog. Reuse accepted returned implementation where its exact source passes this contract. Excludes elapsed observation windows, account waiting and shared SH implementation.",
+      "dependency_risk": "Host/provider/account qualification or conflicting release-worker ownership can delay dependent effects; offline work remains eligible."
+    },
+    "jira": {
+      "key": null,
+      "candidates": [],
+      "matching_action": "Compare current description, accepted source and dependencies; reuse/extend only exact matching scope, otherwise propose a linked missing-scope task. Preserve original estimates, actuals and historical evidence; record native readback before admitted effects.",
+      "writer": "Dedicated owner-started OPO Cursor Windows writer"
+    },
+    "effect_gates": [
+      "OPO-I02",
+      "OPO-I03"
+    ],
+    "requirement_ids": [
+      "OPO-O03",
+      "OPO-A15"
+    ]
+  },
+  "preserve_native": [
+    "original_estimate",
+    "actuals",
+    "worklogs",
+    "accepted_artifacts",
+    "existing_links",
+    "history"
+  ],
+  "forbidden": [
+    "automatic_null_field_clear",
+    "duplicate_issue_without_matching",
+    "fabricated_key",
+    "planner_jira_write",
+    "estimate_to_worklog",
+    "new_scope_admission_from_old_readback"
+  ]
+}
