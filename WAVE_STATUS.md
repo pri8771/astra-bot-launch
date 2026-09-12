@@ -1,11 +1,12 @@
 # First-three launch wave — current checkpoint
 
-Updated 2026-09-12T18:55:15.142222+00:00. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
+Updated 2026-09-12T19:10:02.046513+00:00. Read actual observations and receipts below; assignments are not completion. Root owns this document and CONTINUE_HERE.md.
 
 ## Done in this work
 
 - Priority fixed to One Person Ops, Wait How Big and CommerceLint.
 - Five IDE instruction packets, all-bot roadmap, task-directory contract, five concrete mission task directories (22 proposed tasks), native-only four-tier Jira dashboard prompt, and new-chat prompt prepared.
+- Dashboard scope expanded to all accessible Jira, managed portfolio and matching project/product views: `DASHBOARD_METRIC_CONTRACT.md`. Counts, daily flow, model/status and planned/logged/remaining hours have explicit definitions and native gaps. `NEXT_PROJECT_DISCUSSIONS.md` records the five folder changes and proposed discussion order. No Jira dashboard configuration was performed by these documentation changes.
 - Windows local Qwen diagnostic passed two synthetic no-tool cases; raw requests/responses and timing persist on Windows. Native unattended/recovery qualification remains open.
 - One Person Ops source snapshot published privately and remote main verified; original local files/history preserved. See CLOUD_PUBLICATION.md.
 - Claude Sonnet readiness handoff completed. Cursor Auto OPO Phase 0 returned baseline and admission outbox, stopped at the actual Jira-writer/auth blocker.
@@ -24,11 +25,11 @@ Cursor's final result reports its background capability-check shell hung; return
 
 ## Real blockers and next actions
 
-1. Reconcile sole Jira writer. Cursor attempted the existing task `6046ab83-8402-47e3-b832-f4fe478da7f1`; resume failed because conversation state was unavailable, and its Atlassian MCP reported needsAuth. No Jira writes occurred. Restore authenticated ownership or explicitly retire/rebind that writer through one coordinator; do not silently start competing writers. The exact OPO outbox is ready for projection and readback.
+1. Reconcile sole Jira writer. Mac Cursor attempted the existing task `6046ab83-8402-47e3-b832-f4fe478da7f1`; resume failed because conversation state was unavailable, and its Atlassian MCP reported needsAuth. No Jira writes occurred. The owner subsequently reported Windows Cursor is authenticated with Atlassian. Verify that route's target site/read access and reconcile or explicitly retire/rebind the old writer before issue mutations; do not assume authentication transfers ownership. The exact OPO outbox is ready for projection and readback.
 2. Confirm the exact OPO public domain/subdomain and qualified hosting/message-storage route; partial `shivangchordia` is insufficient. Source preservation is complete; public launch is not.
 3. The private control repository is published and remote main verified (`pri8771/astra-bot-launch`, source snapshot `d699056bb74b96be22d8abd56cf330a085e0eb85`; later handoff-only revisions may follow). Transfer/read back Windows packets, then launch the remaining named workers without duplicating finished readiness work. Use actual current cloud source pointers rather than legacy Mac-only paths.
 4. Admit the smallest product slices and obtain separate attributable review, then publish/read back one OPO exchange service, one WHB post, and one CommerceLint useful conversion/offer improvement. Source/prompt/test artifacts are not revenue or audience results.
-5. Run the separate native Jira dashboard prompt after its diagnosis. The screenshots have 53 populated two-dimensional cells and a 1,276-issue pie; they are not reconciled live cohorts. Preserve unknown telemetry and original estimates.
+5. Run the separate native Jira dashboard prompt and metric contract after diagnosis. The screenshots have 53 populated two-dimensional cells and a 1,276-issue pie; they are not reconciled live cohorts. Build the portfolio and one project template first, then matching views for the remaining agreed scopes. Preserve unknown telemetry, evidenced baselines and waterfall. Do not claim a native hours-burndown or percentage tile without tenant verification.
 
 ## Deferred and unchanged
 

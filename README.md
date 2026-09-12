@@ -14,8 +14,8 @@ Each cloud or desktop worker needs its own authenticated local clone/worktree. `
 
 ## Current gates
 
-22 task definitions are proposed, not Jira issues or admitted jobs. Root/Cursor readiness artifacts already exist locally; do not repeat them simply because they are not copied here. The existing sole Jira writer could not resume and its connector needs authentication. Restore or explicitly rebind one writer before implementation. No credentials are included.
+22 task definitions are proposed, not Jira issues or admitted jobs. Root/Cursor readiness artifacts already exist locally; do not repeat them simply because they are not copied here. Mac Cursor's existing sole Jira writer could not resume and its connector reported needsAuth. The owner now reports Windows Cursor is authenticated with Atlassian; verify that route and reconcile or explicitly rebind one writer before issue mutations. No credentials are included.
 
-The owner requests native Jira analytics only: use `DASHBOARD_MASTER_PROMPT.md`. Do not install marketplace/BI tools or report invented token/cost totals. Preserve estimates, unknowns and independent reviewer attribution.
+The owner requests native Jira analytics only: use `DASHBOARD_MASTER_PROMPT.md` and `DASHBOARD_METRIC_CONTRACT.md` for matching overall/project/product status, daily flow, completion and hour views. Retain waterfall and report unsupported native charts honestly. Do not install marketplace/BI tools or report invented token/cost totals. Preserve estimates, unknowns and independent reviewer attribution. `NEXT_PROJECT_DISCUSSIONS.md` inventories the five bot folders and proposes the following one-at-a-time discussions; it is not a new execution batch.
 
 Publish source/receipts only to intended private repositories. No auto deployment, public posting, purchases, cloud-agent permissions, schedules or model polling were activated by this repository. Keep original local sources and unrelated work intact.
