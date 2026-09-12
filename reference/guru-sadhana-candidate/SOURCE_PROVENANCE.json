@@ -1,0 +1,17 @@
+{
+  "source_revision": "252d0bf18d11c47484ffcc2ab0a8ea56203a7076",
+  "source_relative_path": "ops/compwave_s05/sadhana_notes",
+  "kind": "historical editorial candidate; not active Guru runtime or launch",
+  "file_hashes": {
+    "INPUTS_VERIFICATION.json": "079cd45b465f3f3e9fe17b63d30357e0dbfb6b5f1e0a438ad9f1c8bb0e5c1049",
+    "PERSONA_CONTRACT_FREEZE.md": "43db9290a26df5d8cdeeed13490a64f51f60f9e9c3ba2c04c0744dcde99d58f8",
+    "content/01-pause.md": "9322823dc2dc96bf4a8e1960c3bb6b748616b9e9c419e80d5ef99e30e593b998",
+    "content/02-reading.md": "2f3c47feaa09a1708b648466163d6e1d35cdd7934f1b11dcc931c96618f01b44",
+    "content/03-gratitude.md": "4b3aee70dae4ccd468b6250132b79faca7f393d495d3caffb5b6585387ac587d",
+    "content/alt-text.md": "b0ab6b9c0af78dfd2d9f54612e0065093870aac1f39f0168d7085071d40d9278",
+    "content/source-ledger.json": "e4f7a38c0380ca995f0d3dcebcf9c9f8d0d83e2b002a27fd15d76e7855321165",
+    "moderation-runbook.md": "b0e59392a734d09f3777a107ec471f7913434138ab80a043155a79662eb81d24",
+    "persona.md": "62780be01f4cd2de938ff4e9b760e28436aa160098a6dcfbd3f94bfcce573549",
+    "release-manifest.json": "3d1e46b43f4cbe4b67c90a21e6ce483eef0bc507682eb3b5a6019da091f5313c"
+  }
+}

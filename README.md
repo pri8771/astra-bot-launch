@@ -8,7 +8,7 @@ Private, portable instructions for One Person Ops, Wait How Big and CommerceLint
 - CommerceLint: https://github.com/pri8771/autonomous_apps — use a fresh isolated checkout; the old Mac clone was stale.
 - WHB: https://github.com/pri8771/orchestrator/tree/main/wait-how-big-social — source/operator bundle; execution not qualified.
 - BidetFit: https://github.com/pri8771/priyanshchordia.com/tree/main/ventures/bidetfit — deferred.
-- Guru: charter/assets require further source reconciliation; no runnable cloud bot established.
+- Guru: preserved editorial candidate under `reference/guru-sadhana-candidate/`; no runnable cloud bot established.
 
 Each cloud or desktop worker needs its own authenticated local clone/worktree. `*_MAC.md` and `*_WINDOWS.md` are host-specific packets: their absolute paths do not exist automatically in a cloud job. Cloud workers should use the portable `tasks/<mission>/TASKS.md` and `queue.json`, resolve source repository and local checkout, set source_root_override in their own run receipt, and ask for a missing resource rather than invent it. Reference copies are under `reference/`; historical links back into the full Astra repository may be unavailable here. Do not start tasks requiring absent evidence.
 

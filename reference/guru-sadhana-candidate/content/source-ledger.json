@@ -1,0 +1,39 @@
+{
+  "schema": "sadhana-notes-source-ledger/v1-compwave-s05",
+  "key": "BOTS-129",
+  "recorded_utc": "2026-09-09T17:10:55Z",
+  "status": "withheld",
+  "entries": [],
+  "rule": "Paraphrase rather than quote by default. Bind actual public-domain/licensed source and named cultural reviewer before any religious/textual factual claim. Withhold unsupported claims rather than invent citations.",
+  "named_cultural_reviewer": null,
+  "account_handle": null,
+  "source_rights_routes_accepted": false,
+  "carousels": [
+    {
+      "id": "01-pause",
+      "slides": 4,
+      "caption": true,
+      "alt_text": true,
+      "cultural_review": "WITHHELD"
+    },
+    {
+      "id": "02-reading",
+      "slides": 4,
+      "caption": true,
+      "alt_text": true,
+      "cultural_review": "WITHHELD"
+    },
+    {
+      "id": "03-gratitude",
+      "slides": 4,
+      "caption": true,
+      "alt_text": true,
+      "cultural_review": "WITHHELD"
+    }
+  ],
+  "limitations": [
+    "No factual religious/textual claims accepted in this packet.",
+    "bots-repo/guru lacks sadhana-notes tree; candidate lives under ops/compwave_s05.",
+    "BOTS-130 gated inputs remain missing; BOTS-132 publication grant absent."
+  ]
+}

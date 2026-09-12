@@ -16,4 +16,8 @@
 
 See `REPO_CLOUD_AUDIT.md` for live metadata and local-versus-remote distinctions. Reuse established product repositories; do not split every social account into a repository. The BOTS repository's mission folders are charters, and must not be mistaken for working product implementations.
 
-The portable task/control repository is prepared separately as `pri8771/astra-bot-launch`; publication must be verified before reporting it available. It contains selected task/specification documents, not a copy of the entire Astra workspace, raw model transcripts or credentials.
+The portable task/control repository is published privately at https://github.com/pri8771/astra-bot-launch. Initial remote main `147c7fcb4ce4dd0492fdd36c90ed31b35e6d1210` was independently read back. It contains selected task/specification documents, not a copy of the entire Astra workspace, raw model transcripts or credentials.
+
+## Guru candidate preservation
+
+Ten tracked Sadhana editorial candidate files from retained Astra revision `252d0bf18d11c47484ffcc2ab0a8ea56203a7076` were copied into the private control repository at `reference/guru-sadhana-candidate/`, with source/file hashes. They are historical reusable assets, not a running Guru bot or a mandate to use Instagram. Original source stayed untouched. Kai/Pri private runtime code and credentials were not exported.

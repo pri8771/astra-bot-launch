@@ -1,0 +1,34 @@
+{
+  "release": "sadhana-notes-local-candidate-compwave-s05",
+  "key": "BOTS-129",
+  "recorded_utc": "2026-09-09T17:10:55Z",
+  "canary": "not_authorized",
+  "publication": "blocked",
+  "schedule_jobs": "none",
+  "carousels": [
+    {
+      "id": "01-pause",
+      "disposition": "withheld"
+    },
+    {
+      "id": "02-reading",
+      "disposition": "withheld"
+    },
+    {
+      "id": "03-gratitude",
+      "disposition": "withheld"
+    }
+  ],
+  "acceptance_self_check": {
+    "three_packets_with_four_slides_caption_alt_source_ledger": true,
+    "cultural_review_accepted_or_explicitly_withheld": "explicitly_withheld",
+    "persona_independent_editorial": true,
+    "no_excluded_product_conversion_or_unauthorized_account_use": true
+  },
+  "formal_acceptance_blockers_for_publication": [
+    "BOTS-130_missing_account_source_cultural_reviewer",
+    "BOTS-132_exact_publication_grant_absent",
+    "BOT-B02_bots_repo_path_absent"
+  ],
+  "rollback": "delete local candidate drafts only; no public permalink exists"
+}

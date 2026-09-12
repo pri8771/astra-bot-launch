@@ -1,14 +1,14 @@
 {
-  "created_utc": "2026-09-12T18:51:55.418500+00:00",
+  "created_utc": "2026-09-12T18:54:35.244738+00:00",
   "files": {
-    "WAVE_STATUS.md": "c6a41308f707b86c5966b4403ed99b5930b1d4f9bc3f94559cf0b32b87406078",
-    "REPO_CLOUD_AUDIT.md": "856aeb85635c84ca2b792dfd96a1b0edf4904b6a3b2128e01ad9620e377e5fe9",
-    "CLOUD_PUBLICATION.md": "569cb93240eb45c6ce35c06fd8339f54a39d430c86768e76ea0de5c29864f702",
+    "WAVE_STATUS.md": "e1b829df7a48546e10a45d36b766b608c86b5f7c17625cb866187e07dedcab78",
+    "REPO_CLOUD_AUDIT.md": "830fd522c710953221d88c46a4a39d4f237973f468e27c72e1035de260c91906",
+    "CLOUD_PUBLICATION.md": "7f4d9dd0a682c57f8f96d914f3eb5ff67e86ee27480cfbf4dfd8003ebe96c423",
     "COMMON.md": "5bdd0c2612f47676c86b953630eb75462e9c787cc020359801a44c0c113a97fe",
     "ANTIGRAVITY_WINDOWS.md": "b2f9b04e6c09d1443c161c5781e672dbcaa9307433ea2938d5c5c815317cdad0",
     "CURSOR_MAC.md": "055943d008ddcbc053ada879cd8ab881383d3d9f46d10711e494b95d9dc8ce18",
     "CLAUDE_MAC.md": "bc97980495dbdaaccb3a6bf34ed93243ef588c9a1c1cff48b6d9effead3b50b3",
-    "README.md": "14ddbb5e146485d24543be234de0dcc9dcc7316720d937fd153a83947c413e66",
+    "README.md": "837312661fde94512ce08b4b4cb778d9479433643629eb1ee990ae45fdd39bd6",
     "NEW_CHAT_PROMPT.md": "0494be937362ad6c5729a5bfe0ce2499e4c75c55290cccdb9957632c7d6d2439",
     "DASHBOARD_MASTER_PROMPT.md": "150ecc2fed34f2398eab40b6b21e893015f2269663c68f2793ea84436402f118",
     "CURSOR_WINDOWS.md": "683fd5354d41d45f00b23af737fa93d79c36fd3aa3894aaf74347e7d699b8dc8",
@@ -22,6 +22,17 @@
     "reference/OPO_AGENT_BUSINESS.md": "7c1f515ef5f08a178721137efa966f543d94063f216cc72428b6b71f05f8ba9f",
     "reference/ACCOUNTS_CHANNELS_AND_HOSTS.md": "687b84ef0b47e7ff935111d3bd9113b377e15590a1f418bbe2385049429746c2",
     "reference/WINDOWS_PRIMARY_READINESS.md": "a59033c54708ad8f9175f31a8d900afb2de48f72f89f050a37353074cff4bf30",
+    "reference/guru-sadhana-candidate/INPUTS_VERIFICATION.json": "079cd45b465f3f3e9fe17b63d30357e0dbfb6b5f1e0a438ad9f1c8bb0e5c1049",
+    "reference/guru-sadhana-candidate/SOURCE_PROVENANCE.json": "b7741c6368dd7ade73c5bf80993d494e9b77631a6e514f8b029decebcc920401",
+    "reference/guru-sadhana-candidate/moderation-runbook.md": "b0e59392a734d09f3777a107ec471f7913434138ab80a043155a79662eb81d24",
+    "reference/guru-sadhana-candidate/PERSONA_CONTRACT_FREEZE.md": "43db9290a26df5d8cdeeed13490a64f51f60f9e9c3ba2c04c0744dcde99d58f8",
+    "reference/guru-sadhana-candidate/release-manifest.json": "3d1e46b43f4cbe4b67c90a21e6ce483eef0bc507682eb3b5a6019da091f5313c",
+    "reference/guru-sadhana-candidate/persona.md": "62780be01f4cd2de938ff4e9b760e28436aa160098a6dcfbd3f94bfcce573549",
+    "reference/guru-sadhana-candidate/content/01-pause.md": "9322823dc2dc96bf4a8e1960c3bb6b748616b9e9c419e80d5ef99e30e593b998",
+    "reference/guru-sadhana-candidate/content/alt-text.md": "b0ab6b9c0af78dfd2d9f54612e0065093870aac1f39f0168d7085071d40d9278",
+    "reference/guru-sadhana-candidate/content/source-ledger.json": "e4f7a38c0380ca995f0d3dcebcf9c9f8d0d83e2b002a27fd15d76e7855321165",
+    "reference/guru-sadhana-candidate/content/03-gratitude.md": "4b3aee70dae4ccd468b6250132b79faca7f393d495d3caffb5b6585387ac587d",
+    "reference/guru-sadhana-candidate/content/02-reading.md": "2f3c47feaa09a1708b648466163d6e1d35cdd7934f1b11dcc931c96618f01b44",
     "tasks/guru/TASKS.md": "8a3476105294faa8827fd57c955de8e66adda2d83c54cfd3f1aeb50e50e9ffe2",
     "tasks/guru/queue.json": "6b9dfb8a9a6370992448d8a86d80244b9e0bdb094be4b98041248a7547fcb3a8",
     "tasks/bidetfit/TASKS.md": "1ca151a6153834d94f3906e419923368d7e6695ad512ca433a6b08c05919c9f8",
@@ -33,5 +44,5 @@
     "tasks/one-person-ops/TASKS.md": "8d6e06988782bd5822e8a9d90d41bc9cbb9b032b539c537d1f32816046e8d2ea",
     "tasks/one-person-ops/queue.json": "98b45a7670eee2aa9229e7bbed30601ae0a5ea93057493455dcc815f5b6ea6c5"
   },
-  "scope": "selected task/spec documents only"
+  "scope": "selected task/spec documents and 10 historical Guru editorial candidate files; no runtime secrets"
 }

@@ -1,0 +1,33 @@
+{
+  "key": "BOTS-130",
+  "stable_id": "BM-GURU-01",
+  "recorded_utc": "2026-09-12T04:25:25Z",
+  "source_sha": "8fca2780846ecd34da7a7bc85167cc3f55da7ecb",
+  "disposition": "partial_with_evidence",
+  "selected": {
+    "persona": "independent_editorial",
+    "channel": "instagram_english",
+    "themes": [
+      "pause_before_action",
+      "one_passage_one_question",
+      "gratitude_in_daily_practice"
+    ]
+  },
+  "gated_inputs": {
+    "account_handle": null,
+    "account_entitlement_verified": false,
+    "named_cultural_reviewer": null,
+    "source_rights_routes": null,
+    "fabrication_asserted": false
+  },
+  "acceptance": {
+    "persona_channel_themes_selected": true,
+    "only_exact_account_rights_reviewer_remain_gated": true,
+    "no_fabricated_identity_credential_audience": true
+  },
+  "limitations": [
+    "No Instagram metadata inspected beyond prior null ledger fields (no account creation/publication).",
+    "Named cultural reviewer remains unavailable \u2014 keep WITHHELD on carousels."
+  ],
+  "next_action": "Owner supplies exact handle entitlement, rights routes, and named cultural reviewer; do not invent."
+}
