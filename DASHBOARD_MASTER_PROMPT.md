@@ -4,7 +4,7 @@ You are the browser/IDE worker preparing and implementing a useful Jira analytic
 
 **Current constraint: native Jira only.** Use existing Jira fields, issue types, links, comments, worklogs, saved filters, boards, built-in gadgets/reports and, only where already available and justified, native Automation. No external dataset/warehouse, BI, marketplace app, custom dashboard service, paid upgrade or new integration. Detailed telemetry stays in native issues/comments/worklogs for now. Do not promise native aggregations that the tenant cannot actually perform.
 
-This is a reusable execution prompt, not a receipt that Jira was changed. Inspect first. The sole Jira writer is task `6046ab83-8402-47e3-b832-f4fe478da7f1`; verify its ownership and route reviewed native changes through it. Do not create a competing writer, bulk-replace values, delete history or fabricate historical actuals. Preserve unrelated work and Digital Temple's separate scope.
+This is a reusable execution prompt, not a receipt that Jira was changed. Inspect first. The sole Jira writer is task `6046ab83-8402-47e3-b832-f4fe478da7f1`; verify its ownership and route issue-value mutations through it. The assigned browser worker may own dashboard/filter/gadget configuration in this prompt; record that ownership and avoid another configuration writer. Coordinate shared field-definition/context changes before applying them. An unavailable issue writer need not block read-only diagnosis or agreed dashboard-only changes. Do not create a competing writer, bulk-replace values, delete history or fabricate historical actuals. Preserve unrelated work and Digital Temple's separate scope.
 
 ## Context and starting objects
 
@@ -56,7 +56,7 @@ Precise overlap-adjusted utilization, arbitrary token/cost sums, joined economic
 
 ## Execution, acceptance and return
 
-Phase A: read-only diagnosis and a concrete field/filter/gadget change list. Phase B: sole-writer implementation of Tier 1 plus the smallest first-three native attempt/experiment pilot. Phase C: add Should/Nice only when usable actual data exists. Capture before/after configuration; prefer additive reversible changes and preserve original estimates, completed history and unrelated fields.
+Phase A: read-only diagnosis and a concrete field/filter/gadget change list. Phase B: browser worker implements agreed native dashboard/filter/gadget changes; the sole issue writer handles required issue values and the smallest first-three native attempt/experiment pilot. Phase C: add Should/Nice only when usable actual data exists. Capture before/after configuration; prefer additive reversible changes and preserve original estimates, completed history and unrelated fields.
 
 Reopen every changed dashboard, filter and issue after save. Verify gadget totals against their exact filtered unique keys, drilled-down examples, exclusions and data-completeness counts. Test missing/irrelevant values, one real task with an actual review/repair where available, parent/subtask double counting and viewer access. Historical telemetry may be backfilled only from attributable preserved receipts, marked as backfill with event and recording dates. No synthetic acceptance data in production charts.
 
