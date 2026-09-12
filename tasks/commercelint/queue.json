@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "mission": "CommerceLint",
+  "priority": 3,
+  "lane_disposition": "priority",
+  "status": "proposed",
+  "jira_mapping_status": "needs_jira_mapping",
+  "packet_root": "../..",
+  "source_root_override": null,
+  "definition": "TASKS.md",
+  "source_refs": [
+    "../../../cursor-overnight-2026-09-11/returns/missions_commerce/evidence/BOTS-114_BASELINE.md",
+    "../../BOT_ROADMAPS.md",
+    "../../TASK_DIRECTORY_CONTRACT.md"
+  ],
+  "execution_gate": "Valid native Jira readback, exact source/spec binding, exclusive ownership and qualified capability required.",
+  "tasks": [
+    {
+      "id": "cl.01",
+      "title": "Refresh operating and financial baseline",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [],
+      "acceptance_and_evidence_ref": "TASKS.md: cl.01 row"
+    },
+    {
+      "id": "cl.02",
+      "title": "Qualify useful result and concrete offer",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "cl.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: cl.02 row"
+    },
+    {
+      "id": "cl.03",
+      "title": "Release one bounded improvement",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "cl.02"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: cl.03 row"
+    },
+    {
+      "id": "cl.04",
+      "title": "Evaluate demand and money",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "cl.03"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: cl.04 row"
+    }
+  ]
+}

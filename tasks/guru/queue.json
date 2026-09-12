@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "mission": "Guru Social",
+  "priority": null,
+  "lane_disposition": "deferred_after_first_three",
+  "status": "proposed",
+  "jira_mapping_status": "needs_jira_mapping",
+  "packet_root": "../..",
+  "source_root_override": null,
+  "definition": "TASKS.md",
+  "source_refs": [
+    "../../../cursor-overnight-2026-09-11/returns/missions_other/SESSION_RETURN.md",
+    "../../BOT_ROADMAPS.md",
+    "../../TASK_DIRECTORY_CONTRACT.md"
+  ],
+  "execution_gate": "Valid native Jira readback, exact source/spec binding, exclusive ownership and qualified capability required.",
+  "tasks": [
+    {
+      "id": "guru.01",
+      "title": "Reconcile audience, account and sources",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [],
+      "acceptance_and_evidence_ref": "TASKS.md: guru.01 row"
+    },
+    {
+      "id": "guru.02",
+      "title": "One original reviewed piece",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "guru.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: guru.02 row"
+    },
+    {
+      "id": "guru.03",
+      "title": "Qualified publication and moderation",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "guru.02"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: guru.03 row"
+    },
+    {
+      "id": "guru.04",
+      "title": "Evaluate trust and engagement",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "guru.03"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: guru.04 row"
+    }
+  ]
+}

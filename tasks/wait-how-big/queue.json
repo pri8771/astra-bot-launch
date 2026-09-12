@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "mission": "Wait, How Big?",
+  "priority": 2,
+  "lane_disposition": "priority",
+  "status": "proposed",
+  "jira_mapping_status": "needs_jira_mapping",
+  "packet_root": "../..",
+  "source_root_override": null,
+  "definition": "TASKS.md",
+  "source_refs": [
+    "../../../cursor-overnight-2026-09-11/returns/missions_commerce/evidence/BOTS-117_BASELINE.md",
+    "../../BOT_ROADMAPS.md",
+    "../../TASK_DIRECTORY_CONTRACT.md"
+  ],
+  "execution_gate": "Valid native Jira readback, exact source/spec binding, exclusive ownership and qualified capability required.",
+  "tasks": [
+    {
+      "id": "whb.01",
+      "title": "Qualify source, account and baseline",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [],
+      "acceptance_and_evidence_ref": "TASKS.md: whb.01 row"
+    },
+    {
+      "id": "whb.02",
+      "title": "One sourced explainer experiment",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "whb.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: whb.02 row"
+    },
+    {
+      "id": "whb.03",
+      "title": "Publish and verify one canary",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "whb.02"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: whb.03 row"
+    },
+    {
+      "id": "whb.04",
+      "title": "Evaluate audience response",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "whb.03"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: whb.04 row"
+    }
+  ]
+}

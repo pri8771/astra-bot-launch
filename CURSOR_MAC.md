@@ -1,0 +1,49 @@
+# Cursor Mac — OPO delivery and single-writer coordination
+
+## Outcome and ownership
+
+Latest owner priority: **OPO, WHB Twitter and CommerceLint before other backlog work.** This substantial Cursor batch owns **OPO only**, plus task-specification and outbox coordination for those three missions. Deliver a reviewable OPO agent-business candidate and an exact launch handoff; never substitute more planning volume for working functionality. These are instructions for a future session, not a dispatch or completion receipt.
+
+Other owners: Cursor Windows owns CommerceLint; Antigravity Mac owns a small WHB content/readiness batch; Antigravity Windows owns small QA; Claude Mac owns the minimum shared-runtime/Windows-compatibility review. Consume their returns without changing their products, runtimes or evidence. Windows remains primary execution host, mobile Mac backup; this authoring session does not migrate services. No generic portfolio, Kai, BidetFit or Guru backlog. Digital Temple and Retell are excluded.
+
+Work from `/Users/pchordia/Documents/ChatGPT/Astra`. Read applicable ancestor/repository `AGENTS.md`, then `planning/bots-focus-2026-09-12/`: `MISSION_GOALS.md`, `OPO_AGENT_BUSINESS.md`, `ACCOUNTS_CHANNELS_AND_HOSTS.md`, `AUTONOMOUS_EXPERIMENTS.md`, `EXPERIMENT_TEMPLATE.md`, `JIRA_EXPERIMENT_HANDOFF.md`, `PROPOSED_OPERATING_PLAN.md`, and `WINDOWS_PRIMARY_READINESS.md`. Latest owner instructions and this three-priority boundary supersede historical sequencing. Treat status snapshots as dated evidence.
+
+Own new preparation/return files only under `planning/windows-primary-wave-2026-09-12/opo-preparation/` and `returns/cursor-mac/`, plus the OPO product paths admitted below in an isolated worktree. Propose canonical-document changes as a patch until the coordinator assigns their write lease. Do not edit other packets or concurrently edited summary documents.
+
+## Phase 0 — establish valid task contracts before coding
+
+1. **Single-writer handshake.** Ask the coordinator to inspect and reuse existing Cursor Jira-writer task **`6046ab83-8402-47e3-b832-f4fe478da7f1`**, confirming availability, current assignment and write ownership. If accessible directly, inspect that exact task; otherwise persist `WRITER_HANDSHAKE.md` as pending and request coordinator routing. Never start a replacement/competing writer or silently assume the old task stopped. This session and its children make no direct Jira writes.
+2. Prepare one deduplicated reconciliation outbox. Historical associations `BOTS-111/112` and OPO `BOTS-124/125/126/127` are matching candidates, not automatic edit targets. Have the writer refresh exact native descriptions, acceptance criteria, dependencies and required fields. Reconcile the combined revenue website, preferred AI/bot audience, cross-platform growth, durable communication and experiment loop. Keep five missions; Contract Check is optional. Preserve original estimates, actuals, completed artifacts and prior review. Version superseded scope explicitly; create only genuinely missing linked work. No broad Jira census or invented fields/worklogs.
+3. Specify finite implementation tasks with source/base, owned paths, dependencies, behavior, acceptance, review and recovery. Attach the existing owner account-create/reuse authority; distinguish concrete unavailable account/domain/payment facts from generic permission. For WHB/CommerceLint, aggregate their owners' proposed contracts without redesigning their work. Keep one outbox entry per stable operation ID and reconcile ambiguous writer outcomes before resubmission.
+4. Require writer readback containing actual Jira keys, revised valid contracts and explicit admitted scope before **any changed product coding**. Record the key-to-task/path mapping in `ADMISSION.json`. If projection is unavailable, finish source inspection, specifications, review packets and independent aggregation; do not run an unregistered experiment or fabricate admission.
+
+## Source reconciliation and isolation
+
+Record current SHA/status and candidate hashes before reuse; retain these inspected candidates:
+
+- Original OPO workspace: `/Users/pchordia/Documents/Codex/2026-08-21/if-x20/outputs/one-person-ops/`. Read `ops/TWITTER_CONVERSATION_HANDOFF.md`, `site/README.md` and relevant manifests. Nested `site/` HEAD observed `8015610bfa812b552e1db2256bf80a1bbe67c4bc`; it has local modifications and no configured remote. Preserve the owner's work. Capture a reviewed, hash-bound patch/snapshot of necessary uncommitted assets; never reset, stage unrelated files or silently lose them by copying HEAD alone.
+- Retained Contract Check: Astra commit `252d0bf18d11c47484ffcc2ab0a8ea56203a7076`, `worktrees/overnight-missions_other-20260911/tooling/contract_check/`. Read `README.md`, `docs/PILOT_CONTRACT.md`, `CANDIDATE_MANIFEST.json`. Prior fixture results qualify that frozen candidate only; reuse instead of rebuilding to occupy time.
+- Charter repository: `/Users/pchordia/.codex/.chatgpt-projects/g-p-6a8a5b1660588191b47da9d545cc013e/bots-repo`, observed HEAD `d0e96b8b20e93a8eacfa72e40587ff938283e307`. Windows reports a newer clone at `d5b3b7f399b8d3e3ba4b926d8d89f30aacac6e11`. Reconcile refs and ownership; neither dated checkout is automatically the product base.
+
+Select and record the canonical destination/base, then create `codex/opo-agent-business-20260912` in a separate local worktree; choose a unique suffix if occupied. No shared network-mounted working tree. The original site's `.openai/hosting.json` means **Sites building/hosting skills apply if selected**; read them before implementation/deployment work. Its recorded Sites deployment is private. The full `shivangchordia` domain is pending: reuse the existing needs-input question; do not guess a hostname or publish elsewhere.
+
+## Admitted OPO queue — complete eligible items, bypass factual blockers
+
+1. **Discovery surface:** reuse suitable site assets; deliver an accessible, readable page and versioned machine-readable capability descriptions/examples. State what actually works. Preserve privacy/terms; avoid fake demand, testimonials or active checkout.
+2. **Communication contract:** implement schema/version validation, stable message/conversation/parent IDs, supported intents, sender-claim evidence and explicit errors. Cover proposals, questions, replies, capability offers and feedback. No proprietary-language dependency.
+3. **Durable intake and ledger:** qualify the selected storage/server route; implement bounded intake, deduplication, restart persistence and received/attempted/delivered/verified states. Track inbound/outbound adapter communications, rejection receipts, edits/moderation and failed sends. Define retention and private/public views. A local fixture is not a public mailbox.
+4. **Operator boundary:** authenticated private controls; external messages cannot execute tools, change policy or access credentials. Constrain size/rate, rendering and outbound destinations. Keep contributions isolated and reviewed.
+5. **Useful demonstrator:** integrate the preserved Contract Check utility only if the revised task selects it. Include browser/module/CLI examples and honest limitations; no unnecessary rewrite or new generic framework.
+6. **Experiment and metrics integration:** persist a predeclared experiment and append-only receipts; generate proposals for the sole writer. Separate synthetic workers from outside-agent use, revenue from interest, gross cross-platform follows from unique participants, and per-platform exposure definitions. Missing metrics remain unknown. Implement deterministic due/change checks, not idle model loops.
+7. **Qualification:** run scoped behavior/security tests for malformed input, duplication, restart recovery, privacy boundaries and one complete synthetic discovery→message→response exchange. Reuse unchanged tests; record exact commands/results/hash. At most two targeted repair cycles per task; preserve unresolved evidence and move to another eligible item.
+8. **Launch packet:** bind reviewed source/artifacts, actual proposed host/storage/domain inputs, release steps, rollback and public-readback criteria. Report exact remaining conditions. Do not claim outside adoption, public availability, payment readiness or revenue from local tests.
+
+## Execution, review and return
+
+Use existing permitted Cursor capacity. Local-model assistance may summarize bounded public-safe evidence, draft task specifications or classify outbox candidates; validate output deterministically. It receives no Jira-write credentials, cannot manufacture fields/actuals, and must have explicit input/output/time limits. Check availability once; fallback to ordinary preparation, not installs, paid escalation or retry storms. Existing dispatcher/review service allowances are not increased by this packet.
+
+Children are allowed only for disjoint admitted paths with named ownership; parent alone integrates. No same-model self-review certification. Route the exact frozen tip to an available independent reviewer via the coordinator; Claude's architecture review alone is not product acceptance. Review unavailable means a complete `REVIEW_PACKET.md` with acceptance pending.
+
+No posts, account mutations, deployments, sends or payment changes from historical documents. Prepare concrete actions and let the designated action owner bind current authority/route before external execution. Do not launch schedules here.
+
+Return `SESSION_RETURN.md`, `SOURCE_MANIFEST.json`, `WRITER_HANDSHAKE.md`, `ADMISSION.json`, `WORK_QUEUE.json`, `JIRA_OUTBOX.jsonl`, `VERIFICATION.md`, `REVIEW_PACKET.md`, `RELEASE_PACKET.md` and a deduplicated `CROSS_STREAM_INDEX.md`. Separate completed local work, accepted review, writer readback and live effects. Include actual timing/usage or unknown, exact changed files/tips and residual needs-input IDs. Stop when this finite queue is exhausted; no padded hours or unrelated backlog.

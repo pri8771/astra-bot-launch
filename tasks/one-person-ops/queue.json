@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "mission": "One Person Ops",
+  "priority": 1,
+  "lane_disposition": "priority",
+  "status": "proposed",
+  "jira_mapping_status": "needs_jira_mapping",
+  "packet_root": "../..",
+  "source_root_override": null,
+  "definition": "TASKS.md",
+  "source_refs": [
+    "../../CURSOR_MAC.md",
+    "../../BOT_ROADMAPS.md",
+    "../../TASK_DIRECTORY_CONTRACT.md"
+  ],
+  "execution_gate": "Valid native Jira readback, exact source/spec binding, exclusive ownership and qualified capability required.",
+  "tasks": [
+    {
+      "id": "opo.01",
+      "title": "Reconcile source and launch contract",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.01 row"
+    },
+    {
+      "id": "opo.02",
+      "title": "Discovery and service interface",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "opo.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.02 row"
+    },
+    {
+      "id": "opo.03",
+      "title": "Durable communication and controls",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "opo.01"
+      ],
+      "acceptance_depends_on": [
+        "opo.02"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.03 row"
+    },
+    {
+      "id": "opo.04",
+      "title": "Offer and payment readiness",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "opo.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.04 row"
+    },
+    {
+      "id": "opo.05",
+      "title": "Review and qualified public launch",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "opo.02",
+        "opo.03"
+      ],
+      "additional_gates": [
+        "confirmed_target",
+        "exact_source_review"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.05 row"
+    },
+    {
+      "id": "opo.06",
+      "title": "Outside use and business evaluation",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "opo.05"
+      ],
+      "conditional_dependencies": [
+        {
+          "when": "payment_actions",
+          "task_id": "opo.04"
+        }
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: opo.06 row"
+    }
+  ],
+  "source_repository": "https://github.com/pri8771/one-person-ops.git",
+  "source_snapshot": "cb20a06a1344c8c017afa0b4bc9565377a99db63",
+  "source_snapshot_status": "preserved legacy working source; new mission implementation not accepted"
+}

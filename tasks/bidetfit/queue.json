@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "mission": "Affiliate / BidetFit",
+  "priority": null,
+  "lane_disposition": "deferred_after_first_three",
+  "status": "proposed",
+  "jira_mapping_status": "needs_jira_mapping",
+  "packet_root": "../..",
+  "source_root_override": null,
+  "definition": "TASKS.md",
+  "source_refs": [
+    "../../../cursor-overnight-2026-09-11/returns/missions_other/SESSION_RETURN.md",
+    "../../BOT_ROADMAPS.md",
+    "../../TASK_DIRECTORY_CONTRACT.md"
+  ],
+  "execution_gate": "Valid native Jira readback, exact source/spec binding, exclusive ownership and qualified capability required.",
+  "tasks": [
+    {
+      "id": "bf.01",
+      "title": "Reconcile existing source and program facts",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [],
+      "acceptance_and_evidence_ref": "TASKS.md: bf.01 row"
+    },
+    {
+      "id": "bf.02",
+      "title": "One guide/checker improvement",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "bf.01"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: bf.02 row"
+    },
+    {
+      "id": "bf.03",
+      "title": "Qualified release and recovery",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "bf.02"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: bf.03 row"
+    },
+    {
+      "id": "bf.04",
+      "title": "Usefulness and commission evaluation",
+      "status": "proposed",
+      "jira_mapping_status": "needs_jira_mapping",
+      "jira_key": null,
+      "depends_on": [
+        "bf.03"
+      ],
+      "acceptance_and_evidence_ref": "TASKS.md: bf.04 row"
+    }
+  ]
+}
