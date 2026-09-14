@@ -1,0 +1,20 @@
+{
+  "project": "astra-bot-launch",
+  "remote": "https://github.com/pri8771/astra-bot-launch",
+  "visibility": null,
+  "previous_dev": null,
+  "status": "in_progress",
+  "source_tip_count": 1,
+  "recovery": [],
+  "excluded": [],
+  "source_merged": [],
+  "windows_imports": [],
+  "source_tips": {
+    "9939b34e32cf8f06645f9bcc93a15f44029eb8fc": [
+      "refs/source-heads/0",
+      "refs/source/3e2280e4/main",
+      "refs/remotes/origin/main"
+    ]
+  },
+  "captured_worktrees": []
+}
