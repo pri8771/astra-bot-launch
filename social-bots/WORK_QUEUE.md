@@ -6,6 +6,15 @@ Priority is strict unless a task is blocked by an external gate; then continue t
 Owner: Claude
 Status: READY — highest priority before further autonomy claims.
 
+Execution split:
+- `SB-R0A1` — signal-delta consumption/persistence — **SP3**
+- `SB-R0A2` — failed-review stop semantics + regressions — **SP2**
+- `SB-R0B1` — race-safe stale takeover — **SP5**
+- `SB-R0B2` — shared-runtime persona state/lease isolation — **SP4**
+- `SB-R0B3` — adversarial concurrency integration acceptance — **SP3**
+
+Complete A1/A2 first. Push a reviewable checkpoint before B1/B2/B3. See `WORK_MANAGEMENT.md`.
+
 Goal: fix the four correctness defects found by independent PR review on implementation commit `689cfe12ea4eed502e42b37d8e7305c77b3cb4aa`.
 
 Required repairs:
@@ -164,3 +173,34 @@ Status: PREPARED ONLY — not accepted as launch-ready until correctness, autono
 Goal: reduce each external blocker to one exact human action and prepare one canary per persona.
 
 No canary/public action is authorized yet.
+
+
+## Groomed follow-on implementation backlog
+
+These are pre-groomed worker tasks so external gates or lead review do not leave Claude idle. Do not start a task whose dependencies are not satisfied.
+
+### V0.4
+- `SB-R1A` — exact-source reuse reconciliation — **SP1**
+- `SB-R1B` — reasoning-provider interface + fail-closed contract — **SP3**
+- `SB-R1C` — adaptive alternative generation/scoring — **SP5**
+- `SB-R1D` — deterministic policy boundary around reasoning proposals — **SP4**
+- `SB-R1E` — persona/evidence-divergence acceptance suite — **SP3**
+
+### V0.5
+- `SB-R2A` — machine-captured source receipt collector — **SP3**
+- `SB-R2B` — claim-to-source factual support review — **SP4**
+- `SB-R2C` — platform-native formatter/repair loop — **SP3**
+- `SB-R2D` — cultural-review evidence binding — **SP2**
+
+### V0.6
+- `SB-R3A` — three real general-persona dry runs — **SP3**
+- `SB-R3B` — independent reviewer receipt pipeline — **SP2**
+- `SB-R3C` — dry-run evidence validator — **SP2**
+
+### V0.7
+- `SB-R4A` — authorized-host worker packaging/config — **SP3**
+- `SB-R4B` — recurring host execution + heartbeat/receipt proof — **SP4**
+- `SB-R4C` — ChatGPT-direction consumption/ack loop — **SP3**
+- `SB-R4D` — crash/restart/no-overlap host acceptance — **SP4**
+
+Story points follow `WORK_MANAGEMENT.md`. ChatGPT lead may refine/split these as evidence changes.
