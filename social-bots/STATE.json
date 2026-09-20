@@ -21,7 +21,8 @@
   },
   "independence": {
     "depends_on_swarmai": false,
-    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
+    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "worker": {
     "implementation": "built",
@@ -94,5 +95,19 @@
     "SB-R0": "ready_p1_correctness_repairs",
     "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
   },
-  "next_task": "SB-R0A: fix signal-delta handling and failed-review gating with regression tests; push exact source/test evidence for lead audit before SB-R0B"
+  "next_task": "SB-R0A then SB-R0B; after lead acceptance proceed SB-R1 toward V0.4",
+  "version": {
+    "current": "V0.3.x",
+    "current_label": "durable runtime foundation under correctness repair",
+    "immediate_target": "V0.4",
+    "immediate_target_label": "real adaptive autonomous thinking",
+    "near_term_engineering_target": "V0.7",
+    "first_major_product_target": "V1.0",
+    "long_term_targets": [
+      "V2.0 autonomous growth engine",
+      "V3.0 autonomous multi-brand media organization"
+    ],
+    "contract": "VERSION_ROADMAP.md",
+    "promotion_rule": "ChatGPT lead evidence acceptance; implementation self-report is insufficient"
+  }
 }
