@@ -1,14 +1,19 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T20:40:00Z",
+  "updated_at": "2026-09-20T18:54:54-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
-  "implementation_branch": "claude/social-bots-independent-arch-ez64l7",
   "setup_pr": 1,
-  "status": "runtime_built_and_tested_pending_host_deploy_and_authorizations",
+  "implementation_branch": "claude/social-bots-independent-arch-ez64l7",
+  "implementation_pr": 2,
+  "status": "lead_audit_changes_required",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -16,50 +21,93 @@
   },
   "independence": {
     "depends_on_swarmai": false,
-    "external_runtime_deps": "none (Python 3.11 stdlib only)"
+    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "worker": {
-    "implementation": "built (runtime/worker.py, leasing, heartbeat, receipts)",
-    "verified_running_in_session": true,
-    "evidence": "receipts/evidence/SB-002-run/SUMMARY.json (all_pass=true)",
-    "proofs": ["two_invocations", "heartbeat", "atomic_lease", "no_overlap_rejection", "stale_recovery", "restart_resume"],
-    "deployed_on_owner_always_on_host": false,
-    "host_deploy_blocker": "no authorized always-on host / credential facility reachable from this session (see LAUNCH_GATE_PACKET.md G1)"
+    "implementation": "built",
+    "worker_primitives_verified_in_session": true,
+    "last_verified_heartbeat_at": "2026-09-20T20:36:15+00:00",
+    "last_verified_heartbeat_status": "done",
+    "last_verified_worker_id": "w-vm-726-415fed",
+    "always_on_host_deployed": false,
+    "recurring_worker_liveness": "not_verified",
+    "lead_note": "No newer worker heartbeat, invocation receipt, or Claude implementation activity was verified at the 2026-09-20T18:54:54-04:00 lead review. The committed heartbeat is terminal status done on host_alias local, so recurring/always-on liveness remains unproven."
   },
   "tests": {
-    "framework": "python3 -m unittest",
-    "count": 26,
-    "passing": 26
+    "claude_reported_local_unittests": 26,
+    "github_ci_status_checks": 0,
+    "lead_acceptance": "not_sufficient_for_merge"
   },
-  "dry_runs": {
-    "general_personas": 3,
-    "evidence": "receipts/evidence/SB-007-dryruns/SUMMARY.json (all_pass=true)",
-    "real_research_inputs": true,
-    "external_publication": false,
-    "cultural_review_gate": "WITHHELD (correct)"
+  "lead_audit": {
+    "verdict": "changes_required",
+    "accepted": [
+      "SB-003 persona/state contract direction",
+      "SB-002 in-session worker primitive evidence only"
+    ],
+    "partial": [
+      "SB-001",
+      "SB-002 host deployment",
+      "SB-005",
+      "SB-008"
+    ],
+    "changes_required": [
+      "SB-004",
+      "SB-006",
+      "SB-007"
+    ],
+    "new_p1_correctness_findings": [
+      "research.new_signals returns the full inbox after any fingerprint change, so later signals can be silently skipped",
+      "cultural review failure does not stop experiment registration and enqueue",
+      "stale-lease takeover is not conditionally atomic under concurrent takeover attempts",
+      "lease key includes persona while general/cultural personas share runtime state, allowing concurrent writes to one runtime state"
+    ],
+    "review_source": "PR #2 Codex review on commit 689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
   },
   "chatgpt_lead": {
-    "hourly_review": "active"
+    "last_review_at": "2026-09-20T18:54:54-04:00",
+    "last_verified_setup_pr_head": "87a4d4c1cb6053e91f5ce9f24a0e642016fa7597",
+    "last_verified_implementation_pr_head": "857bb96a77c1d567b1cc9b87acf0193c174797bb",
+    "last_verified_claude_implementation_commit": "689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "last_coordination_message_commit": "3aa90fa9262ecc5eadfdd7558e7bc8118a29df34",
+    "new_worker_activity_since_previous_review": false,
+    "new_implementation_activity_since_previous_review": false
   },
   "account_inventory": {
-    "status": "mapped_metadata_only_no_verification",
-    "map": "ACCOUNT_BROWSER_MAP.md",
+    "status": "metadata_only_no_live_verification",
     "reuse_existing_first": true,
     "secrets_committed": false
   },
   "public_actions": {
     "posting_authorized": false,
-    "spend_authorized": false
+    "spend_authorized": false,
+    "customer_messages_authorized": false
   },
   "task_status": {
-    "SB-001": "done",
-    "SB-002": "implemented+verified_in_session; host_deploy_blocked",
-    "SB-003": "done",
-    "SB-004": "done",
-    "SB-005": "mapped (metadata only)",
-    "SB-006": "done",
-    "SB-007": "done (3 general dry runs + cultural gate)",
-    "SB-008": "packet_prepared; gates open"
+    "SB-001": "partial_repair_required",
+    "SB-002": "worker_primitives_verified_in_session; always_on_host_deploy_open",
+    "SB-003": "lead_provisionally_accepted",
+    "SB-004": "changes_required_autonomous_thinking_and_correctness",
+    "SB-005": "partial_metadata_only_no_live_verification",
+    "SB-006": "changes_required_fact_platform_and_review_gating",
+    "SB-007": "changes_required_live_capture_acceptance_and_independent_review",
+    "SB-008": "prepared_not_accepted",
+    "SB-R0": "ready_p1_correctness_repairs",
+    "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
   },
-  "next_task": "ChatGPT audit of receipts/tests; then owner clears G1 (host deploy) + G2-G6 authorizations"
+  "next_task": "SB-R0A then SB-R0B; after lead acceptance proceed SB-R1 toward V0.4",
+  "version": {
+    "current": "V0.3.x",
+    "current_label": "durable runtime foundation under correctness repair",
+    "immediate_target": "V0.4",
+    "immediate_target_label": "real adaptive autonomous thinking",
+    "near_term_engineering_target": "V0.7",
+    "first_major_product_target": "V1.0",
+    "long_term_targets": [
+      "V2.0 autonomous growth engine",
+      "V3.0 autonomous multi-brand media organization"
+    ],
+    "contract": "VERSION_ROADMAP.md",
+    "promotion_rule": "ChatGPT lead evidence acceptance; implementation self-report is insufficient"
+  }
 }

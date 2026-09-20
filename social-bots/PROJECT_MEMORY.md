@@ -30,9 +30,19 @@ Updated: 2026-09-20
 - Canonical coordination: this directory in `pri8771/astra-bot-launch`.
 - Agent/shared runtime code should reuse `pri8771/bots` where suitable.
 - Product code stays in existing product homes.
-- SwarmAI integration is adapter-based later; social bots do not wait for V3.
+- Social Bots is an independent system. It has no planned runtime dependency on SwarmAI and must remain fully functional if SwarmAI is absent. Any future integration would require a separate explicit owner decision.
 - Public profiles and bot runtimes are separate concepts.
 - Shared admin/account infrastructure is acceptable; deceptive human impersonation is not.
+
+## Version contract
+
+- Current lead-assigned version: V0.3.x — durable runtime foundation under correctness repair.
+- Immediate target: V0.4 — real adaptive autonomous thinking.
+- Near-term engineering target: V0.7 — always-on Claude worker + hourly ChatGPT lead loop proven end-to-end.
+- First major product target: V1.0 — three real autonomous social bots operating continuously on verified social presences.
+- V2.0 — autonomous growth engine.
+- V3.0 — autonomous multi-brand media organization.
+- Full acceptance criteria live in `VERSION_ROADMAP.md`. Version promotion is lead/evidence-gated, never implementation-self-declared.
 
 ## Safety/authority
 
