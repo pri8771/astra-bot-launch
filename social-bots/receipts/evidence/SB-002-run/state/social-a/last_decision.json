@@ -5,7 +5,7 @@
       "duplication_risk": 0.0,
       "expected_learning": 0.0,
       "expected_value": 0.05,
-      "rationale": "no changed evidence since last observation",
+      "rationale": "no unconsumed evidence since last observation",
       "reversibility": 1.0,
       "risk": 0.0
     }
@@ -16,14 +16,15 @@
     "duplication_risk": 0.0,
     "expected_learning": 0.0,
     "expected_value": 0.05,
-    "rationale": "no changed evidence since last observation",
+    "rationale": "no unconsumed evidence since last observation",
     "reversibility": 1.0,
     "risk": 0.0
   },
-  "chosen_reason": "no changed evidence since last observation",
+  "chosen_reason": "no unconsumed evidence since last observation",
   "cycle": 2,
   "execute": {
     "effect": "none",
+    "outcome": "no_action",
     "performed": false
   },
   "learn": {
@@ -31,9 +32,10 @@
   },
   "observe": {
     "changed": false,
-    "current_fingerprint": "51ef146a06338307",
-    "prior_fingerprint": "51ef146a06338307",
-    "signal_count": 1
+    "consumed_count": 1,
+    "observation_fingerprint": "51ef146a06338307",
+    "pending_count": 0,
+    "total_signals": 1
   },
   "orient": {
     "inferred": [],
@@ -42,8 +44,9 @@
     "summary": "no new signals; nothing to reconsider",
     "uncertain": []
   },
+  "outcome": "no_action",
   "persona": "social-a",
-  "recorded_at": "2026-09-20T20:36:15+00:00",
+  "recorded_at": "2026-09-20T23:14:38+00:00",
   "required_authority": "none",
   "schedule": {
     "next_check_in_hours": 24,

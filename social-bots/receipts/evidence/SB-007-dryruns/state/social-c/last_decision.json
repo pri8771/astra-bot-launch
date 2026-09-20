@@ -48,6 +48,7 @@
     "content_id": "c-999530ca5437",
     "effect": "candidate reviewed + experiment registered + queued (unpublished)",
     "experiment_id": "exp-c-999530ca5437",
+    "outcome": "candidate_created",
     "performed": true
   },
   "learn": {
@@ -58,9 +59,12 @@
   },
   "observe": {
     "changed": true,
-    "current_fingerprint": "8ff0530b00380147",
-    "prior_fingerprint": null,
-    "signal_count": 1
+    "consumed_count": 0,
+    "consumed_this_cycle": "sig-9593340dd96d",
+    "observation_fingerprint": "8ff0530b00380147",
+    "pending_after": 0,
+    "pending_count": 1,
+    "total_signals": 1
   },
   "orient": {
     "inferred": [
@@ -70,13 +74,14 @@
       "signal sig-9593340dd96d from Sprout Social / Hootsuite 2026 trends (live-capture)"
     ],
     "objective": "grow early-engagement-velocity for Switchboard via evidence-based experiments",
-    "summary": "1 signal(s) present; evidence fingerprint changed",
+    "summary": "1 unconsumed signal(s); deciding on the oldest this cycle",
     "uncertain": [
       "external audience reaction (no post yet)"
     ]
   },
+  "outcome": "candidate_created",
   "persona": "social-c",
-  "recorded_at": "2026-09-20T20:36:15+00:00",
+  "recorded_at": "2026-09-20T23:15:34+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,

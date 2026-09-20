@@ -26,7 +26,8 @@ def _default_state(bot: str) -> dict:
         "goals": [],
         "working_state": {},
         "hypotheses": {},          # id -> {statement, confidence, evidence[], updated_at}
-        "observation_fingerprint": None,  # last-seen evidence hash (no-change path)
+        "consumed_signal_ids": [],  # signals already decided upon (evidence consumption)
+        "observation_fingerprint": None,  # diagnostic: fingerprint at last cycle
         "pending_decisions": [],
         "recovery": {"last_clean_tick": None, "in_flight": None},
         "counters": {"cycles": 0, "actions": 0, "no_action": 0},
@@ -85,3 +86,15 @@ class BotState:
 
     def get_hypothesis(self, hid: str) -> dict[str, Any] | None:
         return self.data["hypotheses"].get(hid)
+
+    # --- evidence consumption (restart-safe) --------------------------------
+    def consumed_ids(self) -> list[str]:
+        return self.data.setdefault("consumed_signal_ids", [])
+
+    def is_consumed(self, signal_id: str) -> bool:
+        return signal_id in self.consumed_ids()
+
+    def mark_consumed(self, signal_id: str) -> None:
+        ids = self.consumed_ids()
+        if signal_id not in ids:
+            ids.append(signal_id)

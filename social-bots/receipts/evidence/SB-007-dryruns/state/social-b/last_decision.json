@@ -48,6 +48,7 @@
     "content_id": "c-8b1d40a963fd",
     "effect": "candidate reviewed + experiment registered + queued (unpublished)",
     "experiment_id": "exp-c-8b1d40a963fd",
+    "outcome": "candidate_created",
     "performed": true
   },
   "learn": {
@@ -58,9 +59,12 @@
   },
   "observe": {
     "changed": true,
-    "current_fingerprint": "4700506aec2cdf05",
-    "prior_fingerprint": null,
-    "signal_count": 1
+    "consumed_count": 0,
+    "consumed_this_cycle": "sig-81ccc7e7f9fa",
+    "observation_fingerprint": "4700506aec2cdf05",
+    "pending_after": 0,
+    "pending_count": 1,
+    "total_signals": 1
   },
   "orient": {
     "inferred": [
@@ -70,13 +74,14 @@
       "signal sig-81ccc7e7f9fa from ScienceDaily physics, Sept 2026 (live-capture)"
     ],
     "objective": "grow shares for Tidepool via evidence-based experiments",
-    "summary": "1 signal(s) present; evidence fingerprint changed",
+    "summary": "1 unconsumed signal(s); deciding on the oldest this cycle",
     "uncertain": [
       "external audience reaction (no post yet)"
     ]
   },
+  "outcome": "candidate_created",
   "persona": "social-b",
-  "recorded_at": "2026-09-20T20:36:15+00:00",
+  "recorded_at": "2026-09-20T23:15:34+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,

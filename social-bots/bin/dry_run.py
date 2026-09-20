@@ -127,16 +127,25 @@ def main() -> int:
             },
             "learning": record["learn"],
             "next_observation": record["schedule"],
-            "checks": {
-                "real_research_input": all(s["provenance"] == "live-capture"
-                                           for s in research.load_signals(bot)),
-                "autonomous_create": record["chosen"]["action"] == "CREATE_CANDIDATE",
-                "reviewed": record.get("verify", {}).get("review_passed", False),
-                "experiment_registered": experiment is not None,
-                "learning_persisted": bool(st.data["hypotheses"]),
-                "no_publish": all(not q["published"] for q in queue),
-                "next_check_scheduled": "next_check_in_hours" in record["schedule"],
-            },
+            "outcome": record["outcome"],
+        }
+        created = record["outcome"] == "candidate_created"
+        withheld = record["outcome"] == "withheld"
+        run["checks"] = {
+            "real_research_input": all(s["provenance"] == "live-capture"
+                                       for s in research.load_signals(bot)),
+            "coherent_decision": record["outcome"] in
+                ("candidate_created", "withheld", "no_action", "research_more"),
+            # If a candidate was created it MUST be within platform limit + reviewed.
+            "created_implies_valid": (not created) or (
+                record["verify"].get("within_platform_limit") and
+                record["verify"].get("review_passed")),
+            # A withhold MUST carry explicit gate reasons and register nothing.
+            "withheld_implies_stopped": (not withheld) or (
+                bool(record["execute"].get("gate_failures")) and
+                record["verify"].get("queued") is False),
+            "no_publish": all(not q["published"] for q in queue),
+            "next_check_scheduled": "next_check_in_hours" in record["schedule"],
         }
         run["pass"] = all(run["checks"].values())
         overall["runs"].append(run)
@@ -180,21 +189,33 @@ def _write_markdown(overall):
     for r in overall["runs"]:
         lines += [
             f"## {r['persona']} — decision: {r['decision']['action']} "
-            f"({'PASS' if r['pass'] else 'FAIL'})",
-            f"- **Observe:** {r['observe']['signal_count']} signal(s), "
-            f"fingerprint changed = {r['observe']['changed']}",
+            f"-> outcome: **{r['outcome']}** ({'PASS' if r['pass'] else 'FAIL'})",
+            f"- **Observe:** {r['observe']['pending_count']} unconsumed of "
+            f"{r['observe']['total_signals']} total; changed = {r['observe']['changed']}",
             f"- **Orient:** {r['orient']['summary']}",
             f"- **Alternatives considered:** "
             + ", ".join(f"{a['action']}({a.get('score','-')})" for a in r['alternatives']),
             f"- **Decision reason:** {r['decision_reason']}",
-            f"- **Candidate:** {r['candidate']['platform']} | "
-            f"published={r['candidate']['published']} | "
-            f"authorized={r['candidate']['publish_authorized']}",
-            f"    - preview: {r['candidate']['text_preview']}",
-            f"- **Experiment:** {r['experiment']['id']} — "
-            f"metric `{r['experiment']['success_metric']}`, "
-            f"window {r['experiment']['observation_window_hours']}h",
-            f"    - hypothesis: {r['experiment']['hypothesis']}",
+        ]
+        if r["outcome"] == "candidate_created":
+            lines += [
+                f"- **Candidate:** {r['candidate']['platform']} | "
+                f"published={r['candidate']['published']} | "
+                f"authorized={r['candidate']['publish_authorized']}",
+                f"    - preview: {r['candidate']['text_preview']}",
+                f"- **Experiment:** {r['experiment']['id']} — "
+                f"metric `{r['experiment']['success_metric']}`, "
+                f"window {r['experiment']['observation_window_hours']}h",
+                f"    - hypothesis: {r['experiment']['hypothesis']}",
+            ]
+        else:
+            gf = r["decision"].get("action")
+            lines += [
+                f"- **Withheld:** gate stopped the candidate; "
+                f"within_platform_limit={r['candidate'].get('platform') and r['candidate']['queued']}; "
+                f"no experiment/queue entry (correct fail-closed behavior).",
+            ]
+        lines += [
             f"- **Learning:** {r['learning'].get('note')}",
             f"- **Next observation:** in {r['next_observation']['next_check_in_hours']}h "
             f"({r['next_observation']['trigger']})",

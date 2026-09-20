@@ -64,12 +64,17 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
 
         # (4) verify already embedded in the decision record.
         verified = bool(record.get("verify", {}).get("verified"))
+        outcome = record.get("outcome", "no_action")
+        withheld = bool(record.get("verify", {}).get("withheld"))
 
-        # (5) finish receipt.
+        # (5) finish receipt — records the TRUTHFUL outcome. A withheld candidate
+        # produces a withheld receipt, never a success one.
         fin = receipts.write_receipt(
             bot, "finish", task_id, worker_id, lease.lease_id,
             {"persona": persona_id, "cycle": record.get("cycle"),
              "chosen_action": record.get("chosen", {}).get("action"),
+             "outcome": outcome, "withheld": withheld,
+             "candidate_succeeded": outcome == "candidate_created",
              "verified": verified, "reconciled": reconciled})
 
         # (6) heartbeat from the actual process.
@@ -82,6 +87,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                 "persona": persona_id, "lease_id": lease.lease_id,
                 "took_over_from": lease.took_over_from,
                 "chosen_action": record.get("chosen", {}).get("action"),
+                "outcome": outcome, "withheld": withheld,
                 "verified": verified, "lease_released": released,
                 "start_receipt": os.path.basename(start),
                 "finish_receipt": os.path.basename(fin),

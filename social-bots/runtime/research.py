@@ -58,17 +58,29 @@ def load_signals(bot: str) -> list[dict]:
 
 
 def evidence_fingerprint(signals: list[dict]) -> str | None:
-    """Stable hash of the *set* of signal ids. None if empty."""
+    """Stable hash of the *set* of signal ids. None if empty. (Diagnostic only.)"""
     if not signals:
         return None
     ids = sorted(s["id"] for s in signals)
     return hashlib.sha256("|".join(ids).encode()).hexdigest()[:16]
 
 
-def new_signals(bot: str, last_fingerprint: str | None) -> tuple[list[dict], str | None]:
-    """Return (signals, fingerprint). Caller treats unchanged fingerprint as no-change."""
-    sigs = load_signals(bot)
-    fp = evidence_fingerprint(sigs)
-    if fp == last_fingerprint:
-        return [], fp
-    return sigs, fp
+def unconsumed_signals(bot: str, consumed_ids) -> list[dict]:
+    """Signals in inbox arrival order whose id is NOT in ``consumed_ids``.
+
+    This is the correct evidence-consumption primitive: it tracks *which specific
+    signals* have been decided upon, not a whole-inbox fingerprint. A later signal
+    arriving after earlier ones were consumed is returned here; a batch of new
+    signals is returned in full so none can be silently skipped when the caller
+    consumes one per cycle. De-duplicates by id (first occurrence wins) so a
+    signal captured twice is a single unit of evidence.
+    """
+    consumed = set(consumed_ids or ())
+    out, seen = [], set()
+    for s in load_signals(bot):
+        sid = s["id"]
+        if sid in consumed or sid in seen:
+            continue
+        seen.add(sid)
+        out.append(s)
+    return out

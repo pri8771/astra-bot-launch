@@ -4,9 +4,9 @@
     "heartbeat": {
       "beats": 4,
       "pass": true,
-      "pid": 726,
+      "pid": 511,
       "status": "done",
-      "worker_id": "w-vm-726-415fed"
+      "worker_id": "w-vm-511-0fa02f"
     },
     "no_overlap": {
       "pass": true,
@@ -18,9 +18,9 @@
       "second": "NO_ACTION"
     },
     "stale_recovery": {
-      "dead_lease": "5bd3371d94ba4b2b87dba7951ec4f811",
+      "dead_lease": "16fe65d73c024b7c86b8b66da3f52fc9",
       "pass": true,
-      "took_over_from": "5bd3371d94ba4b2b87dba7951ec4f811"
+      "took_over_from": "16fe65d73c024b7c86b8b66da3f52fc9"
     },
     "two_invocations": {
       "invocation_1_action": "CREATE_CANDIDATE",
@@ -31,8 +31,8 @@
   },
   "evidence_dir": "social-bots/receipts/evidence/SB-002-run",
   "worker_ids": [
-    "w-vm-726-06172a",
-    "w-vm-726-415fed",
-    "w-vm-726-78431b"
+    "w-vm-511-0fa02f",
+    "w-vm-511-3a149a",
+    "w-vm-511-c186dc"
   ]
 }

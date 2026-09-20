@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T18:54:54-04:00",
+  "updated_at": "2026-09-20T21:10:00Z",
+  "updated_by": "claude_worker (SB-R0A checkpoint; lead_audit block left for lead reconciliation)",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -35,9 +36,30 @@
     "lead_note": "No newer worker heartbeat, invocation receipt, or Claude implementation activity was verified at the 2026-09-20T18:54:54-04:00 lead review. The committed heartbeat is terminal status done on host_alias local, so recurring/always-on liveness remains unproven."
   },
   "tests": {
-    "claude_reported_local_unittests": 26,
+    "claude_reported_local_unittests": 33,
     "github_ci_status_checks": 0,
     "lead_acceptance": "not_sufficient_for_merge"
+  },
+  "claude_worker_progress": {
+    "note": "Worker self-report; not lead-accepted. Lead audits the diff/tests/receipts.",
+    "SB-R0A": "done_pending_lead_audit",
+    "SB-R0A1_signal_delta": {
+      "fix": "Replaced whole-inbox fingerprint with explicit per-signal consumption ledger (consumed_signal_ids in bot_state).",
+      "code": ["runtime/research.py:unconsumed_signals", "runtime/state.py:mark_consumed/consumed_ids", "runtime/decision.py OBSERVE + consume-one-per-cycle"],
+      "regressions": ["test_decision.test_later_signal_processed_after_earlier_cycle", "test_decision.test_batched_signals_none_lost", "test_decision.test_consumption_survives_restart"]
+    },
+    "SB-R0A2_failed_review_stop": {
+      "fix": "Required-review + platform-limit gate in decision._execute now STOPS: no experiment, no queue entry, truthful WITHHELD worker receipt (candidate_succeeded=false).",
+      "also_fixes": "Social-A within_platform_limit=false false-positive now fails closed (withheld) instead of a false success.",
+      "code": ["runtime/decision.py CREATE_CANDIDATE gate", "runtime/worker.py finish-receipt outcome"],
+      "regressions": ["test_review_gate.py (4 tests)"]
+    },
+    "evidence": ["receipts/evidence/SB-002-run/SUMMARY.json (all_pass)", "receipts/evidence/SB-007-dryruns/SUMMARY.json + REPORT.md (social-a now correctly WITHHELD on platform gate)"],
+    "still_open": {
+      "SB-R0B": "next: race-safe stale takeover + shared-runtime concurrency",
+      "SB-R2C_platform_native": "social-a X candidate exceeds 280 and is fail-closed; platform-native repair (generate fitting candidate) is deferred to SB-R2C, not faked here",
+      "always_on_host": "SB-002 host deployment still unproven"
+    }
   },
   "lead_audit": {
     "verdict": "changes_required",
@@ -92,10 +114,11 @@
     "SB-006": "changes_required_fact_platform_and_review_gating",
     "SB-007": "changes_required_live_capture_acceptance_and_independent_review",
     "SB-008": "prepared_not_accepted",
-    "SB-R0": "ready_p1_correctness_repairs",
-    "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
+    "SB-R0A": "done_pending_lead_audit (signal-delta + failed-review/platform gate + regressions)",
+    "SB-R0B": "next (race-safe stale takeover + shared-runtime concurrency)",
+    "SB-R1": "ready_after_SB-R0B_toward_V0.4"
   },
-  "next_task": "SB-R0A then SB-R0B; after lead acceptance proceed SB-R1 toward V0.4",
+  "next_task": "SB-R0B after lead audits SB-R0A; then SB-R1 toward V0.4",
   "version": {
     "current": "V0.3.x",
     "current_label": "durable runtime foundation under correctness repair",

@@ -88,19 +88,25 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         "cycle": st.data["counters"]["cycles"],
     }
 
-    # -- OBSERVE: changed evidence only ------------------------------------
-    last_fp = st.data.get("observation_fingerprint")
-    signals, fp = research.new_signals(bot, last_fp)
+    # -- OBSERVE: unconsumed evidence only ---------------------------------
+    # Consumption is tracked per-signal (not a whole-inbox fingerprint), so a
+    # signal arriving after an earlier cycle, or a batch of signals, is never
+    # skipped: exactly one unconsumed signal is decided upon per cycle and the
+    # rest remain pending for subsequent cycles. Restart-safe via bot_state.
+    consumed = st.consumed_ids()
+    pending = research.unconsumed_signals(bot, consumed)
+    all_count = len(research.load_signals(bot))
     record["observe"] = {
-        "prior_fingerprint": last_fp,
-        "current_fingerprint": fp,
-        "changed": bool(signals),
-        "signal_count": len(research.load_signals(bot)),
+        "total_signals": all_count,
+        "consumed_count": len(consumed),
+        "pending_count": len(pending),
+        "changed": bool(pending),
+        "observation_fingerprint": research.evidence_fingerprint(research.load_signals(bot)),
     }
 
     # -- Deterministic NO-CHANGE path: no model, no action -----------------
-    if not signals:
-        chosen = _no_action("no changed evidence since last observation")
+    if not pending:
+        chosen = _no_action("no unconsumed evidence since last observation")
         record["orient"] = {"summary": "no new signals; nothing to reconsider",
                             "known": [], "inferred": [], "uncertain": [],
                             "objective": _current_objective(persona)}
@@ -108,9 +114,10 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         record["chosen"] = _summ(chosen)
         record["chosen_reason"] = chosen.rationale
         record["required_authority"] = "none"
-        record["execute"] = {"performed": False, "effect": "none"}
+        record["execute"] = {"performed": False, "effect": "none", "outcome": "no_action"}
         record["verify"] = {"verified": True, "note": "no effect to verify"}
         record["learn"] = {"updated": False}
+        record["outcome"] = "no_action"
         record["schedule"] = _schedule(persona, changed=False)
         st.data["counters"]["no_action"] += 1
         st.data["recovery"]["last_clean_tick"] = now_iso()
@@ -118,17 +125,16 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         return record
 
     # -- ORIENT ------------------------------------------------------------
-    new_ids = [s["id"] for s in signals]
     record["orient"] = {
-        "summary": f"{len(signals)} signal(s) present; evidence fingerprint changed",
-        "known": [f"signal {s['id']} from {s['source']} ({s['provenance']})" for s in signals],
-        "inferred": [f"topic tags: {sorted({t for s in signals for t in s.get('tags', [])})}"],
+        "summary": f"{len(pending)} unconsumed signal(s); deciding on the oldest this cycle",
+        "known": [f"signal {s['id']} from {s['source']} ({s['provenance']})" for s in pending],
+        "inferred": [f"topic tags: {sorted({t for s in pending for t in s.get('tags', [])})}"],
         "uncertain": ["external audience reaction (no post yet)"],
         "objective": _current_objective(persona),
     }
 
     # -- GENERATE ----------------------------------------------------------
-    top_signal = signals[0]
+    top_signal = pending[0]
     draft = pipeline.ideate(persona, top_signal)
     dup = pipeline.is_duplicate(bot, draft)
     cands = [
@@ -165,12 +171,17 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
     record["execute"] = execute
     record["verify"] = verify
     record["learn"] = learn
+    record["outcome"] = execute.get("outcome", "no_action")
 
     # -- SCHEDULE ----------------------------------------------------------
     record["schedule"] = _schedule(persona, changed=True)
 
-    # advance observation fingerprint so the same evidence won't re-fire
-    st.data["observation_fingerprint"] = fp
+    # CONSUME exactly the one signal we oriented on and decided about, so it is
+    # never reconsidered and later/other pending signals are never lost.
+    st.mark_consumed(top_signal["id"])
+    record["observe"]["consumed_this_cycle"] = top_signal["id"]
+    record["observe"]["pending_after"] = len(pending) - 1
+    st.data["observation_fingerprint"] = record["observe"]["observation_fingerprint"]
     st.data["recovery"]["last_clean_tick"] = now_iso()
     _persist(bot, st, record)
     return record
@@ -199,29 +210,68 @@ def _schedule(persona: dict, changed: bool) -> dict:
 def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
              st: BotState):
     if chosen.action == "NO_ACTION":
-        return ({"performed": False, "effect": "none"},
+        return ({"performed": False, "effect": "none", "outcome": "no_action"},
                 {"verified": True, "note": "no effect"},
                 {"updated": False})
 
     if chosen.action == "RESEARCH_MORE":
-        return ({"performed": True, "effect": "flagged research need (local only)"},
+        return ({"performed": True, "effect": "flagged research need (local only)",
+                 "outcome": "research_more"},
                 {"verified": True, "note": "local flag written"},
                 {"updated": False})
 
     if chosen.action == "CREATE_CANDIDATE":
         if not authority.can_create_candidate:
-            return ({"performed": False, "effect": "blocked: no authority"},
+            return ({"performed": False, "effect": "blocked: no authority",
+                     "outcome": "blocked_authority"},
                     {"verified": True, "note": "authority gate held"},
                     {"updated": False})
         signal = chosen.payload["signal"]
         draft = pipeline.ideate(persona, signal)
         if pipeline.is_duplicate(bot, draft):
-            return ({"performed": False, "effect": "suppressed duplicate"},
+            return ({"performed": False, "effect": "suppressed duplicate",
+                     "outcome": "duplicate_suppressed"},
                     {"verified": True, "note": "dedup gate held"},
                     {"updated": False})
         reviewed = pipeline.review(persona, draft)
         platform = persona["platform_strategy"]["primary"][0]
         payload = pipeline.format_for_platform(reviewed, platform)
+
+        # ---- REQUIRED-REVIEW GATE (deterministic publication gate) --------
+        # A failed factual/voice/cultural review or a platform-limit failure
+        # STOPS here: no experiment registration, no publish-queue entry, no
+        # success result. Only a truthful WITHHELD/BLOCKED receipt is produced.
+        gate_failures = []
+        if not reviewed["review_passed"]:
+            failed = [c for c in reviewed["review"].values() if not c["passed"]]
+            gate_failures.append({"gate": "review", "checks": failed})
+        if not payload["within_limit"]:
+            gate_failures.append({"gate": "platform_limit",
+                                  "platform": platform,
+                                  "char_limit": payload["char_limit"]})
+        if gate_failures:
+            st.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
+                              "content_id": reviewed["content_id"],
+                              "reasons": gate_failures})
+            analytics.emit(analytics.make_event(
+                bot, persona["id"], "correction", platform=platform,
+                content_id=reviewed["content_id"],
+                metrics={"withheld": 1}))
+            execute = {"performed": False,
+                       "outcome": "withheld",
+                       "effect": "withheld: failed required review/platform gate; "
+                                 "no experiment, no queue entry",
+                       "content_id": reviewed["content_id"],
+                       "gate_failures": gate_failures}
+            verify = {"verified": True, "withheld": True,
+                      "published": False, "publish_authorized": False,
+                      "review_passed": reviewed["review_passed"],
+                      "within_platform_limit": payload["within_limit"],
+                      "experiment_registered": False, "queued": False,
+                      "note": "required gate failed; candidate correctly did NOT proceed"}
+            learn = {"updated": False,
+                     "note": "no hypothesis registered; a withheld candidate is not evidence of a launch"}
+            return (execute, verify, learn)
 
         exp = pipeline.Experiment(
             experiment_id=f"exp-{reviewed['content_id']}",
@@ -275,10 +325,11 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                  "hypothesis_id": f"h-{persona['id']}-{exp.experiment_id}",
                  "confidence": 0.5,
                  "note": "hypothesis registered; confidence updates only after real post-window evidence"}
-        return ({"performed": True, "effect": "candidate reviewed + experiment registered + queued (unpublished)",
+        return ({"performed": True, "outcome": "candidate_created",
+                 "effect": "candidate reviewed + experiment registered + queued (unpublished)",
                  "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id}, verify, learn)
 
-    return ({"performed": False, "effect": "unknown action"},
+    return ({"performed": False, "effect": "unknown action", "outcome": "unknown"},
             {"verified": False, "note": "unknown action"}, {"updated": False})
 
 

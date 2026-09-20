@@ -1,0 +1,15 @@
+{
+  "detail": {
+    "persona": "social-c",
+    "reconcile_required": true,
+    "started_at": "2026-09-20T23:14:38+00:00",
+    "took_over_from": "16fe65d73c024b7c86b8b66da3f52fc9"
+  },
+  "kind": "start",
+  "lease_id": "27545a591c85426fa75980442d8ae0ef",
+  "namespace": "social-c",
+  "receipt_id": "20260920T231438+0000-start-7a542168",
+  "recorded_at": "2026-09-20T23:14:38+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-vm-511-3a149a"
+}

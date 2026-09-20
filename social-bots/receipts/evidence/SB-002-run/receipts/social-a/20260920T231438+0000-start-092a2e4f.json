@@ -1,0 +1,15 @@
+{
+  "detail": {
+    "persona": "social-a",
+    "reconcile_required": false,
+    "started_at": "2026-09-20T23:14:38+00:00",
+    "took_over_from": null
+  },
+  "kind": "start",
+  "lease_id": "4635e5f2dae44b5aa6d44f7cd6886f08",
+  "namespace": "social-a",
+  "receipt_id": "20260920T231438+0000-start-092a2e4f",
+  "recorded_at": "2026-09-20T23:14:38+00:00",
+  "task_id": "cycle:social-a",
+  "worker_id": "w-vm-511-0fa02f"
+}

@@ -1,11 +1,14 @@
 {
   "bot": "social-c",
+  "consumed_signal_ids": [
+    "sig-9593340dd96d"
+  ],
   "counters": {
     "actions": 1,
     "cycles": 1,
     "no_action": 0
   },
-  "created_at": "2026-09-20T20:36:15+00:00",
+  "created_at": "2026-09-20T23:15:34+00:00",
   "goals": [],
   "hypotheses": {
     "h-social-c-exp-c-999530ca5437": {
@@ -14,16 +17,16 @@
         "experiment exp-c-999530ca5437 registered; awaiting 48h window"
       ],
       "statement": "A distinct comedic voice with a real point of view retains better than trend-chasing alone.",
-      "updated_at": "2026-09-20T20:36:15+00:00"
+      "updated_at": "2026-09-20T23:15:34+00:00"
     }
   },
   "observation_fingerprint": "8ff0530b00380147",
   "pending_decisions": [],
   "recovery": {
     "in_flight": null,
-    "last_clean_tick": "2026-09-20T20:36:15+00:00"
+    "last_clean_tick": "2026-09-20T23:15:34+00:00"
   },
   "schema_version": 1,
-  "updated_at": "2026-09-20T20:36:15+00:00",
+  "updated_at": "2026-09-20T23:15:34+00:00",
   "working_state": {}
 }

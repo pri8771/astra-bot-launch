@@ -46,21 +46,29 @@
   "cycle": 1,
   "execute": {
     "content_id": "c-79a113116532",
-    "effect": "candidate reviewed + experiment registered + queued (unpublished)",
-    "experiment_id": "exp-c-79a113116532",
-    "performed": true
+    "effect": "withheld: failed required review/platform gate; no experiment, no queue entry",
+    "gate_failures": [
+      {
+        "char_limit": 280,
+        "gate": "platform_limit",
+        "platform": "x"
+      }
+    ],
+    "outcome": "withheld",
+    "performed": false
   },
   "learn": {
-    "confidence": 0.5,
-    "hypothesis_id": "h-social-a-exp-c-79a113116532",
-    "note": "hypothesis registered; confidence updates only after real post-window evidence",
-    "updated": true
+    "note": "no hypothesis registered; a withheld candidate is not evidence of a launch",
+    "updated": false
   },
   "observe": {
     "changed": true,
-    "current_fingerprint": "58d1c9c4ff9d9f19",
-    "prior_fingerprint": null,
-    "signal_count": 1
+    "consumed_count": 0,
+    "consumed_this_cycle": "sig-8f68784a680c",
+    "observation_fingerprint": "58d1c9c4ff9d9f19",
+    "pending_after": 0,
+    "pending_count": 1,
+    "total_signals": 1
   },
   "orient": {
     "inferred": [
@@ -70,13 +78,14 @@
       "signal sig-8f68784a680c from METR / UC Today AI productivity reports 2026 (live-capture)"
     ],
     "objective": "grow reply-quality for The Ledger via evidence-based experiments",
-    "summary": "1 signal(s) present; evidence fingerprint changed",
+    "summary": "1 unconsumed signal(s); deciding on the oldest this cycle",
     "uncertain": [
       "external audience reaction (no post yet)"
     ]
   },
+  "outcome": "withheld",
   "persona": "social-a",
-  "recorded_at": "2026-09-20T20:36:15+00:00",
+  "recorded_at": "2026-09-20T23:15:34+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,
@@ -84,13 +93,14 @@
     "trigger": "deterministic timer + new-signal event"
   },
   "verify": {
-    "content_id": "c-79a113116532",
-    "note": "queued only; no external effect; publish_authorized must be False",
-    "persona_match": true,
+    "experiment_registered": false,
+    "note": "required gate failed; candidate correctly did NOT proceed",
     "publish_authorized": false,
     "published": false,
+    "queued": false,
     "review_passed": true,
     "verified": true,
+    "withheld": true,
     "within_platform_limit": false
   }
 }
