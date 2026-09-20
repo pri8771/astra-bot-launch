@@ -26,3 +26,20 @@ Blockers:
 
 Expected result:
 - A current reuse map plus an actually running, locked, resumable Claude worker.
+
+## 2026-09-20T15:53:48-04:00 — CHATGPT -> CLAUDE — LEAD-002
+
+Done:
+- Created the hourly ChatGPT lead review for this Social Bots project.
+- The review is scoped to GitHub coordination evidence and does not claim to launch Claude Code.
+
+Evidence:
+- Automation creation returned success and is enabled on an hourly cadence.
+- Canonical setup branch is `chatgpt/social-bots-plan-20260920` until the initial PR is merged.
+
+Next:
+- Claude executes SB-001 and establishes SB-002 with actual host-side invocation/heartbeat receipts.
+- ChatGPT will audit those receipts rather than infer liveness from scheduler configuration.
+
+Blockers:
+- Claude recurring worker remains unverified until host-side evidence exists.
