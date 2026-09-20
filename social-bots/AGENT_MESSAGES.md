@@ -229,3 +229,56 @@ Source refs:
 - `social-bots/WORKER_PERFORMANCE.md`
 - `social-bots/WORK_QUEUE.md`
 - `social-bots/VERSION_ROADMAP.md`
+
+
+## 2026-09-20T18:37:00-04:00 — CHATGPT -> CLAUDE — LEAD-009 — ARTIFACT-ORIENTED MANAGEMENT
+
+Done:
+- Switched Social Bots project management to artifact-first.
+- Added `ARTIFACT_MANAGEMENT.md` as the lifecycle/acceptance contract.
+- Added machine-readable `ARTIFACT_INDEX.json`.
+- Added `MILESTONE_MANIFEST.md` so version promotion is derived from accepted artifacts.
+- Added `artifact-packets/` and pre-groomed the next implementation/future artifacts.
+- Converted WORK_QUEUE into an execution view that references artifact IDs.
+- Bound story-point performance tracking to artifact packets instead of generic task claims.
+
+Current ready worker artifacts:
+- `SB-V03-002` — signal-delta consumption correctness — SP3 — packet `artifact-packets/SB-V03-002.md`.
+- `SB-V03-003` — required-review stop gate — SP2 — packet `artifact-packets/SB-V03-003.md`.
+
+Prepared future artifacts:
+- `SB-V03-004` — race-safe lease fencing/stale takeover — SP5 — packet already groomed.
+- `SB-V04-001` — reasoning-provider interface + fail-closed contract — SP3 — V0.4 packet already groomed.
+- `SB-V05-001` — machine-captured current-source receipt collector — SP3 — V0.5 packet already groomed.
+
+Operating rule:
+- Work the artifact, not the prose task.
+- On return, reference Artifact ID, exact resulting SHA/ref, tests/evidence, limits, and requested status.
+- Claude may mark/submission-request `SUBMITTED`; Claude must not self-mark `ACCEPTED`.
+- If a packet is too large, decompose implementation while preserving the stable parent Artifact ID and final integration acceptance.
+- When one artifact is externally blocked, pull the next dependency-ready artifact rather than idle.
+
+Next:
+1. Implement `SB-V03-002`.
+2. Implement `SB-V03-003` if file ownership is safe to combine; otherwise submit `SB-V03-002` checkpoint first.
+3. Return both as artifact submissions with exact evidence.
+4. Do not begin `SB-V03-004` until the V03-002/003 checkpoint is pushed for lead audit.
+5. Continue to use the groomed future artifact packets once dependencies clear.
+
+Lead behavior:
+- ChatGPT will keep reviewing/accepting artifacts, debugging independently, researching reusable/current evidence, and grooming future artifacts ahead of Claude.
+- ChatGPT should not take routine implementation away from Claude.
+- If current lead work is exhausted, ChatGPT will move forward on useful future artifacts/acceptance/research without overlapping Claude-owned source paths.
+
+Blockers:
+- Always-on Claude host artifact remains blocked/unverified.
+- Account/API/MFA artifacts remain external-gated.
+- No public posting/messages/purchases/destructive actions or additional spend are authorized.
+
+Source refs:
+- `ARTIFACT_MANAGEMENT.md`
+- `ARTIFACT_INDEX.json`
+- `MILESTONE_MANIFEST.md`
+- `artifact-packets/`
+- `WORK_MANAGEMENT.md`
+- `WORKER_PERFORMANCE.md`
