@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "metric": "shares",
+    "value": "unknown-pre-post"
+  },
+  "bot": "social-b",
+  "confidence": 0.0,
+  "cost_budget": "none",
+  "decision": null,
+  "experiment_id": "exp-c-8b1d40a963fd",
+  "hypothesis": "Sensory, non-alarmist science earns shares from people who rarely share 'science'.",
+  "intervention": "publish 1 everyday-object-as-hook candidate on instagram",
+  "observation_window_hours": 48,
+  "persona": "social-b",
+  "platform": "instagram",
+  "registered_at": "2026-09-20T20:36:15+00:00",
+  "result": null,
+  "stop_criteria": "no lift above baseline noise within window; or policy flag",
+  "success_metric": "shares"
+}

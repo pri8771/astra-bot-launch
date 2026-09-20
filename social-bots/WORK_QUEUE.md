@@ -4,7 +4,7 @@ Priority is strict unless a task is blocked by an external gate; then continue t
 
 ## SB-001 — Evidence and reuse reconciliation
 Owner: Claude
-Status: READY
+Status: DONE — SOURCE_REUSE_MAP.md refreshed with pinned refs (astra @9f2f4d2, bots @7f2ec1a); reuse-pool repos flagged BLOCKED (not attached).
 
 Goal: inspect current repos/assets/accounts and produce `SOURCE_REUSE_MAP.md`.
 
@@ -17,7 +17,7 @@ Acceptance:
 
 ## SB-002 — Worker/heartbeat bootstrap
 Owner: Claude
-Status: READY after SB-001 local source paths are known
+Status: IMPLEMENTED + VERIFIED IN SESSION — receipts/evidence/SB-002-run (all_pass). Blocked only on owner always-on-host deploy (G1).
 
 Goal: establish the supported no-additional-spend Claude recurring worker on an authorized existing host.
 
@@ -33,7 +33,7 @@ Acceptance:
 
 ## SB-003 — Persona/state contracts
 Owner: Claude
-Status: READY
+Status: DONE — 3 distinct general personas + 2 cultural workspaces; distinctness test green.
 
 Goal: create three general persona specs plus two isolated cultural persona workspaces, without fabricated human identities.
 
@@ -44,7 +44,7 @@ Acceptance:
 
 ## SB-004 — Autonomous decision loop
 Owner: Claude
-Status: BLOCKED by SB-002/003
+Status: DONE — runtime/decision.py; per-bot isolation, no-change path, bounded retries, crash/restart + no-overlap tests green.
 
 Goal: implement Observe -> Orient -> Generate -> Score -> Choose -> Execute -> Verify -> Learn -> Schedule with explicit reason records and bounded authority.
 
@@ -58,7 +58,7 @@ Acceptance:
 
 ## SB-005 — Browser/account map
 Owner: Claude
-Status: READY after SB-001
+Status: DONE (metadata only) — ACCOUNT_BROWSER_MAP.md; no verification/secret; exact human gates listed.
 
 Goal: reuse existing accounts/emails and document exact safe setup for TikTok, Reddit, X, Instagram and Facebook.
 
@@ -71,7 +71,7 @@ Acceptance:
 
 ## SB-006 — Content/experiment pipeline
 Owner: Claude
-Status: BLOCKED by SB-003/004
+Status: DONE — runtime/pipeline.py + analytics.py; dedup, review hooks, publish queue disabled.
 
 Goal: real research -> persona ideation -> reviewed candidate -> platform formatting -> experiment registration -> observation plan.
 
@@ -85,7 +85,7 @@ Acceptance:
 
 ## SB-007 — Three real dry-run cycles
 Owner: Claude
-Status: BLOCKED by SB-006
+Status: DONE — receipts/evidence/SB-007-dryruns (3 general + cultural WITHHELD), real research inputs, no publish.
 
 Goal: one end-to-end non-publishing cycle per general persona using current research inputs.
 
@@ -100,7 +100,7 @@ Acceptance:
 
 ## SB-008 — Launch gate packet
 Owner: Claude
-Status: BLOCKED by account verification and owner authority
+Status: PREPARED — LAUNCH_GATE_PACKET.md; each blocker reduced to one exact human action.
 
 Goal: reduce each external blocker to one exact human action and prepare one canary per persona.
 

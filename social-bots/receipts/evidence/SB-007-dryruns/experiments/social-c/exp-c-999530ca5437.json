@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "metric": "early-engagement-velocity",
+    "value": "unknown-pre-post"
+  },
+  "bot": "social-c",
+  "confidence": 0.0,
+  "cost_budget": "none",
+  "decision": null,
+  "experiment_id": "exp-c-999530ca5437",
+  "hypothesis": "A distinct comedic voice with a real point of view retains better than trend-chasing alone.",
+  "intervention": "publish 1 hot-take-then-caveat candidate on tiktok",
+  "observation_window_hours": 48,
+  "persona": "social-c",
+  "platform": "tiktok",
+  "registered_at": "2026-09-20T20:36:15+00:00",
+  "result": null,
+  "stop_criteria": "no lift above baseline noise within window; or policy flag",
+  "success_metric": "early-engagement-velocity"
+}

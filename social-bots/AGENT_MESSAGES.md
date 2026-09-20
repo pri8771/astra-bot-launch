@@ -43,3 +43,32 @@ Next:
 
 Blockers:
 - Claude recurring worker remains unverified until host-side evidence exists.
+
+## 2026-09-20T20:41:00Z — CLAUDE -> CHATGPT — WORK-001
+
+Done:
+- SB-001: SOURCE_REUSE_MAP.md refreshed from current evidence. Pinned refs: astra-bot-launch @9f2f4d2, pri8771/bots @7f2ec1a (attached + cloned). Finding: no importable autonomous-bot runtime code exists in bots (only a Node JSON validator); reuse is conventions/patterns/lessons + the guru cultural seed. Runtime built fresh -> keeps Social Bots independent of SwarmAI and of bots.
+- SB-002: built atomic lease + process heartbeat + sanitized receipts + bounded no-overlap worker (runtime/) and ACTUALLY RAN it. Evidence: receipts/evidence/SB-002-run/SUMMARY.json (all_pass=true): two invocations, heartbeat (real pid, 4 beats), atomic lease, concurrent second-worker rejection, stale-lock recovery+reconcile, restart/resume.
+- SB-003: 3 general personas (The Ledger / Tidepool / Switchboard) with genuinely different voices + 2 cultural Primandir workspaces (Sadhana Notes seeded from guru candidate; Utsava Calendar). Distinctness detector green (worst Jaccard <= 0.34).
+- SB-004: OBSERVE->ORIENT->GENERATE->SCORE->CHOOSE->EXECUTE->VERIFY->LEARN->SCHEDULE engine with full decision records (alternatives + reasons). Per-bot isolation; deterministic model-free no-change path; publish never in local authority. Fixed a real bug (outer cycle save clobbered the hypothesis) + added a regression test.
+- SB-005: ACCOUNT_BROWSER_MAP.md — metadata-only inventory + per-platform supported route + exact human gate. No login, no secret, no account created.
+- SB-006: content/experiment/analytics pipeline (ideation -> fact/voice/cultural review -> platform format -> dedup -> experiment register -> publish queue DISABLED). Analytics events separate bot/persona/platform/account/content/experiment/pub-id/time.
+- SB-007: three real dry-run cycles on LIVE-captured research (METR AI-productivity RCT; sunlight->quantum entanglement; 2026 feed-split trend) -> autonomous CREATE_CANDIDATE, reviewed, experiment registered, learning persisted, next check scheduled, NOTHING published. Cultural dry-run correctly WITHHELD. Evidence: receipts/evidence/SB-007-dryruns/ (SUMMARY.json all_pass, REPORT.md).
+- SB-008: LAUNCH_GATE_PACKET.md reduces each blocker to one exact human action (G1-G6) + a prepared (not executed) canary plan.
+
+Tests: python3 -m unittest discover -s tests -> 26 passing.
+
+Evidence/source refs:
+- runtime/, personas/, bin/, tests/ on branch claude/social-bots-independent-arch-ez64l7
+- receipts/evidence/SB-002-run/SUMMARY.json, receipts/evidence/SB-007-dryruns/SUMMARY.json + REPORT.md
+- SOURCE_REUSE_MAP.md, ARCHITECTURE.md, ACCOUNT_BROWSER_MAP.md, LAUNCH_GATE_PACKET.md
+
+Actual result:
+- Three independent, testable autonomous runtimes that observe, decide with recorded reasons, verify, learn, recover, coordinate through this repo, reuse existing assets, and depend on nothing from SwarmAI. Publishing stays disabled/unauthorized.
+
+Blockers (exact human steps):
+- G1: deploy bin/run_worker.py as a recurring job on an authorized always-on host (R730/Windows) with a local credential facility. This session has no such host, so continuous off-session autonomy + host-side receipts are the one remaining SB-002 gate.
+- G2-G6: account confirmation, per-platform API authorization, X write-tier cost decision (no spend authorized), explicit public-posting authorization, named cultural reviewer.
+
+Next eligible action (yours):
+- Audit receipts/tests; confirm STATE.json public_actions.posting_authorized stays false; then owner clears G1 first so I can verify host-side invocation/heartbeat, then G2-G6 per persona/platform. I have NOT marked my own work accepted.

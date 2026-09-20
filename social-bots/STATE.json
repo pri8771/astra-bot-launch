@@ -1,31 +1,65 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T15:54:25-04:00",
+  "updated_at": "2026-09-20T20:40:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
+  "implementation_branch": "claude/social-bots-independent-arch-ez64l7",
   "setup_pr": 1,
-  "status": "planned_for_execution",
+  "status": "runtime_built_and_tested_pending_host_deploy_and_authorizations",
   "runtime_scope": {
     "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
-    "cultural_persona_workspaces_required": 2
+    "general_personas_built": 3,
+    "cultural_persona_workspaces_required": 2,
+    "cultural_persona_workspaces_built": 2
+  },
+  "independence": {
+    "depends_on_swarmai": false,
+    "external_runtime_deps": "none (Python 3.11 stdlib only)"
   },
   "worker": {
-    "claude": "not_yet_verified_running",
-    "heartbeat": "not_yet_verified",
-    "lease_locking": "not_yet_verified"
+    "implementation": "built (runtime/worker.py, leasing, heartbeat, receipts)",
+    "verified_running_in_session": true,
+    "evidence": "receipts/evidence/SB-002-run/SUMMARY.json (all_pass=true)",
+    "proofs": ["two_invocations", "heartbeat", "atomic_lease", "no_overlap_rejection", "stale_recovery", "restart_resume"],
+    "deployed_on_owner_always_on_host": false,
+    "host_deploy_blocker": "no authorized always-on host / credential facility reachable from this session (see LAUNCH_GATE_PACKET.md G1)"
+  },
+  "tests": {
+    "framework": "python3 -m unittest",
+    "count": 26,
+    "passing": 26
+  },
+  "dry_runs": {
+    "general_personas": 3,
+    "evidence": "receipts/evidence/SB-007-dryruns/SUMMARY.json (all_pass=true)",
+    "real_research_inputs": true,
+    "external_publication": false,
+    "cultural_review_gate": "WITHHELD (correct)"
   },
   "chatgpt_lead": {
     "hourly_review": "active"
   },
   "account_inventory": {
-    "status": "pending_fresh_verification",
-    "reuse_existing_first": true
+    "status": "mapped_metadata_only_no_verification",
+    "map": "ACCOUNT_BROWSER_MAP.md",
+    "reuse_existing_first": true,
+    "secrets_committed": false
   },
   "public_actions": {
     "posting_authorized": false,
     "spend_authorized": false
   },
-  "next_task": "SB-001"
+  "task_status": {
+    "SB-001": "done",
+    "SB-002": "implemented+verified_in_session; host_deploy_blocked",
+    "SB-003": "done",
+    "SB-004": "done",
+    "SB-005": "mapped (metadata only)",
+    "SB-006": "done",
+    "SB-007": "done (3 general dry runs + cultural gate)",
+    "SB-008": "packet_prepared; gates open"
+  },
+  "next_task": "ChatGPT audit of receipts/tests; then owner clears G1 (host deploy) + G2-G6 authorizations"
 }
