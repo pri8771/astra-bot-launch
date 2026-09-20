@@ -73,6 +73,29 @@ Acquire one atomic lease → (reconcile prior owner's effects if this was a stal
 takeover) → renew → one cycle → verify → sanitized receipt → heartbeat → release.
 Overlap raises `LeaseHeld` (the caller treats it as the no-overlap rejection).
 
+## Concurrency model (SB-R0B)
+
+- **Lease CAS.** `leasing.acquire` runs the whole "is the current lease missing or
+  stale? then claim it" sequence inside an exclusive per-task `fcntl.flock`
+  critical section, so a fresh claim and a stale takeover are both single-owner
+  even under concurrent contention on one host. The kernel releases `flock` if the
+  holder dies, so a crash cannot wedge it. (`FLOCK_AVAILABLE` is False on non-POSIX
+  hosts, which fall back to atomic-replace; the Linux host asserts the strong
+  path.) This replaced an earlier rename-CAS that had a clobber window.
+- **Runtime-state boundary.** A runtime's `bot_state.json` (consumed-signal ledger,
+  hypotheses, counters) is shared by every persona workspace on that runtime, so
+  the worker lease is keyed by the **runtime (`cycle:<bot>`)**, not by
+  `(bot, persona)`. Two personas on one runtime therefore cannot mutate that state
+  concurrently — the second cycle is rejected (no-overlap) — which prevents lost
+  updates. Personas keep isolated experiment/content/memory *namespaces* for their
+  non-shared artifacts. Full per-persona state isolation is a deliberate future
+  alternative if per-runtime concurrency is ever required.
+- Proven by `tests/test_concurrency.py`: 6-way concurrent stale takeover and fresh
+  create each yield exactly one owner across 40 rounds; a second persona on a held
+  runtime is rejected; 25 rounds of concurrent general+cultural cycles leave the
+  cycle counter equal to the number of cycles that ran (no lost update), a
+  duplicate-free consumed ledger, and uncorrupted `bot_state.json`.
+
 ## Evidence, not claims
 
 - `bin/demo_worker_evidence.py` → `receipts/evidence/SB-002-run/` proves: 2

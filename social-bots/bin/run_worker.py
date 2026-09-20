@@ -22,7 +22,10 @@ def main() -> int:
         return 2
     bot = sys.argv[1]
     persona = sys.argv[2] if len(sys.argv) > 2 else bot
-    task_id = f"cycle:{bot}:{persona}"
+    # Lease keyed by RUNTIME (bot), not (bot, persona): personas on one runtime
+    # share bot_state.json and must not mutate it concurrently. See
+    # worker.runtime_task_id for the rationale.
+    task_id = worker.runtime_task_id(bot)
     try:
         res = worker.run_one_unit(task_id, bot, persona)
     except leasing.LeaseHeld as held:

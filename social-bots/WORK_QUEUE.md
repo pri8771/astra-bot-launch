@@ -4,12 +4,17 @@ Priority is strict unless a task is blocked by an external gate; then continue t
 
 ## SB-R0 — P1 correctness repairs
 Owner: Claude
-Status: SB-R0A DONE (pending lead audit) — signal-delta consumption + failed-review/platform gate fixed with regressions; 33 local tests pass. SB-R0B NEXT — race-safe stale takeover + shared-runtime concurrency.
+Status: SB-R0A + SB-R0B DONE (pending lead audit) — all four P1 defects fixed; 38 local tests pass. Next: SB-R1 toward V0.4 after lead audit.
 
 SB-R0A evidence (worker self-report; lead audits):
 - Signal delta: `runtime/research.py:unconsumed_signals` + `runtime/state.py` consumed-ledger + `runtime/decision.py` consume-one-per-cycle. Regressions: `test_decision.test_later_signal_processed_after_earlier_cycle`, `test_batched_signals_none_lost`, `test_consumption_survives_restart`.
 - Failed-review stop: `runtime/decision.py` CREATE_CANDIDATE gate stops experiment/queue on any failed fact/voice/cultural review or platform-limit; truthful WITHHELD receipt in `runtime/worker.py`. Regressions: `tests/test_review_gate.py` (4). Also closes the Social-A within_platform_limit false-positive (now fails closed; platform-native repair deferred to SB-R2C, not faked).
+
+SB-R0B evidence (worker self-report; lead audits):
+- Race-safe stale takeover: `runtime/leasing.py` now runs check-and-claim inside an exclusive per-task `fcntl.flock` critical section (true CAS), replacing the rename-CAS clobber window. Regressions: `test_concurrency.test_concurrent_stale_takeover_single_owner` (6 threads x 40 rounds -> exactly one owner), `test_concurrent_fresh_create_single_owner`.
+- Shared-runtime isolation (decision: Option A, lease at the runtime-state boundary): worker lease keyed by `cycle:<bot>` not `(bot,persona)`; `runtime/worker.py:runtime_task_id` + `bin/run_worker.py`. Regressions: `test_concurrency.test_second_persona_on_runtime_blocked_while_held`, `test_concurrent_personas_no_lost_update` (cycles==successes, no dup consumed, valid json), `test_runtime_task_id_ignores_persona`. Rationale documented in ARCHITECTURE.md.
 - Regenerated evidence: `receipts/evidence/SB-002-run/` (all_pass), `receipts/evidence/SB-007-dryruns/` (social-a now correctly WITHHELD).
+- Note: SB-002 always-on host deployment/liveness is still NOT accepted — lease fixes do not substitute for host-side recurring receipts.
 
 Goal: fix the four correctness defects found by independent PR review on implementation commit `689cfe12ea4eed502e42b37d8e7305c77b3cb4aa`.
 

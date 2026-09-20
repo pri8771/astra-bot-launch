@@ -10,10 +10,10 @@
     "withheld": false
   },
   "kind": "finish",
-  "lease_id": "4635e5f2dae44b5aa6d44f7cd6886f08",
+  "lease_id": "2b9bfab1e8be400a9238e9fe58c552c1",
   "namespace": "social-a",
-  "receipt_id": "20260920T231438+0000-finish-af119f29",
-  "recorded_at": "2026-09-20T23:14:38+00:00",
+  "receipt_id": "20260920T232434+0000-finish-32198df5",
+  "recorded_at": "2026-09-20T23:24:34+00:00",
   "task_id": "cycle:social-a",
-  "worker_id": "w-vm-511-0fa02f"
+  "worker_id": "w-vm-2114-3ba847"
 }

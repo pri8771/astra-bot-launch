@@ -28,6 +28,23 @@ def _worker_id() -> str:
     return f"w-{socket.gethostname()[:8]}-{os.getpid()}-{uuid.uuid4().hex[:6]}"
 
 
+def runtime_task_id(bot: str) -> str:
+    """Lease key for a runtime cycle.
+
+    The exclusion boundary is the RUNTIME (bot), NOT the (bot, persona) pair.
+    A runtime's ``bot_state.json`` (consumed-signal ledger, hypotheses, counters)
+    is shared by every persona workspace hosted on that runtime, so two personas
+    on one runtime must not mutate it concurrently. Keying the lease by ``bot``
+    means a second persona-cycle on the same runtime is rejected (no-overlap)
+    while one is in flight — one writer per runtime state at a time. Personas keep
+    their own isolated experiment/content/memory *namespaces* for non-shared
+    artifacts; only the shared runtime state is serialized here. (If per-runtime
+    concurrency is ever needed, the alternative is to fully split persona-owned
+    mutable state; that is deliberately deferred.)
+    """
+    return f"cycle:{bot}"
+
+
 def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                  host_alias: str = "local", worker_id: str | None = None,
                  ttl_seconds: int = 120, source_ref: str = "social-bots/runtime") -> dict:

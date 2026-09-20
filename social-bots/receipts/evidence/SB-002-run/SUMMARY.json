@@ -4,9 +4,9 @@
     "heartbeat": {
       "beats": 4,
       "pass": true,
-      "pid": 511,
+      "pid": 2114,
       "status": "done",
-      "worker_id": "w-vm-511-0fa02f"
+      "worker_id": "w-vm-2114-3ba847"
     },
     "no_overlap": {
       "pass": true,
@@ -18,9 +18,9 @@
       "second": "NO_ACTION"
     },
     "stale_recovery": {
-      "dead_lease": "16fe65d73c024b7c86b8b66da3f52fc9",
+      "dead_lease": "738f057c28b84dc6ade1aa0f62ee3dd2",
       "pass": true,
-      "took_over_from": "16fe65d73c024b7c86b8b66da3f52fc9"
+      "took_over_from": "738f057c28b84dc6ade1aa0f62ee3dd2"
     },
     "two_invocations": {
       "invocation_1_action": "CREATE_CANDIDATE",
@@ -31,8 +31,8 @@
   },
   "evidence_dir": "social-bots/receipts/evidence/SB-002-run",
   "worker_ids": [
-    "w-vm-511-0fa02f",
-    "w-vm-511-3a149a",
-    "w-vm-511-c186dc"
+    "w-vm-2114-33630f",
+    "w-vm-2114-3ba847",
+    "w-vm-2114-88833a"
   ]
 }
