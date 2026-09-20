@@ -44,6 +44,14 @@ Updated: 2026-09-20
 - V3.0 — autonomous multi-brand media organization.
 - Full acceptance criteria live in `VERSION_ROADMAP.md`. Version promotion is lead/evidence-gated, never implementation-self-declared.
 
+## Lead / worker execution model
+
+- Claude receives the bulk of implementation work and especially the bulk of routine/easy work.
+- ChatGPT stays ahead through product direction, research, repository/source inspection, acceptance design, backlog grooming, debugging, independent review and task decomposition.
+- When current lead work is exhausted, ChatGPT should prepare useful future-version work rather than idle, while avoiding duplicate edits to Claude-owned implementation paths.
+- Tasks are estimated on a 1–5 story-point complexity scale defined in `WORK_MANAGEMENT.md`; Claude performance is tracked in `WORKER_PERFORMANCE.md`.
+- Difficult work remains Claude-owned but should be decomposed into smaller bounded tasks when doing so improves correctness, with final integration acceptance retained.
+
 ## Safety/authority
 
 No spend, public posting/deployment, customer messages, purchases, destructive actions, fake engagement, coordinated voting manipulation or credential material without explicit authority.
