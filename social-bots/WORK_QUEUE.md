@@ -1,17 +1,19 @@
 # Work queue
 
-Priority is strict unless a task is blocked by an external gate; then continue the next independent ready task. Lead acceptance is evidence-gated; implementation self-reports do not close tasks.
+This is the execution view of the artifact registry. `ARTIFACT_INDEX.json` is the durable machine-readable artifact state; `artifact-packets/` contains bounded execution contracts.
+
+Priority is strict unless a task is blocked by an external gate; then continue the next independent ready artifact. Lead acceptance is evidence-gated; implementation self-reports do not close artifacts.
 
 ## SB-R0 — P1 correctness repairs
 Owner: Claude
 Status: READY — highest priority before further autonomy claims.
 
 Execution split:
-- `SB-R0A1` — signal-delta consumption/persistence — **SP3**
-- `SB-R0A2` — failed-review stop semantics + regressions — **SP2**
-- `SB-R0B1` — race-safe stale takeover — **SP5**
-- `SB-R0B2` — shared-runtime persona state/lease isolation — **SP4**
-- `SB-R0B3` — adversarial concurrency integration acceptance — **SP3**
+- `SB-R0A1` -> artifact `SB-V03-002` — signal-delta consumption/persistence — **SP3** — packet: `artifact-packets/SB-V03-002.md`
+- `SB-R0A2` -> artifact `SB-V03-003` — failed-review stop semantics + regressions — **SP2** — packet: `artifact-packets/SB-V03-003.md`
+- `SB-R0B1` -> artifact `SB-V03-004` — race-safe stale takeover — **SP5** — packet: `artifact-packets/SB-V03-004.md`
+- `SB-R0B2` -> artifact `SB-V03-005` — shared-runtime persona state/lease isolation — **SP4**
+- `SB-R0B3` -> artifact `SB-V03-006` — adversarial concurrency integration acceptance — **SP3**
 
 Complete A1/A2 first. Push a reviewable checkpoint before B1/B2/B3. See `WORK_MANAGEMENT.md`.
 
@@ -181,7 +183,7 @@ These are pre-groomed worker tasks so external gates or lead review do not leave
 
 ### V0.4
 - `SB-R1A` — exact-source reuse reconciliation — **SP1**
-- `SB-R1B` — reasoning-provider interface + fail-closed contract — **SP3**
+- `SB-R1B` -> artifact `SB-V04-001` — reasoning-provider interface + fail-closed contract — **SP3** — packet: `artifact-packets/SB-V04-001.md`
 - `SB-R1C` — adaptive alternative generation/scoring — **SP5**
 - `SB-R1D` — deterministic policy boundary around reasoning proposals — **SP4**
 - `SB-R1E` — persona/evidence-divergence acceptance suite — **SP3**
