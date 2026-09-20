@@ -50,11 +50,13 @@
       "type": "control",
       "version_gate": "V0.1",
       "owner": "ChatGPT",
-      "status": "SUBMITTED",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/ARTIFACT_MANAGEMENT.md",
       "depends_on": [],
       "story_points": null,
-      "evidence": [],
+      "evidence": [
+        "lead-authored artifact management contract committed on canonical setup branch"
+      ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -131,7 +133,7 @@
       "version_gate": "V0.3",
       "owner": "Claude",
       "status": "READY",
-      "canonical_ref": "TBD implementation paths",
+      "canonical_ref": "social-bots/artifact-packets/SB-V03-002.md",
       "depends_on": [
         "SB-V03-001"
       ],
@@ -148,7 +150,7 @@
       "version_gate": "V0.3",
       "owner": "Claude",
       "status": "READY",
-      "canonical_ref": "TBD implementation paths",
+      "canonical_ref": "social-bots/artifact-packets/SB-V03-003.md",
       "depends_on": [
         "SB-V03-001"
       ],
@@ -165,7 +167,7 @@
       "version_gate": "V0.3",
       "owner": "Claude",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V03-004.md",
       "depends_on": [
         "SB-V03-002",
         "SB-V03-003"
@@ -236,7 +238,7 @@
       "version_gate": "V0.4",
       "owner": "Claude",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V04-001.md",
       "depends_on": [
         "SB-V03-006"
       ],
@@ -297,7 +299,7 @@
       "version_gate": "V0.5",
       "owner": "Claude",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V05-001.md",
       "depends_on": [
         "SB-V04-004"
       ],
