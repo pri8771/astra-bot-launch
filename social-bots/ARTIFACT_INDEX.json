@@ -353,6 +353,26 @@
         "authorized always-on host not yet evidenced"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-008",
+      "name": "Zero-spend platform route research dossier",
+      "type": "lead_research",
+      "version_gate": "V0.8-preparation",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/PLATFORM_ROUTE_RESEARCH.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": null,
+      "evidence": [
+        "current official Buffer API/support documentation",
+        "current official X API create-post/pricing documentation",
+        "current official TikTok Content Posting documentation",
+        "current official Reddit Devvit User Actions documentation"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
   ]
 }
