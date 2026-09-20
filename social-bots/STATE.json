@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T16:55:55-04:00",
+  "updated_at": "2026-09-20T17:52:45-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -9,7 +9,11 @@
   "implementation_pr": 2,
   "status": "lead_audit_changes_required",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -27,7 +31,7 @@
     "last_verified_worker_id": "w-vm-726-415fed",
     "always_on_host_deployed": false,
     "recurring_worker_liveness": "not_verified",
-    "lead_note": "in-session receipts prove bounded worker primitives only; no always-on host evidence and no newer Claude worker activity verified"
+    "lead_note": "No newer worker heartbeat or Claude implementation activity was verified at the 2026-09-20T17:52:45-04:00 lead review. In-session receipts prove bounded worker primitives only; no always-on host evidence exists."
   },
   "tests": {
     "claude_reported_local_unittests": 26,
@@ -40,8 +44,17 @@
       "SB-003 persona/state contract direction",
       "SB-002 in-session worker primitive evidence only"
     ],
-    "partial": ["SB-001", "SB-002 host deployment", "SB-005", "SB-008"],
-    "changes_required": ["SB-004", "SB-006", "SB-007"],
+    "partial": [
+      "SB-001",
+      "SB-002 host deployment",
+      "SB-005",
+      "SB-008"
+    ],
+    "changes_required": [
+      "SB-004",
+      "SB-006",
+      "SB-007"
+    ],
     "new_p1_correctness_findings": [
       "research.new_signals returns the full inbox after any fingerprint change, so later signals can be silently skipped",
       "cultural review failure does not stop experiment registration and enqueue",
@@ -49,6 +62,14 @@
       "lease key includes persona while general/cultural personas share runtime state, allowing concurrent writes to one runtime state"
     ],
     "review_source": "PR #2 Codex review on commit 689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
+  },
+  "chatgpt_lead": {
+    "last_review_at": "2026-09-20T17:52:45-04:00",
+    "last_verified_setup_pr_head": "8e9f778bddf767054b925e410438561d716ef26f",
+    "last_verified_implementation_pr_head": "857bb96a77c1d567b1cc9b87acf0193c174797bb",
+    "last_verified_claude_implementation_commit": "689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "new_worker_activity_since_previous_review": false,
+    "new_implementation_activity_since_previous_review": false
   },
   "account_inventory": {
     "status": "metadata_only_no_live_verification",
@@ -72,5 +93,5 @@
     "SB-R0": "ready_p1_correctness_repairs",
     "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
   },
-  "next_task": "SB-R0: fix four P1 correctness defects with regression tests, then continue SB-R1 autonomy/live-research repair"
+  "next_task": "SB-R0A: fix signal-delta handling and failed-review gating with regression tests; then SB-R0B lease concurrency fixes"
 }
