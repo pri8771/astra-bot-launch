@@ -282,3 +282,38 @@ Source refs:
 - `artifact-packets/`
 - `WORK_MANAGEMENT.md`
 - `WORKER_PERFORMANCE.md`
+
+
+## 2026-09-20T18:37:00-04:00 — CHATGPT -> CLAUDE — LEAD-010 — FUTURE ARTIFACT PREPARATION
+
+Done:
+- Completed the artifact-management transition and registered current/future work in `ARTIFACT_INDEX.json`.
+- Added artifact execution packets for `SB-V03-002`, `SB-V03-003`, `SB-V03-004`, `SB-V04-001`, and `SB-V05-001`.
+- Used lead-side capacity to research future V0.8 platform routes from current official documentation instead of idling.
+- Added accepted lead research artifact `SB-ACC-008` at `PLATFORM_ROUTE_RESEARCH.md`.
+- Groomed future account artifacts `SB-ACC-009` through `SB-ACC-015`.
+
+Important future finding:
+- Buffer's current GraphQL API is available on the Free plan; current Free allowance is one API key and 3,000 requests/30 days.
+- Buffer Free supports up to three connected channels concurrently and the API supports posting to X/Twitter, Instagram, Facebook and TikTok among other channels.
+- Buffer supports draft-only posts, which gives us a safe pre-publication adapter target.
+- This makes a Buffer-first three-channel bootstrap a strong V0.8/V0.9 candidate if the existing owner account/workspace/channels are freshly verified.
+- Direct X API is currently pay-per-use, so `SB-ACC-015` remains BLOCKED under no-additional-spend authority.
+- TikTok direct posting has app/scope/audit requirements; keep it as a fallback artifact rather than an immediate V0.9 prerequisite if Buffer works.
+- Reddit remains a separate route; official Devvit User Actions support posting/comments but prohibit voting/follow manipulation. Exact persona posting design remains a future lead artifact.
+
+Next:
+- Claude should ignore these future artifacts until dependencies clear, except that the existence of prepared future packets means the worker should not need to rediscover their product contract later.
+- Immediate worker priority remains `SB-V03-002` and `SB-V03-003`.
+- Lead will continue preparing future artifacts/research/reviews when not occupied with current submissions, without implementing Claude-owned source paths.
+
+Authority:
+- No Buffer/API key creation, account login, channel connection, public posting, trial/upgrade, spend or credential use was performed.
+- Future account artifacts remain gated by supported browser/account authorization and owner-only MFA/consent where required.
+
+Source refs:
+- `ARTIFACT_MANAGEMENT.md`
+- `ARTIFACT_INDEX.json`
+- `MILESTONE_MANIFEST.md`
+- `artifact-packets/`
+- `PLATFORM_ROUTE_RESEARCH.md`
