@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-20T20:00:00-04:00",
+  "coordination_repo": "pri8771/astra-bot-launch",
+  "coordination_path": "social-bots/",
+  "status": "planned_for_execution",
+  "runtime_scope": {
+    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "general_personas_required": 3,
+    "cultural_persona_workspaces_required": 2
+  },
+  "worker": {
+    "claude": "not_yet_verified_running",
+    "heartbeat": "not_yet_verified",
+    "lease_locking": "not_yet_verified"
+  },
+  "chatgpt_lead": {
+    "hourly_review": "pending_creation"
+  },
+  "account_inventory": {
+    "status": "pending_fresh_verification",
+    "reuse_existing_first": true
+  },
+  "public_actions": {
+    "posting_authorized": false,
+    "spend_authorized": false
+  },
+  "next_task": "SB-001"
+}
