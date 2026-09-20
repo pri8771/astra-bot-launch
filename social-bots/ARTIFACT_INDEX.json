@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-20T18:37:00-04:00",
+  "canonical_branch": "chatgpt/social-bots-plan-20260920",
+  "status_values": [
+    "PLANNED",
+    "READY",
+    "IN_PROGRESS",
+    "SUBMITTED",
+    "CHANGES_REQUIRED",
+    "ACCEPTED",
+    "BLOCKED",
+    "SUPERSEDED",
+    "WITHHELD"
+  ],
+  "artifacts": [
+    {
+      "id": "SB-CTL-001",
+      "name": "Canonical Social Bots control contract",
+      "type": "control",
+      "version_gate": "V0.1",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/README.md",
+      "depends_on": [],
+      "story_points": null,
+      "evidence": [
+        "setup PR #1 coordination package"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-002",
+      "name": "Version roadmap V0.1-V3.0",
+      "type": "product_contract",
+      "version_gate": "V0.1",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/VERSION_ROADMAP.md",
+      "depends_on": [],
+      "story_points": null,
+      "evidence": [
+        "lead-authored version contract"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-003",
+      "name": "Artifact-oriented management contract",
+      "type": "control",
+      "version_gate": "V0.1",
+      "owner": "ChatGPT",
+      "status": "SUBMITTED",
+      "canonical_ref": "social-bots/ARTIFACT_MANAGEMENT.md",
+      "depends_on": [],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-004",
+      "name": "Lead/worker work-management contract",
+      "type": "control",
+      "version_gate": "V0.1",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/WORK_MANAGEMENT.md",
+      "depends_on": [],
+      "story_points": null,
+      "evidence": [
+        "story point rubric and worker-first contract"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-PER-001",
+      "name": "Three general persona contracts",
+      "type": "persona_bundle",
+      "version_gate": "V0.2",
+      "owner": "Claude",
+      "status": "ACCEPTED",
+      "canonical_ref": "PR #2 persona JSON files",
+      "depends_on": [
+        "SB-CTL-001"
+      ],
+      "story_points": null,
+      "evidence": [
+        "lead provisional acceptance"
+      ],
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
+    },
+    {
+      "id": "SB-PER-002",
+      "name": "Two cultural/Primandir persona contracts",
+      "type": "persona_bundle",
+      "version_gate": "V0.2",
+      "owner": "Claude",
+      "status": "ACCEPTED",
+      "canonical_ref": "PR #2 cultural persona JSON files",
+      "depends_on": [
+        "SB-CTL-001"
+      ],
+      "story_points": null,
+      "evidence": [
+        "cultural review requirement present"
+      ],
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
+    },
+    {
+      "id": "SB-V03-001",
+      "name": "Runtime/state/memory/receipt foundation",
+      "type": "implementation_bundle",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "CHANGES_REQUIRED",
+      "canonical_ref": "PR #2 social-bots/runtime/",
+      "depends_on": [
+        "SB-PER-001",
+        "SB-PER-002"
+      ],
+      "story_points": null,
+      "evidence": [
+        "foundation built; known P1 defects remain"
+      ],
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
+    },
+    {
+      "id": "SB-V03-002",
+      "name": "Signal-delta consumption correctness",
+      "type": "source_and_tests",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "READY",
+      "canonical_ref": "TBD implementation paths",
+      "depends_on": [
+        "SB-V03-001"
+      ],
+      "story_points": 3,
+      "evidence": [
+        "PR #2 finding 4058061254"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V03-003",
+      "name": "Required-review stop gate",
+      "type": "source_and_tests",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "READY",
+      "canonical_ref": "TBD implementation paths",
+      "depends_on": [
+        "SB-V03-001"
+      ],
+      "story_points": 2,
+      "evidence": [
+        "PR #2 finding 4058061259"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V03-004",
+      "name": "Race-safe lease fencing and stale takeover",
+      "type": "source_and_tests",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V03-002",
+        "SB-V03-003"
+      ],
+      "story_points": 5,
+      "evidence": [
+        "PR #2 finding 4058061263"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V03-005",
+      "name": "Shared-runtime persona concurrency isolation",
+      "type": "source_and_tests",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V03-002",
+        "SB-V03-003"
+      ],
+      "story_points": 4,
+      "evidence": [
+        "PR #2 finding 4058061265"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V03-006",
+      "name": "V0.3 adversarial regression acceptance bundle",
+      "type": "acceptance_bundle",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V03-002",
+        "SB-V03-003",
+        "SB-V03-004",
+        "SB-V03-005"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-EVD-001",
+      "name": "In-session worker primitive evidence",
+      "type": "evidence_bundle",
+      "version_gate": "V0.3",
+      "owner": "Claude",
+      "status": "CHANGES_REQUIRED",
+      "canonical_ref": "PR #2 receipts/evidence/SB-002-run/",
+      "depends_on": [
+        "SB-V03-001"
+      ],
+      "story_points": null,
+      "evidence": [
+        "bounded run only; lease logic later found defective; not always-on"
+      ],
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7"
+    },
+    {
+      "id": "SB-V04-001",
+      "name": "Reasoning-provider interface and fail-closed contract",
+      "type": "source_and_contract",
+      "version_gate": "V0.4",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V03-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V04-002",
+      "name": "Adaptive alternative generation and prioritization",
+      "type": "implementation_bundle",
+      "version_gate": "V0.4",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V04-001"
+      ],
+      "story_points": 5,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V04-003",
+      "name": "Deterministic policy boundary around reasoning proposals",
+      "type": "implementation_and_tests",
+      "version_gate": "V0.4",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V04-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V04-004",
+      "name": "Persona/evidence divergence acceptance suite",
+      "type": "test_bundle",
+      "version_gate": "V0.4",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V04-002",
+        "SB-V04-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V05-001",
+      "name": "Machine-captured current-source receipt collector",
+      "type": "implementation_and_evidence",
+      "version_gate": "V0.5",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V04-004"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V05-002",
+      "name": "Claim-to-source factual support review",
+      "type": "implementation_and_tests",
+      "version_gate": "V0.5",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V05-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V07-001",
+      "name": "Authorized-host worker package and runbook",
+      "type": "deployment_artifact",
+      "version_gate": "V0.7",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V03-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V07-002",
+      "name": "Recurring host heartbeat/invocation proof",
+      "type": "evidence_bundle",
+      "version_gate": "V0.7",
+      "owner": "Claude",
+      "status": "BLOCKED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-V07-001"
+      ],
+      "story_points": 4,
+      "evidence": [
+        "authorized always-on host not yet evidenced"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    }
+  ]
+}
