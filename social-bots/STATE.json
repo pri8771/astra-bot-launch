@@ -1,31 +1,76 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T15:54:25-04:00",
+  "updated_at": "2026-09-20T16:55:55-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "planned_for_execution",
+  "implementation_branch": "claude/social-bots-independent-arch-ez64l7",
+  "implementation_pr": 2,
+  "status": "lead_audit_changes_required",
   "runtime_scope": {
     "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
-    "cultural_persona_workspaces_required": 2
+    "general_personas_built": 3,
+    "cultural_persona_workspaces_required": 2,
+    "cultural_persona_workspaces_built": 2
+  },
+  "independence": {
+    "depends_on_swarmai": false,
+    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
   },
   "worker": {
-    "claude": "not_yet_verified_running",
-    "heartbeat": "not_yet_verified",
-    "lease_locking": "not_yet_verified"
+    "implementation": "built",
+    "worker_primitives_verified_in_session": true,
+    "last_verified_heartbeat_at": "2026-09-20T20:36:15+00:00",
+    "last_verified_heartbeat_status": "done",
+    "last_verified_worker_id": "w-vm-726-415fed",
+    "always_on_host_deployed": false,
+    "recurring_worker_liveness": "not_verified",
+    "lead_note": "in-session receipts prove bounded worker primitives only; no always-on host evidence and no newer Claude worker activity verified"
   },
-  "chatgpt_lead": {
-    "hourly_review": "active"
+  "tests": {
+    "claude_reported_local_unittests": 26,
+    "github_ci_status_checks": 0,
+    "lead_acceptance": "not_sufficient_for_merge"
+  },
+  "lead_audit": {
+    "verdict": "changes_required",
+    "accepted": [
+      "SB-003 persona/state contract direction",
+      "SB-002 in-session worker primitive evidence only"
+    ],
+    "partial": ["SB-001", "SB-002 host deployment", "SB-005", "SB-008"],
+    "changes_required": ["SB-004", "SB-006", "SB-007"],
+    "new_p1_correctness_findings": [
+      "research.new_signals returns the full inbox after any fingerprint change, so later signals can be silently skipped",
+      "cultural review failure does not stop experiment registration and enqueue",
+      "stale-lease takeover is not conditionally atomic under concurrent takeover attempts",
+      "lease key includes persona while general/cultural personas share runtime state, allowing concurrent writes to one runtime state"
+    ],
+    "review_source": "PR #2 Codex review on commit 689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
   },
   "account_inventory": {
-    "status": "pending_fresh_verification",
-    "reuse_existing_first": true
+    "status": "metadata_only_no_live_verification",
+    "reuse_existing_first": true,
+    "secrets_committed": false
   },
   "public_actions": {
     "posting_authorized": false,
-    "spend_authorized": false
+    "spend_authorized": false,
+    "customer_messages_authorized": false
   },
-  "next_task": "SB-001"
+  "task_status": {
+    "SB-001": "partial_repair_required",
+    "SB-002": "worker_primitives_verified_in_session; always_on_host_deploy_open",
+    "SB-003": "lead_provisionally_accepted",
+    "SB-004": "changes_required_autonomous_thinking_and_correctness",
+    "SB-005": "partial_metadata_only_no_live_verification",
+    "SB-006": "changes_required_fact_platform_and_review_gating",
+    "SB-007": "changes_required_live_capture_acceptance_and_independent_review",
+    "SB-008": "prepared_not_accepted",
+    "SB-R0": "ready_p1_correctness_repairs",
+    "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
+  },
+  "next_task": "SB-R0: fix four P1 correctness defects with regression tests, then continue SB-R1 autonomy/live-research repair"
 }
