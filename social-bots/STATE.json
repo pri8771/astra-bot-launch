@@ -109,5 +109,17 @@
     ],
     "contract": "VERSION_ROADMAP.md",
     "promotion_rule": "ChatGPT lead evidence acceptance; implementation self-report is insufficient"
-  }
+  },
+  "management_model": {
+    "style": "artifact_oriented",
+    "artifact_registry": "ARTIFACT_INDEX.json",
+    "milestone_manifest": "MILESTONE_MANIFEST.md",
+    "artifact_contract": "ARTIFACT_MANAGEMENT.md",
+    "worker_packets": "artifact-packets/",
+    "status_rule": "version/task status must be derived from accepted artifacts and evidence, not chat claims"
+  },
+  "next_artifacts": [
+    "SB-V03-002",
+    "SB-V03-003"
+  ]
 }
