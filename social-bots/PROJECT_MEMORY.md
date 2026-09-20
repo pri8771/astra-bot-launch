@@ -1,0 +1,39 @@
+# Compact project memory
+
+Updated: 2026-09-20
+
+## Owner intent
+
+- Social bots are required.
+- Autonomous thinking and adaptive learning are the most important capability.
+- ChatGPT is engineering/product lead; Claude Code is the implementation workhorse.
+- Finish the complete launch-ready system as quickly as possible today without fake completion.
+- Reuse existing work, accounts and email infrastructure before creating new infrastructure.
+- No additional spend.
+- Keep this separate from SwarmAI implementation.
+
+## Reconciled inventory
+
+- Three autonomous bot runtimes are the active runtime scope.
+- The later social plan requires three general personas with distinct voices.
+- Two Indian religious/cultural persona workspaces supporting a future Primandir launch remain required and must not be silently dropped. They can share the three-runtime infrastructure rather than require two additional always-on processes.
+- TikTok, Reddit, X, Instagram and Facebook are target surfaces subject to supported access and platform restrictions.
+
+## Historical assets
+
+- `astra-bot-launch` contains September launch planning for One Person Ops, Wait How Big, CommerceLint, BidetFit and Guru. Treat that as reuse evidence, not the current social-bot inventory.
+- `bots/memory/shared/STATE.md` was last updated 2026-09-01 and is historical for current-state claims.
+- Product homes have been verified as existing repositories; current runtime/account behavior still requires fresh evidence.
+
+## Architecture decisions
+
+- Canonical coordination: this directory in `pri8771/astra-bot-launch`.
+- Agent/shared runtime code should reuse `pri8771/bots` where suitable.
+- Product code stays in existing product homes.
+- SwarmAI integration is adapter-based later; social bots do not wait for V3.
+- Public profiles and bot runtimes are separate concepts.
+- Shared admin/account infrastructure is acceptable; deceptive human impersonation is not.
+
+## Safety/authority
+
+No spend, public posting/deployment, customer messages, purchases, destructive actions, fake engagement, coordinated voting manipulation or credential material without explicit authority.
