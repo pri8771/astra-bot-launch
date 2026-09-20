@@ -1,8 +1,10 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T15:53:48-04:00",
+  "updated_at": "2026-09-20T15:54:25-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
+  "setup_branch": "chatgpt/social-bots-plan-20260920",
+  "setup_pr": 1,
   "status": "planned_for_execution",
   "runtime_scope": {
     "autonomous_bots": ["social-a", "social-b", "social-c"],
