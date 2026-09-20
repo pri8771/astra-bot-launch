@@ -2,6 +2,14 @@
 
 Established 2026-09-20 by ChatGPT lead.
 
+## Artifact-first rule
+
+`ARTIFACT_MANAGEMENT.md` is authoritative for how work is represented.
+
+Tasks and story points describe worker packets; durable progress is represented by artifact IDs in `ARTIFACT_INDEX.json`. A task is not complete merely because its implementation steps were performed. The produced/repaired artifact must reach the required status and acceptance evidence.
+
+Where possible, queue entries should reference an artifact ID and a packet under `artifact-packets/`.
+
 ## Lead / worker operating rule
 
 Claude Code is the implementation workhorse.
