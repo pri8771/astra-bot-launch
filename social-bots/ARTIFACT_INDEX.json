@@ -373,6 +373,123 @@
         "current official Reddit Devvit User Actions documentation"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-009",
+      "name": "Fresh Buffer account/workspace/channel readback",
+      "type": "account_verification",
+      "version_gate": "V0.8",
+      "owner": "Claude",
+      "status": "BLOCKED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-008"
+      ],
+      "story_points": 2,
+      "evidence": [
+        "requires authorized browser/account access; reuse existing account first"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-010",
+      "name": "Buffer draft-only publishing adapter and destination validator",
+      "type": "implementation_and_tests",
+      "version_gate": "V0.8",
+      "owner": "Claude",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-009",
+        "SB-V03-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-011",
+      "name": "Three-channel bootstrap allocation decision",
+      "type": "product_decision",
+      "version_gate": "V0.8",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-009",
+        "SB-PER-001"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-012",
+      "name": "Direct Meta fallback research and contract",
+      "type": "lead_research",
+      "version_gate": "V0.8",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-008"
+      ],
+      "story_points": null,
+      "evidence": [
+        "direct Meta official docs need separate verification"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-013",
+      "name": "Reddit compliant persona posting route design",
+      "type": "lead_research_and_contract",
+      "version_gate": "V0.8",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-008"
+      ],
+      "story_points": null,
+      "evidence": [
+        "Devvit user actions official route identified; exact social persona flow pending"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-014",
+      "name": "TikTok direct API fallback contract",
+      "type": "lead_research_and_contract",
+      "version_gate": "V0.8",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "TBD",
+      "depends_on": [
+        "SB-ACC-008"
+      ],
+      "story_points": null,
+      "evidence": [
+        "direct route requires app/scope authorization and public-post audit"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-ACC-015",
+      "name": "X direct API route",
+      "type": "external_route",
+      "version_gate": "V0.8",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/PLATFORM_ROUTE_RESEARCH.md",
+      "depends_on": [
+        "SB-ACC-008"
+      ],
+      "story_points": null,
+      "evidence": [
+        "official X API is pay-per-use; no additional spend authorized"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
   ]
 }
