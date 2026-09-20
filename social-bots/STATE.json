@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T17:52:45-04:00",
+  "updated_at": "2026-09-20T18:54:54-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -31,7 +31,7 @@
     "last_verified_worker_id": "w-vm-726-415fed",
     "always_on_host_deployed": false,
     "recurring_worker_liveness": "not_verified",
-    "lead_note": "No newer worker heartbeat or Claude implementation activity was verified at the 2026-09-20T17:52:45-04:00 lead review. In-session receipts prove bounded worker primitives only; no always-on host evidence exists."
+    "lead_note": "No newer worker heartbeat, invocation receipt, or Claude implementation activity was verified at the 2026-09-20T18:54:54-04:00 lead review. The committed heartbeat is terminal status done on host_alias local, so recurring/always-on liveness remains unproven."
   },
   "tests": {
     "claude_reported_local_unittests": 26,
@@ -64,10 +64,11 @@
     "review_source": "PR #2 Codex review on commit 689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
   },
   "chatgpt_lead": {
-    "last_review_at": "2026-09-20T17:52:45-04:00",
-    "last_verified_setup_pr_head": "8e9f778bddf767054b925e410438561d716ef26f",
+    "last_review_at": "2026-09-20T18:54:54-04:00",
+    "last_verified_setup_pr_head": "87a4d4c1cb6053e91f5ce9f24a0e642016fa7597",
     "last_verified_implementation_pr_head": "857bb96a77c1d567b1cc9b87acf0193c174797bb",
     "last_verified_claude_implementation_commit": "689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "last_coordination_message_commit": "3aa90fa9262ecc5eadfdd7558e7bc8118a29df34",
     "new_worker_activity_since_previous_review": false,
     "new_implementation_activity_since_previous_review": false
   },
@@ -93,5 +94,5 @@
     "SB-R0": "ready_p1_correctness_repairs",
     "SB-R1": "ready_after_or_parallel_with_safe_parts_of_SB-R0"
   },
-  "next_task": "SB-R0A: fix signal-delta handling and failed-review gating with regression tests; then SB-R0B lease concurrency fixes"
+  "next_task": "SB-R0A: fix signal-delta handling and failed-review gating with regression tests; push exact source/test evidence for lead audit before SB-R0B"
 }
