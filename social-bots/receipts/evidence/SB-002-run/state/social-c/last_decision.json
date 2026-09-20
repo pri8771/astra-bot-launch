@@ -1,0 +1,57 @@
+{
+  "alternatives": [
+    {
+      "action": "NO_ACTION",
+      "duplication_risk": 0.0,
+      "expected_learning": 0.0,
+      "expected_value": 0.05,
+      "rationale": "no changed evidence since last observation",
+      "reversibility": 1.0,
+      "risk": 0.0
+    }
+  ],
+  "bot": "social-c",
+  "chosen": {
+    "action": "NO_ACTION",
+    "duplication_risk": 0.0,
+    "expected_learning": 0.0,
+    "expected_value": 0.05,
+    "rationale": "no changed evidence since last observation",
+    "reversibility": 1.0,
+    "risk": 0.0
+  },
+  "chosen_reason": "no changed evidence since last observation",
+  "cycle": 1,
+  "execute": {
+    "effect": "none",
+    "performed": false
+  },
+  "learn": {
+    "updated": false
+  },
+  "observe": {
+    "changed": false,
+    "current_fingerprint": null,
+    "prior_fingerprint": null,
+    "signal_count": 0
+  },
+  "orient": {
+    "inferred": [],
+    "known": [],
+    "objective": "grow early-engagement-velocity for Switchboard via evidence-based experiments",
+    "summary": "no new signals; nothing to reconsider",
+    "uncertain": []
+  },
+  "persona": "social-c",
+  "recorded_at": "2026-09-20T20:36:15+00:00",
+  "required_authority": "none",
+  "schedule": {
+    "next_check_in_hours": 24,
+    "note": "wait on events/timers, not constant polling",
+    "trigger": "deterministic timer + new-signal event"
+  },
+  "verify": {
+    "note": "no effect to verify",
+    "verified": true
+  }
+}

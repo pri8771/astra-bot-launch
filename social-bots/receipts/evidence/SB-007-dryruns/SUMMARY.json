@@ -1,0 +1,330 @@
+{
+  "all_pass": true,
+  "cultural_run": {
+    "cultural_status": "WITHHELD",
+    "pass": true,
+    "persona": "cultural-primandir-atman",
+    "reason": "no named cultural reviewer and/or source; WITHHELD per contract",
+    "review_passed": false
+  },
+  "runs": [
+    {
+      "alternatives": [
+        {
+          "action": "CREATE_CANDIDATE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.8,
+          "expected_value": 0.7,
+          "rationale": "turn signal sig-8f68784a680c into a reviewed, queued (unpublished) candidate",
+          "reversibility": 1.0,
+          "risk": 0.15,
+          "score": 2.25
+        },
+        {
+          "action": "RESEARCH_MORE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.5,
+          "expected_value": 0.2,
+          "rationale": "gather more signals before committing an angle",
+          "reversibility": 1.0,
+          "risk": 0.1,
+          "score": 1.36
+        },
+        {
+          "action": "NO_ACTION",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.0,
+          "expected_value": 0.05,
+          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "reversibility": 1.0,
+          "risk": 0.0,
+          "score": 0.745
+        }
+      ],
+      "bot": "social-a",
+      "candidate": {
+        "content_id": "c-79a113116532",
+        "platform": "x",
+        "publish_authorized": false,
+        "published": false,
+        "queued": true,
+        "text_preview": "[The Ledger] METR RCT: experienced devs 19% slower with AI tools\n\nAngle (show-the-arithmetic): A 2026 randomized controlled trial found experienced developers were 19% slower using"
+      },
+      "checks": {
+        "autonomous_create": true,
+        "experiment_registered": true,
+        "learning_persisted": true,
+        "next_check_scheduled": true,
+        "no_publish": true,
+        "real_research_input": true,
+        "reviewed": true
+      },
+      "decision": {
+        "action": "CREATE_CANDIDATE",
+        "duplication_risk": 0.0,
+        "expected_learning": 0.8,
+        "expected_value": 0.7,
+        "rationale": "turn signal sig-8f68784a680c into a reviewed, queued (unpublished) candidate",
+        "reversibility": 1.0,
+        "risk": 0.15,
+        "score": 2.25
+      },
+      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "experiment": {
+        "hypothesis": "An account that reliably shows its arithmetic earns saves and high-quality replies even with modest reach.",
+        "id": "exp-c-79a113116532",
+        "observation_window_hours": 48,
+        "stop_criteria": "no lift above baseline noise within window; or policy flag",
+        "success_metric": "reply-quality"
+      },
+      "learning": {
+        "confidence": 0.5,
+        "hypothesis_id": "h-social-a-exp-c-79a113116532",
+        "note": "hypothesis registered; confidence updates only after real post-window evidence",
+        "updated": true
+      },
+      "next_observation": {
+        "next_check_in_hours": 6,
+        "note": "wait on events/timers, not constant polling",
+        "trigger": "deterministic timer + new-signal event"
+      },
+      "observe": {
+        "changed": true,
+        "current_fingerprint": "58d1c9c4ff9d9f19",
+        "prior_fingerprint": null,
+        "signal_count": 1
+      },
+      "orient": {
+        "inferred": [
+          "topic tags: ['automation-roi', 'debunking-hype', 'measurement']"
+        ],
+        "known": [
+          "signal sig-8f68784a680c from METR / UC Today AI productivity reports 2026 (live-capture)"
+        ],
+        "objective": "grow reply-quality for The Ledger via evidence-based experiments",
+        "summary": "1 signal(s) present; evidence fingerprint changed",
+        "uncertain": [
+          "external audience reaction (no post yet)"
+        ]
+      },
+      "pass": true,
+      "persona": "social-a",
+      "review": {
+        "review_passed": true,
+        "within_platform_limit": false
+      }
+    },
+    {
+      "alternatives": [
+        {
+          "action": "CREATE_CANDIDATE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.8,
+          "expected_value": 0.7,
+          "rationale": "turn signal sig-81ccc7e7f9fa into a reviewed, queued (unpublished) candidate",
+          "reversibility": 1.0,
+          "risk": 0.15,
+          "score": 2.25
+        },
+        {
+          "action": "RESEARCH_MORE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.5,
+          "expected_value": 0.2,
+          "rationale": "gather more signals before committing an angle",
+          "reversibility": 1.0,
+          "risk": 0.1,
+          "score": 1.36
+        },
+        {
+          "action": "NO_ACTION",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.0,
+          "expected_value": 0.05,
+          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "reversibility": 1.0,
+          "risk": 0.0,
+          "score": 0.745
+        }
+      ],
+      "bot": "social-b",
+      "candidate": {
+        "content_id": "c-8b1d40a963fd",
+        "platform": "instagram",
+        "publish_authorized": false,
+        "published": false,
+        "queued": true,
+        "text_preview": "[Tidepool] Ordinary sunlight turned into a source of quantum entanglement\n\nAngle (everyday-object-as-hook): Scientists turned ordinary sunlight into a source of quantum entanglemen"
+      },
+      "checks": {
+        "autonomous_create": true,
+        "experiment_registered": true,
+        "learning_persisted": true,
+        "next_check_scheduled": true,
+        "no_publish": true,
+        "real_research_input": true,
+        "reviewed": true
+      },
+      "decision": {
+        "action": "CREATE_CANDIDATE",
+        "duplication_risk": 0.0,
+        "expected_learning": 0.8,
+        "expected_value": 0.7,
+        "rationale": "turn signal sig-81ccc7e7f9fa into a reviewed, queued (unpublished) candidate",
+        "reversibility": 1.0,
+        "risk": 0.15,
+        "score": 2.25
+      },
+      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "experiment": {
+        "hypothesis": "Sensory, non-alarmist science earns shares from people who rarely share 'science'.",
+        "id": "exp-c-8b1d40a963fd",
+        "observation_window_hours": 48,
+        "stop_criteria": "no lift above baseline noise within window; or policy flag",
+        "success_metric": "shares"
+      },
+      "learning": {
+        "confidence": 0.5,
+        "hypothesis_id": "h-social-b-exp-c-8b1d40a963fd",
+        "note": "hypothesis registered; confidence updates only after real post-window evidence",
+        "updated": true
+      },
+      "next_observation": {
+        "next_check_in_hours": 6,
+        "note": "wait on events/timers, not constant polling",
+        "trigger": "deterministic timer + new-signal event"
+      },
+      "observe": {
+        "changed": true,
+        "current_fingerprint": "4700506aec2cdf05",
+        "prior_fingerprint": null,
+        "signal_count": 1
+      },
+      "orient": {
+        "inferred": [
+          "topic tags: ['everyday-physics', 'how-things-work', 'scale-and-awe']"
+        ],
+        "known": [
+          "signal sig-81ccc7e7f9fa from ScienceDaily physics, Sept 2026 (live-capture)"
+        ],
+        "objective": "grow shares for Tidepool via evidence-based experiments",
+        "summary": "1 signal(s) present; evidence fingerprint changed",
+        "uncertain": [
+          "external audience reaction (no post yet)"
+        ]
+      },
+      "pass": true,
+      "persona": "social-b",
+      "review": {
+        "review_passed": true,
+        "within_platform_limit": true
+      }
+    },
+    {
+      "alternatives": [
+        {
+          "action": "CREATE_CANDIDATE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.8,
+          "expected_value": 0.7,
+          "rationale": "turn signal sig-9593340dd96d into a reviewed, queued (unpublished) candidate",
+          "reversibility": 1.0,
+          "risk": 0.15,
+          "score": 2.25
+        },
+        {
+          "action": "RESEARCH_MORE",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.5,
+          "expected_value": 0.2,
+          "rationale": "gather more signals before committing an angle",
+          "reversibility": 1.0,
+          "risk": 0.1,
+          "score": 1.36
+        },
+        {
+          "action": "NO_ACTION",
+          "duplication_risk": 0.0,
+          "expected_learning": 0.0,
+          "expected_value": 0.05,
+          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "reversibility": 1.0,
+          "risk": 0.0,
+          "score": 0.745
+        }
+      ],
+      "bot": "social-c",
+      "candidate": {
+        "content_id": "c-999530ca5437",
+        "platform": "tiktok",
+        "publish_authorized": false,
+        "published": false,
+        "queued": true,
+        "text_preview": "[Switchboard] 2026 feeds split: maximalist-playful vs stripped-down-unproduced\n\nAngle (hot-take-then-caveat): Sept 2026 platforms reward creator-led, authentic, lower-follower voic"
+      },
+      "checks": {
+        "autonomous_create": true,
+        "experiment_registered": true,
+        "learning_persisted": true,
+        "next_check_scheduled": true,
+        "no_publish": true,
+        "real_research_input": true,
+        "reviewed": true
+      },
+      "decision": {
+        "action": "CREATE_CANDIDATE",
+        "duplication_risk": 0.0,
+        "expected_learning": 0.8,
+        "expected_value": 0.7,
+        "rationale": "turn signal sig-9593340dd96d into a reviewed, queued (unpublished) candidate",
+        "reversibility": 1.0,
+        "risk": 0.15,
+        "score": 2.25
+      },
+      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "experiment": {
+        "hypothesis": "A distinct comedic voice with a real point of view retains better than trend-chasing alone.",
+        "id": "exp-c-999530ca5437",
+        "observation_window_hours": 48,
+        "stop_criteria": "no lift above baseline noise within window; or policy flag",
+        "success_metric": "early-engagement-velocity"
+      },
+      "learning": {
+        "confidence": 0.5,
+        "hypothesis_id": "h-social-c-exp-c-999530ca5437",
+        "note": "hypothesis registered; confidence updates only after real post-window evidence",
+        "updated": true
+      },
+      "next_observation": {
+        "next_check_in_hours": 6,
+        "note": "wait on events/timers, not constant polling",
+        "trigger": "deterministic timer + new-signal event"
+      },
+      "observe": {
+        "changed": true,
+        "current_fingerprint": "8ff0530b00380147",
+        "prior_fingerprint": null,
+        "signal_count": 1
+      },
+      "orient": {
+        "inferred": [
+          "topic tags: ['creator-economy', 'internet-culture', 'platform-mechanics']"
+        ],
+        "known": [
+          "signal sig-9593340dd96d from Sprout Social / Hootsuite 2026 trends (live-capture)"
+        ],
+        "objective": "grow early-engagement-velocity for Switchboard via evidence-based experiments",
+        "summary": "1 signal(s) present; evidence fingerprint changed",
+        "uncertain": [
+          "external audience reaction (no post yet)"
+        ]
+      },
+      "pass": true,
+      "persona": "social-c",
+      "review": {
+        "review_passed": true,
+        "within_platform_limit": true
+      }
+    }
+  ]
+}

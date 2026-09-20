@@ -1,31 +1,102 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T15:54:25-04:00",
+  "updated_at": "2026-09-20T16:48:00-04:00",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
+  "implementation_branch": "claude/social-bots-independent-arch-ez64l7",
   "setup_pr": 1,
-  "status": "planned_for_execution",
+  "status": "lead_audit_changes_required",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
-    "cultural_persona_workspaces_required": 2
+    "general_personas_built": 3,
+    "cultural_persona_workspaces_required": 2,
+    "cultural_persona_workspaces_built": 2
+  },
+  "independence": {
+    "depends_on_swarmai": false,
+    "external_runtime_deps": "none (Python 3.11 stdlib only)"
   },
   "worker": {
-    "claude": "not_yet_verified_running",
-    "heartbeat": "not_yet_verified",
-    "lease_locking": "not_yet_verified"
+    "implementation": "built (runtime/worker.py, leasing, heartbeat, receipts)",
+    "verified_running_in_session": true,
+    "evidence": "receipts/evidence/SB-002-run/SUMMARY.json (all_pass=true)",
+    "proofs": [
+      "two_invocations",
+      "heartbeat",
+      "atomic_lease",
+      "no_overlap_rejection",
+      "stale_recovery",
+      "restart_resume"
+    ],
+    "deployed_on_owner_always_on_host": false,
+    "host_deploy_blocker": "no authorized always-on host / credential facility reachable from this session (see LAUNCH_GATE_PACKET.md G1)"
+  },
+  "tests": {
+    "framework": "python3 -m unittest",
+    "count": 26,
+    "passing": 26
+  },
+  "dry_runs": {
+    "general_personas": 3,
+    "evidence": "receipts/evidence/SB-007-dryruns/SUMMARY.json (all_pass=true)",
+    "real_research_inputs": "unverified_by_lead",
+    "external_publication": false,
+    "cultural_review_gate": "WITHHELD (correct)"
   },
   "chatgpt_lead": {
     "hourly_review": "active"
   },
   "account_inventory": {
-    "status": "pending_fresh_verification",
-    "reuse_existing_first": true
+    "status": "mapped_metadata_only_no_verification",
+    "map": "ACCOUNT_BROWSER_MAP.md",
+    "reuse_existing_first": true,
+    "secrets_committed": false
   },
   "public_actions": {
     "posting_authorized": false,
     "spend_authorized": false
   },
-  "next_task": "SB-001"
+  "task_status": {
+    "SB-001": "partial_repair_required",
+    "SB-002": "worker_primitives_verified_in_session; always_on_host_deploy_open",
+    "SB-003": "lead_provisionally_accepted",
+    "SB-004": "changes_required_autonomous_thinking",
+    "SB-005": "partial_metadata_only_no_live_verification",
+    "SB-006": "changes_required_fact_and_platform_review",
+    "SB-007": "changes_required_live_capture_and_independent_review",
+    "SB-008": "prepared_not_accepted"
+  },
+  "next_task": "SB-R1: autonomy + live research + review repair tranche",
+  "lead_audit": {
+    "verdict": "changes_required",
+    "pr": 2,
+    "accepted": [
+      "SB-003",
+      "SB-002-worker-primitives-in-session"
+    ],
+    "partial": [
+      "SB-001",
+      "SB-002-host-deploy",
+      "SB-005",
+      "SB-008"
+    ],
+    "changes_required": [
+      "SB-004",
+      "SB-006",
+      "SB-007"
+    ],
+    "findings": [
+      "decision alternatives/scores are hard-coded and identical across dry runs",
+      "dry-run live-capture evidence is embedded constants with caller-supplied provenance",
+      "social-a dry run passes despite within_platform_limit=false",
+      "fact review checks source presence, not factual support",
+      "independent review receipt missing for final dry-run candidates"
+    ]
+  }
 }

@@ -1,0 +1,20 @@
+# Runtime-generated per-bot state (created when the worker runs with the default
+# SBOTS_HOME == this directory). Committed evidence lives under receipts/evidence/.
+/state/
+/memory/
+/experiments/
+/analytics/
+/content/
+/leases/
+/heartbeats/
+/receipts/social-a/
+/receipts/social-b/
+/receipts/social-c/
+/receipts/shared/
+
+# Keep committed evidence trees.
+!/receipts/evidence/
+
+__pycache__/
+*.pyc
+*.pyo

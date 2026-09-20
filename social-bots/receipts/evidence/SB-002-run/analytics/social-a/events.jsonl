@@ -1,0 +1,2 @@
+{"account_alias": null, "bot": "social-a", "content_id": "c-8653d08d7d98", "event_type": "candidate_created", "experiment_id": "exp-c-8653d08d7d98", "metrics": {}, "observed_at": "2026-09-20T20:36:15+00:00", "persona": "social-a", "platform": "x", "publication_id": null}
+{"account_alias": null, "bot": "social-a", "content_id": "c-8653d08d7d98", "event_type": "queued", "experiment_id": "exp-c-8653d08d7d98", "metrics": {"publish_authorized": 0}, "observed_at": "2026-09-20T20:36:15+00:00", "persona": "social-a", "platform": "x", "publication_id": null}

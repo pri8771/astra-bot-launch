@@ -1,0 +1,38 @@
+{
+  "all_pass": true,
+  "checks": {
+    "heartbeat": {
+      "beats": 4,
+      "pass": true,
+      "pid": 726,
+      "status": "done",
+      "worker_id": "w-vm-726-415fed"
+    },
+    "no_overlap": {
+      "pass": true,
+      "second_worker_rejected": true
+    },
+    "restart_resume": {
+      "first": "CREATE_CANDIDATE",
+      "pass": true,
+      "second": "NO_ACTION"
+    },
+    "stale_recovery": {
+      "dead_lease": "5bd3371d94ba4b2b87dba7951ec4f811",
+      "pass": true,
+      "took_over_from": "5bd3371d94ba4b2b87dba7951ec4f811"
+    },
+    "two_invocations": {
+      "invocation_1_action": "CREATE_CANDIDATE",
+      "invocation_2_action": "NO_ACTION",
+      "pass": true,
+      "start_receipts": 2
+    }
+  },
+  "evidence_dir": "social-bots/receipts/evidence/SB-002-run",
+  "worker_ids": [
+    "w-vm-726-06172a",
+    "w-vm-726-415fed",
+    "w-vm-726-78431b"
+  ]
+}

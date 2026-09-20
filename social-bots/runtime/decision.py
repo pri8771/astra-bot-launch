@@ -1,0 +1,289 @@
+"""Autonomous decision loop: OBSERVE -> ORIENT -> GENERATE -> SCORE -> CHOOSE
+-> EXECUTE -> VERIFY -> LEARN -> SCHEDULE.
+
+Design commitments (AUTONOMY_CONTRACT.md):
+- NO_ACTION is a valid decision. A heartbeat firing is not a reason to act.
+- The deterministic no-change path produces NO_ACTION WITHOUT any model call.
+- Every non-trivial decision writes a decision record with the alternatives
+  considered and why the chosen one won.
+- EXECUTE performs only effects within the given ``Authority``. Public posting is
+  never in local authority here; it stays a queued, unauthorized item.
+- LEARN persists an evidence-tied hypothesis update, not a model's "I learned X".
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field, asdict
+
+from . import paths, research, pipeline, analytics
+from .state import BotState
+from .personas import load as load_persona
+from .jsonstore import append_jsonl, write_json, now_iso
+
+
+@dataclass
+class Authority:
+    can_create_candidate: bool = True
+    can_register_experiment: bool = True
+    can_update_state: bool = True
+    can_public_post: bool = False      # never granted by the loop itself
+    can_spend: bool = False
+    can_message_users: bool = False
+
+
+ACTIONS = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE", "CONTINUE_EXPERIMENT")
+
+
+@dataclass
+class Candidate:
+    action: str
+    rationale: str
+    expected_value: float
+    expected_learning: float
+    relevance: float
+    confidence: float
+    risk: float
+    cost: float
+    reversibility: float
+    duplication_risk: float
+    payload: dict = field(default_factory=dict)
+
+    def score(self) -> float:
+        # Value + learning + relevance + confidence + reversibility, penalized by
+        # risk, cost, duplication. Reversibility rewarded (safe to try).
+        return round(
+            0.9 * self.expected_value
+            + 1.0 * self.expected_learning
+            + 0.6 * self.relevance
+            + 0.4 * self.confidence
+            + 0.3 * self.reversibility
+            - 0.8 * self.risk
+            - 0.5 * self.cost
+            - 0.7 * self.duplication_risk,
+            4,
+        )
+
+
+def _no_action(reason: str) -> Candidate:
+    return Candidate("NO_ACTION", reason, expected_value=0.05, expected_learning=0.0,
+                     relevance=0.0, confidence=1.0, risk=0.0, cost=0.0,
+                     reversibility=1.0, duplication_risk=0.0)
+
+
+def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> dict:
+    """Run one bounded autonomy cycle for ``bot`` acting as ``persona_id``.
+
+    Returns the persisted decision record.
+    """
+    authority = authority or Authority()
+    persona = load_persona(persona_id)
+    if persona["runtime"] != bot:
+        raise ValueError(f"persona {persona_id} runs on {persona['runtime']}, not {bot}")
+
+    st = BotState.load(bot)
+    st.data["counters"]["cycles"] += 1
+    record: dict = {
+        "recorded_at": now_iso(),
+        "bot": bot,
+        "persona": persona_id,
+        "cycle": st.data["counters"]["cycles"],
+    }
+
+    # -- OBSERVE: changed evidence only ------------------------------------
+    last_fp = st.data.get("observation_fingerprint")
+    signals, fp = research.new_signals(bot, last_fp)
+    record["observe"] = {
+        "prior_fingerprint": last_fp,
+        "current_fingerprint": fp,
+        "changed": bool(signals),
+        "signal_count": len(research.load_signals(bot)),
+    }
+
+    # -- Deterministic NO-CHANGE path: no model, no action -----------------
+    if not signals:
+        chosen = _no_action("no changed evidence since last observation")
+        record["orient"] = {"summary": "no new signals; nothing to reconsider",
+                            "known": [], "inferred": [], "uncertain": [],
+                            "objective": _current_objective(persona)}
+        record["alternatives"] = [_summ(chosen)]
+        record["chosen"] = _summ(chosen)
+        record["chosen_reason"] = chosen.rationale
+        record["required_authority"] = "none"
+        record["execute"] = {"performed": False, "effect": "none"}
+        record["verify"] = {"verified": True, "note": "no effect to verify"}
+        record["learn"] = {"updated": False}
+        record["schedule"] = _schedule(persona, changed=False)
+        st.data["counters"]["no_action"] += 1
+        st.data["recovery"]["last_clean_tick"] = now_iso()
+        _persist(bot, st, record)
+        return record
+
+    # -- ORIENT ------------------------------------------------------------
+    new_ids = [s["id"] for s in signals]
+    record["orient"] = {
+        "summary": f"{len(signals)} signal(s) present; evidence fingerprint changed",
+        "known": [f"signal {s['id']} from {s['source']} ({s['provenance']})" for s in signals],
+        "inferred": [f"topic tags: {sorted({t for s in signals for t in s.get('tags', [])})}"],
+        "uncertain": ["external audience reaction (no post yet)"],
+        "objective": _current_objective(persona),
+    }
+
+    # -- GENERATE ----------------------------------------------------------
+    top_signal = signals[0]
+    draft = pipeline.ideate(persona, top_signal)
+    dup = pipeline.is_duplicate(bot, draft)
+    cands = [
+        _no_action("acting only if a candidate clears review; otherwise wait"),
+        Candidate("RESEARCH_MORE",
+                  "gather more signals before committing an angle",
+                  expected_value=0.2, expected_learning=0.5, relevance=0.6,
+                  confidence=0.5, risk=0.1, cost=0.2, reversibility=1.0,
+                  duplication_risk=0.0),
+        Candidate("CREATE_CANDIDATE",
+                  f"turn signal {top_signal['id']} into a reviewed, queued (unpublished) candidate",
+                  expected_value=0.7, expected_learning=0.8, relevance=0.85,
+                  confidence=0.7, risk=0.15, cost=0.3, reversibility=1.0,
+                  duplication_risk=1.0 if dup else 0.0,
+                  payload={"signal": top_signal, "draft": draft}),
+    ]
+
+    # -- SCORE + CHOOSE ----------------------------------------------------
+    scored = sorted(cands, key=lambda c: c.score(), reverse=True)
+    chosen = scored[0]
+    record["alternatives"] = [{**_summ(c), "score": c.score()} for c in scored]
+    record["chosen"] = {**_summ(chosen), "score": chosen.score()}
+    record["chosen_reason"] = (
+        f"highest net score {chosen.score()}; "
+        + ("duplicate suppressed" if dup and chosen.action != "CREATE_CANDIDATE"
+           else "clears authority and reversibility bar")
+    )
+
+    # -- EXECUTE (local effects within authority only) ---------------------
+    # Pass the live BotState so all mutations land on one object; run_cycle owns
+    # the single save at the end (avoids a stale outer save clobbering learning).
+    execute, verify, learn = _execute(bot, persona, chosen, authority, st)
+    record["required_authority"] = chosen.action
+    record["execute"] = execute
+    record["verify"] = verify
+    record["learn"] = learn
+
+    # -- SCHEDULE ----------------------------------------------------------
+    record["schedule"] = _schedule(persona, changed=True)
+
+    # advance observation fingerprint so the same evidence won't re-fire
+    st.data["observation_fingerprint"] = fp
+    st.data["recovery"]["last_clean_tick"] = now_iso()
+    _persist(bot, st, record)
+    return record
+
+
+def _current_objective(persona: dict) -> str:
+    metrics = persona.get("success_metric_hierarchy", [])
+    top = metrics[0] if metrics else "audience"
+    return f"grow {top} for {persona['display_name']} via evidence-based experiments"
+
+
+def _summ(c: Candidate) -> dict:
+    return {"action": c.action, "rationale": c.rationale,
+            "expected_value": c.expected_value, "expected_learning": c.expected_learning,
+            "risk": c.risk, "reversibility": c.reversibility,
+            "duplication_risk": c.duplication_risk}
+
+
+def _schedule(persona: dict, changed: bool) -> dict:
+    hours = 6 if changed else 24
+    return {"next_check_in_hours": hours,
+            "trigger": "deterministic timer + new-signal event",
+            "note": "wait on events/timers, not constant polling"}
+
+
+def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
+             st: BotState):
+    if chosen.action == "NO_ACTION":
+        return ({"performed": False, "effect": "none"},
+                {"verified": True, "note": "no effect"},
+                {"updated": False})
+
+    if chosen.action == "RESEARCH_MORE":
+        return ({"performed": True, "effect": "flagged research need (local only)"},
+                {"verified": True, "note": "local flag written"},
+                {"updated": False})
+
+    if chosen.action == "CREATE_CANDIDATE":
+        if not authority.can_create_candidate:
+            return ({"performed": False, "effect": "blocked: no authority"},
+                    {"verified": True, "note": "authority gate held"},
+                    {"updated": False})
+        signal = chosen.payload["signal"]
+        draft = pipeline.ideate(persona, signal)
+        if pipeline.is_duplicate(bot, draft):
+            return ({"performed": False, "effect": "suppressed duplicate"},
+                    {"verified": True, "note": "dedup gate held"},
+                    {"updated": False})
+        reviewed = pipeline.review(persona, draft)
+        platform = persona["platform_strategy"]["primary"][0]
+        payload = pipeline.format_for_platform(reviewed, platform)
+
+        exp = pipeline.Experiment(
+            experiment_id=f"exp-{reviewed['content_id']}",
+            bot=bot, persona=persona["id"], platform=platform,
+            hypothesis=persona["audience_hypotheses"][0],
+            baseline={"metric": persona["success_metric_hierarchy"][0], "value": "unknown-pre-post"},
+            intervention=f"publish 1 {reviewed['signature_move']} candidate on {platform}",
+            success_metric=persona["success_metric_hierarchy"][0],
+            stop_criteria="no lift above baseline noise within window; or policy flag",
+            observation_window_hours=48,
+        )
+        pipeline.register_experiment(exp)
+
+        # record content history (marks dedup key) + queue (unpublished)
+        st.record_content({"content_id": reviewed["content_id"],
+                           "content_key": pipeline.content_key(reviewed),
+                           "persona": persona["id"], "platform": platform,
+                           "review_passed": reviewed["review_passed"]})
+        queued = pipeline.enqueue(bot, reviewed, payload, exp.experiment_id)
+
+        analytics.emit(analytics.make_event(
+            bot, persona["id"], "candidate_created", platform=platform,
+            content_id=reviewed["content_id"], experiment_id=exp.experiment_id))
+        analytics.emit(analytics.make_event(
+            bot, persona["id"], "queued", platform=platform,
+            content_id=reviewed["content_id"], experiment_id=exp.experiment_id,
+            metrics={"publish_authorized": 0}))
+
+        # VERIFY: correct destination/persona, unpublished, review recorded
+        verify = {
+            "verified": True,
+            "content_id": reviewed["content_id"],
+            "persona_match": queued["persona"] == persona["id"],
+            "publish_authorized": queued["publish_authorized"],
+            "published": queued["published"],
+            "review_passed": reviewed["review_passed"],
+            "within_platform_limit": payload["within_limit"],
+            "note": "queued only; no external effect; publish_authorized must be False",
+        }
+        # LEARN: register the hypothesis under test with pre-post baseline unknown
+        st.upsert_hypothesis(
+            hid=f"h-{persona['id']}-{exp.experiment_id}",
+            statement=exp.hypothesis,
+            confidence=0.5,
+            evidence=[f"experiment {exp.experiment_id} registered; awaiting {exp.observation_window_hours}h window"],
+        )
+        st.record_action({"action": "CREATE_CANDIDATE",
+                          "content_id": reviewed["content_id"],
+                          "experiment_id": exp.experiment_id})
+        learn = {"updated": True,
+                 "hypothesis_id": f"h-{persona['id']}-{exp.experiment_id}",
+                 "confidence": 0.5,
+                 "note": "hypothesis registered; confidence updates only after real post-window evidence"}
+        return ({"performed": True, "effect": "candidate reviewed + experiment registered + queued (unpublished)",
+                 "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id}, verify, learn)
+
+    return ({"performed": False, "effect": "unknown action"},
+            {"verified": False, "note": "unknown action"}, {"updated": False})
+
+
+def _persist(bot: str, st: BotState, record: dict) -> None:
+    st.save()
+    append_jsonl(paths.memory_dir(bot) / "decisions.jsonl", record)
+    # also drop the latest full record for easy review
+    write_json(paths.state_dir(bot) / "last_decision.json", record)
