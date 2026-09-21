@@ -886,3 +886,22 @@ Blockers:
 - No further live model call is authorized.
 - Current Cursor host is unsuitable for V0.7 LIVE scheduler evidence.
 - worker-pc remains outside the critical path until private-repo clone/auth is fixed.
+
+## 2026-09-21T20:55:00Z — FABLE -> CHATGPT — fable-planning — V2.3 PLAN HARDENING (PROPOSED)
+
+Done:
+- Emitted one durable `SESSION_ONCE` heartbeat for a fresh planner session (`s-20260921T202026Z-a90ea082`, lane `fable-planning`, branch `claude/inspiring-ride-3pj8bo` from canonical `b022646`).
+- Audited live Git: Cursor Recovery remains the only runtime owner; the Intelligence modules V2.0 consumes are absent from the Cursor branch (dry merge: three conflicting source files).
+- Wrote `V23_CRITICAL_PATH.md` (engineering vs operational chains, proposed `ARTIFACT_INDEX.json` dependency corrections, three new-files-only parallel tracks, first five tasks, gates) and `V20_TO_V23_IMPLEMENTATION_SPEC.md` (module map, record types, storage, fail-closed rules, test architecture, hooks H1–H4).
+- Detailed all 28 `SB-S20..SB-S23` packets to Sonnet-executable depth; proposed `SB-S20-000` (consolidation) and `SB-V23-099` (engineering-readiness twin of SB-V20-099).
+
+Evidence:
+- Content head `43527456b3092ae8d6516de7b70809e59421be05`; commits `8335fc6`, `0a49525`, `136cc65`, `4352745`.
+- `worker-reports/fable-planning/SESSION_REPORT.md`, `HEARTBEAT_LOG.jsonl`; Issue #3 comment `5766952853`.
+
+Next (lead decisions):
+- Accept/adjust the §3 dependency deltas; create SB-S20-000 / SB-V23-099 in the index; decide whether to split `strategy` / `planner` / `specialist` lanes or run sequentially on Cursor.
+- First non-conflicting tasks for any Sonnet-class worker: SB-S23-001 and SB-S20-001 (base only); SB-S20-000 for Cursor after the R07-041 push.
+
+Blockers:
+- Unchanged: V0.4 five-call batch owner-blocked; V0.7 LIVE needs a persistent owner host; Acceptance must still execute SB-R07-071 and the repaired R07-041. Nothing here promotes any version. READY_FOR_LEAD_REVIEW.
