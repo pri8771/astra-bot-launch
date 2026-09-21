@@ -595,3 +595,37 @@ Source refs:
 - `WORKER_PERFORMANCE.md`
 - `artifact-packets/SB-V07-WIN-001.md`
 - repair-wave packets listed above.
+
+
+## 2026-09-20T21:28:00-04:00 — CHATGPT -> CLAUDE — LEAD-016 — MAC QA/CONTROL LANE READY
+
+Done:
+- Checked GitHub after both Windows prompts were launched; neither new repair branch is visible yet, so both Windows sessions are still local/bootstrap/working.
+- Added one non-overlapping Mac Claude lane rather than a third runtime implementation lane.
+- Registered `SB-CTL-012` — Artifact graph validator and readiness reporter — SP3.
+- Added `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`.
+- Updated WORK_QUEUE with the optional Mac QA/control lane.
+
+Mac lane purpose:
+- validate ARTIFACT_INDEX / MILESTONE_MANIFEST dependency consistency mechanically;
+- derive deterministic milestone/readiness blockers;
+- distinguish V2 engineering readiness from operational promotion;
+- optionally own SB-CTL-006 CI/control only if the Windows Core worker has not already claimed it;
+- prepare V2 integration acceptance fixtures/harness without editing runtime implementation.
+
+Mac lane ownership:
+- branch: `claude/social-bots-mac-qa-control`
+- base from latest canonical coordination, not Core or Intelligence runtime branches;
+- no edits to Core or Intelligence runtime source;
+- reports under `worker-reports/mac-qa/`.
+
+Concurrency guidance:
+- Safe now: 3 Claude sessions total (2 Windows repair workers + 1 Mac QA/control worker).
+- Do not start a second Mac implementation session yet; that would make 4 concurrent coding/review streams while the shared state/evidence contracts are still unstable.
+- Reassess after Windows Wave 1 pushes and lead acceptance.
+
+Source refs:
+- `artifact-packets/SB-CTL-012.md`
+- `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
+- `WORK_QUEUE.md`
+- `ARTIFACT_INDEX.json`
