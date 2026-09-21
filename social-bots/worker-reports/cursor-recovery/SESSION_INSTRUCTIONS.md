@@ -1,32 +1,50 @@
-# Cursor Recovery — SESSION_INSTRUCTIONS — LEAD-041
+# Cursor Recovery — SESSION_INSTRUCTIONS — LEAD-046
 
-You are the primary Social Bots implementation lane for recovery through V0.7.
+You are the primary Social Bots implementation lane for the existing recovery runtime surfaces.
 
 Branch: `cursor/social-bots-recovery-v07-20260921`
-Current inherited source/report head: `2f14a5cb08c9019fd174c1f54ecda130fa9308d4`
-Material source baseline inside that history: `a73b7b58de8f3669795b81637bff55247d67943c`
+Canonical coordination: `chatgpt/social-bots-plan-20260920`
+Official phase: **V0.4.x / V0.4 in progress**
 
-Before editing, read canonical coordination from `chatgpt/social-bots-plan-20260920`:
-- `social-bots/RECOVERY_TO_V07.md`
-- `social-bots/SESSION_ROUTER.md`
+Before editing, sync/fetch and read current canonical coordination:
 - `social-bots/STATE.json`
 - `social-bots/WORK_QUEUE.md`
+- `social-bots/SESSION_ROUTER.md`
 - `social-bots/ARTIFACT_INDEX.json`
+- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
 - latest `social-bots/AGENT_MESSAGES.md`
+- `social-bots/artifact-packets/recovery-v07/SB-R07-041.md`
 
-Execution order now:
-1. `SB-R07-071` — make `SESSION_ONCE` uniqueness atomic across concurrent processes, with a real cross-process race regression. This is the immediate source blocker identified by LEAD-040.
-2. `SB-R07-041` — independently audit the inherited live-route/authorization hardening at `a73b7b5`; retain the spawn-point fail-closed behavior and add/fix only evidence-backed defects.
-3. `SB-R07-044` — divergence verifier.
-4. `SB-R07-072` — persistent-host preflight. Do not claim persistent-host acceptance on a temporary/CCR environment.
-5. Continue dependency-ready no-live-call recovery artifacts from `RECOVERY_TO_V07.md` and canonical `WORK_QUEUE.md`.
+## Session start
 
-Rules:
-- One fresh worker session emits exactly one durable `SESSION_ONCE` heartbeat. Do not run an in-session periodic heartbeat soak.
-- No live Claude/adaptive/model call is authorized. The future five-call V0.4 batch requires fresh explicit owner authorization AND a matching canonical lead authorization manifest.
-- No public posting/replies/messages, purchases, new spend/PAYG, destructive actions, credential exposure, or SwarmAI dependency.
-- One small artifact per commit where practical. Run focused and full tests, preserve exact commands/results, and push evidence.
-- Do not edit or restart the legacy Core/Intelligence/Acceptance/canary branches. They are evidence/source branches during recovery.
-- Do not self-accept artifacts or versions. Stop only for a real owner/admin/login/spend/public-effect gate; otherwise continue to the next dependency-safe artifact.
+Start a genuinely fresh implementation session and emit exactly one real durable `SESSION_ONCE` heartbeat for the new session ID after reading current coordination. Do not run a periodic heartbeat loop.
 
-When `SB-R07-071` is pushed, update this lane's `CURRENT_PROGRESS.md` with exact SHA, tests, evidence, next artifact, and blockers.
+## Immediate and only released implementation — SB-R07-041
+
+`SB-R07-041` remains **CHANGES_REQUIRED**.
+
+Repair the direct/ad-hoc `ModelReasoningProvider` registered-callable route so **every live-capable route fails closed without a valid canonical authorization manifest**, even when `worker_once` / `run_worker` and other normal entrypoints are bypassed.
+
+Required proof:
+1. construct the direct-library `SBOTS_REASONING=model` route;
+2. register a harmless local sentinel/counter callable;
+3. with no valid canonical authorization manifest, prove the provider refuses **before** invoking the sentinel;
+4. retain the inherited Claude CLI real-spawn authorization guard;
+5. add focused adversarial regression coverage for the direct-library bypass;
+6. run focused tests and the full suite;
+7. push exact source/report evidence and request `SUBMITTED` only — do not self-accept.
+
+**Zero real model/provider calls.** The sentinel must be local and harmless.
+
+## Preserve submitted evidence
+
+- `SB-R07-071` remains SUBMITTED pending independent Mac Acceptance multiprocess execution. Do not rewrite it unless the independent review identifies a defect.
+- Preserve `SB-R07-044`, `SB-R07-072`, and later recovery engineering submissions for review.
+- Do not install or claim the V0.7 LIVE scheduler on the current unsuitable Cursor host.
+- Do not edit Fable's submitted new-files-only specialist/strategy source unless a later explicit lead reassignment says otherwise.
+
+After the bounded R07-041 repair is pushed, pause overlapping runtime expansion while Acceptance independently reviews R07-071 and repaired R07-041.
+
+## Hard authority limits
+
+No live Claude/adaptive/model call, public posting/reply/message, account action, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, or SwarmAI dependency is authorized.
