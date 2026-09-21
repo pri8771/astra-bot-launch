@@ -24,14 +24,29 @@ It does **not** replace product source repositories and does not absorb SwarmAI,
 
 These older ventures are reuse pools, not the new inventory by definition. Existing emails, account aliases, analytics, publishing adapters, research code, content assets and verified operational patterns may be reused only after current verification.
 
+## Project-management model
+
+This project is artifact-oriented. Durable truth lives in artifacts and evidence, not task prose or chat claims.
+
+Canonical project-management artifacts:
+- `ARTIFACT_MANAGEMENT.md` — lifecycle/ownership/acceptance rules.
+- `ARTIFACT_INDEX.json` — machine-readable artifact registry.
+- `MILESTONE_MANIFEST.md` — artifacts required for each version gate.
+- `artifact-packets/` — bounded worker execution/acceptance contracts.
+- `WORK_QUEUE.md` — execution view derived from artifact readiness.
+- `WORKER_PERFORMANCE.md` — Claude quality by story-pointed artifact packet.
+
 ## Start here
 
-1. `TODAY_EXECUTION_PLAN.md`
-2. `AUTONOMY_CONTRACT.md`
-3. `PROJECT_MEMORY.md`
-4. `STATE.json`
-5. `WORK_QUEUE.md`
-6. New entries in `AGENT_MESSAGES.md`
-7. `CLAUDE_BOOTSTRAP.md`
+1. `ARTIFACT_MANAGEMENT.md`
+2. `ARTIFACT_INDEX.json`
+3. `MILESTONE_MANIFEST.md`
+4. `VERSION_ROADMAP.md`
+5. `PROJECT_MEMORY.md`
+6. `STATE.json`
+7. `WORK_QUEUE.md`
+8. New entries in `AGENT_MESSAGES.md`
+9. Relevant file under `artifact-packets/`
+10. `CLAUDE_BOOTSTRAP.md`
 
 No spend, public posting, customer messaging, purchases, destructive actions, quota evasion or credential material is authorized by these files.
