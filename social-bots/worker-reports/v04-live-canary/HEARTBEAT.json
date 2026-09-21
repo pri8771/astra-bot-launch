@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "lane": "v04-live-canary",
+  "branch": "claude/social-bots-v04-live-canary",
+  "sequence": 0,
+  "cadence_mode": "BOOTSTRAP_15M",
+  "session_status": "IDLE",
+  "current_artifact": null,
+  "started_at": null,
+  "last_updated_at": "2026-09-21T03:20:00Z",
+  "next_due_at": null,
+  "last_commit_sha": null,
+  "canonical_seen_sha": null,
+  "instructions_seen_sha": null,
+  "lead_message_seen": "LEAD-018",
+  "next_artifact": "SB-V04-005",
+  "blocker": null,
+  "notification_pending": false,
+  "notification_reason": null,
+  "notes": "Priority Zero real V0.4 canary; start after Mac heartbeat validation."
+}
