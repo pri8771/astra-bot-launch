@@ -4,17 +4,17 @@ Purpose: measure Claude Code implementation reliability by story-pointed artifac
 
 Current heartbeat review: `LEAD-017` (`lead-reviews/LEAD-017_2026-09-20T2152.md`). Foundational deep audit remains `LEAD-015` (`LEAD_AUDIT_TWO_LANE_BATCH.md`).
 
-At LEAD-017, the Intelligence repair lane has fresh signed repository activity. The expected Windows Core/Host and Mac QA branches were not yet visible remotely. No GitHub status checks exist at the latest Intelligence repair head, so test counts remain worker-local unless source/acceptance behavior is independently inspected.
+At LEAD-017, the Intelligence repair lane has fresh signed repository activity through `cbd781cab4d751b2a0626c3ce060c5a217d771e9`. The expected Windows Core/Host and Mac QA branches were not yet visible remotely. No GitHub status checks exist at the latest Intelligence repair head, so test counts remain worker-local unless source/acceptance behavior is independently inspected.
 
 ## Current observations
 
 The SP2–SP5 sample continues to support worker-first implementation with stronger lead review at trust/isolation boundaries:
 - SP2 bounded test/evidence repair (`SB-V03-003`) closed cleanly after one lead-found coverage gap.
-- SP3 can be strong on bounded state changes (`SB-V03-002`), but `SB-V05-001` now shows **two** independent trust-boundary repair cycles: first `mode="live"` was caller-forgeable; the next repair moved trust into a registry, but the public registry itself still lets arbitrary runtime code self-register a custom class and obtain operational-live evidence.
-- SP4 artifacts remain the main cross-interface/persona-risk cluster (V03-005, V13, V14, V16, V17, V20-002).
+- SP3 can be strong on bounded state changes (`SB-V03-002`), but `SB-V05-001` now shows repeated trust-boundary misses: first `mode="live"` was caller-forgeable; the repair moved trust into a registry, but the public registry still lets arbitrary runtime code self-register a custom class and obtain operational-live evidence.
+- SP4 repair `SB-V05-002` fixed the original caller-stance/material-claim omissions, but independently repeated the same public self-registration authority pattern for assessors and still overclaims full support from token co-occurrence. Cross-interface/persona/trust work remains the main SP4 risk cluster.
 - SP5 fencing improved substantially but still requires the Windows repair wave for complete durable-write fencing and supported host proof.
 
-This is not a reason to take implementation away from Claude. It is a reason to specify closed trust boundaries and adversarial tests explicitly in SP3+ evidence artifacts.
+This is not a reason to take implementation away from Claude. It is a reason to specify closed trust boundaries, dependency provenance and adversarial semantic tests explicitly in SP3+ evidence artifacts.
 
 ## Core lane task results
 
@@ -33,8 +33,8 @@ This is not a reason to take implementation away from Claude. It is a reason to 
 
 | Artifact | SP | First submission | Independent review finding / repair cycles | Current lead disposition |
 |---|---:|---|---|---|
-| SB-V05-001 | 3 | PARTIAL | Repair cycle 1 closed direct `mode=live`, obvious SSRF classes and extraction validity, but LEAD-017 found the public mutable `register_trusted_transport` self-certification bypass; `to_signal()` also accepts verified-but-untrusted live receipts; real urllib redirect/DNS TOCTOU proof remains incomplete | CHANGES_REQUIRED |
-| SB-V05-002 | 4 | PARTIAL | claim list and support stance are caller-supplied; unrelated evidence can be labeled supports | CHANGES_REQUIRED |
+| SB-V05-001 | 3 | PARTIAL | Repair cycle closed direct `mode=live`, obvious SSRF classes and extraction validity, but LEAD-017 found public mutable `register_trusted_transport` self-certification; `to_signal()` accepts verified-but-untrusted live receipts; real urllib redirect/DNS TOCTOU proof incomplete | CHANGES_REQUIRED |
+| SB-V05-002 | 4 | PARTIAL | Repair added attributable assessor + material-claim identification, but `register_operational_assessor` is publicly self-registerable; operational evidence refs accept verified fixture/untrusted captures; keyword co-occurrence can overclaim full SUPPORTS | CHANGES_REQUIRED |
 | SB-V13-001 | 4 | FAIL acceptance invariant | no snapshot/delta/gauge/rate kind; aggregate sums cumulative snapshots | CHANGES_REQUIRED |
 | SB-V14-001 | 4 | FAIL isolation/privacy invariant | bot-scoped persistence; sensitive-attribute blacklist bypassable; fork converts contradiction into unsupported positive evidence | CHANGES_REQUIRED |
 | SB-V15-001 | 4 | PARTIAL | honest lifecycle behavior, but baseline/treatment lack required normalized-observation/evidence provenance | CHANGES_REQUIRED |
@@ -43,17 +43,27 @@ This is not a reason to take implementation away from Claude. It is a reason to 
 | SB-V17-001 | 4 | PARTIAL | no-public-effect boundary good; read-only source is caller-asserted and community memory/themes are bot-wide | CHANGES_REQUIRED |
 | SB-V20-002 | 4 | PARTIAL | good missing/no-spend math, but arbitrary numeric performance/audience inputs can drive recommendations without typed accepted evidence | CHANGES_REQUIRED |
 
-## LEAD-017 focused lesson — trust registries
+## LEAD-017 focused lessons
+
+### Trust registries
 
 A registry is not automatically a trust boundary. If arbitrary runtime code can call the registration function, the caller still controls trust.
 
 For future evidence/security packets, acceptance tests should distinguish:
 - declaring a property;
 - registering oneself;
-- using a collector-owned closed allowlist/capability;
+- using a module/configuration-owned closed allowlist/capability;
 - test-only dependency injection.
 
 The operational path must use the third model. The fourth is acceptable only when it is structurally prevented from becoming operational evidence.
+
+### Semantic verification
+
+An attributable assessor is necessary but not sufficient. A weak assessor should not be promoted to an operational factual oracle simply because it has a name/version. If it cannot establish proposition/negation/value relations, it should return uncertainty/partial/unsupported rather than full support.
+
+### Dependency provenance
+
+A downstream artifact must not silently upgrade fixture/untrusted upstream evidence merely because the object is structurally valid or hash-verified. Operational provenance must survive every interface boundary.
 
 ## Independent defect themes
 
@@ -74,7 +84,7 @@ V13 preserved missing-vs-zero but missed the stronger semantic-kind contract des
 Workers can build useful additive scaffolding ahead of acceptance, but dependent artifact status remains blocked until prerequisites are accepted. Consume the newest canonical repair packet before each artifact.
 
 ### Worker-local tests vs independent CI
-Core historical batch reports 85 tests. Intelligence repair reports 139 at `ecad87e6...`; GitHub combined status is empty. Implement `SB-CTL-006` once ownership is resolved to improve independent acceptance evidence.
+Core historical batch reports 85 tests. Intelligence repair reports 145 at `cbd781ca...`; GitHub independent status checks remain absent. Implement `SB-CTL-006` once ownership is resolved to improve independent acceptance evidence.
 
 ## Metrics to continue accumulating
 
