@@ -2,13 +2,13 @@
   "schema_version": 2,
   "lane": "mac-qa",
   "branch": "claude/social-bots-mac-qa-control",
-  "sequence": 7,
+  "sequence": 8,
   "cadence_mode": "BOOTSTRAP_15M",
   "session_status": "IDLE_HEARTBEAT_TEST",
   "current_artifact": "3x15m heartbeat mechanism test",
   "started_at": "2026-09-21T02:35:33Z",
-  "last_updated_at": "2026-09-21T03:23:24Z",
-  "next_due_at": "2026-09-21T03:38:24Z",
+  "last_updated_at": "2026-09-21T03:40:08Z",
+  "next_due_at": "2026-09-21T03:55:08Z",
   "last_commit_sha": null,
   "canonical_seen_sha": "ed9e5fa",
   "instructions_seen_sha": null,
@@ -17,5 +17,5 @@
   "blocker": "bootstrap cadence test in progress; SB-V04-005 still blocked on authenticated host",
   "notification_pending": false,
   "notification_reason": "",
-  "notes": "Checkpoint 1 of 3 (T0) real-timed heartbeat test; no simulated timestamps."
+  "notes": "Checkpoint 2 of 3 real-timed heartbeat test"
 }
