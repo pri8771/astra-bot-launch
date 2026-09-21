@@ -7,7 +7,7 @@
 - **Lane:** Core (`windows-core`)
 - **Session branch:** `claude/quirky-shannon-t1377u`, branched from
   `claude/social-bots-windows-core-host` @ `c6b67ff`
-- **Source SHA:** `af2e00e6995a814a8d62d0352d29a5b369b6e650`
+- **Source SHA:** `a73b7b58de8f3669795b81637bff55247d67943c`
 - **Canonical coordination SHA read:** `671abbc`
   (`chatgpt/social-bots-plan-20260920`), lead review **LEAD-038**
 - **Contract followed:** `social-bots/CLAUDE_EXECUTION_TO_V07.md` Phase A and
