@@ -68,7 +68,11 @@ Done when:
 - deterministic code owns safety, authority, no-change, dedup, scheduling and verification;
 - uncertain interpretation/creative prioritization can use an available no-additional-spend reasoning model;
 - if no reasoning model is available, the system fails closed to NO_ACTION/BLOCKED instead of pretending adaptive autonomy;
-- no SwarmAI dependency exists.
+- no SwarmAI dependency exists;
+- **at least one real end-to-end canary has run against a current public source using the actual authenticated no-additional-spend adaptive provider path (no fixture signal, no injected model runner), producing a persisted decision record with zero public side effect;**
+- ChatGPT lead independently audits and accepts that live canary evidence.
+
+**Promotion rule for V0.4:** implementation/tests alone are insufficient. One real example is mandatory.
 
 ### V0.5 — Real research + evidence layer
 Done when:
