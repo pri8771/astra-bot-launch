@@ -11,8 +11,8 @@ This roadmap describes the Social Bots project only. Social Bots is and must rem
 - V2.x = turn operation into an autonomous growth system.
 - V3.0 = operate as an autonomous multi-brand media organization.
 
-Current lead-assigned version: **V0.3.x — runtime foundation under correctness repair.**
-Immediate target: **V0.4 — real autonomous thinking.**
+Current lead-assigned version: **V0.4.x — real autonomous thinking in progress; V0.3 is accepted and closed.**
+Immediate target: **close V0.4 after real adaptive persona/evidence divergence evidence; this empirical gate is currently blocked on fresh explicit owner authorization.**
 Near-term engineering target: **V0.7 — always-on Claude/ChatGPT development + bot-operation loop.**
 First major product target: **V1.0 — three real autonomous social bots.**
 
@@ -57,7 +57,7 @@ Done when:
 - failed review cannot leak into experiment/publish queues;
 - general/cultural workspaces cannot concurrently corrupt shared runtime state.
 
-Status: CURRENT — foundation exists, SB-R0 correctness repair is required before acceptance.
+Status: ACCEPTED / CLOSED. Final V0.3 implementation and independent lifecycle evidence were accepted in LEAD-036.
 
 ### V0.4 — Real autonomous thinking
 Done when:
