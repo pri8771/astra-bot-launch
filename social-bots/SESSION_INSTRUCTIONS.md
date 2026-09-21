@@ -2,8 +2,8 @@
 
 Lane: dedicated V0.4 live-canary evidence worktree
 Branch: `claude/social-bots-v04-live-canary`
-Lead review: LEAD-036
-Lead check: 2026-09-21T17:10:00Z
+Lead review: LEAD-039
+Lead check: 2026-09-21T17:56:20Z
 
 # FROZEN — EVIDENCE PRESERVATION ONLY
 
@@ -23,10 +23,10 @@ Do not perform public effects.
 - preserve existing evidence exactly;
 - read canonical lead review/state;
 - evidence-only documentation/metadata clarification if the lead explicitly assigns it;
-- heartbeat/progress reporting if the worktree remains active, without backfill.
+- one real `SESSION_ONCE` heartbeat only when a fresh preservation/review session actually starts; never a periodic loop or backfill.
 
 Do not rerun or “improve” the canary. Do not create a third call. Do not self-mark V0.4 complete.
 
-V0.4 remains open because SB-V04-002 and SB-V04-004 still lack required real adaptive causal-divergence evidence; SB-EVD-002 is withheld on those dependencies.
+V0.4 remains open because SB-V04-002 and SB-V04-004 are blocked on fresh explicit owner authorization for controlled causal-divergence evidence; SB-EVD-002 remains withheld.
 
 No public posting/replies/messages, paid API/PAYG/new spend, credentials in Git, fabricated evidence, destructive actions or SwarmAI dependency.
