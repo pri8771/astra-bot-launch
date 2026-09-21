@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T17:17:00Z",
+  "updated_at": "2026-09-21T17:34:04Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -373,7 +373,7 @@
       "version_gate": "V0.7",
       "owner": "Claude-Core",
       "status": "READY",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V07-001.md",
       "depends_on": [
         "SB-V03-006"
       ],
@@ -390,7 +390,7 @@
       "version_gate": "V0.7",
       "owner": "Claude-Core",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V07-002.md",
       "depends_on": [
         "SB-V07-001"
       ],
@@ -424,7 +424,7 @@
       "version_gate": "V0.8",
       "owner": "Claude",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-009.md",
       "depends_on": [
         "SB-ACC-008"
       ],
@@ -441,7 +441,7 @@
       "version_gate": "V0.8",
       "owner": "Claude",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-010.md",
       "depends_on": [
         "SB-ACC-009",
         "SB-V03-006"
@@ -457,7 +457,7 @@
       "version_gate": "V0.8",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-011.md",
       "depends_on": [
         "SB-ACC-009",
         "SB-PER-001"
@@ -473,7 +473,7 @@
       "version_gate": "V0.8",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-012.md",
       "depends_on": [
         "SB-ACC-008"
       ],
@@ -490,7 +490,7 @@
       "version_gate": "V0.8",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-013.md",
       "depends_on": [
         "SB-ACC-008"
       ],
@@ -507,7 +507,7 @@
       "version_gate": "V0.8",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-014.md",
       "depends_on": [
         "SB-ACC-008"
       ],
@@ -556,7 +556,7 @@
       "version_gate": "V1.1",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V11-002.md",
       "depends_on": [
         "SB-V11-001"
       ],
@@ -590,7 +590,7 @@
       "version_gate": "V1.2",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V12-002.md",
       "depends_on": [
         "SB-V12-001"
       ],
@@ -626,7 +626,7 @@
       "version_gate": "V1.3",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V13-002.md",
       "depends_on": [
         "SB-V13-001"
       ],
@@ -662,7 +662,7 @@
       "version_gate": "V1.4",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V14-002.md",
       "depends_on": [
         "SB-V14-001"
       ],
@@ -698,7 +698,7 @@
       "version_gate": "V1.5",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V15-002.md",
       "depends_on": [
         "SB-V15-001"
       ],
@@ -731,7 +731,7 @@
       "version_gate": "V1.6",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V16-002.md",
       "depends_on": [
         "SB-V16-001"
       ],
@@ -765,7 +765,7 @@
       "version_gate": "V1.7",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V17-002.md",
       "depends_on": [
         "SB-V17-001"
       ],
@@ -780,7 +780,7 @@
       "version_gate": "V1.7",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V17-003.md",
       "depends_on": [
         "SB-V11-002",
         "SB-V12-002",
@@ -838,7 +838,7 @@
       "version_gate": "V2.0",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V20-003.md",
       "depends_on": [
         "SB-V20-001",
         "SB-V20-002"
@@ -856,9 +856,10 @@
       "version_gate": "V2.0",
       "owner": "ChatGPT",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V20-004.md",
       "depends_on": [
-        "SB-V20-003"
+        "SB-V20-003",
+        "SB-V19-005"
       ],
       "story_points": null,
       "evidence": [
@@ -952,8 +953,11 @@
       "version_gate": "V2.3",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V23-003.md",
       "depends_on": [
+        "SB-V20-004",
+        "SB-V21-001",
+        "SB-V22-001",
         "SB-V23-002"
       ],
       "story_points": null,
@@ -1027,8 +1031,9 @@
       "version_gate": "V3.0",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V30-005.md",
       "depends_on": [
+        "SB-V29-005",
         "SB-V30-004"
       ],
       "story_points": null,
@@ -1279,7 +1284,7 @@
       "version_gate": "V0.5",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V05-003.md",
       "depends_on": [
         "SB-V05-002"
       ],
@@ -1294,7 +1299,7 @@
       "version_gate": "V0.5",
       "owner": "Claude-Intelligence",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V05-004.md",
       "depends_on": [
         "SB-PER-002",
         "SB-V05-002"
@@ -1310,7 +1315,7 @@
       "version_gate": "V0.5",
       "owner": "Claude-Acceptance",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V05-005.md",
       "depends_on": [
         "SB-V05-001",
         "SB-V05-002",
@@ -1328,7 +1333,7 @@
       "version_gate": "V0.6",
       "owner": "Claude-Core",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V06-001.md",
       "depends_on": [
         "SB-V04-002",
         "SB-V04-004",
@@ -1347,7 +1352,7 @@
       "version_gate": "V0.6",
       "owner": "Claude-Core",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V06-002.md",
       "depends_on": [
         "SB-V04-002",
         "SB-V04-004",
@@ -1366,7 +1371,7 @@
       "version_gate": "V0.6",
       "owner": "Claude-Core",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V06-003.md",
       "depends_on": [
         "SB-V04-002",
         "SB-V04-004",
@@ -1385,7 +1390,7 @@
       "version_gate": "V0.6",
       "owner": "Claude-Acceptance",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V06-004.md",
       "depends_on": [
         "SB-V06-001",
         "SB-V06-002",
@@ -1402,7 +1407,7 @@
       "version_gate": "V0.6",
       "owner": "Claude-Acceptance",
       "status": "BLOCKED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V06-005.md",
       "depends_on": [
         "SB-V06-001",
         "SB-V06-002",
@@ -1420,7 +1425,7 @@
       "version_gate": "V0.7",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V07-003.md",
       "depends_on": [
         "SB-V07-001",
         "SB-V07-002"
@@ -1436,7 +1441,7 @@
       "version_gate": "V0.7",
       "owner": "Claude-Acceptance",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V07-004.md",
       "depends_on": [
         "SB-V07-001",
         "SB-V07-002"
@@ -1452,7 +1457,7 @@
       "version_gate": "V0.7",
       "owner": "ChatGPT",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V07-005.md",
       "depends_on": [
         "SB-V07-001",
         "SB-V07-002",
@@ -1462,6 +1467,796 @@
       "story_points": null,
       "evidence": [],
       "last_verified_ref": "social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md"
+    },
+    {
+      "id": "SB-ACC-001",
+      "name": "Safe account registry with fresh verification metadata",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-001.md",
+      "depends_on": [
+        "SB-V07-005",
+        "SB-ACC-008"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-002",
+      "name": "X route artifact",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-002.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-015"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-003",
+      "name": "Instagram route artifact",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-003.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-012"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-004",
+      "name": "TikTok route artifact",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-004.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-014"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-005",
+      "name": "Reddit route artifact",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-005.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-013"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-006",
+      "name": "Facebook route artifact",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-006.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-012"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-ACC-007",
+      "name": "Analytics route map",
+      "type": "planned_artifact",
+      "version_gate": "V0.8",
+      "owner": "Claude-Connectivity",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-ACC-007.md",
+      "depends_on": [
+        "SB-ACC-002",
+        "SB-ACC-003",
+        "SB-ACC-004",
+        "SB-ACC-005",
+        "SB-ACC-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-EVD-010",
+      "name": "Persona A canary publication/readback/analytics packet",
+      "type": "planned_artifact",
+      "version_gate": "V0.9",
+      "owner": "Claude-Canary",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-EVD-010.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-007"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-EVD-011",
+      "name": "Persona B canary publication/readback/analytics packet",
+      "type": "planned_artifact",
+      "version_gate": "V0.9",
+      "owner": "Claude-Canary",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-EVD-011.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-007"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-EVD-012",
+      "name": "Persona C canary publication/readback/analytics packet",
+      "type": "planned_artifact",
+      "version_gate": "V0.9",
+      "owner": "Claude-Canary",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-EVD-012.md",
+      "depends_on": [
+        "SB-ACC-001",
+        "SB-ACC-007"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-EVD-013",
+      "name": "First real post-window learn/next-decision bundle",
+      "type": "planned_artifact",
+      "version_gate": "V0.9",
+      "owner": "Claude-Intelligence",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-EVD-013.md",
+      "depends_on": [
+        "SB-EVD-010",
+        "SB-EVD-011",
+        "SB-EVD-012"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V10-001",
+      "name": "Continuous three-bot operation acceptance run",
+      "type": "planned_artifact",
+      "version_gate": "V1.0",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V10-001.md",
+      "depends_on": [
+        "SB-EVD-013",
+        "SB-V07-005"
+      ],
+      "story_points": 5,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V10-002",
+      "name": "Real measurement -> learning -> next-decision proof",
+      "type": "planned_artifact",
+      "version_gate": "V1.0",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V10-002.md",
+      "depends_on": [
+        "SB-V10-001",
+        "SB-EVD-013"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V10-003",
+      "name": "Failure/recovery/duplicate-prevention acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V1.0",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V10-003.md",
+      "depends_on": [
+        "SB-V10-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V10-004",
+      "name": "Owner-intervention boundary proof",
+      "type": "planned_artifact",
+      "version_gate": "V1.0",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V10-004.md",
+      "depends_on": [
+        "SB-V10-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V10-005",
+      "name": "No-SwarmAI-dependency proof",
+      "type": "planned_artifact",
+      "version_gate": "V1.0",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V10-005.md",
+      "depends_on": [
+        "SB-V10-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V18-001",
+      "name": "Cultural source and reviewer policy",
+      "type": "planned_artifact",
+      "version_gate": "V1.8",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V18-001.md",
+      "depends_on": [
+        "SB-V05-004",
+        "SB-PER-002"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V18-002",
+      "name": "Cultural persona community workflow",
+      "type": "planned_artifact",
+      "version_gate": "V1.8",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V18-002.md",
+      "depends_on": [
+        "SB-V17-003",
+        "SB-V18-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V18-003",
+      "name": "Primandir independence and disclosure acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V1.8",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V18-003.md",
+      "depends_on": [
+        "SB-V18-002"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V18-004",
+      "name": "Cultural operational acceptance bundle",
+      "type": "planned_artifact",
+      "version_gate": "V1.8",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V18-004.md",
+      "depends_on": [
+        "SB-V18-001",
+        "SB-V18-002",
+        "SB-V18-003"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V19-001",
+      "name": "Unattended soak suite",
+      "type": "planned_artifact",
+      "version_gate": "V1.9",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V19-001.md",
+      "depends_on": [
+        "SB-V18-004",
+        "SB-V11-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V19-002",
+      "name": "Observability and account-health SLOs",
+      "type": "planned_artifact",
+      "version_gate": "V1.9",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V19-002.md",
+      "depends_on": [
+        "SB-V19-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V19-003",
+      "name": "Cost and resource budgets",
+      "type": "planned_artifact",
+      "version_gate": "V1.9",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V19-003.md",
+      "depends_on": [
+        "SB-V19-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V19-004",
+      "name": "Operator runbooks and recovery",
+      "type": "planned_artifact",
+      "version_gate": "V1.9",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V19-004.md",
+      "depends_on": [
+        "SB-V19-001",
+        "SB-V19-002",
+        "SB-V19-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V19-005",
+      "name": "V1 stabilization acceptance bundle",
+      "type": "planned_artifact",
+      "version_gate": "V1.9",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V19-005.md",
+      "depends_on": [
+        "SB-V18-004",
+        "SB-V19-001",
+        "SB-V19-002",
+        "SB-V19-003",
+        "SB-V19-004"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V24-001",
+      "name": "Institutional memory schema",
+      "type": "planned_artifact",
+      "version_gate": "V2.4",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V24-001.md",
+      "depends_on": [
+        "SB-V23-003"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V24-002",
+      "name": "Contradiction, decay and seasonality engine",
+      "type": "planned_artifact",
+      "version_gate": "V2.4",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V24-002.md",
+      "depends_on": [
+        "SB-V24-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V24-003",
+      "name": "Failed-hypothesis archive",
+      "type": "planned_artifact",
+      "version_gate": "V2.4",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V24-003.md",
+      "depends_on": [
+        "SB-V24-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V24-004",
+      "name": "Long-term learning acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V2.4",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V24-004.md",
+      "depends_on": [
+        "SB-V24-001",
+        "SB-V24-002",
+        "SB-V24-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V25-001",
+      "name": "Evidence-backed non-sensitive audience segment model",
+      "type": "planned_artifact",
+      "version_gate": "V2.5",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V25-001.md",
+      "depends_on": [
+        "SB-V24-004",
+        "SB-V14-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V25-002",
+      "name": "Segment strategy differentiation",
+      "type": "planned_artifact",
+      "version_gate": "V2.5",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V25-002.md",
+      "depends_on": [
+        "SB-V25-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V25-003",
+      "name": "Audience segmentation privacy/safety acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V2.5",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V25-003.md",
+      "depends_on": [
+        "SB-V25-001",
+        "SB-V25-002"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V26-001",
+      "name": "Trend collector and normalizer",
+      "type": "planned_artifact",
+      "version_gate": "V2.6",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V26-001.md",
+      "depends_on": [
+        "SB-V25-003",
+        "SB-V05-005"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V26-002",
+      "name": "Persona relevance and novelty evaluator",
+      "type": "planned_artifact",
+      "version_gate": "V2.6",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V26-002.md",
+      "depends_on": [
+        "SB-V26-001",
+        "SB-V16-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V26-003",
+      "name": "Trend timing experiment planner",
+      "type": "planned_artifact",
+      "version_gate": "V2.6",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V26-003.md",
+      "depends_on": [
+        "SB-V26-002",
+        "SB-V15-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V26-004",
+      "name": "Irrelevant-virality rejection acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V2.6",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V26-004.md",
+      "depends_on": [
+        "SB-V26-001",
+        "SB-V26-002",
+        "SB-V26-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V27-001",
+      "name": "Canonical idea lineage model",
+      "type": "planned_artifact",
+      "version_gate": "V2.7",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V27-001.md",
+      "depends_on": [
+        "SB-V26-004"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V27-002",
+      "name": "Platform-native transformation engine",
+      "type": "planned_artifact",
+      "version_gate": "V2.7",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V27-002.md",
+      "depends_on": [
+        "SB-V27-001",
+        "SB-V16-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V27-003",
+      "name": "Cross-platform sequencing planner",
+      "type": "planned_artifact",
+      "version_gate": "V2.7",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V27-003.md",
+      "depends_on": [
+        "SB-V27-002",
+        "SB-V12-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V27-004",
+      "name": "Duplication and cannibalization acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V2.7",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V27-004.md",
+      "depends_on": [
+        "SB-V27-001",
+        "SB-V27-002",
+        "SB-V27-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V28-001",
+      "name": "Experiment portfolio allocator",
+      "type": "planned_artifact",
+      "version_gate": "V2.8",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V28-001.md",
+      "depends_on": [
+        "SB-V27-004",
+        "SB-V20-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V28-002",
+      "name": "Time and resource opportunity-cost model",
+      "type": "planned_artifact",
+      "version_gate": "V2.8",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V28-002.md",
+      "depends_on": [
+        "SB-V28-001",
+        "SB-V19-003"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V28-003",
+      "name": "Exploration/exploitation policy",
+      "type": "planned_artifact",
+      "version_gate": "V2.8",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V28-003.md",
+      "depends_on": [
+        "SB-V28-001",
+        "SB-V28-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V28-004",
+      "name": "Growth allocation acceptance",
+      "type": "planned_artifact",
+      "version_gate": "V2.8",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V28-004.md",
+      "depends_on": [
+        "SB-V28-001",
+        "SB-V28-002",
+        "SB-V28-003"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V29-001",
+      "name": "Strategy drift detector",
+      "type": "planned_artifact",
+      "version_gate": "V2.9",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V29-001.md",
+      "depends_on": [
+        "SB-V28-004",
+        "SB-V21-001"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V29-002",
+      "name": "Repetition and quality regression detector",
+      "type": "planned_artifact",
+      "version_gate": "V2.9",
+      "owner": "Claude-Intelligence",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V29-002.md",
+      "depends_on": [
+        "SB-V29-001",
+        "SB-V16-002"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V29-003",
+      "name": "Reliability self-audit",
+      "type": "planned_artifact",
+      "version_gate": "V2.9",
+      "owner": "Claude-Acceptance",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V29-003.md",
+      "depends_on": [
+        "SB-V29-001",
+        "SB-V11-002",
+        "SB-V19-005"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V29-004",
+      "name": "Bounded improvement proposal workflow",
+      "type": "planned_artifact",
+      "version_gate": "V2.9",
+      "owner": "Claude-Core",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V29-004.md",
+      "depends_on": [
+        "SB-V29-001",
+        "SB-V29-002",
+        "SB-V29-003"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-V29-005",
+      "name": "Self-evaluation acceptance bundle",
+      "type": "planned_artifact",
+      "version_gate": "V2.9",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V29-005.md",
+      "depends_on": [
+        "SB-V29-001",
+        "SB-V29-002",
+        "SB-V29-003",
+        "SB-V29-004"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
     }
   ]
 }

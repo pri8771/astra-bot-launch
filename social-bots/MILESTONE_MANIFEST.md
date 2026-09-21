@@ -133,9 +133,25 @@ Required:
 
 Operational public response evidence remains authority-gated. Read-only/community-decision engineering can be accepted separately from live response authority.
 
+## V1.8 — cultural personas operational
+Required:
+- SB-V18-001 Cultural source and reviewer policy.
+- SB-V18-002 Cultural persona community workflow.
+- SB-V18-003 Primandir independence/disclosure acceptance.
+- SB-V18-004 Cultural operational acceptance bundle.
+
+## V1.9 — V1 stabilization
+Required:
+- accepted V1.8 artifacts;
+- SB-V19-001 Unattended soak suite.
+- SB-V19-002 Observability/account-health SLOs.
+- SB-V19-003 Cost/resource budgets.
+- SB-V19-004 Operator runbooks/recovery.
+- SB-V19-005 V1 stabilization acceptance bundle.
+
 ## V2.0 — autonomous growth engine
 Required for operational promotion:
-- accepted V1.7 checkpoint;
+- accepted V1.9 stabilization;
 - SB-V20-001 Strategy state + evidence-driven revision engine.
 - SB-V20-002 Growth evaluator/allocation engine.
 - SB-V20-003 Measured-evidence strategy-change acceptance.
@@ -161,9 +177,53 @@ Required:
 - SB-V23-002 Specialist lifecycle/sandbox/evidence implementation.
 - SB-V23-003 V2.3 checkpoint bundle.
 
+## V2.4 — long-term learning
+Required:
+- SB-V24-001 Institutional memory schema.
+- SB-V24-002 Contradiction/decay/seasonality engine.
+- SB-V24-003 Failed-hypothesis archive.
+- SB-V24-004 Long-term learning acceptance.
+
+## V2.5 — audience segmentation
+Required:
+- SB-V25-001 Evidence-backed non-sensitive audience segment model.
+- SB-V25-002 Segment strategy differentiation.
+- SB-V25-003 Audience segmentation privacy/safety acceptance.
+
+## V2.6 — trend intelligence
+Required:
+- SB-V26-001 Trend collector/normalizer.
+- SB-V26-002 Persona relevance/novelty evaluator.
+- SB-V26-003 Trend timing experiment planner.
+- SB-V26-004 Irrelevant-virality rejection acceptance.
+
+## V2.7 — cross-platform strategy
+Required:
+- SB-V27-001 Canonical idea lineage model.
+- SB-V27-002 Platform-native transformation engine.
+- SB-V27-003 Cross-platform sequencing planner.
+- SB-V27-004 Duplication/cannibalization acceptance.
+
+## V2.8 — growth allocation
+Required:
+- SB-V28-001 Experiment portfolio allocator.
+- SB-V28-002 Time/resource opportunity-cost model.
+- SB-V28-003 Exploration/exploitation policy.
+- SB-V28-004 Growth allocation acceptance.
+
+## V2.9 — self-evaluation
+Required:
+- SB-V29-001 Strategy drift detector.
+- SB-V29-002 Repetition/quality regression detector.
+- SB-V29-003 Reliability self-audit.
+- SB-V29-004 Bounded improvement proposal workflow.
+- SB-V29-005 Self-evaluation acceptance bundle.
+
+Self-evaluation may propose changes but does not receive unrestricted self-modification authority.
+
 ## V3.0 — autonomous multi-brand media organization
 Required:
-- accepted V2.3 checkpoint;
+- accepted V2.9 self-evaluation checkpoint;
 - SB-V30-001 Portfolio-level planning contract/engine.
 - SB-V30-002 Shared-knowledge and brand-isolation boundary.
 - SB-V30-003 Portfolio growth/resource allocation.

@@ -1,0 +1,47 @@
+# Artifact packet — SB-ACC-013
+
+Artifact: Reddit compliant persona posting route design  
+Milestone: V0.8  
+Owner: ChatGPT  
+Story points: n/a  
+Planned status: PLANNED
+
+## Purpose
+
+Define a Reddit-compliant persona route that respects subreddit rules, account identity, rate limits and anti-manipulation boundaries.
+
+## Dependencies
+
+- SB-ACC-008
+
+## Required implementation / evidence
+
+- Preserve Social Bots independence from SwarmAI.
+- Reuse existing runtime, evidence, analytics, policy and artifact contracts before creating parallel infrastructure.
+- Keep deterministic policy in charge of authority, effects, deduplication, scheduling, verification and stop conditions.
+- Keep persona-private state structurally isolated; any cross-persona/admin surface must be explicit and auditable.
+- Record attributable inputs, outputs, code/config refs, timestamps and limitations appropriate to this artifact.
+- Add focused success, failure and adversarial tests; include at least one test that proves the artifact fails closed at its most important trust/authority boundary.
+- Do not silently retry operational/model/public actions until they pass; preserve first-attempt truth and explicit retry authorization when applicable.
+- Engineering tests may use fixtures when clearly labeled. Do not relabel them as operational evidence.
+
+## Acceptance
+
+- All declared dependencies are accepted or the packet remains blocked.
+- The artifact's purpose is demonstrated by source/tests/evidence rather than documentation alone.
+- Failure/uncertain paths cannot produce a stronger authority/effect than the success path permits.
+- Exact source SHA/ref, commands/tests, evidence refs and known limits are returned.
+- No credentials/secrets are committed.
+- No unauthorized public effect, paid/PAYG fallback, destructive action or engagement manipulation occurs.
+- Worker may request SUBMITTED; only ChatGPT lead may mark ACCEPTED.
+
+## Return contract
+
+Return:
+- artifact ID: SB-ACC-013;
+- exact resulting SHA/ref;
+- focused/full test commands and results;
+- evidence locations;
+- operational-vs-fixture classification;
+- limitations/blockers;
+- requested status (normally SUBMITTED).
