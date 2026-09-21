@@ -1,0 +1,51 @@
+========================================================================
+SB-V03-004 INDEPENDENT ACCEPTANCE — Mac-QA lane
+Core source: /tmp/claude-0/-home-user-astra-bot-launch/1626bffb-ea43-54e4-bfa3-a92fcf53f96a/scratchpad/core-verify/social-bots
+========================================================================
+
+[1] POST-CYCLE TAKEOVER
+    [PASS] cycle durably committed under valid ownership
+    [PASS] outcome is fence_lost_post_commit (no success asserted)
+    [PASS] verified is False (no success claim)
+    [PASS] no finish_receipt returned in summary
+    [PASS] NO success/finish receipt on disk
+    [PASS] a truthful failure/stand-down receipt exists
+    [PASS] failure receipt: candidate_succeeded is False
+    [PASS] failure receipt: outcome == fence_lost_post_commit
+    [PASS] failure receipt: records cycle_committed True (honest)
+    [PASS] takeover worker is the on-disk owner after the race
+
+[2] ACTIVE-CYCLE TAKEOVER (fence lost mid-execution)
+    [PASS] FenceLost raised — old owner refused at commit
+    [PASS] no decisions.jsonl
+    [PASS] no last_decision.json
+    [PASS] no bot_state.json (state not advanced)
+    [PASS] no persona-social-b.json
+    [PASS] no action_history.jsonl
+    [PASS] no analytics events.jsonl
+    [PASS] no experiment eligibility written
+    [PASS] publish queue empty — no external-effect eligibility
+    [PASS] persona consumed ledger empty (signal left for takeover worker)
+    [PASS] runtime cycle counter still 0
+    [PASS] old owner cannot renew its lease after takeover
+    [PASS] takeover worker (gen 2, B) is sole owner
+
+[3] MIGRATION FENCING
+    [PASS] load() does not modify runtime state file (side-effect free)
+    [PASS] load() writes no persona-state file
+    [PASS] FenceLost raised for stale migrating owner
+    [PASS] stale owner persisted NO persona-state file
+    [PASS] runtime state byte-identical (legacy intact, no marker written)
+    [PASS] no last_decision.json from fenced-out migrating owner
+    [PASS] no decisions.jsonl from fenced-out migrating owner
+    [PASS] takeover worker (B) owns lease after migration race
+    [PASS] clean takeover worker completes a cycle (took over)
+    [PASS] migration now persisted: persona-state file exists
+    [PASS] runtime migrated_to_persona marker set exactly once
+    [PASS] legacy consumed signal preserved through migration (no data loss)
+    [PASS] second cycle does not re-run migration (marker stable True)
+    [PASS] second cycle completes cleanly (idempotent restart sane)
+
+========================================================================
+CHECKS: 37/37 passed
+RESULT: ALL SCENARIO CHECKS PASS
