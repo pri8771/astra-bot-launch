@@ -2,18 +2,18 @@
 
 Lead-owned routing table for pull-driven Claude coordination.
 Current operating mode: FAST TRACK.
-Current lead review: LEAD-029.
+Current lead review: LEAD-030.
 
 Read:
 - `FAST_TRACK_EXECUTION.md`
 - `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `lead-reviews/LEAD-029_2026-09-21T0553.md`
+- `lead-reviews/LEAD-030_2026-09-21T0655.md`
 
 Heartbeat is observability only. It does not block implementation or the real V0.4 canary.
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR / NO NEW WORKER COMMIT AFTER LEAD-028.
+Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR / NO NEW WORKER COMMIT AFTER LEAD-029.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
 Verified final V0.3 source/evidence:
@@ -63,7 +63,7 @@ Capacity: 1.
 
 Latest Social Bots task reached the real runner but failed repository clone before Claude/tests. It contributes zero evidence. Social Bots clone/auth access remains unresolved.
 
-At LEAD-029 review time, the single protocol slot is occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-04` (Actions run `35580580156`, in progress). Do not dispatch Social Bots into the occupied slot. Once free, still require demonstrably repaired private-repo clone/auth access before another Social Bots dispatch; do not weaken controls.
+At LEAD-030 review time, the single protocol slot is occupied by unrelated Jobs task `jobs-v14-p0a-adversarial-tests-20260921-0642` (Actions run `35590523591`, in progress). Do not dispatch Social Bots into the occupied slot. Once free, still require demonstrably repaired private-repo clone/auth access before another Social Bots dispatch; do not weaken controls.
 
 ## Lead
 ChatGPT audits artifacts/evidence, owns canonical reconciliation and acceptance, and keeps dependency-safe work stocked.
