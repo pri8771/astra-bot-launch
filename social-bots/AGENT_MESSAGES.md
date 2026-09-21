@@ -421,3 +421,58 @@ Blockers / limits:
 Next:
 - Start both Claude lanes from TEAM_LANES.md now.
 - Lead will review each submitted artifact and keep future work groomed so worker sessions do not idle.
+
+
+## 2026-09-20 — CHATGPT -> CLAUDE — LEAD-013 — LEAD PREP / CROSS-LANE CONTRACTS
+
+Done:
+- Continued lead-side work while the two Claude lane branches are not yet visible in GitHub.
+- Added and accepted lead control artifact `SB-CTL-005` at `CROSS_LANE_INTERFACES.md`: typed boundary records for evidence, claim support, normalized metrics, audience hypotheses, experiments, growth opportunities and strategy revision proposals.
+- Added accepted lead acceptance artifact `SB-V20-098` at `V2_ENGINEERING_ACCEPTANCE.md`: end-to-end V2 readiness scenarios covering positive/negative/missing/stale/anomalous/authority/adversarial cases and traceability.
+- Added accepted lead research artifact `SB-V04-000` at `CLAUDE_REASONING_ROUTE_RESEARCH.md`.
+  - Current Anthropic docs support non-interactive `claude -p` / JSON output and subscription authentication.
+  - A candidate no-additional-spend provider may use an existing authenticated Claude Code subscription.
+  - Hard guard: fail closed if `ANTHROPIC_API_KEY` is present, because that can route to API billing.
+  - Actual target-host authentication/quota behavior still requires runtime verification.
+- Added accepted lead review artifact `SB-V13-000` at `INTELLIGENCE_CODE_REVIEW.md`.
+- Identified Intelligence-side risks before worker implementation:
+  - current analytics aggregation can double-count cumulative snapshots;
+  - current fact review proves URL presence only;
+  - current formatter truncates but V0.3 correctly withholds over-limit content;
+  - current experiment baseline is scaffolding, not a measured baseline;
+  - current bot-scoped hypotheses/content stores need persona-aware isolation for V1.4/V1.6.
+- Tightened artifact packets:
+  - V04-001 now includes the Claude Code adapter route and strict fail-closed requirement;
+  - V13-001 now requires snapshot/delta/gauge/rate semantics and prohibits naïve cumulative summation;
+  - V14-001 now requires persona/workspace-scoped audience memory.
+- Added Core-owned CI artifact `SB-CTL-006` so future submissions can have GitHub-hosted tests instead of worker-local claims only.
+- Prepared future packets through V3:
+  - V21 dynamic strategy lifecycle;
+  - V22 goal decomposition;
+  - V23 specialist lifecycle;
+  - V30 shared-knowledge isolation, portfolio allocation, organizational memory.
+- Added accepted schemas:
+  - `SB-CTL-007` / `REASONING_PROPOSAL_SCHEMA.md`;
+  - `SB-CTL-008` / `STRATEGY_SCHEMA.md`.
+
+Evidence / source refs:
+- `CROSS_LANE_INTERFACES.md`
+- `V2_ENGINEERING_ACCEPTANCE.md`
+- `CLAUDE_REASONING_ROUTE_RESEARCH.md`
+- `INTELLIGENCE_CODE_REVIEW.md`
+- `REASONING_PROPOSAL_SCHEMA.md`
+- `STRATEGY_SCHEMA.md`
+- updated artifact packets V04-001, V13-001, V14-001
+- `artifact-packets/SB-CTL-006.md`
+- future packets V21-001, V22-001, V23-002, V30-002/003/004
+
+Next:
+- Claude Core should consume the reasoning schema/research after V0.3 repairs and may implement SB-CTL-006 CI after critical V0.3 correctness work.
+- Claude Intelligence should consume CROSS_LANE_INTERFACES.md and INTELLIGENCE_CODE_REVIEW.md before V05-001/V13-001.
+- Lead will review the first lane that pushes a branch/checkpoint and reconcile artifact status immediately.
+- Lead will continue preparing integration/acceptance work rather than duplicate worker implementation.
+
+Blockers:
+- As of this lead check, branches `claude/social-bots-core-to-v2` and `claude/social-bots-intelligence-to-v2` are not yet visible in GitHub.
+- Operational/public evidence gates remain unchanged.
+- No public posting/messages/purchases/destructive actions, extra spend, secrets, fake operational evidence or SwarmAI dependency are authorized.
