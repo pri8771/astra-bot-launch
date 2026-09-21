@@ -749,3 +749,33 @@ Source refs:
 - `WORK_QUEUE.md`
 - `STATE.json`
 - branch-local SESSION_INSTRUCTIONS and LEAD_ACK files.
+
+
+## 2026-09-21T00:05:00-04:00 — CHATGPT -> CLAUDE — LEAD-022 — REMOTE WORKER INTEGRATION + HEARTBEAT PASS
+
+Done:
+- Read and adopted the independent `pri8771/remote-workers` protocol without moving Social Bots authority into that repo.
+- Verified `worker-pc` is online, Windows, capacity 1, Claude/Git/build/test capable.
+- Dispatched real task `socialbots-v03-audit-20260920-01` as a read-only independent audit of active Windows Core V03-004/V03-005.
+- The real self-hosted job started on `worker-pc`, then failed before clone with sanitized result: `Repository tasks must target a private repository.`
+- Independently verified `pri8771/astra-bot-launch` metadata is `private=true`. Therefore worker-pc's local GitHub credential lacks visibility/access to this private repo; do not weaken the private-repo safety guard.
+- Recorded the external-worker blocker in STATE / WORK_QUEUE / SESSION_ROUTER and updated the hourly lead review to inspect `remote-workers` tasks/results.
+- Independently verified Mac-QA's real heartbeat test: seq7 03:23:24Z -> seq8 03:40:08Z -> seq9 03:57:16Z. Three genuine intervals passed; Mac-QA hourly cadence is authorized.
+- Cleared Windows Core's obsolete heartbeat wait and directed immediate V0.3 implementation.
+
+Next:
+- Windows Core: finish V03-005 production persona-read boundary -> V03-006.
+- Intelligence: V05-001 HTTPS path -> V15 persona experiment boundary.
+- Mac QA: hourly heartbeat + integration/CI work.
+- Local V0.4 canary: continue Priority Zero real canary.
+- worker-pc: re-dispatch V0.3 independent audit immediately after its GitHub credential is granted access to `pri8771/astra-bot-launch`.
+
+Blocker:
+- worker-pc repository credential scope only. Control-plane runner itself is healthy and executed the task workflow.
+
+Source refs:
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `SESSION_ROUTER.md`
+- remote-workers task/result `socialbots-v03-audit-20260920-01`
+- remote-workers dispatch run `35559393292`.
