@@ -1,0 +1,28 @@
+{
+  "all_pass": true,
+  "artifact": "SB-V20-002",
+  "checks": {
+    "different_evidence_different_allocation": {
+      "pass": true,
+      "run1_top": "a",
+      "run2_top": "b"
+    },
+    "learning_can_beat_reach": {
+      "high_lw_top": "explore",
+      "low_lw_top": "known",
+      "pass": true
+    },
+    "missing_and_insufficient": {
+      "insufficient_no_allocation": true,
+      "missing_is_learning_not_growth": true,
+      "missing_performance_is_none": true,
+      "pass": true
+    },
+    "no_spend": {
+      "pass": true,
+      "spend_authorized": false
+    }
+  },
+  "kind": "fixture-evidence",
+  "warning": "FIXTURE evidence bundles only; not real analytics/audience data."
+}
