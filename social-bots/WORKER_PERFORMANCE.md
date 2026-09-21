@@ -2,19 +2,19 @@
 
 Purpose: measure Claude Code implementation reliability by story-pointed artifact packet and task type. Story points reflect complexity/uncertainty, not time. No worker submission self-accepts.
 
-Current lead review: `LEAD-031` (`lead-reviews/LEAD-031_2026-09-21T0755.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026/027/028; LEAD-029/030/031 are liveness/evidence reconciliation reviews with no new artifact acceptance.
+Current lead review: `LEAD-032` (`lead-reviews/LEAD-032_2026-09-21T0856.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026/027/028; LEAD-029/030/031/032 are liveness/evidence reconciliation reviews with no new artifact acceptance.
 
 ## Current verified worker/source activity
 
-- Windows Core/Host: final V03 source remains `796d4e390bd135167e5de2ff8f586bc07ac7f370` with evidence `436787b0a63fdae0e89c224a54054607e32b5187` (**130 tests, OK**). Latest worker-generated signed commit remains `76e96dde4677346fd5b40c8cba4988f6e4c64fee`; no worker repair of SB-V04-004 has appeared after LEAD-030.
+- Windows Core/Host: final V03 source remains `796d4e390bd135167e5de2ff8f586bc07ac7f370` with evidence `436787b0a63fdae0e89c224a54054607e32b5187` (**130 tests, OK**). Latest worker-generated signed commit remains `76e96dde4677346fd5b40c8cba4988f6e4c64fee`; no worker repair of SB-V04-004 has appeared after LEAD-031.
 - `SB-V03-005`: **ACCEPTED in LEAD-027** after multiple narrow repair cycles. The worker ultimately converted the remembered-example fixes into an exhaustive six-store persona/admin boundary and added a structural guard designed to fail if bare whole-runtime reader names return.
 - `SB-V03-004`: source-level repair still looks correct; no new defect found. It remains CHANGES_REQUIRED solely because the packet requires independent lifecycle execution and Mac QA has not returned it.
-- `SB-V04-004`: **first worker attempt CHANGES REQUIRED / not accepted**. Two named runtime divergence tests do not isolate the intended variable, and all six tests force `contextual-deterministic-v1` (`adaptive=false`). The worker was appropriately honest that this is engineering-only and not the live canary. The bounded repair remains assigned with no new worker submission as of LEAD-031.
+- `SB-V04-004`: **first worker attempt CHANGES REQUIRED / not accepted**. Two named runtime divergence tests do not isolate the intended variable, and all six tests force `contextual-deterministic-v1` (`adaptive=false`). The worker was appropriately honest that this is engineering-only and not the live canary. The bounded repair remains assigned with no new worker submission as of LEAD-032.
 - `SB-V04-001`: fresh source audit confirms the production launcher now defaults to adaptive-required/fail-closed unless an explicit diagnostic override is selected. Status is not promoted because predecessor/integrated adaptive evidence remains open.
 - Intelligence: latest worker commit remains heartbeat seq7 `a7bdeb4c0f0d2c1a3107798327266812a9644d27` at `04:10:36Z`; no V05-001/V15-001 source repair. Hourly remains unauthorized.
 - Mac QA/control: hourly coordination cadence is accepted, but the last worker heartbeat remains seq10 at `03:57:57Z`. No independent V03-004 execution report has landed; this lane is still the V0.3 gating executor.
 - V0.4 live-canary lane: no Claude worker execution commit exists; branch remains lead-only assignment evidence.
-- External `worker-pc`: latest Social Bots audit reached the real Windows runner but failed at repository clone before Claude/tests. Zero acceptance evidence; Social Bots clone/auth remains unresolved. At LEAD-031 its capacity-1 slot is occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05` / Actions run `35596577823`, so no Social Bots task is queued.
+- External `worker-pc`: latest Social Bots audit reached the real Windows runner but failed at repository clone before Claude/tests. Zero acceptance evidence; Social Bots clone/auth remains unresolved. At LEAD-032 its capacity-1 slot remains occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05` / Actions run `35596577823`, so no Social Bots task is queued.
 
 Heartbeat quality is tracked separately from implementation quality. Mac-QA coordination bootstrap is accepted; Intelligence remains bootstrap. Neither proves V0.7 recurring Social Bots runtime liveness.
 
@@ -30,7 +30,7 @@ Heartbeat quality is tracked separately from implementation quality. Mac-QA coor
 | SB-V04-001 | 3 | PARTIAL | production fail-closed posture now independently re-read at `76e96dd`: launcher defaults adaptive-required, diagnostic override explicit | CHANGES_REQUIRED / source-positive | do not regress; predecessor/integrated adaptive evidence still open |
 | SB-V04-002 | 5 | PARTIAL | Claude CLI adapter exists; injected tests are engineering-only; no real subscription run accepted | CHANGES_REQUIRED | `SB-V04-005` mandatory live proof |
 | SB-V04-003 | 4 | PASS-LIKE source review | dependency unresolved | BLOCKED | deterministic authority boundary remains promising |
-| SB-V04-004 | 3 | **FAIL acceptance design** | `76e96dd` adds six tests, but persona-only case changes evidence too, evidence-only case changes persona/runtime context, and suite uses adaptive=false contextual provider | PLANNED / REPAIR PACKET ISSUED | no corrected worker submission through LEAD-031; independent-variable isolation and adaptive-path proof required |
+| SB-V04-004 | 3 | **FAIL acceptance design** | `76e96dd` adds six tests, but persona-only case changes evidence too, evidence-only case changes persona/runtime context, and suite uses adaptive=false contextual provider | PLANNED / REPAIR PACKET ISSUED | no corrected worker submission through LEAD-032; independent-variable isolation and adaptive-path proof required |
 
 ## Intelligence lane task results
 
@@ -74,9 +74,9 @@ Do not solve V04-004 by casually adding more live model calls. The canonical pac
 
 Core has previously produced and converged, but is now also stale on the bounded V04-004 repair. Intelligence has dependency-ready V05/V15 work but no worker source progress since seq7. Mac QA is hourly-authorized but has not returned the gating independent run. The live-canary lane has no worker execution at all. Lead planning is not the missing input.
 
-## LEAD-031 liveness/capacity note
+## LEAD-032 liveness/capacity note
 
-No worker-generated Social Bots evidence changed since LEAD-030, so no artifact status or first-pass/repair metric changed. The only external scheduling change is that `worker-pc` is currently occupied by unrelated SwarmAI work; even after that slot frees, the existing Social Bots private-repo clone/auth failure must be repaired before another dispatch can provide useful evidence.
+No worker-generated Social Bots evidence changed after LEAD-031, so no artifact status or first-pass/repair metric changed. `worker-pc` remains occupied by unrelated SwarmAI work at review time; even after that slot frees, the existing Social Bots private-repo clone/auth failure must be repaired before another dispatch can provide useful evidence.
 
 ## Recurring defect themes
 
