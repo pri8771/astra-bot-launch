@@ -1,7 +1,7 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-025_2026-09-21T0158.md`.
+Current lead review: `lead-reviews/LEAD-026_2026-09-21T0252.md`.
 
 ## Priority Zero — real V0.4 canary
 
@@ -27,19 +27,22 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / NARROW REPAIR REQUIRED.
+Status: ACTIVE / FINAL NARROW V0.3 REPAIR REQUIRED.
 
-New worker progress:
-- `7e4345b...` repaired post-cycle finish-receipt fencing and added production-path isolation tests; signed Claude commit.
-- `b2083b8...` regenerated `SB-V03-006` from `7e4345b...`; worker reports 127 passing tests.
+New worker progress after LEAD-025:
+- `f73c337...` structurally renamed queue/analytics whole-runtime readers to explicit `admin_*` surfaces and added production-path bypass regressions; signed Claude commit.
+- `65c720b...` regenerated `SB-V03-006` from `f73c337...` and committed exact full-suite output: **129 tests, OK**.
+- current signed worker heartbeat head is `b4c2e73...`, awaiting lead audit.
 
-LEAD-025 disposition:
+LEAD-026 disposition:
 
-1. **SB-V03-004 — CHANGES_REQUIRED / source repair verified:** the finish/success receipt is now written through `fence.fenced_commit`, and the committed adversarial regression forces takeover before that write and proves no finish receipt is emitted. Do not churn this repair. Independent execution from Mac QA/worker-pc has not succeeded yet, so final acceptance is held.
-2. **SB-V03-005 — CHANGES_REQUIRED:** scoped dedup/analytics/facade behavior is improved, and `_reconcile` uses the explicit admin boundary. But ordinary whole-runtime APIs such as `pipeline.publish_queue(bot)`, `analytics.events_for(bot)` and `RuntimeState.content_history()` remain callable as normal functions. Documentation alone does not satisfy the packet's requirement that raw enumeration be structurally admin/internal. Narrowly repair this API boundary and add a regression against accidental persona-facing raw enumeration.
-3. **SB-V03-006 — BLOCKED / PREPARED:** regenerated evidence is useful and bound to `7e4345b...`, but predecessors are not all accepted. The committed evidence records `full: OK` without a separate exact full-suite output/count artifact; final regeneration should include exact full-suite evidence.
+1. **SB-V03-004 — CHANGES_REQUIRED / source repair remains positive:** no new source defect found in the finish-receipt/migration fencing repair. Final acceptance is still held because the packet explicitly requires independent execution and neither Mac QA nor worker-pc has executed the repaired branch.
+2. **SB-V03-005 — CHANGES_REQUIRED:** the queue and analytics raw-reader repair is correct, but `RuntimeState.content_history()` is still an ordinary publicly named whole-runtime reader. A docstring saying ADMIN does not satisfy the packet's structural admin/internal boundary. The new bypass regression only guards the old `publish_queue` and `events_for` names, so it missed this surface.
+3. Required narrow repair: make `RuntimeState.content_history()` explicitly admin/internal or remove it in favor of `isolation.admin_all_records`; expand the structural bypass test across all six persona-private store surfaces / sanctioned raw readers.
+4. **SB-V03-006 — BLOCKED / PREPARED:** the prior exact-output evidence gap is fixed. `65c720b...` contains verbatim `FULL_SUITE_OUTPUT.txt` with `Ran 129 tests ... OK`, but the bundle must be regenerated from the final post-V03-005 SHA and cannot be accepted until predecessors are accepted.
+5. Then reconcile `SB-V03-001`/`SB-EVD-001` and the V0.4 dependency chain.
 
-Then reconcile V04 dependencies. Do not defer implementation for heartbeat work.
+Do not defer implementation for heartbeat work.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
@@ -66,12 +69,10 @@ The last durable worker heartbeat is seq10 at `03:57:57Z`; no independent Core Q
 
 Immediate QA assignment:
 1. resume the authorized hourly coordination heartbeat;
-2. independently execute/probe Core implementation `7e4345b...`, specifically the post-cycle success-receipt takeover regression;
-3. independently verify the remaining `SB-V03-005` structural raw-reader bypass risk in real persona-facing paths;
-4. report exact commands/results/files/symbols;
+2. independently execute/probe current Core implementation `f73c337...`, especially the V03-004 post-cycle success-receipt takeover regression;
+3. independently inspect/probe the full V03-005 raw-reader boundary, including `RuntimeState.content_history()`, and distinguish persona-facing vs explicit admin/runtime-wide access;
+4. report exact commands/results/files/symbols without editing Core source;
 5. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
-
-No Core runtime source edits.
 
 ## Lane D — local authenticated V0.4 canary
 Branch: `claude/social-bots-v04-live-canary`
@@ -85,9 +86,9 @@ Control plane: `pri8771/remote-workers`
 Worker: `worker-pc`
 Capacity: 1.
 
-Second Social Bots task `socialbots-v03-repair-audit-20260921-01` reached `worker-pc` but **FAILED before audit** with `Repository clone failed`. No tests ran and it contributes no artifact evidence.
+Social Bots task `socialbots-v03-repair-audit-20260921-01` reached `worker-pc` but **FAILED before audit** with `Repository clone failed`. No tests ran and it contributes no artifact evidence.
 
-This progressed farther than the prior task's private-repository precheck failure, but clone/auth access to `pri8771/astra-bot-launch` is still not functional. Do not re-dispatch another Social Bots task until that exact access issue is repaired. Do not weaken private-repository controls and do not move project governance into `remote-workers`.
+Do not re-dispatch another Social Bots task until clone/auth access to `pri8771/astra-bot-launch` is demonstrably fixed. Do not weaken private-repository controls and do not move project governance into `remote-workers`.
 
 ## Heartbeat truth
 
