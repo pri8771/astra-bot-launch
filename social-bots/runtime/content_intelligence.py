@@ -31,6 +31,10 @@ FRAMING = "framing"
 READY = "ready"
 WITHHELD = "withheld"
 
+# A fact segment's binding must resolve to one of these ClaimSupport statuses
+# (SB-V05-002). Anything else is not acceptable backing for a factual claim.
+ACCEPTABLE_SUPPORT = ("SUPPORTED", "PARTIAL")
+
 # Platform-native constraints. Deliberately local (does not couple to pipeline).
 PLATFORM_CONSTRAINTS = {
     "x": {"char_limit": 280, "native_format": "post", "alt_text": False, "hashtags": 0},
@@ -41,17 +45,60 @@ PLATFORM_CONSTRAINTS = {
 }
 
 
+def _support_status(support_result) -> str | None:
+    """Extract the status from a factcheck.ClaimResult (object or dict)."""
+    if support_result is None:
+        return None
+    if hasattr(support_result, "status"):
+        return support_result.status
+    if isinstance(support_result, dict):
+        return support_result.get("status")
+    return None
+
+
 @dataclass(frozen=True)
 class Segment:
     text: str
     kind: str = FRAMING
-    binding_ref: dict | None = None   # for fact segments: {claim_id, receipt_id, content_hash}
+    binding_ref: dict | None = None   # for fact segments: must resolve to an
+                                      # acceptable ClaimSupportResult (SB-V05-002)
 
     @staticmethod
     def fact(text: str, binding_ref: dict) -> "Segment":
+        """Create a fact segment. The binding_ref MUST carry a claim id and a
+        ``support_status`` that resolves to an acceptable ClaimSupportResult —
+        a fact cannot be asserted without acceptable evidence backing."""
         if not binding_ref:
             raise ValueError("a fact segment must carry an evidence binding_ref")
+        status = binding_ref.get("support_status")
+        if status not in ACCEPTABLE_SUPPORT:
+            raise ValueError(
+                f"fact segment binding must resolve to an acceptable "
+                f"ClaimSupportResult {ACCEPTABLE_SUPPORT}, got support_status={status!r}")
+        if not binding_ref.get("claim_id"):
+            raise ValueError("a fact segment binding must reference a claim_id")
         return Segment(text=text, kind=FACT, binding_ref=dict(binding_ref))
+
+    @staticmethod
+    def fact_from_support(text: str, support_result) -> "Segment":
+        """Build a fact segment from a factcheck ClaimSupportResult.
+
+        Refuses to bind a fact to a claim that is not SUPPORTED/PARTIAL, so an
+        unsupported/conflicted/unknown claim can never back published content.
+        """
+        status = _support_status(support_result)
+        if status not in ACCEPTABLE_SUPPORT:
+            raise ValueError(
+                f"cannot bind a fact to claim support status {status!r}")
+        get = (support_result.get if isinstance(support_result, dict)
+               else lambda k, d=None: getattr(support_result, k, d))
+        binding = {
+            "claim_id": get("claim_id"),
+            "support_status": status,
+            "assessors": get("assessors", []),
+            "used_evidence": get("used_evidence", []),
+        }
+        return Segment.fact(text, binding)
 
     @staticmethod
     def framing(text: str) -> "Segment":
@@ -103,6 +150,7 @@ def repurpose(concept: ContentConcept, *, persona: str | None = None,
 class PlatformVariant:
     content_id: str
     concept_id: str
+    persona: str
     platform: str
     native_format: str
     hook: str
@@ -175,7 +223,8 @@ def plan_variant(concept: ContentConcept, platform: str) -> PlatformVariant:
     if len(essential) > limit:
         # Cannot fit facts without changing meaning -> withhold, never truncate.
         return PlatformVariant(
-            content_id=content_id, concept_id=concept.concept_id, platform=platform,
+            content_id=content_id, concept_id=concept.concept_id,
+            persona=concept.persona, platform=platform,
             native_format=con["native_format"], hook=_hook_for(platform, concept),
             text="", char_count=len(essential), char_limit=limit, within_limit=False,
             status=WITHHELD,
@@ -194,7 +243,8 @@ def plan_variant(concept: ContentConcept, platform: str) -> PlatformVariant:
     dropped = len(framing) - len(chosen)
 
     return PlatformVariant(
-        content_id=content_id, concept_id=concept.concept_id, platform=platform,
+        content_id=content_id, concept_id=concept.concept_id,
+        persona=concept.persona, platform=platform,
         native_format=con["native_format"], hook=_hook_for(platform, concept),
         text=text, char_count=len(text), char_limit=limit, within_limit=True,
         status=READY, withheld_reason="",
@@ -230,21 +280,43 @@ def similarity(a: str, b: str) -> float:
     return inter / union if union else 0.0
 
 
-def _history_path(bot: str):
-    return paths.content_dir(bot) / "content_intel_history.jsonl"
+# Private content history is scoped by bot + persona/workspace. A shared-brand
+# dedup layer is a SEPARATE, explicitly-invoked namespace — never the default.
+_SHARED_BRAND = "_shared_brand"
 
 
-def record_variant(bot: str, variant: PlatformVariant) -> None:
-    append_jsonl(_history_path(bot), {
+def _history_path(bot: str, persona: str):
+    return paths.content_dir(bot) / persona / "content_intel_history.jsonl"
+
+
+def record_variant(bot: str, variant: PlatformVariant, *,
+                   shared_brand: bool = False) -> None:
+    """Record a variant in its persona-scoped private history.
+
+    ``shared_brand=True`` additionally records into an explicit shared-brand
+    dedup layer (opt-in only), never mixing personas' private histories.
+    """
+    row = {
         "content_id": variant.content_id, "platform": variant.platform,
-        "concept_id": variant.concept_id, "text": variant.text,
-        "status": variant.status, "recorded_at": now_iso(),
-        "lineage": variant.lineage})
+        "persona": variant.persona, "concept_id": variant.concept_id,
+        "text": variant.text, "status": variant.status,
+        "recorded_at": now_iso(), "lineage": variant.lineage}
+    append_jsonl(_history_path(bot, variant.persona), row)
+    if shared_brand:
+        append_jsonl(_history_path(bot, _SHARED_BRAND), row)
 
 
 def check_novelty(bot: str, variant: PlatformVariant, *,
-                  near_threshold: float = 0.8) -> dict:
-    hist = read_jsonl(_history_path(bot))
+                  near_threshold: float = 0.8, shared_brand: bool = False) -> dict:
+    """Check novelty against the variant's OWN persona history by default.
+
+    A cultural persona's similar content cannot make a general persona on the
+    same runtime look duplicate (and vice versa), because each persona's private
+    history is a separate namespace. ``shared_brand=True`` compares against the
+    explicit shared-brand dedup layer instead.
+    """
+    scope_persona = _SHARED_BRAND if shared_brand else variant.persona
+    hist = read_jsonl(_history_path(bot, scope_persona))
     exact = any(h.get("content_id") == variant.content_id for h in hist)
     max_sim = 0.0
     nearest = None
@@ -255,6 +327,7 @@ def check_novelty(bot: str, variant: PlatformVariant, *,
         if sim > max_sim:
             max_sim, nearest = sim, h.get("content_id")
     return {
+        "scope": {"bot": bot, "persona": scope_persona},
         "is_exact_duplicate": exact,
         "is_near_duplicate": max_sim >= near_threshold,
         "max_similarity": round(max_sim, 4),
