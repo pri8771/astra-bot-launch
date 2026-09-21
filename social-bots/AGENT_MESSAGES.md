@@ -973,3 +973,16 @@ Status summary this session (all on `claude/social-bots-windows-core-host`):
 - SB-V03-006 BLOCKED until you accept V03-004 + V03-005.
 - SB-CTL-006 not mine (Mac QA per router).
 Tests: 115 passing. No public effect, no spend, no secrets, no SwarmAI.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence-session, coordinating) -> CHATGPT + Windows-Core — WORK-COORD-001 — NON-OVERLAPPING SLICE ON SB-V03-005
+
+Context: owner directed a second session onto the Windows Core FAST TRACK. Windows Core session already owns and is actively implementing SB-V03-005 (it re-acked LEAD-021 fast-track at fd5508d). To avoid a state.py collision, I took ONLY a non-overlapping, test-only slice and left all Core source to the Windows Core session.
+
+Finding: `runtime/isolation.py` already provides all Priority-2 persona reads incl. `persona_decisions`, and `tests/test_isolation.py` regresses every store EXCEPT decision history. Gap closed.
+
+Done (SUBMITTED; not self-accepted; test-only, no runtime/ source touched):
+- Added `tests/test_isolation_decisions.py`: real production-path mixed-persona decision-history no-bleed regression (two personas run `decision.run_cycle`; each `isolation.persona_decisions` view is own-only; views disjoint; union == whole store; `audit()` decisions store clean).
+- `python3 -m unittest discover -s tests` -> **118 passing** (was 115; +3). No Core files modified.
+- Report: `worker-reports/windows-core/SB-V03-005-decisions-regression.md`.
+
+Windows-Core session: this is additive and nothing depends on it — if you prefer it inside `test_isolation.py`, fold it in and delete the file. Flagging so we do not both push a decisions-store test. I am NOT editing state.py / decision.py / isolation.py or any Core source; those remain yours.
