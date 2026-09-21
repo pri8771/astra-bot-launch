@@ -12,11 +12,11 @@ Those are completed batch evidence, not the active repair lanes.
 
 ## Active repair-lane repository evidence — LEAD-017
 
-- Windows Core/Host expected branch `claude/social-bots-windows-core-host`: **not visible remotely yet**.
+- Windows Core/Host branch `claude/social-bots-windows-core-host`: visible and active at signed Claude head `5318065aad6e38de1e3313ad984d09451a2dfcb7`.
 - Intelligence repair branch `claude/social-bots-intelligence-repair-v2`: visible and active at signed Claude head `cbd781cab4d751b2a0626c3ce060c5a217d771e9`.
 - Mac QA/control expected branch `claude/social-bots-mac-qa-control`: **not visible remotely yet**.
 
-The latest Intelligence worker report says 145 local tests; independent GitHub CI remains absent.
+Worker-local suite reports: Core 91, Intelligence 145. Independent GitHub CI remains absent.
 
 ## Current version
 
@@ -39,18 +39,41 @@ Branch: `claude/social-bots-windows-core-host`
 
 Packet: `artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
 
-Use a separate working tree/clone from every other Windows Claude session.
+Latest submitted checkpoint: `5318065a...` for SB-V03-004 + SB-V03-005.
 
-Order:
-1. SB-V03-004 complete durable-write fencing; fix post-fence decision log/latest-decision writes; remove false transactionality claim.
-2. Prove native-Windows strong lock/fence OR explicitly choose/prove an already-installed WSL/POSIX supported host path.
-3. SB-V03-005 split shared RuntimeState from private PersonaState. Persona-private: seen/consumed signals, hypotheses, working state, pending decisions, strategy-private state.
-4. SB-V03-006 fresh acceptance bundle.
-5. SB-V04-001/002 real adaptive provider via existing authenticated Claude Code subscription if host checks pass; fail closed on API-key/payg risk or provider failure.
-6. SB-CTL-006 CI unless already safely owned by Mac QA/control.
-7. SB-V07-WIN-001 two genuinely separate recurring worker invocations with heartbeats/receipts.
+### Positive changes
 
-Immediate heartbeat request: push the first reviewable checkpoint; repository evidence is currently missing for this new branch.
+- decision log and last-decision writes were moved inside the fenced commit;
+- false multi-file transactionality language was corrected;
+- RuntimeState and PersonaState are now physically separated for consumed signals, hypotheses, working state, pending decisions and goals;
+- same shared evidence can be independently consumed by multiple personas;
+- worker added adversarial fencing/isolation tests and reports 91 passing locally.
+
+### SB-V03-004 — still CHANGES_REQUIRED
+
+1. **Unfenced migration writes:** `PersonaState.load()` can persist a persona file and update/save RuntimeState during legacy migration before `decision.run_cycle()` reaches `Fence.fenced_commit`. A stale worker can therefore still perform cycle-triggered durable migration writes before its final fence is checked.
+2. **Windows host proof absent:** the worker report identifies the tested platform as Linux container/POSIX. It references a `WINDOWS_HOST_LOCKING.md` artifact that is not present in the reviewed `worker-reports/windows-core/` checkpoint. Native Windows or explicitly selected WSL/POSIX strong-lock evidence is still required.
+
+Required next:
+- stage migration without writes until the fenced commit, or explicitly fence the migration write;
+- add stale-owner migration regression;
+- provide actual Windows host readback and native-Windows or WSL supported-path proof.
+
+### SB-V03-005 — still CHANGES_REQUIRED
+
+The private mutable state split addresses the LEAD-015 root cause, but it does not close the full canonical packet:
+
+1. Shared append-only non-public persona artifacts remain logically labeled only. Existing production readers such as `pipeline.publish_queue(bot)` and `RuntimeState.content_history()` still return whole-bot mixed-persona data.
+2. The canonical packet requires one authoritative persona-scoped production read boundary and mixed-persona regressions through real production read paths.
+3. Legacy migration inherits the unfenced durable-write defect above.
+
+Required next:
+- enforce persona-scoped production reads for content/experiments/analytics/actions and other non-shared persona history;
+- make raw whole-runtime reads explicit admin/internal paths where needed;
+- add mixed-persona contamination tests over real production APIs;
+- fix migration under V03-004.
+
+Only after both artifacts pass independent review should SB-V03-006 be regenerated.
 
 ## Instance B — Intelligence / Evidence Integrity
 
@@ -80,12 +103,10 @@ Positive repair work:
 
 Independent LEAD-017 blockers:
 1. `register_operational_assessor(cls)` repeats the public self-registration trust flaw; arbitrary runtime code can grant its own assessor operational authority.
-2. `evidence_ref_from_receipt()` accepts verified fixture/untrusted captures; the operational fact-review path must require accepted SB-V05-001 operational evidence.
+2. `evidence_ref_from_receipt()` accepts verified fixture/untrusted captures; operational fact review must require accepted SB-V05-001 operational evidence.
 3. `KeywordSupportAssessor` can mark full `SUPPORTED` from key-term co-occurrence. It must fail conservatively on negation, relation mismatch, numeric/date mismatch and subject-only mentions rather than overclaim factual support.
 
 ### Required repair order
-
-Do not treat downstream code as accepted merely because scaffolding is useful.
 
 1. Repair/resubmit SB-V05-001 against the tightened canonical packet.
 2. Repair/resubmit SB-V05-002 against the tightened canonical packet.
@@ -102,8 +123,8 @@ Scaffolding may be committed ahead, but canonical status remains dependency/evid
 
 ### Core
 - SB-V03-003 ACCEPTED.
-- SB-V03-004 CHANGES_REQUIRED.
-- SB-V03-005 CHANGES_REQUIRED.
+- SB-V03-004 CHANGES_REQUIRED after Windows repair audit.
+- SB-V03-005 CHANGES_REQUIRED after Windows repair audit.
 - SB-V04-001 CHANGES_REQUIRED.
 - SB-V04-002 CHANGES_REQUIRED.
 - SB-V04-003 source direction positive, BLOCKED on V04-001.
