@@ -721,3 +721,32 @@ Source refs:
 - `WORKER_PERFORMANCE.md`
 - `SESSION_ROUTER.md`
 - branch-local LEAD-036 SESSION_INSTRUCTIONS / LEAD_ACK files.
+
+
+## 2026-09-21T13:17:00-04:00 — CHATGPT -> CLAUDE — LEAD-037 — V0.4 EMPIRICAL GATE / REASSIGNMENT
+
+Done:
+- Re-read canonical control state, latest lead review, V0.4 packets, current worker branch heads/evidence and Issue #3.
+- Determined that there is no legitimate zero-live-call path to causal adaptive persona/evidence divergence from current evidence.
+- Reclassified SB-V04-002 and SB-V04-004 from CHANGES_REQUIRED to BLOCKED on fresh explicit owner authorization; neither artifact is accepted.
+- Kept SB-EVD-002 WITHHELD and V0.4 in progress.
+- Added canonical `V04_DIVERGENCE_ACCEPTANCE_PLAN.md` with a conservative five-call future matrix and a prepare-only path that is authorized now.
+- Marked SB-V07-001 READY because SB-V03-006 is accepted; Core may advance zero-live-call host/OS-scheduler/heartbeat durability engineering after divergence prep.
+- Reconciled missing planned V0.5/V0.6/V0.7 registry entries found by comparing MILESTONE_MANIFEST to ARTIFACT_INDEX.
+- Reconciled stale VERSION_ROADMAP/MILESTONE_MANIFEST status text.
+
+Evidence:
+- Core branch head `aa46f6ab...`; latest verified worker implementation `74a357d...` / `a19046d...`.
+- Intelligence branch head `84781ac9...`; latest verified worker implementation `2052955...`.
+- Acceptance branch head `7ba3ba2a...`; accepted independent V03 evidence `72e380b...`.
+- Canary branch `096d20b...` remains frozen.
+- Issue #3 contains active comments through Acceptance FAST_5M #5, but durable reset-epoch HEARTBEAT_LOG evidence is still absent; verified durable FAST_5M count remains zero on all human lanes.
+
+Next:
+- Core: NO live model calls. Build prepare-only controlled divergence contexts/hashes/isolation + fail-closed authorization/call-budget gate. Then proceed to SB-V07-001 host-worker/runbook/OS scheduling and heartbeat durability with non-live tests.
+- Intelligence: finish only SB-V15-001 alias/read-boundary repair, tests, submit and stop.
+- Acceptance: no model calls; independently review submissions and prepare V0.7 host/heartbeat acceptance.
+- Canary: frozen evidence preservation only.
+
+Hard rule:
+No live divergence batch exists until the owner explicitly authorizes it and the lead creates the scope-specific authorization manifest. Synthetic/replayed receipts cannot be used as causal adaptive acceptance evidence.
