@@ -86,11 +86,11 @@ Capacity: 1.
 
 Social Bots task `socialbots-v03-audit-20260920-01` remains **FAILED before repository clone** because the worker-local GitHub credential could not establish visibility/access to the private `pri8771/astra-bot-launch` repository. The failed task contributes no acceptance evidence.
 
-At LEAD-024 review time, worker-pc is also occupied by another control-plane task, so capacity is not available for a Social Bots dispatch.
+A separate shared-worker run that occupied the slot earlier in this review completed with failure at `04:55:35Z`, so the worker is no longer known to be executing that task. Do **not** re-dispatch Social Bots yet: the Social Bots repository credential/visibility blocker has not been proven fixed, and repeating the same known-failing clone is not useful work.
 
 Required before reuse:
 - grant/refresh worker-pc GitHub credential access to `pri8771/astra-bot-launch` without weakening the private-repository guard;
-- wait for its single protocol slot to be idle;
+- confirm the protocol slot is idle at dispatch time;
 - then assign useful non-overlapping verification/implementation work.
 
 Do not move Social Bots governance into `remote-workers`.
