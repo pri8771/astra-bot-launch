@@ -2,21 +2,20 @@
 
 Purpose: measure Claude Code implementation reliability by story-pointed artifact packet and task type. Story points reflect complexity/uncertainty, not time. No worker submission self-accepts.
 
-Current lead review: `LEAD-033` (`lead-reviews/LEAD-033_2026-09-21T0955.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026/027/028; LEAD-029/030/031/032/033 are liveness/evidence reconciliation reviews with no new artifact acceptance.
+Current lead review: `LEAD-034` (`lead-reviews/LEAD-034_2026-09-21T1055.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026/027/028; LEAD-029–034 are primarily liveness/evidence/capacity reconciliation reviews unless noted otherwise.
 
 ## Current verified worker/source activity
 
-- Windows Core/Host: final V03 source remains `796d4e390bd135167e5de2ff8f586bc07ac7f370` with evidence `436787b0a63fdae0e89c224a54054607e32b5187` (**130 tests, OK**). Latest worker-generated signed commit remains `76e96dde4677346fd5b40c8cba4988f6e4c64fee`; no worker repair of SB-V04-004 has appeared after LEAD-032.
-- `SB-V03-005`: **ACCEPTED in LEAD-027** after multiple narrow repair cycles. The worker ultimately converted the remembered-example fixes into an exhaustive six-store persona/admin boundary and added a structural guard designed to fail if bare whole-runtime reader names return.
-- `SB-V03-004`: source-level repair still looks correct; no new defect found. It remains CHANGES_REQUIRED solely because the packet requires independent lifecycle execution and Mac QA has not returned it.
-- `SB-V04-004`: **first worker attempt CHANGES REQUIRED / not accepted**. Two named runtime divergence tests do not isolate the intended variable, and all six tests force `contextual-deterministic-v1` (`adaptive=false`). The worker was appropriately honest that this is engineering-only and not the live canary. The canonical registry was reconciled from stale PLANNED to CHANGES_REQUIRED in LEAD-033; the bounded repair remains assigned with no new worker submission.
-- `SB-V04-001`: fresh source audit confirms the production launcher now defaults to adaptive-required/fail-closed unless an explicit diagnostic override is selected. Status is not promoted because predecessor/integrated adaptive evidence remains open.
-- Intelligence: latest worker commit remains heartbeat seq7 `a7bdeb4c0f0d2c1a3107798327266812a9644d27` at `04:10:36Z`; no V05-001/V15-001 source repair. Hourly remains unauthorized.
-- Mac QA/control: hourly coordination cadence is accepted, but the last worker heartbeat remains seq10 at `03:57:57Z`. No independent V03-004 execution report has landed; this lane is still the V0.3 gating executor.
-- V0.4 live-canary lane: no Claude worker execution commit exists; branch remains lead-only assignment evidence.
-- External `worker-pc`: latest Social Bots audit reached the real Windows runner but failed at repository clone before Claude/tests. Zero acceptance evidence; Social Bots clone/auth remains unresolved. The prior unrelated SwarmAI task later failed at branch push; at LEAD-033 the capacity-1 worker is again occupied/queued by unrelated SwarmAI retry run `35608406904` (`in_progress`) and Jobs run `35608634037` (`pending`), so no Social Bots task is queued.
+- Windows Core/Host: final V03 source remains `796d4e390bd135167e5de2ff8f586bc07ac7f370` with evidence `436787b0a63fdae0e89c224a54054607e32b5187` (**130 tests, OK**). Latest worker-generated signed implementation commit remains `76e96dde4677346fd5b40c8cba4988f6e4c64fee`; no corrected `SB-V04-004` worker submission has appeared.
+- `SB-V03-005`: **ACCEPTED in LEAD-027** after multiple narrow repair cycles and exhaustive six-store persona/admin boundary hardening.
+- `SB-V03-004`: source-level repair still looks correct; it remains CHANGES_REQUIRED solely because the packet requires independent lifecycle execution and neither Mac QA nor worker-pc has returned valid execution evidence.
+- `SB-V04-004`: first worker attempt remains **CHANGES_REQUIRED**. Its named persona/evidence comparisons do not isolate the intended causal variable, and its provider is explicitly `adaptive=false`.
+- Intelligence: latest worker activity remains heartbeat seq7 at `04:10:36Z`; no V05-001/V15-001 source repair. Historical hourly authorization remains false.
+- Mac QA/control: historical coordination bootstrap is accepted, but the last worker heartbeat remains seq10 at `03:57:57Z`. No independent V03-004 execution report has landed.
+- V0.4 live-canary lane: no Claude worker execution commit exists and no durable heartbeat log exists.
+- External `worker-pc`: LEAD-034 re-dispatched a read-only V03 lifecycle audit after unrelated capacity cleared. Task `socialbots-v03-audit-retry-20260921-1052` / Actions run `35615370153` again failed at **repository clone** before Claude/tests. Zero acceptance evidence; repeated clone/auth failure is now a stable infrastructure defect, not a transient task failure.
 
-Heartbeat quality is tracked separately from implementation quality. Mac-QA coordination bootstrap is accepted; Intelligence remains bootstrap. Neither proves V0.7 recurring Social Bots runtime liveness.
+Heartbeat quality is tracked separately from implementation quality. For the temporary 2026-09-21 soak, **none of the four active Claude lanes has yet produced a durable `FAST_5M` T0**. Historical heartbeat records are not relabeled and no backfill counts.
 
 ## Core lane task results
 
@@ -24,98 +23,74 @@ Heartbeat quality is tracked separately from implementation quality. Mac-QA coor
 |---|---:|---|---|---|---|
 | SB-V03-002 | 3 | PASS | 0 repair cycles | ACCEPTED | per-signal consumed ledger; later/batch/restart regressions |
 | SB-V03-003 | 2 | PARTIAL | 1 lead gap -> forced FACT + VOICE failures | ACCEPTED | bounded repair behaved well |
-| SB-V03-004 | 5 | PARTIAL | acquisition/final-commit repair -> migration repair -> post-cycle success-receipt repair | CHANGES_REQUIRED pending independent execution | source-level implementation is stable; single POSIX host scope explicit |
-| SB-V03-005 | 4 | PARTIAL | state split -> persona facade -> production paths -> queue/analytics admin names -> LEAD-026 found content_history escape -> `796d4e3` exhaustive six-store/admin repair | **ACCEPTED** | strong example of SP4 needing adversarial/exhaustive boundary review before convergence |
-| SB-V03-006 | 3 | PREPARED | final regeneration `436787b...` from `796d4e3...`; exact `FULL_SUITE_OUTPUT.txt` shows 130 tests OK | BLOCKED / final prepared | waits on V03-004 independent acceptance and final lead reconciliation, not another known source repair |
-| SB-V04-001 | 3 | PARTIAL | production fail-closed posture now independently re-read at `76e96dd`: launcher defaults adaptive-required, diagnostic override explicit | CHANGES_REQUIRED / source-positive | do not regress; predecessor/integrated adaptive evidence still open |
-| SB-V04-002 | 5 | PARTIAL | Claude CLI adapter exists; injected tests are engineering-only; no real subscription run accepted | CHANGES_REQUIRED | `SB-V04-005` mandatory live proof |
-| SB-V04-003 | 4 | PASS-LIKE source review | dependency unresolved | BLOCKED | deterministic authority boundary remains promising |
-| SB-V04-004 | 3 | **FAIL acceptance design** | `76e96dd` adds six tests, but persona-only case changes evidence too, evidence-only case changes persona/runtime context, and suite uses adaptive=false contextual provider | **CHANGES_REQUIRED / REPAIR PACKET ISSUED** | no corrected worker submission through LEAD-033; independent-variable isolation and adaptive-path proof required |
+| SB-V03-004 | 5 | PARTIAL | acquisition/final-commit repair -> migration repair -> post-cycle success-receipt repair | CHANGES_REQUIRED pending independent execution | source-level implementation stable; independent run still missing |
+| SB-V03-005 | 4 | PARTIAL | state split -> persona facade -> production paths -> admin naming -> all-store guard | ACCEPTED | SP4 needed repeated adversarial boundary review |
+| SB-V03-006 | 3 | PREPARED | final regeneration `436787b...` from `796d4e3...`; exact full suite 130 tests OK | BLOCKED / final prepared | waits on V03-004 + final V03 reconciliation |
+| SB-V04-001 | 3 | PARTIAL | production fail-closed/adaptive-required posture improved | CHANGES_REQUIRED / source-positive | integrated adaptive evidence still open |
+| SB-V04-002 | 5 | PARTIAL | Claude CLI adapter exists; injected tests engineering-only | CHANGES_REQUIRED | real `SB-V04-005` mandatory |
+| SB-V04-003 | 4 | PASS-LIKE source review | dependency unresolved | BLOCKED | deterministic authority boundary promising |
+| SB-V04-004 | 3 | FAIL acceptance design | `76e96dd` suite is confounded and uses `adaptive=false` contextual provider | CHANGES_REQUIRED / repair assigned | no corrected worker submission through LEAD-034 |
 
 ## Intelligence lane task results
 
 | Artifact | SP | First submission | Independent review finding / repair cycles | Current lead disposition |
 |---|---:|---|---|---|
-| SB-V05-001 | 3 | PARTIAL | trust repairs closed self-registration/DNS concept; LEAD-020 found actual HTTPS constructor path invalid; FAST TRACK repair still absent | CHANGES_REQUIRED |
-| SB-V05-002 | 4 | PARTIAL | static/fail-closed assessor posture improved; still dependent on working trusted live evidence/adaptive semantic path | CHANGES_REQUIRED |
-| SB-V13-001 | 4 | FAIL first acceptance invariant | repaired metric kinds, latest-snapshot semantics, overlap-safe deltas, provenance | ACCEPTED |
+| SB-V05-001 | 3 | PARTIAL | trust repairs improved; actual HTTPS constructor/path still invalid | CHANGES_REQUIRED |
+| SB-V05-002 | 4 | PARTIAL | fail-closed assessor posture improved; still depends on trusted live/adaptive semantic evidence | CHANGES_REQUIRED |
+| SB-V13-001 | 4 | FAIL first acceptance invariant | repaired metric kinds/latest-snapshot/overlap-safe deltas/provenance | ACCEPTED |
 | SB-V14-001 | 4 | FAIL first isolation/privacy invariant | repaired bot+persona persistence and sensitive-segment controls | ACCEPTED |
-| SB-V15-001 | 4 | PARTIAL | measurement provenance repaired; bot-wide normal experiment persistence/read boundary remains | CHANGES_REQUIRED |
+| SB-V15-001 | 4 | PARTIAL | measurement provenance repaired; bot-wide normal experiment boundary remains | CHANGES_REQUIRED |
 | SB-V16-001 | 4 | PARTIAL | latest repair submitted but not independently accepted | CHANGES_REQUIRED |
 | SB-V12-001 | 3 | PASS-LIKE source review | operational availability/authority acceptance unresolved | BLOCKED |
 | SB-V17-001 | 4 | PARTIAL | latest receipt/persona-scope repair submitted but not independently accepted | CHANGES_REQUIRED |
-| SB-V20-002 | 4 | PARTIAL | typed evidence/persona repair submitted; pending V15 repair + independent audit | CHANGES_REQUIRED |
+| SB-V20-002 | 4 | PARTIAL | typed evidence/persona repair submitted; pending V15 + independent audit | CHANGES_REQUIRED |
 
-## QA/control lane task results
+## QA/control and external verification results
 
-| Artifact | SP | First submission | Independent evidence | Current lead disposition |
-|---|---:|---|---|---|
-| SB-CTL-012 | 3 | PASS | source reviewed; structural graph failures hard-error; V2 engineering/operational distinction retained | ACCEPTED |
-| SB-CTL-006 | 2 | PASS | read-only workflow + real GitHub-hosted run `35555060783` succeeded | ACCEPTED |
-| Coordination heartbeat bootstrap | n/a | early burst/snapshot issues | later durable Mac-QA intervals accepted; Intelligence seq7 misses cadence | PASS Mac QA / FAIL-PENDING Intelligence | coordination proof only |
-| V2 acceptance harness prep | n/a | PASS-LIKE | non-runtime assertion layer | PREP ONLY | cannot promote SB-V20-099 |
-| Independent SB-V03-004 lifecycle execution | n/a | ASSIGNED / STALLED | Mac QA has not run the current repaired SHA; worker-pc clone failed | **PENDING / V0.3 GATE** | exact command/result required before V03-004 acceptance |
+| Work | Result | Independent evidence | Current lead disposition |
+|---|---|---|---|
+| SB-CTL-012 artifact validator | PASS | source reviewed; dependency/readiness hard errors | ACCEPTED |
+| SB-CTL-006 CI | PASS | real GitHub-hosted run `35555060783` succeeded | ACCEPTED |
+| Historical Mac-QA coordination heartbeat | PASS | durable ~15–17m sequence accepted | historical hourly authorized |
+| Intelligence historical heartbeat | FAIL-PENDING | seq6→7 ~30m28s | hourly unauthorized |
+| 2026-09-21 temporary heartbeat soak | NOT STARTED | zero durable `FAST_5M` T0 records on all four lanes | unproven, non-blocking |
+| Independent SB-V03-004 Mac-QA lifecycle run | STALLED | no current report | PENDING / V0.3 gate |
+| worker-pc Social Bots audit retry | FAIL | Actions `35615370153`; `Repository clone failed.` before Claude/tests | ZERO EVIDENCE; clone/auth repair required |
+| V0.4 real canary | NOT STARTED | no worker-generated provider/source/decision receipt | Priority Zero |
 
-## LEAD-028 lessons
+## Current lessons
 
-### A test suite can be green and still fail the artifact
+### Green tests are not artifact acceptance
 
-Core's V04-004 submission is a clean example: the worker reports all six new tests green, but two tests do not isolate the variable named in their test title. Persona and evidence/context move together, so the tests cannot support the causal acceptance claim. Artifact review must inspect experimental design, not just pass/fail.
+The V04-004 submission showed that a suite can be entirely green while still failing the intended acceptance invariant because variables are confounded. Experimental design must be independently inspected.
 
-### Honest provider labeling prevented a false V0.4 claim
+### SP4/SP5 work needs adversarial review
 
-The contextual provider explicitly declares `adaptive=false`, and the worker report explicitly says the suite is engineering-only. That is good worker behavior. The lead rejection is not because the deterministic suite is useless; it is because it proves a different property than the adaptive V0.4 artifact requires.
+Persona boundaries and lease/fencing work repeatedly converged only after independent review found lifecycle or structural bypasses. Continue decomposing implementation for Claude while preserving final integration acceptance.
 
-### Preserve the one authorized real invocation
+### Trust and provenance require production-path proof
 
-Do not solve V04-004 by casually adding more live model calls. The canonical packet asks Core to build a clean acceptance seam that can consume the sanitized real adaptive proposal/provider evidence from SB-V04-005 where practical. This keeps no-additional-spend authority intact.
+Fixtures and caller assertions cannot establish operational evidence. Real network/provider paths need path-level proof and collector-owned/provider-owned provenance.
 
-### Worker inactivity remains the main throughput defect outside Core
+### External worker infrastructure is not useful until repository access is real
 
-Core has previously produced and converged, but is now also stale on the bounded V04-004 repair. Intelligence has dependency-ready V05/V15 work but no worker source progress since seq7. Mac QA is hourly-authorized but has not returned the gating independent run. The live-canary lane has no worker execution at all. Lead planning is not the missing input.
+`worker-pc` itself is online and proven on another private repository, but Social Bots tasks have repeatedly failed before Claude because `pri8771/astra-bot-launch` cannot be cloned. Do not keep consuming capacity with identical retries; fix clone/auth first.
 
-## LEAD-033 liveness/capacity note
+### Heartbeat is observability, not delivery
 
-No worker-generated Social Bots evidence changed after LEAD-032, so no artifact acceptance or first-pass/repair metric changed. This review only reconciles the stale V04-004 registry disposition to the already-verified CHANGES_REQUIRED outcome. `worker-pc` still cannot contribute Social Bots evidence until private-repo clone/auth is fixed, and its capacity-1 slot is currently consumed/queued by unrelated work.
-
-## Recurring defect themes
-
-### Trust / operational provenance
-- no caller self-registration of operational trust;
-- fixtures/untrusted evidence cannot be upgraded to operational evidence;
-- real network/provider paths need path-level proof.
-
-### Persona/workspace isolation
-- scope storage and read/list surfaces;
-- enforce production call paths structurally;
-- make complete admin/raw-reader separation machine-testable;
-- cross-persona imports must be explicit.
-
-### Fencing / lifecycle
-- acquisition safety is insufficient;
-- ownership must cover active work and completion evidence;
-- migration helpers cannot durably bypass the fence;
-- host/filesystem scope must be honest.
-
-### Acceptance-test design
-- hold unrelated variables constant when claiming persona-only/evidence-only divergence;
-- distinguish deterministic/context-sensitive diagnostics from truly adaptive provider evidence;
-- green tests do not self-prove the intended acceptance invariant.
-
-### Dependency discipline
-Workers may build additive scaffolding ahead of promotion, but status remains dependency/evidence gated. `SB-V20-099` is not promoted by local tests/harness alone.
+Historical coordination heartbeats do not prove V0.7 runtime liveness, and today's temporary soak does not count until real durable `FAST_5M` entries exist. Heartbeat must run beside useful work, never instead of it.
 
 ## Metrics to continue accumulating
 
-For each SP level track attempts, first-pass acceptance, repair cycles, independent findings, dependency violations, escaped defects, final acceptance, GitHub-CI vs worker-local evidence, production-path vs fixture-only evidence, and coordination idle time.
+For each SP level track attempts, first-pass acceptance, repair cycles, independent findings, dependency violations, escaped defects, final acceptance, GitHub-CI vs worker-local evidence, production-path vs fixture-only evidence, coordination idle time, and external-worker infrastructure failures.
 
 ## Current concurrency implication
 
 FAST TRACK lanes:
-- Windows Core: V03 implementation stable; repair V04-004 acceptance design while independent V03 gate runs;
+- Windows Core: V03 stable; repair V04-004 acceptance design while independent V03 gate runs;
 - Intelligence: stale; V05 now then V15;
-- Mac QA: stale but hourly-authorized; must run the independent V03-004 gate now;
+- Mac QA: stale; independent V03-004 gate now, then QA/integration;
 - dedicated local V0.4 canary: Priority Zero, still no worker activity;
-- `worker-pc`: runner/control plane works but Social Bots repo clone/auth remains broken and its sole slot is currently occupied/queued by unrelated work.
+- `worker-pc`: no more Social Bots dispatch until clone/auth is demonstrably repaired.
 
 Official version remains V0.3.x until artifact gates clear.
