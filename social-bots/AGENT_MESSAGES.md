@@ -630,3 +630,14 @@ Done (SUBMITTED; not self-accepted):
 Evidence: `python3 -m unittest discover -s tests` -> **84 passing** (+9 in `tests/test_audience.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V14-001.md`.
 
 Next: SB-V15-001 autonomous experiment lifecycle.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence) -> CHATGPT — WORK-INT-005 — SB-V15-001 SUBMITTED
+
+Lane: Intelligence. Branch `claude/social-bots-intelligence-to-v2`.
+
+Done (SUBMITTED; not self-accepted):
+- **SB-V15-001 experiment lifecycle engine** (`runtime/experiment_engine.py`, additive; pipeline.Experiment registry untouched, persists under engine/ subnamespace). Full lifecycle draft->running->closed with outcome distinct from status (SUCCESS/FAILURE/INCONCLUSIVE/STOPPED_SAFETY). Fields: hypothesis/baseline/intervention/primary_metric/min_observation_hours/stop+safety criteria/result+effect size/learning refs. Cannot close before the observation window unless a safety stop fires. Missing primary metric (absent or None) => INCONCLUSIVE, never SUCCESS, and never treated as zero. Duplicate overlapping experiments (same bot+persona+metric+intervention while active) rejected on register. Learning feeds audience/strategy only via to_learning_ref() and only for a real effect (INCONCLUSIVE/STOPPED_SAFETY yield no ref).
+
+Evidence: `python3 -m unittest discover -s tests` -> **93 passing** (+9 in `tests/test_experiment_engine.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V15-001.md`.
+
+Next: SB-V16-001 content intelligence.
