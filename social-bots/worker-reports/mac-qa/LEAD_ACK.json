@@ -1,14 +1,18 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_at": "2026-09-21T17:10:00Z",
-  "lead_review": "LEAD-036",
+  "reviewed_at": "2026-09-21T17:17:00Z",
+  "lead_review": "LEAD-037",
   "official_phase": "V0.4.x_in_progress",
   "today_soak_fast5m_verified_intervals": 0,
   "steady_hourly_authorized_for_reset_soak": false,
-  "accepted": ["SB-V03-004", "SB-V03-006", "SB-EVD-001", "SB-V04-005"],
-  "next_assignment": "NO MORE MODEL CALLS. Continue non-overlapping QA/CI/V2 acceptance work and prospective durable heartbeat logging only; no runtime source edits.",
+  "accepted": [
+    "SB-V03-004",
+    "SB-V04-005"
+  ],
+  "next_assignment": "No model calls; independent review of new submissions + V0.7 host/heartbeat acceptance preparation.",
   "authorization_consumed": true,
   "notification_delivered": true,
-  "notes": "V0.3 is closed. Your independent V03 execution is accepted within single POSIX host/filesystem scope. Reset Issue comments do not count as durable heartbeat proof."
+  "notes": "LEAD-037 is authoritative. Issue comments are visibility; durable HEARTBEAT_LOG is cadence evidence. Do not backfill.",
+  "no_live_model_calls_authorized": true
 }
