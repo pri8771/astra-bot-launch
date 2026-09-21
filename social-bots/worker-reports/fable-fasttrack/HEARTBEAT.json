@@ -1,0 +1,24 @@
+{
+  "blocker": null,
+  "branch": "fable/social-bots-v23-fasttrack-20260921",
+  "cadence_mode": "SESSION_ONCE",
+  "canonical_seen_sha": "eeb4a39a9bcd813d8ca691db142851206129bf50",
+  "current_artifact": "SB-S23-001 specialist worker contract runtime (then SB-S20-001, SB-S23-002; new files only)",
+  "head_sha": "e19003f3144bd9770d05ae6eab727eb9ee6e582e",
+  "issue_comment_posted": false,
+  "issue_comment_skipped_reason": "not requested",
+  "lane": "fable-fasttrack",
+  "lead_review_seen": "LEAD-043",
+  "notes": "Fresh Fable 5.1 implementation session per LEAD-043 fast-track release. Branch based on Cursor recovery head 488ce0c by unedited merge (e19003f). No Cursor-owned file edits, no model/live call. gh absent; Issue #3 visibility via GitHub MCP after this durable write.",
+  "runtime": {
+    "host": "vm",
+    "pid": 488,
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v37",
+    "python": "3.11.15"
+  },
+  "schema_version": 3,
+  "session_id": "s-20260921T211438Z-d5589881",
+  "session_status": "STARTED",
+  "started_at": "2026-09-21T21:14:38Z"
+}
