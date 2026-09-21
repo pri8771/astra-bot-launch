@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T04:52:00Z",
+  "updated_at": "2026-09-21T04:56:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -106,7 +106,7 @@
       "Intelligence heartbeat seq7 does not complete bootstrap: seq5 03:23:31Z -> seq6 03:40:08Z is acceptable, but seq6 -> seq7 04:10:36Z is about 30m28s. Hourly remains unauthorized and V05/V15 source work remains stalled.",
       "Mac-QA has not yet returned its independent Core verification report; it is now assigned the exact post-cycle receipt-fence and production-reader-bypass scenarios.",
       "The V0.4 canary branch still has no Claude worker execution or SB-V04-005 evidence. Heartbeat is not a prerequisite.",
-      "worker-pc's prior Social Bots task failed before clone on repository credential visibility; at this review it is also occupied by another control-plane task, so no Social Bots re-dispatch is appropriate."
+      "worker-pc's prior Social Bots task failed before clone on repository credential visibility. A separate shared-worker run completed with failure at 04:55:35Z, so the slot is no longer known busy, but Social Bots must not re-dispatch until its repo-access blocker is actually fixed."
     ]
   },
   "public_actions": {
@@ -196,7 +196,7 @@
       "Intelligence / evidence+experiments",
       "Mac QA / integration control",
       "Mac local V0.4 live canary",
-      "worker-pc / independent verification or bounded implementation, capacity 1 when available"
+      "worker-pc / independent verification or bounded implementation, capacity 1 when repo access is fixed"
     ],
     "plan": "FAST_TRACK_EXECUTION.md"
   },
@@ -211,10 +211,10 @@
     "current_task_target_branch": "claude/social-bots-windows-core-host",
     "current_task_purpose": "independent SB-V03-004/SB-V03-005 acceptance audit",
     "dispatch_run_id": 35559393292,
-    "status": "blocked_repo_auth_visibility_and_capacity_occupied_elsewhere",
+    "status": "blocked_repo_auth_visibility_slot_not_known_busy",
     "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release.",
     "current_task_result": "failed",
     "current_task_error": "worker-pc gh credential reported target as not-private/unavailable; GitHub repo metadata independently verifies astra-bot-launch is private",
-    "required_fix": "grant/refresh worker-pc gh CLI credential access to pri8771/astra-bot-launch without weakening private-repo guard; wait for shared capacity to become idle before Social Bots re-dispatch"
+    "required_fix": "grant/refresh worker-pc gh CLI credential access to pri8771/astra-bot-launch without weakening private-repo guard before Social Bots re-dispatch"
   }
 }
