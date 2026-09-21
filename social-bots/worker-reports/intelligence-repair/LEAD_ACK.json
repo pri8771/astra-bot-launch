@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "lane": "intelligence-repair",
-  "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T02:51:00Z",
-  "lead_review": "LEAD-020",
-  "bootstrap_consecutive_verified": 0,
+  "reviewed_through_sequence": 6,
+  "reviewed_at": "2026-09-21T04:06:00Z",
+  "lead_review": "LEAD-023",
+  "bootstrap_consecutive_verified": 2,
   "steady_hourly_authorized": false,
-  "next_assignment": "Repair SB-V05-001 HTTPS pinned-destination TLS execution first, add a regression that exercises the real HTTPSConnection path, and continue prospective approximately-15-minute HEARTBEAT_LOG entries without backfilling. Then repair SB-V15-001 persona-scoped production readers before additional higher-version expansion.",
+  "next_assignment": "Resume SB-V05-001 immediately: repair the actual pinned-IP HTTPS TLS/SNI/certificate path and production-constructor regression. Then complete SB-V15-001 persona-scoped production experiment persistence/read APIs. Heartbeat continues in background and must not pause source work.",
   "notification_delivered": true,
-  "notes": "HEARTBEAT.json reports sequence 4, but HEARTBEAT_LOG.jsonl contains only the seed sequence 0; snapshot sequence advancement is not durable heartbeat history and does not satisfy bootstrap. Source progress through feb30f4c is real and separately audited."
+  "notes": "Durable timed checkpoints seq5 and seq6 are real, but the lane has pushed no implementation repair since fast-track activation and no third timed checkpoint yet. Stop any foreground heartbeat-only wait and resume source work now."
 }
