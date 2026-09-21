@@ -1,6 +1,6 @@
 # SESSION_INSTRUCTIONS — Windows Core / Host
 
-Lead review: LEAD-018
+Lead review: LEAD-019 (reconciliation after LEAD-018)
 Branch: `claude/social-bots-windows-core-host`
 
 ## Coordination loop
@@ -18,42 +18,51 @@ At session start and after every parent artifact checkpoint:
 
 Do not rewrite this file. Lead owns it.
 
-## Current disposition
+## Reconciled disposition
 
-- SB-V03-004: ACCEPTED by LEAD-018 for code-level ownership fencing.
-- SB-V03-005: CHANGES_REQUIRED, narrow follow-up.
-- SB-V03-006: next after V03-005.
+- SB-V03-004: **CHANGES_REQUIRED again**. LEAD-018 accepted the final ownership-fenced commit, but deeper source review found cycle-triggered durable legacy-migration writes in `PersonaState.load()` / `_migrate_from_legacy()` that execute before `Fence.fenced_commit`. The canonical V03-004 contract says an obsolete owner cannot commit state after fence loss; load/migration side effects are state writes and must be staged/fenced too.
+- SB-V03-005: CHANGES_REQUIRED.
+- SB-V03-006: BLOCKED until both V03-004 and V03-005 pass.
 - V04 adaptive provider / V07 host proof follow.
 
 Mac QA owns SB-CTL-006 CI unless canonical router explicitly reassigns it.
 
-## Next 1 — finish SB-V03-005
+## Next 1 — finish SB-V03-004 + SB-V03-005 migration safely
 
-Keep the RuntimeState / PersonaState architecture.
+Keep the current generation-fence / fenced-commit design and RuntimeState / PersonaState architecture.
 
-Repair migration consistency:
-
-- Current run_cycle loads RuntimeState before PersonaState.
-- Persona migration can save a fresh runtime marker, then the older in-memory RuntimeState can later overwrite the marker.
-- Migration currently marks runtime migrated before the persona file is durably saved, creating a crash window.
+### V03-004 fencing repair
 
 Required:
-1. make migration crash-safe and idempotent;
-2. persona file becomes durable before final migrated marker, or use equivalent recoverable two-phase semantics;
-3. the RuntimeState eventually committed by the real cycle contains the final migration marker;
-4. test the actual run_cycle load/save ordering;
-5. simulate interruption at the migration boundary where practical.
+1. make RuntimeState/PersonaState cycle load paths side-effect free;
+2. no `PersonaState.save()` or `RuntimeState.save()` may occur from legacy migration before ownership is checked;
+3. stage migration in memory and persist the persona file + migration marker only inside the ownership-fenced commit, or perform an explicitly fenced migration before any durable write;
+4. force stale owner A into the legacy migration path, allow B to take over, then prove A cannot leave persona state or migration-marker writes behind;
+5. preserve honest guarantee language: ownership fencing, not ACID multi-file transactionality.
 
-Also close the canonical logical-isolation read boundary:
-- persona-specific production reads for content history, experiments, queue, analytics, actions, decisions must go through authoritative persona-scoped APIs;
-- raw whole-runtime reads may remain explicit admin/internal APIs;
+The actual Windows/WSL strong-lock and recurring-host proof remains `SB-V07-WIN-001`; Linux/container test evidence does not prove native Windows or WSL host behavior.
+
+### V03-005 migration consistency
+
+After the fencing rule above is satisfied:
+- migration must be crash-safe and idempotent;
+- persona file becomes durable before the final migrated marker, or use equivalent recoverable semantics within the fence;
+- the RuntimeState eventually committed by the real cycle contains the final marker;
+- test the real run_cycle load/save ordering;
+- simulate interruption at the migration boundary where practical.
+
+### V03-005 production persona read boundary
+
+Close the canonical logical-isolation read boundary:
+- persona-specific production reads for content history, experiments, queue, analytics, actions, decisions and other private append-only history must go through authoritative persona-scoped APIs;
+- raw whole-runtime reads may remain explicit admin/internal APIs, not normal persona-facing production helpers;
 - real mixed-persona production-path regressions must prove no bleed.
 
-Submit updated SB-V03-005.
+Submit updated SB-V03-004 and SB-V03-005 as independently reviewable checkpoints where possible.
 
 ## Next 2 — SB-V03-006
 
-After V03-005 passes your own tests, generate a fresh V0.3 acceptance bundle from current code.
+Only after V03-004 and V03-005 pass your own repaired contracts, generate a fresh V0.3 acceptance bundle from current code.
 
 Do not reuse superseded evidence.
 
@@ -117,8 +126,6 @@ Use:
 The heartbeat is a GitHub coordination signal, not proof of artifact correctness.
 
 If the lead updates this file between heartbeats, follow the newest pulled version.
-
-
 
 Path:
 `social-bots/worker-reports/windows-core/HEARTBEAT.json`
