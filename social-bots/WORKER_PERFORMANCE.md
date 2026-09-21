@@ -2,15 +2,17 @@
 
 Purpose: measure Claude Code implementation reliability by story-pointed artifact packet and task type. Story points reflect complexity/uncertainty, not time. No worker submission self-accepts.
 
-Current lead review: `LEAD-027` (`lead-reviews/LEAD-027_2026-09-21T0354.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026.
+Current lead review: `LEAD-028` (`lead-reviews/LEAD-028_2026-09-21T0451.md`). Foundational deep audits remain LEAD-015/017/019/020/023/024/025/026/027.
 
 ## Current verified worker/source activity
 
-- Windows Core/Host: signed implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370` closes the final SB-V03-005 structural raw-reader escape. Evidence commit `436787b0a63fdae0e89c224a54054607e32b5187` regenerates V03-006 and commits exact full-suite output: **130 tests, OK**. Later worker heartbeat `1fed0684...` waits for lead audit.
+- Windows Core/Host: final V03 source remains `796d4e390bd135167e5de2ff8f586bc07ac7f370` with evidence `436787b0a63fdae0e89c224a54054607e32b5187` (**130 tests, OK**). New signed worker commit `76e96dde4677346fd5b40c8cba4988f6e4c64fee` submits SB-V04-004 engineering tests and a V04-001/002/003 re-audit.
 - `SB-V03-005`: **ACCEPTED in LEAD-027** after multiple narrow repair cycles. The worker ultimately converted the remembered-example fixes into an exhaustive six-store persona/admin boundary and added a structural guard designed to fail if bare whole-runtime reader names return.
 - `SB-V03-004`: source-level repair still looks correct; no new defect found. It remains CHANGES_REQUIRED solely because the packet requires independent lifecycle execution and Mac QA has not returned it.
+- `SB-V04-004`: **first worker attempt CHANGES REQUIRED / not accepted**. Two named runtime divergence tests do not isolate the intended variable, and all six tests force `contextual-deterministic-v1` (`adaptive=false`). The worker was appropriately honest that this is engineering-only and not the live canary.
+- `SB-V04-001`: fresh source audit confirms the production launcher now defaults to adaptive-required/fail-closed unless an explicit diagnostic override is selected. Status is not promoted in LEAD-028 because predecessor/integrated adaptive evidence remains open.
 - Intelligence: latest worker commit remains heartbeat seq7 `a7bdeb4c0f0d2c1a3107798327266812a9644d27` at `04:10:36Z`; no V05-001/V15-001 source repair. Hourly remains unauthorized.
-- Mac QA/control: hourly coordination cadence is accepted, but the last worker heartbeat remains seq10 at `03:57:57Z`. No independent V03-004 execution report has landed; this lane is now the V0.3 gating executor.
+- Mac QA/control: hourly coordination cadence is accepted, but the last worker heartbeat remains seq10 at `03:57:57Z`. No independent V03-004 execution report has landed; this lane is still the V0.3 gating executor.
 - V0.4 live-canary lane: no Claude worker execution commit exists; branch remains lead-only assignment evidence.
 - External `worker-pc`: latest Social Bots audit reached the real Windows runner but failed at repository clone before Claude/tests. Zero acceptance evidence; do not redispatch until access is fixed.
 
@@ -25,9 +27,10 @@ Heartbeat quality is tracked separately from implementation quality. Mac-QA coor
 | SB-V03-004 | 5 | PARTIAL | acquisition/final-commit repair -> migration repair -> post-cycle success-receipt repair | CHANGES_REQUIRED pending independent execution | source-level implementation is stable; single POSIX host scope explicit |
 | SB-V03-005 | 4 | PARTIAL | state split -> persona facade -> production paths -> queue/analytics admin names -> LEAD-026 found content_history escape -> `796d4e3` exhaustive six-store/admin repair | **ACCEPTED** | strong example of SP4 needing adversarial/exhaustive boundary review before convergence |
 | SB-V03-006 | 3 | PREPARED | final regeneration `436787b...` from `796d4e3...`; exact `FULL_SUITE_OUTPUT.txt` shows 130 tests OK | BLOCKED / final prepared | waits on V03-004 independent acceptance and final lead reconciliation, not another known source repair |
-| SB-V04-001 | 3 | PARTIAL | production fail-closed posture exists; needs fresh current-branch audit after V03 closure | CHANGES_REQUIRED | Core now assigned dependency-safe reconciliation/tests |
+| SB-V04-001 | 3 | PARTIAL | production fail-closed posture now independently re-read at `76e96dd`: launcher defaults adaptive-required, diagnostic override explicit | CHANGES_REQUIRED / source-positive | do not regress; predecessor/integrated adaptive evidence still open |
 | SB-V04-002 | 5 | PARTIAL | Claude CLI adapter exists; injected tests are engineering-only; no real subscription run accepted | CHANGES_REQUIRED | `SB-V04-005` mandatory live proof |
 | SB-V04-003 | 4 | PASS-LIKE source review | dependency unresolved | BLOCKED | deterministic authority boundary remains promising |
+| SB-V04-004 | 3 | **FAIL acceptance design** | `76e96dd` adds six tests, but persona-only case changes evidence too, evidence-only case changes persona/runtime context, and suite uses adaptive=false contextual provider | PLANNED / REPAIR PACKET ISSUED | worker honesty good; independent-variable isolation and adaptive-path proof required before submission can be accepted |
 
 ## Intelligence lane task results
 
@@ -53,21 +56,21 @@ Heartbeat quality is tracked separately from implementation quality. Mac-QA coor
 | V2 acceptance harness prep | n/a | PASS-LIKE | non-runtime assertion layer | PREP ONLY | cannot promote SB-V20-099 |
 | Independent SB-V03-004 lifecycle execution | n/a | ASSIGNED / STALLED | Mac QA has not run the current repaired SHA; worker-pc clone failed | **PENDING / V0.3 GATE** | exact command/result required before V03-004 acceptance |
 
-## LEAD-027 lessons
+## LEAD-028 lessons
 
-### SP4 isolation converged after exhaustive contract testing
+### A test suite can be green and still fail the artifact
 
-SB-V03-005 took several repair cycles because each earlier iteration fixed the specifically named escape while leaving another ordinary whole-runtime reader. The final `796d4e3` repair is materially better because the regression encodes the whole contract: all six persona-private stores must have sanctioned persona readers, raw enumeration must be explicit admin/internal, and bare reader names are structurally prohibited. This is the preferred pattern for future trust/isolation work.
+Core's V04-004 submission is a clean example: the worker reports all six new tests green, but two tests do not isolate the variable named in their test title. Persona and evidence/context move together, so the tests cannot support the causal acceptance claim. Artifact review must inspect experimental design, not just pass/fail.
 
-### Exact evidence capture is now good
+### Honest provider labeling prevented a false V0.4 claim
 
-`436787b...` preserves the improved evidence discipline: verbatim full-suite output is committed and shows 130 named tests with `OK`, rather than relying on prose. Preserve this pattern.
+The contextual provider explicitly declares `adaptive=false`, and the worker report explicitly says the suite is engineering-only. That is good worker behavior. The lead rejection is not because the deterministic suite is useless; it is because it proves a different property than the adaptive V0.4 artifact requires.
 
-### Independent execution is a real gate, not ceremony
+### Preserve the one authorized real invocation
 
-V03-004 is not being withheld for another known source defect. It is withheld because lifecycle fencing is high-risk and the packet explicitly requires a separate executor to run the adversarial takeover cases. Do not silently lower this bar because QA is stale.
+Do not solve V04-004 by casually adding more live model calls. The canonical packet now asks Core to build a clean acceptance seam that can consume the sanitized real adaptive proposal/provider evidence from SB-V04-005 where practical. This keeps no-additional-spend authority intact.
 
-### Worker inactivity is now the main throughput defect outside Core
+### Worker inactivity remains the main throughput defect outside Core
 
 Core is producing and converging. Intelligence has dependency-ready V05/V15 work but no worker source progress since seq7. Mac QA is hourly-authorized but has not returned the gating independent run. The live-canary lane has no worker execution at all. Lead planning is not the missing input.
 
@@ -90,6 +93,11 @@ Core is producing and converging. Intelligence has dependency-ready V05/V15 work
 - migration helpers cannot durably bypass the fence;
 - host/filesystem scope must be honest.
 
+### Acceptance-test design
+- hold unrelated variables constant when claiming persona-only/evidence-only divergence;
+- distinguish deterministic/context-sensitive diagnostics from truly adaptive provider evidence;
+- green tests do not self-prove the intended acceptance invariant.
+
 ### Dependency discipline
 Workers may build additive scaffolding ahead of promotion, but status remains dependency/evidence gated. `SB-V20-099` is not promoted by local tests/harness alone.
 
@@ -100,7 +108,7 @@ For each SP level track attempts, first-pass acceptance, repair cycles, independ
 ## Current concurrency implication
 
 FAST TRACK lanes:
-- Windows Core: V03 implementation stable; use capacity on V04 reconciliation/tests while independent V03 gate runs;
+- Windows Core: V03 implementation stable; repair V04-004 acceptance design while independent V03 gate runs;
 - Intelligence: stale; V05 now then V15;
 - Mac QA: stale but hourly-authorized; must run the independent V03-004 gate now;
 - dedicated local V0.4 canary: Priority Zero, still no worker activity;
