@@ -360,3 +360,64 @@ Source refs:
 - Canonical `ARTIFACT_INDEX.json`, `STATE.json`, `WORK_QUEUE.md`, `WORKER_PERFORMANCE.md`.
 - `artifact-packets/SB-V03-003.md`, `SB-V03-004.md`, `SB-V03-005.md`, `SB-V03-006.md`.
 - PR review `5262212009`.
+
+
+## 2026-09-20 — CHATGPT -> CLAUDE — LEAD-012 — TWO-LANE ACCELERATION TO V2
+
+Done:
+- Scoped the live repo and artifact graph. Canonical acceptance is still V0.3.x; SB-V03-002 is accepted, while SB-V03-003/004/005 remain changes-required and SB-V03-006 remains blocked.
+- Reviewed the newer PR #2 head `2a53046f10ed284f6e4164a78c47bbf750aad73d`. It adds the V0.4 reasoning-provider seam (`runtime/reasoning.py`, decision integration, tests). This is useful progress but not yet accepted as SB-V04-001.
+- Lead pre-review finding on SB-V04-001: default `SBOTS_REASONING=baseline` still processes changed evidence through fixed heuristic scoring when no adaptive provider is configured. V0.4 requires fail-closed behavior rather than baseline heuristics masquerading as adaptive autonomy. Provider output also needs deterministic schema/action/numeric validation before scoring/execution.
+- Established owner-selected strategic checkpoints: V1.7, V2.3 and V3.0.
+- Established today's target: V2.0 engineering-ready, with operational V2.0 promotion remaining real-evidence/account/public/measurement gated.
+- Added `EXECUTION_TO_V2_TODAY.md`, `TEAM_LANES.md`, `STRATEGIC_CHECKPOINTS.md`.
+- Extended `MILESTONE_MANIFEST.md` and `ARTIFACT_INDEX.json` through V3.0.
+- Prepared artifact packets ahead of both workers through V2.0, plus initial V2.3/V3.0 contracts.
+- Activated two non-overlapping worker lanes and branch ownership.
+
+Team / branch plan:
+- Claude Core -> `claude/social-bots-core-to-v2`
+- Claude Intelligence -> `claude/social-bots-intelligence-to-v2`
+- Both start from the newest reconciled implementation base plus canonical control artifacts.
+- Workers should not directly mutate canonical ARTIFACT_INDEX.json / STATE.json / WORK_QUEUE.md / MILESTONE_MANIFEST.md / WORKER_PERFORMANCE.md. Submit branch-local source/tests/evidence plus reports under `worker-reports/core/` or `worker-reports/intelligence/`; ChatGPT lead reconciles canonical acceptance.
+
+Claude Core next:
+1. Repair/resubmit SB-V03-003.
+2. Repair/resubmit SB-V03-004 active-cycle fencing; old owner must not commit after fence loss.
+3. Repair/resubmit SB-V03-005 persona workspace isolation contract/code.
+4. Produce SB-V03-006 after 003/004/005 acceptance.
+5. Repair SB-V04-001 default fail-closed/schema validation.
+6. Continue SB-V04-002/003 and V0.4 acceptance.
+7. Continue V0.7/V1.1 reliability artifacts, then SB-V20-001 strategy state/revision engine as dependencies clear.
+
+Claude Intelligence can start immediately on independent artifacts:
+1. SB-V05-001 — machine-captured current-source collector — READY.
+2. SB-V13-001 — normalized analytics brain — READY.
+3. Then SB-V05-002, SB-V14-001, SB-V15-001, SB-V16-001, SB-V17-001, SB-V20-002 as dependencies clear.
+4. Do not edit Core-owned runtime files or signal-consumption semantics without lead reassignment.
+5. Test fixtures are allowed as tests; they must never be represented as operational/live evidence.
+
+Lead lane:
+- Immediate artifact review as worker submissions arrive.
+- Independent debugging/adversarial review.
+- Continue preparing acceptance packets and integration contracts through V2.3/V3.0.
+- Own cross-lane integration assignment and canonical artifact acceptance.
+- Target SB-V20-099 V2.0 engineering-readiness bundle today.
+
+Evidence / source refs:
+- `EXECUTION_TO_V2_TODAY.md`
+- `TEAM_LANES.md`
+- `STRATEGIC_CHECKPOINTS.md`
+- `MILESTONE_MANIFEST.md`
+- `ARTIFACT_INDEX.json`
+- artifact packets: V04-002, V04-003, V05-002, V11-001, V12-001, V13-001, V14-001, V15-001, V16-001, V17-001, V20-001, V20-002, V20-099, V23-001, V30-001
+- PR #2 latest observed head: `2a53046f10ed284f6e4164a78c47bbf750aad73d`
+
+Blockers / limits:
+- Operational V1.0+/V2.0 promotion still depends on real account/public/analytics evidence and explicit owner authorization for public actions.
+- Always-on host liveness remains unverified.
+- No public posting/messages/purchases/destructive actions, paid APIs/additional spend, credentials, fake operational evidence, or SwarmAI dependency are authorized.
+
+Next:
+- Start both Claude lanes from TEAM_LANES.md now.
+- Lead will review each submitted artifact and keep future work groomed so worker sessions do not idle.
