@@ -34,6 +34,8 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 
 ### SB-R07-053 — SUBMITTED (ENGINEERING)
 
+- Implementation source SHA: `a3e03f5318fd0dd2790d971676a9f6f13c23f48e`
+
 - CulturalReviewBinding fail-closed gate on candidate/evidence/reviewer/version
 - Full suite: 411 passed, 2 skipped
 
