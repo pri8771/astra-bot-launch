@@ -14,7 +14,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, asdict
 
-from . import paths, research, pipeline, analytics
+from . import paths, research, pipeline, analytics, reasoning
+from .reasoning import Candidate, no_action as _no_action, ReasoningContext
 from .state import BotState
 from .personas import load as load_persona
 from .jsonstore import append_jsonl, write_json, now_iso
@@ -31,42 +32,6 @@ class Authority:
 
 
 ACTIONS = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE", "CONTINUE_EXPERIMENT")
-
-
-@dataclass
-class Candidate:
-    action: str
-    rationale: str
-    expected_value: float
-    expected_learning: float
-    relevance: float
-    confidence: float
-    risk: float
-    cost: float
-    reversibility: float
-    duplication_risk: float
-    payload: dict = field(default_factory=dict)
-
-    def score(self) -> float:
-        # Value + learning + relevance + confidence + reversibility, penalized by
-        # risk, cost, duplication. Reversibility rewarded (safe to try).
-        return round(
-            0.9 * self.expected_value
-            + 1.0 * self.expected_learning
-            + 0.6 * self.relevance
-            + 0.4 * self.confidence
-            + 0.3 * self.reversibility
-            - 0.8 * self.risk
-            - 0.5 * self.cost
-            - 0.7 * self.duplication_risk,
-            4,
-        )
-
-
-def _no_action(reason: str) -> Candidate:
-    return Candidate("NO_ACTION", reason, expected_value=0.05, expected_learning=0.0,
-                     relevance=0.0, confidence=1.0, risk=0.0, cost=0.0,
-                     reversibility=1.0, duplication_risk=0.0)
 
 
 def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> dict:
@@ -133,32 +98,53 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         "objective": _current_objective(persona),
     }
 
-    # -- GENERATE ----------------------------------------------------------
+    # -- GENERATE (via reasoning provider; policy still decides eligibility) --
     top_signal = pending[0]
     draft = pipeline.ideate(persona, top_signal)
     dup = pipeline.is_duplicate(bot, draft)
-    cands = [
-        _no_action("acting only if a candidate clears review; otherwise wait"),
-        Candidate("RESEARCH_MORE",
-                  "gather more signals before committing an angle",
-                  expected_value=0.2, expected_learning=0.5, relevance=0.6,
-                  confidence=0.5, risk=0.1, cost=0.2, reversibility=1.0,
-                  duplication_risk=0.0),
-        Candidate("CREATE_CANDIDATE",
-                  f"turn signal {top_signal['id']} into a reviewed, queued (unpublished) candidate",
-                  expected_value=0.7, expected_learning=0.8, relevance=0.85,
-                  confidence=0.7, risk=0.15, cost=0.3, reversibility=1.0,
-                  duplication_risk=1.0 if dup else 0.0,
-                  payload={"signal": top_signal, "draft": draft}),
-    ]
+    provider = reasoning.resolve_provider()
+    ctx = ReasoningContext(
+        persona=persona, objective=_current_objective(persona), top_signal=top_signal,
+        pending_count=len(pending), is_duplicate=dup, draft=draft,
+        state_summary={"hypotheses": len(st.data.get("hypotheses", {})),
+                       "cycles": st.data["counters"]["cycles"]})
+    proposal = provider.propose(ctx) if provider.available() else None
+    record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
+                           "adaptive": getattr(provider, "adaptive", False),
+                           "available": provider.available()}
 
-    # -- SCORE + CHOOSE ----------------------------------------------------
-    scored = sorted(cands, key=lambda c: c.score(), reverse=True)
+    # -- Fail-closed: reasoning required but unavailable -> BLOCKED, no fakery.
+    if proposal is None:
+        record["reasoning"]["uncertainties"] = ["no reasoning route available"]
+        record["orient"]["uncertain"].append("reasoning model unavailable")
+        record["alternatives"] = []
+        record["chosen"] = {"action": "BLOCKED_REASONING_UNAVAILABLE",
+                            "rationale": "no reasoning provider available; failing closed"}
+        record["chosen_reason"] = ("reasoning required to interpret changed evidence but "
+                                   "no provider is available; refusing to fabricate autonomy")
+        record["required_authority"] = "none"
+        record["execute"] = {"performed": False, "effect": "none",
+                             "outcome": "blocked_reasoning_unavailable"}
+        record["verify"] = {"verified": True, "note": "no effect; blocked"}
+        record["learn"] = {"updated": False}
+        record["outcome"] = "blocked_reasoning_unavailable"
+        record["schedule"] = _schedule(persona, changed=True)
+        # Do NOT consume the signal: unreasoned evidence is not decided, so it
+        # stays pending until a reasoning route is available.
+        record["observe"]["consumed_this_cycle"] = None
+        record["observe"]["pending_after"] = len(pending)
+        _persist(bot, st, record)
+        return record
+
+    # -- SCORE + CHOOSE (policy chooses among the provider's alternatives) ---
+    record["reasoning"]["uncertainties"] = proposal.uncertainties
+    scored = sorted(proposal.alternatives, key=lambda c: c.score(), reverse=True)
     chosen = scored[0]
     record["alternatives"] = [{**_summ(c), "score": c.score()} for c in scored]
     record["chosen"] = {**_summ(chosen), "score": chosen.score()}
     record["chosen_reason"] = (
-        f"highest net score {chosen.score()}; "
+        f"highest net score {chosen.score()} from {proposal.provider_id} "
+        f"({'adaptive' if proposal.adaptive else 'baseline'}); "
         + ("duplicate suppressed" if dup and chosen.action != "CREATE_CANDIDATE"
            else "clears authority and reversibility bar")
     )

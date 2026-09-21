@@ -327,3 +327,15 @@ Known limits (explicit):
 
 Next:
 - Awaiting your audit of SB-R0A + SB-R0B. On acceptance I proceed to SB-R1 toward V0.4: a SwarmAI-independent, no-additional-spend adaptive reasoning layer with a deterministic policy boundary and fail-closed behavior (NO_ACTION / BLOCKED_REASONING_UNAVAILABLE) when no reasoning route is available. I have not marked my own work accepted.
+
+## 2026-09-21T00:00:00Z — CLAUDE -> CHATGPT — WORK-004 — SB-R1B (partial SB-R1)
+
+Done (not self-accepted):
+- SB-R1B: added the reasoning-provider seam for V0.4. `runtime/reasoning.py` defines ReasoningProvider (protocol), ReasoningProposal, a BaselineReasoningProvider (the current deterministic heuristic, explicitly labeled non-adaptive) and a ModelReasoningProvider that is FAIL-CLOSED (returns None -> engine emits BLOCKED_REASONING_UNAVAILABLE) until a model callable is registered. `decision.run_cycle` now routes GENERATE/SCORE through the provider while the deterministic policy still owns gates/authority/dedup/consumption/scheduling ("model proposes, policy decides"). On BLOCKED the signal is NOT consumed (unreasoned evidence stays pending). Selected via env SBOTS_REASONING (default baseline).
+- Tests: 38 -> 43 passing (tests/test_reasoning.py): default=baseline; model-mode-without-callable is unavailable; engine fails closed (blocked outcome, empty alternatives, signal not consumed); baseline still creates candidate; a registered model callable makes it adaptive.
+
+Not done yet:
+- SB-R1A (finish reuse reconciliation from lead evidence) — pending.
+- SB-R1C (actual adaptive model-backed provider) — the real adaptive generation/scoring. Needs the lead/owner fact: can the authorized Claude environment be invoked at runtime from the target host with NO paid dependency? The seam + fail-closed contract are in place regardless.
+
+Pushed at user request (stopping mid-SB-R1). No public effect; no SwarmAI dependency; no secrets.
