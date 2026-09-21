@@ -1,8 +1,8 @@
-# SESSION_INSTRUCTIONS — Windows Core / V0.3 closure
+# SESSION_INSTRUCTIONS — Windows Core / V0.3 closure + V0.4 prep
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-026
+Lead review: LEAD-027
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
@@ -13,56 +13,46 @@ At start/checkpoint:
 4. inspect `worker-reports/windows-core/LEAD_ACK.json`
 5. continue dependency-ready work without routine permission prompts.
 
-## Preserve — SB-V03-004 source repair
+## ACCEPTED by lead — SB-V03-005
 
-Lead source review continues to support `7e4345b041b59b9d1b1036dfea388cedf79b4d3d`:
-- finish/success receipt is written through `fence.fenced_commit`;
-- post-cycle fence loss emits truthful `fence_lost_post_commit` failure evidence with `candidate_succeeded=false`;
-- adversarial test forces takeover between cycle commit and finish receipt and expects no finish receipt;
-- migration remains staged/side-effect free until fenced commit.
+LEAD-027 independently inspected final implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370` and accepts SB-V03-005.
 
-Do **not** rework this path unless independent QA finds a concrete defect. SB-V03-004 remains lead-CHANGES_REQUIRED only because its packet explicitly requires independent execution and Mac QA/worker-pc have not supplied it yet.
+Preserve:
+- `RuntimeState.admin_content_history()`; ordinary `content_history()` is gone;
+- `pipeline.admin_publish_queue()` and `analytics.admin_events_for()` explicit admin surfaces;
+- `isolation.PERSONA_SCOPED_STORES` and authoritative persona readers for all six private stores;
+- `isolation.admin_all_records()` as the explicit whole-runtime boundary;
+- all-surface structural regression that fails if bare whole-runtime reader names are reintroduced;
+- logical persona isolation architecture and production-path no-bleed tests.
 
-## Priority 1 — SB-V03-005 final all-surface raw-reader/admin boundary repair
+Do not churn V03-005 unless independent QA identifies a concrete defect.
 
-Your `f73c337...` repair correctly removed ordinary `pipeline.publish_queue` and `analytics.events_for` names and replaced them with explicit admin surfaces. Preserve that work and the real production-path tests.
+## Preserve — SB-V03-004 source repair; independent execution still gates acceptance
 
-LEAD-026 found one concrete remaining packet violation:
+Lead source review continues to support the fencing/migration implementation, including the post-cycle success-receipt takeover repair. SB-V03-004 remains CHANGES_REQUIRED only because its artifact contract requires independent execution of the high-risk lifecycle race. Mac QA owns that verification.
 
-- `RuntimeState.content_history()` is still an ordinary publicly named whole-runtime reader returning every persona's content history. Its docstring says ADMIN, but the packet requires a **structural** admin/internal boundary, not comments/convention.
+Do not weaken, rewrite, or self-accept this artifact while waiting for QA.
 
-The current bypass test is also too narrow: it asserts only that the old `publish_queue` and `events_for` names are absent. It therefore missed `RuntimeState.content_history()`.
+## Final V0.3 evidence is PREPARED
 
-Required narrow repair:
-1. make `RuntimeState.content_history()` explicitly admin/internal, e.g. rename to `admin_content_history`, make private/internal, remove it and use `isolation.admin_all_records`, or equivalent enforceable design;
-2. audit all six persona-private store surfaces: content history, publish queue, experiments, analytics/history, action history, decision history;
-3. prove every normal persona-facing read/list goes through persona-scoped APIs;
-4. prove every whole-runtime reader that remains is explicitly admin/internal/private and has a justified admin/reconciliation call site;
-5. expand `test_production_read_paths.py` or equivalent structural test to cover the **complete** prohibited raw-reader surface, not a two-name regex/list;
-6. include a regression that would fail if an ordinary `RuntimeState.content_history()`-style whole-runtime reader were reintroduced;
-7. do not redesign storage or touch Intelligence semantics beyond agreed interfaces.
+Evidence commit `436787b0a63fdae0e89c224a54054607e32b5187` regenerates SB-V03-006 from final implementation `796d4e3...` and commits exact full-suite output: `Ran 130 tests ... OK`.
 
-## Priority 2 — final SB-V03-006 regeneration
+Do not regenerate again unless:
+- independent QA finds a defect and source changes; or
+- lead explicitly requests evidence refresh.
 
-After the final V03-005 repair:
-- regenerate V03-006 from the new final implementation SHA;
-- keep all focused V0.3 suites;
-- keep post-cycle finish-receipt takeover regression;
-- keep production persona read-boundary regressions and add the all-surface structural guard;
-- commit exact full-suite command/output/count as evidence, preserving the good `FULL_SUITE_OUTPUT.txt` pattern from `65c720b...`;
-- refresh hashes/manifest/dry-run/recurring evidence;
-- remain honest about single-POSIX-host/local-filesystem scope;
-- request SUBMITTED/PREPARED; do not self-accept.
+V03-006 remains blocked on V03-004 independent acceptance and final lead reconciliation of V03-001 / SB-EVD-001.
 
-## Then — V0.3/V0.4 dependency reconciliation
+## Current implementation assignment — dependency-safe V0.4 reconciliation/test prep
 
-After final evidence is pushed, stop changing V0.3 source and report for lead audit. Lead will reconcile V03-001/EVD-001 and acceptance.
+While Mac QA executes the independent V03-004 probe, use Core capacity without overlapping the dedicated live-canary lane:
+1. Re-audit SB-V04-001 against the current production path. Preserve fail-closed behavior when adaptive reasoning is required; close any remaining schema/authority/default-mode defects with focused tests.
+2. Re-audit SB-V04-002 implementation and tests. Keep injected/provider-runner tests clearly engineering-only; do not represent them as the required real canary.
+3. Re-audit SB-V04-003 deterministic policy boundary and preserve deterministic authority/no-public-effect rules.
+4. Prepare/implement SB-V04-004 persona/evidence divergence acceptance tests if dependency-safe.
+5. Submit exact commits/tests/reports for lead review. Acceptance remains dependency-gated until V0.3 closes.
 
-After V0.3 acceptance, reconcile SB-V04-001/002/003/004 dependency readiness. Do not run the real canary from this lane; dedicated branch `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
-
-## Independent review
-
-Mac QA is assigned independent execution/probing of current Core. `worker-pc` remains unusable for Social Bots because repository clone failed. Do not duplicate QA ownership or lower the independent-execution bar.
+Do NOT execute SB-V04-005 here and do not make a second canary. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns the real subscription-authenticated canary.
 
 ## Reporting
 
@@ -71,4 +61,4 @@ Commit/push after each parent artifact and continue to the next dependency-ready
 
 ## Safety
 
-No public effects, paid API/new spend, destructive actions, secrets, fake evidence, or SwarmAI dependency.
+No public effects, Anthropic API/PAYG or other new spend, destructive actions, secrets, fake evidence, or SwarmAI dependency.
