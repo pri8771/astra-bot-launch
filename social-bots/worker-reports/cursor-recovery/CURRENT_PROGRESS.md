@@ -21,6 +21,8 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 
 ### SB-R07-051 — SUBMITTED (ENGINEERING)
 
+- Implementation source SHA: 
+
 - Closed operational `BoundedPropositionAssessor` + pipeline integration
 - Adversarial negation/relation/numeric/predicate/conflict/omission tests
 - Full suite: 386 passed, 2 skipped
