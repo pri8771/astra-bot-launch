@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T02:01:00Z",
+  "updated_at": "2026-09-21T02:05:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "repair_wave_active_partial_remote_evidence",
+  "status": "repair_wave_active_two_remote_lanes",
   "runtime_scope": {
     "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
@@ -20,9 +20,9 @@
   "worker_lanes": {
     "core": {
       "branch": "claude/social-bots-windows-core-host",
-      "last_verified_head": null,
-      "last_verified_commit_at": null,
-      "activity": "expected_but_not_visible_remotely_at_LEAD_017"
+      "last_verified_head": "5318065aad6e38de1e3313ad984d09451a2dfcb7",
+      "last_verified_commit_at": "2026-09-21T02:00:05Z",
+      "activity": "fresh_signed_SB-V03-004_and_SB-V03-005_repair_submission"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
@@ -37,17 +37,17 @@
       "activity": "expected_but_not_visible_remotely_at_LEAD_017"
     },
     "development_sessions_live": true,
-    "current_remote_activity_evidence": "intelligence_repair_only",
+    "current_remote_activity_evidence": "windows_core_and_intelligence_repair",
     "social_bot_recurring_runtime_liveness": "not_verified",
-    "note": "Fresh signed Intelligence repair commits prove that Claude development lane is active. Windows Core and Mac QA branches were not visible remotely during LEAD-017. Development commits are not V0.7 recurring Social Bots runtime liveness evidence.",
+    "note": "Fresh signed Core and Intelligence repair commits prove those Claude development lanes are active. Mac QA was not visible remotely. Development commits are not V0.7 recurring Social Bots runtime liveness evidence.",
     "windows_available": true
   },
   "tests": {
-    "core_latest_worker_reported_full_suite": 85,
+    "core_latest_worker_reported_full_suite": 91,
     "intelligence_latest_worker_reported_full_suite": 145,
     "github_status_checks_at_verified_core_head": 0,
     "github_status_checks_at_verified_intelligence_head": 0,
-    "lead_note": "Intelligence reports 145 local tests at cbd781ca; GitHub independent CI is still absent. SB-CTL-006 remains needed."
+    "lead_note": "Core reports 91 local tests at 5318065a and Intelligence reports 145 at cbd781ca; independent CI remains absent."
   },
   "lead_review": {
     "review_id": "LEAD-017",
@@ -62,13 +62,13 @@
     "blocked": ["SB-V03-006", "SB-V04-003", "SB-V12-001", "SB-V20-099", "SB-V20-004"],
     "positive_but_not_accepted": ["SB-V04-003", "SB-V12-001"],
     "key_findings": [
-      "V03-004 and V03-005 await the new Windows Core repair branch; no remote checkpoint was visible during LEAD-017.",
+      "V03-004 repair correctly fences decision log/latest-decision and fixes transactionality language, but PersonaState legacy migration performs durable PersonaState/RuntimeState saves during load before the fenced commit.",
+      "V03-004 worker report proves Linux/POSIX only and references a Windows host-locking report not present at the reviewed checkpoint; actual Windows/WSL supported-host locking proof remains required.",
+      "V03-005 RuntimeState/PersonaState split correctly isolates consumed signals/hypotheses/working state, but canonical production-read isolation across shared append-only content/experiment/analytics/action stores remains unresolved.",
+      "V03-005 migration inherits the unfenced durable-write defect from V03-004 and needs stale-owner migration proof.",
       "V04 real adaptive provider remains unverified; deterministic contextual provider is explicitly adaptive=false.",
-      "V05-001 repair substantially improves SSRF/extraction handling, but register_trusted_transport is public/mutable and tests prove an arbitrary caller-created class can self-register then produce operational-live evidence.",
-      "V05-001 to_signal accepts verified-but-untrusted live receipts into the normal signal bridge; operational conversion must require trusted evidence or be explicitly test-only.",
-      "V05-001 redirect tests override _perform and do not prove real urllib 30x handling; DNS validation-to-connect TOCTOU remains unresolved.",
-      "V05-002 adds material-claim identification and assessor attribution, but register_operational_assessor is also public/mutable, so arbitrary code can self-register operational authority.",
-      "V05-002 evidence_ref_from_receipt accepts verified fixture/untrusted captures, and KeywordSupportAssessor can overclaim SUPPORTS from key-term co-occurrence without establishing the proposition.",
+      "V05-001 repair improves SSRF/extraction handling, but register_trusted_transport is public/mutable, to_signal accepts verified-but-untrusted receipts, and real redirect/DNS TOCTOU proof is incomplete.",
+      "V05-002 adds material-claim identification/attribution, but register_operational_assessor is caller-self-registerable, evidence refs accept fixture/untrusted captures, and keyword co-occurrence can overclaim SUPPORTS.",
       "V13-001 still requires snapshot/delta/gauge/rate semantics and cumulative-safe aggregation.",
       "V14-001 still requires persona scope, safe segment allowlist and correct fork semantics.",
       "V15/V16/V17/V20-002 still require typed accepted evidence and persona isolation."
@@ -92,11 +92,11 @@
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md"
   },
   "next_core": [
-    "Push first Windows Core checkpoint on claude/social-bots-windows-core-host",
-    "Repair SB-V03-004 full durable-write fencing and supported Windows/WSL locking path",
-    "Repair SB-V03-005 RuntimeState vs PersonaState separation",
-    "Produce SB-V03-006 after V03-004/V03-005 acceptance",
-    "Then repair SB-V04-001/002 and implement SB-CTL-006/SB-V07-WIN-001"
+    "Repair SB-V03-004 migration so all cycle-triggered durable writes are ownership-fenced",
+    "Provide actual Windows/WSL supported-host strong locking/fencing proof",
+    "Repair SB-V03-005 authoritative persona-scoped production reads over mixed shared stores",
+    "Add stale-owner migration and production-read contamination regressions",
+    "Produce SB-V03-006 only after V03-004/V03-005 acceptance"
   ],
   "next_intelligence": [
     "Return to SB-V05-001 and close public trusted-transport registration, operational to_signal gating, actual redirect handling, and DNS TOCTOU risk",
@@ -113,11 +113,11 @@
     "next_phase_plan": "NEXT_PHASE_TWO_INSTANCE_PLAN.md"
   },
   "next_windows": [
-    "Use artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md from a separate working tree",
-    "Repair SB-V03-004 then SB-V03-005",
+    "Use latest canonical WINDOWS_CORE_WAVE1.md and SB-V03-005 packet after pulling LEAD-017 updates",
+    "Repair V03-004 migration fencing and Windows/WSL host proof",
+    "Repair V03-005 production persona-read boundary",
     "Produce SB-V03-006 after acceptance",
-    "Verify/wire existing-subscription Claude Code adaptive provider for V04",
-    "Implement SB-CTL-006 CI and SB-V07-WIN-001 recurring host proof"
+    "Then verify/wire existing-subscription Claude Code adaptive provider for V04 and continue CI/host proof"
   ],
   "next_mac_qa": [
     "Use artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md",
