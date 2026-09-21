@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T02:15:00Z",
+  "updated_at": "2026-09-21T03:06:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "pull_driven_three_lane_coordination_ready",
+  "status": "two_mac_heartbeat_validation",
   "runtime_scope": {
     "autonomous_bots": [
       "social-a",
@@ -26,25 +26,35 @@
       "branch": "claude/social-bots-windows-core-host",
       "last_verified_head": "5318065aad6e38de1e3313ad984d09451a2dfcb7",
       "last_verified_commit_at": "2026-09-21T02:00:05Z",
-      "activity": "checkpoint_submitted_V03-004_V03-005"
+      "activity": "standby_by_owner_during_mac_heartbeat_validation"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
       "last_verified_head": "cbd781cab4d751b2a0626c3ce060c5a217d771e9",
       "last_verified_commit_at": "2026-09-21T01:58:43Z",
-      "activity": "checkpoint_submitted_V05-001_V05-002"
+      "activity": "active_mac_heartbeat_validation"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
       "last_verified_head": null,
       "last_verified_commit_at": null,
-      "activity": "ready_to_start_pull_driven"
+      "activity": "active_mac_heartbeat_validation_pending_first_real_checkin"
     },
     "development_sessions_live": true,
     "current_remote_activity_evidence": "windows_core_and_intelligence_repair",
     "social_bot_recurring_runtime_liveness": "not_verified",
     "note": "Fresh signed Core and Intelligence repair commits prove those Claude development lanes are active. Mac QA was not visible remotely. Development commits are not V0.7 recurring Social Bots runtime liveness evidence.",
-    "windows_available": true
+    "windows_available": true,
+    "heartbeat_validation": {
+      "target_lanes": [
+        "intelligence",
+        "mac_qa"
+      ],
+      "required_consecutive_intervals": 3,
+      "interval_minutes": 15,
+      "lead_ack_required": true,
+      "windows_standby": true
+    }
   },
   "tests": {
     "core_latest_worker_reported_full_suite": 91,
