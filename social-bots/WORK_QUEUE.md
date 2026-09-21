@@ -1,7 +1,7 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-031_2026-09-21T0755.md`.
+Current lead review: `lead-reviews/LEAD-032_2026-09-21T0856.md`.
 
 ## Priority Zero — real V0.4 canary
 
@@ -27,7 +27,7 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE STABLE / V0.4-004 REPAIR ASSIGNED / NO NEW WORKER COMMIT AFTER LEAD-030.
+Status: ACTIVE / V0.3 SOURCE STABLE / V0.4-004 REPAIR ASSIGNED / NO NEW WORKER COMMIT AFTER LEAD-031.
 
 Verified baseline remains:
 - signed Claude worker commit `76e96dde4677346fd5b40c8cba4988f6e4c64fee` added a six-test V04 divergence suite and worker report;
@@ -93,7 +93,7 @@ Capacity: 1.
 
 Latest Social Bots result remains `socialbots-v03-repair-audit-20260921-01`: it reached the real Windows runner but failed at **repository clone** before Claude/tests. No Social Bots evidence was produced.
 
-At LEAD-031 review time the worker's single protocol slot is occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05`, Actions run `35596577823` (in progress). Do not queue a Social Bots task into the occupied slot. After it frees, still do not redispatch Social Bots until clone/auth access to `pri8771/astra-bot-launch` is demonstrably repaired. Do not weaken private-repository controls or move project governance into `remote-workers`.
+At LEAD-032 review time the worker's single protocol slot remains occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05`, Actions run `35596577823` (`in_progress`). Do not queue a Social Bots task into the occupied slot. After it frees, still do not redispatch Social Bots until clone/auth access to `pri8771/astra-bot-launch` is demonstrably repaired. Do not weaken private-repository controls or move project governance into `remote-workers`.
 
 ## Heartbeat truth
 
