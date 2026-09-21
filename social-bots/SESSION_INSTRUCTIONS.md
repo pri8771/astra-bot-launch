@@ -1,3 +1,23 @@
+## TODAY-ONLY HEARTBEAT SOAK — 2026-09-21
+
+For this fresh session, start the heartbeat soak immediately and keep useful lane work running in parallel.
+
+Stage 1:
+- produce heartbeat records at T0, ~T0+5m, ~T0+10m, ~T0+15m;
+- this is 3 consecutive real 5-minute intervals;
+- use cadence_mode `FAST_5M`;
+- append every timed record to the lane's HEARTBEAT_LOG.jsonl and push it;
+- no fabricated/backfilled timestamps and no burst updates counted as timed success.
+
+Stage 2:
+- after the third successful 5-minute interval, switch immediately to `SOAK_15M_24H`;
+- continue every 15 minutes for 24 hours (target 96 intervals);
+- do not wait for lead acknowledgement to start Stage 2;
+- keep engineering/review work running between heartbeat intervals;
+- if an interval is missed or the heartbeat process dies, record it truthfully and continue prospectively.
+
+Read canonical `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md` before starting.
+
 # SESSION_INSTRUCTIONS — Intelligence / Evidence Integrity
 
 Mode: ACTIVE — FAST TRACK
