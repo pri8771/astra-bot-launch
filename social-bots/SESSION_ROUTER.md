@@ -59,11 +59,25 @@ Priority Zero:
 
 Owner authorization already exists for one bounded existing-subscription call at zero additional spend.
 
+## Lane E — worker-pc / independent remote worker
+Control plane: `pri8771/remote-workers`
+Worker: `worker-pc`
+Capacity: 1 protocol task.
+Project authority remains in this repository.
+
+Current task:
+- `socialbots-v03-audit-20260920-01`
+- mode: read-only
+- base: `claude/social-bots-windows-core-host`
+- purpose: independent SB-V03-004/SB-V03-005 acceptance audit while Core implementation continues.
+
+When a result lands, ChatGPT lead reviews it before assigning the next worker-pc task. Prefer independent verification or isolated non-overlapping branch work.
+
 ## Lead
 ChatGPT audits checkpoints, updates canonical artifact statuses, assigns next work, and prepares integration/V2 runway.
 
 ## Concurrency
-Fast-track maximum: 4 workers + ChatGPT lead.
+Fast-track maximum: 5 active worker resources + ChatGPT lead, including worker-pc capacity 1. Do not overlap source ownership.
 After canary completes, reassign that worker to the largest dependency-ready backlog.
 
 ## Version truth
