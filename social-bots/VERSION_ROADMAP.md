@@ -16,6 +16,16 @@ Immediate target: **V0.4 — real autonomous thinking.**
 Near-term engineering target: **V0.7 — always-on Claude/ChatGPT development + bot-operation loop.**
 First major product target: **V1.0 — three real autonomous social bots.**
 
+Owner-selected strategic checkpoints:
+- **V1.7** — autonomous operator with community intelligence.
+- **V2.3** — growth strategist + goal decomposition + temporary specialist workers.
+- **V3.0** — autonomous multi-brand media organization.
+
+Current acceleration target:
+- **V2.0 engineering-ready today** if implementation/review throughput permits.
+- Operational V2.0 promotion remains evidence-gated and still requires real account/public/measurement evidence where the milestone contract requires it.
+- Engineering readiness must never be reported as operational promotion.
+
 ## V0.x — build the machine
 
 ### V0.1 — Project/control foundation
