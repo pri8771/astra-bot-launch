@@ -2,7 +2,7 @@
 
 Purpose: measure Claude Code implementation reliability by story-pointed artifact packet and task type. Story points reflect complexity/uncertainty, not time. No worker submission self-accepts.
 
-Current review: `LEAD-014` (`lead-reviews/LEAD-014_2026-09-20T2054.md`).
+Current review: `LEAD-015` (`LEAD_AUDIT_TWO_LANE_BATCH.md`). LEAD-015 is a deeper second-pass audit and reopens artifacts where end-to-end contract violations remained.
 
 Both Claude lanes are actively committing. No GitHub status checks existed at the verified heads, so test counts below are worker-local unless the lead independently inspected the source/acceptance logic.
 
@@ -10,9 +10,9 @@ Both Claude lanes are actively committing. No GitHub status checks existed at th
 
 The first broader SP2–SP5 sample is now useful enough to guide decomposition:
 - SP2 bounded test/evidence repair (`SB-V03-003`) closed cleanly after one lead-found coverage gap.
-- SP3 state/collector artifacts have been strong: V03-002 was first-pass accepted; V05-001 is accepted after source review.
+- SP3 state artifacts can be strong, but collector provenance showed a deeper trust-boundary miss: V03-002 remains accepted; V05-001 was reopened because arbitrary caller-defined live fetchers can forge operational-live provenance.
 - SP4 artifacts are the main current risk cluster: workers often implement the local behavior correctly but miss a cross-runtime/persona or interface-boundary invariant (V03-005, V13, V14, V16, V17, V20-002).
-- SP5 fencing improved after one independent lifecycle defect and is now accepted for its explicit single-host scope. SP5 adaptive reasoning remains blocked by the distinction between deterministic context sensitivity and truly adaptive provider invocation.
+- SP5 fencing improved substantially, but LEAD-015 found post-fence durable diagnostic writes still outside the ownership fence; V03-004 is reopened. SP5 adaptive reasoning remains blocked by the distinction between deterministic context sensitivity and truly adaptive provider invocation.
 
 This supports the worker-first strategy while keeping SP4/SP5 work decomposed with adversarial integration acceptance.
 
@@ -22,8 +22,8 @@ This supports the worker-first strategy while keeping SP4/SP5 work decomposed wi
 |---|---:|---|---|---|---|
 | SB-V03-002 | 3 | PASS | 0 repair cycles | ACCEPTED | per-signal consumed ledger; later/batch/restart regressions |
 | SB-V03-003 | 2 | PARTIAL | 1 lead gap -> worker added forced FACT + VOICE failures | ACCEPTED | good bounded repair behavior |
-| SB-V03-004 | 5 | PARTIAL | lead found active-cycle fence-loss defect; worker added generation fence + atomic fenced commit | ACCEPTED | one POSIX host/local FS only; cross-host/Windows not claimed |
-| SB-V03-005 | 4 | PARTIAL | first repair reconciled docs + logical isolation; LEAD-014 found isolation helpers remain bypassable by raw bot-wide readers | CHANGES_REQUIRED | second repair required; production read paths must hard-scope persona-private data |
+| SB-V03-004 | 5 | PARTIAL | first repair added generation fence; deep audit found decision log/latest-decision writes outside fence and transactionality overclaim | CHANGES_REQUIRED | another repair cycle required; Windows path separately assigned |
+| SB-V03-005 | 4 | PARTIAL | logical filters added; deep audit found hypotheses + consumed_signal_ids still runtime-shared and contextual reasoning reads cross-persona hypothesis count | CHANGES_REQUIRED | state model repair required, not just read-filter repair |
 | SB-V03-006 | 3 | BLOCKED | depends on accepted V03-005 | BLOCKED | regenerate only after repair |
 | SB-V04-001 | 3 | PARTIAL | schema validation fixed; production default still baseline/non-adaptive unless env opt-in | CHANGES_REQUIRED | repair default posture; preserve validation |
 | SB-V04-002 | 5 | PARTIAL | contextual provider materially varies by context but truthfully reports adaptive=false | CHANGES_REQUIRED | useful component, not real V0.4 adaptive provider |
@@ -33,15 +33,15 @@ This supports the worker-first strategy while keeping SP4/SP5 work decomposed wi
 
 | Artifact | SP | First submission | Independent review finding | Current lead disposition |
 |---|---:|---|---|---|
-| SB-V05-001 | 3 | PASS | collector-derived provenance/hash/status; fixtures cannot masquerade as live | ACCEPTED |
-| SB-V05-002 | 4 | PARTIAL | support engine is good but packet-required material-claim identification is caller-supplied/out-of-scope | CHANGES_REQUIRED |
+| SB-V05-001 | 3 | PARTIAL | first audit liked collector-derived receipts; deep audit found arbitrary Fetcher(mode=live) can forge live provenance plus SSRF/redirect/extraction-validity gaps | CHANGES_REQUIRED | trust-boundary repair required |
+| SB-V05-002 | 4 | PARTIAL | claim list and support stance are caller-supplied; unrelated evidence can be labeled supports | CHANGES_REQUIRED | needs attributable support assessor + claim identification |
 | SB-V13-001 | 4 | FAIL acceptance invariant | no snapshot/delta/gauge/rate kind; aggregate sums cumulative snapshots | CHANGES_REQUIRED |
-| SB-V14-001 | 4 | FAIL isolation invariant | hypothesis/persistence bot-scoped; no persona/workspace boundary | CHANGES_REQUIRED |
-| SB-V15-001 | 4 | PASS-LIKE source review | honest INCONCLUSIVE/window/learning behavior; depends on V13/V14 correctness | BLOCKED |
-| SB-V16-001 | 4 | PARTIAL | bot-wide history/novelty lacks persona and can cross-contaminate shared-runtime personas | CHANGES_REQUIRED |
+| SB-V14-001 | 4 | FAIL isolation/privacy invariant | bot-scoped persistence; sensitive-attribute blacklist bypassable; fork converts contradiction into unsupported positive evidence | CHANGES_REQUIRED |
+| SB-V15-001 | 4 | PARTIAL | honest lifecycle behavior, but baseline/treatment lack required normalized-observation/evidence provenance | CHANGES_REQUIRED |
+| SB-V16-001 | 4 | PARTIAL | bot-wide history/novelty plus factual binding is presence-only rather than accepted support-status validation | CHANGES_REQUIRED |
 | SB-V12-001 | 3 | PASS-LIKE source review | good no-fabricated-history/availability behavior; depends on V13 | BLOCKED |
-| SB-V17-001 | 4 | PARTIAL | no-public-effect boundary good; bot-wide community themes can feed another persona's audience memory | CHANGES_REQUIRED |
-| SB-V20-002 | 4 | PARTIAL | good missing/no-spend behavior; missing full cross-lane bot/persona/authority/availability/cost contract; upstream V13/V14 defective | CHANGES_REQUIRED |
+| SB-V17-001 | 4 | PARTIAL | no-public-effect boundary good; read-only source is caller-asserted and community memory/themes are bot-wide | CHANGES_REQUIRED |
+| SB-V20-002 | 4 | PARTIAL | good missing/no-spend math, but arbitrary numeric performance/audience inputs can drive recommendations without typed accepted evidence | CHANGES_REQUIRED |
 
 ## Independent defect themes
 
@@ -78,3 +78,12 @@ For each SP level:
 - CI vs worker-local evidence.
 
 Do not infer worker quality from one artifact. The current pattern supports high worker throughput with stronger lead review at cross-cutting SP4/SP5 boundaries.
+
+
+## LEAD-015 planning implication
+
+With an actual Windows Claude environment available, the next worker sample should compare:
+- Core/host SP4-SP5 work with real Windows portability/host evidence;
+- Intelligence SP3-SP4 evidence-integrity repairs.
+
+Run two implementation sessions concurrently, one per instance. Add a third only after the shared state/evidence contracts are accepted and integration work becomes the bottleneck.
