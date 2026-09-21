@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 6,
-  "reviewed_at": "2026-09-21T07:54:00Z",
-  "lead_review": "LEAD-027",
+  "reviewed_at": "2026-09-21T08:51:00Z",
+  "lead_review": "LEAD-028",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "SB-V03-005 is ACCEPTED. Preserve V03-004/V03-005/final 130-test V03-006 evidence. While Mac QA independently executes V03-004, reconcile and test SB-V04-001/002/003 and prepare SB-V04-004 without touching the dedicated SB-V04-005 live-canary lane.",
+  "next_assignment": "Preserve final V03. Repair SB-V04-004 only: isolate persona-only/evidence-only variables, retain contextual adaptive=false tests as diagnostics, and add an acceptance seam for the real adaptive canary receipt without invoking another model call. Do not execute SB-V04-005 from Core.",
   "notification_delivered": true,
-  "notes": "Lead independently inspected 796d4e3 structural admin/persona boundary and final 436787b evidence. V03-004 remains the V0.3 technical acceptance gate solely pending independent lifecycle execution; do not churn V0.3 source absent a concrete QA finding."
+  "notes": "Signed 76e96dd is real progress but not acceptance-ready: two named divergence tests are confounded and all six force contextual-deterministic-v1 adaptive=false. Production adaptive-required launcher posture is source-positive and must be preserved."
 }
