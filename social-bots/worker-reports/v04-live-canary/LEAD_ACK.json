@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
-  "reviewed_at": null,
-  "lead_review": "LEAD-021-fast-track",
+  "reviewed_at": "2026-09-21T04:06:00Z",
+  "lead_review": "LEAD-023",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "START NOW on actual local authenticated Claude Code host: execute SB-V04-005 real canary.",
-  "notification_delivered": false,
-  "notes": "Heartbeat is not a prerequisite. If current environment lacks subscription auth, run this branch from local authenticated Claude Code."
+  "next_assignment": "START NOW on an actual local host with working Claude Code subscription authentication and execute SB-V04-005 exactly as packeted. Heartbeat is not a prerequisite.",
+  "notification_delivered": true,
+  "notes": "No Claude worker commit or canary evidence is visible on this branch yet; current head remains lead-only setup. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not."
 }
