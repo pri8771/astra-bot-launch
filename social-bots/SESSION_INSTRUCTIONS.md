@@ -2,13 +2,13 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-mac-qa-control`
-Lead review: LEAD-032
+Lead review: LEAD-033
 
 ## Heartbeat
 
 Mac-QA bootstrap is accepted and HOURLY coordination cadence is authorized. Resume the hourly worker heartbeat; lead-only instruction commits do not count as worker liveness. Heartbeat is observability only and must not pause QA.
 
-LEAD-032 found no new Mac-QA worker heartbeat/report after seq10 at `2026-09-21T03:57:57Z`. Continue the existing gating assignment now; do not wait for another lead prompt.
+LEAD-033 found no new Mac-QA worker heartbeat/report after seq10 at `2026-09-21T03:57:57Z`. Continue the existing gating assignment now; do not wait for another lead prompt.
 
 ## Existing accepted controls
 - `SB-CTL-012` artifact validator — ACCEPTED.
