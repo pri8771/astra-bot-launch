@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_at": "2026-09-21T19:56:50Z",
-  "lead_review": "LEAD-042",
+  "reviewed_at": "2026-09-21T21:58:00Z",
+  "lead_review": "LEAD-045",
   "official_phase": "V0.4.x_in_progress",
   "session_status": "REVIEW_ONLY_ACTION_REQUIRED",
   "accepted": ["SB-V03-004", "SB-V04-005"],
-  "submitted_for_independent_review": ["SB-R07-071"],
+  "submitted_for_independent_review": ["SB-R07-071", "SB-S23-008"],
   "changes_required_to_reaudit_after_repair": ["SB-R07-041"],
-  "next_assignment": "Start one fresh review session and emit one SESSION_ONCE heartbeat. No runtime edits. Independently execute SB-R07-071 against 0c74336b793189b4ba32d1f1229de0fb4d3e5ebb with the real cross-process duplicate-session race and report exact PASS/FAIL evidence. Then, after Cursor pushes LEAD-042's repair, audit the direct-library SBOTS_REASONING=model registered-callable path and prove no callable invocation occurs without a canonical manifest. No model calls.",
+  "next_assignment": "Start one fresh review session and emit one SESSION_ONCE heartbeat. No runtime edits or model calls. Independently execute SB-R07-071 against 0c74336b793189b4ba32d1f1229de0fb4d3e5ebb with the real cross-process duplicate-session race. Then, after Cursor pushes LEAD-045's repair, audit the direct-library SBOTS_REASONING=model registered-callable path with a harmless sentinel and prove no callable invocation occurs without a canonical manifest. Then independently rerun/audit Fable SB-S23-008 at source e33de096c7da2633376794b3297d82b320f6229d / evidence bbbb7b2df473a61c029a3098361cd0a084577d38 and report its true fixture/in-process/POSIX scope.",
   "authorization_consumed": true,
   "no_live_model_calls_authorized": true,
-  "notes": "Primary implementation remains Cursor Recovery. R07-071 source is submitted but cannot be accepted until independent execution. R07-041 is changes-required because direct/ad-hoc ModelReasoningProvider callers can bypass worker entrypoint live-route guards at the submitted source."
+  "notes": "Primary existing-runtime implementation remains Cursor Recovery. Fable's V2.3 new-files-only batch is submitted and paused. R07-071 and S23-008 cannot be accepted from worker self-report; R07-041 remains changes-required until the direct callable authorization boundary is repaired and independently audited."
 }
