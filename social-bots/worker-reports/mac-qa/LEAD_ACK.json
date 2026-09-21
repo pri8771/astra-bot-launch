@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_at": "2026-09-21T22:56:43Z",
-  "lead_review": "LEAD-046",
+  "reviewed_at": "2026-09-21T23:52:46Z",
+  "lead_review": "LEAD-047",
   "official_phase": "V0.4.x_in_progress",
   "session_status": "REVIEW_ONLY_ACTION_REQUIRED",
   "accepted": ["SB-V03-004", "SB-V04-005"],
   "submitted_for_independent_review": ["SB-R07-071", "SB-S23-008"],
   "changes_required_to_reaudit_after_repair": ["SB-R07-041"],
-  "next_assignment": "Start one fresh review session and emit one SESSION_ONCE heartbeat. No runtime edits or model calls. Independently execute SB-R07-071 against 0c74336b793189b4ba32d1f1229de0fb4d3e5ebb with the real cross-process duplicate-session race. Then, after Cursor pushes LEAD-046's repair, audit the direct-library SBOTS_REASONING=model registered-callable path with a harmless sentinel and prove no callable invocation occurs without a canonical manifest. Then independently rerun/audit Fable SB-S23-008 at source e33de096c7da2633376794b3297d82b320f6229d / evidence bbbb7b2df473a61c029a3098361cd0a084577d38 and report its true fixture/in-process/POSIX scope.",
+  "next_assignment": "Remain review-only. Start one genuinely fresh review session and emit exactly one SESSION_ONCE heartbeat after reading canonical LEAD-047 coordination. Do not edit runtime source and do not invoke a real model. Independently reproduce the pinned R07-071 multiprocess duplicate-session race; then, once Fable submits the LEAD-047 R07-041/shared-guard repair, audit direct-library no-grant refusal, false-fixture/capability refusal, pre-dispatch budget concurrency/reentry/wrapper behavior, and retained-output integrity with harmless sentinels and real candidate modules. Independently rerun/audit the specialist lifecycle bundle and the integrated candidate using exact source/command/result evidence. Preserve true fixture/in-process/POSIX scope and report any host limitations.",
   "authorization_consumed": true,
   "no_live_model_calls_authorized": true,
-  "notes": "No fresh post-LEAD-045 Acceptance session or QA result was visible at LEAD-046 cutoff. Primary existing-runtime implementation remains Cursor Recovery. Fable's V2.3 new-files-only batch is submitted and paused. R07-071 and S23-008 cannot be accepted from worker self-report; R07-041 remains changes-required until the direct callable authorization boundary is repaired and independently audited."
+  "notes": "LEAD-047 parks Cursor/legacy implementation and releases Fable as sole integrator under social-bots/delivery/FINAL_RUN.md. QA remains independent review-only. Lead source audit reproduced six sentinel failure scenarios but did not run the full current checkout; QA must test the actual candidate rather than accepting copied-source probes or worker self-report. No artifact or version is promoted by this assignment."
 }
