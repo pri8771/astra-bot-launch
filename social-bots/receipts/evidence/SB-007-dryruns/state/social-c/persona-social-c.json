@@ -1,22 +1,22 @@
 {
   "consumed_signal_ids": [
-    "sig-287ff96f0afb"
+    "sig-9593340dd96d"
   ],
   "created_at": "2026-09-21T04:21:34+00:00",
   "goals": [],
   "hypotheses": {
-    "h-social-a-exp-c-fb93d89e0e62": {
+    "h-social-c-exp-c-999530ca5437": {
       "confidence": 0.5,
       "evidence": [
-        "experiment exp-c-fb93d89e0e62 registered; awaiting 48h window"
+        "experiment exp-c-999530ca5437 registered; awaiting 48h window"
       ],
-      "statement": "An account that reliably shows its arithmetic earns saves and high-quality replies even with modest reach.",
+      "statement": "A distinct comedic voice with a real point of view retains better than trend-chasing alone.",
       "updated_at": "2026-09-21T04:21:34+00:00"
     }
   },
   "pending_decisions": [],
-  "persona_id": "social-a",
-  "runtime": "social-a",
+  "persona_id": "social-c",
+  "runtime": "social-c",
   "schema_version": 1,
   "updated_at": "2026-09-21T04:21:34+00:00",
   "working_state": {}

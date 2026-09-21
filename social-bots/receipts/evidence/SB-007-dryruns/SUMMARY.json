@@ -35,7 +35,7 @@
           "duplication_risk": 0.0,
           "expected_learning": 0.0,
           "expected_value": 0.05,
-          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "rationale": "act only if a candidate clears review; otherwise wait",
           "reversibility": 1.0,
           "risk": 0.0,
           "score": 0.745
@@ -68,7 +68,7 @@
         "risk": 0.15,
         "score": 2.25
       },
-      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "decision_reason": "highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar",
       "experiment": {
         "hypothesis": null,
         "id": null,
@@ -139,7 +139,7 @@
           "duplication_risk": 0.0,
           "expected_learning": 0.0,
           "expected_value": 0.05,
-          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "rationale": "act only if a candidate clears review; otherwise wait",
           "reversibility": 1.0,
           "risk": 0.0,
           "score": 0.745
@@ -172,7 +172,7 @@
         "risk": 0.15,
         "score": 2.25
       },
-      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "decision_reason": "highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar",
       "experiment": {
         "hypothesis": "Sensory, non-alarmist science earns shares from people who rarely share 'science'.",
         "id": "exp-c-8b1d40a963fd",
@@ -248,7 +248,7 @@
           "duplication_risk": 0.0,
           "expected_learning": 0.0,
           "expected_value": 0.05,
-          "rationale": "acting only if a candidate clears review; otherwise wait",
+          "rationale": "act only if a candidate clears review; otherwise wait",
           "reversibility": 1.0,
           "risk": 0.0,
           "score": 0.745
@@ -281,7 +281,7 @@
         "risk": 0.15,
         "score": 2.25
       },
-      "decision_reason": "highest net score 2.25; clears authority and reversibility bar",
+      "decision_reason": "highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar",
       "experiment": {
         "hypothesis": "A distinct comedic voice with a real point of view retains better than trend-chasing alone.",
         "id": "exp-c-999530ca5437",

@@ -13,7 +13,7 @@
   "observation_window_hours": 48,
   "persona": "social-c",
   "platform": "tiktok",
-  "registered_at": "2026-09-20T23:15:34+00:00",
+  "registered_at": "2026-09-21T04:21:34+00:00",
   "result": null,
   "stop_criteria": "no lift above baseline noise within window; or policy flag",
   "success_metric": "early-engagement-velocity"

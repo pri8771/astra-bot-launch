@@ -1,14 +1,14 @@
 {
   "beats": 1,
   "current_task_id": "cycle:social-b",
-  "heartbeat_at": "2026-09-21T02:21:47+00:00",
+  "heartbeat_at": "2026-09-21T04:21:34+00:00",
   "host_alias": "local",
   "last_receipt": null,
   "lease_id": null,
   "next_safe_action": "acquire_lease",
-  "pid": 7804,
+  "pid": 2661,
   "source_ref": "social-bots/runtime",
-  "started_at": "2026-09-21T02:21:47+00:00",
+  "started_at": "2026-09-21T04:21:34+00:00",
   "status": "starting",
-  "worker_id": "w-vm-7804-398c13"
+  "worker_id": "w-vm-2661-90ece5"
 }

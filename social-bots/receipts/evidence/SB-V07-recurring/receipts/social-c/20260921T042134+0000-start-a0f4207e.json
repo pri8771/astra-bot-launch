@@ -1,0 +1,16 @@
+{
+  "detail": {
+    "fence_generation": 2,
+    "persona": "social-c",
+    "reconcile_required": true,
+    "started_at": "2026-09-21T04:21:34+00:00",
+    "took_over_from": "8567037a28614e26916dbfae6be56e18"
+  },
+  "kind": "start",
+  "lease_id": "87acc1ed16c94d77a6b5d823a0faefad",
+  "namespace": "social-c",
+  "receipt_id": "20260921T042134+0000-start-a0f4207e",
+  "recorded_at": "2026-09-21T04:21:34+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-vm-2662-03091f"
+}

@@ -6,7 +6,7 @@ Real current research inputs, real autonomous decisions, real persisted state, *
 - **Observe:** 1 unconsumed of 1 total; changed = True
 - **Orient:** 1 unconsumed signal(s); deciding on the oldest this cycle
 - **Alternatives considered:** CREATE_CANDIDATE(2.25), RESEARCH_MORE(1.36), NO_ACTION(0.745)
-- **Decision reason:** highest net score 2.25; clears authority and reversibility bar
+- **Decision reason:** highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar
 - **Withheld:** gate stopped the candidate; within_platform_limit=None; no experiment/queue entry (correct fail-closed behavior).
 - **Learning:** no hypothesis registered; a withheld candidate is not evidence of a launch
 - **Next observation:** in 6h (deterministic timer + new-signal event)
@@ -15,7 +15,7 @@ Real current research inputs, real autonomous decisions, real persisted state, *
 - **Observe:** 1 unconsumed of 1 total; changed = True
 - **Orient:** 1 unconsumed signal(s); deciding on the oldest this cycle
 - **Alternatives considered:** CREATE_CANDIDATE(2.25), RESEARCH_MORE(1.36), NO_ACTION(0.745)
-- **Decision reason:** highest net score 2.25; clears authority and reversibility bar
+- **Decision reason:** highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar
 - **Candidate:** instagram | published=False | authorized=False
     - preview: [Tidepool] Ordinary sunlight turned into a source of quantum entanglement
 
@@ -29,7 +29,7 @@ Angle (everyday-object-as-hook): Scientists turned ordinary sunlight into a sour
 - **Observe:** 1 unconsumed of 1 total; changed = True
 - **Orient:** 1 unconsumed signal(s); deciding on the oldest this cycle
 - **Alternatives considered:** CREATE_CANDIDATE(2.25), RESEARCH_MORE(1.36), NO_ACTION(0.745)
-- **Decision reason:** highest net score 2.25; clears authority and reversibility bar
+- **Decision reason:** highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar
 - **Candidate:** tiktok | published=False | authorized=False
     - preview: [Switchboard] 2026 feeds split: maximalist-playful vs stripped-down-unproduced
 

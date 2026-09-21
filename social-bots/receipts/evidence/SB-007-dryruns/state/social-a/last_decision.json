@@ -25,7 +25,7 @@
       "duplication_risk": 0.0,
       "expected_learning": 0.0,
       "expected_value": 0.05,
-      "rationale": "acting only if a candidate clears review; otherwise wait",
+      "rationale": "act only if a candidate clears review; otherwise wait",
       "reversibility": 1.0,
       "risk": 0.0,
       "score": 0.745
@@ -42,7 +42,7 @@
     "risk": 0.15,
     "score": 2.25
   },
-  "chosen_reason": "highest net score 2.25; clears authority and reversibility bar",
+  "chosen_reason": "highest net score 2.25 from baseline-deterministic-v1 (baseline); clears authority and reversibility bar",
   "cycle": 1,
   "execute": {
     "content_id": "c-79a113116532",
@@ -57,6 +57,7 @@
     "outcome": "withheld",
     "performed": false
   },
+  "fence": null,
   "learn": {
     "note": "no hypothesis registered; a withheld candidate is not evidence of a launch",
     "updated": false
@@ -85,7 +86,33 @@
   },
   "outcome": "withheld",
   "persona": "social-a",
-  "recorded_at": "2026-09-20T23:15:34+00:00",
+  "policy": {
+    "authority_owned_by_policy": [
+      "public_post",
+      "spend",
+      "messaging",
+      "review_gate",
+      "dedup",
+      "platform_limit",
+      "lease_fence",
+      "scheduling",
+      "effect_verification"
+    ],
+    "policy_selected": "CREATE_CANDIDATE",
+    "provider_recommended": "CREATE_CANDIDATE",
+    "recommended_followed": true,
+    "selection_basis": "deterministic policy ranking; recommended_action is advisory only"
+  },
+  "reasoning": {
+    "adaptive": false,
+    "adaptive_required": false,
+    "available": true,
+    "provider": "baseline-deterministic-v1",
+    "uncertainties": [
+      "baseline heuristic: scores are fixed, not evidence-adaptive"
+    ]
+  },
+  "recorded_at": "2026-09-21T04:21:34+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,

@@ -1,0 +1,8 @@
+test_decision: OK
+test_review_gate: OK
+test_fencing: OK
+test_isolation: OK
+test_isolation_decisions: OK
+test_persona_read_boundary: OK
+test_concurrency: OK
+OK

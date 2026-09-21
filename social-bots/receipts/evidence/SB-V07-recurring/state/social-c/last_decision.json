@@ -53,9 +53,9 @@
   },
   "fence": {
     "generation": 2,
-    "lease_id": "0dda8dbbd6fc4acca4ad3d8adfb8a261",
+    "lease_id": "87acc1ed16c94d77a6b5d823a0faefad",
     "task_id": "cycle:social-c",
-    "worker_id": "w-vm-7805-27997a"
+    "worker_id": "w-vm-2662-03091f"
   },
   "learn": {
     "confidence": 0.5,
@@ -113,7 +113,7 @@
       "baseline heuristic: scores are fixed, not evidence-adaptive"
     ]
   },
-  "recorded_at": "2026-09-21T02:21:47+00:00",
+  "recorded_at": "2026-09-21T04:21:34+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,
