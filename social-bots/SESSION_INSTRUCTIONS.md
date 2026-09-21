@@ -1,10 +1,11 @@
 # SESSION_INSTRUCTIONS — Lane 3 / Mac Acceptance + Canary
 
-Mode: FRESH SESSION RESET
+Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
 Primary branch: `claude/social-bots-mac-qa-control`
 Secondary isolated worktree branch: `claude/social-bots-v04-live-canary`
+Lead check: 2026-09-21T15:52:53Z
 
-This must run on the actual local Mac with working Claude Code subscription authentication.
+This must run on the actual local Mac with working Claude Code subscription authentication. No worker-generated commit, Issue #3 heartbeat, lifecycle report, or canary evidence has appeared since reset. Start Mission A now. Heartbeat is observability only and must not delay acceptance work or the canary.
 
 Read canonical:
 - `social-bots/RESET_EXECUTION_20260921.md`
