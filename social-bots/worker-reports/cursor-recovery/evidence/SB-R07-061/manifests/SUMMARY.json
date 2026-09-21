@@ -1,6 +1,6 @@
 {
   "artifact_id": "SB-R07-061",
-  "source_code_ref": "pending",
+  "source_code_ref": "3e7bcc740ff14d667f5913f06b7db8b96a7bc183",
   "home": "/tmp/sbots-dryrun-7dwzpwqb",
   "manifest_dir": "worker-reports/cursor-recovery/evidence/SB-R07-061/manifests",
   "all_passed": true,

@@ -1,6 +1,7 @@
 {
   "artifact": "SB-R07-061",
   "requested_status": "SUBMITTED",
+  "source_sha": "3e7bcc740ff14d667f5913f06b7db8b96a7bc183",
   "evidence_class": "ENGINEERING",
   "live_claim": false,
   "live_model_call": false,
