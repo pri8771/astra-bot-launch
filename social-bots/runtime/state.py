@@ -1,10 +1,21 @@
-"""Per-bot durable state — logically isolated thinking & learning.
+"""Per-runtime durable state (SB-V03-005 isolation contract).
 
-Each bot owns: goals, working_state, long-term memory, observations, hypotheses,
-experiment history, content history, analytics history, pending decisions, action
-history, recovery state. Isolation is enforced by ``paths`` namespacing; one bot
-can never write into another's private tree. Cross-bot facts go through the
-explicit ``shared`` namespace only.
+``bot_state.json`` is SHARED RUNTIME STATE: one per runtime, holding the
+consumed-signal ledger, hypotheses, counters, recovery/in-flight and the
+observation fingerprint. Every persona hosted on the runtime shares it (e.g.
+``social-a`` and ``cultural-primandir-atman`` both run on ``social-a``), because
+evidence is captured for the runtime and consumed exactly once for the runtime.
+Concurrent mutation is prevented by the runtime lease (``cycle:<bot>``) and the
+active-cycle fence (SB-V03-004): only the fenced owner may commit it.
+
+Non-shared PERSONA data (content history, experiments, publish queue, analytics
+events, action/decision records) lives in the runtime's append-only stores but is
+LOGICALLY isolated per persona: every such record carries an explicit ``persona``
+field and a persona-derived, collision-free identity key. It is NOT physically
+nested per persona. Persona-specific reads go through ``runtime.isolation``;
+``runtime.isolation`` documents and ``tests/test_isolation.py`` proves the
+contract. One bot's ``paths`` namespace can never be written by another bot;
+cross-bot facts use the explicit ``shared`` namespace only.
 """
 from __future__ import annotations
 

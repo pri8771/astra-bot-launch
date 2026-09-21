@@ -87,9 +87,37 @@ Overlap raises `LeaseHeld` (the caller treats it as the no-overlap rejection).
   the worker lease is keyed by the **runtime (`cycle:<bot>`)**, not by
   `(bot, persona)`. Two personas on one runtime therefore cannot mutate that state
   concurrently — the second cycle is rejected (no-overlap) — which prevents lost
-  updates. Personas keep isolated experiment/content/memory *namespaces* for their
-  non-shared artifacts. Full per-persona state isolation is a deliberate future
+  updates. Non-shared persona artifacts are **logically** isolated (see below),
+  not physically nested. Full per-persona *state* isolation is a deliberate future
   alternative if per-runtime concurrency is ever required.
+
+## Persona/runtime isolation contract (SB-V03-005)
+
+A runtime hosts more than one persona (`social-a` hosts general `social-a` **and**
+cultural `cultural-primandir-atman`; `social-b` hosts `social-b` and
+`cultural-primandir-utsava`). Two disjoint data classes:
+
+- **Shared runtime state** — `state/<bot>/bot_state.json` (consumed-signal
+  ledger, hypotheses, counters, recovery, observation fingerprint) and the runtime
+  signal inbox `memory/<bot>/signals_inbox.jsonl`. Shared on purpose: evidence is
+  captured for the runtime and consumed once for the runtime. Concurrency is
+  handled by the runtime lease + active-cycle fence (only the fenced owner
+  commits) — never by physical per-persona copies.
+- **Non-shared persona data** — content history, experiments, publish queue,
+  analytics events, action/decision records. These are **logically** isolated
+  inside the runtime's append-only stores (`content/<bot>`, `experiments/<bot>`,
+  `analytics/<bot>`, `memory/<bot>`), NOT physically nested per persona. The
+  contract (`runtime/isolation.py`): (a) every record carries an explicit
+  `persona` field; (b) every identity key is persona-derived and thus
+  collision-free across personas — `content_id = H(persona:move:signal)`,
+  `content_key = H(persona|signal|move)`, `experiment_id = "exp-"+content_id`;
+  (c) every persona-specific read goes through `runtime.isolation` filters, which
+  select strictly by `persona`. `runtime.isolation.audit()` asserts each store
+  partitions cleanly (no unlabeled or foreign-persona records, union == whole).
+
+This replaces the earlier wording that implied physical per-persona namespaces:
+`paths.py` is bot-scoped and the code is logically persona-partitioned, so docs
+and code now agree. Proven by `tests/test_isolation.py`.
 - Proven by `tests/test_concurrency.py`: 6-way concurrent stale takeover and fresh
   create each yield exactly one owner across 40 rounds; a second persona on a held
   runtime is rejected; 25 rounds of concurrent general+cultural cycles leave the

@@ -260,6 +260,7 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
         if gate_failures:
             def withheld_effects():
                 st.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
+                                  "persona": persona["id"],
                                   "content_id": reviewed["content_id"],
                                   "reasons": gate_failures})
                 analytics.emit(analytics.make_event(
@@ -314,6 +315,7 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                 evidence=[f"experiment {exp.experiment_id} registered; "
                           f"awaiting {exp.observation_window_hours}h window"])
             st.record_action({"action": "CREATE_CANDIDATE",
+                              "persona": persona["id"],
                               "content_id": reviewed["content_id"],
                               "experiment_id": exp.experiment_id})
 
