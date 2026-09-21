@@ -4,6 +4,36 @@ This is the execution view of the artifact registry. `ARTIFACT_INDEX.json` is th
 
 Lead acceptance is evidence-gated. Claude submissions and local test claims do not self-close artifacts.
 
+## Team execution mode — target V2.0 engineering-ready
+
+Lead plan:
+- `EXECUTION_TO_V2_TODAY.md`
+- `TEAM_LANES.md`
+- `STRATEGIC_CHECKPOINTS.md`
+
+Two worker lanes:
+- **Claude Core** — branch `claude/social-bots-core-to-v2`
+- **Claude Intelligence** — branch `claude/social-bots-intelligence-to-v2`
+
+Workers do not directly own canonical artifact/state files. They submit source/tests/evidence; ChatGPT lead reconciles canonical acceptance.
+
+### Claude Core — current chain
+1. Repair `SB-V03-003`.
+2. Repair `SB-V03-004`.
+3. Repair `SB-V03-005`.
+4. Produce `SB-V03-006`.
+5. Repair/complete `SB-V04-001`.
+6. Implement `SB-V04-002` / `SB-V04-003` / V0.4 acceptance.
+7. Continue worker/reliability artifacts and `SB-V20-001` as dependencies clear.
+
+### Claude Intelligence — safe parallel chain
+1. `SB-V05-001` — READY: machine-captured source collector.
+2. `SB-V13-001` — READY: normalized analytics brain.
+3. Continue `SB-V05-002`, `SB-V14-001`, `SB-V15-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002` as dependencies clear.
+4. Do not present fixtures as operational evidence and do not edit Core-owned runtime files without lead reassignment.
+
+Today's lead target is `SB-V20-099` V2.0 engineering readiness. Operational V2.0 remains separately evidence-gated.
+
 ## Current gate — V0.3.x correctness
 
 Implementation reviewed: PR #2 head `2cab7219edab5c2f3a7123fad1546f43a2fc140c`.
@@ -58,9 +88,11 @@ This proves another bounded invocation only. It does **not** prove recurring/alw
 
 No GitHub Actions workflow run exists for PR #2 head `2cab7219`; Claude's reported `38 passing` remains worker-local evidence.
 
-## V0.4 — locked until V0.3 acceptance bundle
+## V0.4 — Core integration locked until V0.3 acceptance bundle
 
-Do not materially advance shared V0.4 source while V0.3 repair artifacts are under review.
+Claude Core must not materially advance shared V0.4 integration source while V0.3 repair artifacts are under review.
+
+Claude Intelligence may prebuild explicitly independent artifacts marked READY in ARTIFACT_INDEX.json when they do not touch Core-owned files or claim early milestone promotion.
 
 Prepared next artifacts once dependencies clear:
 - `SB-R1B` -> `SB-V04-001` — reasoning-provider interface + fail-closed contract — **SP3** — packet: `artifact-packets/SB-V04-001.md`.
@@ -102,3 +134,31 @@ Lead research `SB-ACC-008` is accepted. Account/browser artifacts remain externa
 No public posting, public deployment, customer/user messaging, purchases, paid APIs, additional spend, destructive actions, credential material, fake connectivity/metrics, quota evasion, or engagement manipulation without explicit owner authorization.
 
 Social Bots remains fully independent of SwarmAI.
+
+
+## Strategic checkpoint backlog
+
+### V1.7
+Required engineering chain:
+- `SB-V11-001/002` reliability.
+- `SB-V12-001/002` platform selection.
+- `SB-V13-001/002` analytics.
+- `SB-V14-001/002` audience memory.
+- `SB-V15-001/002` experiment engine.
+- `SB-V16-001/002` content intelligence.
+- `SB-V17-001/002/003` community checkpoint.
+
+### V2.0 today's target
+- `SB-V20-001` strategy revision engine — Core.
+- `SB-V20-002` growth evaluator/allocation — Intelligence.
+- `SB-V20-003` measured-evidence strategy-change acceptance — lead integration.
+- `SB-V20-099` engineering-readiness bundle — lead acceptance target.
+- `SB-V20-004` operational acceptance remains BLOCKED until real public/account/measurement evidence is authorized and observed.
+
+### V2.3 next strategic checkpoint
+- `SB-V21-001` dynamic strategy lifecycle.
+- `SB-V22-001` goal decomposition.
+- `SB-V23-001/002/003` temporary specialist workers.
+
+### V3.0
+- `SB-V30-001..005` portfolio/multi-brand organization.
