@@ -1,0 +1,11 @@
+{
+  "url": "https://pypi.org/pypi/beancount/json",
+  "provenance": "live-canary-capture",
+  "retrieved_at": "2026-09-21T16:53:48+0000",
+  "fetch_status": 200,
+  "content_length": 275859,
+  "sha256": "c65ae5bed8d29aaebfd9a5d4150c35c2772f257cefef90da798bdf0426dd3ce0",
+  "bounded_title": "beancount 3.2.3",
+  "bounded_summary": "PyPI package 'beancount' current latest version 3.2.3; 37 released versions indexed; summary: Command-line Double-Entry Accounting",
+  "note": "Live HTTPS retrieval at canary time; public, no auth/cookies, not a fixture, not pasted. Host from session egress allowlist (arbitrary hosts are 403 by org egress policy)."
+}
