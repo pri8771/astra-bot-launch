@@ -1,0 +1,151 @@
+.......................................................................s................................................................................................................................................................................DIRECTION ERROR: directions file for lane 'windows-core' is not valid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+........................LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpyg9pmi74/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+......LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmphapa8bcz/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+.LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpe_vi7x5i/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+.USAGE: --bots resolved to no candidate runtimes
+.FAILURE: RuntimeError: unit blew up
+....................................................s.......................................{
+  "written": "/tmp/tmpvvwy9yjx/receipt.json",
+  "verdict": "UNSUITABLE_NOT_PERSISTENT_OWNER_HOST",
+  "suitable_for_v07_live_scheduler": false,
+  "live_claim": false,
+  "blocker_count": 6
+}
+{
+  "acceptance_authority": "ChatGPT lead \u2014 this verifier never self-accepts",
+  "acceptance_claim": false,
+  "all_comparisons_material": false,
+  "divergence_report": {
+    "acceptance_authority": "ChatGPT lead \u2014 this report never self-accepts",
+    "acceptance_evidence_eligible": false,
+    "all_comparisons_material": false,
+    "all_receipts_real_adaptive": false,
+    "call_slot_binding": {
+      "checked": false,
+      "manifest_ids": [],
+      "reason": "no call-budget ledger supplied; receipt labels alone cannot establish that any live call was made",
+      "unbound_cases": []
+    },
+    "cases": [
+      {
+        "case": "P0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P1",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P2",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P3",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "E0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      }
+    ],
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P2",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P3",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|E0",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "evidence"
+      }
+    ],
+    "errors": [
+      "P0: no receipt supplied",
+      "P1: no receipt supplied",
+      "P2: no receipt supplied",
+      "P3: no receipt supplied",
+      "E0: no receipt supplied"
+    ],
+    "generated_at": "2026-09-21T19:54:15Z",
+    "receipt_kinds": [],
+    "run_scope": "v04-divergence-test"
+  },
+  "evidence_class": "ENGINEERING",
+  "independent_rejections": [
+    "prepared matrix is not acceptance_eligible (engineering-fixture snapshots or other prepare-time honesty flags); fixture matrices cannot back LIVE divergence acceptance",
+    "matrix engineering_only_reason: snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "matrix engineering_only_reason: snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "E0: receipt absent",
+    "P0: receipt absent",
+    "P1: receipt absent",
+    "P2: receipt absent",
+    "P3: receipt absent",
+    "no call-budget ledger supplied; self-declared receipt labels are not provenance"
+  ],
+  "ledger_bound": false,
+  "live_model_call_performed": false,
+  "note": "No LIVE acceptance claim. Fixtures/replay/self-declared provenance are rejected for acceptance-path use.",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "required_comparisons_present": true,
+  "schema_version": 1,
+  "self_declared_real_labels_alone": false,
+  "source": {
+    "budget_home": null,
+    "matrix_path": "/tmp/tmprp9tj4_3/PREPARED_MATRIX.json",
+    "receipts_dir": "/tmp/tmprp9tj4_3/receipts"
+  },
+  "verdict": "REJECTED",
+  "verifier_id": "SB-R07-044"
+}
+.....................................DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
+......
+----------------------------------------------------------------------
+Ran 416 tests in 31.459s
+
+OK (skipped=2)
