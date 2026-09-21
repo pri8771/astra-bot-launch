@@ -1,94 +1,49 @@
-# Work queue — LEAD-038 owner execution simplification
+# Work queue — LEAD-039 lane-start review
 
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 Primary worker contract: `CLAUDE_EXECUTION_TO_V07.md`.
-
 Forward planning: `FORWARD_PLAN_V06_TO_V30.md`.
-
-## Owner operating model
-
-Claude owns the bulk of implementation.
-
-ChatGPT lead primarily:
-- maintains canonical product/architecture decisions;
-- prepares downstream artifact/task decomposition;
-- independently audits submissions;
-- accepts/rejects artifacts;
-- keeps future work unblocked.
-
-Do not duplicate routine implementation between ChatGPT and Claude unless independent repair/review requires it.
 
 ## Heartbeat
 
-Owner policy is now **ONE SESSION = ONE HEARTBEAT**.
+Owner policy is **ONE SESSION = ONE HEARTBEAT**. The old FAST_5M / 24-hour soak is superseded.
 
-The old FAST_5M / 24-hour soak is superseded.
+Every fresh worker session syncs/reads canonical coordination, appends exactly one real `SESSION_ONCE` heartbeat, then works normally. V0.7 recurring liveness must come from repeated OS-scheduled bounded sessions, each with one heartbeat and an invocation receipt.
 
-Every fresh worker session:
-1. syncs/reads canonical coordination;
-2. appends exactly one real `SESSION_ONCE` heartbeat to the durable lane log;
-3. optionally posts one Issue #3 visibility comment;
-4. works normally with no recurring heartbeat loop.
+## Current lane state
 
-V0.7 recurring liveness comes from repeated OS-scheduled bounded sessions, each with one heartbeat and an invocation receipt.
+- **Core — ACTIVE:** Issue #3 shows fresh session `s-20260921T174817Z-0e532933` starting at 17:48:17Z. No new worker source/report commit from that session was visible on the authoritative Core branch during LEAD-039, so no artifact acceptance is inferred yet.
+- **Intelligence — STALE:** no fresh post-LEAD-038 session or repair submission. Start fresh, emit one heartbeat, finish only the narrow SB-V15-001 alias/admin-boundary repair, test, submit, stop.
+- **Acceptance — STALE:** no fresh post-LEAD-038 session or QA submission. Start fresh, emit one heartbeat, independently review new submissions and continue V0.7 acceptance/fault preparation.
+- **Canary — FROZEN:** evidence preservation only. No further live/model call or new canary source retrieval.
+- **worker-pc:** outside the critical path until private-repo clone/auth is demonstrably fixed.
 
-See `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`.
-
-## Current critical path
-
-### V0.4
+## V0.4 critical path
 
 - SB-V04-001 ACCEPTED.
 - SB-V04-003 ACCEPTED.
-- SB-V04-005 ACCEPTED.
+- SB-V04-005 ACCEPTED from the first authorized real canary.
 - SB-V04-002 BLOCKED_OWNER_AUTHORIZATION.
 - SB-V04-004 BLOCKED_OWNER_AUTHORIZATION.
 - SB-EVD-002 WITHHELD.
 
 No additional model call is currently authorized.
 
-Core may complete prepare-only matrix/hash/isolation/authorization/call-budget work with fixtures, then move to dependency-safe V0.7 host engineering.
+Core may complete the prepare-only five-context matrix/hash/isolation/authorization/call-budget harness with fixtures/replay labeled engineering-only, then proceed to dependency-ready SB-V07-001. Synthetic/replayed receipts do not satisfy causal adaptive divergence acceptance.
 
-### V0.5
+## Intelligence path
 
 - SB-V05-001 ACCEPTED.
 - SB-V05-002 CHANGES_REQUIRED.
-- SB-V05-003/004/005 planned.
+- SB-V15-001 CHANGES_REQUIRED: normal persona-facing APIs are structurally scoped, but ordinary whole-runtime `load` / `load_all` aliases remain and must be removed/private/renamed; explicit admin/internal readers may remain.
+- V16/V17/V20-002 stay pending lead/independent audit after V15 closure.
 
-Intelligence/evidence work may continue where dependency-safe.
+## V0.6 / V0.7
 
-### V0.6
+Operational V0.6 dry runs remain dependency-gated, but validators/scaffolding may be prepared without fake operational evidence.
 
-Operational dry runs remain dependency-gated, but scaffolding/validators may be prepared without fake operational evidence.
-
-### V0.7
-
-SB-V07-001 is READY.
-
-Host-worker/scheduler/session-heartbeat/invocation-receipt/no-overlap engineering is dependency-ready now without live model calls.
-
-## Existing lanes
-
-### Core — `claude/social-bots-windows-core-host`
-Owns:
-- V0.4 prepare-only divergence/authorization harness;
-- then V0.7 host-worker engineering.
-
-### Intelligence — `claude/social-bots-intelligence-repair-v2`
-Owns:
-- current SB-V15-001 structural repair;
-- evidence/intelligence work only when released by lead.
-
-### Acceptance — `claude/social-bots-mac-qa-control`
-Owns:
-- independent review;
-- acceptance harnesses;
-- V0.6/V0.7 validators/fault cases;
-- no live model execution.
-
-### Canary — `claude/social-bots-v04-live-canary`
-Frozen for evidence preservation. No further live model calls.
+SB-V07-001 is dependency-ready for no-live-call host-worker/runbook/OS-scheduler/session-heartbeat/invocation-receipt/crash/no-overlap engineering.
 
 ## Safety
 
