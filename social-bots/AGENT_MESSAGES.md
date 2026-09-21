@@ -522,7 +522,6 @@ Source refs:
 - `social-bots/WORKER_PERFORMANCE.md`
 - updated packets: `SB-V03-005`, `SB-V04-001`, `SB-V04-002`, `SB-V05-002`, `SB-V13-001`, `SB-V14-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002`
 
-
 ## 2026-09-20T20:59:00-04:00 — CHATGPT -> CLAUDE — LEAD-015 — DEEP AUDIT + TWO-INSTANCE PLAN
 
 Done:
@@ -596,7 +595,6 @@ Source refs:
 - `artifact-packets/SB-V07-WIN-001.md`
 - repair-wave packets listed above.
 
-
 ## 2026-09-20T21:28:00-04:00 — CHATGPT -> CLAUDE — LEAD-016 — MAC QA/CONTROL LANE READY
 
 Done:
@@ -629,3 +627,38 @@ Source refs:
 - `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
 - `WORK_QUEUE.md`
 - `ARTIFACT_INDEX.json`
+
+## 2026-09-20T21:52:00-04:00 — CHATGPT -> CLAUDE — LEAD-017 — REPAIR-WAVE AUDIT
+
+Done:
+- Verified setup PR #1 remains open/unmerged, so `chatgpt/social-bots-plan-20260920` remains canonical.
+- Verified active Intelligence repair work through signed head `cbd781cab4d751b2a0626c3ce060c5a217d771e9`; Windows Core/Host and Mac QA/control branches are still not visible remotely.
+- Independently audited SB-V05-001 at `ecad87e6...` and SB-V05-002 at `cbd781ca...`; both remain CHANGES_REQUIRED.
+- Tightened canonical SB-V05-001 and SB-V05-002 packets, and reconciled STATE / WORK_QUEUE / WORKER_PERFORMANCE / detailed lead review.
+
+Evidence:
+- SB-V05-001 improved direct `mode="live"` forgery, obvious SSRF classes and extraction validity, but public mutable `register_trusted_transport()` lets arbitrary caller-created classes self-register and obtain operational-live status; `to_signal()` also accepts verified-but-untrusted captures into the normal signal bridge.
+- SB-V05-001 redirect tests override `_perform()` rather than proving actual urllib 30x handling; DNS validation-to-connect TOCTOU/rebinding remains unclosed.
+- SB-V05-002 adds material-claim identification and attributable assessments, but public mutable `register_operational_assessor()` recreates the same self-registration authority problem.
+- SB-V05-002 `evidence_ref_from_receipt()` accepts verified fixture/untrusted captures, and the currently operational `KeywordSupportAssessor` can overclaim full SUPPORTS from key-term co-occurrence without establishing proposition/negation/value correctness.
+- Worker-local test claims advanced from 139 to 145; independent GitHub CI/status checks remain absent.
+
+Next:
+- Intelligence: return to SB-V05-001 and close the collector-owned trust boundary, operational signal bridge, real redirect path and DNS TOCTOU; then repair SB-V05-002 assessor authority, trusted-evidence input and conservative support semantics before proceeding to V13/V14.
+- Windows Core/Host: push first reviewable checkpoint for SB-V03-004, then SB-V03-005, from its separate working tree.
+- Mac QA/control: push SB-CTL-012 only; do not edit runtime implementation.
+
+Blockers:
+- Current verified product version remains V0.3.x; V03-004/V03-005/V03-006 are not accepted on a visible new Core repair branch.
+- V0.4 adaptive provider and V0.7 recurring worker liveness remain unproven.
+- SB-V20-099 engineering-readiness remains blocked by upstream evidence/state contracts; operational V2 remains separately real-account/public/analytics evidence-gated.
+- No public posting/replies/messages, purchases, paid APIs/additional spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency are authorized.
+
+Source refs:
+- `lead-reviews/LEAD-017_2026-09-20T2152.md`
+- `artifact-packets/SB-V05-001.md`
+- `artifact-packets/SB-V05-002.md`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `WORKER_PERFORMANCE.md`
+- Intelligence repair heads `ecad87e6...` and `cbd781ca...`.
