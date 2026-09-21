@@ -57,8 +57,10 @@ evidence are retained.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import ipaddress
 import socket
+import ssl
 import urllib.parse
 import uuid
 from dataclasses import dataclass, asdict, field
@@ -71,7 +73,7 @@ from .jsonstore import write_json, append_jsonl, now_iso
 # Collector identity/version is baked into every receipt so evidence is
 # attributable to the exact collector that produced it.
 COLLECTOR_NAME = "sbots.source-collector"
-COLLECTOR_VERSION = "1.2.0"
+COLLECTOR_VERSION = "1.3.0"
 
 # Retrieval status vocabulary (collector-derived, never caller-supplied).
 STATUS_OK = "ok"            # a complete retrieval with content
@@ -611,26 +613,58 @@ class UrllibFetcher:
 
     def _perform(self, url: str, pinned: PinnedDestination) -> FetchResult:
         """Perform one HTTP(S) exchange against the PINNED IP, failing closed on
-        redirects. Not auto-following redirects removes the overridden-helper
-        redirect claim entirely."""
-        import http.client
-        import ssl
+        redirects.
 
+        Correct pinned-IP HTTPS (the SB-V05-001 / LEAD-020 repair)
+        ----------------------------------------------------------
+        The stdlib ``http.client.HTTPSConnection`` constructor does **not**
+        accept a ``server_hostname`` keyword, and connecting it to the pinned IP
+        as its ``host`` would make TLS verify the certificate against the IP and
+        emit an IP ``Host`` header. Both are wrong. Instead we:
+
+        1. open exactly one TCP socket to the already-validated **pinned public
+           IP** (``socket.create_connection``) — the hostname is never
+           re-resolved here, so the validate-to-connect TOCTOU / DNS-rebinding
+           window stays closed;
+        2. for HTTPS, complete the TLS handshake over that pinned socket with
+           ``SSLContext.wrap_socket(..., server_hostname=<original host>)`` so
+           **SNI and certificate hostname verification use the original validated
+           hostname**, not the IP (a hostname-mismatched cert still fails);
+        3. build the connection object with the **original hostname** (so the
+           ``Host`` header carries correct host semantics) and hand it the
+           already-connected pinned socket via ``conn.sock`` — this suppresses
+           any internal ``connect()`` (and therefore any re-resolution), so the
+           bytes travel over the socket we pinned in step 1.
+
+        This exercises real, supported stdlib API only; a production HTTPS
+        retrieval actually succeeds instead of dying on an unsupported
+        constructor argument.
+        """
         parsed = urllib.parse.urlparse(url)
         path = parsed.path or "/"
         if parsed.query:
             path += "?" + parsed.query
 
-        if pinned.scheme == "https":
-            ctx = ssl.create_default_context()
-            conn = http.client.HTTPSConnection(
-                pinned.ip, pinned.port, timeout=self.timeout, context=ctx,
-                server_hostname=pinned.host)  # SNI/cert use the hostname
-        else:
-            conn = http.client.HTTPConnection(
-                pinned.ip, pinned.port, timeout=self.timeout)
+        # (1) One connect(), to the validated pinned public IP. No re-resolution.
+        sock = socket.create_connection((pinned.ip, pinned.port),
+                                        timeout=self.timeout)
+        conn = None
         try:
-            # Host header carries the real hostname; the socket is on the pinned IP.
+            if pinned.scheme == "https":
+                # (2) TLS over the pinned socket; SNI + cert verification bind to
+                # the ORIGINAL validated hostname, never the pinned IP.
+                ctx = ssl.create_default_context()
+                sock = ctx.wrap_socket(sock, server_hostname=pinned.host)
+                conn = http.client.HTTPSConnection(
+                    pinned.host, pinned.port, timeout=self.timeout, context=ctx)
+            else:
+                conn = http.client.HTTPConnection(
+                    pinned.host, pinned.port, timeout=self.timeout)
+            # (3) Reuse the pinned (TLS-wrapped) socket; http.client will not dial
+            # out again, so the hostname is not re-resolved for the transfer.
+            conn.sock = sock
+            # Explicit Host header preserves the original hostname semantics and
+            # (being present) suppresses http.client's own IP-derived Host header.
             conn.request("GET", path, headers={
                 "Host": pinned.host, "User-Agent": self.user_agent})
             resp = conn.getresponse()
@@ -646,7 +680,10 @@ class UrllibFetcher:
             return FetchResult(ok=True, content=content, final_url=url,
                                http_status=status, partial=partial)
         finally:
-            conn.close()
+            if conn is not None:
+                conn.close()   # closes the pinned socket it now owns
+            else:
+                sock.close()   # never handed to a connection; close it ourselves
 
 
 # --------------------------------------------------------------------------- #

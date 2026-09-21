@@ -3,11 +3,13 @@
 All tests use explicit FIXTURE fetchers. Fixtures are marked as fixtures by the
 collector and never masquerade as operational live capture.
 """
+import io
 import os
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import collector, research  # noqa: E402
@@ -18,6 +20,91 @@ URL = "https://example.org/article"
 
 def _extract_len(content, res):
     return {"byte_len": len(content or b""), "http_status": res.http_status}
+
+
+# --------------------------------------------------------------------------- #
+# Production-path fakes for SB-V05-001 / LEAD-020 regression.
+#
+# These fake ONLY the socket and TLS I/O so that the REAL
+# ``http.client.HTTPSConnection`` / ``HTTPConnection`` constructor and request
+# machinery are exercised. That is what makes the regression able to catch an
+# invalid stdlib constructor signature (e.g. the previous
+# ``HTTPSConnection(..., server_hostname=...)`` defect, which raises TypeError):
+# nothing here swallows constructor kwargs the way a fully mocked connection
+# would.
+# --------------------------------------------------------------------------- #
+class _FakeSocket:
+    """A minimal socket that replays a canned raw HTTP response.
+
+    Implements just enough of the socket API for ``http.client`` to send a
+    request and parse a response: ``sendall`` (records outbound bytes),
+    ``makefile`` (serves the response bytes) and ``close``.
+    """
+
+    def __init__(self, response_bytes: bytes):
+        self._response = response_bytes
+        self.sent = bytearray()
+        self.closed = False
+
+    def sendall(self, data):
+        self.sent += data
+
+    # http.client also uses send() in some paths.
+    def send(self, data):
+        self.sent += data
+        return len(data)
+
+    def makefile(self, mode="rb", *a, **k):
+        return io.BytesIO(self._response)
+
+    def settimeout(self, _t):
+        pass
+
+    def close(self):
+        self.closed = True
+
+
+import ssl as _ssl  # noqa: E402  (for the SSLContext subclass below)
+
+
+class _RecordingTLSContext(_ssl.SSLContext):
+    """A REAL ``ssl.SSLContext`` subclass whose ``wrap_socket`` is stubbed.
+
+    Subclassing the real context means the stdlib ``HTTPSConnection``
+    constructor (which reads ``verify_mode`` / ``check_hostname``) still works
+    unchanged, while ``wrap_socket`` skips real TLS: it records the SNI
+    ``server_hostname`` (so a test can assert SNI/cert verification binds to the
+    ORIGINAL validated hostname, never the pinned IP) and returns the underlying
+    fake socket as-is.
+    """
+
+    def __new__(cls):
+        # SSLContext configures itself in __new__ (protocol, default verify
+        # mode / check_hostname). __init__ is object.__init__ and takes no args.
+        return super().__new__(cls, _ssl.PROTOCOL_TLS_CLIENT)
+
+    def __init__(self):
+        self.recorded_sni = None
+        self.wrapped = False
+
+    def wrap_socket(self, sock, server_hostname=None, **_k):
+        self.recorded_sni = server_hostname
+        self.wrapped = True
+        return sock
+
+
+class _Dialer:
+    """Records ``socket.create_connection`` calls and returns a fake socket."""
+
+    def __init__(self, sock):
+        self._sock = sock
+        self.addresses = []
+        self.timeouts = []
+
+    def __call__(self, address, timeout=None, *a, **k):
+        self.addresses.append(address)
+        self.timeouts.append(timeout)
+        return self._sock
 
 
 class CollectorTest(unittest.TestCase):
@@ -207,40 +294,94 @@ class CollectorTest(unittest.TestCase):
         with self.assertRaises(collector.UnsafeDestinationError):
             collector.resolve_and_validate("http://10.0.0.1/x")
 
-    def test_redirect_is_failed_closed(self):
-        """A 3xx response is not followed; it is a failed retrieval (no override
-        of network helpers is used to claim redirect support)."""
-        pinned = collector.PinnedDestination(scheme="https", host="ex.org",
-                                             ip="93.184.216.34", port=443)
+    # --- SB-V05-001 / LEAD-020: the REAL production HTTPS connection path ---- #
+    def test_production_https_path_pins_ip_and_uses_original_host(self):
+        """Exercise the real ``_perform`` HTTPS construction end-to-end with only
+        the socket/TLS I/O faked.
 
-        class FakeResp:
-            status = 302
+        This is the regression that would have caught the LEAD-020 defect: the
+        real ``http.client.HTTPSConnection`` constructor runs here, so an
+        unsupported keyword (the old ``server_hostname=`` argument) would raise
+        ``TypeError`` and fail this test. It also proves the safety semantics:
+        the socket connects to the PINNED validated IP, while TLS SNI and the
+        HTTP Host header use the ORIGINAL hostname (not the IP).
+        """
+        response = (b"HTTP/1.1 200 OK\r\n"
+                    b"Content-Length: 5\r\n"
+                    b"Content-Type: text/plain\r\n\r\nhello")
+        sock = _FakeSocket(response)
+        dialer = _Dialer(sock)
+        ctx = _RecordingTLSContext()
+        pinned = collector.PinnedDestination(
+            scheme="https", host="example.com", ip="93.184.216.34", port=443)
 
-            def read(self, n):
-                return b""
+        with mock.patch.object(collector.socket, "create_connection", dialer), \
+             mock.patch.object(collector.ssl, "create_default_context",
+                               return_value=ctx):
+            res = collector.UrllibFetcher()._perform(
+                "https://example.com/path?q=1", pinned)
 
-        class FakeConn:
-            def __init__(self, *a, **k):
-                pass
+        # A real, successful retrieval — not a swallowed constructor error.
+        self.assertTrue(res.ok, msg=f"error={res.error}")
+        self.assertEqual(res.content, b"hello")
+        self.assertEqual(res.http_status, 200)
+        # Socket connected to the PINNED validated public IP (no re-resolution).
+        self.assertEqual(dialer.addresses, [("93.184.216.34", 443)])
+        # TLS SNI / cert verification bound to the ORIGINAL hostname.
+        self.assertTrue(ctx.wrapped)
+        self.assertEqual(ctx.recorded_sni, "example.com")
+        # Host header carries the original hostname; the pinned IP is not leaked
+        # into the request line/headers.
+        sent = bytes(sock.sent)
+        self.assertIn(b"Host: example.com", sent)
+        self.assertIn(b"GET /path?q=1", sent)
+        self.assertNotIn(b"93.184.216.34", sent)
+        self.assertTrue(sock.closed)
 
-            def request(self, *a, **k):
-                pass
+    def test_production_http_path_pins_ip_no_tls(self):
+        """The plain-HTTP production path also connects to the pinned IP and
+        never invokes TLS wrapping."""
+        response = b"HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\nhi"
+        sock = _FakeSocket(response)
+        dialer = _Dialer(sock)
+        ctx = _RecordingTLSContext()
+        pinned = collector.PinnedDestination(
+            scheme="http", host="example.com", ip="93.184.216.34", port=80)
 
-            def getresponse(self):
-                return FakeResp()
+        with mock.patch.object(collector.socket, "create_connection", dialer), \
+             mock.patch.object(collector.ssl, "create_default_context",
+                               return_value=ctx):
+            res = collector.UrllibFetcher()._perform(
+                "http://example.com/x", pinned)
 
-            def close(self):
-                pass
+        self.assertTrue(res.ok, msg=f"error={res.error}")
+        self.assertEqual(res.content, b"hi")
+        self.assertEqual(dialer.addresses, [("93.184.216.34", 80)])
+        self.assertFalse(ctx.wrapped)  # no TLS on plain HTTP
+        self.assertIn(b"Host: example.com", bytes(sock.sent))
 
-        import http.client
-        orig = http.client.HTTPSConnection
-        http.client.HTTPSConnection = FakeConn
-        try:
+    def test_production_https_path_fails_closed_on_redirect(self):
+        """A 3xx over the real construction path is a failed retrieval, never
+        followed."""
+        response = (b"HTTP/1.1 302 Found\r\n"
+                    b"Location: https://elsewhere.example/\r\n"
+                    b"Content-Length: 0\r\n\r\n")
+        sock = _FakeSocket(response)
+        dialer = _Dialer(sock)
+        ctx = _RecordingTLSContext()
+        pinned = collector.PinnedDestination(
+            scheme="https", host="ex.org", ip="93.184.216.34", port=443)
+
+        with mock.patch.object(collector.socket, "create_connection", dialer), \
+             mock.patch.object(collector.ssl, "create_default_context",
+                               return_value=ctx):
             res = collector.UrllibFetcher()._perform("https://ex.org/a", pinned)
-        finally:
-            http.client.HTTPSConnection = orig
+
         self.assertFalse(res.ok)
         self.assertTrue(res.error.startswith("redirect-not-followed"))
+        self.assertEqual(res.http_status, 302)
+        # Even on a redirect, SNI was bound to the original host, not the IP.
+        self.assertEqual(ctx.recorded_sni, "ex.org")
 
     # --- downstream bridges distinguish evidence classes ------------------ #
     def test_operational_bridge_rejects_fixture_and_untrusted(self):

@@ -167,6 +167,86 @@ checks["extraction_failure_not_usable"] = {
              and not re_fail.has_usable_extraction()),
 }
 
+# 9) production HTTPS connection-construction path uses VALID stdlib API
+#    (SB-V05-001 / LEAD-020 repair). Only the socket + TLS I/O is faked; the
+#    REAL http.client.HTTPSConnection constructor runs, so an unsupported
+#    constructor argument (the old server_hostname= defect) would raise here.
+#    The socket connects to the PINNED validated IP while SNI + Host use the
+#    ORIGINAL hostname. This is a construction check, NOT live network evidence.
+import io as _io  # noqa: E402
+import ssl as _ssl  # noqa: E402
+from unittest import mock as _mock  # noqa: E402
+
+
+class _FakeSock:
+    def __init__(self, response):
+        self._response = response
+        self.sent = bytearray()
+
+    def sendall(self, data):
+        self.sent += data
+
+    def makefile(self, mode="rb", *a, **k):
+        return _io.BytesIO(self._response)
+
+    def settimeout(self, _t):
+        pass
+
+    def close(self):
+        pass
+
+
+class _RecCtx(_ssl.SSLContext):
+    def __new__(cls):
+        return super().__new__(cls, _ssl.PROTOCOL_TLS_CLIENT)
+
+    def __init__(self):
+        self.recorded_sni = None
+
+    def wrap_socket(self, sock, server_hostname=None, **_k):
+        self.recorded_sni = server_hostname
+        return sock
+
+
+_dialed = []
+_sock = _FakeSock(b"HTTP/1.1 200 OK\r\nContent-Length: 5\r\n\r\nhello")
+_ctx = _RecCtx()
+_pinned = collector.PinnedDestination(
+    scheme="https", host="example.com", ip="93.184.216.34", port=443)
+
+
+def _fake_dial(address, timeout=None, *a, **k):
+    _dialed.append(address)
+    return _sock
+
+
+try:
+    with _mock.patch.object(collector.socket, "create_connection", _fake_dial), \
+         _mock.patch.object(collector.ssl, "create_default_context",
+                            return_value=_ctx):
+        _res = collector.UrllibFetcher()._perform(
+            "https://example.com/path?q=1", _pinned)
+    _prod_ok = (_res.ok and _res.content == b"hello"
+                and _dialed == [("93.184.216.34", 443)]
+                and _ctx.recorded_sni == "example.com"
+                and b"Host: example.com" in bytes(_sock.sent)
+                and b"93.184.216.34" not in bytes(_sock.sent))
+    _prod_err = None
+except Exception as exc:  # a bad constructor signature would land here
+    _prod_ok = False
+    _prod_err = type(exc).__name__
+
+checks["production_https_valid_construction"] = {
+    "note": ("Real http.client.HTTPSConnection constructor exercised; only "
+             "socket/TLS I/O faked. Construction check, not live network."),
+    "connected_to_pinned_ip": _dialed == [("93.184.216.34", 443)],
+    "sni_uses_original_host": _ctx.recorded_sni == "example.com",
+    "host_header_uses_original_host": b"Host: example.com" in bytes(_sock.sent),
+    "pinned_ip_not_in_request": b"93.184.216.34" not in bytes(_sock.sent),
+    "constructor_error": _prod_err,
+    "pass": _prod_ok,
+}
+
 summary = {
     "artifact": "SB-V05-001",
     "kind": "fixture-evidence",

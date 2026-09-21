@@ -1,1 +1,1 @@
-Fresh session not started yet. Assigned mission is ready. Heartbeat reporter not started yet.
+Lane 2 Intelligence: SB-V05-001 DONE — repaired the real pinned-IP HTTPS production path (valid stdlib construction: pinned-IP connect + original-host SNI/cert via wrap_socket + correct Host header + fail-closed redirects) and added production-path regressions that exercise the real constructor. Full suite 187 passing. Committing; next: SB-V15-001 persona-scoped experiment APIs.

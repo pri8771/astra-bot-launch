@@ -31,7 +31,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": false,
         "provenance": "unverified-failed",
-        "receipt_id": "cap-a294f602f8644477",
+        "receipt_id": "cap-abc417daadb34c89",
         "source_url": "https://example.org/fixture-article",
         "status": "failed",
         "transport_trusted": false
@@ -47,6 +47,15 @@
       "op_rejected_fixture": true,
       "pass": true
     },
+    "production_https_valid_construction": {
+      "connected_to_pinned_ip": true,
+      "constructor_error": null,
+      "host_header_uses_original_host": true,
+      "note": "Real http.client.HTTPSConnection constructor exercised; only socket/TLS I/O faked. Construction check, not live network.",
+      "pass": true,
+      "pinned_ip_not_in_request": true,
+      "sni_uses_original_host": true
+    },
     "same_source_twice": {
       "pass": true,
       "receipt_1": {
@@ -58,7 +67,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-823c5881a52e475c",
+        "receipt_id": "cap-7f25d17080df4d8e",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -72,7 +81,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-3bff1f1d6fdd4ea3",
+        "receipt_id": "cap-d0fc24988407455d",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -112,7 +121,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "unverified-untrusted-transport",
-        "receipt_id": "cap-1fcbe553f6734321",
+        "receipt_id": "cap-79ba4c4e98a647ce",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -120,7 +129,7 @@
     }
   },
   "collector_name": "sbots.source-collector",
-  "collector_version": "1.2.0",
+  "collector_version": "1.3.0",
   "kind": "fixture-evidence",
   "warning": "FIXTURE evidence only; not operational live capture."
 }
