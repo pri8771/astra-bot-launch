@@ -1,0 +1,65 @@
+=== ENV ===
+Linux vm 6.18.44-fc-v37 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+Python 3.11.15
+PWD_canary_head=8febedb7987500b7cce1c9cc3d38e5b4be177c02
+runtime_dir_last_commit=175f741fcedace3113191a847d6a7568d77b9cde 2026-09-21 02:20:12 +0000
+=== CONTENT HASHES (git blob sha1) of tested runtime modules ===
+8729d42d7d60d1f40739edb52167ada0960377cd runtime/leasing.py
+4d326c132b18d112de4733488b400088e457dfd9 runtime/worker.py
+b1f804d500df33a2a11bf4ef8687ba9ac6662d62 runtime/decision.py
+af7d43b0d03e274b808328a569d7088b195c3fca runtime/receipts.py
+45452b234be8e3cc27b274686ee87f18d28ffedc runtime/state.py
+7f3b716dfe11d57bdd0ed9f7887e6f3c817285ce runtime/isolation.py
+50e580ea08cbeda5a3428ce9779191c9b59a218b runtime/research.py
+c228f6d5e9833029b6c4a96f78d350804e03d3bf runtime/pipeline.py
+=== SUITE: fencing/leasing/concurrency/worker/decision/isolation + full ===
+--- test_fencing ---
+----------------------------------------------------------------------
+Ran 9 tests in 0.068s
+
+OK
+--- test_leasing ---
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+OK
+--- test_concurrency ---
+----------------------------------------------------------------------
+Ran 5 tests in 0.901s
+
+OK
+--- test_worker ---
+----------------------------------------------------------------------
+Ran 4 tests in 0.058s
+
+OK
+--- test_decision ---
+----------------------------------------------------------------------
+Ran 10 tests in 0.096s
+
+OK
+--- test_isolation ---
+----------------------------------------------------------------------
+Ran 12 tests in 0.221s
+
+OK
+--- FULL DISCOVER ---
+Ran 115 tests in 1.527s
+
+OK
+=== CROSS-PROCESS LOCK PROOF ===
+{
+  "acquired_by": [
+    "proc-4-2840"
+  ],
+  "acquired_count": 1,
+  "error_count": 0,
+  "errors": [],
+  "flock_available": true,
+  "held_count": 7,
+  "processes_spawned": 8,
+  "single_owner_ok": true,
+  "start_method": "spawn (independent interpreters)",
+  "task_id": "cycle:social-a"
+}
+harness_exit=0

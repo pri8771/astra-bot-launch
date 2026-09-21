@@ -1,0 +1,11 @@
+{
+  "url": "https://pypi.org/pypi/pip/json",
+  "provenance": "live-canary-capture",
+  "retrieved_at": "2026-09-21T16:15:38+0000",
+  "fetch_status": 200,
+  "content_length": 228494,
+  "sha256": "6e11a831a6a7c5aac56ee8634c4041a4d86b19380f43879a76a1903dcde9d814",
+  "bounded_title": "pip 26.2.1",
+  "bounded_summary": "PyPI package 'pip' current latest version 26.2.1; 159 released versions indexed; summary: The PyPA recommended tool for installing Python packages.",
+  "note": "Live HTTPS retrieval at canary time. Public, no auth/cookies, not a fixture, not manually pasted. Host chosen from the session egress allowlist (arbitrary news/data hosts are denied 403 by org egress policy in this environment)."
+}

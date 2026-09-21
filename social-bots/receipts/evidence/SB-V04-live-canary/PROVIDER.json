@@ -1,0 +1,31 @@
+{
+  "provider_id": "claude-code-subscription-v1",
+  "adaptive": true,
+  "adaptive_required": true,
+  "available": true,
+  "provider_class": "ClaudeCodeReasoningProvider",
+  "provider_available_preflight": true,
+  "provider_reason": null,
+  "claude_cli_path": "/opt/node22/bin/claude",
+  "claude_cli_version": "2.1.278 (Claude Code)",
+  "invocation_flags": [
+    "--print",
+    "--output-format",
+    "json",
+    "--permission-mode",
+    "plan",
+    "--permission-prompts",
+    "none",
+    "--disallowedTools",
+    "Bash Edit Write NotebookEdit WebFetch WebSearch Read Glob Grep Task Agent"
+  ],
+  "api_key_stripped_from_child_env": true,
+  "anthropic_api_key_present": false,
+  "call_started_at": "2026-09-21T16:15:39+0000",
+  "call_finished_at": "2026-09-21T16:16:12+0000",
+  "uncertainties": [
+    "Whether The Ledger's audience has any interest in Python packaging updates",
+    "Whether this is a real content opportunity or just a live-canary health check",
+    "No prior hypotheses exist to benchmark expected engagement"
+  ]
+}
