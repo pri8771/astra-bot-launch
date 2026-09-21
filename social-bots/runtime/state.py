@@ -174,17 +174,25 @@ class PersonaState:
     @classmethod
     def load(cls, bot: str, persona_id: str,
              runtime: "RuntimeState | None" = None) -> "PersonaState":
-        """Load (or first-time migrate) this persona's private state.
+        """Load (or first-time STAGE a migration for) this persona's private state.
 
-        ``runtime`` is the RuntimeState instance the caller will commit this
-        cycle. When migration runs, the migrated-marker is set on THAT instance
-        (in memory) so the marker the real cycle commits is the final one — it is
-        never written by a throwaway RuntimeState that the cycle's later
-        ``rt.save()`` would clobber (SB-V03-005 migration-consistency repair).
+        SIDE-EFFECT FREE (SB-V03-004 LEAD-019 repair): this NEVER writes to disk.
+        A first-time legacy migration is STAGED IN MEMORY only — the persona file
+        and the runtime migrated-marker are persisted exclusively inside the
+        cycle's ownership-fenced commit (``decision._commit`` -> ``ps.save()`` /
+        ``rt.save()`` under ``Fence.fenced_commit``). So an obsolete owner that
+        loses the fence mid-cycle leaves NO persona-state or migration-marker
+        write behind, exactly like every other durable cycle write.
 
-        Idempotency is gated on PERSONA-FILE EXISTENCE, not the runtime marker:
-        once the persona file exists, migration never runs again, so a crash that
-        loses the marker cannot cause re-migration or data loss.
+        ``runtime`` is the RuntimeState instance the caller will commit this cycle.
+        When migration is staged, the migrated-marker is set on THAT in-memory
+        instance so the marker the fenced commit persists is the final one.
+
+        Idempotency is gated on PERSONA-FILE EXISTENCE (checked here) plus the fact
+        that staging is deterministic from the legacy archive: before any fenced
+        commit persists the persona file, every load re-stages the same data; once
+        the file exists, migration never runs again. A crash that loses the marker
+        cannot cause re-migration or data loss.
         """
         if bot not in paths.BOTS:
             raise ValueError(f"unknown bot {bot!r}; expected one of {paths.BOTS}")
@@ -194,28 +202,21 @@ class PersonaState:
             return cls(bot=bot, persona_id=persona_id, data=existing)
         data = _default_persona_state(bot, persona_id)
         obj = cls(bot=bot, persona_id=persona_id, data=data)
-        obj._migrate_from_legacy(runtime)
+        obj._stage_legacy_migration(runtime)
         return obj
 
-    def _migrate_from_legacy(self, runtime: "RuntimeState | None") -> bool:
-        """Two-phase, crash-safe, idempotent migration of legacy shared state.
+    def _stage_legacy_migration(self, runtime: "RuntimeState | None") -> bool:
+        """Stage a one-time legacy migration IN MEMORY (no disk writes).
 
         Pre-SB-V03-005 runtimes kept a single consumed ledger/hypotheses set at
         the runtime level. That data historically belonged to the default-owner
-        persona (the general persona whose id equals the runtime). We migrate it
-        into that persona's private state exactly once. Other personas start clean
-        so no cross-persona bleed is introduced.
+        persona (the general persona whose id equals the runtime). We stage it into
+        this persona's private state, and (if a runtime instance is supplied) set
+        the migrated marker on that in-memory runtime. NOTHING is written here:
+        both the persona file and the marker are persisted only by the fenced
+        commit, so this load path is safe for a worker that may not own the fence.
 
-        Phase ordering (crash safety):
-          1. copy the archived values into this persona's state and
-             ``save()`` the persona file DURABLY (atomic temp+fsync+rename);
-          2. only THEN set the migrated marker on the runtime instance.
-        A crash between the phases is safe: the persona file already exists, so
-        the next load returns it and does not re-migrate; the (possibly missing)
-        marker is advisory only. A crash before phase 1 leaves the legacy archive
-        intact for a clean retry. If a stale marker exists but the persona file
-        does not, migration still runs (the file, not the marker, is the gate),
-        recovering the data.
+        Returns True iff a migration was staged.
         """
         bot, persona_id = self.bot, self.persona_id
         if persona_id != bot:
@@ -223,6 +224,7 @@ class PersonaState:
         # Source the legacy archive: prefer the caller's in-memory runtime (the
         # instance that will be committed), else read the on-disk runtime file
         # (either an archived ``_legacy`` block or still-top-level legacy keys).
+        # Reading is not a side effect; only writing would be.
         archived: dict = {}
         if runtime is not None:
             archived = dict((runtime.data.get("_legacy") or {})
@@ -240,17 +242,10 @@ class PersonaState:
             if k in archived:
                 self.data[k] = archived[k]
         self.data["_migrated_from_legacy_runtime_state"] = now_iso()
-        # PHASE 1: persona file durable BEFORE any marker is written.
-        self.save()
-        # PHASE 2: mark migrated. On the SHARED runtime instance when provided, so
-        # the marker the real cycle commits is final and is not clobbered by a
-        # later save of a different instance. Standalone (no cycle) persists it now.
+        # Stage the marker on the SHARED in-memory runtime so the fenced commit
+        # persists it on the instance the real cycle commits. No write here.
         if runtime is not None:
             runtime.data.setdefault("_legacy", {})["migrated_to_persona"] = True
-        else:
-            rt = RuntimeState.load(bot)
-            rt.data.setdefault("_legacy", {})["migrated_to_persona"] = True
-            rt.save()
         return True
 
     def save(self) -> None:

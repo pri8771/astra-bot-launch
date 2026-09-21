@@ -311,8 +311,8 @@ class IsolationContractTest(unittest.TestCase):
 
     def test_migration_recovers_when_marker_set_but_persona_file_missing(self):
         # Crash-safety: if a marker was written but the persona file never became
-        # durable (crash between phases), the next load STILL migrates (the
-        # persona file, not the marker, is the idempotency gate) — no data loss.
+        # durable, the next load STILL re-stages (the persona file, not the marker,
+        # is the idempotency gate). Persistence then happens in the fenced commit.
         import json
         from runtime import paths
         bot = "social-a"
@@ -329,11 +329,38 @@ class IsolationContractTest(unittest.TestCase):
             },
         }
         (paths.state_dir(bot) / "bot_state.json").write_text(json.dumps(state))
-        # ...but the persona file is absent (the phase-1 save was lost).
+        # ...but the persona file is absent (its fenced write was lost pre-commit).
         self.assertFalse((paths.state_dir(bot) / "persona-social-a.json").exists())
+        # A bare load re-stages the recovered data IN MEMORY (no write yet).
         gen = PersonaState.load(bot, bot)
         self.assertEqual(gen.consumed_ids(), ["sig-x"], "must recover the legacy data")
+        self.assertFalse((paths.state_dir(bot) / "persona-social-a.json").exists(),
+                         "load must be side-effect free (no write)")
+        # A real cycle then persists the recovered persona state via the fence.
+        seed(bot, "recovery signal", "https://example.org/rec")
+        decision.run_cycle(bot, "social-a")
         self.assertTrue((paths.state_dir(bot) / "persona-social-a.json").exists())
+        self.assertIn("sig-x", PersonaState.load(bot, bot).consumed_ids())
+
+    def test_persona_load_is_side_effect_free_during_migration(self):
+        # SB-V03-004 LEAD-019: loading a persona that WOULD migrate must not write
+        # anything to disk (persona file or runtime marker) — persistence is the
+        # fenced commit's job only.
+        import json
+        from runtime import paths
+        bot = "social-a"
+        legacy = {"bot": bot, "schema_version": 1,
+                  "consumed_signal_ids": ["sig-legacy"], "hypotheses": {},
+                  "counters": {"cycles": 0, "actions": 0, "no_action": 0},
+                  "recovery": {"last_clean_tick": None, "in_flight": None},
+                  "observation_fingerprint": None}
+        sp = paths.state_dir(bot) / "bot_state.json"
+        sp.write_text(json.dumps(legacy))
+        before = sp.read_text()
+        gen = PersonaState.load(bot, bot)          # would stage a migration
+        self.assertEqual(gen.consumed_ids(), ["sig-legacy"])  # staged in memory
+        self.assertFalse((paths.state_dir(bot) / "persona-social-a.json").exists())
+        self.assertEqual(sp.read_text(), before, "runtime state file must be untouched by load")
 
     def test_mixed_persona_production_dedup_read_is_scoped_no_bleed(self):
         # Production-path regression for the persona-scoped read boundary: the

@@ -192,6 +192,49 @@ class LeaseFencingTest(unittest.TestCase):
         # B is the sole owner after the race.
         self.assertEqual(leasing.inspect(task)["worker_id"], "B")
 
+    def test_stale_owner_in_migration_path_leaves_no_write(self):
+        # SB-V03-004 LEAD-019: a worker whose cycle would trigger the legacy
+        # persona-state migration, but which loses the fence at commit, must leave
+        # NO persona-state file and NO runtime migration-marker write behind — the
+        # load/migration path is side-effect free; persistence is fenced only.
+        import json
+        bot = "social-a"
+        # Seed a legacy runtime state that would trigger migration for social-a.
+        legacy = {"bot": bot, "schema_version": 1,
+                  "consumed_signal_ids": ["sig-old"], "hypotheses": {},
+                  "counters": {"cycles": 0, "actions": 0, "no_action": 0},
+                  "recovery": {"last_clean_tick": None, "in_flight": None},
+                  "observation_fingerprint": None}
+        sp = paths.state_dir(bot) / "bot_state.json"
+        sp.write_text(json.dumps(legacy))
+        before = sp.read_text()
+        research.capture(bot, research.Signal.make(
+            "mig", "captured", "unit", "https://example.org/m", "fixture", ["n"]))
+        task = worker.runtime_task_id(bot)
+        a = leasing.acquire(task, "A", ttl_seconds=300)
+
+        class TakeoverAtCommit(leasing.Fence):
+            triggered = False
+
+            def fenced_commit(self, commit):
+                if not TakeoverAtCommit.triggered:
+                    TakeoverAtCommit.triggered = True
+                    _force_stale(task)
+                    leasing.acquire(task, "B", ttl_seconds=300)  # gen 2 takeover
+                return super().fenced_commit(commit)
+
+        with self.assertRaises(leasing.FenceLost):
+            decision.run_cycle(bot, "social-a", fence=TakeoverAtCommit(a))
+
+        # The fenced-out owner wrote nothing: no persona file, and the runtime
+        # state file is byte-for-byte unchanged (legacy intact, no marker written).
+        self.assertFalse((paths.state_dir(bot) / "persona-social-a.json").exists())
+        self.assertEqual(sp.read_text(), before,
+                         "runtime state must be untouched after fenced-out migration cycle")
+        self.assertFalse((paths.state_dir(bot) / "last_decision.json").exists())
+        self.assertFalse((paths.memory_dir(bot) / "decisions.jsonl").exists())
+        self.assertEqual(leasing.inspect(task)["worker_id"], "B")
+
     def test_worker_run_one_unit_stands_down_on_fence_loss(self):
         bot = "social-b"
         sig = research.Signal.make("wonder", "captured evidence", "unit",
