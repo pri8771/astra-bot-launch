@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_at": "2026-09-21T18:52:07Z",
-  "lead_review": "LEAD-041",
+  "reviewed_at": "2026-09-21T19:56:50Z",
+  "lead_review": "LEAD-042",
   "official_phase": "V0.4.x_in_progress",
-  "session_status": "REVIEW_ONLY_STANDBY",
+  "session_status": "REVIEW_ONLY_ACTION_REQUIRED",
   "accepted": ["SB-V03-004", "SB-V04-005"],
-  "next_assignment": "No runtime edits. Independently execute/audit SB-R07-071 when the recovery branch submits it, then SB-R07-041 as explicitly assigned. Preserve existing acceptance evidence.",
+  "submitted_for_independent_review": ["SB-R07-071"],
+  "changes_required_to_reaudit_after_repair": ["SB-R07-041"],
+  "next_assignment": "Start one fresh review session and emit one SESSION_ONCE heartbeat. No runtime edits. Independently execute SB-R07-071 against 0c74336b793189b4ba32d1f1229de0fb4d3e5ebb with the real cross-process duplicate-session race and report exact PASS/FAIL evidence. Then, after Cursor pushes LEAD-042's repair, audit the direct-library SBOTS_REASONING=model registered-callable path and prove no callable invocation occurs without a canonical manifest. No model calls.",
   "authorization_consumed": true,
   "no_live_model_calls_authorized": true,
-  "notes": "Primary implementation is consolidated on cursor/social-bots-recovery-v07-20260921. Acceptance remains independent QA only to avoid overlapping source ownership."
+  "notes": "Primary implementation remains Cursor Recovery. R07-071 source is submitted but cannot be accepted until independent execution. R07-041 is changes-required because direct/ad-hoc ModelReasoningProvider callers can bypass worker entrypoint live-route guards at the submitted source."
 }
