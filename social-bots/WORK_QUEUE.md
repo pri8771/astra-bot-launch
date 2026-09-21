@@ -1,3 +1,23 @@
+## Priority Zero — real V0.4 canary
+
+V0.4 is NOT complete from implementation/tests alone.
+
+Required before V0.4 promotion:
+- `SB-V04-005` — one real current public source -> actual Claude Code subscription adaptive call -> validated proposal -> deterministic policy -> persisted local decision -> zero public effect.
+- `SB-EVD-002` — independent ChatGPT audit/acceptance.
+
+Dedicated branch prepared:
+`claude/social-bots-v04-live-canary`
+
+Execution order:
+1. finish current two-Mac heartbeat validation;
+2. repurpose Mac QA session to the dedicated canary branch;
+3. run exactly one real canary first;
+4. lead audits it;
+5. only then may V0.4 be called complete.
+
+Intelligence may continue non-overlapping later-version implementation in parallel, but that work does not advance the official version past V0.4 without the real canary.
+
 # Work queue
 
 Artifact-first, pull-driven coordination is active.
