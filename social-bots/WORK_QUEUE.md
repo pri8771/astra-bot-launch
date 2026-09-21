@@ -1,164 +1,109 @@
 # Work queue
 
-This is the execution view of the artifact registry. `ARTIFACT_INDEX.json` is the durable machine-readable artifact state; `artifact-packets/` contains bounded execution contracts.
+Artifact-first management is authoritative. Current deep audit: `LEAD_AUDIT_TWO_LANE_BATCH.md` / LEAD-015.
 
-Lead acceptance is evidence-gated. Claude submissions and local test claims do not self-close artifacts.
+## Verified completed worker batches
 
-## Team execution mode — target V2.0 engineering-ready
+Audited heads:
+- Core: `claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51`
+- Intelligence: `claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831`
 
-Lead plan:
-- `EXECUTION_TO_V2_TODAY.md`
-- `TEAM_LANES.md`
-- `STRATEGIC_CHECKPOINTS.md`
+Both branches contain final batch reports and no newer repository activity was observed in this review. This verifies the submitted code batch, not the state of the local Claude UI/process.
 
-Two worker lanes:
-- **Claude Core** — branch `claude/social-bots-core-to-v2`
-- **Claude Intelligence** — branch `claude/social-bots-intelligence-to-v2`
+No GitHub status checks exist at either head. Worker-reported suites: Core 85, Intelligence 128.
 
-Workers do not directly own canonical artifact/state files. They submit source/tests/evidence; ChatGPT lead reconciles canonical acceptance.
+## Current version
 
-### Claude Core — current chain
-1. Repair `SB-V03-003`.
-2. Repair `SB-V03-004`.
-3. Repair `SB-V03-005`.
-4. Produce `SB-V03-006`.
-5. Repair/complete `SB-V04-001`.
-6. Implement `SB-V04-002` / `SB-V04-003` / V0.4 acceptance.
-7. Continue worker/reliability artifacts and `SB-V20-001` as dependencies clear.
+**V0.3.x**
 
-### Claude Intelligence — safe parallel chain
-1. `SB-V05-001` — READY: machine-captured source collector.
-2. `SB-V13-001` — READY: normalized analytics brain.
-3. Continue `SB-V05-002`, `SB-V14-001`, `SB-V15-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002` as dependencies clear.
-4. Do not present fixtures as operational evidence and do not edit Core-owned runtime files without lead reassignment.
+Accepted:
+- SB-V03-002
+- SB-V03-003
 
-Today's lead target is `SB-V20-099` V2.0 engineering readiness. Operational V2.0 remains separately evidence-gated.
+V0.3 blockers:
+- SB-V03-004 CHANGES_REQUIRED
+- SB-V03-005 CHANGES_REQUIRED
+- SB-V03-006 BLOCKED until 004/005 accepted
 
-## Current gate — V0.3.x correctness
+## Next execution mode — two separate Claude instances
 
-Implementation reviewed: PR #2 head `2cab7219edab5c2f3a7123fad1546f43a2fc140c`.
+Plan: `NEXT_PHASE_TWO_INSTANCE_PLAN.md`
 
-### ACCEPTED
+### Instance A — Windows Core / Host
 
-- `SB-R0A1` -> `SB-V03-002` — signal-delta consumption correctness — **SP3**.
-  - Lead inspected per-signal consumed ledger and later/batch/restart regressions.
-  - No new work unless a later defect reopens the artifact.
+Suggested branch:
+`claude/social-bots-windows-core-host`
 
-### CHANGES REQUIRED — execute in this order
+Packet:
+`artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
 
-1. `SB-R0A2` -> `SB-V03-003` — required-review stop gate — **SP2**.
-   - Current code gate is directionally correct.
-   - Add the packet-required forced fact-review failure regression.
-   - Add the packet-required forced voice-review failure regression.
-   - Prove both stop before experiment registration / publish queue and produce truthful non-success state.
-   - Packet: `artifact-packets/SB-V03-003.md`.
+Order:
+1. SB-V03-004 complete durable-write fencing; fix post-fence decision log/latest-decision writes; remove false transactionality claim.
+2. Prove native-Windows strong lock/fence OR explicitly choose/prove an already-installed WSL/POSIX supported host path.
+3. SB-V03-005 split shared RuntimeState from private PersonaState. Persona-private: seen/consumed signals, hypotheses, working state, pending decisions, strategy-private state.
+4. SB-V03-006 fresh acceptance bundle.
+5. SB-V04-001/002 real adaptive provider via existing authenticated Claude Code subscription if host checks pass; fail closed on API-key/payg risk or provider failure.
+6. SB-CTL-006 CI.
+7. SB-V07-WIN-001 two genuinely separate recurring worker invocations with heartbeats/receipts.
 
-2. `SB-R0B1` -> `SB-V03-004` — active-cycle lease fencing + stale takeover — **SP5**.
-   - `flock` now serializes simultaneous acquisition/takeover on one POSIX host.
-   - Remaining blocker: lease can expire while `decision.run_cycle()` is still executing; another worker can take over while the old worker retains the ability to commit.
-   - Add real lifecycle fencing/renewal so an old owner cannot commit after fence loss.
-   - Add an adversarial forced-expiry-while-running regression.
-   - Do not paper over this with a larger TTL.
-   - Explicitly document host/filesystem scope; native-Windows/cross-host strong fencing is not currently proven.
-   - Packet: `artifact-packets/SB-V03-004.md`.
+### Instance B — Intelligence / Evidence Integrity
 
-3. `SB-R0B2` -> `SB-V03-005` — shared-runtime persona concurrency/workspace isolation — **SP4**.
-   - Runtime task key `cycle:<bot>` is directionally correct while a valid lease is held.
-   - Acceptance depends on `SB-V03-004` lifecycle fencing.
-   - Reconcile architecture claim vs code: docs say persona experiment/content/memory namespaces are isolated, but current `paths.py` and decision/pipeline storage are bot-scoped.
-   - Either implement true persona-private non-shared namespaces or explicitly choose logical shared-store isolation and prove every read/filter path prevents cross-persona contamination.
-   - Packet: `artifact-packets/SB-V03-005.md`.
+Suggested branch:
+`claude/social-bots-intelligence-repair-v2`
 
-4. `SB-R0B3` -> `SB-V03-006` — V0.3 adversarial acceptance bundle — **SP3**.
-   - Status: BLOCKED until `SB-V03-003`, `SB-V03-004`, and `SB-V03-005` are lead-accepted.
-   - Regenerate evidence from the accepted implementation; do not reuse superseded buggy proof as current acceptance.
-   - Packet: `artifact-packets/SB-V03-006.md`.
+Packet:
+`artifact-packets/repair-waves/INTELLIGENCE_WAVE1.md`
 
-## Worker evidence / heartbeat
+Order:
+1. SB-V05-001 trusted live transport + SSRF/redirect/extraction validity.
+2. SB-V05-002 attributable factual support assessor; caller stance test-only.
+3. SB-V13-001 cumulative_snapshot/delta/gauge/rate semantics + safe aggregation.
+4. SB-V14-001 persona-scoped memory + safe segment allowlist + correct fork semantics.
+5. SB-V15-001 measurement/evidence refs.
+6. SB-V16-001 ClaimSupport validation + persona-scoped history/novelty.
+7. SB-V17-001 receipt-backed, persona-scoped community memory/themes.
+8. SB-V20-002 typed accepted-evidence inputs.
 
-`SB-EVD-001` remains CHANGES REQUIRED.
+## Current deep-audit verdicts
 
-Verified latest committed in-session heartbeat:
-- `heartbeat_at=2026-09-20T23:24:34+00:00`
-- `status=done`
-- `host_alias=local`
-- worker `w-vm-2114-3ba847`
+### Core
+- SB-V03-003 ACCEPTED.
+- SB-V03-004 CHANGES_REQUIRED.
+- SB-V03-005 CHANGES_REQUIRED.
+- SB-V04-001 CHANGES_REQUIRED.
+- SB-V04-002 CHANGES_REQUIRED.
+- SB-V04-003 source direction positive, BLOCKED on V04-001.
 
-This proves another bounded invocation only. It does **not** prove recurring/always-on host liveness.
+### Intelligence
+- SB-V05-001 CHANGES_REQUIRED.
+- SB-V05-002 CHANGES_REQUIRED.
+- SB-V13-001 CHANGES_REQUIRED.
+- SB-V14-001 CHANGES_REQUIRED.
+- SB-V15-001 CHANGES_REQUIRED.
+- SB-V16-001 CHANGES_REQUIRED.
+- SB-V12-001 BLOCKED on corrected V13 inputs.
+- SB-V17-001 CHANGES_REQUIRED.
+- SB-V20-002 CHANGES_REQUIRED.
 
-No GitHub Actions workflow run exists for PR #2 head `2cab7219`; Claude's reported `38 passing` remains worker-local evidence.
+## After repair Wave 1
 
-## V0.4 — Core integration locked until V0.3 acceptance bundle
+Do not immediately add more coding lanes.
 
-Claude Core must not materially advance shared V0.4 integration source while V0.3 repair artifacts are under review.
+Lead first:
+1. accept/reject repaired artifacts;
+2. create/assign one integration owner;
+3. merge corrected Core + Intelligence into an integration branch;
+4. run independent CI;
+5. execute `V2_ENGINEERING_ACCEPTANCE.md`.
 
-Claude Intelligence may prebuild explicitly independent artifacts marked READY in ARTIFACT_INDEX.json when they do not touch Core-owned files or claim early milestone promotion.
+Then:
+- implement SB-V20-001 strategy revision engine;
+- integrate V20-002;
+- build SB-V20-099 engineering-readiness bundle;
+- proceed V2.1 -> V2.2 -> V2.3.
 
-Prepared next artifacts once dependencies clear:
-- `SB-R1B` -> `SB-V04-001` — reasoning-provider interface + fail-closed contract — **SP3** — packet: `artifact-packets/SB-V04-001.md`.
-- `SB-R1C` -> `SB-V04-002` — adaptive alternative generation/scoring — **SP5**.
-- `SB-R1D` -> `SB-V04-003` — deterministic policy boundary — **SP4**.
-- `SB-R1E` -> `SB-V04-004` — persona/evidence-divergence acceptance suite — **SP3**.
+A third Claude session becomes useful **after** these shared contracts are stable.
 
-Safe independent work while current source is under lead audit:
-- exact-source reuse reconciliation;
-- read-only future artifact design/readback;
-- architecture risk analysis;
-- test/acceptance preparation that does not alter reviewed runtime source.
+## Authority
 
-## Later prepared backlog
-
-### V0.5
-- `SB-R2A` -> `SB-V05-001` — machine-captured source receipt collector — **SP3** — packet prepared.
-- `SB-R2B` -> `SB-V05-002` — claim-to-source factual support review — **SP4**.
-- `SB-R2C` — platform-native formatter/repair loop — **SP3**.
-- `SB-R2D` — cultural-review evidence binding — **SP2**.
-
-### V0.6
-- `SB-R3A` — three real general-persona dry runs — **SP3**.
-- `SB-R3B` — independent reviewer receipt pipeline — **SP2**.
-- `SB-R3C` — dry-run evidence validator — **SP2**.
-
-### V0.7
-- `SB-R4A` -> `SB-V07-001` — authorized-host worker packaging/config — **SP3**.
-- `SB-R4B` -> `SB-V07-002` — recurring host execution + heartbeat proof — **SP4**.
-- `SB-R4C` — ChatGPT-direction consumption/ack loop — **SP3**.
-- `SB-R4D` — crash/restart/no-overlap host acceptance — **SP4**.
-
-### V0.8 preparation
-
-Lead research `SB-ACC-008` is accepted. Account/browser artifacts remain externally gated; no login, key creation, account connection, spend, or posting is authorized by this queue.
-
-## Persistent authority limits
-
-No public posting, public deployment, customer/user messaging, purchases, paid APIs, additional spend, destructive actions, credential material, fake connectivity/metrics, quota evasion, or engagement manipulation without explicit owner authorization.
-
-Social Bots remains fully independent of SwarmAI.
-
-
-## Strategic checkpoint backlog
-
-### V1.7
-Required engineering chain:
-- `SB-V11-001/002` reliability.
-- `SB-V12-001/002` platform selection.
-- `SB-V13-001/002` analytics.
-- `SB-V14-001/002` audience memory.
-- `SB-V15-001/002` experiment engine.
-- `SB-V16-001/002` content intelligence.
-- `SB-V17-001/002/003` community checkpoint.
-
-### V2.0 today's target
-- `SB-V20-001` strategy revision engine — Core.
-- `SB-V20-002` growth evaluator/allocation — Intelligence.
-- `SB-V20-003` measured-evidence strategy-change acceptance — lead integration.
-- `SB-V20-099` engineering-readiness bundle — lead acceptance target.
-- `SB-V20-004` operational acceptance remains BLOCKED until real public/account/measurement evidence is authorized and observed.
-
-### V2.3 next strategic checkpoint
-- `SB-V21-001` dynamic strategy lifecycle.
-- `SB-V22-001` goal decomposition.
-- `SB-V23-001/002/003` temporary specialist workers.
-
-### V3.0
-- `SB-V30-001..005` portfolio/multi-brand organization.
+No public posting/replies/messages, purchases, paid APIs/additional spend, destructive actions, credentials in Git, fake operational evidence, engagement manipulation or SwarmAI dependency.
