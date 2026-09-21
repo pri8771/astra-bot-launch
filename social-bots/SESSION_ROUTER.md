@@ -11,6 +11,16 @@ Read:
 
 Heartbeat is observability only. It does not block implementation or the real V0.4 canary.
 
+## Today's heartbeat soak — applies to all four Claude lanes
+
+Fresh sessions on Core, Intelligence, Mac QA and V0.4 Canary must run:
+
+1. `FAST_5M`: T0, +5m, +10m, +15m — three consecutive real 5-minute intervals.
+2. `SOAK_15M_24H`: immediately thereafter, every 15 minutes for 24 hours (target 96 intervals).
+
+The soak runs in parallel with lane work. It never blocks source/review/canary execution. No backfill or synthetic timestamps. See `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`.
+
+
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
 Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR / NO NEW WORKER COMMIT AFTER LEAD-032.
