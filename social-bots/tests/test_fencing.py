@@ -235,6 +235,53 @@ class LeaseFencingTest(unittest.TestCase):
         self.assertFalse((paths.memory_dir(bot) / "decisions.jsonl").exists())
         self.assertEqual(leasing.inspect(task)["worker_id"], "B")
 
+    def test_stale_owner_cannot_write_success_finish_receipt_after_takeover(self):
+        # SB-V03-004 LEAD-024: the worker's finish/success receipt is written AFTER
+        # the cycle's durable commit. If the worker stalls there, its lease expires
+        # and another worker takes over, the old owner must NOT be able to emit a
+        # finish receipt implying success. We simulate exactly that: the cycle
+        # commit (1st fenced_commit) succeeds; a takeover is forced right before the
+        # finish-receipt write (2nd fenced_commit), which must be refused.
+        bot = "social-b"
+        research.capture(bot, research.Signal.make(
+            "wonder", "captured evidence", "unit", "https://example.org/x",
+            "fixture", ["n"]))
+        task = worker.runtime_task_id(bot)
+        real_fence = leasing.Fence
+        state = {"commits": 0}
+
+        class TakeoverBeforeFinish(real_fence):
+            def fenced_commit(self, commit):
+                state["commits"] += 1
+                if state["commits"] == 2:  # the post-cycle finish-receipt write
+                    _force_stale(task)
+                    leasing.acquire(task, "B-takeover", ttl_seconds=300)  # gen 2
+                return super().fenced_commit(commit)
+
+        leasing.Fence = TakeoverBeforeFinish
+        try:
+            res = worker.run_one_unit(task, bot, "social-b", ttl_seconds=300)
+        finally:
+            leasing.Fence = real_fence
+
+        # The cycle DID durably commit under valid ownership...
+        self.assertTrue(res["committed"])
+        # ...but ownership was lost before finalizing, so NO success is asserted.
+        self.assertEqual(res["outcome"], "fence_lost_post_commit")
+        self.assertFalse(res["verified"])
+        self.assertNotIn("finish_receipt", res)
+        # No 'finish' (success) receipt on disk — only start + a truthful failure.
+        rdir = Path(self.tmp) / "receipts" / bot
+        self.assertEqual(list(rdir.glob("*finish*.json")), [],
+                         "a stale ex-owner must not write a success finish receipt")
+        fail = sorted(rdir.glob("*failure*.json"))[-1]
+        detail = json.loads(fail.read_text())["detail"]
+        self.assertFalse(detail["candidate_succeeded"])
+        self.assertEqual(detail["outcome"], "fence_lost_post_commit")
+        self.assertTrue(detail["cycle_committed"])
+        # The takeover worker owns the lease after the race.
+        self.assertEqual(leasing.inspect(task)["worker_id"], "B-takeover")
+
     def test_worker_run_one_unit_stands_down_on_fence_loss(self):
         bot = "social-b"
         sig = research.Signal.make("wonder", "captured evidence", "unit",

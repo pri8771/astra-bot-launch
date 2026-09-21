@@ -135,6 +135,9 @@ class RuntimeState:
         append_jsonl(paths.content_dir(self.bot) / "content_history.jsonl", content)
 
     def content_history(self) -> list[dict]:
+        """ADMIN/whole-runtime read (all personas). Persona-facing production
+        reads must use ``runtime.isolation.persona_content_history`` /
+        ``persona_records`` instead (SB-V03-005 read boundary)."""
         return read_jsonl(paths.content_dir(self.bot) / "content_history.jsonl")
 
 

@@ -74,6 +74,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
          "took_over_from": lease.took_over_from,
          "reconcile_required": lease.reconcile_required, "started_at": now_iso()})
 
+    cycle_committed = False   # True once run_cycle's fenced durable commit returns
     try:
         # (2b) reconcile prior owner's uncertain external effects before new work.
         reconciled = None
@@ -88,6 +89,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
         hb.beat(status="working", next_safe_action="verify")
         record = decision.run_cycle(bot, persona_id, fence=fence,
                                     require_adaptive=require_adaptive)
+        cycle_committed = True   # the fenced durable commit succeeded under ownership
 
         # (4) verify already embedded in the decision record.
         verified = bool(record.get("verify", {}).get("verified"))
@@ -95,17 +97,29 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
         withheld = bool(record.get("verify", {}).get("withheld"))
 
         # (5) finish receipt — records the TRUTHFUL outcome. A withheld candidate
-        # produces a withheld receipt, never a success one.
-        fin = receipts.write_receipt(
-            bot, "finish", task_id, worker_id, lease.lease_id,
-            {"persona": persona_id, "cycle": record.get("cycle"),
-             "fence_generation": lease.generation,
-             "chosen_action": record.get("chosen", {}).get("action"),
-             "provider_recommended": record.get("policy", {}).get("provider_recommended"),
-             "policy_selected": record.get("policy", {}).get("policy_selected"),
-             "outcome": outcome, "withheld": withheld,
-             "candidate_succeeded": outcome == "candidate_created",
-             "verified": verified, "reconciled": reconciled})
+        # produces a withheld receipt, never a success one. The finish receipt
+        # asserts successful ownership/completion, so it is itself an ownership-
+        # fenced write (SB-V03-004 LEAD-024): it runs inside ``fenced_commit`` and
+        # is refused if this worker lost the fence after the cycle commit but
+        # before finalizing. A stalled ex-owner therefore cannot emit a success/
+        # finish receipt after a takeover — the FenceLost handler below stands it
+        # down truthfully instead.
+        finish_detail = {
+            "persona": persona_id, "cycle": record.get("cycle"),
+            "fence_generation": lease.generation,
+            "chosen_action": record.get("chosen", {}).get("action"),
+            "provider_recommended": record.get("policy", {}).get("provider_recommended"),
+            "policy_selected": record.get("policy", {}).get("policy_selected"),
+            "outcome": outcome, "withheld": withheld,
+            "candidate_succeeded": outcome == "candidate_created",
+            "verified": verified, "reconciled": reconciled}
+
+        def _write_finish():
+            return receipts.write_receipt(
+                bot, "finish", task_id, worker_id, lease.lease_id, finish_detail)
+
+        fin = (fence.fenced_commit(_write_finish) if fence is not None
+               else _write_finish())
 
         # (6) heartbeat from the actual process.
         hb.beat(status="done", last_receipt=os.path.basename(fin),
@@ -123,26 +137,40 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                 "finish_receipt": os.path.basename(fin),
                 "heartbeat_beats": hb.beats}
     except leasing.FenceLost as exc:
-        # Lost the fence mid-cycle (lease expired + another worker took over).
-        # Stand down truthfully: NO durable success was committed by us, and we
-        # must NOT delete the new owner's lease. The receipt records fence loss,
-        # never candidate success.
+        # Lost the fence: either mid-cycle (before the durable commit) or after the
+        # cycle commit but before the finish receipt (LEAD-024). In BOTH cases we
+        # must NOT emit a success/finish receipt and must NOT delete the new
+        # owner's lease. We stand down with a truthful failure/fenced-out receipt
+        # that never asserts candidate success. ``cycle_committed`` distinguishes
+        # the two so the evidence is accurate: a post-commit loss means our cycle's
+        # durable state may exist, but ownership passed to the takeover worker
+        # (whose reconcile owns it) before we could finalize — success is withheld.
+        if cycle_committed:
+            outcome_str = "fence_lost_post_commit"
+            detail_str = ("cycle durable-committed under valid ownership, but the "
+                          "lease expired and another worker took over before the "
+                          "finish receipt; success receipt withheld and left to the "
+                          "takeover worker's reconcile")
+        else:
+            outcome_str = "fence_lost"
+            detail_str = ("lease expired during active cycle; another worker took "
+                          "over; this worker committed nothing")
         receipts.write_receipt(
             bot, "failure", task_id, worker_id, lease.lease_id,
-            {"persona": persona_id, "outcome": "fence_lost",
-             "candidate_succeeded": False,
+            {"persona": persona_id, "outcome": outcome_str,
+             "candidate_succeeded": False, "verified": False,
+             "cycle_committed": cycle_committed,
              "fence_generation": lease.generation,
              "on_disk_generation": (exc.on_disk or {}).get("generation"),
              "on_disk_owner": (exc.on_disk or {}).get("worker_id"),
-             "detail": "lease expired during active cycle; another worker took "
-                       "over; this worker committed nothing"})
+             "detail": detail_str})
         hb.beat(status="fenced_out", next_safe_action="exit")
         released = leasing.release(lease)  # no-op: release only removes OUR lease
         return {"worker_id": worker_id, "task_id": task_id, "bot": bot,
                 "persona": persona_id, "lease_id": lease.lease_id,
                 "fence_generation": lease.generation,
-                "outcome": "fence_lost", "withheld": False, "verified": False,
-                "committed": False, "lease_released": released,
+                "outcome": outcome_str, "withheld": False, "verified": False,
+                "committed": cycle_committed, "lease_released": released,
                 "took_over_by_generation": (exc.on_disk or {}).get("generation"),
                 "start_receipt": os.path.basename(start),
                 "heartbeat_beats": hb.beats}
@@ -161,9 +189,15 @@ def _reconcile(bot: str) -> dict:
     Because publishing is disabled, the only external-effect surface is the
     (unpublished) publish queue. We assert nothing was published without
     authorization, then declare the takeover safe.
+
+    This is a DELIBERATE runtime-wide (all-personas) reconciliation read — a
+    takeover must check the whole runtime's external-effect surface, not one
+    persona's — so it goes through the explicitly named admin boundary
+    (``isolation.admin_all_records``), not a persona-scoped reader (SB-V03-005
+    read boundary: raw whole-runtime reads are admin/reconciliation only).
     """
-    from . import pipeline
-    q = pipeline.publish_queue(bot)
+    from . import isolation
+    q = isolation.admin_all_records(bot, "publish_queue")
     unauthorized_published = [e for e in q if e.get("published") and not e.get("publish_authorized")]
     return {"queue_items": len(q),
             "unauthorized_published": len(unauthorized_published),
