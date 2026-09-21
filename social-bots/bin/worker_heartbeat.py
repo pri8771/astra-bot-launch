@@ -34,6 +34,7 @@ def read_json(path: Path, default):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--heartbeat", required=True)
+    p.add_argument("--log", required=True)
     p.add_argument("--ack", required=True)
     p.add_argument("--lane", required=True)
     p.add_argument("--branch", required=True)
@@ -50,6 +51,7 @@ def main():
     args = p.parse_args()
 
     hb_path = Path(args.heartbeat)
+    log_path = Path(args.log)
     ack_path = Path(args.ack)
     old = read_json(hb_path, {})
     ack = read_json(ack_path, {})
