@@ -1,40 +1,30 @@
 # Cursor Recovery — CURRENT_PROGRESS
 
-**Session:** `s-20260921T191500Z-a23cc77e` (SESSION_ONCE, 2026-09-21T19:15:00Z)
+**Session:** `s-20260921T191500Z-a23cc77e` (SESSION_ONCE; no additional heartbeat this resume)
 **Lane:** `cursor-recovery`
 **Branch:** `cursor/social-bots-recovery-v07-20260921`
 **Canonical coordination SHA read:** `13e1846c7ec337165722cbe090866dab90b3dc00`
 **Lead review read:** `LEAD-041`
-**Runtime:** host=`cursor`, platform=`Linux 6.12.94+`, python=`3.12.3`
 
-## Submitted this session
+## Submitted this session (cumulative)
 
-### SB-R07-071 — SUBMITTED (ENGINEERING)
-- Source SHA: `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb`
-- Atomic SESSION_ONCE uniqueness + multiprocess race
+### SB-R07-071 / 041 / 044 / 072 — SUBMITTED (prior turn)
+See earlier reports under `worker-reports/cursor-recovery/`.
 
-### SB-R07-041 — SUBMITTED (ENGINEERING)
-- Source SHA: `21cc2e7a65750d20dc609b9e9517f920157389a2`
-- Spawn-guard rebind bypass closed; run_worker entrypoint refuse
+### SB-R07-042 — SUBMITTED (ENGINEERING)
 
-### SB-R07-044 — SUBMITTED (ENGINEERING)
-- Source SHA: `5179217ea222e94caa5580104fbc6aaacd4b2192`
-- Independent divergence verifier; rejects fixtures/self-declared labels
-
-### SB-R07-072 — SUBMITTED (ENGINEERING)
-- Source SHA: `7f59f915b9f5bb60691d06215a463518fd4519c7`
-- This Cursor Cloud host: **UNSUITABLE_NOT_PERSISTENT_OWNER_HOST**
-- Evidence: `evidence/SB-R07-072/HOST_PREFLIGHT.json`
-- Full suite: 329 passed, 1 skipped
-- No LIVE persistent-host claim. SB-R07-073 blocked on this host.
+- Live HTTPS freeze of E1 (`example.com`) + E2 (`rfc8259.txt`)
+- Immutable bundle: `evidence/SB-R07-042/freeze/`
+- Collector SB-V05-001 reused; no model call
+- Full suite: 362 passed, 2 skipped
 
 ## Next
 
-1. `SB-R07-042` — freeze controlled V0.4 inputs (no live call)
-2. Skip `SB-R07-073` until an owner-attested persistent host is available
-3. Continue other dependency-ready no-LIVE recovery artifacts
+1. `SB-R07-051` — operational fact-review integration
+2. Skip `SB-R07-073` on this UNSUITABLE host
+3. Continue no-LIVE recovery artifacts
 
 ## Blockers
 
-- Persistent-host LIVE path: this environment is ephemeral (overlay + hostname cursor).
-- V0.4 divergence LIVE batch: owner-authorization blocked (unchanged).
+- Persistent-host LIVE path: this host UNSUITABLE (SB-R07-072)
+- V0.4 five-call LIVE batch: owner-authorization blocked
