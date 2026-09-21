@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-024
+Lead review: LEAD-025
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
@@ -13,59 +13,61 @@ At start/checkpoint:
 4. inspect `worker-reports/windows-core/LEAD_ACK.json`
 5. continue dependency-ready work without routine permission prompts.
 
-## Priority 1 — SB-V03-004 post-cycle success-receipt fencing repair
+## Preserve — SB-V03-004 LEAD-024 repair
 
-The migration/load side-effect defect from LEAD-019 is repaired in `175f741...`: migration is staged in memory and durable cycle writes are fenced.
+Lead source review of `7e4345b041b59b9d1b1036dfea388cedf79b4d3d` confirms the intended post-cycle repair is present:
+- finish/success receipt is written through `fence.fenced_commit`;
+- post-cycle fence loss emits truthful `fence_lost_post_commit` failure evidence with `candidate_succeeded=false`;
+- the adversarial test forces takeover between cycle commit and finish receipt and expects no finish receipt.
 
-LEAD-024 found a separate ownership hole in `runtime/worker.py`:
-- `decision.run_cycle(..., fence=fence)` returns after its durable decision/state/content commit;
-- the worker then writes the `finish` receipt outside the fence;
-- if the worker stalls after the cycle commit, its lease expires, and another worker takes over before the old worker resumes, the old worker can still emit a finish receipt implying `candidate_succeeded=true` / verified success after fence loss.
+Do **not** rework this path unless independent QA finds a concrete defect. SB-V03-004 remains lead-CHANGES_REQUIRED only because independent execution of the repaired branch has not yet succeeded.
 
-This violates SB-V03-004's acceptance rule that an old owner cannot commit receipts implying success after losing/expiring ownership.
+## Priority 1 — SB-V03-005 final structural raw-reader/admin boundary repair
 
-Required repair:
-1. fence or atomically ownership-check every durable post-cycle receipt/status write that can imply successful completion;
-2. a stale owner after takeover must not write a success/finish receipt;
-3. failure/fenced-out evidence may remain truthful, but must never be confused with success;
-4. add an adversarial regression that pauses after the cycle commit, forces TTL expiry + generation takeover, then resumes the old worker and proves it cannot write a success finish receipt;
-5. preserve the existing side-effect-free migration/fenced decision commit behavior and single-POSIX-host scope.
+The new production-path tests and `_reconcile -> isolation.admin_all_records` change are useful. Keep them.
 
-Do not fix this by only increasing TTL.
+LEAD-025 still finds a packet-level structural gap: ordinary whole-runtime APIs remain directly callable with normal names, including examples such as:
+- `pipeline.publish_queue(bot)`;
+- `analytics.events_for(bot)`;
+- `RuntimeState.content_history()`;
+- direct experiment/index/action/decision store enumeration where applicable.
 
-## Priority 2 — SB-V03-005 enforce the production persona read boundary
+The packet explicitly requires raw whole-runtime access to be structurally admin/internal (or equivalent), not merely documented by comments/convention.
 
-Commit `d1e4bee...` adds useful `PERSONA_SCOPED_READERS`, `persona_records()` and mixed-persona tests. Keep that work.
+Required narrow repair:
+1. keep logical persona isolation and the authoritative persona-scoped facade;
+2. make remaining raw whole-runtime enumeration explicitly admin/internal at the API boundary (private/admin naming, wrapper/module separation, or equivalent enforceable design);
+3. route normal persona-facing reads through scoped readers;
+4. preserve deliberate runtime-wide reconciliation/admin reads and make those call sites explicit;
+5. audit content history/dedup, publish queue, experiments list/load, analytics/history, action history and decision history;
+6. add a regression proving a normal persona-facing code path cannot use the raw whole-runtime reader as the sanctioned interface to enumerate another persona's records;
+7. do not edit Intelligence-owned semantics beyond agreed cross-lane interfaces.
 
-LEAD-024 found the remaining contract gap: wrapping raw readers in `_ADMIN_READERS` does not make the underlying raw APIs admin-only. Public/raw calls such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` still enumerate the whole runtime, and direct JSONL access remains possible. The artifact requires normal production persona-specific flows to be structurally routed through the persona boundary, or raw whole-runtime APIs to be explicitly internal/admin and not accidentally usable as persona-facing reads.
+## Priority 2 — final SB-V03-006 regeneration
 
-Required repair:
-1. route real production persona-facing read/list call sites through the authoritative persona-scoped interface;
-2. rename/private/admin-scope raw whole-runtime APIs where they remain necessary, or otherwise enforce an equivalent explicit boundary;
-3. cover content/dedup, experiment list/load, action history, decision history, analytics/history and publish-queue reads where persona-private;
-4. keep intentional runtime-wide admin/reconciliation reads explicit and separate;
-5. add regressions through actual production call paths proving a persona cannot enumerate another persona's private records.
+After the V03-005 structural repair:
+- regenerate V03-006 from the final implementation SHA;
+- include all focused V0.3 suites;
+- include the post-cycle finish-receipt takeover regression;
+- include the production persona read-boundary regressions;
+- include the exact full-suite command, output and test count as committed evidence (not only `full: OK` in a summary);
+- update hashes/manifest;
+- remain honest about single-POSIX-host/local-filesystem scope;
+- request SUBMITTED/PREPARED; do not self-accept.
 
-## Priority 3 — regenerate SB-V03-006 after both repairs
-
-The evidence bundle at `0433fc85...` is useful PREPARED evidence and truthfully reports 122 passing tests, but it predates the LEAD-024 repairs above and is not acceptance-eligible.
-
-After SB-V03-004 and SB-V03-005 are repaired:
-- regenerate the focused + full acceptance evidence from the new implementation SHA;
-- include the new post-cycle receipt-takeover regression and production read-boundary regressions;
-- do not represent the current prepared bundle as final acceptance proof.
+The current `b2083b8...` bundle is useful PREPARED evidence but not final because V03-005 still changes.
 
 ## Then — V0.4 Core dependency reconciliation
 
-Only after the V0.3 repair bundle is resubmitted:
-- reconcile SB-V04-001/002/003/004;
-- keep deterministic authority/policy ownership;
-- do not run the real canary from this Linux-container lane.
+After final V0.3 repair evidence is pushed:
+- reconcile SB-V04-001/002/003/004 dependency readiness;
+- preserve deterministic authority/policy ownership;
+- do not run the real canary from this lane.
 Dedicated branch `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
 
-## CI / review
+## Independent review
 
-Mac QA owns independent QA/control and will independently probe the receipt-fence and reader-boundary scenarios. Do not duplicate its source ownership.
+Mac QA is assigned independent execution/probing of `7e4345b...` and the remaining raw-reader boundary. `worker-pc` is currently unusable for Social Bots because repository clone failed. Do not duplicate QA ownership.
 
 ## Reporting
 
