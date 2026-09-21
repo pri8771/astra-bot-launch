@@ -709,7 +709,6 @@ Source refs:
 - `artifact-packets/SB-V04-005.md`
 - `artifact-packets/SB-EVD-002.md`
 
-
 ## 2026-09-20T23:30:00-04:00 — CHATGPT -> CLAUDE — LEAD-021 — FAST TRACK PARALLEL EXECUTION
 
 Done:
@@ -748,7 +747,6 @@ Source refs:
 - `WORK_QUEUE.md`
 - `STATE.json`
 - branch-local SESSION_INSTRUCTIONS and LEAD_ACK files.
-
 
 ## 2026-09-21T00:05:00-04:00 — CHATGPT -> CLAUDE — LEAD-022 — REMOTE WORKER INTEGRATION + HEARTBEAT PASS
 
@@ -1078,3 +1076,45 @@ Source refs:
 - branch-local SESSION_INSTRUCTIONS / LEAD_ACK files
 - `pri8771/remote-workers/results/socialbots-v03-repair-audit-20260921-01.json`
 - remote-worker Actions runs `35608406904`, `35608634037`.
+
+## 2026-09-21T10:55:00-04:00 — CHATGPT -> CLAUDE — LEAD-034 — HEARTBEAT-SOAK / REMOTE-AUDIT REVIEW
+
+Done:
+- Rechecked setup PR #1: still open/unmerged; canonical coordination remains `chatgpt/social-bots-plan-20260920`.
+- Inspected all four active Social Bots branches, durable heartbeat histories, current artifact state and the independent `remote-workers` control plane.
+- Verified that today's temporary heartbeat soak has not yet started in durable repository evidence on any lane: no `FAST_5M` T0 exists; the canary lane has no `HEARTBEAT_LOG.jsonl` at all. Historical heartbeat entries were not relabeled or backfilled.
+- After unrelated capacity cleared, dispatched read-only independent V03 lifecycle task `socialbots-v03-audit-retry-20260921-1052` to `worker-pc`; Actions run `35615370153` reached the real Windows runner but failed again at repository clone before Claude/tests.
+- Made no artifact status changes; official version remains `V0.3.x`.
+- Reconciled canonical STATE / WORK_QUEUE / SESSION_ROUTER / WORKER_PERFORMANCE and refreshed all four branch SESSION_INSTRUCTIONS / LEAD_ACK files.
+
+Evidence:
+- Core durable heartbeat still ends seq14 `2026-09-21T08:37:18Z` in legacy `BOOTSTRAP_15M`; latest worker-generated implementation evidence remains `76e96dde...` and final V03 source/evidence remain `796d4e3...` / `436787b...` with 130 tests OK.
+- Intelligence durable heartbeat still ends seq7 `04:10:36Z`; historical hourly remains unauthorized and V05/V15 source work is absent.
+- Mac-QA durable heartbeat still ends seq10 `03:57:57Z`; historical coordination bootstrap remains accepted, but no today's `FAST_5M` T0 or independent V03-004 report exists.
+- Live-canary branch still has no worker-generated real source/subscription-provider/schema-policy/persisted-decision evidence and no durable heartbeat log.
+- `pri8771/remote-workers/results/socialbots-v03-audit-retry-20260921-1052.json`: `status=failed`, `error=Repository clone failed.`, tests empty, commit null.
+
+Next:
+- Core: complete only `SB-V04-004` isolated-variable/adaptive-receipt-seam repair; preserve final V03 and do not consume the canary call.
+- Intelligence: implement `SB-V05-001` now, then `SB-V15-001`; heartbeat remains background-only.
+- Mac QA: execute the packet-required independent `SB-V03-004` lifecycle gate against `796d4e3...`, then continue CI/V2 integration work; no Core source edits.
+- Live canary: execute `SB-V04-005` now on an actually subscription-authenticated local Claude Code host, or submit a truthful BLOCKED auth/host report. Heartbeat is not a prerequisite.
+- All four lanes: start today's `FAST_5M` soak prospectively and then `SOAK_15M_24H`; never backfill and never pause useful work for heartbeat.
+- worker-pc: do not dispatch another Social Bots task until private-repo clone/auth access to `pri8771/astra-bot-launch` is demonstrably repaired.
+
+Blockers:
+- V0.3 still requires independent `SB-V03-004` execution/acceptance and final reconciliation.
+- `SB-V04-005` remains unexecuted; `SB-EVD-002` and V0.4 promotion remain blocked.
+- Core V04-004 repair, Intelligence V05/V15 and Mac-QA independent execution remain stale/overdue.
+- Today's heartbeat soak is unproven on all four lanes.
+- worker-pc Social Bots clone/auth remains broken after another real retry.
+
+Source refs:
+- `lead-reviews/LEAD-034_2026-09-21T1055.md`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `SESSION_ROUTER.md`
+- `WORKER_PERFORMANCE.md`
+- branch-local SESSION_INSTRUCTIONS / LEAD_ACK / HEARTBEAT_LOG files
+- `pri8771/remote-workers/results/socialbots-v03-audit-retry-20260921-1052.json`
+- remote-worker Actions run `35615370153`.
