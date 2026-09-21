@@ -3,6 +3,36 @@
 Worker instance: Windows Claude
 Suggested branch: `claude/social-bots-windows-core-host`
 
+## Clean-machine bootstrap
+
+Assume this Windows instance starts with **no repository clone, no project folders, and no local Social Bots state**.
+
+Before implementation:
+
+1. Choose a normal local working directory you can write to. Do not assume any pre-existing project path.
+2. Verify Git is available. If Git is missing, stop at that exact environment blocker rather than inventing a workaround.
+3. Use the machine's existing Git/GitHub authentication if already configured. Never request, print, paste into logs, or commit credentials/tokens.
+4. Clone the repository:
+   - repository: `https://github.com/pri8771/astra-bot-launch.git`
+5. Enter the new `astra-bot-launch` working tree.
+6. Run `git fetch --all --prune`.
+7. Verify these remote branches exist:
+   - `origin/claude/social-bots-core-to-v2`
+   - `origin/chatgpt/social-bots-plan-20260920`
+8. Create the new Windows branch **from the previous completed Core implementation**, not from main:
+   - `git switch -c claude/social-bots-windows-core-host origin/claude/social-bots-core-to-v2`
+   - or the equivalent checkout command if the installed Git is older.
+9. Merge the latest canonical coordination branch into the new branch:
+   - `git merge origin/chatgpt/social-bots-plan-20260920`
+10. Resolve conflicts carefully:
+   - preserve the previous Core implementation;
+   - prefer the newest canonical versions of artifact-management/status/lead-control files;
+   - do not overwrite newer canonical coordination with stale worker copies.
+11. Confirm `git status` is clean before starting artifact implementation.
+12. Record the resulting starting SHA in the first Windows worker report.
+
+If repository authentication is required, stop only at the exact normal Git/GitHub sign-in gate and let the owner complete it. Do not create alternate credentials, tokens, or secret files.
+
 This is a multi-artifact execution wave. Parent artifact IDs remain canonical.
 
 ## Order
