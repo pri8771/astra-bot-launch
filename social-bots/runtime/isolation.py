@@ -98,7 +98,7 @@ def persona_content_history(bot: str, persona: str) -> list[dict]:
 
 
 def persona_publish_queue(bot: str, persona: str) -> list[dict]:
-    return [e for e in pipeline.publish_queue(bot) if _persona_of(e) == persona]
+    return [e for e in pipeline.admin_publish_queue(bot) if _persona_of(e) == persona]
 
 
 def persona_experiments(bot: str, persona: str) -> list[dict]:
@@ -107,7 +107,7 @@ def persona_experiments(bot: str, persona: str) -> list[dict]:
 
 
 def persona_analytics(bot: str, persona: str) -> list[dict]:
-    return [e for e in analytics.events_for(bot) if _persona_of(e) == persona]
+    return [e for e in analytics.admin_events_for(bot) if _persona_of(e) == persona]
 
 
 def persona_action_history(bot: str, persona: str) -> list[dict]:
@@ -166,9 +166,9 @@ def persona_records(bot: str, persona: str, store: str) -> list[dict]:
 # --------------------------------------------------------------------------- #
 _ADMIN_READERS = {
     "content_history": lambda bot: read_jsonl(paths.content_dir(bot) / "content_history.jsonl"),
-    "publish_queue": lambda bot: pipeline.publish_queue(bot),
+    "publish_queue": lambda bot: pipeline.admin_publish_queue(bot),
     "experiments": lambda bot: read_jsonl(paths.experiments_dir(bot) / "index.jsonl"),
-    "analytics_events": lambda bot: analytics.events_for(bot),
+    "analytics_events": lambda bot: analytics.admin_events_for(bot),
     "action_history": lambda bot: read_jsonl(paths.memory_dir(bot) / "action_history.jsonl"),
     "decisions": lambda bot: read_jsonl(paths.memory_dir(bot) / "decisions.jsonl"),
 }

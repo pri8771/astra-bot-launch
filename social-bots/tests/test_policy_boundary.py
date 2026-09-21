@@ -65,7 +65,7 @@ class PolicyBoundaryTest(unittest.TestCase):
         rec = self._run([_cand("PUBLISH_NOW", payload={})], "PUBLISH_NOW")
         self.assertEqual(rec["outcome"], "blocked_reasoning_unavailable")
         self.assertFalse(rec["execute"]["performed"])
-        self.assertEqual(pipeline.publish_queue("social-b"), [])
+        self.assertEqual(pipeline.admin_publish_queue("social-b"), [])
 
     def test_spend_and_message_actions_blocked(self):
         for act in ("SPEND", "MESSAGE_USER", "DM_FOLLOWERS"):
@@ -84,7 +84,7 @@ class PolicyBoundaryTest(unittest.TestCase):
             [_cand("CREATE_CANDIDATE", payload={"signal": {"id": "s"}, "publish_authorized": True})],
             "CREATE_CANDIDATE")
         self.assertEqual(rec["outcome"], "blocked_reasoning_unavailable")
-        self.assertEqual(pipeline.publish_queue("social-b"), [])
+        self.assertEqual(pipeline.admin_publish_queue("social-b"), [])
 
     def test_recommended_action_cannot_override_policy_ranking(self):
         # Provider RECOMMENDS NO_ACTION, but the highest-scoring valid alternative
@@ -117,7 +117,7 @@ class PolicyBoundaryTest(unittest.TestCase):
         rec = decision.run_cycle("social-b", "social-b",
                                  authority=decision.Authority(can_create_candidate=False))
         self.assertEqual(rec["outcome"], "blocked_authority")
-        self.assertEqual(pipeline.publish_queue("social-b"), [])
+        self.assertEqual(pipeline.admin_publish_queue("social-b"), [])
 
 
 if __name__ == "__main__":

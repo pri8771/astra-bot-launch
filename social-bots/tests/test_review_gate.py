@@ -40,7 +40,7 @@ class ReviewGateTest(unittest.TestCase):
         # nothing leaked into experiment registry or publish queue
         exp_dir = Path(self.tmp) / "experiments" / bot
         self.assertFalse(any(exp_dir.glob("exp-*.json")) if exp_dir.exists() else False)
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
 
     def test_worker_receipt_for_withheld_is_not_success(self):
         bot = "social-a"
@@ -69,7 +69,7 @@ class ReviewGateTest(unittest.TestCase):
         self.assertEqual(rec["outcome"], "withheld")
         self.assertFalse(rec["verify"]["within_platform_limit"])
         self.assertFalse(rec["verify"]["queued"])
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
 
     def _assert_no_downstream_effect(self, bot, rec, failed_gate_check):
         """Every failure mode must produce the SAME truthful stop: withheld,
@@ -95,7 +95,7 @@ class ReviewGateTest(unittest.TestCase):
         idx = exp_dir / "index.jsonl"
         self.assertFalse(idx.exists() and idx.read_text().strip())
         # nothing leaked into the publish queue
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
 
     def test_forced_fact_review_failure_blocks_experiment_and_queue(self):
         # Acceptance test 2: a general candidate whose FACT review fails must be
@@ -147,7 +147,7 @@ class ReviewGateTest(unittest.TestCase):
         detail = json.loads(fin.read_text())["detail"]
         self.assertEqual(detail["outcome"], "withheld")
         self.assertFalse(detail["candidate_succeeded"])
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
 
     def test_passing_review_still_creates_candidate(self):
         # control: social-b (instagram, fits) still succeeds -> gate is not blanket-deny.
@@ -156,7 +156,7 @@ class ReviewGateTest(unittest.TestCase):
         rec = decision.run_cycle(bot, "social-b")
         self.assertEqual(rec["outcome"], "candidate_created")
         self.assertTrue(rec["verify"]["verified"])
-        self.assertEqual(len(pipeline.publish_queue(bot)), 1)
+        self.assertEqual(len(pipeline.admin_publish_queue(bot)), 1)
 
 
 if __name__ == "__main__":

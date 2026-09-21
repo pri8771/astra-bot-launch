@@ -109,7 +109,7 @@ class ContextualEngineTest(unittest.TestCase):
         self.assertEqual(rec["chosen"]["action"], "RESEARCH_MORE")
         self.assertEqual(rec["outcome"], "research_more")
         from runtime import pipeline
-        self.assertEqual(pipeline.publish_queue("social-b"), [])
+        self.assertEqual(pipeline.admin_publish_queue("social-b"), [])
 
     def test_contextual_fails_closed_when_adaptive_required(self):
         os.environ["SBOTS_REASONING_REQUIRE_ADAPTIVE"] = "1"

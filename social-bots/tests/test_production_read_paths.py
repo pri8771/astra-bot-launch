@@ -78,6 +78,39 @@ class ProductionReadPathTest(unittest.TestCase):
             self.assertTrue(all(r.get("persona") == GEN for r in gv), f"{store} GEN")
             self.assertTrue(all(r.get("persona") == CUL for r in cv), f"{store} CUL")
 
+    def test_no_non_admin_whole_runtime_reader_exists_to_bypass_boundary(self):
+        # SB-V03-005 LEAD-025: the raw whole-runtime readers are STRUCTURALLY
+        # admin-named, so there is no non-admin whole-runtime reader a
+        # persona-facing production path could call to bypass the boundary.
+        self.assertFalse(hasattr(pipeline, "publish_queue"),
+                         "non-admin pipeline.publish_queue must not exist")
+        self.assertFalse(hasattr(analytics, "events_for"),
+                         "non-admin analytics.events_for must not exist")
+        # The admin-named readers exist and are the sanctioned whole-runtime path.
+        self.assertTrue(hasattr(pipeline, "admin_publish_queue"))
+        self.assertTrue(hasattr(analytics, "admin_events_for"))
+
+    def test_no_runtime_module_calls_a_raw_whole_runtime_reader_bypass(self):
+        # Static production-path guard: no runtime/ module names the removed raw
+        # readers (a bypass would fail to import/resolve, but we also assert the
+        # source is clean so a reintroduced bypass is caught in review).
+        import re
+        runtime_dir = Path(__file__).resolve().parent.parent / "runtime"
+        bad = []
+        pat = re.compile(r"\b(publish_queue|events_for)\s*\(")
+        for py in runtime_dir.glob("*.py"):
+            for i, line in enumerate(py.read_text().splitlines(), 1):
+                code = line.split("#", 1)[0]
+                for m in pat.finditer(code):
+                    name = m.group(1)
+                    # allow the admin-prefixed and persona-prefixed names
+                    start = m.start(1)
+                    prefix = code[max(0, start - 6):start]
+                    if prefix.endswith("admin_") or prefix.endswith("persona_"):
+                        continue
+                    bad.append(f"{py.name}:{i}: {line.strip()}")
+        self.assertEqual(bad, [], f"raw whole-runtime reader bypass in runtime/: {bad}")
+
     def test_reconcile_uses_admin_boundary_not_persona_read(self):
         # The worker reconciliation read is a deliberate runtime-wide admin read;
         # it must see ALL personas' queue entries (so a takeover can verify the

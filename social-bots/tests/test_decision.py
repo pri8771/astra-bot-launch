@@ -43,7 +43,7 @@ class DecisionTest(unittest.TestCase):
         self.assertFalse(rec["verify"]["published"])
         self.assertTrue(rec["learn"]["updated"])
         # queue exists but nothing published
-        q = pipeline.publish_queue("social-b")
+        q = pipeline.admin_publish_queue("social-b")
         self.assertEqual(len(q), 1)
         self.assertFalse(q[0]["published"])
 

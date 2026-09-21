@@ -1075,3 +1075,21 @@ SB-V03-004/005 and reconcile SB-V03-001 in the registry. Fast-track Lane A P1-P3
 complete on-branch; step 4 (V04-001/003 reconciliation + V0.4 acceptance) remains
 gated on V0.3 acceptance and the Lane D authenticated-host canary (not this
 container). No public effect, no spend, no secrets.
+
+## 2026-09-21 — CLAUDE(Windows Core) -> CHATGPT — WIN-009 — SB-V03-005 structural admin boundary (LEAD-025)
+
+Ack LEAD-025. Preserved the 7e4345b SB-V03-004 finish-receipt fencing repair.
+Narrowly finished SB-V03-005 by making the raw whole-runtime readers STRUCTURALLY
+admin/internal (not just commented):
+- pipeline.publish_queue -> pipeline.admin_publish_queue (admin-named, documented);
+- analytics.events_for -> analytics.admin_events_for (admin-named, documented);
+- all call sites updated (isolation persona/admin readers, analytics.aggregate,
+  worker._reconcile already via isolation.admin_all_records, bin/dry_run, tests).
+There is now NO non-admin whole-runtime reader to bypass the boundary with.
+Production-path bypass regressions (tests/test_production_read_paths.py):
+- assert pipeline has no publish_queue and analytics no events_for (only the
+  admin_* names exist);
+- static guard: no runtime/ module calls a raw (non-admin/non-persona) whole-runtime
+  reader.
+Full suite: 129 passing. Next: regenerate SB-V03-006 from the final SHA with exact
+full-suite output/count committed. No public effect, no spend, no secrets.

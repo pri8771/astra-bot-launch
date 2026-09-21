@@ -52,7 +52,13 @@ def emit(event: dict) -> None:
     append_jsonl(paths.analytics_dir(event["bot"]) / "events.jsonl", event)
 
 
-def events_for(bot: str) -> list[dict]:
+def admin_events_for(bot: str) -> list[dict]:
+    """ADMIN/INTERNAL: the whole-runtime analytics event log (ALL personas).
+
+    Structurally admin-named (SB-V03-005 LEAD-025). Persona-facing reads must use
+    ``isolation.persona_analytics`` / ``aggregate`` (persona-scoped); there is no
+    non-admin whole-runtime event reader to bypass the boundary with.
+    """
     return read_jsonl(paths.analytics_dir(bot) / "events.jsonl")
 
 
@@ -60,7 +66,7 @@ def aggregate(bot: str, persona: str, metric: str) -> dict:
     """Explicit, persona-scoped aggregation. Never blends personas."""
     total = 0.0
     n = 0
-    for e in events_for(bot):
+    for e in admin_events_for(bot):
         if e.get("persona") != persona:
             continue
         val = e.get("metrics", {}).get(metric)

@@ -191,5 +191,14 @@ def enqueue(bot: str, candidate: dict, platform_payload: dict,
     return entry
 
 
-def publish_queue(bot: str) -> list[dict]:
+def admin_publish_queue(bot: str) -> list[dict]:
+    """ADMIN/INTERNAL: the whole-runtime publish queue (ALL personas).
+
+    Structurally admin-named (SB-V03-005 LEAD-025): there is no non-admin
+    whole-runtime publish-queue reader, so a persona-facing production path cannot
+    accidentally enumerate another persona's queued items. Persona-facing reads
+    must use ``isolation.persona_publish_queue`` / ``isolation.persona_records``;
+    deliberate runtime-wide reads (e.g. takeover reconciliation) go through
+    ``isolation.admin_all_records(bot, "publish_queue")``.
+    """
     return read_jsonl(paths.content_dir(bot) / "publish_queue.jsonl")

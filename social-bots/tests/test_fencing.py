@@ -107,7 +107,7 @@ class LeaseFencingTest(unittest.TestCase):
         # No durable side effect from the fenced-out old owner:
         exp_dir = Path(self.tmp) / "experiments" / bot
         self.assertFalse(any(exp_dir.glob("exp-*.json")) if exp_dir.exists() else False)
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
         # SB-V03-004: the decision log and last-decision are ALSO fenced — a
         # fenced-out owner writes neither.
         self.assertFalse((paths.memory_dir(bot) / "decisions.jsonl").exists())
@@ -184,7 +184,7 @@ class LeaseFencingTest(unittest.TestCase):
         self.assertFalse((paths.state_dir(bot) / "last_decision.json").exists())
         self.assertFalse((paths.state_dir(bot) / "bot_state.json").exists())
         self.assertFalse((paths.state_dir(bot) / "persona-social-b.json").exists())
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
         self.assertFalse((paths.memory_dir(bot) / "action_history.jsonl").exists())
         self.assertFalse((paths.analytics_dir(bot) / "events.jsonl").exists())
         exp_dir = Path(self.tmp) / "experiments" / bot
@@ -312,7 +312,7 @@ class LeaseFencingTest(unittest.TestCase):
         # took_over_by_generation reflects the new owner (gen 2).
         self.assertEqual(res["took_over_by_generation"], 2)
         # No success artifacts; the takeover worker still owns the lease.
-        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertEqual(pipeline.admin_publish_queue(bot), [])
         self.assertEqual(leasing.inspect(task)["worker_id"], "B-takeover")
         # The stand-down receipt records fence loss, never candidate success.
         fin = sorted((Path(self.tmp) / "receipts" / bot).glob("*failure*.json"))[-1]
@@ -333,7 +333,7 @@ class LeaseFencingTest(unittest.TestCase):
         self.assertIn(res["outcome"], ("candidate_created",))
         self.assertTrue(res["verified"])
         self.assertEqual(res["took_over_from"] is not None, True)
-        self.assertEqual(len(pipeline.publish_queue(bot)), 1)
+        self.assertEqual(len(pipeline.admin_publish_queue(bot)), 1)
         # A clean finish releases the lease, so it is gone from disk...
         self.assertIsNone(leasing.inspect(task))
         # ...but the finish receipt records the fence generation it committed
