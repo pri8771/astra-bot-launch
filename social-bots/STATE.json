@@ -1,17 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T20:36:00Z",
+  "updated_at": "2026-09-21T21:58:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
   "status": "v03_closed_v04_in_progress",
   "runtime_scope": {
-    "autonomous_bots": [
-      "social-a",
-      "social-b",
-      "social-c"
-    ],
+    "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -24,11 +20,31 @@
   "worker_lanes": {
     "cursor_recovery": {
       "branch": "cursor/social-bots-recovery-v07-20260921",
-      "latest_verified_head": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
+      "branch_head": "488ce0c720d857473ab9f2ce448d9197a955df14",
+      "latest_verified_material_worker_source": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
       "latest_verified_session_id": "s-20260921T191500Z-a23cc77e",
-      "latest_verified_session_started_at": "2026-09-21T19:15:00Z",
-      "activity": "active_material_submissions",
-      "assignment": "repair SB-R07-041 direct model-callable authorization bypass with zero live calls; preserve submitted SB-R07-071/044/072; do not install scheduler on unsuitable Cursor host; await independent Acceptance on R07-071 and repaired R07-041 before claiming acceptance"
+      "activity": "stale_action_required",
+      "assignment": "repair SB-R07-041 direct model-callable authorization bypass with zero live calls; add direct-library sentinel regression; preserve submitted R07-071/044/072 evidence; do not install scheduler on unsuitable Cursor host"
+    },
+    "fable_fasttrack": {
+      "branch": "fable/social-bots-v23-fasttrack-20260921",
+      "branch_head": "a204ad0827748a4e9661f1945b8e025d53d0ae09",
+      "session_id": "s-20260921T211438Z-d5589881",
+      "activity": "material_submissions_paused_for_review",
+      "assignment": "preserve submitted SB-S20-001 and SB-S23-001..008 engineering evidence; no new source work until explicit lead release; no Cursor-owned source edits or live/public/account effects",
+      "worker_reported_suite": "523 discovered; 521 passed; 0 failed; 0 errors; 2 skipped",
+      "submitted_engineering": [
+        "SB-S20-001",
+        "SB-S23-001",
+        "SB-S23-002",
+        "SB-S23-003",
+        "SB-S23-004",
+        "SB-S23-005",
+        "SB-S23-006",
+        "SB-S23-007",
+        "SB-S23-008"
+      ],
+      "operational_acceptance": false
     },
     "core": {
       "branch": "claude/social-bots-windows-core-host",
@@ -40,15 +56,15 @@
       "branch": "claude/social-bots-intelligence-repair-v2",
       "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
       "activity": "parked_evidence_only",
-      "assignment": "preserve existing Intelligence evidence; SB-V15-001 remains changes-required and is not reassigned on this branch during consolidated recovery"
+      "assignment": "preserve existing evidence; SB-V15-001 remains changes-required and is not reassigned on this branch during consolidated recovery"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
-      "last_verified_worker_head": "72e380bda71561429154e67bc07636b89143a488",
-      "latest_branch_head": "f727dbd011f12ac8ccb12bbd6fd6b795b45d9302",
+      "branch_head": "a508c06bc87a9f36b7d6347eeb86cde62f4d9907",
+      "latest_verified_material_worker_head": "72e380bda71561429154e67bc07636b89143a488",
       "activity": "review_only_stale_action_required",
-      "assignment": "start fresh review session; independently execute SB-R07-071 cross-process duplicate-session race; then audit the repaired SB-R07-041 direct-library live authorization boundary; no runtime source edits or model calls",
-      "host_scope_note": "independent V03 lifecycle acceptance executed on Linux CCR/POSIX host, not the reset-plan local Mac; guarantee is single POSIX host/filesystem only"
+      "assignment": "start fresh review session; independently execute SB-R07-071 multiprocess race; then audit repaired SB-R07-041 direct-library authorization path; then independently rerun/audit SB-S23-008 fixture lifecycle evidence; no runtime source edits or model calls",
+      "host_scope_note": "independent V03 lifecycle acceptance was single POSIX host/filesystem only"
     },
     "v04_live_canary": {
       "branch": "claude/social-bots-v04-live-canary",
@@ -61,16 +77,9 @@
       "policy": "ONE_SESSION_ONE_HEARTBEAT",
       "truth_rule": "Each fresh worker session emits exactly one real durable SESSION_ONCE heartbeat after reading current coordination. No periodic in-session heartbeat or soak is required.",
       "periodic_soak_superseded": true,
-      "cursor_recovery_current_session": "s-20260921T191500Z-a23cc77e",
-      "atomicity_status": "SB-R07-071 submitted with fcntl flock and real multiprocess race; independent Acceptance execution still required",
+      "fable_current_session": "s-20260921T211438Z-d5589881",
       "issue3_visibility": "Issue #3 is human-readable visibility. Comments never substitute for artifact evidence.",
       "v07_liveness_rule": "Recurring liveness requires repeated native OS-scheduled bounded worker sessions over time, each with one session heartbeat plus invocation receipt; a chat session or fixture is not acceptance evidence."
-    },
-    "fable_fasttrack": {
-      "branch": "fable/social-bots-v23-fasttrack-20260921",
-      "planning_source": "claude/inspiring-ride-3pj8bo@8adea683ab327930ebf0242d54c5b5bed87d7ecb",
-      "activity": "released_new_files_only_v23_engineering",
-      "assignment": "SB-S23-001 and SB-S20-001 first; no Cursor-owned source edits; no live model/public/account effects"
     }
   },
   "tests": {
@@ -79,76 +88,32 @@
     "v03_independent_acceptance_checks": 37,
     "v03_independent_acceptance_focused_tests": 36,
     "latest_verified_core_descendant_reported_suite": "312 passed, 1 skipped",
-    "latest_verified_core_descendant_source": "a73b7b58de8f3669795b81637bff55247d67943c",
     "cursor_r07_071_worker_reported_suite": "314 passed, 1 skipped",
     "cursor_latest_worker_reported_suite": "416 passed, 2 skipped",
+    "fable_fasttrack_worker_reported_suite": "523 discovered, 521 passed, 2 skipped",
     "intelligence_latest_worker_reported_full_suite": 195,
     "github_ci_run_id": 35555060783,
     "github_ci_status": "success"
   },
   "lead_review": {
-    "review_id": "LEAD-043",
-    "review_ref": "social-bots/lead-reviews/LEAD-043_2026-09-21T1636.md",
+    "review_id": "LEAD-045",
+    "review_ref": "social-bots/lead-reviews/LEAD-045_2026-09-21T1758.md",
     "accepted_now": [],
     "accepted_existing": [
-      "SB-CTL-006",
-      "SB-CTL-012",
-      "SB-V03-001",
-      "SB-V03-002",
-      "SB-V03-003",
-      "SB-V03-004",
-      "SB-V03-005",
-      "SB-V03-006",
-      "SB-EVD-001",
-      "SB-V04-001",
-      "SB-V04-003",
-      "SB-V04-005",
-      "SB-V05-001",
-      "SB-V13-001",
-      "SB-V14-001"
+      "SB-CTL-006", "SB-CTL-012", "SB-V03-001", "SB-V03-002", "SB-V03-003", "SB-V03-004", "SB-V03-005", "SB-V03-006", "SB-EVD-001", "SB-V04-001", "SB-V04-003", "SB-V04-005", "SB-V05-001", "SB-V13-001", "SB-V14-001"
     ],
-    "accepted_planning": [
-      "V23_CRITICAL_PATH",
-      "V20_TO_V23_IMPLEMENTATION_SPEC",
-      "detailed SB-S20..SB-S23 packets"
-    ],
-    "submitted_recovery": [
-      "SB-R07-071",
-      "SB-R07-042",
-      "SB-R07-044",
-      "SB-R07-051",
-      "SB-R07-052",
-      "SB-R07-053",
-      "SB-R07-061",
-      "SB-R07-072"
-    ],
-    "changes_required": [
-      "SB-R07-041",
-      "SB-V05-002",
-      "SB-V15-001",
-      "SB-V16-001",
-      "SB-V17-001",
-      "SB-V20-002"
-    ],
-    "withheld": [
-      "SB-EVD-002"
-    ],
-    "blocked": [
-      "SB-V04-002",
-      "SB-V04-004",
-      "SB-V06-001",
-      "SB-V06-002",
-      "SB-V06-003",
-      "SB-V07-002",
-      "SB-V07-005"
-    ],
+    "submitted_recovery": ["SB-R07-071", "SB-R07-042", "SB-R07-044", "SB-R07-051", "SB-R07-052", "SB-R07-053", "SB-R07-061", "SB-R07-072"],
+    "submitted_fable_engineering": ["SB-S20-001", "SB-S23-001", "SB-S23-002", "SB-S23-003", "SB-S23-004", "SB-S23-005", "SB-S23-006", "SB-S23-007", "SB-S23-008"],
+    "changes_required": ["SB-R07-041", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
+    "withheld": ["SB-EVD-002"],
+    "blocked": ["SB-V04-002", "SB-V04-004", "SB-V06-001", "SB-V06-002", "SB-V06-003", "SB-V07-002", "SB-V07-005"],
     "key_findings": [
-      "Fable V2.3 planning package is lead-adopted with adjusted engineering dependencies and Specialist Worker Contract schema v2.",
-      "SB-V23-099 is engineering-readiness only; operational V2.3 still requires SB-V23-003 and the full LIVE chain.",
-      "Mac Acceptance has no fresh independent post-LEAD-042 execution evidence; R07-071 and repaired R07-041 cannot be accepted from assignment/ack commits.",
-      "R07-042 used real HTTPS source captures; public sources are independently reachable today, but this is input evidence only, not adaptive divergence.",
-      "No current artifact needs an email/account, so none was created.",
-      "No live adaptive/model call, public effect, account creation or new spend is authorized by this review."
+      "Fable completed all currently released non-overlapping new-files-only engineering slices and submitted nine reviewable engineering artifacts without Cursor-owned existing source edits.",
+      "Fable full worker suite reports 523 discovered, 521 passed, 2 skipped; SB-S23-008 evidence is fixture-only and requires independent Acceptance rerun before any acceptance claim.",
+      "Cursor has not pushed the requested SB-R07-041 direct-callable authorization repair after LEAD-042/043 and is stale/action-required.",
+      "Mac Acceptance has not produced a fresh independent R07-071 execution and is stale/action-required.",
+      "NR-01 lead baseline is pinned in next-round/BASELINE.json; staged next-round planning does not waive artifact or operational gates.",
+      "No live adaptive/model call, public effect, account action or new spend is authorized."
     ]
   },
   "public_actions": {
@@ -158,7 +123,6 @@
     "destructive_actions_authorized": false,
     "v04_canary_existing_subscription_call_authorized": false,
     "v04_canary_authorization_consumed": true,
-    "v04_canary_authorized_call_used_for_acceptance": "first chronological call at approximately 2026-09-21T16:15Z",
     "duplicate_live_call_incident": "second call at approximately 2026-09-21T16:53Z exceeded exact-one authorization and is excluded from acceptance evidence",
     "future_v04_divergence_batch_authorized": false,
     "future_v04_divergence_batch_requires": "fresh explicit owner authorization plus matching canonical lead manifest",
@@ -169,37 +133,22 @@
     "current_label": "V0.3 accepted; V0.4 adaptive thinking in progress, empirical divergence gate authorization-blocked",
     "previous_completed": "V0.3",
     "immediate_target": "V0.4",
-    "today_engineering_target": "V0.7 recovery engineering with evidence gates; no version promotion without manifest completion",
+    "today_engineering_target": "V0.7 recovery engineering plus independently reviewed V2.3 engineering slices; no version promotion without manifest completion",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": [
-      "V1.7",
-      "V2.3",
-      "V3.0"
-    ],
+    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
-    "v04_promotion_blocked_until": [
-      "SB-V04-002",
-      "SB-V04-004",
-      "SB-EVD-002"
-    ]
+    "v04_promotion_blocked_until": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"]
   },
   "next_recovery": [
-    "repair SB-R07-041 so the process-registered model callable path also fails closed without a valid canonical authorization manifest",
-    "add direct-library adversarial regression that bypasses worker entrypoints and proves the model callable cannot be invoked without authorization",
-    "submit exact SHA, focused/full tests and evidence; no live model call",
-    "preserve R07-071/044/072 evidence; do not install native scheduler on the unsuitable Cursor host",
-    "pause overlapping source expansion while independent Acceptance reviews the immediate gates"
-  ],
-  "next_acceptance": [
-    "start one fresh review session and emit one SESSION_ONCE heartbeat",
-    "no runtime edits",
-    "independently execute/audit SB-R07-071 at submitted source 0c74336b793189b4ba32d1f1229de0fb4d3e5ebb",
-    "then independently audit repaired SB-R07-041 direct-library live authorization behavior",
-    "do not execute any model call"
+    "Cursor repairs SB-R07-041 so every direct or worker live-capable model path fails closed without a valid canonical authorization manifest",
+    "Acceptance independently executes SB-R07-071 and then audits repaired SB-R07-041 with a harmless sentinel callable and no real model invocation",
+    "Acceptance then independently reruns/audits Fable SB-S23-008 fixture lifecycle evidence",
+    "Fable remains paused from new source until explicit lead release",
+    "do not install native scheduler on the unsuitable current Cursor host"
   ],
   "priority_zero": {
     "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
@@ -226,11 +175,12 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-042_2026-09-21T1556.md",
+    "lead_review_current": "lead-reviews/LEAD-045_2026-09-21T1758.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
     "live_progress_issue": 3,
     "recovery_plan": "RECOVERY_TO_V07.md",
+    "next_round_baseline": "next-round/BASELINE.json",
     "agent_entrypoint": "../CLAUDE.md",
     "session_start": "coordination/SESSION_START.md",
     "read_router": "coordination/READ_ROUTER.md",
