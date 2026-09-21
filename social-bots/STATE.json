@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T14:55:00Z",
+  "updated_at": "2026-09-21T15:05:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "fast_track_v03_waiting_independent_fencing_execution_v04_004_repair_canary_stalled_today_soak_not_started_remote_clone_failed",
+  "status": "reset_three_lane_fresh_sessions_pending_start",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -24,19 +28,19 @@
       "last_verified_commit_at": "2026-09-21T08:37:19Z",
       "final_v03_implementation": "796d4e390bd135167e5de2ff8f586bc07ac7f370",
       "final_v03_evidence": "436787b0a63fdae0e89c224a54054607e32b5187",
-      "activity": "no_new_worker_commit_after_LEAD_033_v04_004_repair_still_assigned_today_fast5m_not_started"
+      "activity": "fresh_session_pending_start"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
       "last_verified_worker_head": "a7bdeb4c0f0d2c1a3107798327266812a9644d27",
       "last_verified_commit_at": "2026-09-21T04:10:36Z",
-      "activity": "stalled_no_v05_v15_source_progress_since_seq7_today_fast5m_not_started"
+      "activity": "fresh_session_pending_start"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
       "last_verified_worker_head": "d0972adc15917ff9fca3edf48e1cd740ec61b66a",
       "last_verified_commit_at": "2026-09-21T03:57:57Z",
-      "activity": "historical_hourly_authorized_but_worker_stale_final_v03_004_independent_execution_overdue_today_fast5m_not_started"
+      "activity": "fresh_acceptance_session_pending_start"
     },
     "v04_live_canary": {
       "branch": "claude/social-bots-v04-live-canary",
@@ -50,7 +54,10 @@
     "windows_available": true,
     "note": "LEAD-034 found no new worker-generated Social Bots source, QA, canary or heartbeat evidence after LEAD-033. The new 2026-09-21 heartbeat soak has not started in durable GitHub history on any lane. worker-pc was retried after capacity cleared but again failed repository clone before Claude/tests.",
     "heartbeat_validation": {
-      "legacy_target_lanes": ["intelligence", "mac_qa"],
+      "legacy_target_lanes": [
+        "intelligence",
+        "mac_qa"
+      ],
       "legacy_interval_minutes": 15,
       "intelligence_bootstrap_consecutive_verified": 1,
       "intelligence_steady_hourly_authorized": false,
@@ -87,9 +94,35 @@
   "lead_review": {
     "review_id": "LEAD-034",
     "review_ref": "social-bots/lead-reviews/LEAD-034_2026-09-21T1055.md",
-    "accepted": ["SB-CTL-006", "SB-CTL-012", "SB-V03-002", "SB-V03-003", "SB-V03-005", "SB-V13-001", "SB-V14-001"],
-    "changes_required": ["SB-V03-001", "SB-V03-004", "SB-EVD-001", "SB-V04-004", "SB-V05-001", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
-    "blocked": ["SB-V03-006", "SB-V04-003", "SB-EVD-002", "SB-V12-001", "SB-V20-099", "SB-V20-004"],
+    "accepted": [
+      "SB-CTL-006",
+      "SB-CTL-012",
+      "SB-V03-002",
+      "SB-V03-003",
+      "SB-V03-005",
+      "SB-V13-001",
+      "SB-V14-001"
+    ],
+    "changes_required": [
+      "SB-V03-001",
+      "SB-V03-004",
+      "SB-EVD-001",
+      "SB-V04-004",
+      "SB-V05-001",
+      "SB-V05-002",
+      "SB-V15-001",
+      "SB-V16-001",
+      "SB-V17-001",
+      "SB-V20-002"
+    ],
+    "blocked": [
+      "SB-V03-006",
+      "SB-V04-003",
+      "SB-EVD-002",
+      "SB-V12-001",
+      "SB-V20-099",
+      "SB-V20-004"
+    ],
     "key_findings": [
       "No new worker-generated Social Bots source, QA, canary or heartbeat evidence after LEAD-033; no artifact status change is justified.",
       "Today's four-lane FAST_5M heartbeat soak has not started in durable GitHub evidence on any lane; no historical heartbeat is relabeled or backfilled.",
@@ -113,12 +146,19 @@
     "today_engineering_target": "V2.0-readiness (SB-V20-099)",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "READY_BUT_NO_WORKER_EXECUTION_VISIBLE",
-    "v04_promotion_blocked_until": ["SB-V04-005", "SB-EVD-002"]
+    "v04_promotion_blocked_until": [
+      "SB-V04-005",
+      "SB-EVD-002"
+    ]
   },
   "next_core": [
     "preserve final V03 source/evidence and do not churn V03 absent a concrete independent QA defect",
@@ -147,18 +187,16 @@
     "public_effect_allowed": false,
     "owner_authorized_bounded_existing_subscription_call": true,
     "authenticated_host_verified": false,
-    "worker_activity": "not_detected_as_of_LEAD_034"
+    "worker_activity": "fresh_acceptance_lane_will_execute_after_v03_gate"
   },
   "fast_track": {
     "active": true,
-    "max_workers": 5,
+    "max_workers": 3,
     "heartbeat_blocks_work": false,
     "lanes": [
-      "Windows Core / V0.4 dependency-safe reconciliation while V0.3 independent gate runs",
-      "Intelligence / evidence+experiments",
-      "Mac QA / independent V0.3 gate + integration control",
-      "Mac local V0.4 live canary",
-      "worker-pc / independent verification only after repository clone access is repaired"
+      "Windows Core Builder",
+      "Mac Intelligence Builder",
+      "Mac Acceptance + Canary"
     ],
     "plan": "FAST_TRACK_EXECUTION.md"
   },
@@ -170,9 +208,9 @@
     "executor": "claude",
     "last_social_bots_task": "socialbots-v03-audit-retry-20260921-1052",
     "last_social_bots_task_result": "failed",
-    "last_social_bots_task_error": "Repository clone failed on worker-pc before Claude/tests",
+    "last_social_bots_task_error": "Repository clone failed before Claude/tests",
     "last_social_bots_actions_run": 35615370153,
-    "status": "capacity_released_but_socialbots_clone_access_still_unresolved",
+    "status": "excluded_from_critical_path_until_private_repo_clone_auth_fixed",
     "required_fix": "repair worker-pc GitHub clone/auth access to pri8771/astra-bot-launch without weakening private-repository controls before another Social Bots dispatch",
     "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release."
   },
@@ -188,12 +226,58 @@
   },
   "heartbeat_soak_today": {
     "date": "2026-09-21",
-    "applies_to": ["windows-core", "intelligence-repair", "mac-qa", "v04-live-canary"],
-    "stage1": {"cadence_minutes": 5, "required_consecutive_intervals": 3, "required_records": 4, "mode": "FAST_5M"},
-    "stage2": {"cadence_minutes": 15, "duration_hours": 24, "target_intervals": 96, "mode": "SOAK_15M_24H"},
+    "applies_to": [
+      "windows-core",
+      "intelligence-repair",
+      "mac-qa",
+      "v04-live-canary"
+    ],
+    "stage1": {
+      "cadence_minutes": 5,
+      "required_consecutive_intervals": 3,
+      "required_records": 4,
+      "mode": "FAST_5M"
+    },
+    "stage2": {
+      "cadence_minutes": 15,
+      "duration_hours": 24,
+      "target_intervals": 96,
+      "mode": "SOAK_15M_24H"
+    },
     "heartbeat_blocks_work": false,
     "backfill_allowed": false,
     "lead_review_frequency": "hourly",
     "verified_as_of_lead_034": "no lane has durable FAST_5M T0"
+  },
+  "execution_reset": {
+    "plan": "RESET_EXECUTION_20260921.md",
+    "human_lanes": 3,
+    "lanes": [
+      {
+        "id": "core",
+        "branch": "claude/social-bots-windows-core-host",
+        "machine": "Windows",
+        "mission": "SB-V04-004 Core repair"
+      },
+      {
+        "id": "intelligence",
+        "branch": "claude/social-bots-intelligence-repair-v2",
+        "machine": "Mac",
+        "mission": "SB-V05-001 then SB-V15-001"
+      },
+      {
+        "id": "acceptance",
+        "branch": "claude/social-bots-mac-qa-control",
+        "secondary_worktree": "claude/social-bots-v04-live-canary",
+        "machine": "local Mac",
+        "mission": "SB-V03-004 independent gate then real SB-V04-005 canary"
+      }
+    ],
+    "live_progress_issue": 3,
+    "heartbeat_reporter": "social-bots/bin/heartbeat_reporter.py",
+    "heartbeat_stage1": "3 real 5-minute intervals",
+    "heartbeat_stage2": "15-minute intervals for 24 hours",
+    "heartbeat_blocks_work": false,
+    "chatgpt_review_frequency": "hourly"
   }
 }
