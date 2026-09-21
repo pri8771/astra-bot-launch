@@ -1,7 +1,7 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-032_2026-09-21T0856.md`.
+Current lead review: `lead-reviews/LEAD-033_2026-09-21T0955.md`.
 
 ## Priority Zero — real V0.4 canary
 
@@ -27,7 +27,7 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE STABLE / V0.4-004 REPAIR ASSIGNED / NO NEW WORKER COMMIT AFTER LEAD-031.
+Status: ACTIVE / V0.3 SOURCE STABLE / V0.4-004 REPAIR ASSIGNED / NO NEW WORKER COMMIT AFTER LEAD-032.
 
 Verified baseline remains:
 - signed Claude worker commit `76e96dde4677346fd5b40c8cba4988f6e4c64fee` added a six-test V04 divergence suite and worker report;
@@ -35,7 +35,7 @@ Verified baseline remains:
 - the worker honestly labels `contextual-deterministic-v1` as `adaptive=false` and the V04-004 work as engineering-only.
 
 Lead disposition remains:
-1. **SB-V04-004 worker attempt is NOT acceptance-ready.** `test_same_evidence_different_personas_diverge` changes both persona and evidence (`shared` vs `shared2`), while `test_same_persona_different_evidence_diverges` fails to hold persona/runtime context constant. The claimed causal axes are confounded.
+1. **SB-V04-004 is CHANGES_REQUIRED.** `test_same_evidence_different_personas_diverge` changes both persona and evidence (`shared` vs `shared2`), while `test_same_persona_different_evidence_diverges` fails to hold persona/runtime context constant. The claimed causal axes are confounded.
 2. The suite forces `SBOTS_REASONING=contextual`, which invokes `contextual-deterministic-v1` (`adaptive=false`). This is useful supplemental regression coverage but cannot prove the adaptive V0.4 behavior required by `SB-V04-002`.
 3. Canonical packet `artifact-packets/SB-V04-004.md` requires strict independent-variable isolation plus an adaptive-path acceptance seam. Do not trigger an extra paid/API/provider invocation; reuse the authorized canary receipt where practical.
 4. `SB-V04-001` source posture is materially improved but not promoted while V03 predecessor acceptance and integrated real adaptive evidence remain open.
@@ -93,7 +93,7 @@ Capacity: 1.
 
 Latest Social Bots result remains `socialbots-v03-repair-audit-20260921-01`: it reached the real Windows runner but failed at **repository clone** before Claude/tests. No Social Bots evidence was produced.
 
-At LEAD-032 review time the worker's single protocol slot remains occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05`, Actions run `35596577823` (`in_progress`). Do not queue a Social Bots task into the occupied slot. After it frees, still do not redispatch Social Bots until clone/auth access to `pri8771/astra-bot-launch` is demonstrably repaired. Do not weaken private-repository controls or move project governance into `remote-workers`.
+The prior unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05` has now failed at branch push, but worker-pc is again occupied/queued by unrelated work: SwarmAI retry Actions run `35608406904` is `in_progress`, and Jobs run `35608634037` is `pending`. Do not queue a Social Bots task into the capacity-1 worker now. After it frees, still do not redispatch Social Bots until clone/auth access to `pri8771/astra-bot-launch` is demonstrably repaired. Do not weaken private-repository controls or move project governance into `remote-workers`.
 
 ## Heartbeat truth
 
