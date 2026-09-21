@@ -1,11 +1,10 @@
 {
   "schema_version": 1,
   "lane": "intelligence-repair",
-  "reviewed_at": "2026-09-21T17:17:00Z",
-  "lead_review": "LEAD-037",
+  "reviewed_at": "2026-09-21T17:56:20Z",
+  "lead_review": "LEAD-039",
   "official_phase": "V0.4.x_in_progress",
-  "today_soak_fast5m_verified_intervals": 0,
-  "steady_hourly_authorized_for_reset_soak": false,
+  "session_status": "STALE_NO_FRESH_SESSION_AFTER_LEAD_038",
   "accepted": [
     "SB-V05-001",
     "SB-V13-001",
@@ -14,8 +13,8 @@
   "changes_required": [
     "SB-V15-001"
   ],
-  "next_assignment": "Repair only SB-V15-001 structural admin boundary, test, submit, stop.",
+  "next_assignment": "Start a fresh session, emit one SESSION_ONCE heartbeat, remove/private/rename ambiguous whole-runtime load/load_all aliases, add the structural cross-persona production-surface regression, run focused/full tests, submit SB-V15-001 and stop.",
   "notification_delivered": true,
-  "notes": "LEAD-037 is authoritative. Issue comments are visibility; durable HEARTBEAT_LOG is cadence evidence. Do not backfill.",
+  "notes": "The 2052955 implementation is not accepted because legacy load/load_all remain ordinary cross-persona whole-runtime aliases. One fresh session = one heartbeat; the old timed soak is superseded.",
   "no_live_model_calls_authorized": true
 }
