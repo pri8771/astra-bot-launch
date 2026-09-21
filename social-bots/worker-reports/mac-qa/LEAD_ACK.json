@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T15:52:53Z",
-  "lead_review": "LEAD-035",
-  "bootstrap_consecutive_verified": 3,
-  "steady_hourly_authorized": true,
+  "reviewed_at": "2026-09-21T17:10:00Z",
+  "lead_review": "LEAD-036",
+  "official_phase": "V0.4.x_in_progress",
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "STALE WAKE-UP: start fresh Acceptance lane now. Execute SB-V03-004 independently first; if PASS, push ACCEPT-READY report, then use isolated canary worktree for exactly one real SB-V04-005 invocation and stop for lead audit.",
+  "steady_hourly_authorized_for_reset_soak": false,
+  "accepted": ["SB-V03-004", "SB-V03-006", "SB-EVD-001", "SB-V04-005"],
+  "next_assignment": "NO MORE MODEL CALLS. Continue non-overlapping QA/CI/V2 acceptance work and prospective durable heartbeat logging only; no runtime source edits.",
+  "authorization_consumed": true,
   "notification_delivered": true,
-  "notes": "Historical hourly coordination authorization remains true, but today's FAST_5M reset soak has not started. Heartbeat does not block Mission A/B. No Core runtime source edits."
+  "notes": "V0.3 is closed. Your independent V03 execution is accepted within single POSIX host/filesystem scope. Reset Issue comments do not count as durable heartbeat proof."
 }
