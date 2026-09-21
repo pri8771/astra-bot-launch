@@ -65,7 +65,36 @@ Do not fake an integrated passing system before merged runtime exists.
 Do NOT edit Core/Intelligence runtime modules.
 If you find a runtime defect, report file/symbol/scenario/expected behavior to lead.
 
-## Heartbeat
+## Heartbeat / lead coordination
+
+Read `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`.
+
+This lane starts in `BOOTSTRAP_15M` mode.
+
+While this Claude session is active:
+- check in every 15 minutes for the bootstrap phase, even if the current artifact has not finished;
+- after each parent-artifact submission or blocker, check in immediately instead of waiting;
+- after 3 consecutive approximately-15-minute heartbeats, REMAIN on 15-minute cadence until `social-bots/worker-reports/mac-qa/LEAD_ACK.json` says `steady_hourly_authorized=true`;
+- once authorized, switch to hourly check-ins;
+- do not exit merely because one artifact finished: pull instructions and take the next dependency-ready assignment unless blocked or explicitly told to stop.
+
+For every heartbeat:
+1. pull/fetch your branch;
+2. re-read this SESSION_INSTRUCTIONS file;
+3. inspect `social-bots/worker-reports/mac-qa/LEAD_ACK.json`;
+4. run the heartbeat helper;
+5. append the generated record to `social-bots/worker-reports/mac-qa/HEARTBEAT_LOG.jsonl`;
+6. commit and push the heartbeat files;
+7. set a notification reason for any new submission, blocker, completed artifact, changed assignment, or important finding.
+
+Use:
+`social-bots/bin/worker_heartbeat.py`
+
+The heartbeat is a GitHub coordination signal, not proof of artifact correctness.
+
+If the lead updates this file between heartbeats, follow the newest pulled version.
+
+
 
 Path:
 `social-bots/worker-reports/mac-qa/HEARTBEAT.json`.
