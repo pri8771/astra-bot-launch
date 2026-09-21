@@ -6,7 +6,7 @@
   "lead_review": "LEAD-018",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "SB-CTL-012",
+  "next_assignment": "After 3 verified 15m heartbeats: switch to claude/social-bots-v04-live-canary and execute SB-V04-005",
   "notification_delivered": false,
-  "notes": "Initial lead acknowledgement. Remain on BOOTSTRAP_15M until lead authorizes hourly."
+  "notes": "Heartbeat validation first. Then Priority Zero real V0.4 canary before QA/CI resumes."
 }
