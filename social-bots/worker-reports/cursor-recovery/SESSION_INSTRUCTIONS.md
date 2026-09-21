@@ -1,50 +1,20 @@
-# Cursor Recovery — SESSION_INSTRUCTIONS — LEAD-046
-
-You are the primary Social Bots implementation lane for the existing recovery runtime surfaces.
+# Cursor Recovery — SESSION_INSTRUCTIONS — LEAD-047
 
 Branch: `cursor/social-bots-recovery-v07-20260921`
 Canonical coordination: `chatgpt/social-bots-plan-20260920`
+Canonical release commit: `eece1d3a62417802e4316f028fbec098f3220128`
 Official phase: **V0.4.x / V0.4 in progress**
 
-Before editing, sync/fetch and read current canonical coordination:
-- `social-bots/STATE.json`
-- `social-bots/WORK_QUEUE.md`
-- `social-bots/SESSION_ROUTER.md`
-- `social-bots/ARTIFACT_INDEX.json`
-- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- latest `social-bots/AGENT_MESSAGES.md`
-- `social-bots/artifact-packets/recovery-v07/SB-R07-041.md`
+## Status — PARKED_SAFE_HANDOFF
 
-## Session start
+Do **not** start new overlapping runtime implementation. Fable is now the sole primary implementation/integration owner under `social-bots/delivery/FINAL_RUN.md`, including the R07-041/shared recovery repair that was previously assigned here.
 
-Start a genuinely fresh implementation session and emit exactly one real durable `SESSION_ONCE` heartbeat for the new session ID after reading current coordination. Do not run a periodic heartbeat loop.
+Your responsibility is preservation and handoff only:
 
-## Immediate and only released implementation — SB-R07-041
+1. If this worktree has any uncommitted or just-finished material work that predates this park instruction, preserve it at a safe recoverable boundary and push it with exact source/test evidence.
+2. Do not overwrite or reset existing recovery evidence (`SB-R07-071`, `SB-R07-044`, `SB-R07-072`, later recovery submissions).
+3. Do not begin a second implementation of R07-041 or shared runtime fixes while Fable owns those files.
+4. Do not install or claim the V0.7 LIVE scheduler on the previously classified unsuitable Cursor host.
+5. If no material local work exists, remain parked; no periodic heartbeat is required. A genuinely fresh future released session emits one `SESSION_ONCE` heartbeat after reading current coordination.
 
-`SB-R07-041` remains **CHANGES_REQUIRED**.
-
-Repair the direct/ad-hoc `ModelReasoningProvider` registered-callable route so **every live-capable route fails closed without a valid canonical authorization manifest**, even when `worker_once` / `run_worker` and other normal entrypoints are bypassed.
-
-Required proof:
-1. construct the direct-library `SBOTS_REASONING=model` route;
-2. register a harmless local sentinel/counter callable;
-3. with no valid canonical authorization manifest, prove the provider refuses **before** invoking the sentinel;
-4. retain the inherited Claude CLI real-spawn authorization guard;
-5. add focused adversarial regression coverage for the direct-library bypass;
-6. run focused tests and the full suite;
-7. push exact source/report evidence and request `SUBMITTED` only — do not self-accept.
-
-**Zero real model/provider calls.** The sentinel must be local and harmless.
-
-## Preserve submitted evidence
-
-- `SB-R07-071` remains SUBMITTED pending independent Mac Acceptance multiprocess execution. Do not rewrite it unless the independent review identifies a defect.
-- Preserve `SB-R07-044`, `SB-R07-072`, and later recovery engineering submissions for review.
-- Do not install or claim the V0.7 LIVE scheduler on the current unsuitable Cursor host.
-- Do not edit Fable's submitted new-files-only specialist/strategy source unless a later explicit lead reassignment says otherwise.
-
-After the bounded R07-041 repair is pushed, pause overlapping runtime expansion while Acceptance independently reviews R07-071 and repaired R07-041.
-
-## Hard authority limits
-
-No live Claude/adaptive/model call, public posting/reply/message, account action, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, or SwarmAI dependency is authorized.
+No live Claude/adaptive/product-model call, public/account effect, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, main/public release, or SwarmAI dependency is authorized.
