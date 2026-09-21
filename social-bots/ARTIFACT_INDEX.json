@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T00:10:47Z",
+  "updated_at": "2026-09-21T00:25:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -839,7 +839,7 @@
       "version_gate": "V2.1",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V21-001.md",
       "depends_on": [
         "SB-V20-001"
       ],
@@ -854,7 +854,7 @@
       "version_gate": "V2.2",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V22-001.md",
       "depends_on": [
         "SB-V21-001"
       ],
@@ -884,7 +884,7 @@
       "version_gate": "V2.3",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V23-002.md",
       "depends_on": [
         "SB-V23-001"
       ],
@@ -929,7 +929,7 @@
       "version_gate": "V3.0",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V30-002.md",
       "depends_on": [
         "SB-V30-001"
       ],
@@ -944,7 +944,7 @@
       "version_gate": "V3.0",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V30-003.md",
       "depends_on": [
         "SB-V30-002"
       ],
@@ -959,7 +959,7 @@
       "version_gate": "V3.0",
       "owner": "Claude-Core",
       "status": "PLANNED",
-      "canonical_ref": "TBD",
+      "canonical_ref": "social-bots/artifact-packets/SB-V30-004.md",
       "depends_on": [
         "SB-V30-003"
       ],
@@ -980,6 +980,74 @@
       ],
       "story_points": null,
       "evidence": [],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-005",
+      "name": "Cross-lane interface contract",
+      "type": "control_contract",
+      "version_gate": "team-integration",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/CROSS_LANE_INTERFACES.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": null,
+      "evidence": [
+        "lead-defined typed boundaries for evidence, metrics, audience, experiments, growth opportunities and strategy revisions"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V20-098",
+      "name": "V2 engineering acceptance plan",
+      "type": "lead_acceptance_design",
+      "version_gate": "V2.0-readiness",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/V2_ENGINEERING_ACCEPTANCE.md",
+      "depends_on": [
+        "SB-CTL-005"
+      ],
+      "story_points": null,
+      "evidence": [
+        "lead integration scenarios A-G and traceability contract"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V04-000",
+      "name": "Claude subscription reasoning route research",
+      "type": "lead_research",
+      "version_gate": "V0.4-preparation",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/CLAUDE_REASONING_ROUTE_RESEARCH.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": null,
+      "evidence": [
+        "official Anthropic Claude Code subscription and CLI documentation reviewed; target-host runtime verification still required"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V13-000",
+      "name": "Intelligence-side pre-lane code review",
+      "type": "lead_review",
+      "version_gate": "V1.3-preparation",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/INTELLIGENCE_CODE_REVIEW.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": null,
+      "evidence": [
+        "identified snapshot aggregation, fact review, truncation, baseline, persona-scope risks at implementation head 2a53046f"
+      ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
   ]
