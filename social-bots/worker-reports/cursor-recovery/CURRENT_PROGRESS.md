@@ -24,6 +24,7 @@
 
 ### SB-R07-044 — SUBMITTED (ENGINEERING)
 
+- Source SHA: `5179217ea222e94caa5580104fbc6aaacd4b2192`
 - Independent divergence verifier + CLI; rejects fixtures/self-declared labels
 - Full suite: 322 passed, 1 skipped
 - Evidence: `evidence/SB-R07-044/`
