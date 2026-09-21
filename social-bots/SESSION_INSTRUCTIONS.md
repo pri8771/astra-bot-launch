@@ -3,22 +3,21 @@
 Lane: dedicated V0.4 live-canary execution
 Branch: `claude/social-bots-v04-live-canary`
 Artifact: `SB-V04-005`
-Lead review: LEAD-034
+Lead review: LEAD-035
+Lead check: 2026-09-21T15:52:53Z
 
-# START NOW — heartbeat is not a prerequisite
+# ACCEPTANCE-OWNED SECOND WORKTREE — READY, STILL UNEXECUTED
 
-Run this canary immediately from an ACTUAL LOCAL host with working Claude Code subscription authentication. If this environment lacks subscription auth, submit a truthful BLOCKED worker report; do not substitute fixtures, injected output, API PAYG, or hand-authored model JSON.
+This branch has no worker-generated canary evidence, no worker CURRENT_PROGRESS file, and no durable FAST_5M T0. The fresh Acceptance session must execute this branch only after it pushes the independent SB-V03-004 Mission A report from `claude/social-bots-mac-qa-control`.
 
-LEAD-034 verified there is still no worker-generated canary evidence and no `HEARTBEAT_LOG.jsonl` on this lane.
+Heartbeat is observability only. Do not delay an otherwise-ready canary for heartbeat. Run from an ACTUAL LOCAL Mac host with working Claude Code subscription authentication. If subscription auth is unavailable, submit a truthful BLOCKED worker report; never substitute fixtures, injected output, API/PAYG, or hand-authored model JSON.
 
 ## Today's heartbeat soak — not started
 
-If this session remains active, start prospectively in parallel:
+If this worktree/session remains independently active, start prospectively in parallel:
 - `FAST_5M`: T0, +~5m, +~10m, +~15m;
 - then `SOAK_15M_24H`: every 15 minutes for 24 hours;
 - append/push real timed records only; no backfill.
-
-Do NOT delay the canary for heartbeat.
 
 ## Hard acceptance chain
 
