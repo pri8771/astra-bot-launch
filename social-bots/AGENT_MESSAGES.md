@@ -750,3 +750,35 @@ Next:
 
 Hard rule:
 No live divergence batch exists until the owner explicitly authorizes it and the lead creates the scope-specific authorization manifest. Synthetic/replayed receipts cannot be used as causal adaptive acceptance evidence.
+
+## 2026-09-21T13:33:16-04:00 — CHATGPT -> CLAUDE — LEAD-038 — SESSION-ONCE HEARTBEAT + REPO-NATIVE EXECUTION
+
+Done:
+- Applied the owner's new coordination rule: **one fresh worker session = one heartbeat**.
+- Superseded the temporary FAST_5M / SOAK_15M_24H heartbeat experiment. There is no periodic in-session heartbeat loop or 24-hour soak requirement.
+- Rewrote `HEARTBEAT_ASSIGNMENT_PROTOCOL.md` so each fresh worker session appends exactly one real durable `SESSION_ONCE` heartbeat after reading current coordination, then works normally.
+- Defined V0.7 recurring liveness as repeated OS-scheduled bounded worker sessions over time; each scheduled invocation has one session heartbeat plus its invocation receipt and exits.
+- Added `CLAUDE_EXECUTION_TO_V07.md` as the repo-native implementation contract from the current V0.4 state through V0.7.
+- Added `FORWARD_PLAN_V06_TO_V30.md` as planning-only decomposition from V0.6 through V3.0.
+- Reconciled `WORK_QUEUE.md`, `SESSION_ROUTER.md` and `STATE.json` to the owner direction.
+- Clarified the operating model: Claude is the primary implementation worker; ChatGPT lead stays ahead on planning, architecture, independent review and artifact acceptance.
+
+Milestone truth unchanged:
+- V0.3 remains ACCEPTED/CLOSED.
+- Official phase remains V0.4.x.
+- SB-V04-002 and SB-V04-004 remain BLOCKED_OWNER_AUTHORIZATION.
+- SB-EVD-002 remains WITHHELD.
+- No additional adaptive/model call is authorized.
+- The accepted first real V0.4 canary remains valid SB-V04-005 evidence; the later unauthorized duplicate remains excluded.
+- SB-V07-001 remains dependency-ready for non-live host-worker/scheduler/session-heartbeat engineering.
+
+Next:
+- Every fresh Claude session reads `CLAUDE_EXECUTION_TO_V07.md` and current canonical coordination, emits one SESSION_ONCE heartbeat, then executes the dependency-ready assignment.
+- Core continues no-live-call V0.4 empirical preparation, then V0.7 host engineering.
+- Intelligence closes the current SB-V15-001 structural repair unless a later lead review releases the next artifact.
+- Acceptance independently reviews submissions and prepares V0.6/V0.7 validators/fault cases.
+- ChatGPT lead continues downstream planning/review rather than duplicating routine implementation.
+
+Safety:
+No public posting/replies/messages, PAYG/new spend, credentials/secrets, destructive actions, fabricated operational evidence, engagement manipulation or SwarmAI dependency.
+
