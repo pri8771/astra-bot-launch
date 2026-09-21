@@ -1,6 +1,6 @@
 # SESSION_INSTRUCTIONS — Intelligence / Evidence Integrity
 
-Lead review: LEAD-019 (reconciliation after LEAD-018)
+Lead review: LEAD-020
 Branch: `claude/social-bots-intelligence-repair-v2`
 
 ## Coordination loop
@@ -13,123 +13,117 @@ At session start and after every parent artifact checkpoint:
 4. Read:
    `git show origin/chatgpt/social-bots-plan-20260920:social-bots/SESSION_ROUTER.md`
 5. Read latest canonical CHATGPT -> CLAUDE lead entry.
-6. Update/push `social-bots/worker-reports/intelligence-repair/HEARTBEAT.json`.
-7. Continue next dependency-ready artifact.
+6. Inspect `social-bots/worker-reports/intelligence-repair/LEAD_ACK.json`.
+7. Update/push the heartbeat only when a real heartbeat is due or a material state transition occurs.
+8. Continue the next dependency-ready repair below.
 
 Do not rewrite this file.
 
-## Current disposition
+## Current lead disposition
 
-- SB-V05-001: CHANGES_REQUIRED.
-- SB-V05-002: CHANGES_REQUIRED.
-- SB-V13-001 repair at `915b4b41...`: CHANGES_REQUIRED, much closer.
-- SB-V14-001 repair at `b9899e5a...`: CHANGES_REQUIRED, much closer.
+Accepted in LEAD-020:
+- `SB-V13-001` — ACCEPTED engineering artifact.
+- `SB-V14-001` — ACCEPTED engineering artifact.
 
-Do not restart any of these from scratch. Repair the specific acceptance gaps below before moving to V15.
+Still requires repair:
+- `SB-V05-001` — CHANGES_REQUIRED.
+- `SB-V05-002` — CHANGES_REQUIRED / fail-closed pending accepted semantic-provider integration.
+- `SB-V15-001` — CHANGES_REQUIRED.
+- `SB-V16-001`, `SB-V17-001`, `SB-V20-002` — remain CHANGES_REQUIRED pending deeper independent lead source audit of the latest repair batch.
 
-## Next 1 — close SB-V05-001 trust boundary
+Do not restart accepted V13/V14 work. Do not add more higher-version expansion until the two explicit repairs below are submitted unless the lead changes this file.
 
-Preserve destination/extraction work.
+## Next 1 — SB-V05-001 real HTTPS path repair
 
-Required:
-- remove caller-grantable operational trust: ordinary runtime callers must not be able to call a public registration API and make arbitrary transport operational-trusted;
-- trusted operational transports must be policy-owned/static/internal;
-- distinguish fixture, verified-untrusted and trusted-operational evidence at downstream bridges;
-- operational bridge must reject fixture/untrusted receipts;
-- close DNS validation-to-connect TOCTOU/rebinding by pinning/using the validated public address for actual connection or proving equivalent;
-- either correctly implement/test real 30x redirect handling or deliberately fail closed on redirects and document it. Do not claim redirect support from overridden test helpers alone.
+Preserve the good LEAD-018 trust-boundary work:
+- static/internal trusted transport policy;
+- no caller-grantable operational trust;
+- evidence classes;
+- operational bridge rejects fixtures/untrusted receipts;
+- public-address validation/pinning;
+- redirect fail-closed posture;
+- extraction-status honesty.
 
-Submit SB-V05-001.
+LEAD-020 independent defect:
 
-## Next 2 — tighten SB-V05-002 without duplicating Core's model gateway
+`UrllibFetcher._perform()` calls stdlib `http.client.HTTPSConnection` with a `server_hostname=` constructor keyword. Stdlib `HTTPSConnection` does not accept that keyword, so the actual trusted HTTPS live path fails before a successful retrieval.
 
-Keep assessor/extractor interfaces and attribution.
+Required repair:
+1. implement a valid pinned-IP HTTPS connection that still performs TLS SNI and certificate verification for the original hostname;
+2. the actual socket must connect to the already validated/pinned public IP — do not re-resolve the hostname after validation;
+3. keep Host header semantics correct;
+4. keep redirects fail-closed unless you implement/revalidate/re-pin every hop end to end;
+5. add a regression that exercises the production HTTPS connection-construction path sufficiently to catch an invalid constructor/API signature;
+6. retain HTTP path safety and all existing trust/evidence regressions;
+7. do not claim fixture/stub transport evidence proves real live HTTPS.
 
-Required:
-- ordinary runtime caller cannot self-register an arbitrary operational assessor;
-- operational evidence refs require trusted operational SB-V05-001 evidence; fixtures are explicit test-only;
-- KeywordSupportAssessor is diagnostic/test-only, not authoritative arbitrary-fact verification;
-- HeuristicClaimExtractor is diagnostic/conservative, not proof that all material facts were found;
-- operational semantic assessor/extractor must fail closed when unavailable.
+Submit `SB-V05-001` with exact commit/tests and a truthful limitation statement. No real external network proof is required for this repair unless the environment already permits a safe public read at zero additional spend; fixture/unit tests remain engineering evidence only.
 
-Do NOT build a second model gateway. The accepted Core adaptive provider should later supply the semantic assessor/extractor integration.
+## Next 2 — SB-V15-001 persona-scoped production experiment boundary
 
-Once the trust/interface is fail-closed and honest, submit the engineering interface and record the semantic-provider dependency explicitly; then continue rather than waiting idle.
+Preserve the measurement-provenance repair already submitted:
+- baseline/treatment bind to normalized observation IDs;
+- metric semantic/kind/window compatibility checks;
+- exact observation refs in learning trace;
+- missing/incompatible data => INCONCLUSIVE rather than fabricated measurement.
 
-## Next 3 — finish SB-V13-001
+LEAD-020 remaining defect:
+- `Experiment` carries persona, but persistence/read helpers are still bot-wide (`_dir(bot)`, `load(bot, id)`, `load_all(bot)`). A normal production reader can enumerate/read another persona's private experiment state.
 
-Keep the new cumulative_snapshot / delta / gauge / rate model and latest-per-series snapshot aggregation.
+Required repair:
+1. add authoritative bot+persona production save/load/list/read APIs;
+2. normal persona-facing reads must never return a different persona's experiment;
+3. raw bot-wide access may remain only if explicitly named/documented admin/internal and not used by normal production persona flows;
+4. add mixed-persona regressions through the actual production read/list API;
+5. preserve existing overlap/measurement/closeout behavior.
 
-Two remaining lead findings:
+Submit `SB-V15-001` for lead audit.
 
-1. **Known kind is lost when a supported metric is missing.** Example: Instagram SAVE is a known cumulative snapshot according to PLATFORM_MAP, but when `saved` is absent the emitted MISSING MetricValue has `metric_kind=None`. Preserve the expected kind when the platform mapping knows it; unknown/unmapped semantics may remain explicitly unknown.
+## SB-V05-002
 
-2. **DELTA aggregation blindly sums duplicate/overlapping windows.** Summation is safe only for valid non-overlapping/comparable deltas (or source-defined independent deltas). Detect/reject/deduplicate overlapping/duplicate windows per series instead of double-counting.
+Keep the current fail-closed design stable unless V05-001 repair forces a narrow interface change:
+- operational assessor policy stays static and empty until an accepted semantic provider is integrated;
+- `KeywordSupportAssessor` / heuristic claim extraction remain diagnostic/test-only;
+- operational stance requires trusted-operational evidence;
+- do not build a second model gateway.
 
-Required regressions:
-- supported-but-missing metric retains expected semantic kind;
-- duplicate/overlapping delta windows do not double-count;
-- cumulative 100 then 150 != 250 remains green;
-- valid non-overlapping delta 100 + 50 may equal 150;
-- gauge/rate not summed;
-- snapshot->delta only from comparable observations with derivation metadata.
+A future accepted Core adaptive provider may supply the operational semantic assessor/extractor integration.
 
-## Next 4 — finish SB-V14-001
+## Pending lead audits — hold expansion
 
-Keep persona-scoped persistence, confidence/evidence refs and corrected fork evidence semantics.
+The latest repairs for:
+- `SB-V16-001`
+- `SB-V17-001`
+- `SB-V20-002`
 
-Two remaining lead findings:
+are submitted and may be useful, but are not accepted merely because the local suite is green. Preserve them while lead review catches up. Do not start V2.1/V2.2/V2.3 implementation from this lane.
 
-1. `ALLOWED_SEGMENT_DIMENSIONS` still includes open-ended `audience_interest`, while sensitive values are rejected only by exact string. Variants like `religious_interest`, `health_interest`, political/medical compound values can bypass this. Prefer safe content/context dimensions by construction; if a free-form field remains, normalize/tokenize and reject sensitive trait inference robustly.
-
-2. `fork_hypothesis(..., persona=...)` permits a fork from persona A to be re-scoped to persona B while carrying `forked_from` and contradiction provenance from A. That is an implicit cross-persona private-memory transfer path. Normal private forks must remain in the source persona/workspace; any future cross-workspace import needs a separate explicit contract.
-
-Add regressions for both cases.
-
-## Next 5+
-
-Only after V05/V13/V14 repairs are submitted:
-- V15 evidence-linked experiments;
-- V16 validated ClaimSupport + persona-scoped history/novelty;
-- V17 receipt-backed persona-scoped community memory;
-- V20-002 typed accepted-evidence growth inputs.
-
-Do not edit Core state/decision/reasoning/leasing/worker.
-
-## Heartbeat / lead coordination
+## Heartbeat correction
 
 Read `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`.
 
-This lane starts in `BOOTSTRAP_15M` mode.
+This lane remains in `BOOTSTRAP_15M` mode.
 
-While this Claude session is active:
-- check in every 15 minutes for the bootstrap phase, even if the current artifact has not finished;
-- after each parent-artifact submission or blocker, check in immediately instead of waiting;
-- after 3 consecutive approximately-15-minute heartbeats, REMAIN on 15-minute cadence until `social-bots/worker-reports/intelligence-repair/LEAD_ACK.json` says `steady_hourly_authorized=true`;
-- once authorized, switch to hourly check-ins;
-- do not exit merely because one artifact finished: pull instructions and take the next dependency-ready assignment unless blocked or explicitly told to stop.
+LEAD-020 found:
+- `HEARTBEAT.json` reports sequence 4;
+- `worker-reports/intelligence-repair/HEARTBEAT_LOG.jsonl` contains only the lead-seeded sequence 0 record.
 
-For every heartbeat:
-1. pull/fetch your branch;
-2. re-read this SESSION_INSTRUCTIONS file;
-3. inspect `social-bots/worker-reports/intelligence-repair/LEAD_ACK.json`;
-4. run the heartbeat helper;
-5. append the generated record to `social-bots/worker-reports/intelligence-repair/HEARTBEAT_LOG.jsonl`;
-6. commit and push the heartbeat files;
-7. set a notification reason for any new submission, blocker, completed artifact, changed assignment, or important finding.
+Therefore no real bootstrap interval is currently accepted.
 
-Use:
-`social-bots/bin/worker_heartbeat.py`
+Rules now:
+- **do not backfill** missing seq1-4 records;
+- do not reset sequence merely to make the log look contiguous;
+- continue prospectively from the current heartbeat snapshot sequence;
+- every future real heartbeat must append the full record to `HEARTBEAT_LOG.jsonl` and be pushed;
+- heartbeat entries intended to prove cadence must be approximately 15 minutes apart, not burst commits;
+- artifact submission/blocker heartbeats may occur immediately, but burst state-transition updates do not replace the elapsed-time cadence proof;
+- after at least 3 consecutive real approximately-15-minute future worker heartbeats are durably logged, remain on bootstrap cadence until `LEAD_ACK.json` explicitly sets `steady_hourly_authorized=true`.
 
-The heartbeat is a GitHub coordination signal, not proof of artifact correctness.
+Use `social-bots/bin/worker_heartbeat.py` if it preserves the truth rules above.
 
-If the lead updates this file between heartbeats, follow the newest pulled version.
+The heartbeat is GitHub coordination evidence, not proof of runtime correctness or V0.7 Social Bots liveness.
 
-Path:
-`social-bots/worker-reports/intelligence-repair/HEARTBEAT.json`
+## Safety / ownership
 
-State-transition pushes only.
-
-## Safety
-
-No public effects, account login unless separately authorized, network scanning, paid APIs/new spend, secrets, fake metrics/evidence or SwarmAI dependency.
+Do not edit Core state/decision/reasoning/leasing/worker.
+No public effects, account login unless separately authorized, network scanning, paid APIs/new spend, secrets, fake metrics/evidence, engagement manipulation or SwarmAI dependency.
