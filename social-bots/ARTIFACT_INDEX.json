@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T18:35:00Z",
+  "updated_at": "2026-09-21T18:45:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -3380,6 +3380,1468 @@
       "story_points": null,
       "evidence": [],
       "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S18-001",
+      "name": "Cultural source hierarchy registry",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-001.md",
+      "depends_on": [
+        "SB-V17-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S18-002",
+      "name": "Named cultural reviewer registry",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-002.md",
+      "depends_on": [
+        "SB-S18-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S18-003",
+      "name": "Cultural correction and uncertainty workflow",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-003.md",
+      "depends_on": [
+        "SB-S18-001",
+        "SB-S18-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S18-004",
+      "name": "Primandir independence and disclosure boundary",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-004.md",
+      "depends_on": [
+        "SB-S18-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S18-005",
+      "name": "Cultural community workflow integration",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-005.md",
+      "depends_on": [
+        "SB-S18-003",
+        "SB-S18-004",
+        "SB-V17-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S18-006",
+      "name": "Cultural persona operational evidence bundle",
+      "type": "execution_slice",
+      "version_gate": "V1.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S18-006.md",
+      "depends_on": [
+        "SB-S18-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-001",
+      "name": "Structured observability event model",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-001.md",
+      "depends_on": [
+        "SB-V18-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-002",
+      "name": "SLO and health evaluator",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-002.md",
+      "depends_on": [
+        "SB-S19-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-003",
+      "name": "Account and provider health monitor",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-003.md",
+      "depends_on": [
+        "SB-S19-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-004",
+      "name": "Hard resource budget enforcement",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-004.md",
+      "depends_on": [
+        "SB-S19-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-005",
+      "name": "Operator recovery runbook executor",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-005.md",
+      "depends_on": [
+        "SB-S19-002",
+        "SB-S19-003",
+        "SB-S19-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-006",
+      "name": "Supported-path P0/P1 defect gate",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-006.md",
+      "depends_on": [
+        "SB-S19-005"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S19-007",
+      "name": "Long unattended stabilization acceptance",
+      "type": "execution_slice",
+      "version_gate": "V1.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S19-007.md",
+      "depends_on": [
+        "SB-S19-002",
+        "SB-S19-003",
+        "SB-S19-004",
+        "SB-S19-005",
+        "SB-S19-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-001",
+      "name": "Versioned strategy-state store",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-001.md",
+      "depends_on": [
+        "SB-V19-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-002",
+      "name": "Growth opportunity contract integration",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-002.md",
+      "depends_on": [
+        "SB-S20-001",
+        "SB-V20-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-003",
+      "name": "Bounded strategy revision proposal engine",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-003.md",
+      "depends_on": [
+        "SB-S20-001",
+        "SB-S20-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-004",
+      "name": "Deterministic strategy revision policy",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-004.md",
+      "depends_on": [
+        "SB-S20-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-005",
+      "name": "Growth and learning allocation scorer",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-005.md",
+      "depends_on": [
+        "SB-S20-002",
+        "SB-S19-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-006",
+      "name": "Strategy rollback and contradiction proof",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-006.md",
+      "depends_on": [
+        "SB-S20-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-007",
+      "name": "Measured-evidence strategy-change acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-007.md",
+      "depends_on": [
+        "SB-S20-004",
+        "SB-S20-005",
+        "SB-S20-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-001",
+      "name": "Strategy lifecycle state machine",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-001.md",
+      "depends_on": [
+        "SB-V20-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-002",
+      "name": "Strategy decay and expiry policy",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-002.md",
+      "depends_on": [
+        "SB-S21-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-003",
+      "name": "Contradiction reconciler",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-003.md",
+      "depends_on": [
+        "SB-S21-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-004",
+      "name": "Strategy cooldown and anti-whiplash gate",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-004.md",
+      "depends_on": [
+        "SB-S21-002",
+        "SB-S21-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-005",
+      "name": "Strategy rollback executor",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-005.md",
+      "depends_on": [
+        "SB-S21-001",
+        "SB-S21-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S21-006",
+      "name": "Dynamic strategy lifecycle acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-006.md",
+      "depends_on": [
+        "SB-S21-002",
+        "SB-S21-003",
+        "SB-S21-004",
+        "SB-S21-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-001",
+      "name": "Goal contract and success criteria schema",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-001.md",
+      "depends_on": [
+        "SB-V21-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-002",
+      "name": "Goal-to-artifact DAG planner",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-002.md",
+      "depends_on": [
+        "SB-S22-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-003",
+      "name": "Authority and budget constraint compiler",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-003.md",
+      "depends_on": [
+        "SB-S22-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-004",
+      "name": "Plan feasibility and cycle validator",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-004.md",
+      "depends_on": [
+        "SB-S22-002",
+        "SB-S22-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-005",
+      "name": "Replanning from evidence/blockers",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-005.md",
+      "depends_on": [
+        "SB-S22-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-006",
+      "name": "Planner runaway limits",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-006.md",
+      "depends_on": [
+        "SB-S22-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S22-007",
+      "name": "Autonomous decomposition acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-007.md",
+      "depends_on": [
+        "SB-S22-004",
+        "SB-S22-005",
+        "SB-S22-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-001",
+      "name": "Specialist worker contract runtime",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-001.md",
+      "depends_on": [
+        "SB-V22-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-002",
+      "name": "Specialist scratch-state sandbox",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-002.md",
+      "depends_on": [
+        "SB-S23-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-003",
+      "name": "Research specialist adapter",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-003.md",
+      "depends_on": [
+        "SB-S23-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-004",
+      "name": "Analysis/reviewer specialist adapters",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-004.md",
+      "depends_on": [
+        "SB-S23-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-005",
+      "name": "Writer/media specialist adapters",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-005.md",
+      "depends_on": [
+        "SB-S23-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-006",
+      "name": "Parent result validator/integrator",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-006.md",
+      "depends_on": [
+        "SB-S23-002",
+        "SB-S23-003",
+        "SB-S23-004",
+        "SB-S23-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-007",
+      "name": "Worker budget and child-spawn guard",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-007.md",
+      "depends_on": [
+        "SB-S23-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S23-008",
+      "name": "Specialist lifecycle acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-008.md",
+      "depends_on": [
+        "SB-S23-002",
+        "SB-S23-006",
+        "SB-S23-007"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-001",
+      "name": "Institutional memory store",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-001.md",
+      "depends_on": [
+        "SB-V23-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-002",
+      "name": "Memory decay engine",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-002.md",
+      "depends_on": [
+        "SB-S24-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-003",
+      "name": "Contradiction and supersession engine",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-003.md",
+      "depends_on": [
+        "SB-S24-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-004",
+      "name": "Seasonality/context validity",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-004.md",
+      "depends_on": [
+        "SB-S24-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-005",
+      "name": "Failed-hypothesis archive and retest rules",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-005.md",
+      "depends_on": [
+        "SB-S24-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-006",
+      "name": "Evidence-aware memory retrieval",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-006.md",
+      "depends_on": [
+        "SB-S24-002",
+        "SB-S24-003",
+        "SB-S24-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S24-007",
+      "name": "Long-term learning acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S24-007.md",
+      "depends_on": [
+        "SB-S24-005",
+        "SB-S24-006"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-001",
+      "name": "Aggregate audience feature builder",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-001.md",
+      "depends_on": [
+        "SB-V24-004",
+        "SB-V14-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-002",
+      "name": "Non-sensitive segment discovery",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-002.md",
+      "depends_on": [
+        "SB-S25-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-003",
+      "name": "Segment confidence/provenance store",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-003.md",
+      "depends_on": [
+        "SB-S25-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-004",
+      "name": "Segment merge/split/drift logic",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-004.md",
+      "depends_on": [
+        "SB-S25-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-005",
+      "name": "Segment-to-strategy binding",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-005.md",
+      "depends_on": [
+        "SB-S25-003",
+        "SB-S20-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-006",
+      "name": "Sensitive profiling prevention gate",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-006.md",
+      "depends_on": [
+        "SB-S25-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S25-007",
+      "name": "Segmentation operational acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S25-007.md",
+      "depends_on": [
+        "SB-S25-004",
+        "SB-S25-005",
+        "SB-S25-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-001",
+      "name": "Multi-source trend collector",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-001.md",
+      "depends_on": [
+        "SB-V25-003",
+        "SB-V05-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-002",
+      "name": "Trend deduplication and normalization",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-002.md",
+      "depends_on": [
+        "SB-S26-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-003",
+      "name": "Trend velocity and saturation model",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-003.md",
+      "depends_on": [
+        "SB-S26-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-004",
+      "name": "Persona relevance evaluator",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-004.md",
+      "depends_on": [
+        "SB-S26-002",
+        "SB-S25-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-005",
+      "name": "Irrelevant virality rejection gate",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-005.md",
+      "depends_on": [
+        "SB-S26-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-006",
+      "name": "Trend timing experiment planner",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-006.md",
+      "depends_on": [
+        "SB-S26-003",
+        "SB-S26-004",
+        "SB-V15-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S26-007",
+      "name": "Trend intelligence live acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S26-007.md",
+      "depends_on": [
+        "SB-S26-005",
+        "SB-S26-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-001",
+      "name": "Canonical idea object store",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-001.md",
+      "depends_on": [
+        "SB-V26-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-002",
+      "name": "Platform-native transformation planner",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-002.md",
+      "depends_on": [
+        "SB-S27-001",
+        "SB-V16-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-003",
+      "name": "Transformation factual-lineage checker",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-003.md",
+      "depends_on": [
+        "SB-S27-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-004",
+      "name": "Cross-platform sequencing planner",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-004.md",
+      "depends_on": [
+        "SB-S27-002",
+        "SB-V12-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-005",
+      "name": "Cross-platform attribution linker",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-005.md",
+      "depends_on": [
+        "SB-S27-001",
+        "SB-V13-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-006",
+      "name": "Cannibalization and duplicate-spam gate",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-006.md",
+      "depends_on": [
+        "SB-S27-004",
+        "SB-S27-005"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S27-007",
+      "name": "Cross-platform strategy acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S27-007.md",
+      "depends_on": [
+        "SB-S27-003",
+        "SB-S27-004",
+        "SB-S27-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-001",
+      "name": "Opportunity portfolio registry",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-001.md",
+      "depends_on": [
+        "SB-V27-004",
+        "SB-V20-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-002",
+      "name": "Expected-value and learning-value scorer",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-002.md",
+      "depends_on": [
+        "SB-S28-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-003",
+      "name": "Capacity and budget allocator",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-003.md",
+      "depends_on": [
+        "SB-S28-001",
+        "SB-S19-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-004",
+      "name": "Exploration/exploitation policy",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-004.md",
+      "depends_on": [
+        "SB-S28-002",
+        "SB-S28-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-005",
+      "name": "Starvation/fairness guard",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-005.md",
+      "depends_on": [
+        "SB-S28-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-006",
+      "name": "Allocation schedule executor",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-006.md",
+      "depends_on": [
+        "SB-S28-003",
+        "SB-S28-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S28-007",
+      "name": "Growth allocation acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S28-007.md",
+      "depends_on": [
+        "SB-S28-005",
+        "SB-S28-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-001",
+      "name": "Strategy drift detector",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-001.md",
+      "depends_on": [
+        "SB-V28-004",
+        "SB-V21-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-002",
+      "name": "Content repetition/quality regression detector",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-002.md",
+      "depends_on": [
+        "SB-V16-002",
+        "SB-S29-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-003",
+      "name": "Reliability and SLO self-audit",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-003.md",
+      "depends_on": [
+        "SB-V19-005",
+        "SB-S29-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-004",
+      "name": "Experiment-quality self-audit",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-004.md",
+      "depends_on": [
+        "SB-V15-002",
+        "SB-S29-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-005",
+      "name": "Bounded improvement proposal generator",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-005.md",
+      "depends_on": [
+        "SB-S29-002",
+        "SB-S29-003",
+        "SB-S29-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-006",
+      "name": "Improvement authorization/review path",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-006.md",
+      "depends_on": [
+        "SB-S29-005"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S29-007",
+      "name": "Self-evaluation acceptance",
+      "type": "execution_slice",
+      "version_gate": "V2.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S29-007.md",
+      "depends_on": [
+        "SB-S29-005",
+        "SB-S29-006"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-001",
+      "name": "Persistent brand contract",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-001.md",
+      "depends_on": [
+        "SB-V29-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-002",
+      "name": "Brand-isolated durable stores",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-002.md",
+      "depends_on": [
+        "SB-S30-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-003",
+      "name": "Shared-public knowledge allowlist",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-003.md",
+      "depends_on": [
+        "SB-S30-001",
+        "SB-V24-004"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-004",
+      "name": "Cross-brand contamination adversarial suite",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-004.md",
+      "depends_on": [
+        "SB-S30-002",
+        "SB-S30-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-005",
+      "name": "Portfolio planning engine",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-005.md",
+      "depends_on": [
+        "SB-S30-001",
+        "SB-V22-001"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-006",
+      "name": "Portfolio resource/growth allocator",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-006.md",
+      "depends_on": [
+        "SB-S30-005",
+        "SB-V28-004"
+      ],
+      "story_points": 3,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-007",
+      "name": "Shared specialist worker pool",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-007.md",
+      "depends_on": [
+        "SB-S30-005",
+        "SB-V23-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-008",
+      "name": "Organizational memory and incident learning",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-008.md",
+      "depends_on": [
+        "SB-S30-003",
+        "SB-V29-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-009",
+      "name": "Portfolio self-evaluation and governance",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-009.md",
+      "depends_on": [
+        "SB-S30-006",
+        "SB-S30-008"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S30-010",
+      "name": "V3.0 concurrent multi-brand acceptance",
+      "type": "execution_slice",
+      "version_gate": "V3.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S30-010.md",
+      "depends_on": [
+        "SB-S30-004",
+        "SB-S30-006",
+        "SB-S30-007",
+        "SB-S30-009"
+      ],
+      "story_points": 4,
+      "evidence": [],
+      "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
     }
   ]
 }
