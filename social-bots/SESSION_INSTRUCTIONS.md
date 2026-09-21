@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-024
+Lead review: LEAD-025
 
 Heartbeat is observability only. Do NOT run a foreground heartbeat-only loop that pauses implementation. Record a real heartbeat when due, push it, and continue source work.
 
@@ -17,6 +17,12 @@ At session start and after every parent artifact checkpoint:
 6. record heartbeat when genuinely due without fabricating/backfilling timestamps
 7. continue dependency-ready implementation.
 
+## Current liveness / stall
+
+The last durable worker commit observed by LEAD-025 is heartbeat seq7 at `2026-09-21T04:10:36Z`. No V05/V15 source commit or later worker heartbeat is visible. The lane is stale; resume implementation immediately.
+
+Seq5 `03:23:31Z` -> seq6 `03:40:08Z` is acceptable; seq6 -> seq7 `04:10:36Z` is ~30m28s and does not satisfy the ~15-minute bootstrap. `steady_hourly_authorized` remains false. Do not backfill or rewrite history.
+
 ## Accepted and frozen
 - `SB-V13-001` — ACCEPTED engineering artifact.
 - `SB-V14-001` — ACCEPTED engineering artifact.
@@ -24,8 +30,6 @@ At session start and after every parent artifact checkpoint:
 Do not restart those.
 
 ## Priority 1 — SB-V05-001 real HTTPS path repair — START SOURCE WORK NOW
-
-No V05 source repair has been pushed since FAST TRACK activation. The last worker change visible at LEAD-024 is heartbeat sequence 7, not implementation.
 
 Repair the LEAD-020 production-path defect now:
 - actual socket connects to the already validated/pinned public IP;
@@ -55,19 +59,6 @@ Submit `SB-V15-001`.
 Preserve current `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` submissions. Do not expand V2.1/V2.2/V2.3 until V05/V15 are repaired and lead audit catches up.
 
 `SB-V05-002` remains fail-closed pending accepted operational semantic-provider integration; do not build a second model gateway.
-
-## Heartbeat — seq7 does NOT complete bootstrap
-
-Durable timestamps are:
-- seq5: 03:23:31Z
-- seq6: 03:40:08Z (~16m37s)
-- seq7: 04:10:36Z (~30m28s after seq6)
-
-The seq7 worker note claiming completed 3x15-minute validation is NOT accepted. A ~30.5-minute interval is not approximately 15 minutes under this bootstrap test. `steady_hourly_authorized` remains false.
-
-Do not backfill or rewrite history. Continue future real timed entries prospectively in the background. Heartbeat remains secondary to implementation.
-
-Heartbeat proof is GitHub coordination liveness only, not V0.7 runtime liveness.
 
 ## Safety / ownership
 
