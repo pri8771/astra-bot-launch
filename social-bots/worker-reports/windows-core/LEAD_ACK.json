@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 0,
-  "reviewed_at": null,
-  "lead_review": "LEAD-021-fast-track",
+  "reviewed_at": "2026-09-21T04:02:00Z",
+  "lead_review": "LEAD-022-remote-worker",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "Reactivate now: close SB-V03-004 migration fencing, SB-V03-005 persona production-read boundary, then SB-V03-006.",
-  "notification_delivered": false,
-  "notes": "Fast track active. Heartbeat does not block Core implementation."
+  "next_assignment": "START NOW: finish SB-V03-005 persona-scoped production read boundary, then SB-V03-006. Do not defer for heartbeat testing.",
+  "notification_delivered": true,
+  "notes": "Mac heartbeat timing test is complete for QA. Heartbeat is observability only. Resume Core implementation immediately."
 }
