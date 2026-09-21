@@ -1,3 +1,14 @@
+## Current heartbeat epoch
+
+Started: **2026-09-21 12:07 ET** (`2026-09-21T16:07:00Z`).
+
+Only these fresh sessions count:
+- CORE — `claude/social-bots-windows-core-host`
+- INTELLIGENCE — `claude/social-bots-intelligence-repair-v2`
+- ACCEPTANCE — `claude/social-bots-mac-qa-control` (with isolated canary worktree when Mission B begins)
+
+All previous lane heartbeats are CLOSED/HISTORICAL and do not count toward today's FAST_5M or SOAK_15M_24H validation.
+
 # Work queue — reset execution
 
 Canonical plan: `RESET_EXECUTION_20260921.md`.
