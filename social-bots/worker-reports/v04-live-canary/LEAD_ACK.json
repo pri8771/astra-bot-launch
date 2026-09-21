@@ -3,10 +3,10 @@
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
   "reviewed_at": null,
-  "lead_review": "LEAD-018",
+  "lead_review": "LEAD-021-fast-track",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "SB-V04-005",
+  "next_assignment": "START NOW on actual local authenticated Claude Code host: execute SB-V04-005 real canary.",
   "notification_delivered": false,
-  "notes": "Dedicated live-canary lane. One real example required before V0.4 completion."
+  "notes": "Heartbeat is not a prerequisite. If current environment lacks subscription auth, run this branch from local authenticated Claude Code."
 }
