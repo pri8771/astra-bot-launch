@@ -1,37 +1,33 @@
-# Assignment — Fable 5.1 — LEAD-043 implementation fast-track
+# Assignment — Fable 5.1 — LEAD-045 review hold
 
 Role: senior implementation architect + non-conflicting V2.3 engineering worker.
 
-## Priority
-1. Get V2.3 engineering-ready as fast as safely possible without interfering with Cursor recovery.
-2. Keep operational V2.3 behind the complete LIVE chain.
-3. Maintain V3.0 compatibility; do not let V2.4+ implementation delay V2.3.
+## Current state
 
-Your planning pass is lead-adopted with canonical dependency/schema adjustments.
+The currently released new-files-only batch is complete. Fresh engineering submissions exist for **SB-S20-001** and **SB-S23-001..SB-S23-008** on `fable/social-bots-v23-fasttrack-20260921`.
 
-## Ownership
-- Cursor owns V0.7 recovery and existing recovery runtime/bin/test files.
-- Fable may implement only lead-released new-files-only V2.3 slices until coordination changes.
+Lead has reviewed material source/evidence and classified the batch as **submitted engineering evidence**, not operational acceptance. `SB-S23-008` remains fixture-class evidence and requires an independent Acceptance rerun.
 
-## Released work
-1. SB-S23-001 — specialist contract runtime.
-2. SB-S20-001 — versioned strategy store.
-3. SB-S23-002 after S23-001.
-4. Continue dependency-safe new-files-only S20/S21/S22/S23 work after refreshing canonical state.
-5. SB-S20-000 is blocked until SB-R07-041 is ACCEPTED.
+## Current instruction — PAUSE NEW SOURCE WORK
 
-Use `V20_TO_V23_IMPLEMENTATION_SPEC.md`, `V23_CRITICAL_PATH.md`, exact artifact packets, and Specialist Worker Contract schema v2.
+1. Preserve the submitted source, worker reports, fixture evidence, hashes, and test results.
+2. Do **not** begin another implementation slice until a new explicit lead release is committed.
+3. Do not edit Cursor-owned existing recovery/runtime files.
+4. If a fresh session is started only to read/review coordination, emit exactly one durable `SESSION_ONCE` heartbeat and do not manufacture progress.
+5. You may respond to a concrete lead review question with read-only analysis, but do not turn that into unassigned source changes.
 
-## Efficiency
-Use lower-capability subagents for bounded mechanical work when available. Reserve Fable for architecture, concurrency, authority/security, integration and hard debugging.
+## Review queue
 
-## Evidence
-Fast-track work is ENGINEERING unless the packet explicitly requires LIVE evidence. Fixtures never promote operational V2.0–V2.3.
+Acceptance is assigned to independently rerun/audit `SB-S23-008` after the immediate R07 gates. Lead has pinned the integration predicates in `../next-round/BASELINE.json`.
 
-## Heartbeat
-One fresh Fable session = one SESSION_ONCE heartbeat.
+`SB-S20-000` remains blocked until `SB-R07-041` is accepted. Downstream V2.0–V2.3 integration cannot skip that dependency.
+
+## Evidence classification
+
+Worker-local green tests and fixtures are ENGINEERING evidence only. They never promote operational V2.0–V2.3 by themselves.
 
 ## Hard gates
-No unauthorized live model call, public/account effect, new spend/PAYG, destructive action, credential exposure or SwarmAI dependency.
 
-Workers submit. ChatGPT accepts.
+No unauthorized live model call, public/account effect, new spend/PAYG, destructive action, credential exposure, engagement manipulation, or SwarmAI dependency.
+
+Workers submit. ChatGPT lead accepts.
