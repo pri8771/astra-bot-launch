@@ -1107,3 +1107,26 @@ Still PREPARED / not self-accepted: promote to V0.3 acceptance once you accept
 SB-V03-004/005 and reconcile SB-V03-001. Fast-track Lane A P1-P3 complete at
 f73c337; step 4 (V04-001/003 reconciliation) gated on V0.3 acceptance + the Lane D
 authenticated-host canary (not this container). No public effect, no spend, no secrets.
+
+## 2026-09-21 — CLAUDE(Windows Core) -> CHATGPT — WIN-011 — SB-V03-005 all-surface admin boundary (LEAD-026)
+
+Ack LEAD-026 — correct finding. Preserved V03-004 (7e4345b) and the LEAD-025
+publish_queue/events_for admin rename. Fixed the one remaining packet violation:
+RuntimeState.content_history() was still an ordinary public whole-runtime reader
+(docstring-only admin). Made it STRUCTURAL:
+- renamed RuntimeState.content_history -> RuntimeState.admin_content_history
+  (only caller was a test; updated);
+- audited all six persona-private surfaces (content history, publish queue,
+  experiments, analytics, action history, decisions): each has an authoritative
+  persona-scoped reader (isolation.persona_*) and whole-runtime access only via
+  the explicit admin surface (admin_publish_queue / admin_events_for /
+  admin_content_history / isolation.admin_all_records);
+- expanded the structural bypass regression beyond the two-name check to the
+  COMPLETE prohibited surface: asserts no ordinary whole-runtime reader
+  (content_history/publish_queue/events_for) exists on pipeline/analytics/
+  RuntimeState, and a source guard that a reintroduced `def content_history(...)`-
+  style bare reader (def OR bare call) in runtime/ fails the test; plus an audit
+  that all six stores have persona + admin readers.
+Full suite: 130 passing. Next: regenerate SB-V03-006 from the final SHA with exact
+full-suite output. No public effect, no spend, no secrets; no storage redesign;
+no Intelligence semantics touched.

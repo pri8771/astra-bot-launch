@@ -66,7 +66,7 @@ class DecisionTest(unittest.TestCase):
         decision.run_cycle("social-a", "social-a")
         # social-b has no signals and no content
         b = BotState.load("social-b")
-        self.assertEqual(b.content_history(), [])
+        self.assertEqual(b.admin_content_history(), [])
 
     def test_learning_is_persisted_after_create(self):
         # Regression: the outer cycle save must not clobber the hypothesis written

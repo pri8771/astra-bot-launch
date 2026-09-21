@@ -78,38 +78,69 @@ class ProductionReadPathTest(unittest.TestCase):
             self.assertTrue(all(r.get("persona") == GEN for r in gv), f"{store} GEN")
             self.assertTrue(all(r.get("persona") == CUL for r in cv), f"{store} CUL")
 
-    def test_no_non_admin_whole_runtime_reader_exists_to_bypass_boundary(self):
-        # SB-V03-005 LEAD-025: the raw whole-runtime readers are STRUCTURALLY
-        # admin-named, so there is no non-admin whole-runtime reader a
-        # persona-facing production path could call to bypass the boundary.
-        self.assertFalse(hasattr(pipeline, "publish_queue"),
-                         "non-admin pipeline.publish_queue must not exist")
-        self.assertFalse(hasattr(analytics, "events_for"),
-                         "non-admin analytics.events_for must not exist")
-        # The admin-named readers exist and are the sanctioned whole-runtime path.
-        self.assertTrue(hasattr(pipeline, "admin_publish_queue"))
-        self.assertTrue(hasattr(analytics, "admin_events_for"))
+    # The COMPLETE prohibited raw-reader surface (SB-V03-005 LEAD-026): for each
+    # persona-private store, the bare whole-runtime reader name that must NOT
+    # exist as an ordinary public callable, and the admin-named replacement that
+    # must exist. This is the full six-store surface, not a two-name list.
+    PROHIBITED_BARE = [
+        ("pipeline", "publish_queue", "admin_publish_queue"),
+        ("analytics", "events_for", "admin_events_for"),
+        ("state.RuntimeState", "content_history", "admin_content_history"),
+    ]
+    # Bare reader words that must never appear as an ordinary `def` in runtime/
+    # (only admin_/persona_-prefixed definitions are allowed).
+    BARE_READER_WORDS = ("content_history", "publish_queue", "events_for")
 
-    def test_no_runtime_module_calls_a_raw_whole_runtime_reader_bypass(self):
-        # Static production-path guard: no runtime/ module names the removed raw
-        # readers (a bypass would fail to import/resolve, but we also assert the
-        # source is clean so a reintroduced bypass is caught in review).
+    def _resolve(self, dotted):
+        from runtime import pipeline as _p, analytics as _a
+        from runtime import state as _s
+        return {"pipeline": _p, "analytics": _a,
+                "state.RuntimeState": _s.RuntimeState}[dotted]
+
+    def test_no_ordinary_whole_runtime_reader_exists_on_any_surface(self):
+        # Every persona-private store: the bare whole-runtime reader must be gone
+        # and only the admin-named one remains. Covers content_history too, which
+        # the previous two-name test missed (LEAD-026).
+        for owner, bare, admin in self.PROHIBITED_BARE:
+            obj = self._resolve(owner)
+            self.assertFalse(hasattr(obj, bare),
+                             f"ordinary whole-runtime reader {owner}.{bare} must not exist")
+            self.assertTrue(hasattr(obj, admin),
+                            f"admin reader {owner}.{admin} must exist")
+
+    def test_reintroducing_a_bare_whole_runtime_reader_would_fail(self):
+        # Structural source guard: no runtime/ module DEFINES or CALLS a bare
+        # (non-admin/non-persona) whole-runtime reader for any of the six stores.
+        # A reintroduced `def content_history(...)` / `def publish_queue(...)` /
+        # `def events_for(...)` — or a bare call to one — fails this test.
         import re
         runtime_dir = Path(__file__).resolve().parent.parent / "runtime"
+        words = "|".join(self.BARE_READER_WORDS)
+        def_pat = re.compile(rf"\bdef\s+({words})\b")
+        call_pat = re.compile(rf"(?<![\w.])(?:self\.)?({words})\s*\(")
         bad = []
-        pat = re.compile(r"\b(publish_queue|events_for)\s*\(")
-        for py in runtime_dir.glob("*.py"):
+        for py in sorted(runtime_dir.glob("*.py")):
             for i, line in enumerate(py.read_text().splitlines(), 1):
                 code = line.split("#", 1)[0]
-                for m in pat.finditer(code):
-                    name = m.group(1)
-                    # allow the admin-prefixed and persona-prefixed names
+                if def_pat.search(code):
+                    bad.append(f"{py.name}:{i}: bare def -> {line.strip()}")
+                for m in call_pat.finditer(code):
                     start = m.start(1)
-                    prefix = code[max(0, start - 6):start]
+                    prefix = code[max(0, start - 8):start]
                     if prefix.endswith("admin_") or prefix.endswith("persona_"):
                         continue
-                    bad.append(f"{py.name}:{i}: {line.strip()}")
-        self.assertEqual(bad, [], f"raw whole-runtime reader bypass in runtime/: {bad}")
+                    bad.append(f"{py.name}:{i}: bare call -> {line.strip()}")
+        self.assertEqual(bad, [], f"bare whole-runtime reader surface in runtime/: {bad}")
+
+    def test_all_six_persona_stores_have_persona_and_admin_readers(self):
+        # Audit: every persona-private store surface has an authoritative
+        # persona-scoped reader AND an explicit admin reader (whole-runtime access
+        # only via the admin boundary).
+        for store in isolation.PERSONA_SCOPED_STORES:
+            self.assertIn(store, isolation.PERSONA_SCOPED_READERS)
+            self.assertIn(store, isolation._ADMIN_READERS)
+            # admin_all_records is the only sanctioned whole-runtime entry point.
+            self.assertIsInstance(isolation.admin_all_records("social-a", store), list)
 
     def test_reconcile_uses_admin_boundary_not_persona_read(self):
         # The worker reconciliation read is a deliberate runtime-wide admin read;

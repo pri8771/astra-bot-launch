@@ -134,10 +134,12 @@ class RuntimeState:
         content = {"recorded_at": now_iso(), **content}
         append_jsonl(paths.content_dir(self.bot) / "content_history.jsonl", content)
 
-    def content_history(self) -> list[dict]:
-        """ADMIN/whole-runtime read (all personas). Persona-facing production
-        reads must use ``runtime.isolation.persona_content_history`` /
-        ``persona_records`` instead (SB-V03-005 read boundary)."""
+    def admin_content_history(self) -> list[dict]:
+        """ADMIN/INTERNAL whole-runtime read (all personas), structurally
+        admin-named (SB-V03-005 LEAD-026): there is no ordinary public
+        whole-runtime content-history reader. Persona-facing production reads must
+        use ``runtime.isolation.persona_content_history`` / ``persona_records``;
+        deliberate runtime-wide reads go through ``isolation.admin_all_records``."""
         return read_jsonl(paths.content_dir(self.bot) / "content_history.jsonl")
 
 
