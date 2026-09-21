@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T04:05:00Z",
+  "updated_at": "2026-09-21T04:06:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "fast_track_four_lane_execution",
+  "status": "fast_track_four_lane_execution_canary_not_started",
   "runtime_scope": {
     "autonomous_bots": [
       "social-a",
@@ -24,26 +24,26 @@
   "worker_lanes": {
     "core": {
       "branch": "claude/social-bots-windows-core-host",
-      "last_verified_head": "5318065aad6e38de1e3313ad984d09451a2dfcb7",
-      "last_verified_commit_at": "2026-09-21T02:00:05Z",
-      "activity": "reactivated_fast_track_v03_closure"
+      "last_verified_head": "175f741fcedace3113191a847d6a7568d77b9cde",
+      "last_verified_commit_at": "2026-09-21T02:20:02Z",
+      "activity": "v03_004_repair_submitted_source_review_positive_macqa_verification_assigned_v03_005_active"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
-      "last_verified_head": "feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d",
-      "last_verified_commit_at": "2026-09-21T02:50:51Z",
-      "activity": "active_fast_track_v05_v15_repairs"
+      "last_verified_head": "c27882546940536dd16c172ebd277664396c7cea",
+      "last_verified_commit_at": "2026-09-21T03:40:08Z",
+      "activity": "heartbeat_progress_only_since_fast_track_v05_repair_resume_assigned"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
-      "last_verified_head": "ede387e256be19d6aaaf1e6c96151d7218221d33",
-      "last_verified_commit_at": "2026-09-21T02:42:30Z",
-      "activity": "heartbeat_bootstrap_passed_hourly_authorized_qa_active"
+      "last_verified_head": "d0972adc15917ff9fca3edf48e1cd740ec61b66a",
+      "last_verified_commit_at": "2026-09-21T03:57:57Z",
+      "activity": "heartbeat_bootstrap_passed_hourly_authorized_independent_v03_004_verification_assigned"
     },
     "development_sessions_live": true,
-    "current_remote_activity_evidence": "signed Intelligence repair commits plus signed Mac-QA commits and successful GitHub CI",
+    "current_remote_activity_evidence": "signed Windows/Core, Intelligence and Mac-QA worker commits plus independently verified GitHub CI; dedicated canary lane still has lead-only commits",
     "social_bot_recurring_runtime_liveness": "not_verified",
-    "note": "Development source activity is real, but neither target heartbeat lane has passed the required durable 3x approximately-15-minute history. Intelligence HEARTBEAT_LOG contains only the seed sequence 0 despite a sequence-4 snapshot; Mac-QA sequences 1-4 are burst updates minutes apart. These are not V0.7 recurring Social Bots runtime liveness evidence.",
+    "note": "Mac-QA has real durable coordination-heartbeat cadence and is authorized hourly. Intelligence has two real timed checkpoints but is not hourly-authorized. These heartbeats prove GitHub coordination only, not V0.7 recurring Social Bots runtime liveness. Heartbeat never blocks implementation or the V0.4 canary.",
     "windows_available": true,
     "heartbeat_validation": {
       "target_lanes": [
@@ -54,24 +54,24 @@
       "interval_minutes": 15,
       "lead_ack_required": true,
       "windows_standby": false,
-      "intelligence_bootstrap_consecutive_verified": 0,
+      "intelligence_bootstrap_consecutive_verified": 2,
       "intelligence_steady_hourly_authorized": false,
       "mac_qa_bootstrap_consecutive_verified": 3,
       "mac_qa_steady_hourly_authorized": true,
-      "truth_rule": "Only durable HEARTBEAT_LOG.jsonl worker entries approximately 15 minutes apart count; do not infer cadence from HEARTBEAT.json sequence or burst submission updates."
+      "truth_rule": "Only durable HEARTBEAT_LOG.jsonl worker entries approximately 15 minutes apart count; snapshot sequence and burst state-transition markers do not independently prove cadence."
     }
   },
   "tests": {
-    "core_latest_worker_reported_full_suite": 91,
+    "core_latest_worker_reported_full_suite": 115,
     "intelligence_latest_worker_reported_full_suite": 185,
     "mac_qa_latest_worker_reported_full_suite": 38,
     "mac_qa_github_ci_head": "success",
     "mac_qa_github_ci_run_id": 35555060783,
-    "lead_note": "Mac-QA GitHub-hosted CI is independently verified green. Intelligence 185 remains a worker-local suite claim supplemented by lead source/test inspection; CI has not yet been integrated into that branch."
+    "lead_note": "Mac-QA GitHub-hosted CI is independently verified green. Core reports 115 local tests for the V03-004 repair; Mac QA is assigned an independent branch-compatible verification before canonical acceptance changes. Intelligence 185 remains the prior worker-local suite claim."
   },
   "lead_review": {
-    "review_id": "LEAD-020",
-    "review_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md",
+    "review_id": "LEAD-023",
+    "review_ref": "social-bots/lead-reviews/LEAD-023_2026-09-21T0006.md",
     "accepted": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -99,12 +99,12 @@
       "SB-V20-004"
     ],
     "key_findings": [
-      "Heartbeat bootstrap failed for both target lanes: Intelligence lacks durable history beyond seed seq0; Mac-QA updates are burst submissions rather than ~15-minute intervals.",
-      "Mac-QA SB-CTL-012 validator and SB-CTL-006 CI are accepted; GitHub Actions run 35555060783 succeeded at ede387e.",
-      "V13 metric semantics and V14 persona-scoped audience memory close the prior LEAD-019 findings and are accepted as engineering artifacts.",
-      "V05-001 live HTTPS path is broken: http.client.HTTPSConnection is invoked with unsupported server_hostname keyword; trusted live HTTPS evidence is not proven.",
-      "V15 measurement provenance is improved but production experiment persistence/readers remain bot-wide rather than authoritative persona-scoped.",
-      "V0.4 canary owner authorization already exists for one bounded existing-subscription call; the remaining execution blocker is an authenticated no-additional-spend host after heartbeat validation."
+      "Mac-QA durable heartbeat history now contains multiple real approximately-15-minute intervals; hourly coordination cadence is authorized, but this is not V0.7 runtime liveness proof.",
+      "Windows Core commit 175f741 appears to close the LEAD-019 side-effectful migration hole: load/staging is side-effect free and durable migration writes are fenced. Formal SB-V03-004 status remains CHANGES_REQUIRED pending independent Mac-QA execution/report.",
+      "SB-V03-005 remains the next Core correctness task because authoritative persona-scoped production reads are incomplete; V03-006 remains blocked.",
+      "Intelligence has heartbeat progress but no new V05-001/V15-001 source repair since fast-track activation; the lane has been explicitly told to resume implementation immediately.",
+      "The V0.4 canary branch still has no Claude worker execution or SB-V04-005 evidence. Heartbeat is not a prerequisite; an actually authenticated local Claude Code subscription host is still unverified.",
+      "The separate remote-worker audit attempt failed on private-repo auth visibility and provides no Social Bots acceptance evidence."
     ]
   },
   "public_actions": {
@@ -131,24 +131,23 @@
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
-    "v04_real_canary_status": "READY_NOW_ON_AUTHENTICATED_LOCAL_HOST",
+    "v04_real_canary_status": "READY_BUT_NO_WORKER_EXECUTION_VISIBLE",
     "v04_promotion_blocked_until": [
       "SB-V04-005",
       "SB-EVD-002"
     ]
   },
   "next_core": [
-    "reactivate claude/social-bots-windows-core-host now",
-    "repair V03-004 migration side effects under ownership fence",
-    "repair V03-005 authoritative persona-scoped production reads",
-    "generate SB-V03-006",
+    "complete SB-V03-005 authoritative persona-scoped production read boundary immediately",
+    "regenerate SB-V03-006 fresh acceptance bundle after V03-005",
+    "hold SB-V03-004 implementation unless Mac-QA independent verification finds a concrete defect",
     "then reconcile V04 dependency chain"
   ],
   "next_intelligence": [
-    "repair V05-001 actual HTTPS pinned-IP TLS/SNI/certificate execution",
-    "repair V15-001 persona-scoped production experiment APIs",
-    "submit current V16/V17/V20-002 for fresh lead audit",
-    "continue heartbeat in background; it does not block work"
+    "resume SB-V05-001 actual HTTPS pinned-IP TLS/SNI/certificate execution immediately",
+    "repair SB-V15-001 persona-scoped production experiment APIs",
+    "keep heartbeat in background and do not pause source work",
+    "preserve V16/V17/V20-002 for later lead audit"
   ],
   "management_model": {
     "style": "artifact_oriented",
@@ -156,33 +155,33 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-020_2026-09-20T2251.md",
+    "lead_review_current": "lead-reviews/LEAD-023_2026-09-21T0006.md",
     "next_phase_plan": "NEXT_PHASE_TWO_INSTANCE_PLAN.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md"
   },
   "next_windows": [
-    "reactivate claude/social-bots-windows-core-host now",
-    "repair V03-004 migration side effects under ownership fence",
-    "repair V03-005 authoritative persona-scoped production reads",
-    "generate SB-V03-006",
-    "then reconcile V04 dependency chain"
+    "complete SB-V03-005 authoritative persona-scoped production read boundary immediately",
+    "regenerate SB-V03-006",
+    "continue without heartbeat deferral"
   ],
   "next_mac_qa": [
-    "continue CI/artifact/integration QA",
-    "continue real heartbeat proof in background",
+    "switch routine coordination heartbeat to hourly",
+    "independently verify Windows Core commit 175f741 for SB-V03-004 without editing Core source",
+    "continue CI/artifact/integration QA after the verification report",
     "do not own V0.4 canary; dedicated local canary lane owns it"
   ],
   "priority_zero": {
     "artifact": "SB-V04-005",
     "branch": "claude/social-bots-v04-live-canary",
-    "executor_plan": "Start dedicated local Claude Code session now on claude/social-bots-v04-live-canary; heartbeat validation is not a prerequisite.",
+    "executor_plan": "Start/resume an actual local Claude Code session now on claude/social-bots-v04-live-canary; heartbeat validation is not a prerequisite.",
     "real_source_required": true,
     "actual_claude_subscription_call_required": true,
     "fixtures_or_injected_runner_allowed": false,
     "public_effect_allowed": false,
     "owner_authorized_bounded_existing_subscription_call": true,
-    "authenticated_host_verified": false
+    "authenticated_host_verified": false,
+    "worker_activity": "not_detected_as_of_LEAD_023"
   },
   "fast_track": {
     "active": true,
