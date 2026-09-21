@@ -1,0 +1,18 @@
+### Live-route refusal evidence — two independent layers, no manifest in force
+### date: 2026-09-21T18:33:19Z
+
+--- layer 1: the bounded worker entrypoint refuses before any provider exists ---
+LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+exit=6
+
+--- layer 2: the spawn point itself refuses, whatever entrypoint reached it ---
+any_live_authorization -> False
+reason: no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations; no live model call is authorized
+resolved provider : claude-code-subscription-v1 | adaptive = True
+available()       : False
+reason            : live model call not authorized: no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations; no live model call is authorized
+
+--- layer 2 also holds for a real provider instance constructed directly ---
+available(): False
+propose() : None
+reason    : live model call not authorized: no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations; no live model call is authorized

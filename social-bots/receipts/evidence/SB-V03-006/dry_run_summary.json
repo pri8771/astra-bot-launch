@@ -1,0 +1,15 @@
+{
+  "all_pass": true,
+  "runs": [
+    {
+      "social-a": true
+    },
+    {
+      "social-b": true
+    },
+    {
+      "social-c": true
+    }
+  ],
+  "cultural_withheld": true
+}

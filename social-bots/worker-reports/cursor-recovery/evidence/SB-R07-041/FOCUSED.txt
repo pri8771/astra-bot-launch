@@ -1,0 +1,38 @@
+test_a_valid_manifest_is_in_force (tests.test_review_hardening.SpawnPointGuardTest.test_a_valid_manifest_is_in_force)
+A structurally valid, unexpired manifest answers yes. ... ok
+test_an_api_key_blocks_regardless_of_manifests (tests.test_review_hardening.SpawnPointGuardTest.test_an_api_key_blocks_regardless_of_manifests)
+The paid-API route is never in force, whatever a manifest says. ... ok
+test_an_injected_runner_is_exempt_because_it_spawns_nothing (tests.test_review_hardening.SpawnPointGuardTest.test_an_injected_runner_is_exempt_because_it_spawns_nothing)
+The test seam must keep working; it launches no subprocess. ... ok
+test_no_manifest_means_no_live_authorization (tests.test_review_hardening.SpawnPointGuardTest.test_no_manifest_means_no_live_authorization)
+The weak, scope-free question the spawn point can actually answer. ... ok
+test_rebinding_REAL_CLI_RUNNER_alias_cannot_un_guard_the_real_launcher (tests.test_review_hardening.SpawnPointGuardTest.test_rebinding_REAL_CLI_RUNNER_alias_cannot_un_guard_the_real_launcher)
+SB-R07-041: rebinding the public alias must not disable spawn refusal. ... ok
+test_resolve_provider_cannot_produce_a_usable_live_route (tests.test_review_hardening.SpawnPointGuardTest.test_resolve_provider_cannot_produce_a_usable_live_route)
+SBOTS_REASONING=claude-cli resolves, but the provider refuses to run. ... ok
+test_run_worker_entrypoint_refuses_live_route_without_manifest (tests.test_review_hardening.SpawnPointGuardTest.test_run_worker_entrypoint_refuses_live_route_without_manifest)
+SB-R07-041: production run_worker.py must exit 6 before any work. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpkcmxmf2y/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_the_real_cli_provider_refuses_without_authorization (tests.test_review_hardening.SpawnPointGuardTest.test_the_real_cli_provider_refuses_without_authorization)
+A provider that would launch the real CLI must be unavailable now. ... ok
+test_a_valid_manifest_permits_the_live_route (tests.test_review_hardening.LiveRouteGuardTest.test_a_valid_manifest_permits_the_live_route)
+The guard defers to authorize; it is not an independent veto. ... ok
+test_claude_cli_mode_is_refused_without_a_manifest (tests.test_review_hardening.LiveRouteGuardTest.test_claude_cli_mode_is_refused_without_a_manifest)
+SBOTS_REASONING=claude-cli must not be enough to reach the real CLI. ... ok
+test_model_mode_is_live_unless_the_caller_says_it_is_a_replay (tests.test_review_hardening.LiveRouteGuardTest.test_model_mode_is_live_unless_the_caller_says_it_is_a_replay)
+A registered live callable is a live route; a receipt replay is not. ... ok
+test_non_live_modes_are_permitted (tests.test_review_hardening.LiveRouteGuardTest.test_non_live_modes_are_permitted)
+The deterministic modes are not a live route and must not be blocked. ... ok
+test_a_normal_run_records_a_non_live_route (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_a_normal_run_records_a_non_live_route)
+An ordinary invocation carries a route decision, not an empty field. ... ok
+test_exit_six_and_nothing_else_happens (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_exit_six_and_nothing_else_happens)
+A live mode exits 6 before the heartbeat, the ack or any task claim. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmphblaf897/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_the_refusal_is_recorded_on_the_invocation_receipt (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_the_refusal_is_recorded_on_the_invocation_receipt)
+live_model_call is derived from the guard, not hard-coded. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmp5tankbjc/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.131s
+
+OK

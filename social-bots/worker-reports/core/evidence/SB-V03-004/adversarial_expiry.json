@@ -1,0 +1,12 @@
+{
+  "scenario": "lease expires mid-cycle, worker B takes over, old owner A tries to commit",
+  "old_owner_gen": 1,
+  "fence_lost_raised": true,
+  "fence_lost": "fence lost for 'cycle:social-b': held gen 1 (cc15906222a849658a5ecffd2cc1ebb5); on-disk gen 2 0c826912a20a471795d6e9fa4c0b9c44",
+  "experiment_files_written": [],
+  "publish_queue_entries": 0,
+  "bot_state_cycles": 0,
+  "consumed_ids": [],
+  "owner_after_race": "B",
+  "generation_after_race": 2
+}

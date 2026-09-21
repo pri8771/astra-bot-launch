@@ -1,0 +1,9 @@
+test_concurrent_general_cultural_no_lost_shared_update (tests.test_isolation.IsolationContractTest.test_concurrent_general_cultural_no_lost_shared_update) ... ok
+test_filters_partition_mixed_store_without_bleed (tests.test_isolation.IsolationContractTest.test_filters_partition_mixed_store_without_bleed) ... ok
+test_ids_are_persona_derived_and_collision_free (tests.test_isolation.IsolationContractTest.test_ids_are_persona_derived_and_collision_free) ... ok
+test_real_general_and_cultural_cycles_do_not_bleed (tests.test_isolation.IsolationContractTest.test_real_general_and_cultural_cycles_do_not_bleed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.104s
+
+OK

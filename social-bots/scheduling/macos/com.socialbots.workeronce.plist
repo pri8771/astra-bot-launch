@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  SB-V07-001 launchd agent template for bin/worker_once.py.
+
+  This is a TEMPLATE. install_launchd.sh substitutes every double-underscore
+  placeholder below before copying this into ~/Library/LaunchAgents/,
+  renaming it to match the per-lane Label. Do not load this file with a
+  literal, unsubstituted placeholder still present.
+
+  Loading this agent proves nothing on its own; see ../README.md and
+  ../RUNBOOK.md for how to confirm a real invocation happened.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.socialbots.workeronce.__LANE__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PYTHON_EXE__</string>
+        <string>bin/worker_once.py</string>
+        <string>--lane</string>
+        <string>__LANE__</string>
+        <string>--branch</string>
+        <string>__BRANCH__</string>
+        <string>--repo-root</string>
+        <string>__REPO_ROOT__</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__REPO_ROOT__/social-bots</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>SBOTS_HOME</key>
+        <string>__SBOTS_HOME__</string>
+    </dict>
+
+    <!-- Fires on a repeating interval, never as a daemon; each firing is
+         one bounded worker_once.py invocation that exits. StartInterval
+         must be an <integer> for launchd, but this checked-in template
+         keeps it as a <string> placeholder so the template file itself
+         stays parseable; install_launchd.sh rewrites this whole element
+         (not just the token text) to a real <integer> value. -->
+    <key>StartInterval</key>
+    <string>__INTERVAL_SECONDS__</string>
+
+    <!-- Do not fire immediately when the agent is (re)loaded; wait for the
+         first StartInterval tick so `launchctl bootstrap` during install
+         does not itself count as an invocation. -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>AbandonProcessGroup</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>StandardOutPath</key>
+    <string>__LOG_DIR__/worker-once.__LANE__.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>__LOG_DIR__/worker-once.__LANE__.err.log</string>
+</dict>
+</plist>

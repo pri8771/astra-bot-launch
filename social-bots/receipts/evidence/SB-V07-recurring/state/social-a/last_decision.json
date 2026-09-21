@@ -1,0 +1,66 @@
+{
+  "alternatives": [
+    {
+      "action": "NO_ACTION",
+      "duplication_risk": 0.0,
+      "expected_learning": 0.0,
+      "expected_value": 0.05,
+      "rationale": "no unconsumed evidence since last observation",
+      "reversibility": 1.0,
+      "risk": 0.0
+    }
+  ],
+  "bot": "social-a",
+  "chosen": {
+    "action": "NO_ACTION",
+    "duplication_risk": 0.0,
+    "expected_learning": 0.0,
+    "expected_value": 0.05,
+    "rationale": "no unconsumed evidence since last observation",
+    "reversibility": 1.0,
+    "risk": 0.0
+  },
+  "chosen_reason": "no unconsumed evidence since last observation",
+  "cycle": 2,
+  "execute": {
+    "effect": "none",
+    "outcome": "no_action",
+    "performed": false
+  },
+  "fence": {
+    "generation": 1,
+    "lease_id": "36f88fc374ef49a39a9468d937db2905",
+    "task_id": "cycle:social-a",
+    "worker_id": "w-vm-1520-7f8722"
+  },
+  "learn": {
+    "updated": false
+  },
+  "observe": {
+    "changed": false,
+    "consumed_count": 1,
+    "observation_fingerprint": "6ca2e5476d9a7e9a",
+    "pending_count": 0,
+    "total_signals": 1
+  },
+  "orient": {
+    "inferred": [],
+    "known": [],
+    "objective": "grow reply-quality for The Ledger via evidence-based experiments",
+    "summary": "no new signals; nothing to reconsider",
+    "uncertain": []
+  },
+  "outcome": "no_action",
+  "persona": "social-a",
+  "recorded_at": "2026-09-21T07:14:46+00:00",
+  "required_authority": "none",
+  "schedule": {
+    "next_check_in_hours": 24,
+    "note": "wait on events/timers, not constant polling",
+    "trigger": "deterministic timer + new-signal event"
+  },
+  "verify": {
+    "note": "no effect to verify",
+    "verified": true
+  }
+}

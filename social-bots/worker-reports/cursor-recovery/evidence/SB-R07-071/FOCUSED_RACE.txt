@@ -1,0 +1,9 @@
+test_concurrent_processes_produce_exactly_one_winner (tests.test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_concurrent_processes_produce_exactly_one_winner)
+N processes racing the same session_id → 1 durable record, N-1 duplicates. ... ok
+test_flock_availability_is_exported_for_host_assertions (tests.test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_flock_availability_is_exported_for_host_assertions)
+Deployments must be able to refuse the weak non-POSIX path. ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.274s
+
+OK

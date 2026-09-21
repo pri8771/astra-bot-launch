@@ -1,0 +1,100 @@
+### SB-V07-001 engineering demonstration — sequential bounded worker-once invocations
+### host: Linux 6.18.44-fc-v37 ; Python 3.11.15 ; date: 2026-09-21T18:21:45Z
+### Each invocation consumes lead direction from GitHub via plain git (no gh, no token relay).
+### ENGINEERING DEMONSTRATION ONLY: direct CLI invocations on a CCR Linux container,
+### NOT OS-scheduler firings on an owner-authorized always-on host.
+### Therefore this is NOT SB-V07-002 operational recurring-liveness proof.
+
+--- invocation 1 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T182145Z-92619494",
+  "invocation_id": "inv-20260921T182145Z-f28d4aa2",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 2 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T182146Z-26d17ec9",
+  "invocation_id": "inv-20260921T182146Z-1aa8dfca",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 3 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T182147Z-6bd37666",
+  "invocation_id": "inv-20260921T182147Z-94eb2bc0",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 4 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T182148Z-d50a963c",
+  "invocation_id": "inv-20260921T182148Z-a328cf7f",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+exit=0
+
+--- no-overlap: hold all three candidate leases with a foreign worker id, then invoke ---
+all three cycle leases held by held-by-other-worker
+{
+  "session_id": "s-20260921T182148Z-1162ad52",
+  "invocation_id": "inv-20260921T182148Z-b7e8dba5",
+  "claim_outcome": "no_overlap",
+  "candidates_tried": [
+    {
+      "bot": "social-a",
+      "task_id": "cycle:social-a",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    },
+    {
+      "bot": "social-b",
+      "task_id": "cycle:social-b",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    },
+    {
+      "bot": "social-c",
+      "task_id": "cycle:social-c",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    }
+  ],
+  "exit_code": 3
+}
+exit=3
+
+--- live-route refusal: SBOTS_REASONING=claude-cli with no authorization manifest ---
+LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+exit=6
+
+--- fail-closed: a lane with no canonical direction entry refuses to invent one ---
+DIRECTION ERROR: STATE.json has no worker_lanes entry matching lane 'no-such-lane'
+exit=1

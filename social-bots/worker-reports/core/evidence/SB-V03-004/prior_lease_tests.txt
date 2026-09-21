@@ -1,0 +1,14 @@
+test_atomic_acquire_rejects_overlap (tests.test_leasing.LeasingTest.test_atomic_acquire_rejects_overlap) ... ok
+test_release_only_by_owner (tests.test_leasing.LeasingTest.test_release_only_by_owner) ... ok
+test_renew_keeps_ownership (tests.test_leasing.LeasingTest.test_renew_keeps_ownership) ... ok
+test_stale_takeover_sets_reconcile (tests.test_leasing.LeasingTest.test_stale_takeover_sets_reconcile) ... ok
+test_concurrent_personas_no_lost_update (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_concurrent_personas_no_lost_update) ... ok
+test_runtime_task_id_ignores_persona (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_runtime_task_id_ignores_persona) ... ok
+test_second_persona_on_runtime_blocked_while_held (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_second_persona_on_runtime_blocked_while_held) ... ok
+test_concurrent_fresh_create_single_owner (tests.test_concurrency.StaleTakeoverRaceTest.test_concurrent_fresh_create_single_owner) ... ok
+test_concurrent_stale_takeover_single_owner (tests.test_concurrency.StaleTakeoverRaceTest.test_concurrent_stale_takeover_single_owner) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.751s
+
+OK

@@ -1,0 +1,14 @@
+{
+  "artifact": "SB-R07-061",
+  "requested_status": "SUBMITTED",
+  "source_sha": "3e7bcc740ff14d667f5913f06b7db8b96a7bc183",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "focused_result": "5 passed",
+  "full_suite_result": "416 passed, 2 skipped",
+  "runner": "runtime.dry_run_runner",
+  "public_effect_budget": 0,
+  "next_artifact": "SB-R07-043-blocked-or-074-host-gated",
+  "recorded_at": "2026-09-21T19:54:46Z"
+}

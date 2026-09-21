@@ -1,0 +1,5 @@
+{"invocation_id": "inv-20260921T182715Z-97b0f423", "lane": "windows-core", "phase": "open", "recorded_at": "2026-09-21T18:27:15Z", "session_id": "s-crash-014"}
+{"invocation_id": "inv-20260921T182716Z-100cf821", "lane": "windows-core", "phase": "open", "recorded_at": "2026-09-21T18:27:16Z", "session_id": "s-immediately-after-crash"}
+{"claim_outcome": "no_overlap", "exit_code": 3, "invocation_id": "inv-20260921T182716Z-100cf821", "lane": "windows-core", "phase": "close", "recorded_at": "2026-09-21T18:27:16Z", "session_id": "s-immediately-after-crash", "status": "complete", "work_outcome": "no_overlap_all_tasks_held"}
+{"invocation_id": "inv-20260921T182921Z-827f3fcf", "lane": "windows-core", "phase": "open", "recorded_at": "2026-09-21T18:29:21Z", "session_id": "s-restart-after-crash"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260921T182921Z-827f3fcf", "lane": "windows-core", "phase": "close", "recorded_at": "2026-09-21T18:29:21Z", "session_id": "s-restart-after-crash", "status": "complete", "work_outcome": "no_action"}

@@ -1,0 +1,12 @@
+test_cultural_withheld_does_not_register_experiment_or_queue (tests.test_review_gate.ReviewGateTest.test_cultural_withheld_does_not_register_experiment_or_queue) ... ok
+test_forced_fact_review_failure_blocks_experiment_and_queue (tests.test_review_gate.ReviewGateTest.test_forced_fact_review_failure_blocks_experiment_and_queue) ... ok
+test_forced_voice_review_failure_blocks_experiment_and_queue (tests.test_review_gate.ReviewGateTest.test_forced_voice_review_failure_blocks_experiment_and_queue) ... ok
+test_over_platform_limit_candidate_is_withheld (tests.test_review_gate.ReviewGateTest.test_over_platform_limit_candidate_is_withheld) ... ok
+test_passing_review_still_creates_candidate (tests.test_review_gate.ReviewGateTest.test_passing_review_still_creates_candidate) ... ok
+test_worker_receipt_for_forced_voice_failure_is_not_success (tests.test_review_gate.ReviewGateTest.test_worker_receipt_for_forced_voice_failure_is_not_success) ... ok
+test_worker_receipt_for_withheld_is_not_success (tests.test_review_gate.ReviewGateTest.test_worker_receipt_for_withheld_is_not_success) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.052s
+
+OK

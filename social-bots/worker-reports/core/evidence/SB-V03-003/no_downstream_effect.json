@@ -1,0 +1,40 @@
+{
+  "fact": {
+    "mode": "forced_fact_failure",
+    "bot": "social-b",
+    "outcome": "withheld",
+    "experiment_files": [],
+    "experiment_index_exists": false,
+    "publish_queue_entries": 0,
+    "gate_failures": [
+      {
+        "gate": "review",
+        "checks": [
+          {
+            "check": "fact",
+            "passed": false,
+            "reason": "forced fault injection"
+          }
+        ]
+      }
+    ]
+  },
+  "voice": {
+    "mode": "forced_voice_failure",
+    "bot": "social-b",
+    "outcome": "withheld",
+    "experiment_files": [],
+    "experiment_index_exists": false,
+    "publish_queue_entries": 0,
+    "receipt_example": {
+      "candidate_succeeded": false,
+      "chosen_action": "CREATE_CANDIDATE",
+      "cycle": 1,
+      "outcome": "withheld",
+      "persona": "social-b",
+      "reconciled": null,
+      "verified": true,
+      "withheld": true
+    }
+  }
+}

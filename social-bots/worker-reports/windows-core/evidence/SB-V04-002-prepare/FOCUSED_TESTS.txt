@@ -1,0 +1,111 @@
+test_a_failed_call_still_consumes_its_slot (tests.test_v04_authorization_gate.CallBudgetTest.test_a_failed_call_still_consumes_its_slot)
+No-retry: recording a failure never frees the slot for another attempt. ... ok
+test_audit_reports_reserved_but_unrecorded_slots (tests.test_v04_authorization_gate.CallBudgetTest.test_audit_reports_reserved_but_unrecorded_slots)
+A crash between reservation and invocation is visible, not silently reclaimed. ... ok
+test_budget_cannot_exceed_the_hard_ceiling (tests.test_v04_authorization_gate.CallBudgetTest.test_budget_cannot_exceed_the_hard_ceiling)
+Even a caller asking for more slots is clamped to the policy ceiling. ... ok
+test_exact_budget_is_enforced (tests.test_v04_authorization_gate.CallBudgetTest.test_exact_budget_is_enforced)
+Exactly max_calls slots exist; the next reservation fails closed. ... ok
+test_outcome_is_write_once (tests.test_v04_authorization_gate.CallBudgetTest.test_outcome_is_write_once)
+A recorded slot cannot be relabeled into a better outcome. ... ok
+test_reservation_is_durable_across_process_restart (tests.test_v04_authorization_gate.CallBudgetTest.test_reservation_is_durable_across_process_restart)
+A fresh CallBudget object sees slots consumed by an earlier process. ... ok
+test_unreserved_slot_cannot_record_an_outcome (tests.test_v04_authorization_gate.CallBudgetTest.test_unreserved_slot_cannot_record_an_outcome)
+An outcome may only exist for a slot that was actually reserved. ... ok
+test_api_key_presence_is_refused_even_with_a_valid_manifest (tests.test_v04_authorization_gate.GateTest.test_api_key_presence_is_refused_even_with_a_valid_manifest)
+ANTHROPIC_API_KEY would route to paid billing; the gate hard-stops on it. ... ok
+test_injected_runner_is_refused_even_with_a_valid_manifest (tests.test_v04_authorization_gate.GateTest.test_injected_runner_is_refused_even_with_a_valid_manifest)
+A live batch must use the real provider; no manifest can waive that. ... ok
+test_malformed_manifest_does_not_grant (tests.test_v04_authorization_gate.GateTest.test_malformed_manifest_does_not_grant)
+Unparseable or invalid manifest files are rejected with a stated reason. ... ok
+test_no_manifest_fails_closed (tests.test_v04_authorization_gate.GateTest.test_no_manifest_fails_closed)
+The current canonical state: an empty manifest dir denies live execution. ... ok
+test_repository_state_denies_live_execution_right_now (tests.test_v04_authorization_gate.GateTest.test_repository_state_denies_live_execution_right_now)
+The real canonical manifest directory must deny, not merely be absent. ... ok
+test_valid_scoped_manifest_grants (tests.test_v04_authorization_gate.GateTest.test_valid_scoped_manifest_grants)
+A correctly scoped fixture manifest grants, so denial cases are meaningful. ... ok
+test_wrong_scope_is_denied (tests.test_v04_authorization_gate.GateTest.test_wrong_scope_is_denied)
+A manifest only authorizes the exact artifact, lane and run scope it names. ... ok
+test_every_required_field_is_mandatory (tests.test_v04_authorization_gate.ManifestValidationTest.test_every_required_field_is_mandatory)
+A manifest that omits any required field is rejected, never defaulted. ... ok
+test_expired_manifest_is_rejected (tests.test_v04_authorization_gate.ManifestValidationTest.test_expired_manifest_is_rejected)
+An authorization that has lapsed is not an authorization. ... ok
+test_fixture_manifest_is_structurally_valid (tests.test_v04_authorization_gate.ManifestValidationTest.test_fixture_manifest_is_structurally_valid)
+The fixture baseline must be valid, or every negative case is vacuous. ... ok
+test_max_calls_cannot_exceed_the_hard_ceiling (tests.test_v04_authorization_gate.ManifestValidationTest.test_max_calls_cannot_exceed_the_hard_ceiling)
+No manifest can widen the batch beyond the conservative five-call plan. ... ok
+test_non_subscription_provider_mode_is_rejected (tests.test_v04_authorization_gate.ManifestValidationTest.test_non_subscription_provider_mode_is_rejected)
+Only the existing-subscription Claude Code route may ever be authorized. ... ok
+test_safety_postures_must_be_explicitly_false (tests.test_v04_authorization_gate.ManifestValidationTest.test_safety_postures_must_be_explicitly_false)
+A permissive or truthy safety posture invalidates the whole manifest. ... ok
+test_a_receipt_bound_to_another_context_is_rejected (tests.test_v04_divergence_prepare.DivergenceReportTest.test_a_receipt_bound_to_another_context_is_rejected)
+A receipt must bind to its own case's context digest, or it is invalid. ... ok
+test_differing_proposals_are_reported_as_material (tests.test_v04_divergence_prepare.DivergenceReportTest.test_differing_proposals_are_reported_as_material)
+Changed recommendation/ranking/estimates all count as material divergence. ... ok
+test_identical_proposals_are_reported_as_not_material (tests.test_v04_divergence_prepare.DivergenceReportTest.test_identical_proposals_are_reported_as_not_material)
+No-retry at the reporting layer: a null result is recorded, not rerun. ... ok
+test_missing_receipts_are_reported_as_not_material (tests.test_v04_divergence_prepare.DivergenceReportTest.test_missing_receipts_are_reported_as_not_material)
+A comparison with no receipt is never silently counted as divergent. ... ok
+test_synthetic_receipts_are_never_acceptance_evidence (tests.test_v04_divergence_prepare.DivergenceReportTest.test_synthetic_receipts_are_never_acceptance_evidence)
+Even fully material divergence from seam fixtures cannot be acceptance evidence. ... ok
+test_denied_execution_consumes_no_call_budget (tests.test_v04_divergence_prepare.ExecutionGateTest.test_denied_execution_consumes_no_call_budget)
+Failing closed must happen before any slot is reserved. ... ok
+test_execute_batch_fails_closed_without_a_manifest (tests.test_v04_divergence_prepare.ExecutionGateTest.test_execute_batch_fails_closed_without_a_manifest)
+With no canonical manifest, execution is denied before a provider exists. ... ok
+test_injected_provider_cannot_bypass_the_gate (tests.test_v04_divergence_prepare.ExecutionGateTest.test_injected_provider_cannot_bypass_the_gate)
+Supplying a fake provider does not make execution authorized. ... ok
+test_prepare_only_status_states_the_blocked_truth (tests.test_v04_divergence_prepare.ExecutionGateTest.test_prepare_only_status_states_the_blocked_truth)
+The prepare-only verdict must not imply V0.4 empirical acceptance. ... ok
+test_budget_exhaustion_stops_before_a_sixth_call (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_budget_exhaustion_stops_before_a_sixth_call)
+The sixth invocation is refused by the budget, not attempted. ... ok
+test_provider_exception_consumes_its_slot (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_provider_exception_consumes_its_slot)
+A crashing provider cannot silently hand its slot back. ... ok
+test_schema_invalid_proposal_is_rejected_and_recorded (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_schema_invalid_proposal_is_rejected_and_recorded)
+A malformed proposal never becomes a result; its slot is still spent. ... ok
+test_slot_is_reserved_before_the_provider_is_called (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_slot_is_reserved_before_the_provider_is_called)
+Atomic pre-spawn accounting: the budget moves before propose() runs. ... ok
+test_unavailable_provider_consumes_its_slot_and_is_recorded_truthfully (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_unavailable_provider_consumes_its_slot_and_is_recorded_truthfully)
+A failed call is an outcome, not a cue to retry. ... ok
+test_context_digests_are_distinct_per_case (tests.test_v04_divergence_prepare.HashingTest.test_context_digests_are_distinct_per_case)
+Five identical contexts would make some of the five calls redundant. ... ok
+test_every_case_emits_all_five_required_digests (tests.test_v04_divergence_prepare.HashingTest.test_every_case_emits_all_five_required_digests)
+Context, prompt, prompt-context, evidence bytes and evidence receipt. ... ok
+test_evidence_digests_track_the_snapshot_not_the_persona (tests.test_v04_divergence_prepare.HashingTest.test_evidence_digests_track_the_snapshot_not_the_persona)
+P0-P3 share E1's bytes/receipt digests; only E0 differs. ... ok
+test_prompt_digest_is_over_the_exact_production_prompt (tests.test_v04_divergence_prepare.HashingTest.test_prompt_digest_is_over_the_exact_production_prompt)
+The recorded prompt digest must hash the real prompt text, byte for byte. ... ok
+test_provider_config_is_one_configuration_for_the_whole_batch (tests.test_v04_divergence_prepare.HashingTest.test_provider_config_is_one_configuration_for_the_whole_batch)
+A per-case provider difference would confound any observed divergence. ... ok
+test_all_required_comparisons_are_single_variable (tests.test_v04_divergence_prepare.IsolationTest.test_all_required_comparisons_are_single_variable)
+P0|P1, P0|P2, P0|P3 vary persona alone; P0|E0 varies evidence alone. ... ok
+test_confounded_persona_variant_is_rejected (tests.test_v04_divergence_prepare.IsolationTest.test_confounded_persona_variant_is_rejected)
+If a 'persona-only' case also changed objective, the matrix must not build. ... ok
+test_evidence_change_invisible_to_the_digest_layer_fails_the_build (tests.test_v04_divergence_prepare.IsolationTest.test_evidence_change_invisible_to_the_digest_layer_fails_the_build)
+E2 differing from E1 only in summary makes P0|E0 non-isolated, so build fails. ... ok
+test_prompt_layer_catches_an_evidence_change_the_digest_layer_cannot_see (tests.test_v04_divergence_prepare.IsolationTest.test_prompt_layer_catches_an_evidence_change_the_digest_layer_cannot_see)
+The digest projection omits the signal summary; the prompt layer must not. ... ok
+test_held_constant_fields_are_identical_across_every_case (tests.test_v04_divergence_prepare.MatrixShapeTest.test_held_constant_fields_are_identical_across_every_case)
+Objective, pending count, duplication and prior hypotheses never vary. ... ok
+test_matrix_is_the_five_planned_cases (tests.test_v04_divergence_prepare.MatrixShapeTest.test_matrix_is_the_five_planned_cases)
+The matrix is exactly the plan's P0/P1/P2/P3/E0, in that order. ... ok
+test_missing_persona_slot_or_snapshot_is_refused (tests.test_v04_divergence_prepare.MatrixShapeTest.test_missing_persona_slot_or_snapshot_is_refused)
+An incomplete matrix is an error, not a silently smaller batch. ... ok
+test_one_cultural_workspace_is_included (tests.test_v04_divergence_prepare.MatrixShapeTest.test_one_cultural_workspace_is_included)
+The plan requires a cultural/Primandir workspace among the persona variants. ... ok
+test_fixture_snapshots_mark_the_matrix_engineering_only (tests.test_v04_divergence_prepare.ProvenanceTest.test_fixture_snapshots_mark_the_matrix_engineering_only)
+Fixtures can exercise the machinery but can never be acceptance evidence. ... ok
+test_live_capture_snapshots_clear_the_engineering_only_flag (tests.test_v04_divergence_prepare.ProvenanceTest.test_live_capture_snapshots_clear_the_engineering_only_flag)
+Only real captures make a prepared matrix acceptance-eligible in principle. ... ok
+test_prepared_artifact_is_immutable (tests.test_v04_divergence_prepare.WrittenArtifactTest.test_prepared_artifact_is_immutable)
+A prepared matrix is written once; rewriting it is refused. ... ok
+test_prompt_files_are_written_once_with_their_digests (tests.test_v04_divergence_prepare.WrittenArtifactTest.test_prompt_files_are_written_once_with_their_digests)
+Each case's exact prompt is preserved next to a digest manifest. ... ok
+test_round_trip_verification_recomputes_every_digest (tests.test_v04_divergence_prepare.WrittenArtifactTest.test_round_trip_verification_recomputes_every_digest)
+verify_written re-derives digests from content instead of trusting them. ... ok
+test_tampered_artifact_fails_verification (tests.test_v04_divergence_prepare.WrittenArtifactTest.test_tampered_artifact_fails_verification)
+Editing a written context without fixing its digest is detected. ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 0.058s
+
+OK

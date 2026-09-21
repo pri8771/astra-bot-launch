@@ -1,0 +1,24 @@
+test_attested_clean_host_is_suitable_candidate (tests.test_host_preflight.HostPreflightTest.test_attested_clean_host_is_suitable_candidate)
+With owner attestation and no ephemeral markers, mark as candidate. ... ok
+test_clean_host_without_attestation_is_inconclusive (tests.test_host_preflight.HostPreflightTest.test_clean_host_without_attestation_is_inconclusive)
+Even a clean host needs owner attestation before LIVE scheduler claims. ... ok
+test_cursor_hostname_is_unsuitable (tests.test_host_preflight.HostPreflightTest.test_cursor_hostname_is_unsuitable)
+Cloud Agent hostname patterns are not persistent owner hosts. ... ok
+test_overlay_root_is_unsuitable (tests.test_host_preflight.HostPreflightTest.test_overlay_root_is_unsuitable)
+An overlay/tmpfs root is ephemeral and cannot back V0.7 LIVE. ... ok
+test_owner_attestation_cannot_override_ephemeral_markers (tests.test_host_preflight.HostPreflightTest.test_owner_attestation_cannot_override_ephemeral_markers)
+Owner attestation does not wash away overlay/Cloud Agent signals. ... ok
+test_write_receipt_round_trip (tests.test_host_preflight.HostPreflightTest.test_write_receipt_round_trip) ... ok
+test_cli_writes_receipt (tests.test_host_preflight.PreflightCliTest.test_cli_writes_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.023s
+
+OK
+{
+  "written": "/tmp/tmp2a1y77du/receipt.json",
+  "verdict": "UNSUITABLE_NOT_PERSISTENT_OWNER_HOST",
+  "suitable_for_v07_live_scheduler": false,
+  "live_claim": false,
+  "blocker_count": 6
+}

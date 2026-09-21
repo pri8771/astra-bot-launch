@@ -1,0 +1,28 @@
+{
+  "acknowledged_at": "2026-09-21T18:21:49Z",
+  "acknowledgement_means": "consumed and acted on; not agreement or acceptance",
+  "direction": {
+    "artifacts": [],
+    "assignment": "NO LIVE MODEL CALLS; finish prepare-only V0.4 divergence matrix/hash/isolation/authorization/call-budget work, push exact evidence, then continue dependency-ready SB-V07-001 host-worker/OS-scheduler/session-heartbeat durability engineering",
+    "bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
+    "canonical_ref": "origin/chatgpt/social-bots-plan-20260920",
+    "canonical_sha": "7e9b37a9b1df8f5eed14c5904b681df378e12109",
+    "consumed_at": "2026-09-21T18:21:49Z",
+    "direction_id": "LEAD-039",
+    "fetch_error": null,
+    "fetch_ok": true,
+    "halt": false,
+    "lane": "windows-core",
+    "live_model_calls_authorized": false,
+    "notes": "active_fresh_session_visible_no_new_pushed_source_yet",
+    "raw_digest": "sha256:d523ef4a5810dc4c6da76ccac81c2bc439647d71518ad875d8e72c104f5e6e43",
+    "source": "state-json-fallback"
+  },
+  "invocation_id": "inv-20260921T182148Z-b7e8dba5",
+  "schema_version": 1,
+  "session_id": "s-20260921T182148Z-1162ad52"
+}

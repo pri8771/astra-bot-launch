@@ -1,0 +1,176 @@
+{
+  "acceptance_eligible": false,
+  "authorization_gate": {
+    "SB-V04-002": {
+      "authorized": false,
+      "live_execution_permitted": false,
+      "manifest_dir": "/home/user/astra-bot-launch/social-bots/authorizations",
+      "manifests_present": [],
+      "reason": "no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning."
+    },
+    "SB-V04-004": {
+      "authorized": false,
+      "live_execution_permitted": false,
+      "manifest_dir": "/home/user/astra-bot-launch/social-bots/authorizations",
+      "manifests_present": [],
+      "reason": "no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning."
+    }
+  },
+  "call_budget": {
+    "consumed": 0,
+    "max_calls": 5,
+    "outcomes": [],
+    "remaining": 5,
+    "reserved_not_recorded": [],
+    "retry_permitted": false,
+    "run_scope": "v04-divergence-prepare"
+  },
+  "case_digests": {
+    "E0": {
+      "context_sha256": "sha256:6697b546c432bc696fe6691737b21852b21f25ae2559896c250774ca86b53882",
+      "evidence_bytes_sha256": "sha256:2f9d45e54c7f0f6c9b99aa1298aa0abdd353a75d5e482499ff95963da75fc80d",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:43fe724f982f44ff416d02db3ee3c2ac762e6188650c89b29bb5a00c2994e2e3",
+      "prompt_context_sha256": "sha256:4b1c49f917406d5bf59312d874ae1214ade322bab76671a337c272c32437a021",
+      "prompt_sha256": "sha256:337966a952ee34822493d577fe4b7716ab4630cea947d0a6ca80a6c68550c591"
+    },
+    "P0": {
+      "context_sha256": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "prompt_context_sha256": "sha256:dc37bafc25aa3c8bd149ec36e4432bfa4a65aed25d16e75ae19e5efec8bc70f9",
+      "prompt_sha256": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443"
+    },
+    "P1": {
+      "context_sha256": "sha256:295f7c25385cea5a633e29c80ef8d3bc2ff0f684f9992e1c34f9ef0cc699b386",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "prompt_context_sha256": "sha256:7715d365a6f3a5698918efd9fbbd649b4fd84844e53cddb152e100870fccdc4d",
+      "prompt_sha256": "sha256:c990a6f0ac8873c8bc66fab27d3ea0ca013488a5b911dfcedf6e508d19e217a8"
+    },
+    "P2": {
+      "context_sha256": "sha256:5d04d0efdf5920416ce05618360cb6932ef7d448516f4a9012c6d4a850541506",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "prompt_context_sha256": "sha256:5a8231b558173b388632bc57c956fa536e72ae5eb0802276bc7d152bb9c75514",
+      "prompt_sha256": "sha256:939a3acb8eec392d7faeadbb42e89e1c16fc7f08d33d77e5468d468d27a6f84d"
+    },
+    "P3": {
+      "context_sha256": "sha256:34d2ed346b2980ff785e0ddd6cb47d0a4a29127d4e9f3298391ecf1d400cc6ab",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "prompt_context_sha256": "sha256:f875e2703de6f1becc82993cd10ce3f4d11dfa32aae092d21601689dc99c3c7f",
+      "prompt_sha256": "sha256:6f0936318c482d3d11dabedbbf86c9fd26d4aaca6193ef9821edc4f07c8df433"
+    }
+  },
+  "empirical_acceptance_state": "BLOCKED_OWNER_AUTHORIZATION \u2014 SB-V04-002 and SB-V04-004 require five real adaptive invocations that are not authorized; this artifact prepares them and proves the gate holds, and claims nothing more",
+  "engineering_only_reasons": [
+    "snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence"
+  ],
+  "generated_at": "2026-09-21T18:21:29Z",
+  "isolation": {
+    "all_isolated": true,
+    "case_count": 5,
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:295f7c25385cea5a633e29c80ef8d3bc2ff0f684f9992e1c34f9ef0cc699b386",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:c990a6f0ac8873c8bc66fab27d3ea0ca013488a5b911dfcedf6e508d19e217a8"
+        }
+      },
+      {
+        "comparison": "P0|P2",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:5d04d0efdf5920416ce05618360cb6932ef7d448516f4a9012c6d4a850541506",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:939a3acb8eec392d7faeadbb42e89e1c16fc7f08d33d77e5468d468d27a6f84d"
+        }
+      },
+      {
+        "comparison": "P0|P3",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:34d2ed346b2980ff785e0ddd6cb47d0a4a29127d4e9f3298391ecf1d400cc6ab",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:6f0936318c482d3d11dabedbbf86c9fd26d4aaca6193ef9821edc4f07c8df433"
+        }
+      },
+      {
+        "comparison": "P0|E0",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:6697b546c432bc696fe6691737b21852b21f25ae2559896c250774ca86b53882",
+          "differing_variables": [
+            "evidence"
+          ],
+          "ok": true
+        },
+        "expected_variable": "evidence",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "signal"
+          ],
+          "expected_key": "signal",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:337966a952ee34822493d577fe4b7716ab4630cea947d0a6ca80a6c68550c591"
+        }
+      }
+    ],
+    "distinct_contexts": true
+  },
+  "lane": "windows-core",
+  "live_execution_performed": false,
+  "live_execution_permitted": false,
+  "planned_call_count": 5,
+  "run_scope": "v04-divergence-prepare"
+}

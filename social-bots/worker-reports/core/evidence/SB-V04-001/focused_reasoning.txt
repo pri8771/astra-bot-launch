@@ -1,0 +1,23 @@
+test_adaptive_model_satisfies_the_contract (tests.test_reasoning_contract.AdaptiveRequiredTest.test_adaptive_model_satisfies_the_contract) ... ok
+test_baseline_refused_when_adaptive_required (tests.test_reasoning_contract.AdaptiveRequiredTest.test_baseline_refused_when_adaptive_required) ... ok
+test_engine_fails_closed_when_adaptive_required_but_only_baseline (tests.test_reasoning_contract.AdaptiveRequiredTest.test_engine_fails_closed_when_adaptive_required_but_only_baseline) ... ok
+test_malformed_model_output_blocks_engine (tests.test_reasoning_contract.MalformedModelFailsClosedTest.test_malformed_model_output_blocks_engine) ... ok
+test_no_swarmai_dependency_in_module (tests.test_reasoning_contract.MalformedModelFailsClosedTest.test_no_swarmai_dependency_in_module) ... ok
+test_authority_smuggling_payload_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_authority_smuggling_payload_rejected) ... ok
+test_create_candidate_requires_signal (tests.test_reasoning_contract.ProposalValidationTest.test_create_candidate_requires_signal) ... ok
+test_empty_alternatives_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_empty_alternatives_rejected) ... ok
+test_out_of_bounds_numeric_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_out_of_bounds_numeric_rejected) ... ok
+test_recommended_action_must_be_among_alternatives (tests.test_reasoning_contract.ProposalValidationTest.test_recommended_action_must_be_among_alternatives) ... ok
+test_unknown_payload_key_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_unknown_payload_key_rejected) ... ok
+test_unsupported_action_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_unsupported_action_rejected) ... ok
+test_valid_proposal_passes (tests.test_reasoning_contract.ProposalValidationTest.test_valid_proposal_passes) ... ok
+test_baseline_mode_still_creates_candidate (tests.test_reasoning.ReasoningTest.test_baseline_mode_still_creates_candidate) ... ok
+test_default_provider_is_baseline (tests.test_reasoning.ReasoningTest.test_default_provider_is_baseline) ... ok
+test_engine_fails_closed_when_reasoning_unavailable (tests.test_reasoning.ReasoningTest.test_engine_fails_closed_when_reasoning_unavailable) ... ok
+test_model_mode_without_callable_is_unavailable (tests.test_reasoning.ReasoningTest.test_model_mode_without_callable_is_unavailable) ... ok
+test_registered_model_callable_makes_provider_available (tests.test_reasoning.ReasoningTest.test_registered_model_callable_makes_provider_available) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.028s
+
+OK
