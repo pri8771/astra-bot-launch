@@ -1,11 +1,16 @@
-"""SB-V07-001 — the durable SESSION_ONCE heartbeat.
+"""SB-V07-001 / SB-R07-071 — the durable SESSION_ONCE heartbeat.
 
 Owner policy: ONE FRESH WORKER SESSION = ONE HEARTBEAT. These tests protect the
 three properties that make that rule meaningful rather than aspirational: the
 durable write needs no GitHub transport, a session cannot emit twice, and a
 skipped Issue comment is recorded truthfully instead of being claimed.
+
+SB-R07-071 adds a real multiprocess race: concurrent processes must produce
+exactly one durable winner for the same session_id (find-then-append is locked).
 """
 import json
+import multiprocessing as mp
+import os
 import sys
 import tempfile
 import unittest
@@ -13,6 +18,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import session_heartbeat as sh  # noqa: E402
+
+_PACKAGE_ROOT = str(Path(__file__).resolve().parent.parent)
 
 
 def make(session_id="s-test-0001", lane="test-lane", **overrides):
@@ -22,6 +29,33 @@ def make(session_id="s-test-0001", lane="test-lane", **overrides):
         lead_review_seen="LEAD-038", notes="unit test")
     fields.update(overrides)
     return sh.SessionHeartbeat(**fields)
+
+
+def _multiprocess_emit_worker(root_str, session_id, lane, ready_pipe, start_event,
+                              result_queue, package_root):
+    """Child process: wait for the go signal, then race emit for ``session_id``."""
+    sys.path.insert(0, package_root)
+    from runtime import session_heartbeat as child_sh  # noqa: WPS433
+
+    ready_pipe.send(os.getpid())
+    ready_pipe.close()
+    start_event.wait(timeout=30)
+    try:
+        child_sh.emit(
+            child_sh.SessionHeartbeat(
+                session_id=session_id,
+                lane=lane,
+                branch="cursor/social-bots-recovery-v07-20260921",
+                current_artifact="SB-R07-071",
+                notes="multiprocess race worker",
+            ),
+            root=Path(root_str),
+        )
+        result_queue.put(("ok", os.getpid()))
+    except child_sh.DuplicateSessionHeartbeat:
+        result_queue.put(("dup", os.getpid()))
+    except Exception as exc:  # noqa: BLE001 - surface unexpected failures to parent
+        result_queue.put(("err", f"{type(exc).__name__}:{exc}"))
 
 
 class DurableWriteTest(unittest.TestCase):
@@ -104,6 +138,77 @@ class DurableWriteTest(unittest.TestCase):
         """Generated ids must not collide, or the duplicate guard would misfire."""
         ids = {sh.new_session_id() for _ in range(200)}
         self.assertEqual(len(ids), 200)
+
+
+class AtomicCrossProcessEmitTest(unittest.TestCase):
+    """SB-R07-071 — find_session then append must be atomic across processes."""
+
+    def setUp(self):
+        self.root = Path(tempfile.mkdtemp())
+
+    @unittest.skipUnless(sh.FLOCK_AVAILABLE, "fcntl.flock required for strong atomicity")
+    def test_concurrent_processes_produce_exactly_one_winner(self):
+        """N processes racing the same session_id → 1 durable record, N-1 duplicates.
+
+        This is the defect LEAD-040/041 called out: a check-then-append path lets
+        two processes both observe absence and both append. The lock must make
+        exactly one winner under real OS process concurrency, not just threads.
+        """
+        n = 8
+        rounds = 20
+        ctx = mp.get_context("fork")
+        for rnd in range(rounds):
+            session_id = f"s-race-{rnd:04d}"
+            lane = "race-lane"
+            start_event = ctx.Event()
+            result_queue = ctx.Queue()
+            pipes = []
+            procs = []
+            for _ in range(n):
+                parent_conn, child_conn = ctx.Pipe(duplex=False)
+                proc = ctx.Process(
+                    target=_multiprocess_emit_worker,
+                    args=(str(self.root), session_id, lane, child_conn, start_event,
+                          result_queue, _PACKAGE_ROOT),
+                )
+                procs.append(proc)
+                pipes.append(parent_conn)
+                proc.start()
+                child_conn.close()
+
+            ready_pids = [conn.recv() for conn in pipes]
+            self.assertEqual(len(set(ready_pids)), n,
+                             f"round {rnd}: not all children ready")
+            for conn in pipes:
+                conn.close()
+
+            start_event.set()
+            outcomes = [result_queue.get(timeout=30) for _ in range(n)]
+            for proc in procs:
+                proc.join(timeout=30)
+                self.assertEqual(proc.exitcode, 0,
+                                 f"round {rnd}: child exit {proc.exitcode}")
+
+            kinds = [kind for kind, _ in outcomes]
+            self.assertEqual(kinds.count("ok"), 1,
+                             f"round {rnd}: winners={kinds} outcomes={outcomes}")
+            self.assertEqual(kinds.count("dup"), n - 1,
+                             f"round {rnd}: expected {n - 1} duplicates, got {kinds}")
+            self.assertEqual(kinds.count("err"), 0, f"round {rnd}: errors {outcomes}")
+
+            log = sh.read_log(lane, self.root)
+            matching = [r for r in log if r.get("session_id") == session_id]
+            self.assertEqual(len(matching), 1,
+                             f"round {rnd}: durable count {len(matching)} for {session_id}")
+
+        # After all rounds, the ledger holds exactly one record per raced session.
+        final = sh.read_log("race-lane", self.root)
+        self.assertEqual(len(final), rounds)
+        self.assertEqual(len({r["session_id"] for r in final}), rounds)
+
+    def test_flock_availability_is_exported_for_host_assertions(self):
+        """Deployments must be able to refuse the weak non-POSIX path."""
+        self.assertIsInstance(sh.FLOCK_AVAILABLE, bool)
 
 
 class IssueVisibilityTest(unittest.TestCase):

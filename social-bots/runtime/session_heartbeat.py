@@ -22,6 +22,10 @@ sessions use this module, which:
 * enforces one-session-one-heartbeat structurally: a second call for the same
   ``session_id`` is refused (``DuplicateSessionHeartbeat``) instead of silently
   appending a second record. A loop cannot manufacture liveness;
+* serializes the find-then-append critical section with an OS exclusive lock
+  (``fcntl.flock``) so concurrent processes racing the same ``session_id``
+  produce exactly one durable winner (SB-R07-071); the pre-fix check-then-append
+  path was not atomic across processes;
 * refuses to backfill: ``emit`` re-stamps ``started_at`` from the real clock and
   re-stamps the contract fields (``schema_version``, ``cadence_mode``,
   ``session_status``), so a caller cannot hand in a forged timestamp or relabel a
@@ -41,9 +45,17 @@ import platform
 import re
 import socket
 import uuid
+from contextlib import contextmanager
 from dataclasses import dataclass, asdict, field
 from datetime import datetime, timezone
 from pathlib import Path
+
+try:
+    import fcntl
+    FLOCK_AVAILABLE = True
+except ImportError:  # pragma: no cover - non-POSIX fallback
+    fcntl = None
+    FLOCK_AVAILABLE = False
 
 SCHEMA_VERSION = 3
 CADENCE_MODE = "SESSION_ONCE"
@@ -55,6 +67,9 @@ ROOT = Path(__file__).resolve().parent.parent
 HEARTBEAT_FILENAME = "HEARTBEAT.json"
 LOG_FILENAME = "HEARTBEAT_LOG.jsonl"
 PROGRESS_FILENAME = "CURRENT_PROGRESS.md"
+# Cross-process emit serialization for the find_session → append critical section.
+# One lock covers all lanes because uniqueness is session-scoped, not lane-scoped.
+EMIT_LOCK_FILENAME = ".session_heartbeat.emit.lock"
 
 
 # A lane names a directory under worker-reports/. Validated, because an
@@ -232,6 +247,39 @@ def _write_json(path: Path, data: dict) -> None:
     os.replace(tmp, path)
 
 
+def _emit_lock_path(root: str | Path | None = None) -> Path:
+    base = Path(root) if root is not None else ROOT
+    return base / "worker-reports" / EMIT_LOCK_FILENAME
+
+
+@contextmanager
+def _emit_lock(root: str | Path | None = None):
+    """Exclusive critical section for find_session → append.
+
+    SB-R07-071: the pre-fix path checked then appended without serialization, so
+    concurrent processes could both observe "absent" and both append. With
+    ``fcntl.flock`` the check-and-append is a real single-owner CAS on one host /
+    filesystem. The kernel releases the lock if the holder dies.
+
+    Portability mirrors ``runtime.leasing``: without ``fcntl`` the block still
+    runs but ``FLOCK_AVAILABLE`` is False so deployments can refuse the weak path.
+    """
+    if not FLOCK_AVAILABLE:
+        yield
+        return
+    path = _emit_lock_path(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd = os.open(str(path), os.O_CREAT | os.O_RDWR, 0o644)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        yield
+    finally:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+        finally:
+            os.close(fd)
+
+
 def emit(heartbeat: SessionHeartbeat, root: str | Path | None = None) -> dict:
     """Append exactly one durable heartbeat for this session and refresh latest state.
 
@@ -239,24 +287,28 @@ def emit(heartbeat: SessionHeartbeat, root: str | Path | None = None) -> dict:
     two writes leaves the durable history correct (``HEARTBEAT.json`` is a derived
     convenience view, never the source of truth).
 
-    Raises ``DuplicateSessionHeartbeat`` if this ``session_id`` already emitted.
+    The duplicate check and the append run inside ``_emit_lock`` so concurrent
+    processes racing the same ``session_id`` produce exactly one durable winner
+    (SB-R07-071). Raises ``DuplicateSessionHeartbeat`` if this ``session_id``
+    already emitted.
     """
     directory = lane_dir(heartbeat.lane, root)
-    existing_lane = find_session(heartbeat.session_id, root)
-    if existing_lane is not None:
-        raise DuplicateSessionHeartbeat(
-            f"session {heartbeat.session_id!r} already has a durable heartbeat in "
-            f"lane {existing_lane!r}; ONE SESSION = ONE HEARTBEAT")
-    # Re-stamp the fields that define the contract, so a caller cannot backfill a
-    # timestamp or relabel a record as a different schema/cadence/status.
-    heartbeat.started_at = now_iso()
-    heartbeat.schema_version = SCHEMA_VERSION
-    heartbeat.cadence_mode = CADENCE_MODE
-    heartbeat.session_status = SESSION_STATUS_STARTED
-    record = heartbeat.to_record()
-    _append_jsonl(directory / LOG_FILENAME, record)
-    _write_json(directory / HEARTBEAT_FILENAME, record)
-    return record
+    with _emit_lock(root):
+        existing_lane = find_session(heartbeat.session_id, root)
+        if existing_lane is not None:
+            raise DuplicateSessionHeartbeat(
+                f"session {heartbeat.session_id!r} already has a durable heartbeat in "
+                f"lane {existing_lane!r}; ONE SESSION = ONE HEARTBEAT")
+        # Re-stamp the fields that define the contract, so a caller cannot backfill a
+        # timestamp or relabel a record as a different schema/cadence/status.
+        heartbeat.started_at = now_iso()
+        heartbeat.schema_version = SCHEMA_VERSION
+        heartbeat.cadence_mode = CADENCE_MODE
+        heartbeat.session_status = SESSION_STATUS_STARTED
+        record = heartbeat.to_record()
+        _append_jsonl(directory / LOG_FILENAME, record)
+        _write_json(directory / HEARTBEAT_FILENAME, record)
+        return record
 
 
 def latest(lane: str, root: str | Path | None = None) -> dict | None:
