@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "lane": "intelligence-repair",
-  "reviewed_through_sequence": 7,
-  "reviewed_at": "2026-09-21T15:52:53Z",
-  "lead_review": "LEAD-035",
-  "bootstrap_consecutive_verified": 1,
-  "steady_hourly_authorized": false,
+  "reviewed_at": "2026-09-21T17:10:00Z",
+  "lead_review": "LEAD-036",
+  "official_phase": "V0.4.x_in_progress",
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "STALE WAKE-UP: start fresh Lane 2 now, launch reporter in parallel, implement SB-V05-001 first, then SB-V15-001, then stop expansion for lead audit.",
+  "steady_hourly_authorized_for_reset_soak": false,
+  "accepted": ["SB-V05-001", "SB-V13-001", "SB-V14-001"],
+  "changes_required": ["SB-V15-001"],
+  "next_assignment": "Repair only the SB-V15-001 structural admin boundary: remove/private/rename ordinary whole-runtime load/load_all aliases, add a production-surface cross-persona regression, run tests, submit, then stop for lead audit.",
   "notification_delivered": true,
-  "notes": "No worker-generated commit or Issue #3 heartbeat appeared after reset. Historical hourly cadence remains unauthorized; heartbeat must not block implementation."
+  "notes": "No live model call is needed/authorized. Reset heartbeat Issue comments are visibility only until prospective reset-epoch entries are durably committed to HEARTBEAT_LOG."
 }
