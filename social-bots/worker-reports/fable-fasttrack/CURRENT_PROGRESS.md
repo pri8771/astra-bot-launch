@@ -14,7 +14,8 @@ Base: canonical + Cursor recovery head `488ce0c` merged unedited (`e19003f`); ba
 | SB-S23-004 analyst/reviewer adapters | `fc7625a` | 491 OK / 2 skipped | ENGINEERING | SUBMITTED |
 | SB-S23-005 writer/media adapters | `ffef955` | 501 OK / 2 skipped | ENGINEERING | SUBMITTED |
 | SB-S23-006 parent validator/integrator | `9aa9121` | 512 OK / 2 skipped | ENGINEERING | SUBMITTED |
+| SB-S23-008 specialist lifecycle acceptance | `e33de09` (bundle `bbbb7b2`) | 523 OK / 2 skipped | ENGINEERING (fixture bundle) | SUBMITTED |
 
-In progress: SB-S23-008 specialist lifecycle acceptance. S20-002+ index-blocked on SB-S20-000.
+Specialist track SB-S23-001..008 complete. No further dependency-safe S20–S23 slice under the current index (S20-002 waits on SB-S20-000 ← accepted SB-R07-041; S21/S22/SB-V23-099 chain behind it). Lane paused pending lead direction.
 
 No Cursor-owned file edits. No model/live call. No public effect.
