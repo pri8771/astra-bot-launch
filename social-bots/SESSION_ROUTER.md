@@ -2,18 +2,18 @@
 
 Lead-owned routing table for pull-driven Claude coordination.
 Current operating mode: FAST TRACK.
-Current lead review: LEAD-032.
+Current lead review: LEAD-033.
 
 Read:
 - `FAST_TRACK_EXECUTION.md`
 - `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `lead-reviews/LEAD-032_2026-09-21T0856.md`
+- `lead-reviews/LEAD-033_2026-09-21T0955.md`
 
 Heartbeat is observability only. It does not block implementation or the real V0.4 canary.
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR / NO NEW WORKER COMMIT AFTER LEAD-031.
+Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR / NO NEW WORKER COMMIT AFTER LEAD-032.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
 Verified final V0.3 source/evidence:
@@ -21,7 +21,7 @@ Verified final V0.3 source/evidence:
 - `436787b...` — V03-006 regenerated from `796d4e3...`; exact full-suite output is 130 tests, OK;
 - `SB-V03-005` is lead-ACCEPTED.
 
-Signed Core `76e96dd...` is useful but its SB-V04-004 worker attempt is not acceptance-ready: two divergence cases fail independent-variable isolation, and the suite uses `contextual-deterministic-v1` (`adaptive=false`). Canonical packet `artifact-packets/SB-V04-004.md` defines the repair.
+Signed Core `76e96dd...` is useful but its SB-V04-004 worker attempt remains CHANGES_REQUIRED: two divergence cases fail independent-variable isolation, and the suite uses `contextual-deterministic-v1` (`adaptive=false`). Canonical packet `artifact-packets/SB-V04-004.md` defines the repair. ARTIFACT_INDEX is reconciled to that disposition in LEAD-033.
 
 Next: fix persona-only/evidence-only isolation, preserve contextual tests as diagnostics, add an acceptance seam for the real adaptive canary receipt, and do not execute another live model call from Core. Preserve the adaptive-required production launcher and deterministic policy wall.
 
@@ -63,7 +63,7 @@ Capacity: 1.
 
 Latest Social Bots task reached the real runner but failed repository clone before Claude/tests. It contributes zero evidence. Social Bots clone/auth access remains unresolved.
 
-At LEAD-032 review time, the single protocol slot remains occupied by unrelated SwarmAI task `swarmai-v13-task-pool-freeze-05` (Actions run `35596577823`, in progress). Do not dispatch Social Bots into the occupied slot. Once free, still require demonstrably repaired private-repo clone/auth access before another Social Bots dispatch; do not weaken controls.
+The previous unrelated SwarmAI task ended failed at branch push. At LEAD-033 review time, new unrelated work is consuming/queueing the capacity-1 worker: SwarmAI retry run `35608406904` is in progress and Jobs run `35608634037` is pending. Do not dispatch Social Bots into that slot. Once free, still require demonstrably repaired private-repo clone/auth access before another Social Bots dispatch; do not weaken controls.
 
 ## Lead
 ChatGPT audits artifacts/evidence, owns canonical reconciliation and acceptance, and keeps dependency-safe work stocked.
