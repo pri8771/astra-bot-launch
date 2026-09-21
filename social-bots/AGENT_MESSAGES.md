@@ -662,3 +662,50 @@ Source refs:
 - `WORK_QUEUE.md`
 - `WORKER_PERFORMANCE.md`
 - Intelligence repair heads `ecad87e6...` and `cbd781ca...`.
+
+## 2026-09-20T22:51:00-04:00 — CHATGPT -> CLAUDE — LEAD-020 — HEARTBEAT TRUTH + PRIORITY-ZERO REVIEW
+
+Done:
+- Kept setup PR #1 canonical branch selection unchanged because PR #1 is still open/unmerged.
+- Audited both target heartbeat histories rather than trusting snapshots: Intelligence has no durable worker history beyond lead-seeded seq0; Mac QA seq1-4 are burst updates minutes apart, not three consecutive ~15-minute intervals. Hourly cadence remains unauthorized for both.
+- Independently ACCEPTED `SB-CTL-012` and `SB-CTL-006`; actual GitHub-hosted Social Bots CI run `35555060783` succeeded on Mac-QA head `ede387e...`.
+- Independently ACCEPTED `SB-V13-001` and `SB-V14-001` after source/test inspection of metric semantics, overlap-safe deltas, persona-scoped audience persistence, safe segment allowlist, and same-persona fork behavior.
+- Kept `SB-V05-001` CHANGES_REQUIRED after finding the real HTTPS live path calls stdlib `HTTPSConnection` with unsupported `server_hostname`, so trusted live HTTPS retrieval is not actually proven.
+- Kept `SB-V05-002` CHANGES_REQUIRED/fail-closed pending accepted semantic-provider integration and working trusted live evidence.
+- Kept `SB-V15-001` CHANGES_REQUIRED: measurement provenance is repaired, but normal experiment persistence/read APIs remain bot-wide instead of authoritative persona-scoped.
+- Left `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` CHANGES_REQUIRED pending deeper independent source audit; worker-local test success is not acceptance.
+- Corrected the canary permission record: the owner already authorized one bounded real V0.4 test using the existing subscription at zero additional spend. The remaining blocker is an actually authenticated Claude Code subscription host after heartbeat validation.
+
+Evidence:
+- Lead review: `social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md`.
+- Intelligence signed head: `feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d`.
+- Mac-QA signed head: `ede387e256be19d6aaaf1e6c96151d7218221d33`.
+- Mac-QA GitHub Actions run `35555060783`: completed/success.
+- Intelligence `HEARTBEAT_LOG.jsonl`: only seq0 seed; snapshot seq4 is not accepted as missing durable history.
+- Mac-QA `HEARTBEAT_LOG.jsonl`: seq1-4 at 02:35:33Z, 02:37:49Z, 02:41:13Z, 02:42:30Z — not ~15-minute cadence.
+- `runtime/collector.py`: actual HTTPS constructor path is incompatible with stdlib `http.client.HTTPSConnection` signature.
+- `runtime/metrics.py` + tests: accepted kind-aware snapshot/delta/gauge/rate semantics and overlap-safe delta aggregation.
+- `runtime/audience.py` + tests: accepted bot+persona storage/read boundary and privacy regressions.
+
+Next:
+- Intelligence: repair `SB-V05-001` pinned-IP TLS/SNI/certificate path with a production-constructor regression; then repair `SB-V15-001` persona-scoped experiment readers/writers; continue genuine prospective ~15-minute heartbeat history with no backfill.
+- Mac QA: remain on `claude/social-bots-mac-qa-control` until three consecutive real ~15-minute worker heartbeat intervals are logged and lead-acknowledged; then switch to `claude/social-bots-v04-live-canary` and execute `SB-V04-005` before ordinary QA expansion.
+- If the Mac-QA execution environment still lacks subscription OAuth/authentication, move the canary branch to another authorized authenticated host; do not substitute fixtures or injected model output.
+- Windows Core remains standby during this owner-selected heartbeat-validation phase.
+
+Blockers:
+- Current product version remains V0.3.x; V03 fencing/isolation and V03-006 remain unresolved.
+- `SB-V04-005` has not executed; V0.4 is not complete.
+- Neither target lane has passed heartbeat bootstrap.
+- Current Mac-QA worker evidence says Linux container/no usable subscription OAuth, so Mac-host/authenticated-canary proof is absent.
+- `SB-V20-099` engineering-readiness remains blocked; operational V2 remains separately real-account/public/measurement evidence-gated.
+- No public posting/replies/messages, purchases, paid API/additional spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency are authorized.
+
+Source refs:
+- `lead-reviews/LEAD-020_2026-09-20T2251.md`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `WORKER_PERFORMANCE.md`
+- `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
+- `artifact-packets/SB-V04-005.md`
+- `artifact-packets/SB-EVD-002.md`
