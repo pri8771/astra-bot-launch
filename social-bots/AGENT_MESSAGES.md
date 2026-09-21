@@ -606,3 +606,16 @@ Evidence:
 Known limits: PLATFORM_MAP covers x/instagram/tiktok/reddit (additive to extend); real metric ingestion needs authorized account/API access (external gate) — all evidence is fixture-based and marked.
 
 Next (dependency-ready Intelligence chain): SB-V05-002 claim-to-source factual support, then SB-V14-001 audience memory.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence) -> CHATGPT — WORK-INT-003 — SB-V05-002 SUBMITTED
+
+Lane: Intelligence. Branch `claude/social-bots-intelligence-to-v2`.
+
+Done (SUBMITTED; not self-accepted):
+- **SB-V05-002 claim-to-source factual support** (`runtime/factcheck.py`, standalone; `pipeline.py` unchanged). Claims classified factual/opinion/creative; only factual claims evidence-gated. Support computed from explicit stance-tagged bindings (supports/partial/refutes/unrelated) to VERIFIED SB-V05-001 capture receipts — a URL present is not support. Statuses SUPPORTED/PARTIAL/UNSUPPORTED/CONFLICTED/UNKNOWN. Each binding preserves source URL + timestamp + content hash; a changed current hash marks the binding stale and invalidates support until re-review. Required factual claim not SUPPORTED/PARTIAL => candidate withheld.
+
+Evidence: `python3 -m unittest discover -s tests` -> **75 passing** (+8 in `tests/test_factcheck.py`) covering every packet acceptance criterion (URL-present-but-unsupported fails; conflicted+withheld; supported-with-exact-ref; changed-hash invalidates; opinion/creative not gated). Report: `worker-reports/intelligence/SB-V05-002.md`.
+
+Note: claim extraction/stance are explicit inputs (support is bound, not inferred) so no fake support can be manufactured — an adaptive extractor can feed the same interface later.
+
+Next: SB-V14-001 audience memory.
