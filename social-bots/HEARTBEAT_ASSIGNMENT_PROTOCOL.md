@@ -2,60 +2,54 @@
 
 Lead-owned control contract.
 
-## Goal
+## Owner policy — one session, one heartbeat
 
-Keep Claude workers observable and continuously assignable through GitHub without owner relay.
+Effective 2026-09-21, the previous timed FAST_5M / SOAK_15M_24H experiment is superseded.
 
-## Temporary soak policy — 2026-09-21
+**Each fresh worker session emits exactly one heartbeat. That is all.**
 
-For today's fresh-session validation, every active Claude lane uses a two-stage heartbeat soak.
+There is:
+- no five-minute heartbeat loop;
+- no fifteen-minute soak;
+- no 24-hour heartbeat requirement;
+- no requirement to keep a chat session alive for liveness;
+- no background heartbeat daemon requirement.
 
-### Stage 1 — FAST_5M bootstrap
+A restarted/resumed worker process that constitutes a new fresh execution session emits one new heartbeat for that new session.
 
-Each fresh worker session must produce **3 consecutive real five-minute intervals**.
+## Purpose
 
-For avoidance of ambiguity, this means four timestamped heartbeat records:
+The session heartbeat answers only:
 
-- T0
-- approximately T0 + 5 minutes
-- approximately T0 + 10 minutes
-- approximately T0 + 15 minutes
+> Did this worker session actually start, read current coordination, and begin the assigned work?
 
-Those four records create three consecutive elapsed intervals.
+It is coordination/liveness evidence, not artifact correctness and not version acceptance.
 
-Acceptance:
-- each interval should be approximately 5 minutes, with reasonable execution/Git jitter;
-- timestamps must be real, never fabricated/backfilled;
-- every record must be durably appended to `HEARTBEAT_LOG.jsonl` and pushed;
-- burst artifact/status updates do not substitute for elapsed-time heartbeat intervals.
+Git commits, tests, receipts and lead review remain stronger evidence.
 
-After the third successful five-minute interval, the worker immediately enters Stage 2. It does NOT need to wait for ChatGPT acknowledgement to begin the 24-hour soak.
+## Required timing
 
-### Stage 2 — SOAK_15M_24H
+Emit the one heartbeat after:
+1. syncing/fetching repository state;
+2. reading current canonical lead instructions;
+3. identifying the session's branch/lane and current artifact;
 
-After Stage 1 succeeds, heartbeat is due every **15 minutes for the next 24 hours**.
+and before or alongside substantive implementation.
 
-Target:
-- 96 consecutive 15-minute intervals after the Stage-1 completion timestamp;
-- a final soak-complete record after the 24-hour window.
+Do not delay useful engineering to wait for a clock interval.
 
-Rules:
-- heartbeat runs in parallel with useful project work;
-- do not stop coding/review work merely to wait for heartbeat;
-- artifact submissions and blockers still push immediately;
-- a material state-transition heartbeat does not reset the 15-minute soak clock;
-- missed intervals are reported truthfully and are not backfilled;
-- if the loop/process dies, restart prospectively and record the interruption.
+## Durable evidence
 
-ChatGPT's automated lead review remains hourly because the platform does not support faster scheduled reviews. Manual checks may inspect GitHub at any time.
+Per lane:
 
-## Files per lane
-
-Worker heartbeat:
+Latest session heartbeat:
 `social-bots/worker-reports/<lane>/HEARTBEAT.json`
 
-Heartbeat history:
+Append-only session history:
 `social-bots/worker-reports/<lane>/HEARTBEAT_LOG.jsonl`
+
+Human-readable progress:
+`social-bots/worker-reports/<lane>/CURRENT_PROGRESS.md`
 
 Lead acknowledgement:
 `social-bots/worker-reports/<lane>/LEAD_ACK.json`
@@ -63,76 +57,60 @@ Lead acknowledgement:
 Lead-owned assignment:
 `social-bots/SESSION_INSTRUCTIONS.md`
 
-## HEARTBEAT.json fields
+Each fresh session appends exactly one real heartbeat record to `HEARTBEAT_LOG.jsonl` and updates `HEARTBEAT.json`.
 
-Existing fields remain authoritative. For today's soak, use these cadence values:
-- `FAST_5M`
-- `SOAK_15M_24H`
-- `SOAK_COMPLETE`
+Never backfill or invent a heartbeat.
 
-In `notes`, include:
-- soak start time;
-- Stage-1 progress or Stage-2 interval count;
-- latest real interval duration;
-- any interruption.
+## Minimum heartbeat fields
 
-## Worker update triggers
+The durable record should include:
+- `schema_version`;
+- `session_id`;
+- `lane`;
+- `branch`;
+- `started_at` using a real timestamp;
+- `session_status` = `STARTED`;
+- `current_artifact` or assignment;
+- `canonical_seen_sha`;
+- `lead_review_seen`;
+- non-secret host/runtime identifier if available;
+- concise notes/blocker.
 
-Every timed heartbeat appends the full heartbeat record to `HEARTBEAT_LOG.jsonl` and pushes it.
+Legacy cadence fields may remain for backward compatibility, but new sessions should use `cadence_mode: "SESSION_ONCE"`.
 
-Also push immediately:
-- on session start/resume;
-- before/after a parent artifact checkpoint where useful;
-- on blocker;
-- after detecting new lead instructions;
-- before stop.
+## GitHub Issue #3 visibility
 
-Immediate material updates do not count as timed soak intervals unless the elapsed clock also satisfies the due interval.
+Private Issue #3 remains an optional human-readable progress feed.
 
-## Work-concurrency rule
+For the one session heartbeat:
+- post one concise Issue #3 comment if authenticated GitHub transport is available;
+- if `gh` is missing or unauthenticated, do not block work;
+- durable local/repository heartbeat logging must still occur;
+- do not fabricate an Issue comment.
 
-Heartbeat must not serialize engineering work.
+Normal commits, reports and blocker submissions may still appear later in the session. They are not additional heartbeats.
 
-Preferred implementation:
-- run a separate lightweight heartbeat loop/process from the same repository checkout;
-- stage/commit only heartbeat files;
-- never stage unrelated source changes;
-- do not perform destructive reset/clean/stash operations;
-- if concurrent source work makes a Git operation unsafe, record the heartbeat locally and push it at the next safe moment with the original real timestamp; do not invent a timestamp.
+## V0.7 recurring-liveness interpretation
 
-## Lead behavior
+V0.7 does **not** require repeated heartbeats inside one long-running chat/session.
 
-At lead review:
-1. inspect worker branches and heartbeat histories;
-2. independently calculate elapsed intervals;
-3. audit new source/tests/reports;
-4. update canonical state and lane acknowledgements;
-5. flag stale/missed soak intervals;
-6. keep dependency-ready work assigned.
+V0.7 recurring liveness is proven by repeated real OS-scheduled worker invocations over time.
+
+Each invocation is a bounded worker session and therefore emits exactly one session heartbeat plus its normal invocation receipt.
+
+Example:
+
+scheduler invocation A -> one heartbeat -> one bounded task -> receipt -> exit  
+scheduler invocation B -> one heartbeat -> one bounded task -> receipt -> exit  
+scheduler invocation C -> one heartbeat -> one bounded task -> receipt -> exit
+
+The sequence of independently scheduled sessions proves recurring liveness.
 
 ## Truth rules
 
-- Heartbeat proves coordination/liveness only, not artifact correctness.
-- Git commits/receipts/source review remain stronger evidence.
-- Today's 5-minute + 24-hour soak does not by itself prove V0.7 recurring Social Bots runtime liveness.
-- No synthetic/backfilled heartbeat may be presented as successful cadence.
-
-## Platform limitation
-
-ChatGPT scheduled automations support hourly cadence at fastest. Workers may heartbeat faster because their own local process/scheduler supplies the clock.
-
-
-## Human-readable live progress feed
-
-Private GitHub Issue #3 (`Social Bots — Live Progress & Heartbeats`) is the human-readable heartbeat dashboard for the current reset.
-
-Each active fresh session must:
-- maintain a local/branch `CURRENT_PROGRESS.md` under its worker-report directory;
-- update that file whenever the active task, subtask, test phase, or blocker materially changes;
-- launch `social-bots/bin/heartbeat_reporter.py` at session start;
-- let the reporter post one concise Issue #3 comment at every timed heartbeat;
-- do not put secrets, credentials, hidden chain-of-thought, or raw sensitive logs in progress text.
-
-Issue comments are the primary live visibility feed because they are append-only and avoid branch conflicts. Branch HEARTBEAT files/logs remain audit evidence and should be synchronized at safe checkpoints.
-
-If `gh` is unavailable or unauthenticated, this is a visibility blocker only: report it immediately in the lane progress file / branch heartbeat and continue useful project work. Do not fabricate Issue comments.
+- One session = one heartbeat.
+- No periodic heartbeat requirement exists.
+- No synthetic/backfilled heartbeat is valid.
+- A heartbeat does not prove code correctness.
+- Issue comments are visibility, not stronger evidence than durable records.
+- V0.7 requires real recurring OS-level invocations, not a chat kept awake.
