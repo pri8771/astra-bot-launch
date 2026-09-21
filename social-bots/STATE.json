@@ -1,17 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T16:07:00Z",
+  "updated_at": "2026-09-21T17:10:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "three_fresh_lanes_started_new_heartbeat_epoch",
+  "status": "v03_closed_v04_in_progress",
   "runtime_scope": {
-    "autonomous_bots": [
-      "social-a",
-      "social-b",
-      "social-c"
-    ],
+    "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -24,115 +20,78 @@
   "worker_lanes": {
     "core": {
       "branch": "claude/social-bots-windows-core-host",
-      "last_verified_head": "76e96dde4677346fd5b40c8cba4988f6e4c64fee",
-      "last_verified_commit_at": "2026-09-21T08:37:19Z",
-      "current_branch_head_before_lead_035_refresh": "d3974de485f55fb23ae97cdf3c66018d22563942",
-      "final_v03_implementation": "796d4e390bd135167e5de2ff8f586bc07ac7f370",
-      "final_v03_evidence": "436787b0a63fdae0e89c224a54054607e32b5187",
-      "activity": "stale_fresh_session_not_started"
+      "last_verified_worker_head": "74a357d51a26a482d4957561ef194353fff5d24e",
+      "activity": "active_submitted_v04_004_repair",
+      "assignment": "non-live SB-V04-004 acceptance/integration work only; no further model calls"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
-      "last_verified_worker_head": "a7bdeb4c0f0d2c1a3107798327266812a9644d27",
-      "last_verified_commit_at": "2026-09-21T04:10:36Z",
-      "current_branch_head_before_lead_035_refresh": "a11c7e4e5f1627d4ee8a608d53ac73a2f12b25fd",
-      "activity": "stale_fresh_session_not_started"
+      "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
+      "activity": "active_submitted_v05_v15_repairs",
+      "assignment": "SB-V05-001 accepted; narrow SB-V15-001 structural admin-alias repair next"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
-      "last_verified_worker_head": "d0972adc15917ff9fca3edf48e1cd740ec61b66a",
-      "last_verified_commit_at": "2026-09-21T03:57:57Z",
-      "current_branch_head_before_lead_035_refresh": "196d9d60e943721050f7d9cb80782ced5a310b82",
-      "activity": "stale_fresh_acceptance_session_not_started"
+      "last_verified_worker_head": "72e380bda71561429154e67bc07636b89143a488",
+      "activity": "active_v03_independent_acceptance_submitted",
+      "assignment": "freeze model calls; continue non-overlapping QA/CI/V2 integration and durable heartbeat reporting",
+      "host_scope_note": "independent V03 lifecycle acceptance executed on Linux CCR/POSIX host, not the reset-plan local Mac; guarantee is single POSIX host/filesystem only"
     },
     "v04_live_canary": {
       "branch": "claude/social-bots-v04-live-canary",
-      "current_branch_head_before_lead_035_refresh": "1b2e67dfb642d9ce96fa463c088dd633e9765778",
-      "worker_activity": "none",
-      "heartbeat_log_present": false,
-      "snapshot_sequence": 0,
-      "activity": "stale_unexecuted_no_worker_progress"
+      "last_verified_worker_head": "096d20b9062f3f64db080a9687a19aff9cf00b4c",
+      "activity": "frozen_authorization_consumed",
+      "assignment": "preserve evidence only; no further Claude CLI/adaptive model calls"
     },
-    "development_sessions_live": false,
+    "development_sessions_live": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
-    "windows_available": true,
-    "note": "LEAD-035 found that the reset handoff has not produced a worker-generated commit, Issue #3 heartbeat, or progress update on any human lane. Core, Intelligence and Mac-QA CURRENT_PROGRESS files still report that their fresh session has not started; canary remains unexecuted. Lead-only wake-up commits do not count as worker liveness.",
     "heartbeat_validation": {
-      "legacy_target_lanes": [
-        "intelligence",
-        "mac_qa"
-      ],
-      "legacy_interval_minutes": 15,
-      "intelligence_bootstrap_consecutive_verified": 1,
-      "intelligence_steady_hourly_authorized": false,
-      "mac_qa_bootstrap_consecutive_verified": 3,
-      "mac_qa_steady_hourly_authorized": true,
-      "truth_rule": "Only durable HEARTBEAT_LOG.jsonl entries with real elapsed intervals count; snapshots, notes, burst updates and backfilled timestamps do not prove cadence.",
-      "temporary_today_policy": "FAST_5M x3 real intervals, then SOAK_15M_24H for 24h on all four active Claude lanes",
+      "truth_rule": "Only durable HEARTBEAT_LOG.jsonl entries with real elapsed intervals count; Issue comments/snapshots/notes do not prove cadence.",
+      "temporary_today_policy": "FAST_5M x3 real intervals, then SOAK_15M_24H for 24h on the three human lanes; canary worktree is frozen after execution",
       "legacy_authorizations_do_not_skip_today_soak": true,
-      "today_fast5m_started": {
-        "windows-core": false,
-        "intelligence-repair": false,
-        "mac-qa": false,
-        "v04-live-canary": false
-      },
       "today_fast5m_verified_intervals": {
         "windows-core": 0,
         "intelligence-repair": 0,
-        "mac-qa": 0,
-        "v04-live-canary": 0
-      }
+        "mac-qa": 0
+      },
+      "issue3_visibility": "active comments exist on all human lanes, but durable reset-epoch logs have not been committed; no Stage-1 pass is claimed"
     }
   },
   "tests": {
-    "core_latest_verified_full_suite": 130,
-    "core_latest_worker_reported_full_suite": 136,
-    "core_full_suite_evidence_path": "social-bots/receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt",
-    "core_full_suite_evidence_commit": "436787b0a63fdae0e89c224a54054607e32b5187",
-    "intelligence_latest_worker_reported_full_suite": 185,
-    "mac_qa_latest_worker_reported_full_suite": 38,
-    "mac_qa_github_ci_head": "success",
-    "mac_qa_github_ci_run_id": 35555060783,
-    "lead_note": "No new Social Bots test evidence in LEAD-035. Preserve Core 130 as latest independently verified committed V03 suite."
+    "core_v03_independently_verified_full_suite": 130,
+    "core_v03_full_suite_evidence_commit": "436787b0a63fdae0e89c224a54054607e32b5187",
+    "v03_independent_acceptance_checks": 37,
+    "v03_independent_acceptance_focused_tests": 36,
+    "core_v04_worker_reported_suite": "160 passed, 1 skipped",
+    "intelligence_latest_worker_reported_full_suite": 195,
+    "github_ci_run_id": 35555060783,
+    "github_ci_status": "success"
   },
   "lead_review": {
-    "review_id": "LEAD-035",
-    "review_ref": "social-bots/lead-reviews/LEAD-035_2026-09-21T1152.md",
-    "accepted": [
-      "SB-CTL-006",
-      "SB-CTL-012",
-      "SB-V03-002",
-      "SB-V03-003",
-      "SB-V03-005",
-      "SB-V13-001",
-      "SB-V14-001"
-    ],
-    "changes_required": [
+    "review_id": "LEAD-036",
+    "review_ref": "social-bots/lead-reviews/LEAD-036_2026-09-21T1710.md",
+    "accepted_now": [
       "SB-V03-001",
       "SB-V03-004",
-      "SB-EVD-001",
-      "SB-V04-004",
-      "SB-V05-001",
-      "SB-V05-002",
-      "SB-V15-001",
-      "SB-V16-001",
-      "SB-V17-001",
-      "SB-V20-002"
-    ],
-    "blocked": [
       "SB-V03-006",
+      "SB-EVD-001",
+      "SB-V04-001",
       "SB-V04-003",
-      "SB-EVD-002",
-      "SB-V12-001",
-      "SB-V20-099",
-      "SB-V20-004"
+      "SB-V04-005",
+      "SB-V05-001"
     ],
+    "accepted_existing": ["SB-CTL-006", "SB-CTL-012", "SB-V03-002", "SB-V03-003", "SB-V03-005", "SB-V13-001", "SB-V14-001"],
+    "changes_required": ["SB-V04-002", "SB-V04-004", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
+    "withheld": ["SB-EVD-002"],
+    "blocked": ["SB-V12-001", "SB-V20-099", "SB-V20-004"],
     "key_findings": [
-      "No artifact status changed: there is no new worker-generated source, test, QA, canary or heartbeat evidence after the reset handoff.",
-      "All three fresh human sessions are stale/not started in repository evidence; Issue #3 has no worker comment after the lead reset comments.",
-      "Today's FAST_5M reset soak remains at zero verified intervals on every lane; historical heartbeat entries were not relabeled or backfilled.",
-      "The dedicated V0.4 canary still has no worker-generated real source/subscription-provider/schema-policy/persisted-decision evidence.",
-      "worker-pc remains outside the critical path because Social Bots private-repo clone/auth has not been demonstrated repaired."
+      "Independent Mac-QA branch evidence cleared SB-V03-004 against final Core source and closes the remaining V0.3 lifecycle gate.",
+      "All V0.3 manifest artifacts are now accepted; official phase advances to V0.4.x in progress.",
+      "First chronological real SB-V04-005 canary at approximately 16:15Z is technically accepted and consumed the owner's exactly-one existing-subscription call authorization.",
+      "A second real canary call at approximately 16:53Z exceeded that one-call authorization; it is preserved as an incident and excluded from acceptance evidence. No further model calls are authorized.",
+      "SB-V04-002/SB-V04-004 still lack real adaptive causal-divergence evidence, so V0.4 is not complete and SB-EVD-002 is withheld.",
+      "SB-V05-001 real pinned-IP TLS/SNI/certificate path is accepted; SB-V15-001 still exposes ambiguous whole-runtime load/load_all aliases.",
+      "Reset heartbeat Issue comments are active but durable HEARTBEAT_LOG files contain no reset-epoch entries, so zero FAST_5M intervals are independently verified."
     ]
   },
   "public_actions": {
@@ -140,86 +99,63 @@
     "spend_authorized": false,
     "customer_messages_authorized": false,
     "destructive_actions_authorized": false,
-    "v04_canary_existing_subscription_call_authorized": true,
-    "v04_canary_additional_spend_authorized": false
+    "v04_canary_existing_subscription_call_authorized": false,
+    "v04_canary_authorization_consumed": true,
+    "v04_canary_authorized_call_used_for_acceptance": "first chronological call at approximately 2026-09-21T16:15Z",
+    "duplicate_live_call_incident": "second call at approximately 2026-09-21T16:53Z exceeded exact-one authorization and is excluded from acceptance evidence",
+    "no_further_live_model_calls": true
   },
   "version": {
-    "current": "V0.3.x",
-    "current_label": "durable runtime foundation awaiting independent V03-004 lifecycle execution and final V0.3 reconciliation",
+    "current": "V0.4.x",
+    "current_label": "V0.3 accepted; V0.4 real adaptive autonomous thinking in progress",
+    "previous_completed": "V0.3",
     "immediate_target": "V0.4",
-    "immediate_target_label": "real adaptive autonomous thinking with mandatory real canary",
-    "today_engineering_target": "V2.0-readiness (SB-V20-099)",
+    "today_engineering_target": "V2.0-readiness (SB-V20-099) if evidence permits",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": [
-      "V1.7",
-      "V2.3",
-      "V3.0"
-    ],
+    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
-    "v04_real_canary_status": "READY_BUT_ACCEPTANCE_SESSION_STALE_AND_NO_WORKER_EXECUTION_VISIBLE",
-    "v04_promotion_blocked_until": [
-      "SB-V04-005",
-      "SB-EVD-002"
-    ]
+    "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
+    "v04_promotion_blocked_until": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"]
   },
   "next_core": [
-    "start the fresh Core session now and launch heartbeat reporting in parallel",
-    "preserve final V03 source/evidence and do not churn V03 absent a concrete independent QA defect",
-    "repair SB-V04-004 so persona-only and evidence-only tests hold all other variables constant",
-    "add an acceptance seam for the real adaptive/canary receipt without another unauthorized model call"
+    "do not execute any additional Claude CLI/adaptive model call",
+    "preserve accepted V03 implementation/evidence",
+    "continue non-live SB-V04-004 acceptance seam/test/integration work and document the real adaptive divergence blocker honestly",
+    "do not substitute synthetic/replayed receipt evidence for causal adaptive divergence"
   ],
   "next_intelligence": [
-    "start the fresh Intelligence session now and launch heartbeat reporting in parallel",
-    "implement SB-V05-001 actual HTTPS pinned-IP TLS/SNI/certificate path now",
-    "repair SB-V15-001 persona-scoped experiment APIs next",
-    "historical hourly cadence remains unauthorized"
+    "SB-V05-001 is accepted",
+    "repair SB-V15-001 by removing/privatizing ambiguous whole-runtime load/load_all aliases",
+    "add regression proving normal production experiment APIs cannot enumerate another persona",
+    "submit and stop for lead audit before V16/V17/V20-002 expansion"
   ],
   "next_mac_qa": [
-    "start the fresh Acceptance session now and launch heartbeat reporting in parallel",
-    "independently execute Core 796d4e3 V03-004 post-cycle takeover, active-cycle fence-loss and migration-fence regressions",
-    "report exact commands/results and ACCEPT-READY or concrete defect",
-    "if PASS, execute the isolated real SB-V04-005 canary next and stop for lead audit",
-    "continue CI/artifact/V2 integration QA after the gate/canary where dependency-safe"
+    "SB-V03-004 is accepted and V0.3 is closed",
+    "do not execute any additional Claude CLI/adaptive model call",
+    "continue QA/CI/V2 acceptance integration only; no runtime source edits",
+    "repair heartbeat durability by committing real prospective reset-epoch HEARTBEAT_LOG entries without backfill"
   ],
   "priority_zero": {
     "artifact": "SB-V04-005",
-    "branch": "claude/social-bots-v04-live-canary",
-    "executor_plan": "Acceptance lane executes from its isolated second worktree after pushing the independent V03-004 report; heartbeat is not a prerequisite.",
-    "real_source_required": true,
-    "actual_claude_subscription_call_required": true,
-    "fixtures_or_injected_runner_allowed": false,
-    "public_effect_allowed": false,
-    "owner_authorized_bounded_existing_subscription_call": true,
-    "authenticated_host_verified": false,
-    "worker_activity": "fresh_acceptance_session_not_started_canary_unexecuted"
-  },
-  "fast_track": {
-    "active": true,
-    "max_workers": 3,
-    "heartbeat_blocks_work": false,
-    "lanes": [
-      "Windows Core Builder",
-      "Mac Intelligence Builder",
-      "Mac Acceptance + Canary"
-    ],
-    "plan": "FAST_TRACK_EXECUTION.md"
+    "status": "accepted_from_first_authorized_call",
+    "independent_acceptance_artifact": "SB-EVD-002",
+    "independent_acceptance_status": "withheld_until_v04_002_and_v04_004_are_accepted",
+    "owner_authorized_bounded_existing_subscription_call": false,
+    "authorization_consumed": true,
+    "additional_spend_authorized": false,
+    "public_effect_allowed": false
   },
   "remote_worker_infrastructure": {
     "control_plane": "pri8771/remote-workers",
-    "owns_project": false,
     "worker": "worker-pc",
     "capacity": 1,
-    "executor": "claude",
-    "last_social_bots_task": "socialbots-v03-audit-retry-20260921-1052",
-    "last_social_bots_task_result": "failed",
-    "last_social_bots_task_error": "Repository clone failed before Claude/tests",
-    "last_social_bots_actions_run": 35615370153,
     "status": "excluded_from_critical_path_until_private_repo_clone_auth_fixed",
-    "required_fix": "repair worker-pc GitHub clone/auth access to pri8771/astra-bot-launch without weakening private-repository controls before another Social Bots dispatch",
-    "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release."
+    "last_social_bots_actions_run": 35615370153,
+    "last_social_bots_task_result": "Repository clone failed before Claude/tests",
+    "policy": "Do not redispatch Social Bots until private-repo clone/auth is demonstrably repaired; remote-worker results are evidence inputs, never project authority."
   },
   "management_model": {
     "style": "artifact_oriented",
@@ -227,86 +163,9 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-035_2026-09-21T1152.md",
+    "lead_review_current": "lead-reviews/LEAD-036_2026-09-21T1710.md",
     "session_router": "SESSION_ROUTER.md",
-    "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md"
-  },
-  "heartbeat_soak_today": {
-    "date": "2026-09-21",
-    "applies_to": [
-      "windows-core",
-      "intelligence-repair",
-      "mac-qa",
-      "v04-live-canary"
-    ],
-    "stage1": {
-      "cadence_minutes": 5,
-      "required_consecutive_intervals": 3,
-      "required_records": 4,
-      "mode": "FAST_5M"
-    },
-    "stage2": {
-      "cadence_minutes": 15,
-      "duration_hours": 24,
-      "target_intervals": 96,
-      "mode": "SOAK_15M_24H"
-    },
-    "heartbeat_blocks_work": false,
-    "backfill_allowed": false,
-    "lead_review_frequency": "hourly",
-    "verified_as_of_lead_035": "no lane has durable FAST_5M T0",
-    "epoch_started_at": "2026-09-21T16:07:00Z",
-    "count_only_records_at_or_after_epoch": true,
-    "active_lanes": [
-      "CORE",
-      "INTELLIGENCE",
-      "ACCEPTANCE"
-    ]
-  },
-  "execution_reset": {
-    "plan": "RESET_EXECUTION_20260921.md",
-    "human_lanes": 3,
-    "lanes": [
-      {
-        "id": "core",
-        "branch": "claude/social-bots-windows-core-host",
-        "machine": "Windows",
-        "mission": "SB-V04-004 Core repair"
-      },
-      {
-        "id": "intelligence",
-        "branch": "claude/social-bots-intelligence-repair-v2",
-        "machine": "Mac",
-        "mission": "SB-V05-001 then SB-V15-001"
-      },
-      {
-        "id": "acceptance",
-        "branch": "claude/social-bots-mac-qa-control",
-        "secondary_worktree": "claude/social-bots-v04-live-canary",
-        "machine": "local Mac",
-        "mission": "SB-V03-004 independent gate then real SB-V04-005 canary"
-      }
-    ],
-    "live_progress_issue": 3,
-    "heartbeat_reporter": "social-bots/bin/heartbeat_reporter.py",
-    "heartbeat_stage1": "3 real 5-minute intervals",
-    "heartbeat_stage2": "15-minute intervals for 24 hours",
-    "heartbeat_blocks_work": false,
-    "chatgpt_review_frequency": "hourly",
-    "fresh_sessions_started_at": "2026-09-21T16:07:00Z",
-    "heartbeat_epoch": "2026-09-21T16:07:00Z",
-    "previous_lane_heartbeats_closed": true,
-    "previous_lane_heartbeats_count_for_current_soak": false,
-    "current_active_lanes": [
-      "core",
-      "intelligence",
-      "acceptance"
-    ],
-    "retired_prior_lanes": [
-      "previous core session",
-      "previous intelligence session",
-      "previous mac qa session",
-      "previous standalone canary session"
-    ]
+    "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
+    "live_progress_issue": 3
   }
 }
