@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
   "lane": "v04-live-canary",
-  "reviewed_at": "2026-09-21T17:56:20Z",
-  "lead_review": "LEAD-039",
+  "reviewed_at": "2026-09-21T18:52:07Z",
+  "lead_review": "LEAD-041",
   "status": "FROZEN_EVIDENCE_ONLY",
   "artifact": "SB-V04-005",
   "artifact_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
   "authorization_consumed": true,
-  "next_assignment": "FROZEN: preserve evidence only. No further Claude CLI/adaptive/model calls and no new canary source retrieval.",
-  "notification_delivered": true,
-  "notes": "First chronological authorized canary remains accepted SB-V04-005 evidence. Later duplicate call is excluded permanently. The current V0.4 empirical-divergence gate requires fresh explicit owner authorization before any future live batch.",
+  "next_assignment": "Preserve evidence only. No further live calls or new canary source retrieval. Future controlled divergence requires fresh owner authorization plus canonical lead manifest.",
   "official_phase": "V0.4.x_in_progress",
-  "no_live_model_calls_authorized": true
+  "no_live_model_calls_authorized": true,
+  "notes": "LEAD-041 preserves the freeze; the second historical call remains excluded from acceptance evidence."
 }
