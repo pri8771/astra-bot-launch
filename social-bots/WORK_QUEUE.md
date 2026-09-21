@@ -57,3 +57,26 @@ Use up to 4 workers now. Do not overlap source ownership.
 
 ## Authority
 No public effects, paid API/new spend, destructive actions, secrets, fake evidence or SwarmAI dependency.
+
+
+## worker-pc external verification
+
+Control plane: `pri8771/remote-workers`
+Worker: `worker-pc`
+Capacity: 1.
+
+First Social Bots task:
+- `socialbots-v03-audit-20260920-01`
+- intended: independent read-only V03-004/V03-005 audit
+- result: **FAILED before repository clone**
+- dispatch run: `35559393292`
+- sanitized error: `Repository tasks must target a private repository.`
+
+Independent GitHub metadata confirms `pri8771/astra-bot-launch` is private. Therefore this is a worker-local GitHub credential/repository-access visibility problem, not a project visibility problem.
+
+Required infrastructure action:
+- grant/refresh the worker-pc `gh` credential so it can access `pri8771/astra-bot-launch`;
+- keep the private-repository guard intact;
+- after access is repaired, re-dispatch the independent V0.3 audit before assigning source-changing work.
+
+Do not move Social Bots project governance into `remote-workers`.
