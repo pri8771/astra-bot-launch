@@ -110,6 +110,30 @@ class AudienceTest(unittest.TestCase):
         h = self._hyp(seg={"topic": "space", "format": "carousel", "platform": "x"})
         self.assertEqual(h.segment["platform"], "x")
 
+    def test_open_ended_interest_dimension_removed(self):
+        self.assertNotIn("audience_interest", au.ALLOWED_SEGMENT_DIMENSIONS)
+        with self.assertRaises(au.SensitiveSegmentError):
+            self._hyp(seg={"audience_interest": "space"})
+
+    def test_compound_sensitive_values_rejected(self):
+        # Substring matching catches compound sensitive-trait variants.
+        for bad in ({"topic": "religious_interest"},
+                    {"topic": "mental_health_support"},
+                    {"content_theme": "political_affiliation"},
+                    {"topic": "pregnancy_journey"}):
+            with self.assertRaises(au.SensitiveSegmentError):
+                self._hyp(seg=bad)
+
+    def test_fork_cannot_be_rescoped_cross_persona(self):
+        h = au.new_hypothesis(BOT, P1, SEG, "A best.")
+        for _ in range(3):
+            au.add_observation(h, _obs(au.CONTRADICTS))
+        fork = au.fork_hypothesis(h, "B best.")
+        # Fork stays in the source persona; there is no cross-persona re-scope.
+        self.assertEqual(fork.persona, P1)
+        import inspect
+        self.assertNotIn("persona", inspect.signature(au.fork_hypothesis).parameters)
+
     def test_observation_and_inference_separated(self):
         h = self._hyp()
         au.add_observation(h, _obs(au.SUPPORTS))

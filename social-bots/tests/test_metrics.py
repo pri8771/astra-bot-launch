@@ -172,17 +172,47 @@ class MetricsTest(unittest.TestCase):
         self.assertEqual(snap["series_count"], 1)
         self.assertEqual(snap["count"], 2)
 
-    def test_deltas_may_sum(self):
-        """deltas 100 then 50 may aggregate to 150 when semantics declare deltas."""
-        for v, end in ((100, "2026-09-20T00:00:00+00:00"),
-                       (50, "2026-09-21T00:00:00+00:00")):
+    def test_deltas_may_sum_over_non_overlapping_windows(self):
+        """valid non-overlapping deltas 100 + 50 may aggregate to 150."""
+        for v, w in ((100, ("2026-09-20T00:00:00+00:00", "2026-09-21T00:00:00+00:00")),
+                     (50, ("2026-09-21T00:00:00+00:00", "2026-09-22T00:00:00+00:00"))):
             metrics.record("social-a", metrics.normalize(
                 platform="tiktok", source="fixture", content_id="same-c",
-                window_end=end, raw_metrics={"new_followers": v}))
+                window_start=w[0], window_end=w[1], raw_metrics={"new_followers": v}))
         agg = metrics.aggregate_semantic("social-a", metrics.FOLLOW)
         delta = agg["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
         self.assertEqual(delta["value"], 150.0)
-        self.assertEqual(delta["aggregation"], "sum")
+        self.assertEqual(delta["excluded_overlapping"], 0)
+
+    def test_overlapping_delta_windows_not_double_counted(self):
+        # Two deltas over the SAME (duplicate) window must not double-count.
+        w = ("2026-09-20T00:00:00+00:00", "2026-09-21T00:00:00+00:00")
+        for v in (100, 100):
+            metrics.record("social-a", metrics.normalize(
+                platform="tiktok", source="fixture", content_id="same-c",
+                window_start=w[0], window_end=w[1], raw_metrics={"new_followers": v}))
+        # And an overlapping (not identical) window.
+        metrics.record("social-a", metrics.normalize(
+            platform="tiktok", source="fixture", content_id="same-c",
+            window_start="2026-09-20T12:00:00+00:00",
+            window_end="2026-09-21T12:00:00+00:00", raw_metrics={"new_followers": 100}))
+        agg = metrics.aggregate_semantic("social-a", metrics.FOLLOW)
+        delta = agg["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
+        self.assertEqual(delta["value"], 100.0)      # only one counted
+        self.assertEqual(delta["count"], 1)
+        self.assertEqual(delta["excluded_overlapping"], 2)
+
+    def test_supported_but_missing_metric_retains_expected_kind(self):
+        # instagram supports SAVE (a cumulative snapshot) but does not report it.
+        obs = metrics.normalize(platform="instagram", source="fixture",
+                                raw_metrics={"reach": 100})
+        save = obs.metric(metrics.SAVE)
+        self.assertEqual(save.availability, metrics.MISSING)
+        self.assertEqual(save.metric_kind, metrics.CUMULATIVE_SNAPSHOT)
+        # A genuinely not-supported semantic stays kind-unknown.
+        rd = metrics.normalize(platform="reddit", source="fixture",
+                               raw_metrics={"num_comments": 1})
+        self.assertIsNone(rd.metric(metrics.VIEW).metric_kind)
 
     def test_snapshot_to_delta_derivation_records_derivation(self):
         prev = metrics.normalize(

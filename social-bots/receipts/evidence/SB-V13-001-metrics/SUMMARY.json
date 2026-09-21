@@ -15,8 +15,11 @@
     },
     "semantic_kind_aggregation": {
       "delta_100_then_50_value": 150.0,
+      "overlapping_delta_value": 100.0,
+      "overlapping_excluded": 1,
       "pass": true,
-      "snapshot_100_then_150_value": 150.0
+      "snapshot_100_then_150_value": 150.0,
+      "supported_missing_kind": "cumulative_snapshot"
     },
     "snapshot_to_delta_derivation": {
       "derivation_ok": true,

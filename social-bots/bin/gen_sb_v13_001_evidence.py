@@ -91,17 +91,39 @@ snap = snap_agg["by_platform"]["tiktok"]["kinds"][metrics.CUMULATIVE_SNAPSHOT]
 
 metrics.record("delta-bot", metrics.normalize(
     platform="tiktok", source="fixture", content_id="cc",
-    window_end="2026-09-20T00:00:00+00:00", raw_metrics={"new_followers": 100}))
+    window_start="2026-09-19T00:00:00+00:00", window_end="2026-09-20T00:00:00+00:00",
+    raw_metrics={"new_followers": 100}))
 metrics.record("delta-bot", metrics.normalize(
     platform="tiktok", source="fixture", content_id="cc",
-    window_end="2026-09-21T00:00:00+00:00", raw_metrics={"new_followers": 50}))
+    window_start="2026-09-20T00:00:00+00:00", window_end="2026-09-21T00:00:00+00:00",
+    raw_metrics={"new_followers": 50}))
 delta_agg = metrics.aggregate_semantic("delta-bot", metrics.FOLLOW)
 delta = delta_agg["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
+
+# overlapping delta windows must not double-count.
+metrics.record("dup-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_start="2026-09-19T00:00:00+00:00", window_end="2026-09-20T00:00:00+00:00",
+    raw_metrics={"new_followers": 100}))
+metrics.record("dup-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_start="2026-09-19T00:00:00+00:00", window_end="2026-09-20T00:00:00+00:00",
+    raw_metrics={"new_followers": 100}))
+dup = metrics.aggregate_semantic("dup-bot", metrics.FOLLOW)["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
+
+# supported-but-missing metric retains expected kind.
+missing_kind = metrics.normalize(platform="instagram", source="fixture",
+                                 raw_metrics={"reach": 1}).metric(metrics.SAVE)
 
 checks["semantic_kind_aggregation"] = {
     "snapshot_100_then_150_value": snap["value"],
     "delta_100_then_50_value": delta["value"],
-    "pass": snap["value"] == 150.0 and delta["value"] == 150.0,
+    "overlapping_delta_value": dup["value"],
+    "overlapping_excluded": dup["excluded_overlapping"],
+    "supported_missing_kind": missing_kind.metric_kind,
+    "pass": (snap["value"] == 150.0 and delta["value"] == 150.0
+             and dup["value"] == 100.0 and dup["excluded_overlapping"] == 1
+             and missing_kind.metric_kind == metrics.CUMULATIVE_SNAPSHOT),
 }
 
 # 6) snapshot -> delta derivation requires a comparable earlier snapshot and

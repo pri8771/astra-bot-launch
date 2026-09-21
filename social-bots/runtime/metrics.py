@@ -228,6 +228,21 @@ def _kind_for(pmap: dict | None, raw_name: str,
     return kind
 
 
+def _expected_semantic_kinds(pmap: dict | None, raw_kinds: dict | None) -> dict:
+    """Map each semantic the platform *supports* to its expected metric kind.
+
+    Used so a supported-but-MISSING metric still records the kind the platform
+    would report (LEAD-018 Next 3). Semantics with no known raw mapping stay
+    absent (their kind is genuinely unknown).
+    """
+    if not pmap:
+        return {}
+    out: dict[str, str] = {}
+    for raw_name, sem in pmap.get("raw_to_semantic", {}).items():
+        out[sem] = _kind_for(pmap, raw_name, raw_kinds)
+    return out
+
+
 def normalize(*, platform: str, raw_metrics: dict, source: str,
               account_alias: str | None = None, persona: str | None = None,
               content_id: str | None = None, experiment_id: str | None = None,
@@ -262,6 +277,8 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
             continue
         sem_to_raw[sem] = (raw_name, raw_value)
 
+    expected_kinds = _expected_semantic_kinds(pmap, raw_kinds)
+
     normalized: dict[str, dict] = {}
     for sem in SEMANTICS:
         if sem in sem_to_raw:
@@ -272,9 +289,13 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
                                  float(raw_value), metric_kind=kind)
             else:
                 # Present key but non-numeric / null -> collected-but-unavailable.
-                mv = MetricValue(sem, MISSING, None, raw_name, None, metric_kind=None)
+                # Keep the expected kind: the platform knows what this metric IS.
+                mv = MetricValue(sem, MISSING, None, raw_name, None,
+                                 metric_kind=expected_kinds.get(sem))
         elif sem in supports:
-            mv = MetricValue(sem, MISSING, None, None, None, metric_kind=None)
+            # Supported but not reported: MISSING, but its expected kind is known.
+            mv = MetricValue(sem, MISSING, None, None, None,
+                             metric_kind=expected_kinds.get(sem))
         else:
             mv = MetricValue(sem, NOT_SUPPORTED, None, None, None, metric_kind=None)
         normalized[sem] = asdict(mv)
@@ -482,6 +503,29 @@ def _series_key_dict(o: dict) -> tuple:
             o.get("content_id"))
 
 
+def _win(o: dict) -> tuple | None:
+    """Parsed (start, end) window for an observation, or None if incomplete."""
+    s, e = o.get("window_start"), o.get("window_end")
+    if not s or not e:
+        return None
+    a, b = _parse_iso(s), _parse_iso(e)
+    if a is None or b is None:
+        return None
+    return (a, b)
+
+
+def _window_overlaps_any(win: tuple, accepted: list[tuple]) -> bool:
+    """True if ``win`` overlaps or duplicates any window already accepted."""
+    s, e = win
+    for (a, b) in accepted:
+        # Half-open overlap; equal windows (duplicates) overlap too.
+        if s < b and a < e:
+            return True
+        if s == a and e == b:
+            return True
+    return False
+
+
 def aggregate_semantic(bot: str, semantic: str) -> dict:
     """Aggregate a semantic metric SEMANTIC-KIND-AWARE, grouped by platform.
 
@@ -522,10 +566,32 @@ def aggregate_semantic(bot: str, semantic: str) -> dict:
         reduced: dict[str, dict] = {}
         for kind, entries in bucket["kinds"].items():
             if kind == DELTA:
+                # Deltas are additive ONLY across non-overlapping, non-duplicate
+                # windows within a series. Overlapping/duplicate windows would
+                # double-count, so they are excluded from the sum.
+                per_series: dict[tuple, list] = {}
+                for e in entries:
+                    per_series.setdefault(_series_key_dict(e["obs"]), []).append(e)
+                total = 0.0
+                counted = 0
+                excluded = 0
+                for sk, es in per_series.items():
+                    es_sorted = sorted(es, key=lambda e: _obs_time(e["obs"]))
+                    accepted: list[tuple] = []
+                    for e in es_sorted:
+                        win = _win(e["obs"])
+                        if win is None or _window_overlaps_any(win, accepted):
+                            # No verifiable window, or overlaps/duplicates an
+                            # already-counted window -> do not double-count.
+                            excluded += 1
+                            continue
+                        accepted.append(win)
+                        total += e["value"]
+                        counted += 1
                 reduced[kind] = {
-                    "kind": kind, "aggregation": "sum",
-                    "value": sum(e["value"] for e in entries),
-                    "count": len(entries),
+                    "kind": kind, "aggregation": "sum_non_overlapping_deltas",
+                    "value": total, "count": counted,
+                    "excluded_overlapping": excluded,
                 }
             else:
                 # Snapshot / gauge / rate: reduce each series to its latest value.

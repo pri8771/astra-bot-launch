@@ -51,14 +51,27 @@ _FORK_RATIO = 1.5
 
 # Allowlist of safe segment dimensions. A segment describes content/context
 # affinity only. Anything not on this list (including any sensitive-person
-# attribute) is rejected — an allowlist, not a blacklist.
+# attribute) is rejected — an allowlist, not a blacklist. Deliberately no
+# open-ended "interest" dimension: a free-form interest field is a vector for
+# sensitive-trait inference (e.g. religious_interest / health_interest).
 ALLOWED_SEGMENT_DIMENSIONS = {
     "topic", "format", "platform", "timezone_band", "language",
     "content_theme", "posting_time", "series", "campaign", "funnel_stage",
-    "content_length", "audience_interest", "hook_style", "cadence",
+    "content_length", "hook_style", "cadence",
 }
 
-# Sensitive-person attribute categories that must never appear as a value either.
+# Sensitive-person trait roots. Matched as substrings against tokenized values so
+# compound variants (religious_interest, mental_health, political_affiliation,
+# medical-condition, ...) are caught, not just exact strings.
+SENSITIVE_TRAIT_ROOTS = (
+    "race", "ethnic", "religio", "faith", "health", "medic", "diagnos",
+    "disab", "sexual", "sexuality", "orientation", "gender_identity", "lgbt",
+    "politic", "immigrat", "citizen", "genetic", "biometric",
+    "geolocation", "precise_location", "home_address", "minor", "children",
+    "criminal", "financial_account", "union_member", "pregnan", "mental",
+)
+
+# Retained for compatibility/reference (exact sensitive dimension names).
 SENSITIVE_ATTRS = {
     "race", "ethnicity", "religion", "religious", "health", "medical",
     "diagnosis", "disability", "sexual_orientation", "sexuality", "gender_identity",
@@ -66,6 +79,12 @@ SENSITIVE_ATTRS = {
     "biometric", "precise_location", "home_address", "minor", "minors", "children",
     "criminal_record", "financial_account", "union_membership",
 }
+
+
+def _names_sensitive_trait(text: str) -> bool:
+    """True if any token/substring of ``text`` names a sensitive-trait root."""
+    low = str(text).strip().lower()
+    return any(root in low for root in SENSITIVE_TRAIT_ROOTS)
 
 
 class SensitiveSegmentError(ValueError):
@@ -95,9 +114,11 @@ def validate_segment(segment: dict) -> dict:
             raise SensitiveSegmentError(
                 f"segment dimension {key!r} is not in the safe allowlist "
                 f"{sorted(ALLOWED_SEGMENT_DIMENSIONS)}")
-        v = str(val).strip().lower()
-        if v in SENSITIVE_ATTRS:
-            raise SensitiveSegmentError(f"sensitive segment value not allowed: {val!r}")
+        # Defense-in-depth: reject a value (or key) that names a sensitive trait,
+        # matched by substring so compound variants cannot slip through.
+        if _names_sensitive_trait(key) or _names_sensitive_trait(val):
+            raise SensitiveSegmentError(
+                f"segment names a sensitive-person trait: {key!r}={val!r}")
     return segment
 
 
@@ -225,22 +246,26 @@ def should_fork(hyp: Hypothesis, *, now: datetime | None = None,
 
 
 def fork_hypothesis(hyp: Hypothesis, new_statement: str, *,
-                    persona: str | None = None,
                     segment: dict | None = None) -> Hypothesis:
-    """Create a competing hypothesis for a DIFFERENT statement.
+    """Create a competing hypothesis for a DIFFERENT statement, IN THE SAME
+    persona/workspace as the parent.
 
     Contradiction of the parent A is evidence that A is wrong; it is NOT positive
     evidence for the fork's arbitrary alternative B. So the fork starts with NO
     supporting evidence (``unlearned`` until real support for B arrives). The
     triggering contradiction is recorded only as provenance
-    (``origin_contradiction_refs``), never as support. The fork inherits the
-    parent's persona/workspace scope unless explicitly re-scoped.
+    (``origin_contradiction_refs``), never as support.
+
+    A private fork ALWAYS stays in the source persona/workspace — there is no
+    re-scope parameter, because carrying A's provenance/contradiction into a
+    different persona would be an implicit cross-persona private-memory transfer.
+    Any cross-workspace import must go through a separate explicit contract.
     """
     seg = validate_segment(segment) if segment is not None else dict(hyp.segment)
     fork = Hypothesis(
         id="hyp-" + uuid.uuid4().hex[:12],
         bot=hyp.bot,
-        persona=persona or hyp.persona,
+        persona=hyp.persona,          # never cross-persona
         segment=seg,
         statement=new_statement,
         forked_from=hyp.id,

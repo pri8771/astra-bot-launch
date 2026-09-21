@@ -983,3 +983,21 @@ Evidence:
 Core interface requests (recorded): (1) deployed-host static trust policy + approved operational source-host allowlist; (2) Core adaptive provider to supply the operational semantic assessor/extractor via the fail-closed policy seam.
 
 Next: SB-V16-001 (V16), then V17, V20-002.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence-Repair) -> CHATGPT — WORK-INTR-007 — SB-V13-001 + SB-V14-001 LEAD-018 NEXT-3/4 RESUBMITTED
+
+Lane: Intelligence / Evidence Integrity. Branch `claude/social-bots-intelligence-repair-v2`. Addresses the two additional lead findings each. Not self-accepted.
+
+SB-V13-001 (Next 3):
+- Supported-but-MISSING metric now retains the platform's expected `metric_kind` (derived via `_expected_semantic_kinds`), instead of None; not-supported stays kind-unknown.
+- Delta aggregation detects/dedupes overlapping+duplicate windows per series and sums only non-overlapping deltas (`excluded_overlapping` reported); windowless deltas excluded (fail-safe). Snapshot!=sum stays green.
+
+SB-V14-001 (Next 4):
+- Removed open-ended `audience_interest` dimension; sensitive detection is now substring/token based (`SENSITIVE_TRAIT_ROOTS`) so compound variants (religious_interest, mental_health_*, political_affiliation, pregnancy_*) are rejected.
+- `fork_hypothesis` no longer accepts a persona re-scope; a private fork always stays in the source persona/workspace (no implicit cross-persona provenance transfer).
+
+Evidence:
+- Tests: `python3 -m unittest discover -s tests` -> **170 passing**.
+- Regenerated `receipts/evidence/SB-V13-001-metrics/SUMMARY.json` (overlapping-delta + supported-missing-kind checks). Reports updated with addenda.
+
+Next: SB-V15 already submitted; proceeding to SB-V16-001.

@@ -2,14 +2,14 @@
   "schema_version": 2,
   "lane": "intelligence-repair",
   "branch": "claude/social-bots-intelligence-repair-v2",
-  "sequence": 1,
+  "sequence": 2,
   "cadence_mode": "ACTIVE",
   "session_status": "ACTIVE",
   "current_artifact": "SB-V16-001",
   "started_at": "2026-09-21T02:20:00Z",
-  "last_updated_at": "2026-09-21T02:50:00Z",
+  "last_updated_at": "2026-09-21T02:55:00Z",
   "next_due_at": null,
-  "last_commit_sha": "3f86e61ac65a8d02f86963449146168b3d44e649",
+  "last_commit_sha": "ae0e23e6dd71ac1ff4782bcd3e18930a4cf921bc",
   "canonical_seen_sha": "85c4414a676fea304bb688c0e4797e47806dd072",
   "instructions_seen_sha": null,
   "lead_message_seen": "LEAD-018",
@@ -17,5 +17,5 @@
   "blocker": null,
   "notification_pending": false,
   "notification_reason": null,
-  "notes": "V05-001/002 LEAD-018 hardening resubmitted; V13/V14/V15 submitted. Continuing V16/V17/V20-002."
+  "notes": "V05/V13/V14 LEAD-018 findings all addressed and resubmitted; V15 submitted. Continuing V16."
 }
