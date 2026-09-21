@@ -27,3 +27,8 @@ Must verify:
 - artifact evidence is internally consistent.
 
 Only after SB-EVD-002 is ACCEPTED may the project claim **V0.4 complete**.
+
+
+## LEAD-037 current state
+
+The accepted first SB-V04-005 canary chain has passed technical lead audit. Milestone acceptance remains WITHHELD because SB-V04-002 and SB-V04-004 are now BLOCKED on fresh explicit owner authorization for controlled empirical adaptive-divergence evidence. The unauthorized second live call is excluded permanently and cannot satisfy or reduce this gate.
