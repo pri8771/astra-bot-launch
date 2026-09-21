@@ -2,12 +2,12 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T14:55:00Z",
-  "lead_review": "LEAD-034",
+  "reviewed_at": "2026-09-21T15:05:00Z",
+  "lead_review": "RESET-20260921",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "Immediately perform independent SB-V03-004 lifecycle execution against current Core 796d4e3/final evidence 436787: post-cycle takeover success-receipt rejection, active-cycle lease-loss old-owner commit rejection, staged migration fencing, focused fencing/concurrency tests. No Core source edits. Return exact commands/results and ACCEPT-READY or concrete defect. Start today's FAST_5M->SOAK_15M_24H measurement prospectively in parallel.",
-  "notification_delivered": false,
-  "notes": "Historical seq7->8->9 coordination bootstrap remains accepted and hourly authorization remains true for that legacy contract. Today's temporary soak is a separate measurement and has no FAST_5M T0 yet. Do not backfill and do not pause QA."
+  "next_assignment": "Fresh Lane 3: launch reporter, independently execute SB-V03-004 gate, then use isolated canary worktree for real SB-V04-005.",
+  "notification_delivered": true,
+  "notes": "Reset baseline. One session owns acceptance/QA + canary sequentially, no Core source edits. Issue #3 is live heartbeat feed."
 }
