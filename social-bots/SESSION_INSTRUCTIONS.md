@@ -1,59 +1,45 @@
 # SESSION_INSTRUCTIONS — Lane 1 / Windows Core Builder
 
-Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
+Mode: FAST TRACK — LEAD-036
 Branch: `claude/social-bots-windows-core-host`
-Lead check: 2026-09-21T15:52:53Z
+Lead check: 2026-09-21T17:10:00Z
 
-No worker-generated commit, Issue #3 heartbeat, or progress update has appeared since the reset assignment. Start the fresh session now. Heartbeat is observability only and must not delay engineering work.
+Official phase is **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 Read canonical:
-- `social-bots/RESET_EXECUTION_20260921.md`
-- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `social-bots/SESSION_ROUTER.md`
+- `social-bots/lead-reviews/LEAD-036_2026-09-21T1710.md`
+- `social-bots/STATE.json`
+- `social-bots/WORK_QUEUE.md`
+- `social-bots/artifact-packets/SB-V04-002.md`
 - `social-bots/artifact-packets/SB-V04-004.md`
 
-## Start
+## Accepted / frozen
 
-1. Pull this branch.
-2. Set `social-bots/worker-reports/windows-core/CURRENT_PROGRESS.md` to a concise current status.
-3. Verify `gh auth status` can access `pri8771/astra-bot-launch`.
-4. Launch the heartbeat reporter in a separate background process:
+- SB-V03-001/002/003/004/005/006 and SB-EVD-001 are accepted. Do not churn V03.
+- SB-V04-001 is accepted.
+- SB-V04-003 is accepted.
+- SB-V04-005 is accepted from the first authorized real canary.
 
-PowerShell example:
+## Hard authorization boundary
 
-```powershell
-Start-Process -FilePath python -ArgumentList @(
-  "social-bots/bin/heartbeat_reporter.py",
-  "--lane","CORE",
-  "--progress-file","social-bots/worker-reports/windows-core/CURRENT_PROGRESS.md"
-) -WindowStyle Hidden
-```
+The owner's **exactly one** existing-subscription live model call has been consumed. A later duplicate call occurred and is excluded from acceptance evidence.
 
-The reporter handles:
-- T0/+5/+10/+15m;
-- then every 15m for 24h;
-- one human-readable Issue #3 comment per heartbeat.
+**DO NOT execute any further `claude` CLI / adaptive provider / live model call.**
+No PAYG/API-key path, no new spend, no public effects.
 
-Do not launch a second reporter for the same fresh session.
+## Current mission
 
-Update CURRENT_PROGRESS.md whenever task/subtask/test/blocker changes.
+SB-V04-002 and SB-V04-004 remain CHANGES_REQUIRED because the accepted single canary does not establish the required real adaptive causal-divergence cases.
 
-## Mission
+Work only on non-live engineering that improves acceptance readiness without pretending to fill that evidence gap:
+1. preserve the corrected single-variable deterministic persona/evidence test design;
+2. keep the sanitized real-canary receipt seam deterministic and read-only;
+3. make the suite clearly distinguish `fixture/replay engineering check` from `real adaptive causal-divergence evidence`;
+4. do not label replay of one canary receipt as persona/evidence divergence proof;
+5. document exactly which V04-002/V04-004 acceptance cases remain impossible without additional owner-authorized live model calls;
+6. run focused/full tests and push a bounded report if you make a useful non-live improvement;
+7. otherwise move to dependency-safe non-overlapping Core QA/research only after pulling current canonical instructions.
 
-Preserve final V03 implementation/evidence unless independent QA finds a concrete defect.
-
-Repair only SB-V04-004:
-1. persona-only divergence test: hold all non-persona variables constant;
-2. evidence-only divergence test: hold all non-evidence variables constant;
-3. include >=3 persona/workspace comparisons including cultural/Primandir;
-4. deterministic contextual provider tests remain diagnostic only;
-5. add a clean seam that consumes sanitized real SB-V04-005 adaptive receipt;
-6. do not make another live model call from Core;
-7. preserve adaptive-required production default and deterministic authority wall;
-8. run relevant tests/full suite;
-9. commit/push report and changes;
-10. pull canonical instructions again and continue dependency-safe Core work only if explicitly available.
-
-At every meaningful change, update CURRENT_PROGRESS.md. Even with no code commit, Issue #3 must show a truthful heartbeat such as "still fixing evidence-only isolation; tests not run yet".
+Heartbeat runs in parallel. The reset soak is **not yet durable-verified** because the branch HEARTBEAT_LOG lacks reset-epoch FAST_5M entries. Commit real prospective entries only; no backfill.
 
 No public effects, PAYG/new spend, secrets, fake evidence, destructive actions or SwarmAI dependency.
