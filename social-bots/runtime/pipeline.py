@@ -12,7 +12,7 @@ import hashlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import paths
+from . import paths, factcheck
 from .jsonstore import read_json, write_json, append_jsonl, read_jsonl, now_iso
 
 
@@ -51,11 +51,73 @@ def ideate(persona: dict, signal: dict) -> dict:
 # Reviews
 # --------------------------------------------------------------------------- #
 def fact_check(persona: dict, candidate: dict) -> dict:
+    """Operational claim-to-source factual review (SB-R07-051 / SB-V05-002).
+
+    Routes through :mod:`runtime.factcheck` with the closed
+    :class:`BoundedPropositionAssessor`. Callers cannot grant operational
+    authority. Fixture/untrusted receipts never yield an operational pass.
+
+    Candidate optional fields:
+    - ``claims``: list of :class:`factcheck.Claim` or claim dicts
+    - ``evidence_items``: list of :class:`factcheck.EvidenceItem`
+    - ``support_assessments``: precomputed assessments (tests / advanced)
+    - ``evidence_hashes``: ``{receipt_id: content_hash}`` for staleness
+    """
     needs_evidence = persona.get("source_requirements", {}).get("evidence_required", True)
     has_source = bool(candidate.get("source_refs"))
-    ok = (not needs_evidence) or has_source
-    return {"check": "fact", "passed": ok,
-            "reason": "source ref present" if has_source else "no source ref"}
+    if not needs_evidence:
+        return {"check": "fact", "passed": True, "reason": "evidence not required",
+                "operational": False, "mode": "not-required"}
+
+    text = f"{candidate.get('hook', '')} {candidate.get('body', '')}".strip()
+    normalized_claims: list = []
+    for c in candidate.get("claims") or []:
+        if isinstance(c, factcheck.Claim):
+            normalized_claims.append(c)
+        elif isinstance(c, dict):
+            normalized_claims.append(factcheck.Claim(
+                id=c["id"], text=c["text"],
+                kind=c.get("kind", factcheck.FACTUAL),
+                required=c.get("required", True)))
+
+    current_hashes = dict(candidate.get("evidence_hashes") or {})
+    evidence_items = list(candidate.get("evidence_items") or [])
+    for item in evidence_items:
+        ref = item.ref
+        current_hashes.setdefault(ref.receipt_id, ref.content_hash)
+
+    bindings = list(candidate.get("support_assessments") or [])
+    if evidence_items and not bindings:
+        assessor = factcheck.default_operational_assessor()
+        final_preview, _ = factcheck.reconcile_claims(normalized_claims, text)
+        for claim in final_preview:
+            if claim.kind != factcheck.FACTUAL:
+                continue
+            bindings.extend(factcheck.assess_bindings(claim, evidence_items, assessor))
+
+    review = factcheck.review_candidate(
+        text, normalized_claims, bindings, current_hashes)
+
+    material = [r for r in review.claim_results if r.get("kind") == factcheck.FACTUAL]
+    if not material and not review.identified_claims:
+        ok = has_source
+        return {
+            "check": "fact", "passed": ok,
+            "reason": ("no material factual claims; source ref present"
+                       if ok else "no material factual claims; no source ref"),
+            "operational": False,
+            "mode": "no-material-claims",
+            "fact_review": review.as_dict(),
+        }
+
+    return {
+        "check": "fact",
+        "passed": review.passed,
+        "reason": review.withheld_reason or review.status,
+        "operational": True,
+        "mode": "claim-to-source",
+        "fact_review": review.as_dict(),
+    }
 
 
 def voice_review(persona: dict, candidate: dict) -> dict:

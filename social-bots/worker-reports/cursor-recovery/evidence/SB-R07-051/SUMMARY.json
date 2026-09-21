@@ -1,0 +1,13 @@
+{
+  "artifact": "SB-R07-051",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "focused_result": "24 passed",
+  "full_suite_result": "386 passed, 2 skipped",
+  "operational_assessor": "BoundedPropositionAssessor@1.0.0",
+  "caller_registration_api": false,
+  "next_artifact": "SB-R07-052",
+  "recorded_at": "2026-09-21T19:45:44Z"
+}

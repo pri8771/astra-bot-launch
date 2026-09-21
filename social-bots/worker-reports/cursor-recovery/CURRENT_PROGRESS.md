@@ -14,17 +14,23 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 ### SB-R07-042 — SUBMITTED (ENGINEERING)
 
 - Implementation source SHA: `22d6234f560e0dce26e6503d32c51058cb7ce0be`
-
 - Live HTTPS freeze of E1 (`example.com`) + E2 (`rfc8259.txt`)
 - Immutable bundle: `evidence/SB-R07-042/freeze/`
 - Collector SB-V05-001 reused; no model call
 - Full suite: 362 passed, 2 skipped
 
+### SB-R07-051 — SUBMITTED (ENGINEERING)
+
+- Closed operational `BoundedPropositionAssessor` + pipeline integration
+- Adversarial negation/relation/numeric/predicate/conflict/omission tests
+- Full suite: 386 passed, 2 skipped
+
 ## Next
 
-1. `SB-R07-051` — operational fact-review integration
-2. Skip `SB-R07-073` on this UNSUITABLE host
-3. Continue no-LIVE recovery artifacts
+1. `SB-R07-052` — platform-native formatting gate
+2. `SB-R07-053` — cultural-review evidence binding
+3. Skip `SB-R07-073` on this UNSUITABLE host
+4. Continue no-LIVE recovery artifacts
 
 ## Blockers
 
