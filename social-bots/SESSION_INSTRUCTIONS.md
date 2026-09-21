@@ -2,65 +2,37 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-026
+Lead review: LEAD-027
 
-Heartbeat is observability only. Do NOT run a foreground heartbeat-only loop that pauses implementation. Record a real heartbeat when due, push it, and continue source work.
-
-## Coordination loop
-
-At session start and after every parent artifact checkpoint:
-1. `git pull --ff-only`
-2. `git fetch origin`
-3. read this file
-4. read canonical `FAST_TRACK_EXECUTION.md` and `SESSION_ROUTER.md`
-5. inspect `worker-reports/intelligence-repair/LEAD_ACK.json`
-6. record heartbeat when genuinely due without fabricating/backfilling timestamps
-7. continue dependency-ready implementation.
-
-## Current liveness / stall
-
-The last durable worker commit still observed by LEAD-026 is heartbeat seq7 at `2026-09-21T04:10:36Z`. No V05/V15 source commit or later worker heartbeat is visible. The lane is stale; resume implementation immediately.
-
-Seq5 `03:23:31Z` -> seq6 `03:40:08Z` is acceptable; seq6 -> seq7 `04:10:36Z` is ~30m28s and does not satisfy the ~15-minute bootstrap. `steady_hourly_authorized` remains false. Do not backfill or rewrite history.
+Heartbeat is observability only. Do NOT pause implementation for heartbeat testing. Record genuine timestamps only; no backfill. Hourly cadence remains unauthorized because seq6 -> seq7 was ~30m28s.
 
 ## Accepted and frozen
-- `SB-V13-001` — ACCEPTED engineering artifact.
-- `SB-V14-001` — ACCEPTED engineering artifact.
+- `SB-V13-001` — ACCEPTED.
+- `SB-V14-001` — ACCEPTED.
 
-Do not restart those.
+## Priority 1 — SB-V05-001 — IMPLEMENT NOW
 
-## Priority 1 — SB-V05-001 real HTTPS path repair — START SOURCE WORK NOW
+The lane remains stale: no worker source/heartbeat after seq7 at `2026-09-21T04:10:36Z`.
 
-Repair the LEAD-020 production-path defect now:
-- actual socket connects to the already validated/pinned public IP;
-- TLS SNI and certificate verification use the original hostname;
-- no post-validation hostname re-resolution;
+Repair the actual HTTPS production path:
+- connect to the already validated/pinned public IP;
+- preserve original hostname for TLS SNI and certificate verification;
+- no hostname re-resolution after validation;
 - correct Host header semantics;
-- redirects remain fail-closed unless every hop is revalidated/re-pinned end to end;
-- add a regression that exercises the real production HTTPS connection-construction path and would catch an invalid stdlib constructor/API signature;
-- preserve the existing static/internal trust model, fixture-vs-operational distinction, extraction honesty, SSRF protections and operational bridge gating;
-- do not claim fixture/stub evidence is a real external live capture.
+- redirects fail closed unless each hop is independently validated/pinned;
+- add a regression through the real production connection-construction path that would catch invalid stdlib HTTPSConnection usage/signature;
+- preserve SSRF protections, collector-owned trust, extraction honesty, fixture-vs-operational distinction and operational signal gating.
 
-Submit `SB-V05-001` with exact SHA/tests/limitations and continue directly to V15.
+Return exact SHA/tests/limitations; do not claim fixture/stub evidence is live external evidence.
 
-## Priority 2 — SB-V15-001 persona-scoped production experiment boundary
+## Priority 2 — SB-V15-001
 
-After V05-001 submission:
-- add authoritative bot+persona production save/load/list/read APIs;
-- normal persona-facing readers must never enumerate another persona's experiment;
-- any bot-wide raw access must be explicitly admin/internal and not used by normal persona flows;
-- add mixed-persona regressions through the real production API;
-- preserve normalized-observation provenance, semantic compatibility and INCONCLUSIVE-on-missing behavior.
+After V05 submission, implement authoritative bot+persona experiment persistence/read/list APIs. Normal persona flows must not enumerate another persona's experiments; whole-runtime access, if retained, must be explicit admin/internal. Add mixed-persona production-path regressions and preserve normalized-observation provenance + INCONCLUSIVE-on-missing behavior.
 
-Submit `SB-V15-001`.
+## Hold for later audit
 
-## Hold / later lead audit
-
-Preserve current `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` submissions. Do not expand V2.1/V2.2/V2.3 until V05/V15 are repaired and lead audit catches up.
-
-`SB-V05-002` remains fail-closed pending accepted operational semantic-provider integration; do not build a second model gateway.
+Preserve V16/V17/V20-002. Do not expand higher-version work until V05/V15 are submitted and independently reviewed.
 
 ## Safety / ownership
 
-Do not edit Core state/decision/reasoning/leasing/worker.
-No public effects, account login unless separately authorized, network scanning, paid APIs/new spend, secrets, fake metrics/evidence, engagement manipulation or SwarmAI dependency.
+Do not edit Core state/decision/reasoning/leasing/worker. No public effects, paid APIs/new spend, secrets, fake metrics/evidence, engagement manipulation or SwarmAI dependency.
