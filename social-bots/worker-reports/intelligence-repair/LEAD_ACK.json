@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "intelligence-repair",
   "reviewed_through_sequence": 7,
-  "reviewed_at": "2026-09-21T04:52:00Z",
-  "lead_review": "LEAD-024",
+  "reviewed_at": "2026-09-21T05:58:00Z",
+  "lead_review": "LEAD-025",
   "bootstrap_consecutive_verified": 1,
   "steady_hourly_authorized": false,
-  "next_assignment": "START SB-V05-001 source repair now; then SB-V15-001. Heartbeat stays background-only and must not pause source work.",
+  "next_assignment": "RESUME WORK NOW: implement SB-V05-001 real HTTPS pinned-IP TLS/SNI/certificate path first, then SB-V15-001 persona-scoped experiment boundary. Heartbeat remains background-only and must not pause source work.",
   "notification_delivered": true,
-  "notes": "Seq5->6 is a valid ~16m37s interval. Seq6->7 is ~30m28s, so the seq7 note claiming completed 3x15-minute validation is rejected. No backfill. No V05/V15 implementation commit is visible yet."
+  "notes": "Worker is stale: no source or heartbeat commit after seq7 at 04:10:36Z. Seq6->7 remains ~30m28s, so hourly is still unauthorized. No backfill. The missing progress is execution, not another planning cycle."
 }
