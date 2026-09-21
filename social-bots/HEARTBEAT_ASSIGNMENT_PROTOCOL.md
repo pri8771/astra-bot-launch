@@ -6,21 +6,48 @@ Lead-owned control contract.
 
 Keep Claude workers observable and continuously assignable through GitHub without owner relay.
 
-## Cadence
+## Temporary soak policy — 2026-09-21
 
-### Bootstrap phase
-Each worker heartbeat is due every **15 minutes** while its lane is active.
+For today's fresh-session validation, every active Claude lane uses a two-stage heartbeat soak.
 
-Bootstrap continues until:
-- at least 3 consecutive heartbeat sequences were pushed approximately 15 minutes apart;
-- ChatGPT lead has reviewed/acknowledged those sequences in the lane's `LEAD_ACK.json`.
+### Stage 1 — FAST_5M bootstrap
 
-Because ChatGPT scheduled automations cannot execute more frequently than hourly, the lead may acknowledge several 15-minute worker heartbeats together on its next hourly review. The worker remains on 15-minute cadence until that acknowledgement is visible.
+Each fresh worker session must produce **3 consecutive real five-minute intervals**.
 
-### Steady phase
-After lead acknowledges at least 3 consecutive bootstrap heartbeats, the worker switches to **hourly** heartbeat checks.
+For avoidance of ambiguity, this means four timestamped heartbeat records:
 
-Artifact submissions and blockers still push immediately; do not wait for the next heartbeat.
+- T0
+- approximately T0 + 5 minutes
+- approximately T0 + 10 minutes
+- approximately T0 + 15 minutes
+
+Those four records create three consecutive elapsed intervals.
+
+Acceptance:
+- each interval should be approximately 5 minutes, with reasonable execution/Git jitter;
+- timestamps must be real, never fabricated/backfilled;
+- every record must be durably appended to `HEARTBEAT_LOG.jsonl` and pushed;
+- burst artifact/status updates do not substitute for elapsed-time heartbeat intervals.
+
+After the third successful five-minute interval, the worker immediately enters Stage 2. It does NOT need to wait for ChatGPT acknowledgement to begin the 24-hour soak.
+
+### Stage 2 — SOAK_15M_24H
+
+After Stage 1 succeeds, heartbeat is due every **15 minutes for the next 24 hours**.
+
+Target:
+- 96 consecutive 15-minute intervals after the Stage-1 completion timestamp;
+- a final soak-complete record after the 24-hour window.
+
+Rules:
+- heartbeat runs in parallel with useful project work;
+- do not stop coding/review work merely to wait for heartbeat;
+- artifact submissions and blockers still push immediately;
+- a material state-transition heartbeat does not reset the 15-minute soak clock;
+- missed intervals are reported truthfully and are not backfilled;
+- if the loop/process dies, restart prospectively and record the interruption.
+
+ChatGPT's automated lead review remains hourly because the platform does not support faster scheduled reviews. Manual checks may inspect GitHub at any time.
 
 ## Files per lane
 
@@ -38,78 +65,58 @@ Lead-owned assignment:
 
 ## HEARTBEAT.json fields
 
-- schema_version
-- lane
-- branch
-- sequence
-- cadence_mode: BOOTSTRAP_15M | HOURLY
-- session_status
-- current_artifact
-- started_at
-- last_updated_at
-- next_due_at
-- last_commit_sha
-- canonical_seen_sha
-- instructions_seen_sha
-- lead_message_seen
-- next_artifact
-- blocker
-- notification_pending
-- notification_reason
-- notes
+Existing fields remain authoritative. For today's soak, use these cadence values:
+- `FAST_5M`
+- `SOAK_15M_24H`
+- `SOAK_COMPLETE`
 
-## LEAD_ACK.json fields
-
-- schema_version
-- lane
-- reviewed_through_sequence
-- reviewed_at
-- lead_review
-- bootstrap_consecutive_verified
-- steady_hourly_authorized
-- next_assignment
-- notification_delivered
-- notes
+In `notes`, include:
+- soak start time;
+- Stage-1 progress or Stage-2 interval count;
+- latest real interval duration;
+- any interruption.
 
 ## Worker update triggers
 
-Every heartbeat update also appends the full heartbeat record to `HEARTBEAT_LOG.jsonl`, so cadence can be verified without relying on the current snapshot alone.
+Every timed heartbeat appends the full heartbeat record to `HEARTBEAT_LOG.jsonl` and pushes it.
 
-Push heartbeat immediately:
+Also push immediately:
 - on session start/resume;
-- every due heartbeat interval while active;
-- before new parent artifact;
-- after artifact submission;
+- before/after a parent artifact checkpoint where useful;
 - on blocker;
 - after detecting new lead instructions;
-- before idle/stop.
+- before stop.
 
-Artifact submission/blocker heartbeats set:
-- notification_pending=true
-- notification_reason to a short factual reason.
+Immediate material updates do not count as timed soak intervals unless the elapsed clock also satisfies the due interval.
+
+## Work-concurrency rule
+
+Heartbeat must not serialize engineering work.
+
+Preferred implementation:
+- run a separate lightweight heartbeat loop/process from the same repository checkout;
+- stage/commit only heartbeat files;
+- never stage unrelated source changes;
+- do not perform destructive reset/clean/stash operations;
+- if concurrent source work makes a Git operation unsafe, record the heartbeat locally and push it at the next safe moment with the original real timestamp; do not invent a timestamp.
 
 ## Lead behavior
 
-At every lead review:
-1. inspect worker branches and heartbeat histories/commits;
-2. audit new source/tests/reports;
-3. update canonical artifact state;
-4. update each lane's LEAD_ACK.json;
-5. update SESSION_INSTRUCTIONS.md with next work;
-6. when meaningful new activity exists, use the available parent-notification mechanism to notify the owner thread;
-7. keep dependency-ready work assigned so a worker does not idle unnecessarily.
+At lead review:
+1. inspect worker branches and heartbeat histories;
+2. independently calculate elapsed intervals;
+3. audit new source/tests/reports;
+4. update canonical state and lane acknowledgements;
+5. flag stale/missed soak intervals;
+6. keep dependency-ready work assigned.
 
 ## Truth rules
 
-- Scheduler/heartbeat claims do not prove artifact correctness.
+- Heartbeat proves coordination/liveness only, not artifact correctness.
 - Git commits/receipts/source review remain stronger evidence.
-- Three bootstrap heartbeats prove GitHub coordination liveness only, not V0.7 Social Bots runtime liveness.
-- V0.7 requires the separate recurring runtime artifacts.
+- Today's 5-minute + 24-hour soak does not by itself prove V0.7 recurring Social Bots runtime liveness.
+- No synthetic/backfilled heartbeat may be presented as successful cadence.
 
 ## Platform limitation
 
-ChatGPT scheduled automations support hourly cadence at fastest. Therefore:
-- worker check-ins may be every 15 minutes;
-- lead automated review is hourly;
-- event-driven immediate GitHub-to-ChatGPT webhook notification is not currently exposed in this environment.
-- artifact submissions remain visible immediately in GitHub and are reviewed on the next lead run or any manual lead review.
+ChatGPT scheduled automations support hourly cadence at fastest. Workers may heartbeat faster because their own local process/scheduler supplies the clock.
