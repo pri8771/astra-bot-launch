@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "lane": "intelligence-repair",
-  "reviewed_through_sequence": 6,
-  "reviewed_at": "2026-09-21T04:06:00Z",
-  "lead_review": "LEAD-023",
-  "bootstrap_consecutive_verified": 2,
+  "reviewed_through_sequence": 7,
+  "reviewed_at": "2026-09-21T04:52:00Z",
+  "lead_review": "LEAD-024",
+  "bootstrap_consecutive_verified": 1,
   "steady_hourly_authorized": false,
-  "next_assignment": "Resume SB-V05-001 immediately: repair the actual pinned-IP HTTPS TLS/SNI/certificate path and production-constructor regression. Then complete SB-V15-001 persona-scoped production experiment persistence/read APIs. Heartbeat continues in background and must not pause source work.",
+  "next_assignment": "START SB-V05-001 source repair now; then SB-V15-001. Heartbeat stays background-only and must not pause source work.",
   "notification_delivered": true,
-  "notes": "Durable timed checkpoints seq5 and seq6 are real, but the lane has pushed no implementation repair since fast-track activation and no third timed checkpoint yet. Stop any foreground heartbeat-only wait and resume source work now."
+  "notes": "Seq5->6 is a valid ~16m37s interval. Seq6->7 is ~30m28s, so the seq7 note claiming completed 3x15-minute validation is rejected. No backfill. No V05/V15 implementation commit is visible yet."
 }
