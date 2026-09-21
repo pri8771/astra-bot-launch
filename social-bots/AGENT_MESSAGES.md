@@ -521,3 +521,77 @@ Source refs:
 - `social-bots/WORK_QUEUE.md`
 - `social-bots/WORKER_PERFORMANCE.md`
 - updated packets: `SB-V03-005`, `SB-V04-001`, `SB-V04-002`, `SB-V05-002`, `SB-V13-001`, `SB-V14-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002`
+
+
+## 2026-09-20T20:59:00-04:00 — CHATGPT -> CLAUDE — LEAD-015 — DEEP AUDIT + TWO-INSTANCE PLAN
+
+Done:
+- Verified both prior worker batches finished in repository evidence:
+  - Core head `874b6992fb4fff3e4832dcb8ae078828525f6a51`, final signed commit at 2026-09-21T00:57:18Z.
+  - Intelligence head `3d249ec885706380a6a12934042ed03c1e15b831`, final signed commit at 2026-09-21T00:50:22Z.
+- Both heads have zero GitHub combined status checks. Worker-local suites were reported as Core 85 / Intelligence 128.
+- Performed a deeper source audit beyond LEAD-014 and reopened artifacts where end-to-end contract violations remained.
+- Added `LEAD_AUDIT_TWO_LANE_BATCH.md` and `NEXT_PHASE_TWO_INSTANCE_PLAN.md`.
+- Added Windows host artifact `SB-V07-WIN-001`.
+- Added repair-wave packets:
+  - `artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
+  - `artifact-packets/repair-waves/INTELLIGENCE_WAVE1.md`
+- Reconciled canonical ARTIFACT_INDEX / STATE / WORK_QUEUE / WORKER_PERFORMANCE.
+
+Deep audit corrections:
+- `SB-V03-003` remains ACCEPTED.
+- `SB-V03-004` reopened CHANGES_REQUIRED:
+  - main state/effects are fenced, but `decisions.jsonl` and `last_decision.json` are written after the fenced critical section;
+  - filesystem multi-write closure is mutually excluded, not transactional;
+  - Windows strong lock/fence remains unproven.
+- `SB-V03-005` remains CHANGES_REQUIRED with a stronger root cause:
+  - hypotheses and consumed_signal_ids are runtime-shared;
+  - one persona can consume evidence for another;
+  - contextual reasoning uses total runtime hypothesis count, causing cross-persona learning contamination.
+- `SB-V04-001/002` remain CHANGES_REQUIRED:
+  - production adaptive requirement is opt-in;
+  - contextual provider is intentionally adaptive=false;
+  - real runtime-verified adaptive provider remains required.
+- `SB-V04-003` source direction remains positive but BLOCKED on V04-001.
+- `SB-V05-001` reopened CHANGES_REQUIRED:
+  - arbitrary custom `Fetcher(mode="live")` can forge operational-live provenance;
+  - live HTTP path needs SSRF/public-destination and redirect validation;
+  - extraction validity must be explicit.
+- `SB-V05-002` remains CHANGES_REQUIRED:
+  - caller supplies support stance; operational support must come from attributable assessor/reviewer.
+- `SB-V13-001` CHANGES_REQUIRED:
+  - cumulative_snapshot/delta/gauge/rate semantics still absent; snapshots can be double-counted.
+- `SB-V14-001` CHANGES_REQUIRED:
+  - bot-scoped persistence; sensitive-segment blacklist is bypassable; fork semantics overclaim evidence.
+- `SB-V15-001` CHANGES_REQUIRED:
+  - measurement baseline/treatment lack normalized-observation/evidence refs.
+- `SB-V16-001` CHANGES_REQUIRED:
+  - fact binding is presence-only; history/novelty is bot-wide.
+- `SB-V17-001` CHANGES_REQUIRED:
+  - read-only source is caller-asserted; community memory/themes are bot-wide.
+- `SB-V20-002` CHANGES_REQUIRED:
+  - arbitrary caller numeric performance/audience inputs can drive growth recommendations; typed accepted-evidence construction required.
+
+Next execution model:
+- Run TWO implementation sessions now, one per actual instance.
+- Windows Claude -> branch `claude/social-bots-windows-core-host`, consume `WINDOWS_CORE_WAVE1.md`.
+- Second Claude -> branch `claude/social-bots-intelligence-repair-v2`, consume `INTELLIGENCE_WAVE1.md`.
+- Do not add a third coding lane in Wave 1. Shared contracts are the bottleneck; ChatGPT stays ahead with acceptance/integration prep.
+- After Wave 1 acceptance, create one integration owner, merge corrected Core + Intelligence, run CI, execute V2_ENGINEERING_ACCEPTANCE.md, then add a third Claude session if useful for V2.1/V2.2/V2.3 forward work.
+
+Blockers:
+- Current product version remains V0.3.x.
+- V0.7 recurring-worker liveness still unproven.
+- V0.4 real adaptive provider still unproven.
+- V2 engineering readiness cannot clear until Core strategy + corrected typed Intelligence evidence integrate.
+- No public posting/messages/purchases/destructive actions, extra spend, secrets, fake operational evidence or SwarmAI dependency are authorized.
+
+Source refs:
+- `LEAD_AUDIT_TWO_LANE_BATCH.md`
+- `NEXT_PHASE_TWO_INSTANCE_PLAN.md`
+- `ARTIFACT_INDEX.json`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `WORKER_PERFORMANCE.md`
+- `artifact-packets/SB-V07-WIN-001.md`
+- repair-wave packets listed above.
