@@ -1,6 +1,6 @@
 # SESSION_INSTRUCTIONS — Intelligence / Evidence Integrity
 
-Lead review: LEAD-018
+Lead review: LEAD-019 (reconciliation after LEAD-018)
 Branch: `claude/social-bots-intelligence-repair-v2`
 
 ## Coordination loop
@@ -20,9 +20,12 @@ Do not rewrite this file.
 
 ## Current disposition
 
-SB-V05-001 and SB-V05-002 improved substantially but remain CHANGES_REQUIRED.
+- SB-V05-001: CHANGES_REQUIRED.
+- SB-V05-002: CHANGES_REQUIRED.
+- SB-V13-001 repair at `915b4b41...`: CHANGES_REQUIRED, much closer.
+- SB-V14-001 repair at `b9899e5a...`: CHANGES_REQUIRED, much closer.
 
-Do not restart them from scratch.
+Do not restart any of these from scratch. Repair the specific acceptance gaps below before moving to V15.
 
 ## Next 1 — close SB-V05-001 trust boundary
 
@@ -53,26 +56,39 @@ Do NOT build a second model gateway. The accepted Core adaptive provider should 
 
 Once the trust/interface is fail-closed and honest, submit the engineering interface and record the semantic-provider dependency explicitly; then continue rather than waiting idle.
 
-## Next 3 — SB-V13-001
+## Next 3 — finish SB-V13-001
 
-Implement cumulative_snapshot / delta / gauge / rate semantics and semantic-aware aggregation.
+Keep the new cumulative_snapshot / delta / gauge / rate model and latest-per-series snapshot aggregation.
+
+Two remaining lead findings:
+
+1. **Known kind is lost when a supported metric is missing.** Example: Instagram SAVE is a known cumulative snapshot according to PLATFORM_MAP, but when `saved` is absent the emitted MISSING MetricValue has `metric_kind=None`. Preserve the expected kind when the platform mapping knows it; unknown/unmapped semantics may remain explicitly unknown.
+
+2. **DELTA aggregation blindly sums duplicate/overlapping windows.** Summation is safe only for valid non-overlapping/comparable deltas (or source-defined independent deltas). Detect/reject/deduplicate overlapping/duplicate windows per series instead of double-counting.
 
 Required regressions:
-- cumulative 100 then 150 != 250;
-- delta 100 + 50 may equal 150 for valid non-overlapping windows;
+- supported-but-missing metric retains expected semantic kind;
+- duplicate/overlapping delta windows do not double-count;
+- cumulative 100 then 150 != 250 remains green;
+- valid non-overlapping delta 100 + 50 may equal 150;
 - gauge/rate not summed;
-- snapshot->delta only from comparable observations with derivation metadata;
-- missing/stale/incomparable data fails safely.
+- snapshot->delta only from comparable observations with derivation metadata.
 
-## Next 4 — SB-V14-001
+## Next 4 — finish SB-V14-001
 
-Persona/workspace-scoped audience memory.
-Use safe segment-dimension allowlist.
-Fork contradiction of A must not become positive evidence for arbitrary B.
+Keep persona-scoped persistence, confidence/evidence refs and corrected fork evidence semantics.
+
+Two remaining lead findings:
+
+1. `ALLOWED_SEGMENT_DIMENSIONS` still includes open-ended `audience_interest`, while sensitive values are rejected only by exact string. Variants like `religious_interest`, `health_interest`, political/medical compound values can bypass this. Prefer safe content/context dimensions by construction; if a free-form field remains, normalize/tokenize and reject sensitive trait inference robustly.
+
+2. `fork_hypothesis(..., persona=...)` permits a fork from persona A to be re-scoped to persona B while carrying `forked_from` and contradiction provenance from A. That is an implicit cross-persona private-memory transfer path. Normal private forks must remain in the source persona/workspace; any future cross-workspace import needs a separate explicit contract.
+
+Add regressions for both cases.
 
 ## Next 5+
 
-Continue:
+Only after V05/V13/V14 repairs are submitted:
 - V15 evidence-linked experiments;
 - V16 validated ClaimSupport + persona-scoped history/novelty;
 - V17 receipt-backed persona-scoped community memory;
@@ -108,8 +124,6 @@ Use:
 The heartbeat is a GitHub coordination signal, not proof of artifact correctness.
 
 If the lead updates this file between heartbeats, follow the newest pulled version.
-
-
 
 Path:
 `social-bots/worker-reports/intelligence-repair/HEARTBEAT.json`
