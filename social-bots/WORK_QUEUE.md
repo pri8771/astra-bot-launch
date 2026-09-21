@@ -1,176 +1,164 @@
 # Work queue
 
-Priority is strict unless a task is blocked by an external gate; then continue the next independent ready task. Lead acceptance is evidence-gated; implementation self-reports do not close tasks.
+This is the execution view of the artifact registry. `ARTIFACT_INDEX.json` is the durable machine-readable artifact state; `artifact-packets/` contains bounded execution contracts.
 
-## SB-R0 — P1 correctness repairs
-Owner: Claude
-Status: SB-R0A + SB-R0B DONE (pending lead audit) — all four P1 defects fixed; 38 local tests pass. Next: SB-R1 toward V0.4 after lead audit.
+Lead acceptance is evidence-gated. Claude submissions and local test claims do not self-close artifacts.
 
-SB-R0A evidence (worker self-report; lead audits):
-- Signal delta: `runtime/research.py:unconsumed_signals` + `runtime/state.py` consumed-ledger + `runtime/decision.py` consume-one-per-cycle. Regressions: `test_decision.test_later_signal_processed_after_earlier_cycle`, `test_batched_signals_none_lost`, `test_consumption_survives_restart`.
-- Failed-review stop: `runtime/decision.py` CREATE_CANDIDATE gate stops experiment/queue on any failed fact/voice/cultural review or platform-limit; truthful WITHHELD receipt in `runtime/worker.py`. Regressions: `tests/test_review_gate.py` (4). Also closes the Social-A within_platform_limit false-positive (now fails closed; platform-native repair deferred to SB-R2C, not faked).
+## Team execution mode — target V2.0 engineering-ready
 
-SB-R0B evidence (worker self-report; lead audits):
-- Race-safe stale takeover: `runtime/leasing.py` now runs check-and-claim inside an exclusive per-task `fcntl.flock` critical section (true CAS), replacing the rename-CAS clobber window. Regressions: `test_concurrency.test_concurrent_stale_takeover_single_owner` (6 threads x 40 rounds -> exactly one owner), `test_concurrent_fresh_create_single_owner`.
-- Shared-runtime isolation (decision: Option A, lease at the runtime-state boundary): worker lease keyed by `cycle:<bot>` not `(bot,persona)`; `runtime/worker.py:runtime_task_id` + `bin/run_worker.py`. Regressions: `test_concurrency.test_second_persona_on_runtime_blocked_while_held`, `test_concurrent_personas_no_lost_update` (cycles==successes, no dup consumed, valid json), `test_runtime_task_id_ignores_persona`. Rationale documented in ARCHITECTURE.md.
-- Regenerated evidence: `receipts/evidence/SB-002-run/` (all_pass), `receipts/evidence/SB-007-dryruns/` (social-a now correctly WITHHELD).
-- Note: SB-002 always-on host deployment/liveness is still NOT accepted — lease fixes do not substitute for host-side recurring receipts.
+Lead plan:
+- `EXECUTION_TO_V2_TODAY.md`
+- `TEAM_LANES.md`
+- `STRATEGIC_CHECKPOINTS.md`
 
-Goal: fix the four correctness defects found by independent PR review on implementation commit `689cfe12ea4eed502e42b37d8e7305c77b3cb4aa`.
+Two worker lanes:
+- **Claude Core** — branch `claude/social-bots-core-to-v2`
+- **Claude Intelligence** — branch `claude/social-bots-intelligence-to-v2`
 
-Required repairs:
-- `research.new_signals` must process only evidence not already consumed; later or batched signals must not be lost when the fingerprint changes.
-- A failed factual/voice/cultural review must stop experiment registration and must not enter a publish queue as a successful candidate.
-- Stale-lease takeover must be conditionally atomic so two takeover contenders cannot both believe they own the task.
-- Lease scope must cover shared runtime state, or state must be split per persona. General and cultural personas on one runtime must not concurrently overwrite one `bot_state.json`.
+Workers do not directly own canonical artifact/state files. They submit source/tests/evidence; ChatGPT lead reconciles canonical acceptance.
 
-Acceptance:
-- regression tests for a new signal arriving after an earlier cycle and for multiple signals arriving before one cycle;
-- regression test proving a withheld cultural candidate cannot reach the publish queue or a successful worker receipt;
-- adversarial concurrent stale-takeover test proving one owner only;
-- concurrent general+cultural invocation test proving no shared-state race/lost update;
-- no public side effect;
-- all prior tests still pass;
-- exact commit/test evidence returned for lead review.
+### Claude Core — current chain
+1. Repair `SB-V03-003`.
+2. Repair `SB-V03-004`.
+3. Repair `SB-V03-005`.
+4. Produce `SB-V03-006`.
+5. Repair/complete `SB-V04-001`.
+6. Implement `SB-V04-002` / `SB-V04-003` / V0.4 acceptance.
+7. Continue worker/reliability artifacts and `SB-V20-001` as dependencies clear.
 
-Source review threads: PR #2 comments `4058061254`, `4058061259`, `4058061263`, `4058061265`.
+### Claude Intelligence — safe parallel chain
+1. `SB-V05-001` — READY: machine-captured source collector.
+2. `SB-V13-001` — READY: normalized analytics brain.
+3. Continue `SB-V05-002`, `SB-V14-001`, `SB-V15-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002` as dependencies clear.
+4. Do not present fixtures as operational evidence and do not edit Core-owned runtime files without lead reassignment.
 
-## SB-001 — Evidence and reuse reconciliation
-Owner: Claude
-Status: PARTIAL — implementation inspected `astra-bot-launch` and `pri8771/bots`, but standalone reuse pools were not fully reconciled.
+Today's lead target is `SB-V20-099` V2.0 engineering readiness. Operational V2.0 remains separately evidence-gated.
 
-Goal: inspect current repos/assets/accounts and produce a current `SOURCE_REUSE_MAP.md`.
+## Current gate — V0.3.x correctness
 
-Acceptance:
-- current repo refs recorded;
-- standalone One Person Ops, CommerceLint, Wait How Big and the current BidetFit source location inspected where accessible;
-- old venture assets classified reusable/historical/irrelevant;
-- current account aliases/emails identified without secrets where accessible;
-- no September status treated as current without evidence;
-- no source mutation outside the authorized Social Bots implementation/coordination paths.
+Implementation reviewed: PR #2 head `2cab7219edab5c2f3a7123fad1546f43a2fc140c`.
 
-Lead evidence already available: One Person Ops current README, CommerceLint current README, Wait How Big handoff; the historical BidetFit README path returned 404 and must be reconciled rather than assumed current.
+### ACCEPTED
 
-## SB-002 — Worker/heartbeat bootstrap
-Owner: Claude
-Status: PARTIAL ACCEPT — in-session worker primitives demonstrated; always-on deployment/liveness not verified. SB-R0 lease defects must also be fixed before the no-overlap guarantee is accepted.
+- `SB-R0A1` -> `SB-V03-002` — signal-delta consumption correctness — **SP3**.
+  - Lead inspected per-signal consumed ledger and later/batch/restart regressions.
+  - No new work unless a later defect reopens the artifact.
 
-Goal: establish the supported no-additional-spend recurring worker on an authorized existing host.
+### CHANGES REQUIRED — execute in this order
 
-Verified so far:
-- two in-session invocation receipts;
-- process heartbeat evidence;
-- simple overlap rejection;
-- restart/resume demonstration.
+1. `SB-R0A2` -> `SB-V03-003` — required-review stop gate — **SP2**.
+   - Current code gate is directionally correct.
+   - Add the packet-required forced fact-review failure regression.
+   - Add the packet-required forced voice-review failure regression.
+   - Prove both stop before experiment registration / publish queue and produce truthful non-success state.
+   - Packet: `artifact-packets/SB-V03-003.md`.
 
-Open acceptance:
-- SB-R0 stale-takeover and shared-runtime concurrency fixes/tests;
-- actual always-on authorized-host deployment;
-- two host-side invocation receipts and fresh heartbeat from that host;
-- stale-lock recovery/reconciliation on corrected lease implementation;
-- no public side effect.
+2. `SB-R0B1` -> `SB-V03-004` — active-cycle lease fencing + stale takeover — **SP5**.
+   - `flock` now serializes simultaneous acquisition/takeover on one POSIX host.
+   - Remaining blocker: lease can expire while `decision.run_cycle()` is still executing; another worker can take over while the old worker retains the ability to commit.
+   - Add real lifecycle fencing/renewal so an old owner cannot commit after fence loss.
+   - Add an adversarial forced-expiry-while-running regression.
+   - Do not paper over this with a larger TTL.
+   - Explicitly document host/filesystem scope; native-Windows/cross-host strong fencing is not currently proven.
+   - Packet: `artifact-packets/SB-V03-004.md`.
 
-Last verified heartbeat: `2026-09-20T20:36:15+00:00`, status `done`, worker `w-vm-726-415fed`. This is terminal in-session evidence, not recurring liveness.
+3. `SB-R0B2` -> `SB-V03-005` — shared-runtime persona concurrency/workspace isolation — **SP4**.
+   - Runtime task key `cycle:<bot>` is directionally correct while a valid lease is held.
+   - Acceptance depends on `SB-V03-004` lifecycle fencing.
+   - Reconcile architecture claim vs code: docs say persona experiment/content/memory namespaces are isolated, but current `paths.py` and decision/pipeline storage are bot-scoped.
+   - Either implement true persona-private non-shared namespaces or explicitly choose logical shared-store isolation and prove every read/filter path prevents cross-persona contamination.
+   - Packet: `artifact-packets/SB-V03-005.md`.
 
-## SB-003 — Persona/state contracts
-Owner: Claude
-Status: PROVISIONALLY ACCEPTED BY LEAD.
+4. `SB-R0B3` -> `SB-V03-006` — V0.3 adversarial acceptance bundle — **SP3**.
+   - Status: BLOCKED until `SB-V03-003`, `SB-V03-004`, and `SB-V03-005` are lead-accepted.
+   - Regenerate evidence from the accepted implementation; do not reuse superseded buggy proof as current acceptance.
+   - Packet: `artifact-packets/SB-V03-006.md`.
 
-Goal: maintain three distinct general personas plus two isolated cultural/Primandir persona workspaces without fabricated human identities.
+## Worker evidence / heartbeat
 
-Acceptance already evidenced directionally:
-- goal/audience/voice/success-metric contracts exist;
-- distinctness detector exists;
-- cultural personas require source/cultural review.
+`SB-EVD-001` remains CHANGES REQUIRED.
 
-Reopen if SB-R0 state isolation changes invalidate the persona namespace contract.
+Verified latest committed in-session heartbeat:
+- `heartbeat_at=2026-09-20T23:24:34+00:00`
+- `status=done`
+- `host_alias=local`
+- worker `w-vm-2114-3ba847`
 
-## SB-004 — Autonomous decision loop
-Owner: Claude
-Status: CHANGES REQUIRED.
+This proves another bounded invocation only. It does **not** prove recurring/always-on host liveness.
 
-Goal: implement real adaptive `OBSERVE -> ORIENT -> GENERATE -> SCORE -> CHOOSE -> EXECUTE -> VERIFY -> LEARN -> SCHEDULE` behavior.
+No GitHub Actions workflow run exists for PR #2 head `2cab7219`; Claude's reported `38 passing` remains worker-local evidence.
 
-Lead finding:
-- current changed-evidence path uses a fixed three-action set and hard-coded scores, causing all three dry-runs to choose the same action for the same numeric reason.
+## V0.4 — Core integration locked until V0.3 acceptance bundle
 
-Acceptance:
-- keep deterministic no-change, safety, authority, dedup, scheduling, leases and verification;
-- use a SwarmAI-independent, no-additional-spend reasoning path for interpretation/uncertain prioritization/creative generation when available;
-- alternatives, estimates and reasons materially respond to persona, evidence, objective and state;
-- if the reasoning model is unavailable, fail closed to `NO_ACTION`/`BLOCKED` rather than claim adaptive autonomy;
-- bounded retries and attributable decision records;
-- no SwarmAI import/service/queue/model-gateway/runtime dependency.
+Claude Core must not materially advance shared V0.4 integration source while V0.3 repair artifacts are under review.
 
-## SB-005 — Browser/account map
-Owner: Claude
-Status: PARTIAL — metadata map exists; no live account verification.
+Claude Intelligence may prebuild explicitly independent artifacts marked READY in ARTIFACT_INDEX.json when they do not touch Core-owned files or claim early milestone promotion.
 
-Goal: reuse existing accounts/emails and document exact safe setup for TikTok, Reddit, X, Instagram and Facebook.
+Prepared next artifacts once dependencies clear:
+- `SB-R1B` -> `SB-V04-001` — reasoning-provider interface + fail-closed contract — **SP3** — packet: `artifact-packets/SB-V04-001.md`.
+- `SB-R1C` -> `SB-V04-002` — adaptive alternative generation/scoring — **SP5**.
+- `SB-R1D` -> `SB-V04-003` — deterministic policy boundary — **SP4**.
+- `SB-R1E` -> `SB-V04-004` — persona/evidence-divergence acceptance suite — **SP3**.
 
-Acceptance:
-- alias/login method/profile/workspace/last verification recorded only when actually observed;
-- private credential references only;
-- exact MFA/CAPTCHA/consent blocker;
-- no public posting;
-- supported route documented instead of bypasses.
+Safe independent work while current source is under lead audit:
+- exact-source reuse reconciliation;
+- read-only future artifact design/readback;
+- architecture risk analysis;
+- test/acceptance preparation that does not alter reviewed runtime source.
 
-## SB-006 — Content/experiment pipeline
-Owner: Claude
-Status: CHANGES REQUIRED.
+## Later prepared backlog
 
-Goal: real research -> persona ideation -> factual/voice/cultural review -> platform-native candidate -> experiment registration -> disabled publish queue -> observation plan.
+### V0.5
+- `SB-R2A` -> `SB-V05-001` — machine-captured source receipt collector — **SP3** — packet prepared.
+- `SB-R2B` -> `SB-V05-002` — claim-to-source factual support review — **SP4**.
+- `SB-R2C` — platform-native formatter/repair loop — **SP3**.
+- `SB-R2D` — cultural-review evidence binding — **SP2**.
 
-Lead findings:
-- current fact check proves only source-reference presence, not claim support;
-- platform formatter can truncate an over-limit draft while the dry-run still passes;
-- cultural review failure currently does not stop experiment registration/enqueue.
+### V0.6
+- `SB-R3A` — three real general-persona dry runs — **SP3**.
+- `SB-R3B` — independent reviewer receipt pipeline — **SP2**.
+- `SB-R3C` — dry-run evidence validator — **SP2**.
 
-Acceptance:
-- source retrieval/capture evidence tied to candidate claims;
-- factual support check stronger than URL presence;
-- failed required review blocks downstream experiment/publish-queue success;
-- platform-native candidate passes required limits/asset requirements without silent acceptance by truncation;
-- dedup and analytics schema remain intact;
-- publish queue defaults disabled.
+### V0.7
+- `SB-R4A` -> `SB-V07-001` — authorized-host worker packaging/config — **SP3**.
+- `SB-R4B` -> `SB-V07-002` — recurring host execution + heartbeat proof — **SP4**.
+- `SB-R4C` — ChatGPT-direction consumption/ack loop — **SP3**.
+- `SB-R4D` — crash/restart/no-overlap host acceptance — **SP4**.
 
-## SB-007 — Three real dry-run cycles
-Owner: Claude
-Status: CHANGES REQUIRED.
+### V0.8 preparation
 
-Goal: one end-to-end non-publishing cycle per general persona using newly acquired current research evidence.
+Lead research `SB-ACC-008` is accepted. Account/browser artifacts remain externally gated; no login, key creation, account connection, spend, or posting is authorized by this queue.
 
-Lead findings:
-- `bin/dry_run.py` embeds research constants and lets the caller label them `live-capture`; this does not prove acquisition;
-- Social-A showed `within_platform_limit=false` while the run still passed;
-- no attributable independent review receipt exists for the three final candidates.
+## Persistent authority limits
 
-Acceptance:
-- machine-captured current-source receipt per input: source/URL, retrieval timestamp, status and content/response hash, with provenance set by the collector rather than caller input;
-- autonomous topic choice with adaptive reason record after SB-004 repair;
-- factual/policy/voice/platform checks all explicitly pass;
-- any required-check failure fails the run;
-- experiment hypothesis/criteria, persisted learning and next check recorded;
-- attributable independent review receipt per final candidate;
-- no external publication.
+No public posting, public deployment, customer/user messaging, purchases, paid APIs, additional spend, destructive actions, credential material, fake connectivity/metrics, quota evasion, or engagement manipulation without explicit owner authorization.
 
-## SB-R1 — Autonomous intelligence + live research repair
-Owner: Claude
-Status: READY AFTER SB-R0 for shared code; SB-001 reuse reconciliation may proceed in parallel.
+Social Bots remains fully independent of SwarmAI.
 
-Goal: close SB-001/SB-004/SB-006/SB-007 gaps without adding a SwarmAI dependency or public side effects.
 
-Deliverable:
-- corrected autonomy/research/review implementation;
-- real capture receipts;
-- three rerun evidence packets;
-- independent review evidence;
-- updated implementation `STATE.json`, `WORK_QUEUE.md` and `AGENT_MESSAGES.md` with exact refs/tests.
+## Strategic checkpoint backlog
 
-## SB-008 — Launch gate packet
-Owner: Claude
-Status: PREPARED ONLY — not accepted as launch-ready until correctness, autonomy, research, host and account gates clear.
+### V1.7
+Required engineering chain:
+- `SB-V11-001/002` reliability.
+- `SB-V12-001/002` platform selection.
+- `SB-V13-001/002` analytics.
+- `SB-V14-001/002` audience memory.
+- `SB-V15-001/002` experiment engine.
+- `SB-V16-001/002` content intelligence.
+- `SB-V17-001/002/003` community checkpoint.
 
-Goal: reduce each external blocker to one exact human action and prepare one canary per persona.
+### V2.0 today's target
+- `SB-V20-001` strategy revision engine — Core.
+- `SB-V20-002` growth evaluator/allocation — Intelligence.
+- `SB-V20-003` measured-evidence strategy-change acceptance — lead integration.
+- `SB-V20-099` engineering-readiness bundle — lead acceptance target.
+- `SB-V20-004` operational acceptance remains BLOCKED until real public/account/measurement evidence is authorized and observed.
 
-No canary/public action is authorized yet.
+### V2.3 next strategic checkpoint
+- `SB-V21-001` dynamic strategy lifecycle.
+- `SB-V22-001` goal decomposition.
+- `SB-V23-001/002/003` temporary specialist workers.
+
+### V3.0
+- `SB-V30-001..005` portfolio/multi-brand organization.

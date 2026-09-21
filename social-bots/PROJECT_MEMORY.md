@@ -41,8 +41,28 @@ Updated: 2026-09-20
 - Near-term engineering target: V0.7 — always-on Claude worker + hourly ChatGPT lead loop proven end-to-end.
 - First major product target: V1.0 — three real autonomous social bots operating continuously on verified social presences.
 - V2.0 — autonomous growth engine.
+- Strategic checkpoints are V1.7, V2.3 and V3.0.
+- Today's acceleration goal is V2.0 engineering-ready, without misrepresenting blocked operational/public evidence as complete.
 - V3.0 — autonomous multi-brand media organization.
 - Full acceptance criteria live in `VERSION_ROADMAP.md`. Version promotion is lead/evidence-gated, never implementation-self-declared.
+
+## Project-management style
+
+- Artifact-oriented management is canonical.
+- Durable progress is represented by artifact IDs in `ARTIFACT_INDEX.json`.
+- Version promotion is derived from accepted artifacts in `MILESTONE_MANIFEST.md`.
+- Tasks/prompts are temporary execution packets; they are not the source of truth.
+- Claude submits artifacts; ChatGPT lead independently accepts/rejects them.
+- Current execution packets live under `artifact-packets/`.
+
+## Lead / worker execution model
+
+- Two Claude implementation lanes may work in parallel under artifact-first ownership: Core Runtime/Autonomy and Intelligence/Growth.
+- Claude receives the bulk of implementation work and especially the bulk of routine/easy work.
+- ChatGPT stays ahead through product direction, research, repository/source inspection, acceptance design, backlog grooming, debugging, independent review and task decomposition.
+- When current lead work is exhausted, ChatGPT should prepare useful future-version work rather than idle, while avoiding duplicate edits to Claude-owned implementation paths.
+- Tasks are estimated on a 1–5 story-point complexity scale defined in `WORK_MANAGEMENT.md`; Claude performance is tracked in `WORKER_PERFORMANCE.md`.
+- Difficult work remains Claude-owned but should be decomposed into smaller bounded tasks when doing so improves correctness, with final integration acceptance retained.
 
 ## Safety/authority
 

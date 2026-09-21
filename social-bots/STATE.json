@@ -1,7 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T21:30:00Z",
-  "updated_by": "claude_worker (SB-R0A+SB-R0B checkpoints; lead_audit block left for lead reconciliation)",
+  "updated_at": "2026-09-21T00:10:47Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,90 +21,80 @@
   },
   "independence": {
     "depends_on_swarmai": false,
-    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
+    "verified_at_source_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c",
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "worker": {
-    "implementation": "built",
+    "implementation": "built_under_review",
     "worker_primitives_verified_in_session": true,
-    "last_verified_heartbeat_at": "2026-09-20T20:36:15+00:00",
+    "last_verified_heartbeat_at": "2026-09-20T23:24:34+00:00",
     "last_verified_heartbeat_status": "done",
-    "last_verified_worker_id": "w-vm-726-415fed",
+    "last_verified_worker_id": "w-vm-2114-3ba847",
+    "last_verified_host_alias": "local",
     "always_on_host_deployed": false,
     "recurring_worker_liveness": "not_verified",
-    "lead_note": "No newer worker heartbeat, invocation receipt, or Claude implementation activity was verified at the 2026-09-20T18:54:54-04:00 lead review. The committed heartbeat is terminal status done on host_alias local, so recurring/always-on liveness remains unproven."
+    "lead_note": "A newer in-session evidence run exists at 23:24:34Z, but it is terminal status done on host_alias local. It proves another bounded invocation, not recurring/always-on liveness."
   },
   "tests": {
     "claude_reported_local_unittests": 38,
     "github_ci_status_checks": 0,
-    "lead_acceptance": "not_sufficient_for_merge"
+    "github_workflow_runs_at_head": 0,
+    "lead_acceptance": "partial_artifact_acceptance_only"
   },
-  "claude_worker_progress": {
-    "note": "Worker self-report; not lead-accepted. Lead audits the diff/tests/receipts.",
-    "SB-R0A": "done_pending_lead_audit",
-    "SB-R0B": "done_pending_lead_audit",
-    "SB-R0B1_stale_takeover_race": {
-      "fix": "leasing.acquire now runs check-and-claim inside an exclusive per-task fcntl.flock critical section (true CAS); replaces the rename-CAS clobber window. Fresh claim and stale takeover both single-owner under contention.",
-      "code": ["runtime/leasing.py: _task_lock/flock, _atomic_write, acquire/renew/release"],
-      "regressions": ["test_concurrency.test_concurrent_stale_takeover_single_owner (6 threads x 40 rounds)", "test_concurrency.test_concurrent_fresh_create_single_owner"]
-    },
-    "SB-R0B2_shared_runtime_isolation": {
-      "decision": "Option A: lease at the shared runtime-state boundary. Worker lease keyed by runtime (cycle:<bot>), not (bot,persona), because bot_state.json is shared by all personas on a runtime. Second persona-cycle on a live runtime is rejected -> no concurrent mutation -> no lost update.",
-      "code": ["runtime/worker.py:runtime_task_id", "bin/run_worker.py keys by bot"],
-      "regressions": ["test_concurrency.test_second_persona_on_runtime_blocked_while_held", "test_concurrency.test_concurrent_personas_no_lost_update (cycles==successes, no dup consumed, valid json)", "test_concurrency.test_runtime_task_id_ignores_persona"]
-    },
-    "SB-R0A1_signal_delta": {
-      "fix": "Replaced whole-inbox fingerprint with explicit per-signal consumption ledger (consumed_signal_ids in bot_state).",
-      "code": ["runtime/research.py:unconsumed_signals", "runtime/state.py:mark_consumed/consumed_ids", "runtime/decision.py OBSERVE + consume-one-per-cycle"],
-      "regressions": ["test_decision.test_later_signal_processed_after_earlier_cycle", "test_decision.test_batched_signals_none_lost", "test_decision.test_consumption_survives_restart"]
-    },
-    "SB-R0A2_failed_review_stop": {
-      "fix": "Required-review + platform-limit gate in decision._execute now STOPS: no experiment, no queue entry, truthful WITHHELD worker receipt (candidate_succeeded=false).",
-      "also_fixes": "Social-A within_platform_limit=false false-positive now fails closed (withheld) instead of a false success.",
-      "code": ["runtime/decision.py CREATE_CANDIDATE gate", "runtime/worker.py finish-receipt outcome"],
-      "regressions": ["test_review_gate.py (4 tests)"]
-    },
-    "evidence": ["receipts/evidence/SB-002-run/SUMMARY.json (all_pass, regenerated)", "receipts/evidence/SB-007-dryruns/SUMMARY.json + REPORT.md (social-a now correctly WITHHELD on platform gate)"],
-    "still_open": {
-      "SB-R1_V0.4": "next after lead audit: adaptive reasoning layer (fail-closed) replacing fixed scores",
-      "SB-R2C_platform_native": "social-a X candidate exceeds 280 and is fail-closed; platform-native repair (generate fitting candidate) is deferred to SB-R2C, not faked here",
-      "flock_portability": "strong lease CAS uses POSIX flock; native-Windows host would use the atomic-replace fallback (FLOCK_AVAILABLE=false) - assert strong path on the Linux host",
-      "always_on_host": "SB-002 host deployment still unproven"
-    }
+  "artifact_review": {
+    "implementation_head": "2cab7219edab5c2f3a7123fad1546f43a2fc140c",
+    "accepted": [
+      "SB-V03-002"
+    ],
+    "changes_required": [
+      "SB-V03-001",
+      "SB-V03-003",
+      "SB-V03-004",
+      "SB-V03-005",
+      "SB-EVD-001"
+    ],
+    "blocked": [
+      "SB-V03-006"
+    ],
+    "key_findings": [
+      "Signal-delta repair is accepted: per-signal consumed ledger with later/batch/restart regressions inspected.",
+      "Required-review stop code is directionally correct, but packet-required forced fact and voice failure regressions are missing.",
+      "flock fixes simultaneous stale-takeover acquisition on one POSIX host, but lease expiry during an active decision cycle can still let an old owner commit after takeover.",
+      "Runtime task key correctly serializes personas while a lease is valid, but this depends on active-cycle fencing and architecture currently overstates persona-private experiment/content/memory namespace isolation.",
+      "No GitHub CI run exists at implementation head; 38 passing remains worker-local evidence."
+    ],
+    "review_id": 5262212009
   },
   "lead_audit": {
     "verdict": "changes_required",
     "accepted": [
-      "SB-003 persona/state contract direction",
-      "SB-002 in-session worker primitive evidence only"
+      "SB-003 persona contract direction",
+      "SB-V03-002 signal-delta correctness"
     ],
     "partial": [
-      "SB-001",
-      "SB-002 host deployment",
-      "SB-005",
-      "SB-008"
+      "SB-001 reuse reconciliation",
+      "SB-002 in-session worker evidence",
+      "SB-005 metadata account map",
+      "SB-008 launch gate packet"
     ],
     "changes_required": [
-      "SB-004",
-      "SB-006",
-      "SB-007"
+      "SB-V03-003 review-gate evidence",
+      "SB-V03-004 active-cycle lease fencing",
+      "SB-V03-005 persona/runtime isolation",
+      "SB-004 adaptive autonomy",
+      "SB-006 factual/platform review",
+      "SB-007 live capture/independent review"
     ],
-    "new_p1_correctness_findings": [
-      "research.new_signals returns the full inbox after any fingerprint change, so later signals can be silently skipped",
-      "cultural review failure does not stop experiment registration and enqueue",
-      "stale-lease takeover is not conditionally atomic under concurrent takeover attempts",
-      "lease key includes persona while general/cultural personas share runtime state, allowing concurrent writes to one runtime state"
-    ],
-    "review_source": "PR #2 Codex review on commit 689cfe12ea4eed502e42b37d8e7305c77b3cb4aa"
+    "review_source": "PR #2 head 2cab7219 plus source/tests/receipts inspected by ChatGPT lead"
   },
   "chatgpt_lead": {
-    "last_review_at": "2026-09-20T18:54:54-04:00",
-    "last_verified_setup_pr_head": "87a4d4c1cb6053e91f5ce9f24a0e642016fa7597",
-    "last_verified_implementation_pr_head": "857bb96a77c1d567b1cc9b87acf0193c174797bb",
-    "last_verified_claude_implementation_commit": "689cfe12ea4eed502e42b37d8e7305c77b3cb4aa",
-    "last_coordination_message_commit": "3aa90fa9262ecc5eadfdd7558e7bc8118a29df34",
-    "new_worker_activity_since_previous_review": false,
-    "new_implementation_activity_since_previous_review": false
+    "last_review_at": "2026-09-20T19:55:35-04:00",
+    "last_verified_setup_pr_head": "70801b6bd5f636e0952053a5a8e8c8081f1e1d6b",
+    "last_verified_implementation_pr_head": "2a53046f10ed284f6e4164a78c47bbf750aad73d",
+    "last_verified_claude_implementation_commit": "2cab7219edab5c2f3a7123fad1546f43a2fc140c",
+    "new_worker_activity_since_previous_review": true,
+    "new_implementation_activity_since_previous_review": true,
+    "pr_review_comment_id": 5262212009
   },
   "account_inventory": {
     "status": "metadata_only_no_live_verification",
@@ -119,18 +108,21 @@
   },
   "task_status": {
     "SB-001": "partial_repair_required",
-    "SB-002": "worker_primitives_verified_in_session; always_on_host_deploy_open",
-    "SB-003": "lead_provisionally_accepted",
-    "SB-004": "changes_required_autonomous_thinking_and_correctness",
+    "SB-002": "bounded_worker_evidence_refreshed; always_on_host_deploy_open",
+    "SB-003": "lead_provisionally_accepted_persona_contracts",
+    "SB-004": "changes_required_autonomous_thinking",
     "SB-005": "partial_metadata_only_no_live_verification",
-    "SB-006": "changes_required_fact_platform_and_review_gating",
+    "SB-006": "changes_required_fact_platform_review",
     "SB-007": "changes_required_live_capture_acceptance_and_independent_review",
     "SB-008": "prepared_not_accepted",
-    "SB-R0A": "done_pending_lead_audit (signal-delta + failed-review/platform gate + regressions)",
-    "SB-R0B": "done_pending_lead_audit (flock lease CAS + runtime-boundary lease + adversarial concurrency tests)",
-    "SB-R1": "ready_after_SB-R0_audit_toward_V0.4"
+    "SB-R0A1": "accepted_as_SB-V03-002",
+    "SB-R0A2": "changes_required_missing_fact_voice_regressions",
+    "SB-R0B1": "changes_required_active_cycle_fencing",
+    "SB-R0B2": "changes_required_depends_on_fencing_and_workspace_isolation_contract",
+    "SB-R0B3": "blocked_until_V03-003_004_005_accepted",
+    "SB-R1": "not_authorized_to_advance_shared_source_until_V0.3_artifact_repair_checkpoint"
   },
-  "next_task": "SB-R1 toward V0.4 (adaptive reasoning, fail-closed) after lead audits SB-R0A/B",
+  "next_task": "Claude repairs SB-V03-003 then SB-V03-004/SB-V03-005; submit V03-006 only after those artifacts are accepted.",
   "version": {
     "current": "V0.3.x",
     "current_label": "durable runtime foundation under correctness repair",
@@ -143,6 +135,53 @@
       "V3.0 autonomous multi-brand media organization"
     ],
     "contract": "VERSION_ROADMAP.md",
-    "promotion_rule": "ChatGPT lead evidence acceptance; implementation self-report is insufficient"
+    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
+    "today_engineering_target": "V2.0-readiness (SB-V20-099)",
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ]
+  },
+  "management_model": {
+    "style": "artifact_oriented",
+    "artifact_registry": "ARTIFACT_INDEX.json",
+    "milestone_manifest": "MILESTONE_MANIFEST.md",
+    "artifact_contract": "ARTIFACT_MANAGEMENT.md",
+    "worker_packets": "artifact-packets/",
+    "status_rule": "version/task status must be derived from accepted artifacts and evidence, not chat claims"
+  },
+  "next_artifacts": [
+    "SB-V03-003",
+    "SB-V03-004",
+    "SB-V03-005",
+    "SB-V05-001",
+    "SB-V13-001"
+  ],
+  "acceleration": {
+    "owner_goal": "V3.0",
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
+    "today_target": "V2.0 engineering-ready",
+    "operational_promotion_note": "V1.0+ and V2.0 operational promotion remain real-evidence gated; public/account/measurement requirements are not waived.",
+    "plan": "EXECUTION_TO_V2_TODAY.md",
+    "lanes": "TEAM_LANES.md",
+    "lane_branches": {
+      "core": "claude/social-bots-core-to-v2",
+      "intelligence": "claude/social-bots-intelligence-to-v2"
+    }
+  },
+  "latest_submission": {
+    "source_ref": "claude/social-bots-independent-arch-ez64l7@2a53046f10ed284f6e4164a78c47bbf750aad73d",
+    "artifact": "SB-V04-001",
+    "status": "changes_required_by_lead_pre_review",
+    "findings": [
+      "reasoning provider seam is useful and SwarmAI-independent",
+      "default SBOTS_REASONING=baseline still processes changed evidence with fixed heuristic instead of failing closed when adaptive reasoning is unavailable",
+      "model proposal fields/actions/numeric bounds require deterministic validation before scoring/execution"
+    ]
   }
 }
