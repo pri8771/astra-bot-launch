@@ -1,14 +1,14 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-023_2026-09-21T0006.md`.
+Current lead review: `lead-reviews/LEAD-024_2026-09-21T0052.md`.
 
 ## Priority Zero — real V0.4 canary
 
 Artifact: `SB-V04-005`
 Branch: `claude/social-bots-v04-live-canary`
 
-**Status: READY but no Claude worker execution is visible yet.**
+**Status: READY but still no Claude worker execution is visible.**
 
 Start immediately from an actually authenticated local Claude Code subscription host. Heartbeat validation is not a prerequisite.
 
@@ -27,38 +27,48 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE.
+Status: ACTIVE / REPAIR REQUIRED.
 
-`SB-V03-004` repair commit `175f741fcedace3113191a847d6a7568d77b9cde` has positive lead source review. It appears to close the LEAD-019 side-effectful migration hole, but canonical status remains CHANGES_REQUIRED until Mac QA independently executes/reviews the repaired branch.
+Worker progress since LEAD-023:
+- `d1e4bee...` submitted `SB-V03-005` read-boundary work;
+- `0433fc85...` prepared a fresh `SB-V03-006` evidence bundle;
+- worker reports 122 passing local tests.
 
-Next implementation:
-1. **SB-V03-005 now** — finish authoritative persona-scoped production readers for private/personalized stores and mixed-persona production-path regressions.
-2. **SB-V03-006 next** — regenerate a fresh V0.3 acceptance bundle from the current repaired code.
-3. Then reconcile the V0.4 dependency chain.
+Independent LEAD-024 findings keep V0.3 open:
 
-Do not defer implementation for heartbeat testing. Do not keep modifying V03-004 unless independent QA finds a concrete defect.
+1. **SB-V03-004 — CHANGES_REQUIRED:** migration staging is repaired, but `worker.run_one_unit()` writes its success/finish receipt after `decision.run_cycle()` returns and outside the fence. A worker can stall after cycle commit, expire, lose ownership to a new generation, then resume and emit success-implying finish evidence. Repair and add a forced post-cycle takeover regression.
+2. **SB-V03-005 — CHANGES_REQUIRED:** `persona_records()` and generic no-bleed tests are useful, but raw whole-runtime APIs such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` remain publicly callable. Enforce the persona boundary in actual production read/list paths or make raw access structurally admin/internal; test real production paths.
+3. **SB-V03-006 — BLOCKED / PREPARED:** `0433fc85...` is useful current evidence but predates the required LEAD-024 repairs. Regenerate after V03-004/V03-005 are fixed.
+
+Do not defer implementation for heartbeat work.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
-Status: ACTIVE but source progress has stalled since FAST TRACK activation.
+Status: ACTIVE but implementation progress remains stalled.
 
-Durable heartbeat seq5/seq6 are real; hourly is not yet authorized. Heartbeat stays background-only.
+Heartbeat truth:
+- seq5 `03:23:31Z` -> seq6 `03:40:08Z` is a valid ~16m37s interval;
+- seq6 -> seq7 `04:10:36Z` is ~30m28s, so seq7 does **not** complete the required approximately-15-minute bootstrap;
+- hourly remains unauthorized.
 
 Next:
-1. **SB-V05-001 now** — valid pinned-IP HTTPS TLS/SNI/certificate execution plus production-constructor regression.
+1. **SB-V05-001 now** — implement valid pinned-IP HTTPS TLS/SNI/certificate execution plus production-constructor regression.
 2. **SB-V15-001 next** — authoritative bot+persona experiment save/load/list/read boundary and mixed-persona regressions.
 3. Preserve V16/V17/V20-002 for fresh lead audit after those repairs.
 
-Do not spend the session waiting in a foreground heartbeat loop.
+Heartbeat remains background-only. Do not spend the session waiting for cadence proof.
 
 ## Lane C — Mac QA / Integration
 Branch: `claude/social-bots-mac-qa-control`
-Status: ACTIVE; coordination heartbeat bootstrap accepted and routine hourly cadence authorized.
+Status: ACTIVE; hourly coordination heartbeat remains authorized.
+
+No independent Core verification report has landed since LEAD-023.
 
 Immediate QA assignment:
-1. independently verify Windows Core commit `175f741...` for SB-V03-004 migration/fencing correctness without editing Core source;
-2. report exact commands/results/defects;
-3. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
+1. independently reproduce/disprove the `SB-V03-004` post-cycle success-receipt-after-takeover defect without editing Core source;
+2. independently probe the `SB-V03-005` real production reader bypass risk (`publish_queue`, analytics/history, experiment/read paths, etc.) rather than only the isolation facade;
+3. report exact commands/results/files/symbols;
+4. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
 
 Heartbeat is coordination observability only, not V0.7 runtime-liveness proof.
 
@@ -66,7 +76,7 @@ Heartbeat is coordination observability only, not V0.7 runtime-liveness proof.
 Branch: `claude/social-bots-v04-live-canary`
 Status: READY / NOT STARTED in repository evidence.
 
-The branch still contains only lead setup/authorization commits. Start/resume the actual local Claude Code session and execute `SB-V04-005`.
+The branch still has no worker-generated canary evidence. Start/resume the actual local Claude Code subscription session and execute `SB-V04-005`.
 
 ## Additional remote-worker capacity
 
@@ -74,26 +84,21 @@ Control plane: `pri8771/remote-workers`
 Worker: `worker-pc`
 Capacity: 1.
 
-First Social Bots task:
-- `socialbots-v03-audit-20260920-01`
-- intended: independent read-only V03-004/V03-005 audit
-- result: **FAILED before repository clone**
-- dispatch run: `35559393292`
-- sanitized error: `Repository tasks must target a private repository.`
+Social Bots task `socialbots-v03-audit-20260920-01` remains **FAILED before repository clone** because the worker-local GitHub credential could not establish visibility/access to the private `pri8771/astra-bot-launch` repository. The failed task contributes no acceptance evidence.
 
-Independent GitHub metadata confirms `pri8771/astra-bot-launch` is private. Therefore this is a worker-local GitHub credential/repository-access visibility problem, not a Social Bots repository visibility change.
+At LEAD-024 review time, worker-pc is also occupied by another control-plane task, so capacity is not available for a Social Bots dispatch.
 
-Required infrastructure action:
-- grant/refresh the worker-pc `gh` credential so it can access `pri8771/astra-bot-launch`;
-- keep the private-repository guard intact;
-- only then re-dispatch read-only verification work.
+Required before reuse:
+- grant/refresh worker-pc GitHub credential access to `pri8771/astra-bot-launch` without weakening the private-repository guard;
+- wait for its single protocol slot to be idle;
+- then assign useful non-overlapping verification/implementation work.
 
-The failed attempt contributes no artifact acceptance evidence and does not replace the active Mac-QA verification assignment. Do not move Social Bots governance into `remote-workers`.
+Do not move Social Bots governance into `remote-workers`.
 
 ## Heartbeat truth
 
-- Mac QA: real durable cadence observed; hourly coordination cadence authorized.
-- Intelligence: timed seq5/seq6 observed; remain bootstrap until lead sees enough future durable cadence.
+- Mac QA: real durable cadence accepted; hourly coordination cadence authorized.
+- Intelligence: bootstrap claim rejected at seq7 due the ~30.5-minute interval; remain bootstrap.
 - Heartbeat never blocks source work or the live canary.
 - Worker heartbeat proves GitHub coordination only, not Social Bots recurring runtime liveness.
 
@@ -101,8 +106,8 @@ The failed attempt contributes no artifact acceptance evidence and does not repl
 
 **V0.3.x**.
 
-V0.3 cannot close while V03-004/V03-005/V03-006 remain unresolved in canonical artifact state.
-V0.4 additionally requires the real `SB-V04-005` canary and independent `SB-EVD-002` acceptance.
+V0.3 cannot close while V03-001/V03-004/V03-005/V03-006/EVD-001 remain unresolved in canonical artifact state.
+V0.4 additionally requires all V0.4 manifest artifacts, including the real `SB-V04-005` canary and independent `SB-EVD-002` acceptance.
 Later-version scaffolding does not advance the official product version.
 
 ## Authority
