@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T00:30:00Z",
+  "updated_at": "2026-09-21T00:35:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -1064,6 +1064,40 @@
       "story_points": 2,
       "evidence": [
         "prepared to replace worker-local-only test evidence with GitHub-hosted verification"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-007",
+      "name": "Strict reasoning proposal schema",
+      "type": "control_contract",
+      "version_gate": "V0.4+",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/REASONING_PROPOSAL_SCHEMA.md",
+      "depends_on": [
+        "SB-CTL-005"
+      ],
+      "story_points": null,
+      "evidence": [
+        "allowed action vocabulary, numeric bounds, payload authority boundary, fail-closed semantics"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-008",
+      "name": "V2 strategy and revision schema",
+      "type": "control_contract",
+      "version_gate": "V2.0+",
+      "owner": "ChatGPT",
+      "status": "ACCEPTED",
+      "canonical_ref": "social-bots/STRATEGY_SCHEMA.md",
+      "depends_on": [
+        "SB-CTL-005"
+      ],
+      "story_points": null,
+      "evidence": [
+        "typed strategy state/revision operations, anti-overreaction and no-data semantics"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
