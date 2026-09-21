@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T04:06:00Z",
-  "lead_review": "LEAD-023",
+  "reviewed_at": "2026-09-21T04:52:00Z",
+  "lead_review": "LEAD-024",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
-  "next_assignment": "Switch routine heartbeat to hourly and immediately perform an independent QA verification of Windows Core commit 175f741 for SB-V03-004 fencing/migration correctness; then continue V2 integration/CI harness work. Dedicated canary lane owns SB-V04-005.",
+  "next_assignment": "Independently test the LEAD-024 SB-V03-004 post-cycle success-receipt takeover scenario and SB-V03-005 real production reader bypass risk without editing Core source; then resume V2 integration/CI harness work.",
   "notification_delivered": true,
-  "notes": "Durable history contains multiple genuine ~15-18 minute intervals and the timed seq7/8/9 checkpoint series was independently inspected. Heartbeat proves coordination only, not V0.7 runtime liveness. Do not idle after heartbeat validation."
+  "notes": "Hourly coordination heartbeat remains authorized. No independent Core verification report has landed yet. Focus QA on exact ownership/read-boundary acceptance properties, not generic suite repetition. Dedicated canary lane owns SB-V04-005."
 }
