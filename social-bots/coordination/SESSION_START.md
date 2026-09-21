@@ -1,36 +1,13 @@
-# Social Bots — session start
+# Social Bots session start — LEAD-047
 
-This is the only mandatory Social Bots startup page.
+Canonical coordination: `chatgpt/social-bots-plan-20260920`.
 
-Canonical branch: `chatgpt/social-bots-plan-20260920`
+Current execution: **`social-bots/delivery/FINAL_RUN.md`**. Read it from the freshly fetched canonical ref; older local pause instructions are superseded by this release, not by guessing a branch head.
 
-## Current truth
+Read only root CLAUDE.md, compact state/CURRENT.md, your assignment and the active delivery/SB artifact card. Do not preload every roadmap. Use historical conversation/memory only when available and relevant; verify current status against Git.
 
-- Official phase: **V0.4.x / V0.4 in progress**.
-- V0.3 is accepted/closed.
-- Immediate implementation focus: V0.7 recovery with honest LIVE checkpoints.
-- Fast-track strategic execution target after recovery: **V2.3 working ASAP**.
-- Planning compatibility target: **V3.0**, but V2.4–V3.0 implementation must not delay V2.3.
-- Primary recovery lane: Cursor Recovery. Fable has a separate new-files-only V2.3 engineering lane.
-- Legacy Claude Core/Intelligence are parked; Acceptance is review-only; canary is frozen.
-- No additional live adaptive/model call is currently authorized.
+Fable is the primary shared-runtime integrator. Cursor/legacy implementation is parked at a safe handoff; preserve incoming local/just-pushed code. QA is independent review-only. The lead still owns acceptance. Existing SB milestone requirements remain; Cxx delivery cards are integration/verification support, not replacement features. Old NR cards are supporting reference, not a second execution queue.
 
-## Current assignment router
+One fresh session emits one durable SESSION_ONCE heartbeat after current coordination is read. A resumed session does not duplicate it. Native scheduled invocation and task lease renewal are different things. No kept-open chat or periodic heartbeat watcher is required.
 
-- **Cursor / implementation:** read `social-bots/assignments/CURSOR_RECOVERY.md`.
-- **Fable 5.1 / senior planner-worker:** read `social-bots/assignments/FABLE_5_1.md`.
-- **Independent Acceptance:** read current `social-bots/SESSION_ROUTER.md` and the exact submitted artifact packet.
-- **ChatGPT lead:** canonical state/registry/reviews remain authoritative.
-
-## Startup sequence
-
-1. `git fetch --all --prune`.
-2. Read `social-bots/state/CURRENT.md`.
-3. Read `social-bots/coordination/READ_ROUTER.md`.
-4. Read only your assignment file and its referenced artifact packet(s).
-5. Inspect relevant active worker diffs/branches.
-6. Check useful past conversation/memory if available, but verify it against Git.
-7. Emit exactly one `SESSION_ONCE` heartbeat for the fresh session.
-8. Begin the smallest dependency-ready non-conflicting artifact.
-
-Do not load the entire V0.4–V3.0 plan unless your current task is roadmap architecture.
+Implementation target: integrated, genuinely working V2.3 first, then V3.0. Current official version remains V0.4.x. No extra live product-model/public/spend authority is granted. See delivery/OWNER_GATES.md for the preserved necessary account/alias setup allowance and separate external gates.

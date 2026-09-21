@@ -1,0 +1,23 @@
+{
+  "classification": "OFFLINE_SOURCE_EXCERPT_REPRODUCTION",
+  "not_full_repo_execution": true,
+  "dependencies": "Test doubles for contract validation, grant lookup and ledger support; target class/method bodies copied from inspected source. No actual provider was used.",
+  "fable_source_ref": "72a55319cf41f9910c5d3b9623129de3ac0eea31",
+  "cursor_source_ref": "74a515b7f3e30c94979e0f66dc6daae66daed571",
+  "probes": [
+    {"probe":"direct_model_callable_without_grant","expected_safe_dispatches":0,"observed_sentinel_dispatches":1,"defect_reproduced":true},
+    {"probe":"false_fixture_label_authorization_exemption","expected_safe_dispatches":0,"observed_sentinel_dispatches":1,"authorization_required":false,"defect_reproduced":true},
+    {"probe":"concurrent_one_slot_budget","expected_max_dispatches":1,"observed_sentinel_dispatches":2,"recorded_calls_after_returns":2,"errors":[],"defect_reproduced":true},
+    {"probe":"reentrant_one_slot_budget","expected_max_dispatches":1,"observed_sentinel_dispatches":2,"recorded_calls":2,"defect_reproduced":true},
+    {"probe":"same_grant_new_wrappers","grant_max_calls":1,"observed_sentinel_dispatches":2,"defect_reproduced":true,"limit":"Grant service is a test double; demonstrates wrapper-local accounting, not an executed production authorization service."},
+    {"probe":"changed_kept_output_consumed","expected_safe_outcome":"reject_hash_mismatch","observed_claim":"changed after verification","receipt_hash_matches_bytes":false,"defect_reproduced":true}
+  ],
+  "reproduced":6,
+  "total":6,
+  "external_model_calls":0,
+  "network_calls":0,
+  "public_effects":0,
+  "runtime_acceptance_changed":false,
+  "command":"python3 social-bots/delivery/reviews/probes/run_probes.py",
+  "interpretation":"Exit zero means the historical defects were reproduced in isolated excerpts. It does not mean the current runtime is safe or accepted. Port these scenarios to current-module regression tests before closing the defects."
+}

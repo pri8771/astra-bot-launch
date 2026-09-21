@@ -1,31 +1,13 @@
-# Social Bots — compact current state
+# Current state — LEAD-047
 
-Source of truth remains `../STATE.json`. Updated from LEAD-043.
+Official version **V0.4.x**, unchanged. V0.3 is accepted. Source/engineering breadth is ahead of operational proof.
 
-## Version
-- Official: **V0.4.x**
-- Completed: V0.3
-- Recovery target: honest V0.7
-- Fast-track engineering target: **V2.3 engineering-ready ASAP**
-- Operational V2.3 remains behind the full LIVE chain.
-- V3.0 is the architecture compatibility target until V2.3 works.
+**Fable is released as sole integrator.** Read `social-bots/delivery/FINAL_RUN.md` from current canonical coordination. This replaces the old pause and new-files-only restriction; Cursor/legacy implementation lanes are parked at safe handoff. No worker acknowledgement or current activity is inferred from this assignment.
 
-## Recovery
-Cursor remains primary recovery owner.
-- SB-R07-041: CHANGES_REQUIRED / immediate repair.
-- SB-R07-071/044/072: SUBMITTED / pending acceptance.
-- SB-R07-042/051/052/053/061: engineering submissions retained for audit.
-- Current Cursor cloud host is unsuitable for V0.7 LIVE scheduler proof.
-- Mac Acceptance has not yet produced a fresh independent LEAD-042/043 review session.
+Audited Fable branch head: 72a55319cf41f9910c5d3b9623129de3ac0eea31 (lead pause acknowledgement). Material checkpoint a204ad0827748a4e9661f1945b8e025d53d0ae09: nine submitted engineering components; worker-reported 523 discovered, 521 passed, 2 skipped. Latest observed session ran on a Linux vm, not a verified local Mac.
 
-## V2.3 fast-track
-Fable planning is lead-adopted.
-- SB-S20-000 added; blocked on accepted SB-R07-041.
-- SB-V23-099 added; engineering readiness only.
-- Released Fable tasks: SB-S23-001 and SB-S20-001, then dependency-safe new-files-only work.
+Lead found persistent callable/fixture authorization bypass, after-dispatch/private budget accounting and retained-output integrity failure. Six isolated copied-source sentinel scenarios reproduced; full production suite was not independently run by the lead. See delivery/reviews/LEAD047_AUDIT.md.
 
-## Real-life rule
-A milestone is not working until its required LIVE evidence exists. Engineering artifacts may be accepted independently without promoting the milestone.
+Next: repair exact regressions, integrate Intelligence and missing strategy/planner work, connect H1–H4/real development dispatch, run the ordinary entrypoint, then permitted real proofs. Genuinely working V2.3 first, then V3.0.
 
-## Authority
-No additional live adaptive/model call, public effect, account creation or new spend is authorized.
+No new live product-model/public/spend/main-merge grant. The old five-call gate still needs explicit owner approval plus lead manifest. Necessary existing-account/verified Unsubscriber setup scope remains separate. One fresh session = one heartbeat; no periodic loop.

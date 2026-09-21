@@ -1,0 +1,15 @@
+LEAD-047 local execution summary (not a verbatim runtime-suite log)
+
+Command: python3 social-bots/delivery/validate_delivery.py
+Working directory: isolated applied copy of the owner-supplied patch
+Result: errors=[], warnings=[], task_count=31, milestone_count=27, reconciliation_count=10, passed=true
+repo_checks_run=false; production_tests_run=false; live_tests_run=false
+
+Command: python3 -m unittest discover -s social-bots/delivery/tests -v
+Result: Ran 30 tests; OK; no failures/errors/skips.
+
+Command: python3 probes/run_probes.py
+Working directory: isolated source-excerpt harness
+Result: 6/6 historical defect scenarios reproduced with harmless sentinels; zero real model/public/network calls.
+
+Do not add these counts to Fable's 523 discovered runtime tests or label them independent execution of that suite. See VALIDATION.md for exact scope and required current-checkout verification.

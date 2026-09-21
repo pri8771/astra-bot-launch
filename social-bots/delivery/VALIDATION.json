@@ -1,0 +1,15 @@
+{
+  "review": "LEAD-047",
+  "validation_scope": "supplied_delivery_patch_and_isolated_source_excerpts",
+  "supplied_patch_apply_check": "PASS_IN_ISOLATED_EMPTY_REPOSITORY",
+  "task_count": 31,
+  "milestone_count": 27,
+  "reconciliation_count": 10,
+  "validator_tests": {"discovered":30,"passed":30,"failed":0,"errors":0,"skipped":0},
+  "source_excerpt_probes": {"scenarios":6,"defects_reproduced":6,"network_calls":0,"real_model_calls":0},
+  "repo_checks_run": false,
+  "production_tests_run": false,
+  "live_tests_run": false,
+  "artifact_acceptance_changed": false,
+  "limits": ["No authenticated full checkout was available in the lead execution container.","Code snippets and test-double dependencies do not equal the full production integration.","The new repo package consolidates duplicate documentation; strict repository-aware validation is required on the integrated candidate."]
+}

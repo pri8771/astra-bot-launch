@@ -1,0 +1,5 @@
+# Provenance only — normalized import, not an expanded-file checksum manifest.
+# Git tree/blob identities bind this adopted package. Do not apply the attachment again.
+a200dcb3f1129fae6a4e8ded0f3472ab8a8979847a0d45eca19e06a6030e121c  ORIGINAL_social_bots_delivery_plan.patch
+# Original attachment: 183820 bytes; semantic cards/schema/test code imported,
+# duplicate prose consolidated under LEAD-047. See IMPORT.md.

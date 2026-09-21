@@ -1,33 +1,13 @@
-# Assignment — Fable 5.1 — LEAD-045 review hold
+# Fable assignment — LEAD-047 RELEASED
 
-Role: senior implementation architect + non-conflicting V2.3 engineering worker.
+You are the primary implementation/integration worker. ChatGPT is lead and acceptance authority.
 
-## Current state
+Read `social-bots/delivery/FINAL_RUN.md` from freshly fetched canonical `chatgpt/social-bots-plan-20260920`. This explicitly supersedes the LEAD-045/046 pause and older new-files-only restriction. You may repair existing recovery/runtime files on your preserved integration branch; do not overlap another worker's uncommitted source.
 
-The currently released new-files-only batch is complete. Fresh engineering submissions exist for **SB-S20-001** and **SB-S23-001..SB-S23-008** on `fable/social-bots-v23-fasttrack-20260921`.
+Branch: `fable/social-bots-v23-fasttrack-20260921`. Preserve any newer push; do not reset to the audit baseline.
 
-Lead has reviewed material source/evidence and classified the batch as **submitted engineering evidence**, not operational acceptance. `SB-S23-008` remains fixture-class evidence and requires an independent Acceptance rerun.
+First: reproduce/fix the current authorization, pre-dispatch/shared-budget and retained-output-integrity defects, then finish missing strategy/planner work and integrate H1–H4. Use the imported delivery tasks and existing SB packets; do not write another broad roadmap.
 
-## Current instruction — PAUSE NEW SOURCE WORK
+Priority: genuinely working V2.3 first, then V3.0. Safe offline integration may use provisional interfaces under the explicit release; operational acceptance still needs all real evidence and grants. No self-acceptance, no new live product-model/public/spend authority.
 
-1. Preserve the submitted source, worker reports, fixture evidence, hashes, and test results.
-2. Do **not** begin another implementation slice until a new explicit lead release is committed.
-3. Do not edit Cursor-owned existing recovery/runtime files.
-4. If a fresh session is started only to read/review coordination, emit exactly one durable `SESSION_ONCE` heartbeat and do not manufacture progress.
-5. You may respond to a concrete lead review question with read-only analysis, but do not turn that into unassigned source changes.
-
-## Review queue
-
-Acceptance is assigned to independently rerun/audit `SB-S23-008` after the immediate R07 gates. Lead has pinned the integration predicates in `../next-round/BASELINE.json`.
-
-`SB-S20-000` remains blocked until `SB-R07-041` is accepted. Downstream V2.0–V2.3 integration cannot skip that dependency.
-
-## Evidence classification
-
-Worker-local green tests and fixtures are ENGINEERING evidence only. They never promote operational V2.0–V2.3 by themselves.
-
-## Hard gates
-
-No unauthorized live model call, public/account effect, new spend/PAYG, destructive action, credential exposure, engagement manipulation, or SwarmAI dependency.
-
-Workers submit. ChatGPT lead accepts.
+One fresh session = one SESSION_ONCE heartbeat. Consult available historical context for intent but verify current Git. Keep reads/reports compact and use already-available lower-cost subagents only for bounded mechanical work. Details and completion conditions: delivery/FINAL_RUN.md.
