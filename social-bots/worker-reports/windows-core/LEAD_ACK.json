@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
   "lane": "windows-core",
-  "reviewed_through_sequence": 14,
-  "reviewed_at": "2026-09-21T15:52:53Z",
-  "lead_review": "LEAD-035",
-  "bootstrap_consecutive_verified": 0,
-  "steady_hourly_authorized": false,
+  "reviewed_at": "2026-09-21T17:10:00Z",
+  "lead_review": "LEAD-036",
+  "official_phase": "V0.4.x_in_progress",
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "STALE WAKE-UP: start fresh Lane 1 now, launch reporter in parallel, repair SB-V04-004 only, push source/tests/report, then pull lead instructions.",
+  "steady_hourly_authorized_for_reset_soak": false,
+  "accepted": ["SB-V03-004", "SB-V03-006", "SB-V04-001", "SB-V04-003", "SB-V04-005"],
+  "changes_required": ["SB-V04-002", "SB-V04-004"],
+  "next_assignment": "NO LIVE MODEL CALLS. Continue only non-live V04 acceptance seam/test/integration readiness; keep real adaptive causal-divergence gap explicit and do not substitute replay/fixtures.",
+  "authorization_consumed": true,
   "notification_delivered": true,
-  "notes": "No worker-generated commit or Issue #3 heartbeat appeared after reset. Preserve final V03; do not execute the live canary. Heartbeat never blocks source work."
+  "notes": "V0.3 is closed. Reset Issue comments do not count as durable heartbeat proof; add prospective HEARTBEAT_LOG entries only, never backfill."
 }
