@@ -1,62 +1,37 @@
 # SESSION_INSTRUCTIONS — Lane 2 / Mac Intelligence Builder
 
-Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
+Mode: FAST TRACK — LEAD-036
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead check: 2026-09-21T15:52:53Z
+Lead check: 2026-09-21T17:10:00Z
 
-No worker-generated commit, Issue #3 heartbeat, or progress update has appeared since the reset assignment. Start useful work now. Heartbeat is observability only and must run in parallel rather than delay V05/V15 implementation.
+Official phase is **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 Read canonical:
-- `social-bots/RESET_EXECUTION_20260921.md`
-- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `social-bots/SESSION_ROUTER.md`
+- `social-bots/lead-reviews/LEAD-036_2026-09-21T1710.md`
+- `social-bots/STATE.json`
+- `social-bots/WORK_QUEUE.md`
+- `social-bots/artifact-packets/SB-V15-001.md`
 
-## Start
+## Accepted / frozen
 
-1. Pull this branch.
-2. Set `social-bots/worker-reports/intelligence-repair/CURRENT_PROGRESS.md`.
-3. Verify `gh auth status`.
-4. Launch in background:
+- **SB-V05-001 ACCEPTED** from repair `a462bd6`.
+- SB-V13-001 and SB-V14-001 remain accepted.
+- Do not edit Core reasoning/runtime ownership areas.
 
-```bash
-nohup python3 social-bots/bin/heartbeat_reporter.py \
-  --lane INTELLIGENCE \
-  --progress-file social-bots/worker-reports/intelligence-repair/CURRENT_PROGRESS.md \
-  >/tmp/socialbots-intelligence-heartbeat.log 2>&1 &
-echo $!
-```
+## Current mission — SB-V15-001 narrow repair only
 
-Reporter cadence:
-- T0/+5/+10/+15m;
-- then every 15m for 24h;
-- one Issue #3 comment each heartbeat.
+The persona-partitioned storage and explicit persona APIs in `2052955` are good, but the ordinary public aliases `load(bot, exp_id)` and `load_all(bot)` still expose whole-runtime cross-persona reads. A docstring calling them admin/internal is not a structural boundary.
 
-Update CURRENT_PROGRESS.md whenever work changes.
+Repair exactly this:
+1. remove, private-prefix, or rename the ambiguous whole-runtime aliases so normal persona-facing callers cannot mistake them for production APIs;
+2. keep explicit `admin_load_experiment` / `admin_load_all_experiments` (or equivalent clearly administrative names) if needed;
+3. update any legitimate admin/test callers to the explicit admin names;
+4. add a regression that inspects/uses the normal production API surface and proves another persona's experiments cannot be enumerated or loaded;
+5. preserve bot+persona physical partitioning, ownership checks, normalized observation provenance and INCONCLUSIVE behavior;
+6. run focused and full suites; commit/push source + report; then stop expansion for lead audit.
 
-## Mission
+After lead accepts V15, V16/V17/V20-002 can be independently audited in sequence. Do not expand into those before this narrow fix lands.
 
-Accepted/frozen:
-- SB-V13-001
-- SB-V14-001
+No live model call is needed or authorized for this work. No public effects, PAYG/new spend, secrets, fake metrics/evidence, destructive actions or SwarmAI dependency.
 
-Priority 1 — SB-V05-001:
-- connect to validated/pinned public IP;
-- preserve original hostname for TLS SNI/certificate verification;
-- no hostname re-resolution after validation;
-- correct Host header;
-- redirects fail closed unless each hop is revalidated/pinned;
-- preserve SSRF/trust/extraction/fixture-vs-operational controls;
-- add production-path regression catching invalid HTTPS constructor/API use;
-- run tests, commit/push, report exact limitations.
-
-Priority 2 — SB-V15-001:
-- authoritative bot+persona experiment save/load/list/read APIs;
-- normal persona flows cannot enumerate another persona's experiments;
-- whole-runtime access explicit admin/internal only;
-- mixed-persona production-path regressions;
-- preserve normalized observation provenance and INCONCLUSIVE behavior.
-
-After both submit, stop expansion and wait/pull for lead audit.
-
-Do not edit Core runtime.
-No public effects, PAYG/new spend, secrets, fake metrics/evidence, destructive actions or SwarmAI dependency.
+Heartbeat is observability only. The reset soak is still 0 durable-verified intervals because the committed HEARTBEAT_LOG has no reset-epoch FAST_5M entries. Commit only real prospective records; no backfill.
