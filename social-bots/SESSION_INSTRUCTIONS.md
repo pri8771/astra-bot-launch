@@ -1,14 +1,19 @@
 # SESSION_INSTRUCTIONS — Lane 1 / Core Builder
 
-Mode: LEAD-037 — V0.4 EMPIRICAL GATE PREP -> V0.7 HOST WORK
+Mode: LEAD-039 — ACTIVE SESSION / V0.4 PREP -> V0.7 HOST WORK
 Branch: `claude/social-bots-windows-core-host`
 
 Read canonical first:
-- `social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md`
+- `social-bots/lead-reviews/LEAD-039_2026-09-21T1356.md`
+- `social-bots/CLAUDE_EXECUTION_TO_V07.md`
 - `social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md`
 - `social-bots/STATE.json`
 - `social-bots/WORK_QUEUE.md`
 - `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
+
+## Lead classification
+
+ACTIVE. Issue #3 shows a fresh Core worker session started at 2026-09-21T17:48:17Z and emitted one `SESSION_ONCE` heartbeat. At lead review time, no new worker source/report commit from that session is yet visible on the authoritative Core branch, so this is liveness/assignment evidence only, not artifact acceptance.
 
 ## Hard rule
 
@@ -34,20 +39,18 @@ Build/test without model calls:
 7. No retry-until-pass logic.
 8. Fixture tests must be labeled engineering-only.
 
-Submit exact SHA/tests/report and stop for lead/QA audit of Priority A.
+Push the current session's durable heartbeat/report and exact source/test evidence to the authoritative Core branch before requesting artifact review.
 
 ## Priority B — SB-V07-001
 
-After Priority A is pushed, SB-V07-001 is dependency-ready.
-
-Build the authorized-host worker/runbook package with:
-- OS-level scheduling/event invocation rather than chat-session liveness;
+After Priority A is pushed, continue dependency-ready SB-V07-001:
+- bounded worker-once execution;
+- OS-level scheduler adapters rather than chat-session liveness;
 - safe one-task claim;
-- invocation/heartbeat receipts;
-- crash/restart/no-overlap primitives;
-- heartbeat durability independent of Issue-comment transport;
-- durable heartbeat logging even when `gh` is missing;
-- optional human-readable GitHub comment transport;
+- one durable `SESSION_ONCE` heartbeat per fresh scheduled worker session;
+- invocation receipts;
+- crash/restart/no-overlap behavior;
+- heartbeat durability independent of Issue-comment transport / `gh` availability;
 - no live model invocation in tests.
 
 Do not self-accept any artifact.
