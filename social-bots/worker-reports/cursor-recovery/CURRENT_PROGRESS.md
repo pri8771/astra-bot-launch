@@ -22,6 +22,7 @@
 - Independent divergence verifier; rejects fixtures/self-declared labels
 
 ### SB-R07-072 — SUBMITTED (ENGINEERING)
+- Source SHA: `7f59f915b9f5bb60691d06215a463518fd4519c7`
 - This Cursor Cloud host: **UNSUITABLE_NOT_PERSISTENT_OWNER_HOST**
 - Evidence: `evidence/SB-R07-072/HOST_PREFLIGHT.json`
 - Full suite: 329 passed, 1 skipped
