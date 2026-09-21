@@ -405,48 +405,21 @@ Evidence / source refs:
 - `MILESTONE_MANIFEST.md`
 - `ARTIFACT_INDEX.json`
 - artifact packets: V04-002, V04-003, V05-002, V11-001, V12-001, V13-001, V14-001, V15-001, V16-001, V17-001, V20-001, V20-002, V20-099, V23-001, V30-001
-- PR #2 latest observed head: `2a53046f10ed284f6e4164a78c47bbf750aad73d`
 
 Blockers / limits:
 - Operational V1.0+/V2.0 promotion still depends on real account/public/analytics evidence and explicit owner authorization for public actions.
 - Always-on host liveness remains unverified.
 - No public posting/messages/purchases/destructive actions, paid APIs/additional spend, credentials, fake operational evidence, or SwarmAI dependency are authorized.
 
-Next:
-- Start both Claude lanes from TEAM_LANES.md now.
-- Lead will review each submitted artifact and keep future work groomed so worker sessions do not idle.
-
 ## 2026-09-20 — CHATGPT -> CLAUDE — LEAD-013 — LEAD PREP / CROSS-LANE CONTRACTS
 
 Done:
 - Continued lead-side work while the two Claude lane branches are not yet visible in GitHub.
-- Added and accepted lead control artifact `SB-CTL-005` at `CROSS_LANE_INTERFACES.md`: typed boundary records for evidence, claim support, normalized metrics, audience hypotheses, experiments, growth opportunities and strategy revision proposals.
-- Added accepted lead acceptance artifact `SB-V20-098` at `V2_ENGINEERING_ACCEPTANCE.md`: end-to-end V2 readiness scenarios covering positive/negative/missing/stale/anomalous/authority/adversarial cases and traceability.
+- Added and accepted lead control artifact `SB-CTL-005` at `CROSS_LANE_INTERFACES.md`.
+- Added accepted lead acceptance artifact `SB-V20-098` at `V2_ENGINEERING_ACCEPTANCE.md`.
 - Added accepted lead research artifact `SB-V04-000` at `CLAUDE_REASONING_ROUTE_RESEARCH.md`.
-  - Current Anthropic docs support non-interactive `claude -p` / JSON output and subscription authentication.
-  - A candidate no-additional-spend provider may use an existing authenticated Claude Code subscription.
-  - Hard guard: fail closed if `ANTHROPIC_API_KEY` is present, because that can route to API billing.
-  - Actual target-host authentication/quota behavior still requires runtime verification.
 - Added accepted lead review artifact `SB-V13-000` at `INTELLIGENCE_CODE_REVIEW.md`.
-- Identified Intelligence-side risks before worker implementation:
-  - current analytics aggregation can double-count cumulative snapshots;
-  - current fact review proves URL presence only;
-  - current formatter truncates but V0.3 correctly withholds over-limit content;
-  - current experiment baseline is scaffolding, not a measured baseline;
-  - current bot-scoped hypotheses/content stores need persona-aware isolation for V1.4/V1.6.
-- Tightened artifact packets:
-  - V04-001 now includes the Claude Code adapter route and strict fail-closed requirement;
-  - V13-001 now requires snapshot/delta/gauge/rate semantics and prohibits naïve cumulative summation;
-  - V14-001 now requires persona/workspace-scoped audience memory.
-- Added Core-owned CI artifact `SB-CTL-006` so future submissions can have GitHub-hosted tests instead of worker-local claims only.
-- Prepared future packets through V3:
-  - V21 dynamic strategy lifecycle;
-  - V22 goal decomposition;
-  - V23 specialist lifecycle;
-  - V30 shared-knowledge isolation, portfolio allocation, organizational memory.
-- Added accepted schemas:
-  - `SB-CTL-007` / `REASONING_PROPOSAL_SCHEMA.md`;
-  - `SB-CTL-008` / `STRATEGY_SCHEMA.md`.
+- Tightened V04-001, V13-001 and V14-001 packets and added CI/schema/future packets through V3.
 
 Evidence / source refs:
 - `CROSS_LANE_INTERFACES.md`
@@ -455,414 +428,207 @@ Evidence / source refs:
 - `INTELLIGENCE_CODE_REVIEW.md`
 - `REASONING_PROPOSAL_SCHEMA.md`
 - `STRATEGY_SCHEMA.md`
-- updated artifact packets V04-001, V13-001, V14-001
-- `artifact-packets/SB-CTL-006.md`
-- future packets V21-001, V22-001, V23-002, V30-002/003/004
 
 Next:
-- Claude Core should consume the reasoning schema/research after V0.3 repairs and may implement SB-CTL-006 CI after critical V0.3 correctness work.
-- Claude Intelligence should consume CROSS_LANE_INTERFACES.md and INTELLIGENCE_CODE_REVIEW.md before V05-001/V13-001.
-- Lead will review the first lane that pushes a branch/checkpoint and reconcile artifact status immediately.
-- Lead will continue preparing integration/acceptance work rather than duplicate worker implementation.
+- Core consumes reasoning schema/research after V0.3 repairs.
+- Intelligence consumes cross-lane/code-review constraints before V05/V13 work.
+- Lead reviews submissions and keeps integration/acceptance work ready.
 
 Blockers:
-- As of this lead check, branches `claude/social-bots-core-to-v2` and `claude/social-bots-intelligence-to-v2` are not yet visible in GitHub.
-- Operational/public evidence gates remain unchanged.
-- No public posting/messages/purchases/destructive actions, extra spend, secrets, fake operational evidence or SwarmAI dependency are authorized.
+- At that review, the two new lane branches were not yet visible.
+- Operational/public evidence gates unchanged; no public/spend/secrets/fake evidence/SwarmAI dependency authorized.
 
 ## 2026-09-20T20:54:00-04:00 — CHATGPT -> CLAUDE — LEAD-014 — TWO-LANE ARTIFACT AUDIT
 
 Done:
-- Verified both Claude development lanes are now actively producing signed commits with Claude Code session metadata: Core through `874b6992fb4fff3e4832dcb8ae078828525f6a51`, Intelligence through `3d249ec885706380a6a12934042ed03c1e15b831`.
-- Independently reviewed actual source/reports instead of accepting worker claims.
-- ACCEPTED `SB-V03-003`: forced FACT and VOICE failure regressions now prove truthful stop-before-experiment/queue/success behavior.
-- ACCEPTED `SB-V03-004` for the stated one-POSIX-host/local-filesystem scope: generation fencing plus atomic `Fence.fenced_commit` closes the old-owner-after-takeover commit defect.
-- ACCEPTED `SB-V05-001` as an engineering artifact: collector-generated timestamp/hash/status/provenance prevents caller-forged live capture; fixture evidence remains explicitly fixture-only.
-- Marked `SB-V03-005` CHANGES_REQUIRED: logical isolation helpers exist but raw bot-wide readers remain, so production persona-private reads can bypass the isolation facade.
-- Marked `SB-V04-001` CHANGES_REQUIRED: proposal validation improved, but production changed-evidence mode still defaults to deterministic baseline unless adaptive-required is opt-in.
-- Marked `SB-V04-002` CHANGES_REQUIRED: contextual provider is useful but explicitly `adaptive=false`, so it cannot satisfy V0.4 real adaptive autonomy.
-- Marked `SB-V04-003` BLOCKED on V04-001; source review is otherwise positive.
-- Marked `SB-V05-002` CHANGES_REQUIRED: claim support is good once claims are supplied, but packet-required material-claim identification is caller-supplied/out-of-scope and can be omitted.
-- Marked `SB-V13-001` CHANGES_REQUIRED: no cumulative_snapshot/delta/gauge/rate semantic kind and current aggregate sums PRESENT snapshots naively.
-- Marked `SB-V14-001` CHANGES_REQUIRED: audience hypotheses persist bot-wide without persona/workspace scope.
-- Marked `SB-V16-001` CHANGES_REQUIRED: content-intelligence history/novelty is bot-wide and can cross-contaminate personas.
-- Marked `SB-V17-001` CHANGES_REQUIRED: community themes/audience evidence aggregate bot-wide and can cross-contaminate personas.
-- Marked `SB-V20-002` CHANGES_REQUIRED: good missing/no-spend behavior, but it lacks the full accepted cross-lane bot/persona/authority/availability/cost contract and depends on unrepaired V13/V14 inputs.
-- Marked `SB-V12-001` and `SB-V15-001` BLOCKED on their unrepaired dependencies while recording positive source review.
-- Reconciled canonical `ARTIFACT_INDEX.json`, `STATE.json`, `WORK_QUEUE.md`, `WORKER_PERFORMANCE.md`, and tightened the affected artifact packets. Full audit: `lead-reviews/LEAD-014_2026-09-20T2054.md`.
+- Verified both Claude development lanes actively produced signed commits.
+- Independently reviewed source/reports and accepted V03-003, V05-001 at that stage; reopened/held artifacts with persona/trust/metric defects.
+- Reconciled canonical artifact/state/queue/performance and wrote the detailed LEAD-014 audit.
 
 Evidence:
-- Core `runtime/leasing.py`: `Fence.fenced_commit` checks lease id + generation under the same per-task flock used by takeover.
-- Core V03-003/004 worker reports and focused adversarial evidence show the previously identified review-gate and active-cycle fence defects have been addressed.
-- Core `runtime/isolation.py`: safe persona-filter helpers are present, but existing raw bot-wide readers remain available; packet requires every production read/filter path to prevent cross-persona contamination.
-- Intelligence `runtime/metrics.py`: `aggregate_semantic()` sums PRESENT values and `MetricValue` has no semantic kind; cumulative snapshot safety is not implemented.
-- Intelligence `runtime/audience.py`: `Hypothesis` lacks bot/persona scope and persistence is under `memory/<bot>/audience`.
-- Intelligence `runtime/content_intelligence.py`: history records omit persona and novelty comparison is bot-wide by platform.
-- Intelligence `runtime/community.py`: community memory/theme aggregation is bot-wide and theme-to-audience evidence lacks persona scope.
-- Current verified Core/Intelligence heads have zero GitHub status checks; worker test counts remain local evidence.
+- Core and Intelligence signed worker heads referenced in `lead-reviews/LEAD-014_2026-09-20T2054.md`.
+- Source-level findings across leasing/isolation/metrics/audience/content/community/growth are recorded there.
 
 Next:
-- Core: repair `SB-V03-005` by enforcing one authoritative persona-scoped production read boundary; then regenerate `SB-V03-006`. After that repair `SB-V04-001` production fail-closed default. Preserve contextual deterministic provider as non-adaptive; real `SB-V04-002` acceptance requires a runtime-verified no-additional-spend adaptive provider. Implement `SB-CTL-006` CI after V0.3 correctness stabilizes.
-- Intelligence: repair in order `SB-V13-001` semantic metric aggregation, `SB-V14-001` persona-scoped audience memory, `SB-V05-002` material-claim identification, `SB-V16-001` persona-scoped history/novelty, `SB-V17-001` persona-scoped community memory/themes, then reconcile `SB-V20-002` to `CROSS_LANE_INTERFACES.md`.
-- Keep useful dependency-blocked implementations stable unless upstream interface repair requires changes.
+- Core repairs V03-005 then V04 fail-closed/adaptive path.
+- Intelligence repairs metric/audience/evidence/persona boundaries.
 
 Blockers:
-- Product version remains `V0.3.x`; `SB-V03-006` cannot run until V03-005 is accepted.
-- V0.4 real adaptive provider route is not yet runtime-verified on the target host.
-- `SB-V20-099` V2.0 engineering-readiness is not accept-ready: V20-001 is not accepted/submitted and V20-002 plus upstream analytics/audience semantics require repair.
-- Active Claude Code development sessions do NOT prove V0.7 always-on Social Bots recurring-worker liveness.
-- No public posting/messages/purchases/destructive actions, additional spend, credentials, fake operational evidence, or SwarmAI dependency are authorized.
+- Product remained V0.3.x; real adaptive provider and V2 acceptance remained gated.
 
 Source refs:
-- `social-bots/lead-reviews/LEAD-014_2026-09-20T2054.md`
-- `social-bots/ARTIFACT_INDEX.json`
-- `social-bots/STATE.json`
-- `social-bots/WORK_QUEUE.md`
-- `social-bots/WORKER_PERFORMANCE.md`
-- updated packets: `SB-V03-005`, `SB-V04-001`, `SB-V04-002`, `SB-V05-002`, `SB-V13-001`, `SB-V14-001`, `SB-V16-001`, `SB-V17-001`, `SB-V20-002`
+- `lead-reviews/LEAD-014_2026-09-20T2054.md`
 
 ## 2026-09-20T20:59:00-04:00 — CHATGPT -> CLAUDE — LEAD-015 — DEEP AUDIT + TWO-INSTANCE PLAN
 
 Done:
-- Verified both prior worker batches finished in repository evidence:
-  - Core head `874b6992fb4fff3e4832dcb8ae078828525f6a51`, final signed commit at 2026-09-21T00:57:18Z.
-  - Intelligence head `3d249ec885706380a6a12934042ed03c1e15b831`, final signed commit at 2026-09-21T00:50:22Z.
-- Both heads have zero GitHub combined status checks. Worker-local suites were reported as Core 85 / Intelligence 128.
-- Performed a deeper source audit beyond LEAD-014 and reopened artifacts where end-to-end contract violations remained.
-- Added `LEAD_AUDIT_TWO_LANE_BATCH.md` and `NEXT_PHASE_TWO_INSTANCE_PLAN.md`.
-- Added Windows host artifact `SB-V07-WIN-001`.
-- Added repair-wave packets:
-  - `artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
-  - `artifact-packets/repair-waves/INTELLIGENCE_WAVE1.md`
-- Reconciled canonical ARTIFACT_INDEX / STATE / WORK_QUEUE / WORKER_PERFORMANCE.
+- Performed deeper audit, reopened optimistic statuses where contract violations remained, created two-instance repair plan and Windows host artifact.
+- Reconciled canonical state and repair-wave packets.
 
-Deep audit corrections:
-- `SB-V03-003` remains ACCEPTED.
-- `SB-V03-004` reopened CHANGES_REQUIRED:
-  - main state/effects are fenced, but `decisions.jsonl` and `last_decision.json` are written after the fenced critical section;
-  - filesystem multi-write closure is mutually excluded, not transactional;
-  - Windows strong lock/fence remains unproven.
-- `SB-V03-005` remains CHANGES_REQUIRED with a stronger root cause:
-  - hypotheses and consumed_signal_ids are runtime-shared;
-  - one persona can consume evidence for another;
-  - contextual reasoning uses total runtime hypothesis count, causing cross-persona learning contamination.
-- `SB-V04-001/002` remain CHANGES_REQUIRED:
-  - production adaptive requirement is opt-in;
-  - contextual provider is intentionally adaptive=false;
-  - real runtime-verified adaptive provider remains required.
-- `SB-V04-003` source direction remains positive but BLOCKED on V04-001.
-- `SB-V05-001` reopened CHANGES_REQUIRED:
-  - arbitrary custom `Fetcher(mode="live")` can forge operational-live provenance;
-  - live HTTP path needs SSRF/public-destination and redirect validation;
-  - extraction validity must be explicit.
-- `SB-V05-002` remains CHANGES_REQUIRED:
-  - caller supplies support stance; operational support must come from attributable assessor/reviewer.
-- `SB-V13-001` CHANGES_REQUIRED:
-  - cumulative_snapshot/delta/gauge/rate semantics still absent; snapshots can be double-counted.
-- `SB-V14-001` CHANGES_REQUIRED:
-  - bot-scoped persistence; sensitive-segment blacklist is bypassable; fork semantics overclaim evidence.
-- `SB-V15-001` CHANGES_REQUIRED:
-  - measurement baseline/treatment lack normalized-observation/evidence refs.
-- `SB-V16-001` CHANGES_REQUIRED:
-  - fact binding is presence-only; history/novelty is bot-wide.
-- `SB-V17-001` CHANGES_REQUIRED:
-  - read-only source is caller-asserted; community memory/themes are bot-wide.
-- `SB-V20-002` CHANGES_REQUIRED:
-  - arbitrary caller numeric performance/audience inputs can drive growth recommendations; typed accepted-evidence construction required.
-
-Next execution model:
-- Run TWO implementation sessions now, one per actual instance.
-- Windows Claude -> branch `claude/social-bots-windows-core-host`, consume `WINDOWS_CORE_WAVE1.md`.
-- Second Claude -> branch `claude/social-bots-intelligence-repair-v2`, consume `INTELLIGENCE_WAVE1.md`.
-- Do not add a third coding lane in Wave 1. Shared contracts are the bottleneck; ChatGPT stays ahead with acceptance/integration prep.
-- After Wave 1 acceptance, create one integration owner, merge corrected Core + Intelligence, run CI, execute V2_ENGINEERING_ACCEPTANCE.md, then add a third Claude session if useful for V2.1/V2.2/V2.3 forward work.
-
-Blockers:
-- Current product version remains V0.3.x.
-- V0.7 recurring-worker liveness still unproven.
-- V0.4 real adaptive provider still unproven.
-- V2 engineering readiness cannot clear until Core strategy + corrected typed Intelligence evidence integrate.
-- No public posting/messages/purchases/destructive actions, extra spend, secrets, fake operational evidence or SwarmAI dependency are authorized.
-
-Source refs:
+Evidence:
 - `LEAD_AUDIT_TWO_LANE_BATCH.md`
 - `NEXT_PHASE_TWO_INSTANCE_PLAN.md`
-- `ARTIFACT_INDEX.json`
-- `STATE.json`
-- `WORK_QUEUE.md`
-- `WORKER_PERFORMANCE.md`
-- `artifact-packets/SB-V07-WIN-001.md`
-- repair-wave packets listed above.
+- repair-wave packets and updated registry/state.
+
+Next:
+- Windows Core repairs V03-004/V03-005; Intelligence repairs V05/evidence contracts; Mac QA later handles non-overlapping control work.
+
+Blockers:
+- V0.3.x, V0.4 adaptive route, V0.7 liveness, V2 readiness remained unproven.
 
 ## 2026-09-20T21:28:00-04:00 — CHATGPT -> CLAUDE — LEAD-016 — MAC QA/CONTROL LANE READY
 
 Done:
-- Checked GitHub after both Windows prompts were launched; neither new repair branch is visible yet, so both Windows sessions are still local/bootstrap/working.
-- Added one non-overlapping Mac Claude lane rather than a third runtime implementation lane.
-- Registered `SB-CTL-012` — Artifact graph validator and readiness reporter — SP3.
-- Added `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`.
-- Updated WORK_QUEUE with the optional Mac QA/control lane.
+- Added non-overlapping Mac QA/control lane and registered `SB-CTL-012` artifact graph validator.
 
-Mac lane purpose:
-- validate ARTIFACT_INDEX / MILESTONE_MANIFEST dependency consistency mechanically;
-- derive deterministic milestone/readiness blockers;
-- distinguish V2 engineering readiness from operational promotion;
-- optionally own SB-CTL-006 CI/control only if the Windows Core worker has not already claimed it;
-- prepare V2 integration acceptance fixtures/harness without editing runtime implementation.
-
-Mac lane ownership:
-- branch: `claude/social-bots-mac-qa-control`
-- base from latest canonical coordination, not Core or Intelligence runtime branches;
-- no edits to Core or Intelligence runtime source;
-- reports under `worker-reports/mac-qa/`.
-
-Concurrency guidance:
-- Safe now: 3 Claude sessions total (2 Windows repair workers + 1 Mac QA/control worker).
-- Do not start a second Mac implementation session yet; that would make 4 concurrent coding/review streams while the shared state/evidence contracts are still unstable.
-- Reassess after Windows Wave 1 pushes and lead acceptance.
-
-Source refs:
+Evidence:
 - `artifact-packets/SB-CTL-012.md`
 - `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
-- `WORK_QUEUE.md`
-- `ARTIFACT_INDEX.json`
+
+Next:
+- Mac lane owns validator/CI/control/V2 acceptance prep, not runtime implementation.
+
+Blockers:
+- Windows repair branches were not yet remotely visible at that review.
 
 ## 2026-09-20T21:52:00-04:00 — CHATGPT -> CLAUDE — LEAD-017 — REPAIR-WAVE AUDIT
 
 Done:
-- Verified setup PR #1 remains open/unmerged, so `chatgpt/social-bots-plan-20260920` remains canonical.
-- Verified active Intelligence repair work through signed head `cbd781cab4d751b2a0626c3ce060c5a217d771e9`; Windows Core/Host and Mac QA/control branches are still not visible remotely.
-- Independently audited SB-V05-001 at `ecad87e6...` and SB-V05-002 at `cbd781ca...`; both remain CHANGES_REQUIRED.
-- Tightened canonical SB-V05-001 and SB-V05-002 packets, and reconciled STATE / WORK_QUEUE / WORKER_PERFORMANCE / detailed lead review.
+- Verified active Intelligence repair through signed head and independently audited V05 trust/redirect/DNS/assessor issues.
+- Tightened packets/state/queue/performance.
 
 Evidence:
-- SB-V05-001 improved direct `mode="live"` forgery, obvious SSRF classes and extraction validity, but public mutable `register_trusted_transport()` lets arbitrary caller-created classes self-register and obtain operational-live status; `to_signal()` also accepts verified-but-untrusted captures into the normal signal bridge.
-- SB-V05-001 redirect tests override `_perform()` rather than proving actual urllib 30x handling; DNS validation-to-connect TOCTOU/rebinding remains unclosed.
-- SB-V05-002 adds material-claim identification and attributable assessments, but public mutable `register_operational_assessor()` recreates the same self-registration authority problem.
-- SB-V05-002 `evidence_ref_from_receipt()` accepts verified fixture/untrusted captures, and the currently operational `KeywordSupportAssessor` can overclaim full SUPPORTS from key-term co-occurrence without establishing proposition/negation/value correctness.
-- Worker-local test claims advanced from 139 to 145; independent GitHub CI/status checks remain absent.
+- `lead-reviews/LEAD-017_2026-09-20T2152.md`
+- Intelligence repair heads and V05 packets.
 
 Next:
-- Intelligence: return to SB-V05-001 and close the collector-owned trust boundary, operational signal bridge, real redirect path and DNS TOCTOU; then repair SB-V05-002 assessor authority, trusted-evidence input and conservative support semantics before proceeding to V13/V14.
-- Windows Core/Host: push first reviewable checkpoint for SB-V03-004, then SB-V03-005, from its separate working tree.
-- Mac QA/control: push SB-CTL-012 only; do not edit runtime implementation.
+- Intelligence closes collector-owned trust, live HTTP redirect/DNS path and assessor authority; Windows Core pushes V03 repair; Mac QA pushes SB-CTL-012.
 
 Blockers:
-- Current verified product version remains V0.3.x; V03-004/V03-005/V03-006 are not accepted on a visible new Core repair branch.
-- V0.4 adaptive provider and V0.7 recurring worker liveness remain unproven.
-- SB-V20-099 engineering-readiness remains blocked by upstream evidence/state contracts; operational V2 remains separately real-account/public/analytics evidence-gated.
-- No public posting/replies/messages, purchases, paid APIs/additional spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency are authorized.
-
-Source refs:
-- `lead-reviews/LEAD-017_2026-09-20T2152.md`
-- `artifact-packets/SB-V05-001.md`
-- `artifact-packets/SB-V05-002.md`
-- `STATE.json`
-- `WORK_QUEUE.md`
-- `WORKER_PERFORMANCE.md`
-- Intelligence repair heads `ecad87e6...` and `cbd781ca...`.
+- V0.3/V0.4/V0.7/V2 gates remained open.
 
 ## 2026-09-20T22:51:00-04:00 — CHATGPT -> CLAUDE — LEAD-020 — HEARTBEAT TRUTH + PRIORITY-ZERO REVIEW
 
 Done:
-- Kept setup PR #1 canonical branch selection unchanged because PR #1 is still open/unmerged.
-- Audited both target heartbeat histories rather than trusting snapshots: Intelligence has no durable worker history beyond lead-seeded seq0; Mac QA seq1-4 are burst updates minutes apart, not three consecutive ~15-minute intervals. Hourly cadence remains unauthorized for both.
-- Independently ACCEPTED `SB-CTL-012` and `SB-CTL-006`; actual GitHub-hosted Social Bots CI run `35555060783` succeeded on Mac-QA head `ede387e...`.
-- Independently ACCEPTED `SB-V13-001` and `SB-V14-001` after source/test inspection of metric semantics, overlap-safe deltas, persona-scoped audience persistence, safe segment allowlist, and same-persona fork behavior.
-- Kept `SB-V05-001` CHANGES_REQUIRED after finding the real HTTPS live path calls stdlib `HTTPSConnection` with unsupported `server_hostname`, so trusted live HTTPS retrieval is not actually proven.
-- Kept `SB-V05-002` CHANGES_REQUIRED/fail-closed pending accepted semantic-provider integration and working trusted live evidence.
-- Kept `SB-V15-001` CHANGES_REQUIRED: measurement provenance is repaired, but normal experiment persistence/read APIs remain bot-wide instead of authoritative persona-scoped.
-- Left `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` CHANGES_REQUIRED pending deeper independent source audit; worker-local test success is not acceptance.
-- Corrected the canary permission record: the owner already authorized one bounded real V0.4 test using the existing subscription at zero additional spend. The remaining blocker is an actually authenticated Claude Code subscription host after heartbeat validation.
+- Audited heartbeat histories instead of snapshots.
+- Accepted SB-CTL-012, SB-CTL-006, SB-V13-001 and SB-V14-001.
+- Found V05 real HTTPS constructor defect and V15 persona experiment boundary defect.
+- Corrected canary authorization record.
 
 Evidence:
-- Lead review: `social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md`.
-- Intelligence signed head: `feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d`.
-- Mac-QA signed head: `ede387e256be19d6aaaf1e6c96151d7218221d33`.
-- Mac-QA GitHub Actions run `35555060783`: completed/success.
-- Intelligence `HEARTBEAT_LOG.jsonl`: only seq0 seed; snapshot seq4 is not accepted as missing durable history.
-- Mac-QA `HEARTBEAT_LOG.jsonl`: seq1-4 at 02:35:33Z, 02:37:49Z, 02:41:13Z, 02:42:30Z — not ~15-minute cadence.
-- `runtime/collector.py`: actual HTTPS constructor path is incompatible with stdlib `http.client.HTTPSConnection` signature.
-- `runtime/metrics.py` + tests: accepted kind-aware snapshot/delta/gauge/rate semantics and overlap-safe delta aggregation.
-- `runtime/audience.py` + tests: accepted bot+persona storage/read boundary and privacy regressions.
+- `social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md`
+- Mac-QA CI run `35555060783` success.
+- Intelligence/Mac heartbeat logs and V05/V13/V14/V15 source/tests.
 
 Next:
-- Intelligence: repair `SB-V05-001` pinned-IP TLS/SNI/certificate path with a production-constructor regression; then repair `SB-V15-001` persona-scoped experiment readers/writers; continue genuine prospective ~15-minute heartbeat history with no backfill.
-- Mac QA: remain on `claude/social-bots-mac-qa-control` until three consecutive real ~15-minute worker heartbeat intervals are logged and lead-acknowledged; then switch to `claude/social-bots-v04-live-canary` and execute `SB-V04-005` before ordinary QA expansion.
-- If the Mac-QA execution environment still lacks subscription OAuth/authentication, move the canary branch to another authorized authenticated host; do not substitute fixtures or injected model output.
-- Windows Core remains standby during this owner-selected heartbeat-validation phase.
+- Intelligence: V05 HTTPS then V15 persona experiments.
+- Mac QA: build genuine heartbeat history then QA; canary requires authenticated subscription host.
 
 Blockers:
-- Current product version remains V0.3.x; V03 fencing/isolation and V03-006 remain unresolved.
-- `SB-V04-005` has not executed; V0.4 is not complete.
-- Neither target lane has passed heartbeat bootstrap.
-- Current Mac-QA worker evidence says Linux container/no usable subscription OAuth, so Mac-host/authenticated-canary proof is absent.
-- `SB-V20-099` engineering-readiness remains blocked; operational V2 remains separately real-account/public/measurement evidence-gated.
-- No public posting/replies/messages, purchases, paid API/additional spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency are authorized.
-
-Source refs:
-- `lead-reviews/LEAD-020_2026-09-20T2251.md`
-- `STATE.json`
-- `WORK_QUEUE.md`
-- `WORKER_PERFORMANCE.md`
-- `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `artifact-packets/SB-V04-005.md`
-- `artifact-packets/SB-EVD-002.md`
-
+- V0.3 unresolved; V04 canary unexecuted; heartbeat bootstrap initially incomplete; V2 readiness blocked.
 
 ## 2026-09-20T23:30:00-04:00 — CHATGPT -> CLAUDE — LEAD-021 — FAST TRACK PARALLEL EXECUTION
 
 Done:
-- Removed heartbeat validation as a blocker on implementation and the V0.4 live canary. Heartbeat remains observability/proof only.
-- Reactivated Windows Core lane immediately.
-- Kept Intelligence lane active on the two concrete LEAD-020 repairs.
-- Kept Mac QA lane active on CI/integration/heartbeat work.
-- Activated a fourth non-overlapping lane: dedicated local V0.4 canary on `claude/social-bots-v04-live-canary`.
-- Added `FAST_TRACK_EXECUTION.md` and rewrote SESSION_ROUTER / WORK_QUEUE / STATE for four-lane parallel execution.
-- Updated branch-local SESSION_INSTRUCTIONS and LEAD_ACK files.
+- Made heartbeat observability-only and reactivated parallel Core/Intelligence/Mac-QA/live-canary lanes.
+- Added `FAST_TRACK_EXECUTION.md` and rewrote session router/state/queue.
 
-Parallel assignments:
-1. Windows Core: V03-004 migration fencing -> V03-005 persona production reads -> V03-006.
-2. Intelligence: V05-001 real HTTPS pinned-IP TLS/SNI/cert repair -> V15-001 persona experiment boundary -> submit V16/V17/V20-002 for audit.
-3. Mac QA: heartbeat proof in background + CI/artifact/integration harness. No runtime source ownership.
-4. Mac LOCAL canary: execute SB-V04-005 NOW on an actually authenticated Claude Code subscription host. Heartbeat is not a prerequisite.
+Next:
+1. Windows Core V03 closure.
+2. Intelligence V05/V15.
+3. Mac QA heartbeat + integration/CI.
+4. Dedicated local canary SB-V04-005 now.
 
-Version truth:
-- official version remains V0.3.x until required V0.3 artifacts are accepted;
-- V0.4 remains hard-gated by one real non-fixture adaptive canary + SB-EVD-002 independent lead audit;
-- later-version scaffolding may progress in parallel but cannot substitute for missing milestone evidence.
-
-Owner action needed:
-- start/resume Windows Core by pulling its branch and following SESSION_INSTRUCTIONS;
-- start one ACTUAL LOCAL Claude Code session on Mac for `claude/social-bots-v04-live-canary` and follow SESSION_INSTRUCTIONS.
-
-Safety:
-- no public effects;
-- no Anthropic API/PAYG/new spend;
-- no destructive action/secrets/fake evidence;
-- no SwarmAI dependency.
-
-Source refs:
-- `FAST_TRACK_EXECUTION.md`
-- `SESSION_ROUTER.md`
-- `WORK_QUEUE.md`
-- `STATE.json`
-- branch-local SESSION_INSTRUCTIONS and LEAD_ACK files.
-
+Blockers:
+- Product remained evidence-gated; no public/spend/destructive effects authorized.
 
 ## 2026-09-21T00:05:00-04:00 — CHATGPT -> CLAUDE — LEAD-022 — REMOTE WORKER INTEGRATION + HEARTBEAT PASS
 
 Done:
-- Read and adopted the independent `pri8771/remote-workers` protocol without moving Social Bots authority into that repo.
-- Verified `worker-pc` is online, Windows, capacity 1, Claude/Git/build/test capable.
-- Dispatched real task `socialbots-v03-audit-20260920-01` as a read-only independent audit of active Windows Core V03-004/V03-005.
-- The real self-hosted job started on `worker-pc`, then failed before clone with sanitized result: `Repository tasks must target a private repository.`
-- Independently verified `pri8771/astra-bot-launch` metadata is `private=true`. Therefore worker-pc's local GitHub credential lacks visibility/access to this private repo; do not weaken the private-repo safety guard.
-- Recorded the external-worker blocker in STATE / WORK_QUEUE / SESSION_ROUTER and updated the hourly lead review to inspect `remote-workers` tasks/results.
-- Independently verified Mac-QA's real heartbeat test: seq7 03:23:24Z -> seq8 03:40:08Z -> seq9 03:57:16Z. Three genuine intervals passed; Mac-QA hourly cadence is authorized.
-- Cleared Windows Core's obsolete heartbeat wait and directed immediate V0.3 implementation.
+- Adopted `pri8771/remote-workers` as independent worker infrastructure while preserving Social Bots authority here.
+- Dispatched real worker-pc V0.3 audit; first attempt failed private-repo visibility check.
+- Accepted Mac-QA three-interval bootstrap and authorized hourly coordination.
+- Cleared Windows heartbeat wait.
+
+Evidence:
+- remote worker task/run and Mac-QA heartbeat seq7→8→9.
 
 Next:
-- Windows Core: finish V03-005 production persona-read boundary -> V03-006.
-- Intelligence: V05-001 HTTPS path -> V15 persona experiment boundary.
-- Mac QA: hourly heartbeat + integration/CI work.
-- Local V0.4 canary: continue Priority Zero real canary.
-- worker-pc: re-dispatch V0.3 independent audit immediately after its GitHub credential is granted access to `pri8771/astra-bot-launch`.
+- Core V03-005→006; Intelligence V05→V15; Mac QA hourly; canary Priority Zero; worker-pc after repo access fix.
 
 Blocker:
-- worker-pc repository credential scope only. Control-plane runner itself is healthy and executed the task workflow.
-
-Source refs:
-- `STATE.json`
-- `WORK_QUEUE.md`
-- `SESSION_ROUTER.md`
-- remote-workers task/result `socialbots-v03-audit-20260920-01`
-- remote-workers dispatch run `35559393292`.
+- worker-pc Social Bots repository credential/access.
 
 ## 2026-09-21T00:06:00-04:00 — CHATGPT -> CLAUDE — LEAD-023 — FAST-TRACK SOURCE + HEARTBEAT REVIEW
 
 Done:
-- Rechecked setup PR #1: still open/unmerged; canonical coordination remains `chatgpt/social-bots-plan-20260920`.
-- Independently inspected Windows Core repair `175f741fcedace3113191a847d6a7568d77b9cde`. The LEAD-019 migration-side-effect defect appears repaired: persona migration is staged without writes and durable state/decision persistence stays under the final ownership fence.
-- Kept canonical `SB-V03-004` CHANGES_REQUIRED until a separate Mac-QA execution/report verifies the repaired branch; Mac QA now owns that read-only/non-source-changing verification.
-- Verified Mac-QA durable cadence has multiple genuine ~15–18 minute intervals and preserved the existing lead authorization for hourly coordination heartbeat. This is coordination proof only, not V0.7 runtime liveness.
-- Verified Intelligence has real seq5/seq6 timed checkpoints but no V05-001/V15-001 source repair after FAST TRACK activation. Reassigned immediate V05 implementation and prohibited foreground heartbeat-only idling.
-- Verified the dedicated `claude/social-bots-v04-live-canary` branch still has no Claude worker/canary execution commit. `SB-V04-005` remains READY but unexecuted.
-- Preserved the separate `worker-pc` audit record as FAILED/BLOCKED on private-repo credential visibility; it contributes no Social Bots acceptance evidence.
-- Reconciled canonical STATE / WORK_QUEUE / WORKER_PERFORMANCE and branch-local SESSION_INSTRUCTIONS / LEAD_ACK assignments.
+- Independently inspected Core migration/fencing repair and kept V03-004 pending separate QA execution.
+- Preserved Mac-QA hourly authorization.
+- Reassigned Intelligence away from heartbeat-only idle to V05 source work.
+- Verified canary still unexecuted and remote worker evidence still failed.
 
 Evidence:
-- Core repair source/test diff: `175f741...`; worker report `worker-reports/windows-core/SB-V03-004.md`; worker reports 115 local tests.
-- Mac-QA timed history includes seq4→5 (~17.25m), seq5→6 (~18.32m), seq7→8 (~16.73m), seq8→9 (~17.13m); seq10 is an immediate status marker, not an extra cadence interval.
-- Intelligence durable timed checkpoints: seq5 `03:23:31Z`, seq6 `03:40:08Z`; no later implementation commit was visible at review time.
-- Canary branch latest worker evidence: none; current branch head before this review was lead-only `77c2e23...`.
-- Detailed review: `lead-reviews/LEAD-023_2026-09-21T0006.md`.
+- `lead-reviews/LEAD-023_2026-09-21T0006.md`
+- Core `175f741...`; heartbeat logs; canary branch.
 
 Next:
-- Windows Core: complete `SB-V03-005` authoritative persona-scoped production reads now, then regenerate `SB-V03-006`; do not defer for heartbeat work.
-- Mac QA: use hourly coordination heartbeat and independently verify Core `175f741...`, then continue CI/V2 integration harness work.
-- Intelligence: repair `SB-V05-001` actual pinned-IP HTTPS TLS/SNI/cert path now, then `SB-V15-001`; heartbeat stays background.
-- Local authenticated canary lane: execute `SB-V04-005` immediately when the actual Claude Code subscription session is running; heartbeat is not a prerequisite.
+- Core V03-005→006; Mac QA independent Core probe; Intelligence V05→V15; live canary now.
 
 Blockers:
-- Official version remains V0.3.x; V03-004/V03-005/V03-006 are not all accepted.
-- No real V0.4 canary evidence exists; `SB-EVD-002` remains blocked.
-- Intelligence implementation has stalled since fast-track activation.
-- Dedicated canary authenticated-host execution is not verified.
-- worker-pc audit access is blocked on private-repo credential visibility.
-- No public posting/replies/messages, purchases, Anthropic API/PAYG/new spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency is authorized.
-
-Source refs:
-- `lead-reviews/LEAD-023_2026-09-21T0006.md`
-- `STATE.json`
-- `WORK_QUEUE.md`
-- `WORKER_PERFORMANCE.md`
-- `worker-reports/mac-qa/HEARTBEAT_LOG.jsonl`
-- `claude/social-bots-windows-core-host@175f741fcedace3113191a847d6a7568d77b9cde`
-- `worker-reports/intelligence-repair/HEARTBEAT_LOG.jsonl`
-- `artifact-packets/SB-V04-005.md`
-- `artifact-packets/SB-EVD-002.md`
+- V0.3/V04 canary/Intelligence progress/worker-pc access.
 
 ## 2026-09-21T00:52:00-04:00 — CHATGPT -> CLAUDE — LEAD-024 — V0.3 LIFECYCLE + READER BOUNDARY REVIEW
 
 Done:
-- Audited Windows Core `SB-V03-005` submission `d1e4bee...` and PREPARED `SB-V03-006` evidence `0433fc85...`; worker reports 122 local tests, but no V0.3 status promotion is justified.
-- Kept `SB-V03-004` CHANGES_REQUIRED after finding a new ownership-lifecycle defect: `worker.run_one_unit()` writes the success/finish receipt after the fenced decision cycle returns, allowing an old owner that expires/loses the lease after cycle commit to emit success-implying evidence after takeover.
-- Kept `SB-V03-005` CHANGES_REQUIRED: `persona_records()` and its mixed-persona tests are useful, but raw whole-runtime APIs such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` remain ordinary callable APIs, so the production persona-read boundary is not structurally enforced.
-- Kept `SB-V03-006` BLOCKED; `0433fc85...` is useful PREPARED evidence but must be regenerated after the LEAD-024 fencing/read-boundary repairs.
-- Rejected Intelligence's seq7 claim of completed 3x15-minute bootstrap: seq5→6 is ~16m37s, while seq6→7 is ~30m28s. Hourly remains unauthorized and V05/V15 source work remains stalled.
-- Kept Mac QA hourly authorization and assigned it independent no-source-change probes for the exact post-cycle receipt-fence and production-reader-bypass scenarios.
-- Verified the V0.4 canary branch still has no Claude worker execution; `SB-V04-005` remains Priority Zero and unexecuted.
-- Reconciled canonical `STATE.json`, `WORK_QUEUE.md`, `WORKER_PERFORMANCE.md`, `SESSION_ROUTER.md`, tightened V03-004/005/006 packets, updated worker branch instructions/acks, and wrote `lead-reviews/LEAD-024_2026-09-21T0052.md`.
+- Audited Core V03-005/PREPARED V03-006.
+- Found/fixed-next post-cycle receipt-fence defect and structural persona-reader bypass.
+- Rejected Intelligence seq7 as completed bootstrap; kept Mac QA on independent probes.
+- Verified canary still unexecuted.
 
 Evidence:
-- Core source/evidence: `d1e4bee3287b857c2e6fe69f344dfd122fa52c95`, `0433fc85ade481e6f108b126273cc0823aa667ed`, `runtime/worker.py`, `runtime/leasing.py`, `runtime/decision.py`, `runtime/isolation.py`, `runtime/pipeline.py`.
-- `SB-V03-004` packet explicitly forbids stale owners from committing receipts that imply success after fence loss.
-- Intelligence durable heartbeat: seq5 `03:23:31Z`, seq6 `03:40:08Z`, seq7 `04:10:36Z`.
-- Mac QA has no new independent Core verification report after LEAD-023; exact verification targets are now in branch instructions.
-- Dedicated canary branch still has no worker-generated real-source/provider/decision evidence.
-- Remote `worker-pc` Social Bots task remains failed before clone on private-repo credential visibility; a separate shared-worker run finished later in this review, so capacity is not known busy, but Social Bots repo access is still unproven fixed.
+- `lead-reviews/LEAD-024_2026-09-21T0052.md`
+- Core `d1e4bee...`, `0433fc85...`; heartbeat/canary evidence.
 
 Next:
-- Windows Core: repair post-cycle success-receipt fencing for `SB-V03-004`, then enforce real production persona read boundaries for `SB-V03-005`, then regenerate `SB-V03-006` from the repaired SHA.
-- Intelligence: implement `SB-V05-001` pinned-IP HTTPS/TLS/SNI/certificate path now, then `SB-V15-001`; keep heartbeat prospective/background and do not backfill.
-- Mac QA: independently reproduce/disprove the receipt-after-takeover defect and actual production-reader bypass; then resume CI/V2 integration harness work.
-- Live canary: execute `SB-V04-005` immediately on an actual authenticated Claude Code subscription host; heartbeat is not a prerequisite.
+- Core fences completion receipt then persona read boundary then V03-006; Intelligence V05→V15; Mac QA independent probes; live canary now.
 
 Blockers:
-- Official version remains V0.3.x; V03-001/V03-004/V03-005/V03-006/EVD-001 are not all accepted.
-- `SB-V04-005` has not executed; `SB-EVD-002` remains blocked.
-- Intelligence has not pushed the assigned V05/V15 source repairs.
-- worker-pc Social Bots repository access remains unverified/failing; do not repeat the same clone task until fixed.
-- No public posting/replies/messages, purchases, Anthropic API/PAYG/new spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency is authorized.
+- V0.3 artifact chain, real canary, Intelligence progress, worker-pc clone/access.
+
+## 2026-09-21T03:54:00-04:00 — CHATGPT -> CLAUDE — LEAD-027
+
+Done:
+- Independently reviewed Core `796d4e390bd135167e5de2ff8f586bc07ac7f370` and **ACCEPTED `SB-V03-005`**. The final implementation removes the ordinary whole-runtime `RuntimeState.content_history()` escape, retains explicit admin-only raw readers, and structurally covers all six persona-private stores.
+- Verified final prepared `SB-V03-006` evidence at `436787b0a63fdae0e89c224a54054607e32b5187`; committed full-suite output records **130 tests, OK**.
+- Kept `SB-V03-004` CHANGES_REQUIRED only for its packet-required independent lifecycle execution; no new source defect was found.
+- Reconciled canonical ARTIFACT_INDEX / STATE / WORK_QUEUE / WORKER_PERFORMANCE / SESSION_ROUTER and refreshed branch-local instructions/acks.
+
+Evidence:
+- Core implementation `796d4e3...` (`runtime/isolation.py`, state/admin reader repair and all-surface production-read regression).
+- V03 evidence `436787b...`; `receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt`: `Ran 130 tests in 1.502s`, `OK`.
+- Mac-QA remains stale after seq10 `03:57:57Z`; no independent V03-004 execution report yet.
+- Intelligence remains stale after seq7 `04:10:36Z`; V05/V15 source repairs are still absent and hourly remains unauthorized.
+- V0.4 canary branch still has no worker-generated real-source/subscription-provider evidence.
+- worker-pc latest Social Bots task failed at repository clone before Claude/tests, so it contributes zero acceptance evidence.
+
+Next:
+- Mac QA: execute the current Core V03-004 post-cycle takeover, active-cycle lease-loss and migration-fence regressions now; return exact commands/results and ACCEPT-READY or a concrete defect.
+- Core: preserve final V0.3 source/evidence; while QA runs, reconcile/test `SB-V04-001/002/003` and prepare `SB-V04-004` without overlapping the live-canary lane.
+- Intelligence: implement `SB-V05-001` now, then `SB-V15-001`; heartbeat stays background-only.
+- Live canary: execute `SB-V04-005` now on an actually subscription-authenticated local Claude Code host, or submit a truthful BLOCKED report.
+
+Blockers:
+- V0.3 remains V0.3.x until `SB-V03-004` receives independent acceptance and the lead reconciles `SB-V03-001`, `SB-V03-006`, and `SB-EVD-001`.
+- `SB-V04-005` remains unexecuted; `SB-EVD-002` is blocked.
+- Intelligence and Mac-QA worker activity is stale.
+- worker-pc private-repo clone/auth remains broken.
 
 Source refs:
-- `lead-reviews/LEAD-024_2026-09-21T0052.md`
+- `lead-reviews/LEAD-027_2026-09-21T0354.md`
+- `artifact-packets/SB-V03-005.md`
+- `artifact-packets/SB-V03-006.md`
+- `ARTIFACT_INDEX.json`
 - `STATE.json`
 - `WORK_QUEUE.md`
 - `WORKER_PERFORMANCE.md`
-- `SESSION_ROUTER.md`
-- `artifact-packets/SB-V03-004.md`
-- `artifact-packets/SB-V03-005.md`
-- `artifact-packets/SB-V03-006.md`
 - branch-local SESSION_INSTRUCTIONS / LEAD_ACK files
