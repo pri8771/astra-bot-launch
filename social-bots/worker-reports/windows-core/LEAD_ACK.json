@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 6,
-  "reviewed_at": "2026-09-21T06:52:00Z",
-  "lead_review": "LEAD-026",
+  "reviewed_at": "2026-09-21T07:54:00Z",
+  "lead_review": "LEAD-027",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "Preserve V03-004. Finish SB-V03-005 by making RuntimeState.content_history() structurally admin/internal (or removing it in favor of the explicit admin boundary), audit all six persona-private raw-reader surfaces, and expand the bypass regression beyond queue/analytics. Then regenerate SB-V03-006 from the final SHA with exact full-suite evidence.",
+  "next_assignment": "SB-V03-005 is ACCEPTED. Preserve V03-004/V03-005/final 130-test V03-006 evidence. While Mac QA independently executes V03-004, reconcile and test SB-V04-001/002/003 and prepare SB-V04-004 without touching the dedicated SB-V04-005 live-canary lane.",
   "notification_delivered": true,
-  "notes": "f73c337 correctly repaired publish_queue/events_for and 65c720b committed exact 129-test output. LEAD-026 found RuntimeState.content_history() remains an ordinary whole-runtime callable, so the worker's all-raw-readers-closed claim is not yet accepted. V03-004 still waits on independent execution."
+  "notes": "Lead independently inspected 796d4e3 structural admin/persona boundary and final 436787b evidence. V03-004 remains the V0.3 technical acceptance gate solely pending independent lifecycle execution; do not churn V0.3 source absent a concrete QA finding."
 }
