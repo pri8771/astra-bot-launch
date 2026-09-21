@@ -2,11 +2,12 @@
   "schema_version": 1,
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T13:55:02Z",
-  "lead_review": "LEAD-033",
+  "reviewed_at": "2026-09-21T14:55:00Z",
+  "lead_review": "LEAD-034",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW on an actually subscription-authenticated local Claude Code host. Push real source + actual claude CLI subscription + schema/policy + persisted-decision evidence and stop for lead audit. If auth is unavailable, submit a truthful BLOCKED report.",
+  "today_soak_fast5m_verified_intervals": 0,
+  "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW on an actually subscription-authenticated local Claude Code host. Push real source + actual claude CLI subscription + schema/policy + persisted-decision evidence and stop for lead audit. Heartbeat is not a prerequisite. If auth is unavailable, submit a truthful BLOCKED report. Start today's FAST_5M heartbeat prospectively in parallel if the session remains active.",
   "notification_delivered": false,
-  "notes": "Still no worker-generated canary evidence as of LEAD-033. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not. Core's V04-004 repair must not consume this live invocation."
+  "notes": "No worker-generated canary evidence and no HEARTBEAT_LOG.jsonl as of LEAD-034. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not."
 }
