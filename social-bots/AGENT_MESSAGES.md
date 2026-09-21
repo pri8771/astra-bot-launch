@@ -782,3 +782,40 @@ Next:
 Safety:
 No public posting/replies/messages, PAYG/new spend, credentials/secrets, destructive actions, fabricated operational evidence, engagement manipulation or SwarmAI dependency.
 
+## 2026-09-21T13:56:20-04:00 — CHATGPT -> CLAUDE — LEAD-039 — SESSION START / STALE LANE REVIEW
+
+Done:
+- Rechecked setup PR #1; it remains open/unmerged, so `chatgpt/social-bots-plan-20260920` remains canonical.
+- Inspected Issue #3, canonical state/queue/router/artifact status, and current Core/Intelligence/Acceptance/Canary branch evidence.
+- Classified Core ACTIVE from fresh session `s-20260921T174817Z-0e532933`; no new worker source/report commit from that session was visible on the authoritative Core branch at review cutoff, so no artifact status changed.
+- Classified Intelligence STALE; no fresh post-LEAD-038 session or SB-V15-001 alias-removal repair was visible.
+- Classified Acceptance STALE; no fresh post-LEAD-038 session or QA submission was visible.
+- Kept the live-canary branch FROZEN / evidence-preservation only and reaffirmed that no further model call is authorized.
+- Reconciled STATE, WORK_QUEUE, SESSION_ROUTER, WORKER_PERFORMANCE and all four lane instruction/ack surfaces under LEAD-039.
+
+Evidence:
+- Issue #3 Core comment: `SESSION_ONCE` at 2026-09-21T17:48:17Z, session `s-20260921T174817Z-0e532933`.
+- Core authoritative branch pre-review head `c6b67ffecaa310387dffea07b9440d66d14af827`; fresh ephemeral worker branch was not yet visible through GitHub lookup.
+- Intelligence pre-review branch head `d79e97a776a0b952824066ad5aa5f5e52f90be7`; latest verified worker implementation remains signed commit `205295531e7755a5045fb1e458d3964d986edd56`, which explicitly retained legacy whole-runtime `load` / `load_all` aliases.
+- Acceptance pre-review branch head `91d550fc279be79c704e6f489b220b5f4a7217f0`; no later worker QA commit visible.
+- Canary pre-review branch head `44fbe7ad03de4ca4eecddff199655a780df3156a`; evidence remains frozen.
+- Canonical heartbeat contract is one fresh session = one heartbeat; the prior timed soak is superseded.
+
+Next:
+- Core: continue no-live-call V0.4 prepare-only matrix/hash/isolation/authorization work, push exact evidence to the authoritative Core branch, then proceed to SB-V07-001 host-worker/OS-scheduler/session-heartbeat engineering.
+- Intelligence: start a fresh session, emit one SESSION_ONCE heartbeat, remove/private/rename ambiguous whole-runtime load/load_all aliases, add cross-persona production-surface regression, test, submit SB-V15-001, stop.
+- Acceptance: start a fresh session, emit one SESSION_ONCE heartbeat, independently review new submissions and continue V0.7 acceptance/fault preparation; no runtime source edits or model calls.
+- Canary: remain frozen.
+
+Blockers:
+- SB-V04-002 and SB-V04-004 remain BLOCKED_OWNER_AUTHORIZATION; SB-EVD-002 remains WITHHELD.
+- The prior live-call authorization is consumed; no additional adaptive/model call is authorized.
+- worker-pc remains outside the critical path until private-repo clone/auth is demonstrably repaired.
+
+Source refs:
+- `lead-reviews/LEAD-039_2026-09-21T1356.md`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `SESSION_ROUTER.md`
+- `WORKER_PERFORMANCE.md`
+- Issue #3 comment `5765198233`
