@@ -1,7 +1,7 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-024_2026-09-21T0052.md`.
+Current lead review: `lead-reviews/LEAD-025_2026-09-21T0158.md`.
 
 ## Priority Zero — real V0.4 canary
 
@@ -27,28 +27,28 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / REPAIR REQUIRED.
+Status: ACTIVE / NARROW REPAIR REQUIRED.
 
-Worker progress since LEAD-023:
-- `d1e4bee...` submitted `SB-V03-005` read-boundary work;
-- `0433fc85...` prepared a fresh `SB-V03-006` evidence bundle;
-- worker reports 122 passing local tests.
+New worker progress:
+- `7e4345b...` repaired post-cycle finish-receipt fencing and added production-path isolation tests; signed Claude commit.
+- `b2083b8...` regenerated `SB-V03-006` from `7e4345b...`; worker reports 127 passing tests.
 
-Independent LEAD-024 findings keep V0.3 open:
+LEAD-025 disposition:
 
-1. **SB-V03-004 — CHANGES_REQUIRED:** migration staging is repaired, but `worker.run_one_unit()` writes its success/finish receipt after `decision.run_cycle()` returns and outside the fence. A worker can stall after cycle commit, expire, lose ownership to a new generation, then resume and emit success-implying finish evidence. Repair and add a forced post-cycle takeover regression.
-2. **SB-V03-005 — CHANGES_REQUIRED:** `persona_records()` and generic no-bleed tests are useful, but raw whole-runtime APIs such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` remain publicly callable. Enforce the persona boundary in actual production read/list paths or make raw access structurally admin/internal; test real production paths.
-3. **SB-V03-006 — BLOCKED / PREPARED:** `0433fc85...` is useful current evidence but predates the required LEAD-024 repairs. Regenerate after V03-004/V03-005 are fixed.
+1. **SB-V03-004 — CHANGES_REQUIRED / source repair verified:** the finish/success receipt is now written through `fence.fenced_commit`, and the committed adversarial regression forces takeover before that write and proves no finish receipt is emitted. Do not churn this repair. Independent execution from Mac QA/worker-pc has not succeeded yet, so final acceptance is held.
+2. **SB-V03-005 — CHANGES_REQUIRED:** scoped dedup/analytics/facade behavior is improved, and `_reconcile` uses the explicit admin boundary. But ordinary whole-runtime APIs such as `pipeline.publish_queue(bot)`, `analytics.events_for(bot)` and `RuntimeState.content_history()` remain callable as normal functions. Documentation alone does not satisfy the packet's requirement that raw enumeration be structurally admin/internal. Narrowly repair this API boundary and add a regression against accidental persona-facing raw enumeration.
+3. **SB-V03-006 — BLOCKED / PREPARED:** regenerated evidence is useful and bound to `7e4345b...`, but predecessors are not all accepted. The committed evidence records `full: OK` without a separate exact full-suite output/count artifact; final regeneration should include exact full-suite evidence.
 
-Do not defer implementation for heartbeat work.
+Then reconcile V04 dependencies. Do not defer implementation for heartbeat work.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
-Status: ACTIVE but implementation progress remains stalled.
+Status: ACTIVE ASSIGNMENT / WORKER STALLED.
 
-Heartbeat truth:
+No worker source or heartbeat commit has appeared after seq7 at `04:10:36Z`.
+Heartbeat truth remains:
 - seq5 `03:23:31Z` -> seq6 `03:40:08Z` is a valid ~16m37s interval;
-- seq6 -> seq7 `04:10:36Z` is ~30m28s, so seq7 does **not** complete the required approximately-15-minute bootstrap;
+- seq6 -> seq7 `04:10:36Z` is ~30m28s and does not complete bootstrap;
 - hourly remains unauthorized.
 
 Next:
@@ -56,27 +56,28 @@ Next:
 2. **SB-V15-001 next** — authoritative bot+persona experiment save/load/list/read boundary and mixed-persona regressions.
 3. Preserve V16/V17/V20-002 for fresh lead audit after those repairs.
 
-Heartbeat remains background-only. Do not spend the session waiting for cadence proof.
+Heartbeat is background-only. Do not wait for cadence proof.
 
 ## Lane C — Mac QA / Integration
 Branch: `claude/social-bots-mac-qa-control`
-Status: ACTIVE; hourly coordination heartbeat remains authorized.
+Status: HOURLY AUTHORIZED / WORKER STALE.
 
-No independent Core verification report has landed since LEAD-023.
+The last durable worker heartbeat is seq10 at `03:57:57Z`; no independent Core QA report has landed since. Lead-only branch commits do not count as worker liveness.
 
 Immediate QA assignment:
-1. independently reproduce/disprove the `SB-V03-004` post-cycle success-receipt-after-takeover defect without editing Core source;
-2. independently probe the `SB-V03-005` real production reader bypass risk (`publish_queue`, analytics/history, experiment/read paths, etc.) rather than only the isolation facade;
-3. report exact commands/results/files/symbols;
-4. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
+1. resume the authorized hourly coordination heartbeat;
+2. independently execute/probe Core implementation `7e4345b...`, specifically the post-cycle success-receipt takeover regression;
+3. independently verify the remaining `SB-V03-005` structural raw-reader bypass risk in real persona-facing paths;
+4. report exact commands/results/files/symbols;
+5. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
 
-Heartbeat is coordination observability only, not V0.7 runtime-liveness proof.
+No Core runtime source edits.
 
 ## Lane D — local authenticated V0.4 canary
 Branch: `claude/social-bots-v04-live-canary`
 Status: READY / NOT STARTED in repository evidence.
 
-The branch still has no worker-generated canary evidence. Start/resume the actual local Claude Code subscription session and execute `SB-V04-005`.
+No worker-generated canary evidence exists. Execute `SB-V04-005` on an actual authenticated local Claude Code subscription host now, or submit a truthful authentication/host blocker. Heartbeat is not a prerequisite.
 
 ## Additional remote-worker capacity
 
@@ -84,21 +85,14 @@ Control plane: `pri8771/remote-workers`
 Worker: `worker-pc`
 Capacity: 1.
 
-Social Bots task `socialbots-v03-audit-20260920-01` remains **FAILED before repository clone** because the worker-local GitHub credential could not establish visibility/access to the private `pri8771/astra-bot-launch` repository. The failed task contributes no acceptance evidence.
+Second Social Bots task `socialbots-v03-repair-audit-20260921-01` reached `worker-pc` but **FAILED before audit** with `Repository clone failed`. No tests ran and it contributes no artifact evidence.
 
-A separate shared-worker run that occupied the slot earlier in this review completed with failure at `04:55:35Z`, so the worker is no longer known to be executing that task. Do **not** re-dispatch Social Bots yet: the Social Bots repository credential/visibility blocker has not been proven fixed, and repeating the same known-failing clone is not useful work.
-
-Required before reuse:
-- grant/refresh worker-pc GitHub credential access to `pri8771/astra-bot-launch` without weakening the private-repository guard;
-- confirm the protocol slot is idle at dispatch time;
-- then assign useful non-overlapping verification/implementation work.
-
-Do not move Social Bots governance into `remote-workers`.
+This progressed farther than the prior task's private-repository precheck failure, but clone/auth access to `pri8771/astra-bot-launch` is still not functional. Do not re-dispatch another Social Bots task until that exact access issue is repaired. Do not weaken private-repository controls and do not move project governance into `remote-workers`.
 
 ## Heartbeat truth
 
-- Mac QA: real durable cadence accepted; hourly coordination cadence authorized.
-- Intelligence: bootstrap claim rejected at seq7 due the ~30.5-minute interval; remain bootstrap.
+- Mac QA: real bootstrap cadence accepted; hourly coordination cadence authorized, but current worker is stale.
+- Intelligence: bootstrap remains incomplete; hourly unauthorized and current worker is stale.
 - Heartbeat never blocks source work or the live canary.
 - Worker heartbeat proves GitHub coordination only, not Social Bots recurring runtime liveness.
 
