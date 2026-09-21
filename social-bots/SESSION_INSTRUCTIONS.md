@@ -1,42 +1,56 @@
-# SESSION_INSTRUCTIONS — Windows Core / V0.4 acceptance repair
+# SESSION_INSTRUCTIONS — Lane 1 / Windows Core Builder
 
-Mode: ACTIVE — FAST TRACK
+Mode: FRESH SESSION RESET
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-034
 
-Heartbeat is observability only and MUST NOT block source work.
+Read canonical:
+- `social-bots/RESET_EXECUTION_20260921.md`
+- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
+- `social-bots/SESSION_ROUTER.md`
+- `social-bots/artifact-packets/SB-V04-004.md`
 
-## Today's heartbeat soak — not started yet in durable evidence
+## Start
 
-Start prospectively now if this session is active:
-- `FAST_5M`: T0, +~5m, +~10m, +~15m;
-- then immediately `SOAK_15M_24H`: every 15 minutes for 24 hours;
-- append every timed record to `worker-reports/windows-core/HEARTBEAT_LOG.jsonl` and push;
-- no synthetic/backfilled timestamps;
-- stage heartbeat files only for heartbeat commits where practical;
-- keep engineering work running in parallel.
+1. Pull this branch.
+2. Set `social-bots/worker-reports/windows-core/CURRENT_PROGRESS.md` to a concise current status.
+3. Verify `gh auth status` can access `pri8771/astra-bot-launch`.
+4. Launch the heartbeat reporter in a separate background process:
 
-LEAD-034 verified the durable Core log still ends at seq14 `2026-09-21T08:37:18Z` in the old `BOOTSTRAP_15M` mode. No `FAST_5M` T0 exists yet.
+PowerShell example:
 
-## Preserve V0.3
+```powershell
+Start-Process -FilePath python -ArgumentList @(
+  "social-bots/bin/heartbeat_reporter.py",
+  "--lane","CORE",
+  "--progress-file","social-bots/worker-reports/windows-core/CURRENT_PROGRESS.md"
+) -WindowStyle Hidden
+```
 
-- Final V03 implementation: `796d4e390bd135167e5de2ff8f586bc07ac7f370`.
-- Final V03 evidence: `436787b0a63fdae0e89c224a54054607e32b5187`, exact 130 tests OK.
-- `SB-V03-005` remains ACCEPTED.
-- `SB-V03-004` awaits independent lifecycle execution; do not churn V03 absent a concrete QA defect.
+The reporter handles:
+- T0/+5/+10/+15m;
+- then every 15m for 24h;
+- one human-readable Issue #3 comment per heartbeat.
 
-## Current assignment — SB-V04-004 repair only
+Do not launch a second reporter for the same fresh session.
 
-Read canonical `artifact-packets/SB-V04-004.md` and implement the bounded repair:
-1. Persona-only comparison: hold evidence/objective/runtime/history/dedup/policy constant; vary only persona/workspace.
-2. Evidence-only comparison: hold bot/runtime/persona/workspace/objective/history/dedup/policy constant; vary only evidence.
-3. Keep at least three persona/workspace comparisons including a cultural/Primandir workspace.
-4. Keep deterministic contextual tests only as diagnostics; `contextual-deterministic-v1` is `adaptive=false` and cannot prove V0.4.
-5. Add a clean acceptance seam that can consume sanitized real adaptive proposal/provider evidence from `SB-V04-005` without fabricating it.
-6. Do NOT invoke another live model/provider call from Core. The authorized live subscription call belongs to the dedicated canary lane.
-7. Preserve deterministic policy/authority/no-public-effect invariants.
-8. Commit/push source/tests/report and distinguish diagnostic evidence from acceptance evidence.
+Update CURRENT_PROGRESS.md whenever task/subtask/test/blocker changes.
 
-## Safety
+## Mission
 
-No public effects, Anthropic API/PAYG/new spend, destructive actions, secrets, fake evidence, or SwarmAI dependency.
+Preserve final V03 implementation/evidence unless independent QA finds a concrete defect.
+
+Repair only SB-V04-004:
+1. persona-only divergence test: hold all non-persona variables constant;
+2. evidence-only divergence test: hold all non-evidence variables constant;
+3. include >=3 persona/workspace comparisons including cultural/Primandir;
+4. deterministic contextual provider tests remain diagnostic only;
+5. add a clean seam that consumes sanitized real SB-V04-005 adaptive receipt;
+6. do not make another live model call from Core;
+7. preserve adaptive-required production default and deterministic authority wall;
+8. run relevant tests/full suite;
+9. commit/push report and changes;
+10. pull canonical instructions again and continue dependency-safe Core work only if explicitly available.
+
+At every meaningful change, update CURRENT_PROGRESS.md. Even with no code commit, Issue #3 must show a truthful heartbeat such as "still fixing evidence-only isolation; tests not run yet".
+
+No public effects, PAYG/new spend, secrets, fake evidence, destructive actions or SwarmAI dependency.
