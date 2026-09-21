@@ -27,6 +27,9 @@ Artifact submissions and blockers still push immediately; do not wait for the ne
 Worker heartbeat:
 `social-bots/worker-reports/<lane>/HEARTBEAT.json`
 
+Heartbeat history:
+`social-bots/worker-reports/<lane>/HEARTBEAT_LOG.jsonl`
+
 Lead acknowledgement:
 `social-bots/worker-reports/<lane>/LEAD_ACK.json`
 
@@ -69,6 +72,8 @@ Lead-owned assignment:
 - notes
 
 ## Worker update triggers
+
+Every heartbeat update also appends the full heartbeat record to `HEARTBEAT_LOG.jsonl`, so cadence can be verified without relying on the current snapshot alone.
 
 Push heartbeat immediately:
 - on session start/resume;
