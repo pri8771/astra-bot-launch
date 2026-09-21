@@ -1,0 +1,722 @@
+{
+  "error_count": 0,
+  "errors": [],
+  "ok": true,
+  "readiness": {
+    "V0.1": {
+      "engineering_blockers": [],
+      "engineering_ready": true,
+      "engineering_required": [
+        "SB-CTL-001",
+        "SB-CTL-002",
+        "SB-CTL-003",
+        "SB-CTL-004"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "control foundation",
+      "unmet_prereq_versions": []
+    },
+    "V0.2": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V03-001",
+          "status": "CHANGES_REQUIRED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-PER-001",
+        "SB-PER-002",
+        "SB-V03-001"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "runtime/persona architecture",
+      "unmet_prereq_versions": []
+    },
+    "V0.3": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V03-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V03-005",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V03-006",
+          "status": "BLOCKED"
+        },
+        {
+          "id": "SB-EVD-001",
+          "status": "CHANGES_REQUIRED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V03-001",
+        "SB-V03-002",
+        "SB-V03-003",
+        "SB-V03-004",
+        "SB-V03-005",
+        "SB-V03-006",
+        "SB-EVD-001"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "durable runtime foundation / correctness",
+      "unmet_prereq_versions": []
+    },
+    "V0.4": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V04-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V04-002",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V04-003",
+          "status": "BLOCKED"
+        },
+        {
+          "id": "SB-V04-004",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V04-005",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-EVD-002",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V04-001",
+        "SB-V04-002",
+        "SB-V04-003",
+        "SB-V04-004",
+        "SB-V04-005",
+        "SB-EVD-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "real adaptive autonomous thinking",
+      "unmet_prereq_versions": []
+    },
+    "V0.5": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V05-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V05-002",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V05-003",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V05-004",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V05-005",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V05-001",
+        "SB-V05-002",
+        "SB-V05-003",
+        "SB-V05-004",
+        "SB-V05-005"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "real research / factual review",
+      "unmet_prereq_versions": []
+    },
+    "V0.6": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V06-001",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V06-002",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V06-003",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V06-004",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V06-005",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V06-001",
+        "SB-V06-002",
+        "SB-V06-003",
+        "SB-V06-004",
+        "SB-V06-005"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "honest end-to-end dry runs",
+      "unmet_prereq_versions": []
+    },
+    "V0.7": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V07-001",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V07-002",
+          "status": "BLOCKED"
+        },
+        {
+          "id": "SB-V07-003",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V07-004",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V07-005",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V07-001",
+        "SB-V07-002",
+        "SB-V07-003",
+        "SB-V07-004",
+        "SB-V07-005"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "always-on lead/worker loop",
+      "unmet_prereq_versions": []
+    },
+    "V0.8": {
+      "engineering_blockers": [
+        {
+          "id": "SB-ACC-001",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-002",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-003",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-004",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-005",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-006",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-ACC-007",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-ACC-001",
+        "SB-ACC-002",
+        "SB-ACC-003",
+        "SB-ACC-004",
+        "SB-ACC-005",
+        "SB-ACC-006",
+        "SB-ACC-007"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "real account connectivity",
+      "unmet_prereq_versions": []
+    },
+    "V0.9": {
+      "engineering_blockers": [
+        {
+          "id": "SB-EVD-010",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-EVD-011",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-EVD-012",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-EVD-013",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-EVD-010",
+        "SB-EVD-011",
+        "SB-EVD-012",
+        "SB-EVD-013"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "controlled live canaries",
+      "unmet_prereq_versions": []
+    },
+    "V1.0": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V10-001",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V10-002",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V10-003",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V10-004",
+          "status": "MISSING"
+        },
+        {
+          "id": "SB-V10-005",
+          "status": "MISSING"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V10-001",
+        "SB-V10-002",
+        "SB-V10-003",
+        "SB-V10-004",
+        "SB-V10-005"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [
+        "V0.9"
+      ],
+      "title": "autonomous social bots",
+      "unmet_prereq_versions": [
+        "V0.9"
+      ]
+    },
+    "V1.1": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V11-001",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V11-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V11-001",
+        "SB-V11-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "reliability hardening",
+      "unmet_prereq_versions": []
+    },
+    "V1.2": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V12-001",
+          "status": "BLOCKED"
+        },
+        {
+          "id": "SB-V12-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V12-001",
+        "SB-V12-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "multi-platform intelligence",
+      "unmet_prereq_versions": []
+    },
+    "V1.3": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V13-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V13-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V13-001",
+        "SB-V13-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "analytics brain",
+      "unmet_prereq_versions": []
+    },
+    "V1.4": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V14-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V14-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V14-001",
+        "SB-V14-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "audience memory",
+      "unmet_prereq_versions": []
+    },
+    "V1.5": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V15-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V15-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V15-001",
+        "SB-V15-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "autonomous experiment engine",
+      "unmet_prereq_versions": []
+    },
+    "V1.6": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V16-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V16-002",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V16-001",
+        "SB-V16-002"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "content intelligence",
+      "unmet_prereq_versions": []
+    },
+    "V1.7": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V17-001",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V17-002",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V17-003",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V17-001",
+        "SB-V17-002",
+        "SB-V17-003"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [
+        "V1.1",
+        "V1.6"
+      ],
+      "title": "strategic checkpoint: community operation",
+      "unmet_prereq_versions": [
+        "V1.1",
+        "V1.6"
+      ]
+    },
+    "V2.0": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V20-099",
+          "status": "BLOCKED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V20-099"
+      ],
+      "operational_blockers": [
+        {
+          "id": "SB-V20-001",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V20-002",
+          "status": "CHANGES_REQUIRED"
+        },
+        {
+          "id": "SB-V20-003",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V20-004",
+          "status": "BLOCKED"
+        }
+      ],
+      "operational_ready": false,
+      "operational_required": [
+        "SB-V20-001",
+        "SB-V20-002",
+        "SB-V20-003",
+        "SB-V20-004"
+      ],
+      "prereq_versions": [
+        "V1.7"
+      ],
+      "title": "autonomous growth engine",
+      "unmet_prereq_versions": [
+        "V1.7"
+      ]
+    },
+    "V2.1": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V21-001",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V21-001"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "persistent dynamic strategy",
+      "unmet_prereq_versions": []
+    },
+    "V2.2": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V22-001",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V22-001"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [],
+      "title": "autonomous goal decomposition",
+      "unmet_prereq_versions": []
+    },
+    "V2.3": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V23-001",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V23-002",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V23-003",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V23-001",
+        "SB-V23-002",
+        "SB-V23-003"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [
+        "V2.0",
+        "V2.2"
+      ],
+      "title": "strategic checkpoint: temporary specialist workers",
+      "unmet_prereq_versions": [
+        "V2.0",
+        "V2.2"
+      ]
+    },
+    "V3.0": {
+      "engineering_blockers": [
+        {
+          "id": "SB-V30-001",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V30-002",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V30-003",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V30-004",
+          "status": "PLANNED"
+        },
+        {
+          "id": "SB-V30-005",
+          "status": "PLANNED"
+        }
+      ],
+      "engineering_ready": false,
+      "engineering_required": [
+        "SB-V30-001",
+        "SB-V30-002",
+        "SB-V30-003",
+        "SB-V30-004",
+        "SB-V30-005"
+      ],
+      "operational_blockers": [],
+      "operational_ready": false,
+      "operational_required": [],
+      "prereq_versions": [
+        "V2.3"
+      ],
+      "title": "autonomous multi-brand media organization",
+      "unmet_prereq_versions": [
+        "V2.3"
+      ]
+    }
+  },
+  "warning_count": 32,
+  "warnings": [
+    "[MISSING_CANONICAL_REF] SB-V03-001: canonical_ref 'social-bots/runtime/' does not exist",
+    "[CONTRADICTORY_STATE] SB-V03-002: status ACCEPTED but dependency SB-V03-001 is 'CHANGES_REQUIRED' (not ACCEPTED)",
+    "[CONTRADICTORY_STATE] SB-V03-003: status ACCEPTED but dependency SB-V03-001 is 'CHANGES_REQUIRED' (not ACCEPTED)",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V04-005' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-EVD-002' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V05-003' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V05-004' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V05-005' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V06-001' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V06-002' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V06-003' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V06-004' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V06-005' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V07-003' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V07-004' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V07-005' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-001' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-002' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-003' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-004' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-005' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-006' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-ACC-007' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-EVD-010' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-EVD-011' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-EVD-012' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-EVD-013' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V10-001' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V10-002' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V10-003' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V10-004' which is not in ARTIFACT_INDEX.json",
+    "[MANIFEST_UNKNOWN_ARTIFACT] MILESTONE_MANIFEST references 'SB-V10-005' which is not in ARTIFACT_INDEX.json"
+  ]
+}
