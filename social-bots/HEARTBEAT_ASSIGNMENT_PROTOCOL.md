@@ -120,3 +120,19 @@ At lead review:
 ## Platform limitation
 
 ChatGPT scheduled automations support hourly cadence at fastest. Workers may heartbeat faster because their own local process/scheduler supplies the clock.
+
+
+## Human-readable live progress feed
+
+Private GitHub Issue #3 (`Social Bots — Live Progress & Heartbeats`) is the human-readable heartbeat dashboard for the current reset.
+
+Each active fresh session must:
+- maintain a local/branch `CURRENT_PROGRESS.md` under its worker-report directory;
+- update that file whenever the active task, subtask, test phase, or blocker materially changes;
+- launch `social-bots/bin/heartbeat_reporter.py` at session start;
+- let the reporter post one concise Issue #3 comment at every timed heartbeat;
+- do not put secrets, credentials, hidden chain-of-thought, or raw sensitive logs in progress text.
+
+Issue comments are the primary live visibility feed because they are append-only and avoid branch conflicts. Branch HEARTBEAT files/logs remain audit evidence and should be synchronized at safe checkpoints.
+
+If `gh` is unavailable or unauthenticated, this is a visibility blocker only: report it immediately in the lane progress file / branch heartbeat and continue useful project work. Do not fabricate Issue comments.
