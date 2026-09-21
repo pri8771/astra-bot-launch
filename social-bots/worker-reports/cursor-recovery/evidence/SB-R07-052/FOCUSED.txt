@@ -1,0 +1,21 @@
+test_duplicate_and_near_duplicate_detection (tests.test_content_intelligence.ContentIntelligenceTest.test_duplicate_and_near_duplicate_detection) ... ok
+test_fact_from_support_binds_only_acceptable (tests.test_content_intelligence.ContentIntelligenceTest.test_fact_from_support_binds_only_acceptable) ... ok
+test_fact_meaning_not_silently_changed (tests.test_content_intelligence.ContentIntelligenceTest.test_fact_meaning_not_silently_changed) ... ok
+test_fact_segment_requires_acceptable_support (tests.test_content_intelligence.ContentIntelligenceTest.test_fact_segment_requires_acceptable_support) ... ok
+test_fact_segment_requires_binding (tests.test_content_intelligence.ContentIntelligenceTest.test_fact_segment_requires_binding) ... ok
+test_facts_alone_over_limit_withheld_not_truncated (tests.test_content_intelligence.ContentIntelligenceTest.test_facts_alone_over_limit_withheld_not_truncated) ... ok
+test_novel_content_flagged_novel (tests.test_content_intelligence.ContentIntelligenceTest.test_novel_content_flagged_novel) ... ok
+test_over_limit_repaired_by_dropping_framing_not_facts (tests.test_content_intelligence.ContentIntelligenceTest.test_over_limit_repaired_by_dropping_framing_not_facts) ... ok
+test_persona_scoped_novelty_no_cross_persona_contamination (tests.test_content_intelligence.ContentIntelligenceTest.test_persona_scoped_novelty_no_cross_persona_contamination) ... ok
+test_same_concept_distinct_platform_variants (tests.test_content_intelligence.ContentIntelligenceTest.test_same_concept_distinct_platform_variants) ... ok
+test_series_and_repurpose_lineage (tests.test_content_intelligence.ContentIntelligenceTest.test_series_and_repurpose_lineage) ... ok
+test_shared_brand_layer_is_opt_in (tests.test_content_intelligence.ContentIntelligenceTest.test_shared_brand_layer_is_opt_in) ... ok
+test_within_limit_ready_and_facts_preserved (tests.test_content_intelligence.ContentIntelligenceTest.test_within_limit_ready_and_facts_preserved) ... ok
+test_over_platform_limit_candidate_is_withheld (tests.test_review_gate.ReviewGateTest.test_over_platform_limit_candidate_is_withheld) ... ok
+test_silent_truncation_never_emitted_for_overlong_facts (tests.test_review_gate.ReviewGateTest.test_silent_truncation_never_emitted_for_overlong_facts) ... ok
+test_platform_formatting_respects_limit (tests.test_pipeline.PipelineTest.test_platform_formatting_respects_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.012s
+
+OK

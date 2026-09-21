@@ -12,7 +12,7 @@ import hashlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import paths, factcheck
+from . import paths, factcheck, content_intelligence as ci
 from .jsonstore import read_json, write_json, append_jsonl, read_jsonl, now_iso
 
 
@@ -155,21 +155,63 @@ def review(persona: dict, candidate: dict) -> dict:
 
 
 # --------------------------------------------------------------------------- #
-# Platform formatting
+# Platform formatting — hard gate via content_intelligence (SB-R07-052)
 # --------------------------------------------------------------------------- #
-_LIMITS = {"x": 280, "reddit": 40000, "instagram": 2200, "tiktok": 2200, "facebook": 63000}
+_LIMITS = {p: c["char_limit"] for p, c in ci.PLATFORM_CONSTRAINTS.items()}
+
+
+def _concept_from_candidate(candidate: dict):
+    """Build a ContentConcept for platform formatting.
+
+    Prefer an explicit concept/segments on the candidate. Legacy hook/body
+    candidates are modeled as framing segments (repairable). Fact segments must
+    carry acceptable SB-V05-002 bindings and are never silently truncated.
+    """
+    if candidate.get("content_concept") is not None:
+        return candidate["content_concept"]
+    if candidate.get("segments"):
+        return ci.new_concept(candidate["persona"], list(candidate["segments"]),
+                              series_id=candidate.get("series_id"))
+    segs: list = []
+    for fs in candidate.get("fact_segments") or []:
+        segs.append(ci.Segment.fact(fs["text"], fs["binding_ref"]))
+    if candidate.get("hook"):
+        segs.append(ci.Segment.framing(candidate["hook"]))
+    if candidate.get("body"):
+        segs.append(ci.Segment.framing(candidate["body"]))
+    if not segs:
+        segs.append(ci.Segment.framing(""))
+    return ci.new_concept(candidate["persona"], segs,
+                          series_id=candidate.get("series_id"))
 
 
 def format_for_platform(candidate: dict, platform: str) -> dict:
-    limit = _LIMITS.get(platform, 2200)
-    text = f"{candidate['hook']}\n\n{candidate['body']}"
-    truncated = text if len(text) <= limit else text[: limit - 1] + "…"
+    """Platform-native formatting gate (SB-R07-052 / SB-V05-003).
+
+    Uses :mod:`runtime.content_intelligence` exclusively — no parallel
+    formatter. Facts are preserved verbatim; over-limit framing is repaired by
+    dropping framing; facts that cannot fit cause WITHHELD (never silent
+    truncation or factual mutation).
+    """
+    concept = _concept_from_candidate(candidate)
+    variant = ci.plan_variant(concept, platform)
+    preserved = (ci.facts_preserved(concept, variant)
+                 if variant.status == ci.READY else False)
     return {
         "platform": platform,
-        "char_limit": limit,
-        "text": truncated,
-        "within_limit": len(text) <= limit,
-        "alt_text_required": platform in {"instagram", "tiktok"},
+        "char_limit": variant.char_limit,
+        "text": variant.text,
+        "within_limit": variant.within_limit and variant.status == ci.READY,
+        "alt_text_required": bool(variant.asset_plan.get("alt_text_required")),
+        "native_format": variant.native_format,
+        "status": variant.status,
+        "withheld_reason": variant.withheld_reason,
+        "fact_bindings": variant.fact_bindings,
+        "lineage": variant.lineage,
+        "dropped_framing": variant.dropped_framing,
+        "facts_preserved": preserved,
+        "silent_truncation": False,
+        "content_id": variant.content_id,
     }
 
 

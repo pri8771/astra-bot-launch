@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import decision, research, pipeline, worker  # noqa: E402
+from runtime import decision, research, pipeline, worker, personas  # noqa: E402
 
 
 def seed(bot, n=1, url="https://example.org/s"):
@@ -56,20 +56,48 @@ class ReviewGateTest(unittest.TestCase):
         self.assertFalse(detail["candidate_succeeded"])
 
     def test_over_platform_limit_candidate_is_withheld(self):
-        # social-a primary platform is X (280); ideated text exceeds it -> WITHHELD,
-        # never a false-positive success with within_platform_limit=false.
-        bot = "social-a"
-        long_sig = research.Signal.make(
-            "METR RCT: experienced developers measured 19% slower with AI tools",
-            "A 2026 randomized controlled trial found experienced developers were "
-            "about 19% slower using AI tools despite a median 1.4-2x self-reported gain.",
-            "unit-test", "https://example.org/ledger", "fixture", ["measurement"])
-        research.capture(bot, long_sig)
-        rec = decision.run_cycle(bot, "social-a")
+        # SB-R07-052: facts that alone exceed the platform limit are WITHHELD —
+        # never silently truncated. Framing-only over-limit is repaired instead.
+        bot = "social-a"  # primary platform X (280)
+        seed(bot, url="https://example.org/ledger")
+        # Inject a fact segment that cannot fit on X.
+        orig_ideate = pipeline.ideate
+
+        def ideate_with_long_fact(persona, signal):
+            cand = orig_ideate(persona, signal)
+            cand["fact_segments"] = [{
+                "text": "F" * 400,
+                "binding_ref": {"claim_id": "cl-long", "support_status": "SUPPORTED",
+                                "receipt_id": "cap-long", "content_hash": "h-long"},
+            }]
+            return cand
+
+        pipeline.ideate = ideate_with_long_fact
+        try:
+            rec = decision.run_cycle(bot, "social-a")
+        finally:
+            pipeline.ideate = orig_ideate
         self.assertEqual(rec["outcome"], "withheld")
         self.assertFalse(rec["verify"]["within_platform_limit"])
         self.assertFalse(rec["verify"]["queued"])
         self.assertEqual(pipeline.admin_publish_queue(bot), [])
+
+    def test_silent_truncation_never_emitted_for_overlong_facts(self):
+        bot = "social-a"
+        seed(bot)
+        p = personas.load("social-a")
+        cand = pipeline.ideate(p, research.load_signals(bot)[0])
+        cand["fact_segments"] = [{
+            "text": "FACTTOKEN_" + ("Z" * 400),
+            "binding_ref": {"claim_id": "cl-z", "support_status": "SUPPORTED",
+                            "receipt_id": "cap-z", "content_hash": "hz"},
+        }]
+        payload = pipeline.format_for_platform(cand, "x")
+        self.assertFalse(payload["within_limit"])
+        self.assertEqual(payload["status"], "withheld")
+        self.assertFalse(payload["silent_truncation"])
+        self.assertNotIn("FACTTOKEN_", payload["text"])
+        self.assertIn("no silent truncation", payload["withheld_reason"])
 
     def _assert_no_downstream_effect(self, bot, rec, failed_gate_check):
         """Every failure mode must produce the SAME truthful stop: withheld,

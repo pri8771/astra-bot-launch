@@ -1,0 +1,13 @@
+{
+  "artifact": "SB-R07-052",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "focused_result": "16 passed",
+  "full_suite_result": "400 passed, 2 skipped",
+  "formatter": "runtime.content_intelligence.plan_variant",
+  "silent_truncation": false,
+  "next_artifact": "SB-R07-053",
+  "recorded_at": "2026-09-21T19:49:19Z"
+}
