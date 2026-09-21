@@ -25,12 +25,35 @@ Current implementation next remains V05 trust-boundary cleanup, then V13/V14/V15
 Branch: `claude/social-bots-mac-qa-control`
 Instruction: `social-bots/SESSION_INSTRUCTIONS.md` on that branch.
 Heartbeat test: ACTIVE.
-Current next: SB-CTL-012 artifact graph validator; SB-CTL-006 CI/control; V2 acceptance harness prep.
+
+**Priority Zero handoff after heartbeat validation:**
+- once this lane has 3 verified ~15-minute heartbeat intervals and lead acknowledgement, pause ordinary QA work;
+- switch to dedicated branch `claude/social-bots-v04-live-canary`;
+- execute `SB-V04-005` real adaptive canary before resuming later QA/CI work.
+
+SB-CTL-012 / SB-CTL-006 remain queued behind the real V0.4 canary unless the lead explicitly parallelizes them with another Mac session.
 
 ## Windows Core / Host — STANDBY
 Branch: `claude/social-bots-windows-core-host`
 Do not continue assigning work during the two-Mac heartbeat validation phase.
 Preserve existing work/branch state. Reactivate only by explicit lead/owner instruction.
+
+## Priority Zero — V0.4 real canary
+
+Dedicated branch:
+`claude/social-bots-v04-live-canary`
+
+Artifact:
+`SB-V04-005`
+
+V0.4 cannot be marked complete until:
+- one current public source is fetched live;
+- the actual authenticated Claude Code subscription provider is invoked;
+- no fixture/injected model runner is used;
+- schema + deterministic policy run;
+- a decision is persisted;
+- no public effect occurs;
+- ChatGPT independently accepts SB-EVD-002.
 
 ## Lead
 ChatGPT verifies heartbeat history, audits submissions, acknowledges heartbeat sequences, updates assignments, and prepares V2/V2.3/V3 runway.
