@@ -1,0 +1,39 @@
+{
+  "all_pass": true,
+  "artifact": "SB-V13-001",
+  "checks": {
+    "missing_zero_notsupported": {
+      "pass": true,
+      "reach_zero_is_present": true,
+      "reddit_reach_not_supported": true,
+      "save_absent_is_missing": true
+    },
+    "no_false_equivalence": {
+      "pass": true,
+      "tiktok_reach": "not_supported",
+      "x_reach": "present"
+    },
+    "stale_and_derived": {
+      "derived_formula": "completion / view",
+      "derived_formula_version": "1.0.0",
+      "derived_missing_when_input_missing": true,
+      "derived_value": 0.25,
+      "pass": true,
+      "stale_marked": true
+    },
+    "traceability": {
+      "experiments": [
+        "e-7"
+      ],
+      "pass": true,
+      "personas": [
+        "social-a"
+      ],
+      "raw_impressions": 42
+    }
+  },
+  "derived_formula_version": "1.0.0",
+  "kind": "fixture-evidence",
+  "normalization_version": "1.0.0",
+  "warning": "FIXTURE metric payloads only; NOT real social metrics."
+}
