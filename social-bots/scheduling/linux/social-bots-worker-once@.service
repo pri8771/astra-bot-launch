@@ -1,0 +1,44 @@
+# SB-V07-001 systemd template unit for bin/worker_once.py.
+#
+# This is a TEMPLATE (the "@" before .service). The instance name (the part
+# after "@" when you enable/start it, e.g. social-bots-worker-once@core)
+# becomes %i, which this unit passes through as --lane. install_systemd.sh
+# substitutes the double-underscore placeholders below before installing
+# this file; do not install it with a literal, unsubstituted placeholder
+# still present.
+#
+# A successful `systemctl start` here only means the unit ran to completion
+# with an allowed exit status. It does not by itself prove the worker
+# claimed or completed real work -- see ../README.md and ../RUNBOOK.md for
+# what to inspect (HEARTBEAT_LOG.jsonl and $SBOTS_HOME/invocations/index.jsonl).
+
+[Unit]
+Description=Social Bots worker-once payload (lane %i) - one bounded unit, never a daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=__REPO_ROOT__/social-bots
+ExecStart=__PYTHON_EXE__ bin/worker_once.py --lane %i --branch __BRANCH__ --repo-root __REPO_ROOT__
+Environment=SBOTS_HOME=__SBOTS_HOME__
+
+# 3 = no-overlap (benign, expected), 5 = lead direction halted this lane
+# (benign, expected). Only 1 (unexpected failure) and 2 (bad usage) should
+# ever show up as a failed unit.
+SuccessExitStatus=0 3 5
+
+# One bounded unit must not run forever; if it does, something is wrong and
+# systemd should kill it rather than let it block the next scheduled firing.
+TimeoutStartSec=1800
+
+# Hardening: this unit never needs elevated privileges, a shared /tmp, or
+# write access outside the repo checkout / runtime data root.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=__REPO_ROOT__ __SBOTS_HOME__
+
+# No [Install] section: this service is only ever started by its paired
+# timer (social-bots-worker-once@.timer), never enabled/started directly.

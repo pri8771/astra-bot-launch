@@ -1,0 +1,22 @@
+{
+  "gates": {
+    "SB-V04-002": {
+      "authorized": false,
+      "live_execution_permitted": false,
+      "manifest_dir": "/home/user/astra-bot-launch/social-bots/authorizations",
+      "manifests_present": [],
+      "reason": "no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning."
+    },
+    "SB-V04-004": {
+      "authorized": false,
+      "live_execution_permitted": false,
+      "manifest_dir": "/home/user/astra-bot-launch/social-bots/authorizations",
+      "manifests_present": [],
+      "reason": "no canonical authorization manifest in /home/user/astra-bot-launch/social-bots/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning."
+    }
+  },
+  "hard_max_calls": 5,
+  "live_execution_permitted": false,
+  "manifest_dir": "/home/user/astra-bot-launch/social-bots/authorizations",
+  "manifests_present": []
+}

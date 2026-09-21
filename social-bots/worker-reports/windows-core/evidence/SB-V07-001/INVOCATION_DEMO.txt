@@ -1,0 +1,92 @@
+### SB-V07-001 engineering demonstration — sequential bounded worker-once invocations
+### host: Linux 6.18.44-fc-v37 ; Python 3.11.15 ; date: 2026-09-21T18:04:39Z
+### Each invocation consumes lead direction from GitHub via plain git (no gh, no token relay).
+### ENGINEERING DEMONSTRATION ONLY: these are direct CLI invocations on a CCR Linux
+### container, NOT OS-scheduler firings on an owner-authorized always-on host.
+### Therefore this is NOT SB-V07-002 operational recurring-liveness proof.
+
+--- invocation 1 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T180439Z-1f379f37",
+  "invocation_id": "inv-20260921T180439Z-837a5436",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 2 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T180440Z-f9d75d8d",
+  "invocation_id": "inv-20260921T180440Z-69bcb2e8",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 3 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T180441Z-fe805c00",
+  "invocation_id": "inv-20260921T180441Z-74638445",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "exit_code": 0
+}
+exit=0
+
+--- invocation 4 (lane=windows-core, real git fetch of the canonical branch) ---
+{
+  "session_id": "s-20260921T180441Z-3d2bd868",
+  "invocation_id": "inv-20260921T180441Z-3ecc2b35",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "exit_code": 0
+}
+exit=0
+
+--- no-overlap: hold all three candidate leases with a foreign worker id, then invoke ---
+all three cycle leases held by held-by-other-worker
+{
+  "session_id": "s-20260921T180442Z-1ef2f4ca",
+  "invocation_id": "inv-20260921T180442Z-24c22a69",
+  "claim_outcome": "no_overlap",
+  "candidates_tried": [
+    {
+      "bot": "social-a",
+      "task_id": "cycle:social-a",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    },
+    {
+      "bot": "social-b",
+      "task_id": "cycle:social-b",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    },
+    {
+      "bot": "social-c",
+      "task_id": "cycle:social-c",
+      "result": "lease_held",
+      "holder": "held-by-other-worker"
+    }
+  ],
+  "exit_code": 3
+}
+exit=3
+
+--- fail-closed: a lane with no canonical direction entry refuses to invent one ---
+DIRECTION ERROR: STATE.json has no worker_lanes entry matching lane 'no-such-lane'
+exit=1

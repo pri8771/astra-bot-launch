@@ -1,0 +1,22 @@
+# SB-V07-001 systemd template timer pairing with social-bots-worker-once@.service.
+#
+# install_systemd.sh substitutes __INTERVAL__ (a systemd time span, e.g.
+# "30min") before installing this file. Enable/start the instance for a
+# given lane with:
+#   systemctl [--user] enable --now social-bots-worker-once@<lane>.timer
+
+[Unit]
+Description=Recurring trigger for the social-bots worker-once payload (lane %i)
+
+[Timer]
+# First firing shortly after boot/login, so a host that was offline at the
+# scheduled time still gets a firing soon after it comes back.
+OnBootSec=2min
+OnUnitActiveSec=__INTERVAL__
+AccuracySec=30s
+# If the host was off/asleep across a scheduled firing, run it once on the
+# next start instead of silently skipping it.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

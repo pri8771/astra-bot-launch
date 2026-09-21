@@ -1,0 +1,18 @@
+{
+  "total_invocations": 6,
+  "complete": 6,
+  "incomplete": 0,
+  "distinct_sessions": 6,
+  "claims": {
+    "claimed": 4,
+    "no_overlap": 1,
+    "none_available": 0,
+    "halted_by_direction": 0,
+    "error": 1
+  },
+  "live_model_calls": 0,
+  "note": "one bounded session per invocation; recurring liveness is the sequence of independently scheduled invocations, not this count on its own"
+}
+heartbeat records: 5
+distinct session_ids: 5
+cadence modes: {'SESSION_ONCE'}

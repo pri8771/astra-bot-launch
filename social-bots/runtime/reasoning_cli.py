@@ -147,6 +147,18 @@ CONTEXT:
 """
 
 
+def prompt_context(ctx: ReasoningContext) -> dict:
+    """Public view of the EXACT bounded facts embedded in the production prompt.
+
+    The V0.4 divergence matrix must prove isolation on what is actually sent to
+    the model, not only on the coarser digest projection used for receipt
+    matching (``reasoning_receipt.bounded_context``, which omits the signal
+    summary). Exposing this keeps that check honest without duplicating the
+    projection.
+    """
+    return _bounded_context(ctx)
+
+
 def build_prompt(ctx: ReasoningContext) -> str:
     bounded = _bounded_context(ctx)
     return _PROMPT_TEMPLATE.format(

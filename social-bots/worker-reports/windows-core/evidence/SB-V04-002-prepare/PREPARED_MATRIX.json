@@ -1,0 +1,542 @@
+{
+  "acceptance_eligible": false,
+  "artifacts": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "cases": [
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "tags": [
+            "accounting",
+            "release",
+            "tooling"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "case_id": "P0",
+      "context_sha256": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_id": "E1",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "summary": "A widely used plain-text accounting library published a release adding a reconciliation report command.",
+          "tags": [
+            "accounting",
+            "tooling",
+            "release"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "prompt_context_sha256": "sha256:dc37bafc25aa3c8bd149ec36e4432bfa4a65aed25d16e75ae19e5efec8bc70f9",
+      "prompt_sha256": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+      "role": "persona-baseline"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "tags": [
+            "accounting",
+            "release",
+            "tooling"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "case_id": "P1",
+      "context_sha256": "sha256:295f7c25385cea5a633e29c80ef8d3bc2ff0f684f9992e1c34f9ef0cc699b386",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_id": "E1",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "persona_id": "social-b",
+      "persona_slot": "variant_b",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "summary": "A widely used plain-text accounting library published a release adding a reconciliation report command.",
+          "tags": [
+            "accounting",
+            "tooling",
+            "release"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "prompt_context_sha256": "sha256:7715d365a6f3a5698918efd9fbbd649b4fd84844e53cddb152e100870fccdc4d",
+      "prompt_sha256": "sha256:c990a6f0ac8873c8bc66fab27d3ea0ca013488a5b911dfcedf6e508d19e217a8",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "tags": [
+            "accounting",
+            "release",
+            "tooling"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "case_id": "P2",
+      "context_sha256": "sha256:5d04d0efdf5920416ce05618360cb6932ef7d448516f4a9012c6d4a850541506",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_id": "E1",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "persona_id": "social-c",
+      "persona_slot": "variant_c",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "summary": "A widely used plain-text accounting library published a release adding a reconciliation report command.",
+          "tags": [
+            "accounting",
+            "tooling",
+            "release"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "prompt_context_sha256": "sha256:5a8231b558173b388632bc57c956fa536e72ae5eb0802276bc7d152bb9c75514",
+      "prompt_sha256": "sha256:939a3acb8eec392d7faeadbb42e89e1c16fc7f08d33d77e5468d468d27a6f84d",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "tags": [
+            "accounting",
+            "release",
+            "tooling"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "case_id": "P3",
+      "context_sha256": "sha256:34d2ed346b2980ff785e0ddd6cb47d0a4a29127d4e9f3298391ecf1d400cc6ab",
+      "evidence_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "evidence_id": "E1",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "persona_id": "cultural-primandir-atman",
+      "persona_slot": "cultural",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e1",
+          "provenance": "fixture",
+          "summary": "A widely used plain-text accounting library published a release adding a reconciliation report command.",
+          "tags": [
+            "accounting",
+            "tooling",
+            "release"
+          ],
+          "title": "Plain-text accounting tooling adds a reconciliation report"
+        }
+      },
+      "prompt_context_sha256": "sha256:f875e2703de6f1becc82993cd10ce3f4d11dfa32aae092d21601689dc99c3c7f",
+      "prompt_sha256": "sha256:6f0936318c482d3d11dabedbbf86c9fd26d4aaca6193ef9821edc4f07c8df433",
+      "role": "persona-only-variant-cultural"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e2",
+          "provenance": "fixture",
+          "tags": [
+            "open-data",
+            "transit"
+          ],
+          "title": "Municipal transit board publishes a fare-equity dataset"
+        }
+      },
+      "case_id": "E0",
+      "context_sha256": "sha256:6697b546c432bc696fe6691737b21852b21f25ae2559896c250774ca86b53882",
+      "evidence_bytes_sha256": "sha256:2f9d45e54c7f0f6c9b99aa1298aa0abdd353a75d5e482499ff95963da75fc80d",
+      "evidence_id": "E2",
+      "evidence_provenance": "engineering-fixture",
+      "evidence_receipt_sha256": "sha256:43fe724f982f44ff416d02db3ee3c2ac762e6188650c89b29bb5a00c2994e2e3",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-fixture-e2",
+          "provenance": "fixture",
+          "summary": "A municipal transit board released a machine-readable dataset describing fare-equity outcomes by route.",
+          "tags": [
+            "transit",
+            "open-data"
+          ],
+          "title": "Municipal transit board publishes a fare-equity dataset"
+        }
+      },
+      "prompt_context_sha256": "sha256:4b1c49f917406d5bf59312d874ae1214ade322bab76671a337c272c32437a021",
+      "prompt_sha256": "sha256:337966a952ee34822493d577fe4b7716ab4630cea947d0a6ca80a6c68550c591",
+      "role": "evidence-only-variant"
+    }
+  ],
+  "engineering_only_reasons": [
+    "snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence"
+  ],
+  "held_constant": {
+    "allowed_actions_vocabulary": [
+      "NO_ACTION",
+      "RESEARCH_MORE",
+      "CREATE_CANDIDATE",
+      "CONTINUE_EXPERIMENT",
+      "CLOSE_EXPERIMENT"
+    ],
+    "is_duplicate": false,
+    "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+    "pending_count": 0,
+    "policy_posture": "adaptive-required, fail-closed, no public effect",
+    "prior_hypotheses": 0,
+    "public_effect_allowed": false
+  },
+  "isolation": {
+    "all_isolated": true,
+    "case_count": 5,
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:295f7c25385cea5a633e29c80ef8d3bc2ff0f684f9992e1c34f9ef0cc699b386",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:c990a6f0ac8873c8bc66fab27d3ea0ca013488a5b911dfcedf6e508d19e217a8"
+        }
+      },
+      {
+        "comparison": "P0|P2",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:5d04d0efdf5920416ce05618360cb6932ef7d448516f4a9012c6d4a850541506",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:939a3acb8eec392d7faeadbb42e89e1c16fc7f08d33d77e5468d468d27a6f84d"
+        }
+      },
+      {
+        "comparison": "P0|P3",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:34d2ed346b2980ff785e0ddd6cb47d0a4a29127d4e9f3298391ecf1d400cc6ab",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:6f0936318c482d3d11dabedbbf86c9fd26d4aaca6193ef9821edc4f07c8df433"
+        }
+      },
+      {
+        "comparison": "P0|E0",
+        "digest_layer": {
+          "context_sha256_a": "sha256:6398886b19fc7acb6e33beb93b9fb59c50fcf7811612b00be47e91331623fc7c",
+          "context_sha256_b": "sha256:6697b546c432bc696fe6691737b21852b21f25ae2559896c250774ca86b53882",
+          "differing_variables": [
+            "evidence"
+          ],
+          "ok": true
+        },
+        "expected_variable": "evidence",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "signal"
+          ],
+          "expected_key": "signal",
+          "ok": true,
+          "prompt_sha256_a": "sha256:798bc69917687ccf589bbebe29ef86ab88f3ded6e8e4356f459e51b51d8df443",
+          "prompt_sha256_b": "sha256:337966a952ee34822493d577fe4b7716ab4630cea947d0a6ca80a6c68550c591"
+        }
+      }
+    ],
+    "distinct_contexts": true
+  },
+  "lane": "windows-core",
+  "live_execution_performed": false,
+  "note": "PREPARE-ONLY artifact. No adaptive/model provider was constructed or invoked while building this matrix.",
+  "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+  "planned_call_count": 5,
+  "prepared_at": "2026-09-21T18:04:08Z",
+  "provider_config": {
+    "anthropic_api_key_expected_absent": true,
+    "auth_route": "existing-subscription",
+    "injected_runner": false,
+    "model": null,
+    "provider_id": "claude-code-subscription-v1",
+    "provider_mode": "claude-cli",
+    "retry_allowed": false,
+    "timeout_s": 60
+  },
+  "provider_config_sha256": "sha256:b7ad9f5fcfa9e5adb4ea9795416f79b22581678a0ac4e804e22e62e6c0a86a37",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "run_scope": "v04-divergence-prepare",
+  "schema_version": "v1",
+  "snapshots": [
+    {
+      "captured_at": "2026-09-21T00:00:00Z",
+      "provenance_label": "engineering-fixture",
+      "raw_bytes_sha256": "sha256:ecb20894f18ca71be7930a2c1704c8a8ca849d1b38e70e890729858379632744",
+      "receipt": {
+        "byte_length": 65,
+        "http_status": null,
+        "kind": "engineering-fixture",
+        "url": "https://example.invalid/fixture/e1"
+      },
+      "receipt_sha256": "sha256:01c0fe60445e3fbafae0d1db3779aa4c7a4871b0d2d69d903952f57bc7caf089",
+      "signal": {
+        "captured_at": "2026-09-21T00:00:00Z",
+        "id": "sig-fixture-e1",
+        "provenance": "fixture",
+        "source": "engineering-fixture",
+        "summary": "A widely used plain-text accounting library published a release adding a reconciliation report command.",
+        "tags": [
+          "accounting",
+          "tooling",
+          "release"
+        ],
+        "title": "Plain-text accounting tooling adds a reconciliation report",
+        "url": "https://example.invalid/fixture/e1"
+      },
+      "snapshot_id": "E1"
+    },
+    {
+      "captured_at": "2026-09-21T00:00:00Z",
+      "provenance_label": "engineering-fixture",
+      "raw_bytes_sha256": "sha256:2f9d45e54c7f0f6c9b99aa1298aa0abdd353a75d5e482499ff95963da75fc80d",
+      "receipt": {
+        "byte_length": 65,
+        "http_status": null,
+        "kind": "engineering-fixture",
+        "url": "https://example.invalid/fixture/e2"
+      },
+      "receipt_sha256": "sha256:43fe724f982f44ff416d02db3ee3c2ac762e6188650c89b29bb5a00c2994e2e3",
+      "signal": {
+        "captured_at": "2026-09-21T00:00:00Z",
+        "id": "sig-fixture-e2",
+        "provenance": "fixture",
+        "source": "engineering-fixture",
+        "summary": "A municipal transit board released a machine-readable dataset describing fare-equity outcomes by route.",
+        "tags": [
+          "transit",
+          "open-data"
+        ],
+        "title": "Municipal transit board publishes a fare-equity dataset",
+        "url": "https://example.invalid/fixture/e2"
+      },
+      "snapshot_id": "E2"
+    }
+  ]
+}
