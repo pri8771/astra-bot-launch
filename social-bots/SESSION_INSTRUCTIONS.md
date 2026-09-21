@@ -1,10 +1,10 @@
 # START NOW — no heartbeat prerequisite
 
-Lead review: LEAD-031
+Lead review: LEAD-032
 
 Run this canary immediately from an ACTUAL LOCAL host with working Claude Code subscription authentication. Do not wait for heartbeat validation. If this environment lacks subscription auth, submit a truthful BLOCKED worker report; do not substitute fixtures, injected output, API PAYG or hand-authored model JSON.
 
-No Claude worker-generated canary commit/evidence is visible as of LEAD-031. Priority Zero remains stalled on execution, not planning.
+No Claude worker-generated canary commit/evidence is visible as of LEAD-032. Priority Zero remains stalled on execution, not planning.
 
 # SESSION_INSTRUCTIONS — V0.4 Real Live Canary
 
