@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-023
+Lead review: LEAD-024
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
@@ -13,52 +13,59 @@ At start/checkpoint:
 4. inspect `worker-reports/windows-core/LEAD_ACK.json`
 5. continue dependency-ready work without routine permission prompts.
 
-## SB-V03-004 — repair submitted; HOLD implementation unless QA finds a defect
+## Priority 1 — SB-V03-004 post-cycle success-receipt fencing repair
 
-Lead independently inspected commit `175f741fcedace3113191a847d6a7568d77b9cde`.
-The LEAD-019 migration-side-effect defect appears repaired: PersonaState load/migration staging is side-effect free and durable migration writes flow through the fenced commit, with a stale-owner regression.
+The migration/load side-effect defect from LEAD-019 is repaired in `175f741...`: migration is staged in memory and durable cycle writes are fenced.
 
-Mac QA is assigned an independent verification pass. Do not keep reworking V03-004 unless that review finds a concrete defect.
+LEAD-024 found a separate ownership hole in `runtime/worker.py`:
+- `decision.run_cycle(..., fence=fence)` returns after its durable decision/state/content commit;
+- the worker then writes the `finish` receipt outside the fence;
+- if the worker stalls after the cycle commit, its lease expires, and another worker takes over before the old worker resumes, the old worker can still emit a finish receipt implying `candidate_succeeded=true` / verified success after fence loss.
 
-## Priority 1 — SB-V03-005 authoritative persona read boundary
+This violates SB-V03-004's acceptance rule that an old owner cannot commit receipts implying success after losing/expiring ownership.
 
-Finish this now.
+Required repair:
+1. fence or atomically ownership-check every durable post-cycle receipt/status write that can imply successful completion;
+2. a stale owner after takeover must not write a success/finish receipt;
+3. failure/fenced-out evidence may remain truthful, but must never be confused with success;
+4. add an adversarial regression that pauses after the cycle commit, forces TTL expiry + generation takeover, then resumes the old worker and proves it cannot write a success finish receipt;
+5. preserve the existing side-effect-free migration/fenced decision commit behavior and single-POSIX-host scope.
 
-Preserve the RuntimeState/PersonaState split and migration repair.
+Do not fix this by only increasing TTL.
 
-Add one authoritative persona-scoped production interface for private/personalized stores and route normal production reads through it. At minimum cover actual production paths for:
-- content history/dedup;
-- experiment load/list;
-- action history;
-- decision history;
-- analytics/history where persona-private;
-- publish queue reads where applicable.
+## Priority 2 — SB-V03-005 enforce the production persona read boundary
 
-Raw whole-runtime reads may remain only when explicitly named/documented admin/internal and not used by normal persona-facing production flows.
+Commit `d1e4bee...` adds useful `PERSONA_SCOPED_READERS`, `persona_records()` and mixed-persona tests. Keep that work.
 
-Add mixed-persona regressions through the real production read/list APIs proving one persona cannot enumerate or accidentally consume another persona's private records.
+LEAD-024 found the remaining contract gap: wrapping raw readers in `_ADMIN_READERS` does not make the underlying raw APIs admin-only. Public/raw calls such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` still enumerate the whole runtime, and direct JSONL access remains possible. The artifact requires normal production persona-specific flows to be structurally routed through the persona boundary, or raw whole-runtime APIs to be explicitly internal/admin and not accidentally usable as persona-facing reads.
 
-Submit `SB-V03-005` with exact source SHA, focused tests, full relevant suite, and known limits.
+Required repair:
+1. route real production persona-facing read/list call sites through the authoritative persona-scoped interface;
+2. rename/private/admin-scope raw whole-runtime APIs where they remain necessary, or otherwise enforce an equivalent explicit boundary;
+3. cover content/dedup, experiment list/load, action history, decision history, analytics/history and publish-queue reads where persona-private;
+4. keep intentional runtime-wide admin/reconciliation reads explicit and separate;
+5. add regressions through actual production call paths proving a persona cannot enumerate another persona's private records.
 
-## Priority 2 — SB-V03-006 fresh V0.3 acceptance bundle
+## Priority 3 — regenerate SB-V03-006 after both repairs
 
-After V03-005 is complete and your branch suite is green:
-- regenerate fresh evidence from the current implementation;
-- include V03-002/003/004/005 adversarial scenarios;
-- do not reuse superseded proof;
-- submit `SB-V03-006`.
+The evidence bundle at `0433fc85...` is useful PREPARED evidence and truthfully reports 122 passing tests, but it predates the LEAD-024 repairs above and is not acceptance-eligible.
 
-## Priority 3 — V0.4 Core dependency reconciliation
+After SB-V03-004 and SB-V03-005 are repaired:
+- regenerate the focused + full acceptance evidence from the new implementation SHA;
+- include the new post-cycle receipt-takeover regression and production read-boundary regressions;
+- do not represent the current prepared bundle as final acceptance proof.
 
-After the V0.3 bundle is submitted:
-- reconcile SB-V04-001/002/003/004 with the current accepted contracts;
+## Then — V0.4 Core dependency reconciliation
+
+Only after the V0.3 repair bundle is resubmitted:
+- reconcile SB-V04-001/002/003/004;
 - keep deterministic authority/policy ownership;
 - do not run the real canary from this Linux-container lane.
-The dedicated local authenticated branch `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
+Dedicated branch `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
 
 ## CI / review
 
-Mac QA owns CI/control and independent V03-004 verification. Do not duplicate that lane.
+Mac QA owns independent QA/control and will independently probe the receipt-fence and reader-boundary scenarios. Do not duplicate its source ownership.
 
 ## Reporting
 
