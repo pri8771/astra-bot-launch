@@ -1,82 +1,30 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T01:05:00Z",
+  "updated_at": "2026-09-21T01:10:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
   "status": "two_lane_active_lead_audit_repairs_required",
-  "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
-    "general_personas_required": 3,
-    "general_personas_built": 3,
-    "cultural_persona_workspaces_required": 2,
-    "cultural_persona_workspaces_built": 2
-  },
-  "independence": {
-    "depends_on_swarmai": false,
-    "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
-  },
+  "runtime_scope": {"autonomous_bots":["social-a","social-b","social-c"],"general_personas_required":3,"general_personas_built":3,"cultural_persona_workspaces_required":2,"cultural_persona_workspaces_built":2},
+  "independence": {"depends_on_swarmai":false,"policy":"Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."},
   "worker_lanes": {
-    "core": {
-      "branch": "claude/social-bots-core-to-v2",
-      "last_verified_head": "874b6992fb4fff3e4832dcb8ae078828525f6a51",
-      "last_verified_commit_at": "2026-09-21T00:57:18Z",
-      "activity": "active_signed_commits_with_claude_session_metadata"
-    },
-    "intelligence": {
-      "branch": "claude/social-bots-intelligence-to-v2",
-      "last_verified_head": "3d249ec885706380a6a12934042ed03c1e15b831",
-      "last_verified_commit_at": "2026-09-21T00:50:22Z",
-      "activity": "active_signed_commits_with_claude_session_metadata"
-    },
-    "development_sessions_live": true,
-    "social_bot_recurring_runtime_liveness": "not_verified",
-    "note": "Active Claude Code development sessions are proven by fresh signed commits. This is not evidence of V0.7 always-on Social Bots worker liveness."
+    "core":{"branch":"claude/social-bots-core-to-v2","last_verified_head":"874b6992fb4fff3e4832dcb8ae078828525f6a51","last_verified_commit_at":"2026-09-21T00:57:18Z","activity":"active_signed_commits_with_claude_session_metadata"},
+    "intelligence":{"branch":"claude/social-bots-intelligence-to-v2","last_verified_head":"3d249ec885706380a6a12934042ed03c1e15b831","last_verified_commit_at":"2026-09-21T00:50:22Z","activity":"active_signed_commits_with_claude_session_metadata"},
+    "development_sessions_live":true,
+    "social_bot_recurring_runtime_liveness":"not_verified",
+    "note":"Active Claude Code development sessions are proven by fresh signed commits. This is not evidence of V0.7 always-on Social Bots worker liveness."
   },
-  "tests": {
-    "core_latest_worker_reported_full_suite": 85,
-    "intelligence_latest_worker_reported_full_suite": 128,
-    "github_status_checks_at_verified_core_head": 0,
-    "github_status_checks_at_verified_intelligence_head": 0,
-    "lead_note": "Worker-local test counts are useful evidence but are not independent CI. SB-CTL-006 remains ready for Core after V0.3 correctness repair."
-  },
+  "tests":{"core_latest_worker_reported_full_suite":85,"intelligence_latest_worker_reported_full_suite":128,"github_status_checks_at_verified_core_head":0,"github_status_checks_at_verified_intelligence_head":0,"lead_note":"Worker-local test counts are useful evidence but are not independent CI. SB-CTL-006 remains ready after V0.3 correctness repair."},
   "lead_review": {
-    "review_id": "LEAD-014",
-    "review_ref": "social-bots/lead-reviews/LEAD-014_2026-09-20T2054.md",
-    "accepted": [
-      "SB-V03-002",
-      "SB-V03-003",
-      "SB-V03-004",
-      "SB-V05-001"
-    ],
-    "changes_required": [
-      "SB-V03-001",
-      "SB-V03-005",
-      "SB-EVD-001",
-      "SB-V04-001",
-      "SB-V04-002",
-      "SB-V05-002",
-      "SB-V13-001",
-      "SB-V14-001",
-      "SB-V16-001",
-      "SB-V17-001",
-      "SB-V20-002"
-    ],
-    "blocked": [
-      "SB-V03-006",
-      "SB-V04-003",
-      "SB-V12-001",
-      "SB-V15-001",
-      "SB-V20-099",
-      "SB-V20-004"
-    ],
-    "positive_source_review_but_dependency_blocked": [
-      "SB-V04-003",
-      "SB-V12-001",
-      "SB-V15-001"
-    ],
-    "key_findings": [
+    "review_id":"LEAD-014",
+    "review_ref":"social-bots/lead-reviews/LEAD-014_2026-09-20T2054.md",
+    "registry_ref":"ARTIFACT_INDEX.json@f370b8c3f28f68adc41a1d92d69c9a06df68176a",
+    "accepted":["SB-V03-002","SB-V03-003","SB-V03-004","SB-V05-001"],
+    "changes_required":["SB-V03-001","SB-V03-005","SB-EVD-001","SB-V04-001","SB-V04-002","SB-V05-002","SB-V13-001","SB-V14-001","SB-V16-001","SB-V17-001","SB-V20-002"],
+    "blocked":["SB-V03-006","SB-V04-003","SB-V12-001","SB-V15-001","SB-V20-099","SB-V20-004"],
+    "positive_source_review_but_dependency_blocked":["SB-V04-003","SB-V12-001","SB-V15-001"],
+    "key_findings":[
       "V03-003 now proves FACT and VOICE failures stop before experiment/queue/success.",
       "V03-004 now uses generation fencing and atomic fenced commit on one POSIX host/local filesystem.",
       "V03-005 logical isolation is optional/convention-based because raw bot-wide readers remain available; production persona-specific reads are not yet hard-scoped.",
@@ -88,47 +36,11 @@
       "V16-001 content-intelligence history/novelty is bot-wide and can cross-contaminate personas.",
       "V17-001 community themes/audience evidence are bot-wide and can cross-contaminate personas.",
       "V20-002 lacks full accepted cross-lane bot/persona/authority/availability/cost semantics and depends on unrepaired V13/V14 inputs."
-    ],
-    "artifact_index_reconciliation": "Lead decisions are durable in LEAD-014 and tightened artifact packets; ARTIFACT_INDEX.json still needs exact full-file reconciliation before it can be treated as current for these new submissions. Do not silently prefer stale registry entries over LEAD-014."
+    ]
   },
-  "public_actions": {
-    "posting_authorized": false,
-    "spend_authorized": false,
-    "customer_messages_authorized": false,
-    "destructive_actions_authorized": false
-  },
-  "version": {
-    "current": "V0.3.x",
-    "current_label": "durable runtime foundation under final persona-isolation repair",
-    "immediate_target": "V0.4",
-    "immediate_target_label": "real adaptive autonomous thinking",
-    "today_engineering_target": "V2.0-readiness (SB-V20-099)",
-    "operational_v2": "blocked_real_account_public_measurement_evidence",
-    "long_term_target": "V3.0",
-    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
-    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md"
-  },
-  "next_core": [
-    "SB-V03-005 repair: enforce persona-scoped production reads",
-    "SB-V03-006 regenerate acceptance evidence after V03-005 acceptance",
-    "SB-V04-001 repair production adaptive-required default",
-    "SB-V04-002 real adaptive provider remains gated on verified no-additional-spend route",
-    "SB-CTL-006 CI after V0.3 correctness stabilizes"
-  ],
-  "next_intelligence": [
-    "SB-V13-001 snapshot/delta/gauge/rate semantics",
-    "SB-V14-001 persona/workspace audience scope",
-    "SB-V05-002 material claim identification",
-    "SB-V16-001 persona-scoped content history/novelty",
-    "SB-V17-001 persona-scoped community memory/themes",
-    "SB-V20-002 cross-lane schema reconciliation after upstream repairs"
-  ],
-  "management_model": {
-    "style": "artifact_oriented",
-    "artifact_registry": "ARTIFACT_INDEX.json",
-    "milestone_manifest": "MILESTONE_MANIFEST.md",
-    "artifact_contract": "ARTIFACT_MANAGEMENT.md",
-    "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-014_2026-09-20T2054.md"
-  }
+  "public_actions":{"posting_authorized":false,"spend_authorized":false,"customer_messages_authorized":false,"destructive_actions_authorized":false},
+  "version":{"current":"V0.3.x","current_label":"durable runtime foundation under final persona-isolation repair","immediate_target":"V0.4","immediate_target_label":"real adaptive autonomous thinking","today_engineering_target":"V2.0-readiness (SB-V20-099)","operational_v2":"blocked_real_account_public_measurement_evidence","long_term_target":"V3.0","strategic_checkpoints":["V1.7","V2.3","V3.0"],"promotion_rule":"derived from lead-accepted artifacts in MILESTONE_MANIFEST.md"},
+  "next_core":["SB-V03-005 repair: enforce persona-scoped production reads","SB-V03-006 regenerate acceptance evidence after V03-005 acceptance","SB-V04-001 repair production adaptive-required default","SB-V04-002 real adaptive provider remains gated on verified no-additional-spend route","SB-CTL-006 CI after V0.3 correctness stabilizes"],
+  "next_intelligence":["SB-V13-001 snapshot/delta/gauge/rate semantics","SB-V14-001 persona/workspace audience scope","SB-V05-002 material claim identification","SB-V16-001 persona-scoped content history/novelty","SB-V17-001 persona-scoped community memory/themes","SB-V20-002 cross-lane schema reconciliation after upstream repairs"],
+  "management_model":{"style":"artifact_oriented","artifact_registry":"ARTIFACT_INDEX.json","milestone_manifest":"MILESTONE_MANIFEST.md","artifact_contract":"ARTIFACT_MANAGEMENT.md","worker_packets":"artifact-packets/","lead_review_current":"lead-reviews/LEAD-014_2026-09-20T2054.md"}
 }
