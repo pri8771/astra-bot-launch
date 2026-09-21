@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T03:15:00Z",
+  "updated_at": "2026-09-21T03:20:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -122,9 +122,11 @@
       ],
       "story_points": null,
       "evidence": [
-        "V03-002/003/004 accepted; V03-005 logical isolation enforcement still requires repair"
+        "V03-002/003 are accepted",
+        "V03-004 ownership fencing still has side-effectful legacy-migration writes before the final fence per LEAD-019",
+        "V03-005 persona production-read/migration consistency remains unresolved"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V03-002",
@@ -166,7 +168,7 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude-Core",
-      "status": "ACCEPTED",
+      "status": "CHANGES_REQUIRED",
       "canonical_ref": "social-bots/artifact-packets/SB-V03-004.md",
       "depends_on": [
         "SB-V03-002",
@@ -174,12 +176,12 @@
       ],
       "story_points": 5,
       "evidence": [
-        "LEAD-018 verified all cycle-owned durable writes including decision log/latest decision moved inside ownership-fenced commit",
-        "stale-owner adversarial regression inspects state/persona/decision/queue/analytics/experiment surfaces",
-        "documentation correctly limits guarantee to ownership fencing, not cross-file transactionality",
-        "accepted for code-level single-POSIX-host/local-filesystem fencing; Windows/WSL host portability remains SB-V07-WIN-001"
+        "generation fencing and the final fenced commit materially improve old-owner exclusion",
+        "LEAD-019 found PersonaState.load/_migrate_from_legacy can durably persist persona/migration state before the final ownership fence",
+        "required repair is side-effect-free/staged migration plus stale-owner takeover regression",
+        "Windows/WSL host portability remains separately gated by SB-V07-WIN-001"
       ],
-      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-019_2026-09-20T2218.md"
     },
     {
       "id": "SB-V03-005",
@@ -198,10 +200,10 @@
       "evidence": [
         "RuntimeState/PersonaState split fixes primary cross-persona consumed-signal and hypothesis contamination",
         "same shared signal can now be considered independently by personas and reasoning hypothesis count is persona-private",
-        "remaining narrow migration issue: PersonaState migration marks runtime migrated before persona file save and earlier RuntimeState object may later overwrite marker with stale false value",
-        "remaining canonical isolation issue: raw whole-runtime readers for persona-labeled append-only stores still exist; production persona reads must go through authoritative persona-scoped boundary"
+        "remaining migration consistency inherits V03-004 side-effectful migration fencing problem",
+        "raw whole-runtime readers for persona-labeled append-only stores still exist; production persona reads must go through authoritative persona-scoped boundary"
       ],
-      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-019_2026-09-20T2218.md"
     },
     {
       "id": "SB-V03-006",
@@ -219,9 +221,9 @@
       ],
       "story_points": 3,
       "evidence": [
-        "blocked only on final V03-005 migration/read-boundary cleanup, then regenerate fresh V0.3 bundle"
+        "blocked until V03-004 migration fencing and V03-005 production persona-read/migration cleanup are accepted, then regenerate fresh V0.3 bundle"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-EVD-001",
@@ -237,9 +239,9 @@
       "story_points": null,
       "evidence": [
         "bounded local worker evidence exists",
-        "V03-005/V03-006 final V0.3 acceptance remains unresolved; always-on host liveness is not proven"
+        "V03-004/V03-005/V03-006 final V0.3 acceptance remains unresolved; always-on host liveness is not proven"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V04-001",
@@ -255,11 +257,10 @@
       "story_points": 3,
       "evidence": [
         "proposal schema validation and authority-smuggling rejection are useful",
-        "adaptive-required behavior is opt-in; default changed-evidence runtime can still use baseline heuristics",
-        "actual no-additional-spend adaptive provider not runtime-wired/verified",
-        "production V0.4 posture must fail closed by default when adaptive provider unavailable"
+        "Windows-Core worker submitted production adaptive-required/fail-closed posture repair",
+        "milestone acceptance remains dependency-gated by V03-006 and real provider/canary evidence"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
     },
     {
       "id": "SB-V04-002",
@@ -274,11 +275,11 @@
       ],
       "story_points": 5,
       "evidence": [
-        "contextual deterministic provider materially varies by context and is useful as a diagnostic/test helper",
-        "provider explicitly reports adaptive=false and therefore does not satisfy V0.4 adaptive reasoning",
-        "runtime-verified adaptive provider route required"
+        "Claude Code CLI adaptive provider is implemented with fail-closed/no-API-key guards",
+        "all successful model outputs so far are injected/test-runner evidence; no real subscription-authenticated call has been accepted",
+        "SB-V04-005 mandatory real canary is required before V0.4 completion"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
     },
     {
       "id": "SB-V04-003",
@@ -294,9 +295,9 @@
       "story_points": 4,
       "evidence": [
         "deep source review positive: provider recommendation is advisory and effect authority remains deterministic",
-        "blocked on V04-001 dependency before milestone acceptance"
+        "blocked on V04-001/V03 dependency chain before milestone acceptance"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V04-004",
@@ -327,12 +328,12 @@
       ],
       "story_points": 3,
       "evidence": [
-        "repair added extraction validity and obvious public-destination/redirect validation structure",
-        "public mutable register_trusted_transport still lets ordinary in-process caller self-grant trust",
-        "normal signal/evidence bridge must distinguish trusted-operational from fixture/untrusted verified receipts",
-        "DNS validation and actual socket connect still have rebinding/TOCTOU gap; real redirect path not proven"
+        "static internal transport trust, evidence classes, operational bridge gating, public destination validation and pinned-address design are materially improved",
+        "redirects now deliberately fail closed rather than overclaim support",
+        "LEAD-020 found actual HTTPS path calls stdlib HTTPSConnection with unsupported server_hostname keyword, so trusted live HTTPS retrieval fails before a successful capture",
+        "repair valid pinned-IP TLS/SNI/certificate execution and add a regression exercising the production connection-construction path"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@cbd781cab4d751b2a0626c3ce060c5a217d771e9"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V05-002",
@@ -347,13 +348,12 @@
       ],
       "story_points": 4,
       "evidence": [
-        "repair added attributed assessments and omission-detection scaffolding",
-        "public mutable register_operational_assessor still lets caller self-grant assessor authority",
-        "operational evidence refs accept fixture/untrusted verified receipts",
-        "KeywordSupportAssessor and heuristic claim extractor are useful diagnostics but not sufficient as general operational semantic factual verification",
-        "operational semantic assessor/extractor should fail closed until policy-owned accepted provider is available"
+        "caller-grantable operational assessor registration was removed; operational assessor policy ships empty/fail-closed",
+        "keyword support and heuristic claim extraction are explicitly diagnostic/test-only",
+        "operational stance requires trusted-operational evidence",
+        "operational semantic assessor/extractor remains dependent on accepted Core adaptive-provider integration and working trusted live evidence"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@cbd781cab4d751b2a0626c3ce060c5a217d771e9"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V07-001",
@@ -565,9 +565,10 @@
       "story_points": 3,
       "evidence": [
         "isolated ranking logic is directionally sound",
-        "blocked on corrected V13 metric semantics and validated operational availability inputs"
+        "V13 metric semantics prerequisite is now accepted",
+        "operational availability/authority input acceptance remains unresolved; do not promote from fixture-only ranking evidence"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V12-002",
@@ -590,19 +591,20 @@
       "type": "implementation_and_tests",
       "version_gate": "V1.3",
       "owner": "Claude-Intelligence",
-      "status": "CHANGES_REQUIRED",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-V13-001.md",
       "depends_on": [
         "SB-CTL-003"
       ],
       "story_points": 4,
       "evidence": [
-        "missing-vs-zero/raw retention/versioned platform map are useful",
-        "MetricValue lacks cumulative_snapshot/delta/gauge/rate semantics",
-        "aggregate_semantic naively sums PRESENT observations and can double-count cumulative snapshots",
-        "no-window staleness claim is inconsistent with collected_at fallback"
+        "explicit cumulative_snapshot/delta/gauge/rate semantics are carried by normalized values",
+        "supported-but-missing metrics retain known semantic kind",
+        "cumulative snapshots aggregate latest-per-series rather than summing over time; 100 then 150 does not become 250",
+        "duplicate/overlapping delta windows are excluded; valid non-overlapping deltas may sum; snapshot-to-delta derivation records provenance",
+        "lead inspected source and focused regressions; evidence remains fixture-labelled engineering evidence, not claimed real social metrics"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V13-002",
@@ -625,19 +627,20 @@
       "type": "implementation_and_tests",
       "version_gate": "V1.4",
       "owner": "Claude-Intelligence",
-      "status": "CHANGES_REQUIRED",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-V14-001.md",
       "depends_on": [
         "SB-V13-001"
       ],
       "story_points": 4,
       "evidence": [
-        "decay/contradiction/confidence model is useful",
-        "Hypothesis persistence is bot-wide and lacks persona/workspace identity",
-        "sensitive-segment exact-string blacklist is bypassable by synonymous/compound keys",
-        "fork_hypothesis incorrectly converts evidence contradicting A into positive support for arbitrary B"
+        "hypotheses carry persistent bot+persona scope and save/load/list use persona-scoped storage",
+        "confidence reports scope and evidence refs; no evidence remains unlearned rather than fabricated confidence",
+        "safe segment allowlist removes open-ended audience_interest and rejects compound sensitive-trait names",
+        "forks remain in the source persona/workspace and do not convert contradiction of A into positive support for arbitrary B",
+        "lead inspected source and mixed-persona/privacy regressions"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V14-002",
@@ -668,11 +671,12 @@
       ],
       "story_points": 4,
       "evidence": [
-        "window/safety/INCONCLUSIVE/overlap lifecycle logic is useful",
-        "baseline/treatment are arbitrary caller numeric dicts without required normalized-observation/evidence refs",
-        "learning trace does not prove measurement provenance end-to-end"
+        "baseline/treatment now bind to normalized observation IDs and semantic/kind/window compatibility is validated",
+        "learning refs trace exact baseline/treatment observations and missing/incompatible data remains INCONCLUSIVE",
+        "remaining isolation defect: persistence/read APIs are bot-wide (_dir/load/load_all) even though Experiment carries persona",
+        "normal production experiment readers/writers must become authoritative bot+persona scoped; raw bot-wide access may remain explicit admin/internal only"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V15-002",
@@ -702,11 +706,10 @@
       ],
       "story_points": 4,
       "evidence": [
-        "repair/no-silent-truncation/novelty scaffolding is useful",
-        "fact Segment only requires non-empty binding_ref; does not validate accepted claim-support status",
-        "content_intel_history records omit persona/workspace and novelty is bot-wide by platform"
+        "latest repair is submitted and worker-local suite is green",
+        "LEAD-020 did not independently complete source-level acceptance audit; prior fact-binding/persona-history findings stay open until verified"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V16-002",
@@ -737,11 +740,10 @@
       ],
       "story_points": 4,
       "evidence": [
-        "read/effect separation and no-public-effect wall are good",
-        "source=read-only-evidence is caller-asserted rather than receipt-backed",
-        "community memory/themes are bot-wide; theme evidence lacks persona/workspace scope"
+        "latest receipt/persona-scope repair is submitted and no-public-effect wall remains a positive invariant",
+        "LEAD-020 has not completed source-level acceptance audit of the latest repair; keep CHANGES_REQUIRED until evidence/reader boundaries are independently verified"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V17-002",
@@ -810,11 +812,11 @@
       ],
       "story_points": 4,
       "evidence": [
-        "missing/no-spend/allocation math is useful",
-        "OpportunityInput accepts arbitrary caller performance/audience confidence/opaque refs, allowing fabricated numbers to drive recommendations",
-        "must construct/validate from typed accepted metrics/experiments/audience artifacts with freshness/provenance checks"
+        "latest typed evidence/persona repair is submitted at feb30f4c and worker reports 185 local tests",
+        "V13/V14 prerequisites are now accepted, but V15 remains CHANGES_REQUIRED",
+        "LEAD-020 did not complete source-level acceptance audit of the latest growth-evaluator repair; do not promote from worker claim/local tests alone"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d"
     },
     {
       "id": "SB-V20-003",
@@ -865,9 +867,10 @@
       ],
       "story_points": 3,
       "evidence": [
-        "not accept-ready: V20-001 not accepted/submitted; V20-002 and upstream V13/V14 require repair"
+        "V13/V14 are now accepted, but V20-001 is not submitted/accepted, V15 remains CHANGES_REQUIRED, and latest V20-002 repair is not independently accepted",
+        "Mac-QA V2 acceptance harness is useful prep only and cannot substitute for required integrated source/evidence traceability"
       ],
-      "last_verified_ref": "social-bots/lead-reviews/LEAD-014_2026-09-20T2054.md"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-V21-001",
@@ -1092,17 +1095,18 @@
       "name": "Social Bots CI verification workflow",
       "type": "engineering_control",
       "version_gate": "engineering-control",
-      "owner": "Claude-Core",
-      "status": "READY",
+      "owner": "Claude-Mac-QA",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-CTL-006.md",
       "depends_on": [
         "SB-CTL-003"
       ],
       "story_points": 2,
       "evidence": [
-        "prepared to replace worker-local-only test evidence with GitHub-hosted verification"
+        "workflow independently inspected: contents read-only, no secrets/model/deploy/public-effect path, runs registry parse + validator + unit tests",
+        "GitHub-hosted social-bots-ci run 35555060783 completed success at Mac-QA head ede387e256be19d6aaaf1e6c96151d7218221d33"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-mac-qa-control@ede387e256be19d6aaaf1e6c96151d7218221d33"
     },
     {
       "id": "SB-CTL-007",
@@ -1185,9 +1189,9 @@
       ],
       "story_points": 5,
       "evidence": [
-        "authorized Windows Claude environment now available; actual host proof not yet run"
+        "authorized Windows Claude environment exists but is owner/lead standby during the current heartbeat-validation phase; actual Windows/WSL host proof remains unaccepted"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-CTL-012",
@@ -1195,16 +1199,18 @@
       "type": "engineering_control",
       "version_gate": "engineering-control",
       "owner": "Claude-Mac-QA",
-      "status": "READY",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-CTL-012.md",
       "depends_on": [
         "SB-CTL-003"
       ],
       "story_points": 3,
       "evidence": [
-        "lead-prepared non-overlapping Mac QA/control artifact"
+        "lead inspected stdlib-only validator and focused tests",
+        "structural graph defects hard-fail; drift/status contradictions remain visible warnings; V2 engineering readiness is kept separate from operational promotion",
+        "validator is read-only and Mac-QA reports 18 focused regressions"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-mac-qa-control@ede387e256be19d6aaaf1e6c96151d7218221d33"
     },
     {
       "id": "SB-V04-005",
@@ -1221,9 +1227,11 @@
       ],
       "story_points": 3,
       "evidence": [
-        "owner hard rule: V0.4 cannot complete without one real non-fixture adaptive example"
+        "owner hard rule: V0.4 cannot complete without one real non-fixture adaptive example",
+        "owner has explicitly authorized one bounded existing-subscription canary call at zero additional spend; Anthropic API/PAYG is not authorized",
+        "execution remains gated by valid heartbeat handoff and an actually authenticated Claude Code subscription host"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-020_2026-09-20T2251.md"
     },
     {
       "id": "SB-EVD-002",
