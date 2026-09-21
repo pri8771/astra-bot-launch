@@ -21,6 +21,23 @@
     "no_spend": {
       "pass": true,
       "spend_authorized": false
+    },
+    "persona_distinguishable": {
+      "allocation_personas": [
+        "cultural-1",
+        "general-1"
+      ],
+      "pass": true
+    },
+    "stale_evidence_not_growth": {
+      "growth": [],
+      "learning_count": 1,
+      "pass": true
+    },
+    "typed_evidence_vs_test_only": {
+      "evidence_growth_count": 1,
+      "pass": true,
+      "test_only_growth": []
     }
   },
   "kind": "fixture-evidence",
