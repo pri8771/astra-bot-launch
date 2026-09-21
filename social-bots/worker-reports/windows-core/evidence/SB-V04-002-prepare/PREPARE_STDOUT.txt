@@ -1,0 +1,14 @@
+{
+  "prepared_matrix": "worker-reports/windows-core/evidence/SB-V04-002-prepare/PREPARED_MATRIX.json",
+  "prompts_dir": "worker-reports/windows-core/evidence/SB-V04-002-prepare/prompts",
+  "status": "worker-reports/windows-core/evidence/SB-V04-002-prepare/PREPARE_STATUS.json",
+  "planned_call_count": 5,
+  "all_isolated": true,
+  "live_execution_permitted": false,
+  "live_execution_performed": false,
+  "acceptance_eligible": false,
+  "engineering_only_reasons": [
+    "snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence"
+  ]
+}

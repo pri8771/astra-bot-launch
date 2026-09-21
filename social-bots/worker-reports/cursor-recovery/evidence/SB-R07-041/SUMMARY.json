@@ -1,0 +1,21 @@
+{
+  "artifact": "SB-R07-041",
+  "source_sha": "21cc2e7a65750d20dc609b9e9517f920157389a2",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "inherited_baseline": "a73b7b58de8f3669795b81637bff55247d67943c",
+  "canonical_seen_sha": "13e1846c7ec337165722cbe090866dab90b3dc00",
+  "lead_review_seen": "LEAD-041",
+  "defects_closed": [
+    "rebinding _REAL_CLI_RUNNER alias no longer un-guards real ClaudeCodeReasoningProvider spawn",
+    "bin/run_worker.py now refuses live modes at entrypoint (exit 6) without manifest"
+  ],
+  "focused_command": "python3 -m unittest tests.test_review_hardening.SpawnPointGuardTest tests.test_review_hardening.LiveRouteGuardTest tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest -v",
+  "focused_result": "15 passed",
+  "full_suite_command": "python3 -m unittest discover -s tests -v",
+  "full_suite_result": "316 passed, 1 skipped",
+  "next_artifact": "SB-R07-044",
+  "recorded_at": "2026-09-21T19:23:46Z"
+}

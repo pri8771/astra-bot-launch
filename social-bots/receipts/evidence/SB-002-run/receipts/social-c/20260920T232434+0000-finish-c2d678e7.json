@@ -1,0 +1,23 @@
+{
+  "detail": {
+    "candidate_succeeded": false,
+    "chosen_action": "NO_ACTION",
+    "cycle": 1,
+    "outcome": "no_action",
+    "persona": "social-c",
+    "reconciled": {
+      "queue_items": 0,
+      "safe": true,
+      "unauthorized_published": 0
+    },
+    "verified": true,
+    "withheld": false
+  },
+  "kind": "finish",
+  "lease_id": "1275e700734f42448507c3e4ae000b42",
+  "namespace": "social-c",
+  "receipt_id": "20260920T232434+0000-finish-c2d678e7",
+  "recorded_at": "2026-09-20T23:24:34+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-vm-2114-88833a"
+}

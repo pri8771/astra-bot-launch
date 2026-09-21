@@ -1,0 +1,10 @@
+test_manifest_refuse_overwrite (tests.test_dry_run_runner.DryRunRunnerTest.test_manifest_refuse_overwrite) ... ok
+test_no_pending_signal_yields_no_action_still_manifests (tests.test_dry_run_runner.DryRunRunnerTest.test_no_pending_signal_yields_no_action_still_manifests) ... ok
+test_refuses_public_effect_authority (tests.test_dry_run_runner.DryRunRunnerTest.test_refuses_public_effect_authority) ... ok
+test_three_bot_runner_writes_immutable_manifests (tests.test_dry_run_runner.DryRunRunnerTest.test_three_bot_runner_writes_immutable_manifests) ... ok
+test_zero_public_authority_defaults (tests.test_dry_run_runner.DryRunRunnerTest.test_zero_public_authority_defaults) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.034s
+
+OK

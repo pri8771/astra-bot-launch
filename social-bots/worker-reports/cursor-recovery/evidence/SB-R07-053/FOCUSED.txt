@@ -1,0 +1,16 @@
+test_accepted_binding_passes (tests.test_cultural_review.CulturalReviewBindingTest.test_accepted_binding_passes) ... ok
+test_candidate_id_mismatch_fails (tests.test_cultural_review.CulturalReviewBindingTest.test_candidate_id_mismatch_fails) ... ok
+test_decision_cycle_still_withholds_without_binding (tests.test_cultural_review.CulturalReviewBindingTest.test_decision_cycle_still_withholds_without_binding) ... ok
+test_disguised_advertising_disallowed_invariant (tests.test_cultural_review.CulturalReviewBindingTest.test_disguised_advertising_disallowed_invariant) ... ok
+test_evidence_refs_must_cover_source_refs (tests.test_cultural_review.CulturalReviewBindingTest.test_evidence_refs_must_cover_source_refs) ... ok
+test_failed_status_withholds (tests.test_cultural_review.CulturalReviewBindingTest.test_failed_status_withholds) ... ok
+test_general_persona_not_required (tests.test_cultural_review.CulturalReviewBindingTest.test_general_persona_not_required) ... ok
+test_missing_binding_fails_closed (tests.test_cultural_review.CulturalReviewBindingTest.test_missing_binding_fails_closed) ... ok
+test_no_named_reviewer_on_persona_fails_closed (tests.test_cultural_review.CulturalReviewBindingTest.test_no_named_reviewer_on_persona_fails_closed) ... ok
+test_reviewer_mismatch_fails (tests.test_cultural_review.CulturalReviewBindingTest.test_reviewer_mismatch_fails) ... ok
+test_unknown_status_withholds (tests.test_cultural_review.CulturalReviewBindingTest.test_unknown_status_withholds) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.007s
+
+OK

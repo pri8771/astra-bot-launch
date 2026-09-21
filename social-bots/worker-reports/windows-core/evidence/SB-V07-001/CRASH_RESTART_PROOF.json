@@ -1,0 +1,118 @@
+{
+  "all_pass": true,
+  "artifact": "SB-V07-001",
+  "audit": {
+    "claims": {
+      "claimed": 1,
+      "error": 0,
+      "halted_by_direction": 0,
+      "no_overlap": 1,
+      "none_available": 0
+    },
+    "complete": 2,
+    "distinct_sessions": 3,
+    "incomplete": 1,
+    "live_model_calls": 0,
+    "live_routes_refused": 0,
+    "note": "one bounded session per invocation; recurring liveness is the sequence of independently scheduled invocations, not this count on its own",
+    "receipts_without_a_route_decision": 0,
+    "total_invocations": 3
+  },
+  "checks": {
+    "audit_reports_the_crash": true,
+    "killed_invocation_claimed_no_success": true,
+    "killed_invocation_emitted_its_one_heartbeat": true,
+    "killed_invocation_left_an_incomplete_receipt": true,
+    "next_firing_did_not_double_run_while_the_dead_lease_was_live": true,
+    "no_duplicate_session_heartbeats": true,
+    "no_live_model_call": true,
+    "restart_after_lease_expiry_completed": true,
+    "restart_wrote_a_new_invocation_id": true
+  },
+  "crash": {
+    "attempt": 14,
+    "delay_seconds": 0.0848,
+    "home": "/tmp/worker-once-crash-8p3fulfn/attempt-014/home",
+    "lease_left_behind": "cycle:social-a.lease.json",
+    "reports": "/tmp/worker-once-crash-8p3fulfn/attempt-014/reports",
+    "returncode": -9,
+    "session_id": "s-crash-014",
+    "signal": 9,
+    "stage": "mid_unit_lease_held"
+  },
+  "crash_stage_meaning": "the process died inside the bounded unit with the task lease held",
+  "double_run_check_applicable": true,
+  "generated_at": "2026-09-21T18:29:21Z",
+  "heartbeat_sessions": [
+    "s-crash-014",
+    "s-immediately-after-crash",
+    "s-restart-after-crash"
+  ],
+  "host": {
+    "platform": "linux",
+    "python": "3.11.15"
+  },
+  "immediately_after_crash": {
+    "applies_to_stage": "mid_unit_lease_held",
+    "exit_code": 3,
+    "meaning": "3 = benign no-overlap: the SIGKILLed worker's lease is still within its TTL, so this firing correctly declined to run the same task twice. 0 is correct instead when the kill landed before any lease was acquired.",
+    "session_id": "s-immediately-after-crash",
+    "stderr_tail": "",
+    "stdout_tail": "{\n  \"session_id\": \"s-immediately-after-crash\",\n  \"invocation_id\": \"inv-20260921T182716Z-100cf821\",\n  \"claim_outcome\": \"no_overlap\",\n  \"candidates_tried\": [\n    {\n      \"bot\": \"social-a\",\n      \"task_id\": \"cycle:social-a\",\n      \"result\": \"lease_held\",\n      \"holder\": \"w-vm-8610-b328e3\"\n    }\n  ],\n  \"exit_code\": 3\n}"
+  },
+  "killed_receipt": {
+    "branch": "crash-proof",
+    "candidates_tried": [],
+    "canonical_sha": "7e9b37a9b1df8f5eed14c5904b681df378e12109",
+    "claim_outcome": null,
+    "claimed_bot": null,
+    "claimed_task": null,
+    "direction_id": "LEAD-039",
+    "direction_source": "state-json-fallback",
+    "duration_seconds": null,
+    "error": null,
+    "exit_code": null,
+    "finished_at": null,
+    "heartbeat_emitted": true,
+    "invocation_id": "inv-20260921T182715Z-97b0f423",
+    "lane": "windows-core",
+    "live_model_call": false,
+    "reasoning_route": {
+      "grant_manifest_id": null,
+      "live_route_requested": false,
+      "mode": "baseline",
+      "permitted": true,
+      "reason": "reasoning mode 'baseline' is not a live model route"
+    },
+    "runtime": {
+      "host": "vm",
+      "pid": 8610,
+      "platform": "Linux",
+      "platform_release": "6.18.44-fc-v37",
+      "python": "3.11.15"
+    },
+    "scheduler": "unknown",
+    "schema_version": 1,
+    "session_id": "s-crash-014",
+    "started_at": "2026-09-21T18:27:15Z",
+    "status": "incomplete",
+    "work_outcome": null,
+    "work_summary": {}
+  },
+  "limitations": [
+    "single POSIX host, single filesystem; not a power-loss or network-filesystem test",
+    "the kill point is timing-dependent; when the strongest stage reached is not mid_unit_lease_held, the no-double-run check is reported as not applicable rather than as a pass",
+    "engineering demonstration of crash behaviour only; NOT SB-V07-002 operational recurring-liveness proof on an owner-authorized host"
+  ],
+  "method": "a real worker_once.py OS process was SIGKILLed mid-invocation; no test hook exists in production code and the kill delay was swept until one landed inside the work window",
+  "restart": {
+    "claim_outcome": "claimed",
+    "exit_code": 0,
+    "invocation_id": "inv-20260921T182921Z-827f3fcf",
+    "session_id": "s-restart-after-crash",
+    "stderr_tail": "",
+    "stdout_tail": "{\n  \"session_id\": \"s-restart-after-crash\",\n  \"invocation_id\": \"inv-20260921T182921Z-827f3fcf\",\n  \"claim_outcome\": \"claimed\",\n  \"claimed_task\": \"cycle:social-a\",\n  \"work_outcome\": \"no_action\",\n  \"heartbeat_emitted\": true,\n  \"live_model_call\": false,\n  \"reasoning_mode\": \"baseline\",\n  \"exit_code\": 0\n}",
+    "waited_seconds_for_lease_expiry": 125
+  },
+  "strongest_stage_reached": "mid_unit_lease_held"
+}

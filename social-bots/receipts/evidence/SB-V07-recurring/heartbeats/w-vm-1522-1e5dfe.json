@@ -1,0 +1,14 @@
+{
+  "beats": 5,
+  "current_task_id": "cycle:social-c",
+  "heartbeat_at": "2026-09-21T07:14:46+00:00",
+  "host_alias": "local",
+  "last_receipt": "20260921T071446+0000-finish-88ef075b.json",
+  "lease_id": "f841029116d0445b9331216cf77cca61",
+  "next_safe_action": "release_lease",
+  "pid": 1522,
+  "source_ref": "social-bots/runtime",
+  "started_at": "2026-09-21T07:14:46+00:00",
+  "status": "done",
+  "worker_id": "w-vm-1522-1e5dfe"
+}

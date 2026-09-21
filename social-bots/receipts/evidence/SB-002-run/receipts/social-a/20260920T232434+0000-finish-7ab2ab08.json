@@ -1,0 +1,19 @@
+{
+  "detail": {
+    "candidate_succeeded": false,
+    "chosen_action": "CREATE_CANDIDATE",
+    "cycle": 1,
+    "outcome": "withheld",
+    "persona": "social-a",
+    "reconciled": null,
+    "verified": true,
+    "withheld": true
+  },
+  "kind": "finish",
+  "lease_id": "bc584f5d998f4485899459cdce8df343",
+  "namespace": "social-a",
+  "receipt_id": "20260920T232434+0000-finish-7ab2ab08",
+  "recorded_at": "2026-09-20T23:24:34+00:00",
+  "task_id": "cycle:social-a",
+  "worker_id": "w-vm-2114-33630f"
+}

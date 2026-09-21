@@ -1,0 +1,14 @@
+test_no_action_can_win (tests.test_reasoning_contextual.ContextualDivergenceTest.test_no_action_can_win) ... ok
+test_output_passes_schema_validation (tests.test_reasoning_contextual.ContextualDivergenceTest.test_output_passes_schema_validation) ... ok
+test_research_more_can_win (tests.test_reasoning_contextual.ContextualDivergenceTest.test_research_more_can_win) ... ok
+test_same_persona_different_evidence_changes_ranking (tests.test_reasoning_contextual.ContextualDivergenceTest.test_same_persona_different_evidence_changes_ranking) ... ok
+test_state_affects_estimates (tests.test_reasoning_contextual.ContextualDivergenceTest.test_state_affects_estimates) ... ok
+test_three_persona_divergence_on_same_evidence (tests.test_reasoning_contextual.ContextualDivergenceTest.test_three_persona_divergence_on_same_evidence) ... ok
+test_contextual_fails_closed_when_adaptive_required (tests.test_reasoning_contextual.ContextualEngineTest.test_contextual_fails_closed_when_adaptive_required) ... ok
+test_engine_research_more_on_thin_evidence_no_effect (tests.test_reasoning_contextual.ContextualEngineTest.test_engine_research_more_on_thin_evidence_no_effect) ... ok
+test_engine_uses_contextual_and_creates_on_strong_evidence (tests.test_reasoning_contextual.ContextualEngineTest.test_engine_uses_contextual_and_creates_on_strong_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.020s
+
+OK

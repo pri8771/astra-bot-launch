@@ -1,0 +1,36 @@
+{
+  "artifact_id": "SB-R07-061",
+  "source_code_ref": "3e7bcc740ff14d667f5913f06b7db8b96a7bc183",
+  "home": "/tmp/sbots-dryrun-7dwzpwqb",
+  "manifest_dir": "worker-reports/cursor-recovery/evidence/SB-R07-061/manifests",
+  "all_passed": true,
+  "any_published": false,
+  "any_publish_authorized": false,
+  "model_calls_used_total": 0,
+  "runs": [
+    {
+      "bot": "social-a",
+      "persona": "social-a",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-9a84810616e0",
+      "public_effect_budget": 0
+    },
+    {
+      "bot": "social-b",
+      "persona": "social-b",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-6785ba3d0322",
+      "public_effect_budget": 0
+    },
+    {
+      "bot": "social-c",
+      "persona": "social-c",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-71af68b9825b",
+      "public_effect_budget": 0
+    }
+  ]
+}

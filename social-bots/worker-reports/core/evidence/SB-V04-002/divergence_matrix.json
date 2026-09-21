@@ -1,0 +1,58 @@
+{
+  "general_strong": {
+    "recommended": "CREATE_CANDIDATE",
+    "scores": {
+      "NO_ACTION": 0.832,
+      "RESEARCH_MORE": 1.3315,
+      "CREATE_CANDIDATE": 2.5475
+    }
+  },
+  "general_thin": {
+    "recommended": "RESEARCH_MORE",
+    "scores": {
+      "NO_ACTION": 0.832,
+      "RESEARCH_MORE": 2.2812,
+      "CREATE_CANDIDATE": 1.2638
+    }
+  },
+  "cultural_strong_sourced": {
+    "recommended": "CREATE_CANDIDATE",
+    "scores": {
+      "NO_ACTION": 0.832,
+      "RESEARCH_MORE": 1.3315,
+      "CREATE_CANDIDATE": 2.3075
+    }
+  },
+  "cultural_operator_nosource": {
+    "recommended": "RESEARCH_MORE",
+    "scores": {
+      "NO_ACTION": 1.057,
+      "RESEARCH_MORE": 2.1353,
+      "CREATE_CANDIDATE": 0.9575
+    }
+  },
+  "general_dup_thin_NOACTION": {
+    "recommended": "NO_ACTION",
+    "scores": {
+      "NO_ACTION": 1.642,
+      "RESEARCH_MORE": 1.5812,
+      "CREATE_CANDIDATE": 0.5638
+    }
+  },
+  "general_strong_hyp0": {
+    "recommended": "CREATE_CANDIDATE",
+    "scores": {
+      "NO_ACTION": 0.832,
+      "RESEARCH_MORE": 1.3315,
+      "CREATE_CANDIDATE": 2.5475
+    }
+  },
+  "general_strong_hyp5": {
+    "recommended": "CREATE_CANDIDATE",
+    "scores": {
+      "NO_ACTION": 0.832,
+      "RESEARCH_MORE": 1.3315,
+      "CREATE_CANDIDATE": 2.2475
+    }
+  }
+}

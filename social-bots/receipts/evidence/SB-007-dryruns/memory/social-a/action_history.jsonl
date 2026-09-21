@@ -1,0 +1,1 @@
+{"action": "CREATE_CANDIDATE_WITHHELD", "content_id": "c-79a113116532", "persona": "social-a", "reasons": [{"char_limit": 280, "gate": "platform_limit", "platform": "x"}], "recorded_at": "2026-09-21T07:14:46+00:00"}

@@ -1,0 +1,48 @@
+test_cli_help_and_import (tests.test_divergence_freeze.FreezeCliTest.test_cli_help_and_import) ... ok
+test_freeze_writes_immutable_bundle_with_isolation (tests.test_divergence_freeze.FreezeWriterTest.test_freeze_writes_immutable_bundle_with_isolation) ... ok
+test_refuses_identical_evidence (tests.test_divergence_freeze.FreezeWriterTest.test_refuses_identical_evidence) ... ok
+test_refuses_non_empty_out_dir (tests.test_divergence_freeze.FreezeWriterTest.test_refuses_non_empty_out_dir) ... ok
+test_refuses_non_operational_receipt (tests.test_divergence_freeze.FreezeWriterTest.test_refuses_non_operational_receipt) ... ok
+test_written_matrix_re_verifies (tests.test_divergence_freeze.FreezeWriterTest.test_written_matrix_re_verifies) ... ok
+test_live_capture_freeze (tests.test_divergence_freeze.LiveFreezeNetworkTest.test_live_capture_freeze) ... skipped 'set SBOTS_LIVE_FREEZE_TEST=1 to exercise real HTTPS capture'
+test_arbitrary_live_fetcher_is_not_operational_live_evidence (tests.test_collector.CollectorTest.test_arbitrary_live_fetcher_is_not_operational_live_evidence)
+An ad-hoc object declaring mode='live' must NOT be trusted merely ... ok
+test_builtin_urllib_fetcher_is_trusted (tests.test_collector.CollectorTest.test_builtin_urllib_fetcher_is_trusted) ... ok
+test_caller_cannot_declare_live_capture_on_a_fixture (tests.test_collector.CollectorTest.test_caller_cannot_declare_live_capture_on_a_fixture) ... ok
+test_changed_content_changes_hash (tests.test_collector.CollectorTest.test_changed_content_changes_hash) ... ok
+test_empty_and_partial_states (tests.test_collector.CollectorTest.test_empty_and_partial_states) ... ok
+test_extraction_failure_is_not_usable_support (tests.test_collector.CollectorTest.test_extraction_failure_is_not_usable_support) ... ok
+test_extraction_not_attempted_without_extractor (tests.test_collector.CollectorTest.test_extraction_not_attempted_without_extractor) ... ok
+test_extraction_success_is_usable (tests.test_collector.CollectorTest.test_extraction_success_is_usable) ... ok
+test_failed_retrieval_not_verified (tests.test_collector.CollectorTest.test_failed_retrieval_not_verified) ... ok
+test_invalid_fetcher_mode_rejected (tests.test_collector.CollectorTest.test_invalid_fetcher_mode_rejected) ... ok
+test_no_public_registration_api (tests.test_collector.CollectorTest.test_no_public_registration_api) ... ok
+test_no_secrets_in_receipt (tests.test_collector.CollectorTest.test_no_secrets_in_receipt) ... ok
+test_operational_bridge_rejects_fixture_and_untrusted (tests.test_collector.CollectorTest.test_operational_bridge_rejects_fixture_and_untrusted) ... ok
+test_persist_writes_separate_receipts (tests.test_collector.CollectorTest.test_persist_writes_separate_receipts) ... ok
+test_production_http_path_pins_ip_no_tls (tests.test_collector.CollectorTest.test_production_http_path_pins_ip_no_tls)
+The plain-HTTP production path also connects to the pinned IP and ... ok
+test_production_https_path_fails_closed_on_redirect (tests.test_collector.CollectorTest.test_production_https_path_fails_closed_on_redirect)
+A 3xx over the real construction path is a failed retrieval, never ... ok
+test_production_https_path_pins_ip_and_uses_original_host (tests.test_collector.CollectorTest.test_production_https_path_pins_ip_and_uses_original_host)
+Exercise the real ``_perform`` HTTPS construction end-to-end with only ... ok
+test_receipt_minimum_fields (tests.test_collector.CollectorTest.test_receipt_minimum_fields) ... ok
+test_resolve_and_validate_pins_public_ip (tests.test_collector.CollectorTest.test_resolve_and_validate_pins_public_ip) ... ok
+test_resolve_and_validate_rejects_private (tests.test_collector.CollectorTest.test_resolve_and_validate_rejects_private) ... ok
+test_same_source_twice_separate_receipts_stable_hash (tests.test_collector.CollectorTest.test_same_source_twice_separate_receipts_stable_hash) ... ok
+test_to_signal_requires_verified_capture (tests.test_collector.CollectorTest.test_to_signal_requires_verified_capture) ... ok
+test_trusted_operational_evidence_predicate (tests.test_collector.CollectorTest.test_trusted_operational_evidence_predicate) ... ok
+test_urllib_fetcher_refuses_unsafe_initial_destination (tests.test_collector.CollectorTest.test_urllib_fetcher_refuses_unsafe_initial_destination) ... ok
+test_validate_public_url_accepts_public_literal_ip (tests.test_collector.CollectorTest.test_validate_public_url_accepts_public_literal_ip) ... ok
+test_validate_public_url_rejects_unsafe_destinations (tests.test_collector.CollectorTest.test_validate_public_url_rejects_unsafe_destinations) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.024s
+
+OK (skipped=1)
+test_live_capture_freeze (tests.test_divergence_freeze.LiveFreezeNetworkTest.test_live_capture_freeze) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.431s
+
+OK

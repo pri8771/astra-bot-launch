@@ -1,0 +1,28 @@
+{
+  "artifact": "SB-R07-071",
+  "source_sha": "0c74336b793189b4ba32d1f1229de0fb4d3e5ebb",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "flock_available": true,
+  "focused_command": "python3 -m unittest tests.test_v07_session_heartbeat -v",
+  "focused_result": "16 passed",
+  "race_command": "python3 -m unittest tests.test_v07_session_heartbeat.AtomicCrossProcessEmitTest -v",
+  "race_result": "2 passed (8 processes x 20 rounds, exactly one winner each round)",
+  "full_suite_command": "python3 -m unittest discover -s tests -v",
+  "full_suite_result": "314 passed, 1 skipped",
+  "files_changed": [
+    "social-bots/runtime/session_heartbeat.py",
+    "social-bots/tests/test_v07_session_heartbeat.py",
+    "social-bots/worker-reports/cursor-recovery/SB-R07-071.md",
+    "social-bots/worker-reports/cursor-recovery/CURRENT_PROGRESS.md",
+    "social-bots/worker-reports/cursor-recovery/evidence/SB-R07-071/"
+  ],
+  "limitations": [
+    "Atomicity is per-host/single-filesystem via fcntl.flock (POSIX). Cross-host uniqueness is not claimed.",
+    "FLOCK_AVAILABLE is False on platforms without fcntl; strong atomicity must be asserted by the host before LIVE V0.7 acceptance."
+  ],
+  "next_artifact": "SB-R07-041",
+  "recorded_at": "2026-09-21T19:18:26Z"
+}

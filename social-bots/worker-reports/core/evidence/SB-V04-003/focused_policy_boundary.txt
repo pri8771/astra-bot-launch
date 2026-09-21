@@ -1,0 +1,12 @@
+test_authority_smuggling_payload_blocked (tests.test_policy_boundary.PolicyBoundaryTest.test_authority_smuggling_payload_blocked) ... ok
+test_create_candidate_still_honors_review_and_authority_gates (tests.test_policy_boundary.PolicyBoundaryTest.test_create_candidate_still_honors_review_and_authority_gates) ... ok
+test_invalid_numeric_fields_rejected (tests.test_policy_boundary.PolicyBoundaryTest.test_invalid_numeric_fields_rejected) ... ok
+test_publish_action_is_blocked (tests.test_policy_boundary.PolicyBoundaryTest.test_publish_action_is_blocked) ... ok
+test_recommended_action_cannot_override_policy_ranking (tests.test_policy_boundary.PolicyBoundaryTest.test_recommended_action_cannot_override_policy_ranking) ... ok
+test_record_distinguishes_proposal_from_allowed_action (tests.test_policy_boundary.PolicyBoundaryTest.test_record_distinguishes_proposal_from_allowed_action) ... ok
+test_spend_and_message_actions_blocked (tests.test_policy_boundary.PolicyBoundaryTest.test_spend_and_message_actions_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.043s
+
+OK

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SB-V07-001 Task Scheduler v1.2 definition for bin/worker_once.py.
+
+  This file is a TEMPLATE, not a task you register directly. Every
+  double-underscore placeholder below is substituted by
+  Install-WorkerOnceTask.ps1 before Register-ScheduledTask sees it.
+  Registering the raw template, with a literal, unsubstituted placeholder
+  still in it, will fail or run a broken command line; always go through
+  the installer.
+
+  Registering this task proves nothing on its own. Whether the worker
+  actually ran is only visible in social-bots/worker-reports/<lane>/
+  HEARTBEAT_LOG.jsonl and $SBOTS_HOME/invocations/index.jsonl; see
+  ../README.md.
+-->
+<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Description>Runs one bounded social-bots worker unit for lane __LANE__ (branch __BRANCH__). Never a daemon: each firing is a single bounded invocation of worker_once.py that exits.</Description>
+    <URI>\SocialBotsWorkerOnce</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-01-01T00:00:00</StartBoundary>
+      <Enabled>true</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+      <Repetition>
+        <Interval>PT__INTERVAL_MINUTES__M</Interval>
+        <Duration>P1D</Duration>
+        <StopAtDurationEnd>false</StopAtDurationEnd>
+      </Repetition>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <UserId>__USER_ID__</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>__PYTHON_EXE__</Command>
+      <!-- Task Scheduler XML cannot set environment variables, so the runtime
+           data root is passed as a home argument rather than as SBOTS_HOME
+           (which is how the systemd and launchd units supply it). Paths are
+           quoted so a checkout under a directory with spaces still works. -->
+      <Arguments>bin\worker_once.py --lane __LANE__ --branch __BRANCH__ --repo-root "__REPO_ROOT__" --home "__SBOTS_HOME__"</Arguments>
+      <WorkingDirectory>__REPO_ROOT__\social-bots</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

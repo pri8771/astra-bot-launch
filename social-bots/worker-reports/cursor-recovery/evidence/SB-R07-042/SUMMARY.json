@@ -1,0 +1,20 @@
+{
+  "artifact": "SB-R07-042",
+  "requested_status": "SUBMITTED",
+  "source_sha": "22d6234f560e0dce26e6503d32c51058cb7ce0be",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "live_network_capture_performed": true,
+  "acceptance_eligible": true,
+  "isolation_all_isolated": true,
+  "e1_url": "https://example.com/",
+  "e2_url": "https://www.rfc-editor.org/rfc/rfc8259.txt",
+  "e1_bytes": 559,
+  "e2_bytes": 28360,
+  "focused_result": "32 passed, 1 skipped (+ 1 live network pass)",
+  "full_suite_result": "362 passed, 2 skipped",
+  "freeze_dir": "worker-reports/cursor-recovery/evidence/SB-R07-042/freeze/",
+  "next_artifact": "SB-R07-051",
+  "recorded_at": "2026-09-21T19:38:48Z"
+}

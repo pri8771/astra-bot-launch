@@ -1,0 +1,11 @@
+{
+  "baseline_default": "candidate_created",
+  "adaptive_required_baseline": "blocked_reasoning_unavailable",
+  "model_no_callable": "blocked_reasoning_unavailable",
+  "model_authority_smuggling": {
+    "outcome": "blocked_reasoning_unavailable",
+    "reason": "provider output failed schema validation: CREATE_CANDIDATE: payload attempts to smuggle authority keys ['can_public_post']; CREATE_CANDIDATE: payload has unrecognized keys ['can_public_post']",
+    "consumed": null
+  },
+  "valid_adaptive_model": "no_action"
+}

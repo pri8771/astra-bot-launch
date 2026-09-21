@@ -1,0 +1,2 @@
+{"kind": "start", "receipt_id": "20260921T071446+0000-start-605ec72b", "recorded_at": "2026-09-21T07:14:46+00:00", "task_id": "cycle:social-c", "worker_id": "w-vm-1522-1e5dfe"}
+{"kind": "finish", "receipt_id": "20260921T071446+0000-finish-88ef075b", "recorded_at": "2026-09-21T07:14:46+00:00", "task_id": "cycle:social-c", "worker_id": "w-vm-1522-1e5dfe"}

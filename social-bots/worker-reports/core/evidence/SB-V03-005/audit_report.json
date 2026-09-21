@@ -1,0 +1,76 @@
+{
+  "bot": "social-a",
+  "personas": [
+    "social-a",
+    "cultural-primandir-atman"
+  ],
+  "stores": {
+    "content_history": {
+      "total": 1,
+      "per_persona": {
+        "social-a": 1,
+        "cultural-primandir-atman": 0
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    },
+    "publish_queue": {
+      "total": 1,
+      "per_persona": {
+        "social-a": 1,
+        "cultural-primandir-atman": 0
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    },
+    "experiments": {
+      "total": 1,
+      "per_persona": {
+        "social-a": 1,
+        "cultural-primandir-atman": 0
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    },
+    "analytics_events": {
+      "total": 3,
+      "per_persona": {
+        "social-a": 2,
+        "cultural-primandir-atman": 1
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    },
+    "action_history": {
+      "total": 2,
+      "per_persona": {
+        "social-a": 1,
+        "cultural-primandir-atman": 1
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    },
+    "decisions": {
+      "total": 2,
+      "per_persona": {
+        "social-a": 1,
+        "cultural-primandir-atman": 1
+      },
+      "unlabeled": 0,
+      "unknown_persona": [],
+      "partition_covers_all": true,
+      "clean": true
+    }
+  },
+  "clean": true
+}

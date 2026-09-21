@@ -1,0 +1,663 @@
+test_arbitrary_live_fetcher_is_not_operational_live_evidence (test_collector.CollectorTest.test_arbitrary_live_fetcher_is_not_operational_live_evidence)
+An ad-hoc object declaring mode='live' must NOT be trusted merely ... ok
+test_builtin_urllib_fetcher_is_trusted (test_collector.CollectorTest.test_builtin_urllib_fetcher_is_trusted) ... ok
+test_caller_cannot_declare_live_capture_on_a_fixture (test_collector.CollectorTest.test_caller_cannot_declare_live_capture_on_a_fixture) ... ok
+test_changed_content_changes_hash (test_collector.CollectorTest.test_changed_content_changes_hash) ... ok
+test_empty_and_partial_states (test_collector.CollectorTest.test_empty_and_partial_states) ... ok
+test_extraction_failure_is_not_usable_support (test_collector.CollectorTest.test_extraction_failure_is_not_usable_support) ... ok
+test_extraction_not_attempted_without_extractor (test_collector.CollectorTest.test_extraction_not_attempted_without_extractor) ... ok
+test_extraction_success_is_usable (test_collector.CollectorTest.test_extraction_success_is_usable) ... ok
+test_failed_retrieval_not_verified (test_collector.CollectorTest.test_failed_retrieval_not_verified) ... ok
+test_invalid_fetcher_mode_rejected (test_collector.CollectorTest.test_invalid_fetcher_mode_rejected) ... ok
+test_no_public_registration_api (test_collector.CollectorTest.test_no_public_registration_api) ... ok
+test_no_secrets_in_receipt (test_collector.CollectorTest.test_no_secrets_in_receipt) ... ok
+test_operational_bridge_rejects_fixture_and_untrusted (test_collector.CollectorTest.test_operational_bridge_rejects_fixture_and_untrusted) ... ok
+test_persist_writes_separate_receipts (test_collector.CollectorTest.test_persist_writes_separate_receipts) ... ok
+test_production_http_path_pins_ip_no_tls (test_collector.CollectorTest.test_production_http_path_pins_ip_no_tls)
+The plain-HTTP production path also connects to the pinned IP and ... ok
+test_production_https_path_fails_closed_on_redirect (test_collector.CollectorTest.test_production_https_path_fails_closed_on_redirect)
+A 3xx over the real construction path is a failed retrieval, never ... ok
+test_production_https_path_pins_ip_and_uses_original_host (test_collector.CollectorTest.test_production_https_path_pins_ip_and_uses_original_host)
+Exercise the real ``_perform`` HTTPS construction end-to-end with only ... ok
+test_receipt_minimum_fields (test_collector.CollectorTest.test_receipt_minimum_fields) ... ok
+test_resolve_and_validate_pins_public_ip (test_collector.CollectorTest.test_resolve_and_validate_pins_public_ip) ... ok
+test_resolve_and_validate_rejects_private (test_collector.CollectorTest.test_resolve_and_validate_rejects_private) ... ok
+test_same_source_twice_separate_receipts_stable_hash (test_collector.CollectorTest.test_same_source_twice_separate_receipts_stable_hash) ... ok
+test_to_signal_requires_verified_capture (test_collector.CollectorTest.test_to_signal_requires_verified_capture) ... ok
+test_trusted_operational_evidence_predicate (test_collector.CollectorTest.test_trusted_operational_evidence_predicate) ... ok
+test_urllib_fetcher_refuses_unsafe_initial_destination (test_collector.CollectorTest.test_urllib_fetcher_refuses_unsafe_initial_destination) ... ok
+test_validate_public_url_accepts_public_literal_ip (test_collector.CollectorTest.test_validate_public_url_accepts_public_literal_ip) ... ok
+test_validate_public_url_rejects_unsafe_destinations (test_collector.CollectorTest.test_validate_public_url_rejects_unsafe_destinations) ... ok
+test_concurrent_personas_no_lost_update (test_concurrency.SharedRuntimeConcurrencyTest.test_concurrent_personas_no_lost_update) ... ok
+test_runtime_task_id_ignores_persona (test_concurrency.SharedRuntimeConcurrencyTest.test_runtime_task_id_ignores_persona) ... ok
+test_second_persona_on_runtime_blocked_while_held (test_concurrency.SharedRuntimeConcurrencyTest.test_second_persona_on_runtime_blocked_while_held) ... ok
+test_concurrent_fresh_create_single_owner (test_concurrency.StaleTakeoverRaceTest.test_concurrent_fresh_create_single_owner) ... ok
+test_concurrent_stale_takeover_single_owner (test_concurrency.StaleTakeoverRaceTest.test_concurrent_stale_takeover_single_owner) ... ok
+test_batched_signals_none_lost (test_decision.DecisionTest.test_batched_signals_none_lost) ... ok
+test_bot_isolation_no_cross_write (test_decision.DecisionTest.test_bot_isolation_no_cross_write) ... ok
+test_consumption_survives_restart (test_decision.DecisionTest.test_consumption_survives_restart) ... ok
+test_decision_records_alternatives (test_decision.DecisionTest.test_decision_records_alternatives) ... ok
+test_later_signal_processed_after_earlier_cycle (test_decision.DecisionTest.test_later_signal_processed_after_earlier_cycle) ... ok
+test_learning_is_persisted_after_create (test_decision.DecisionTest.test_learning_is_persisted_after_create) ... ok
+test_new_evidence_creates_unpublished_candidate (test_decision.DecisionTest.test_new_evidence_creates_unpublished_candidate) ... ok
+test_no_change_path_is_no_action_and_has_no_effect (test_decision.DecisionTest.test_no_change_path_is_no_action_and_has_no_effect) ... ok
+test_persona_runtime_mismatch_rejected (test_decision.DecisionTest.test_persona_runtime_mismatch_rejected) ... ok
+test_second_cycle_same_evidence_is_no_action (test_decision.DecisionTest.test_second_cycle_same_evidence_is_no_action) ... ok
+test_cli_help_and_import (test_divergence_freeze.FreezeCliTest.test_cli_help_and_import) ... ok
+test_freeze_writes_immutable_bundle_with_isolation (test_divergence_freeze.FreezeWriterTest.test_freeze_writes_immutable_bundle_with_isolation) ... ok
+test_refuses_identical_evidence (test_divergence_freeze.FreezeWriterTest.test_refuses_identical_evidence) ... ok
+test_refuses_non_empty_out_dir (test_divergence_freeze.FreezeWriterTest.test_refuses_non_empty_out_dir) ... ok
+test_refuses_non_operational_receipt (test_divergence_freeze.FreezeWriterTest.test_refuses_non_operational_receipt) ... ok
+test_written_matrix_re_verifies (test_divergence_freeze.FreezeWriterTest.test_written_matrix_re_verifies) ... ok
+test_live_capture_freeze (test_divergence_freeze.LiveFreezeNetworkTest.test_live_capture_freeze) ... skipped 'set SBOTS_LIVE_FREEZE_TEST=1 to exercise real HTTPS capture'
+test_decision_log_and_last_decision_written_inside_fence (test_fencing.LeaseFencingTest.test_decision_log_and_last_decision_written_inside_fence) ... ok
+test_fence_invalid_after_takeover (test_fencing.LeaseFencingTest.test_fence_invalid_after_takeover) ... ok
+test_fenced_commit_refuses_after_fence_loss (test_fencing.LeaseFencingTest.test_fenced_commit_refuses_after_fence_loss) ... ok
+test_generation_increments_on_takeover_and_is_inspectable (test_fencing.LeaseFencingTest.test_generation_increments_on_takeover_and_is_inspectable) ... ok
+test_old_owner_cycle_commits_nothing_after_midcycle_takeover (test_fencing.LeaseFencingTest.test_old_owner_cycle_commits_nothing_after_midcycle_takeover) ... ok
+test_stale_owner_cannot_write_decision_log_after_takeover (test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_decision_log_after_takeover) ... ok
+test_stale_owner_cannot_write_success_finish_receipt_after_takeover (test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_success_finish_receipt_after_takeover) ... ok
+test_stale_owner_in_migration_path_leaves_no_write (test_fencing.LeaseFencingTest.test_stale_owner_in_migration_path_leaves_no_write) ... ok
+test_takeover_worker_becomes_owner_and_commits (test_fencing.LeaseFencingTest.test_takeover_worker_becomes_owner_and_commits) ... ok
+test_worker_run_one_unit_stands_down_on_fence_loss (test_fencing.LeaseFencingTest.test_worker_run_one_unit_stands_down_on_fence_loss) ... ok
+test_attested_clean_host_is_suitable_candidate (test_host_preflight.HostPreflightTest.test_attested_clean_host_is_suitable_candidate)
+With owner attestation and no ephemeral markers, mark as candidate. ... ok
+test_clean_host_without_attestation_is_inconclusive (test_host_preflight.HostPreflightTest.test_clean_host_without_attestation_is_inconclusive)
+Even a clean host needs owner attestation before LIVE scheduler claims. ... ok
+test_cursor_hostname_is_unsuitable (test_host_preflight.HostPreflightTest.test_cursor_hostname_is_unsuitable)
+Cloud Agent hostname patterns are not persistent owner hosts. ... ok
+test_overlay_root_is_unsuitable (test_host_preflight.HostPreflightTest.test_overlay_root_is_unsuitable)
+An overlay/tmpfs root is ephemeral and cannot back V0.7 LIVE. ... ok
+test_owner_attestation_cannot_override_ephemeral_markers (test_host_preflight.HostPreflightTest.test_owner_attestation_cannot_override_ephemeral_markers)
+Owner attestation does not wash away overlay/Cloud Agent signals. ... ok
+test_write_receipt_round_trip (test_host_preflight.HostPreflightTest.test_write_receipt_round_trip) ... ok
+test_cli_writes_receipt (test_host_preflight.PreflightCliTest.test_cli_writes_receipt) ... ok
+test_concurrent_general_cultural_no_lost_shared_update (test_isolation.IsolationContractTest.test_concurrent_general_cultural_no_lost_shared_update) ... ok
+test_filters_partition_mixed_store_without_bleed (test_isolation.IsolationContractTest.test_filters_partition_mixed_store_without_bleed) ... ok
+test_ids_are_persona_derived_and_collision_free (test_isolation.IsolationContractTest.test_ids_are_persona_derived_and_collision_free) ... ok
+test_legacy_shared_state_migrates_to_default_owner_without_deletion (test_isolation.IsolationContractTest.test_legacy_shared_state_migrates_to_default_owner_without_deletion) ... ok
+test_migration_recovers_when_marker_set_but_persona_file_missing (test_isolation.IsolationContractTest.test_migration_recovers_when_marker_set_but_persona_file_missing) ... ok
+test_mixed_persona_production_dedup_read_is_scoped_no_bleed (test_isolation.IsolationContractTest.test_mixed_persona_production_dedup_read_is_scoped_no_bleed) ... ok
+test_one_persona_hypotheses_do_not_change_another_reasoning_context (test_isolation.IsolationContractTest.test_one_persona_hypotheses_do_not_change_another_reasoning_context) ... ok
+test_persona_load_is_side_effect_free_during_migration (test_isolation.IsolationContractTest.test_persona_load_is_side_effect_free_during_migration) ... ok
+test_persona_separation_survives_restart (test_isolation.IsolationContractTest.test_persona_separation_survives_restart) ... ok
+test_real_general_and_cultural_cycles_do_not_bleed (test_isolation.IsolationContractTest.test_real_general_and_cultural_cycles_do_not_bleed) ... ok
+test_run_cycle_commits_runtime_with_final_migration_marker (test_isolation.IsolationContractTest.test_run_cycle_commits_runtime_with_final_migration_marker) ... ok
+test_same_signal_independently_considered_by_two_personas (test_isolation.IsolationContractTest.test_same_signal_independently_considered_by_two_personas) ... ok
+test_audit_reports_decisions_store_clean (test_isolation_decisions.DecisionHistoryIsolationTest.test_audit_reports_decisions_store_clean) ... ok
+test_decision_views_are_disjoint_and_complete (test_isolation_decisions.DecisionHistoryIsolationTest.test_decision_views_are_disjoint_and_complete) ... ok
+test_persona_decisions_do_not_bleed_across_personas (test_isolation_decisions.DecisionHistoryIsolationTest.test_persona_decisions_do_not_bleed_across_personas) ... ok
+test_atomic_acquire_rejects_overlap (test_leasing.LeasingTest.test_atomic_acquire_rejects_overlap) ... ok
+test_release_only_by_owner (test_leasing.LeasingTest.test_release_only_by_owner) ... ok
+test_renew_keeps_ownership (test_leasing.LeasingTest.test_renew_keeps_ownership) ... ok
+test_stale_takeover_sets_reconcile (test_leasing.LeasingTest.test_stale_takeover_sets_reconcile) ... ok
+test_every_persona_scoped_store_has_authoritative_reader (test_persona_read_boundary.ReadBoundaryTest.test_every_persona_scoped_store_has_authoritative_reader) ... ok
+test_mixed_persona_boundary_holds_across_all_stores (test_persona_read_boundary.ReadBoundaryTest.test_mixed_persona_boundary_holds_across_all_stores) ... ok
+test_persona_records_dispatch_matches_named_readers (test_persona_read_boundary.ReadBoundaryTest.test_persona_records_dispatch_matches_named_readers) ... ok
+test_unknown_store_rejected (test_persona_read_boundary.ReadBoundaryTest.test_unknown_store_rejected) ... ok
+test_all_personas_valid (test_personas.PersonaTest.test_all_personas_valid) ... ok
+test_cultural_personas_require_review (test_personas.PersonaTest.test_cultural_personas_require_review) ... ok
+test_five_personas_three_general_two_cultural (test_personas.PersonaTest.test_five_personas_three_general_two_cultural) ... ok
+test_general_personas_are_distinct (test_personas.PersonaTest.test_general_personas_are_distinct) ... ok
+test_runtime_assignment_within_three (test_personas.PersonaTest.test_runtime_assignment_within_three) ... ok
+test_analytics_event_requires_keys (test_pipeline.PipelineTest.test_analytics_event_requires_keys) ... ok
+test_cultural_review_withheld_without_reviewer (test_pipeline.PipelineTest.test_cultural_review_withheld_without_reviewer) ... ok
+test_general_review_passes_with_source (test_pipeline.PipelineTest.test_general_review_passes_with_source) ... ok
+test_one_signal_different_candidates_per_persona (test_pipeline.PipelineTest.test_one_signal_different_candidates_per_persona) ... ok
+test_platform_formatting_respects_limit (test_pipeline.PipelineTest.test_platform_formatting_respects_limit) ... ok
+test_queue_defaults_unpublished_unauthorized (test_pipeline.PipelineTest.test_queue_defaults_unpublished_unauthorized) ... ok
+test_authority_smuggling_payload_blocked (test_policy_boundary.PolicyBoundaryTest.test_authority_smuggling_payload_blocked) ... ok
+test_create_candidate_still_honors_review_and_authority_gates (test_policy_boundary.PolicyBoundaryTest.test_create_candidate_still_honors_review_and_authority_gates) ... ok
+test_invalid_numeric_fields_rejected (test_policy_boundary.PolicyBoundaryTest.test_invalid_numeric_fields_rejected) ... ok
+test_publish_action_is_blocked (test_policy_boundary.PolicyBoundaryTest.test_publish_action_is_blocked) ... ok
+test_recommended_action_cannot_override_policy_ranking (test_policy_boundary.PolicyBoundaryTest.test_recommended_action_cannot_override_policy_ranking) ... ok
+test_record_distinguishes_proposal_from_allowed_action (test_policy_boundary.PolicyBoundaryTest.test_record_distinguishes_proposal_from_allowed_action) ... ok
+test_spend_and_message_actions_blocked (test_policy_boundary.PolicyBoundaryTest.test_spend_and_message_actions_blocked) ... ok
+test_all_six_persona_stores_have_persona_and_admin_readers (test_production_read_paths.ProductionReadPathTest.test_all_six_persona_stores_have_persona_and_admin_readers) ... ok
+test_no_ordinary_whole_runtime_reader_exists_on_any_surface (test_production_read_paths.ProductionReadPathTest.test_no_ordinary_whole_runtime_reader_exists_on_any_surface) ... ok
+test_persona_private_stores_only_own_records_after_real_cycles (test_production_read_paths.ProductionReadPathTest.test_persona_private_stores_only_own_records_after_real_cycles) ... ok
+test_production_analytics_aggregate_is_persona_scoped (test_production_read_paths.ProductionReadPathTest.test_production_analytics_aggregate_is_persona_scoped) ... ok
+test_production_dedup_path_is_persona_scoped (test_production_read_paths.ProductionReadPathTest.test_production_dedup_path_is_persona_scoped) ... ok
+test_reconcile_uses_admin_boundary_not_persona_read (test_production_read_paths.ProductionReadPathTest.test_reconcile_uses_admin_boundary_not_persona_read) ... ok
+test_reintroducing_a_bare_whole_runtime_reader_would_fail (test_production_read_paths.ProductionReadPathTest.test_reintroducing_a_bare_whole_runtime_reader_would_fail) ... ok
+test_baseline_mode_still_creates_candidate (test_reasoning.ReasoningTest.test_baseline_mode_still_creates_candidate) ... ok
+test_default_provider_is_baseline (test_reasoning.ReasoningTest.test_default_provider_is_baseline) ... ok
+test_engine_fails_closed_when_reasoning_unavailable (test_reasoning.ReasoningTest.test_engine_fails_closed_when_reasoning_unavailable) ... ok
+test_model_mode_without_callable_is_unavailable (test_reasoning.ReasoningTest.test_model_mode_without_callable_is_unavailable) ... ok
+test_registered_model_callable_makes_provider_available (test_reasoning.ReasoningTest.test_registered_model_callable_makes_provider_available) ... ok
+test_api_key_present_fails_closed_on_propose (test_reasoning_cli.BillingGuardTest.test_api_key_present_fails_closed_on_propose) ... ok
+test_api_key_present_makes_provider_unavailable (test_reasoning_cli.BillingGuardTest.test_api_key_present_makes_provider_unavailable) ... ok
+test_default_runner_denies_effect_tools_and_strips_api_key (test_reasoning_cli.CommandConstructionTest.test_default_runner_denies_effect_tools_and_strips_api_key) ... ok
+test_cli_unavailable_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_cli_unavailable_fails_closed) ... ok
+test_empty_output_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_empty_output_fails_closed) ... ok
+test_error_wrapper_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_error_wrapper_fails_closed) ... ok
+test_invalid_json_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_invalid_json_fails_closed) ... ok
+test_nonzero_exit_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_nonzero_exit_fails_closed) ... ok
+test_schema_invalid_alternative_blocks_engine (test_reasoning_cli.FailClosedPathsTest.test_schema_invalid_alternative_blocks_engine) ... ok
+test_timeout_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_timeout_fails_closed) ... ok
+test_unknown_action_fails_closed (test_reasoning_cli.FailClosedPathsTest.test_unknown_action_fails_closed) ... ok
+test_bare_envelope_without_wrapper_also_parses (test_reasoning_cli.SuccessMappingTest.test_bare_envelope_without_wrapper_also_parses) ... ok
+test_materially_different_context_yields_different_proposals (test_reasoning_cli.SuccessMappingTest.test_materially_different_context_yields_different_proposals) ... ok
+test_no_action_can_win (test_reasoning_cli.SuccessMappingTest.test_no_action_can_win) ... ok
+test_research_more_can_win (test_reasoning_cli.SuccessMappingTest.test_research_more_can_win) ... ok
+test_valid_cli_proposal_executes_via_engine (test_reasoning_cli.SuccessMappingTest.test_valid_cli_proposal_executes_via_engine) ... ok
+test_no_action_can_win (test_reasoning_contextual.ContextualDivergenceTest.test_no_action_can_win) ... ok
+test_output_passes_schema_validation (test_reasoning_contextual.ContextualDivergenceTest.test_output_passes_schema_validation) ... ok
+test_research_more_can_win (test_reasoning_contextual.ContextualDivergenceTest.test_research_more_can_win) ... ok
+test_same_persona_different_evidence_changes_ranking (test_reasoning_contextual.ContextualDivergenceTest.test_same_persona_different_evidence_changes_ranking) ... ok
+test_state_affects_estimates (test_reasoning_contextual.ContextualDivergenceTest.test_state_affects_estimates) ... ok
+test_three_persona_divergence_on_same_evidence (test_reasoning_contextual.ContextualDivergenceTest.test_three_persona_divergence_on_same_evidence) ... ok
+test_contextual_fails_closed_when_adaptive_required (test_reasoning_contextual.ContextualEngineTest.test_contextual_fails_closed_when_adaptive_required) ... ok
+test_engine_research_more_on_thin_evidence_no_effect (test_reasoning_contextual.ContextualEngineTest.test_engine_research_more_on_thin_evidence_no_effect) ... ok
+test_engine_uses_contextual_and_creates_on_strong_evidence (test_reasoning_contextual.ContextualEngineTest.test_engine_uses_contextual_and_creates_on_strong_evidence) ... ok
+test_adaptive_model_satisfies_the_contract (test_reasoning_contract.AdaptiveRequiredTest.test_adaptive_model_satisfies_the_contract) ... ok
+test_baseline_refused_when_adaptive_required (test_reasoning_contract.AdaptiveRequiredTest.test_baseline_refused_when_adaptive_required) ... ok
+test_close_experiment_in_vocab_but_has_no_executor (test_reasoning_contract.AdaptiveRequiredTest.test_close_experiment_in_vocab_but_has_no_executor) ... ok
+test_engine_fails_closed_when_adaptive_required_but_only_baseline (test_reasoning_contract.AdaptiveRequiredTest.test_engine_fails_closed_when_adaptive_required_but_only_baseline) ... ok
+test_require_adaptive_false_allows_deterministic_diagnostic (test_reasoning_contract.AdaptiveRequiredTest.test_require_adaptive_false_allows_deterministic_diagnostic) ... ok
+test_require_adaptive_param_forces_failclosed_without_env (test_reasoning_contract.AdaptiveRequiredTest.test_require_adaptive_param_forces_failclosed_without_env) ... ok
+test_malformed_model_output_blocks_engine (test_reasoning_contract.MalformedModelFailsClosedTest.test_malformed_model_output_blocks_engine) ... ok
+test_no_swarmai_dependency_in_module (test_reasoning_contract.MalformedModelFailsClosedTest.test_no_swarmai_dependency_in_module) ... ok
+test_authority_smuggling_payload_rejected (test_reasoning_contract.ProposalValidationTest.test_authority_smuggling_payload_rejected) ... ok
+test_create_candidate_requires_signal (test_reasoning_contract.ProposalValidationTest.test_create_candidate_requires_signal) ... ok
+test_empty_alternatives_rejected (test_reasoning_contract.ProposalValidationTest.test_empty_alternatives_rejected) ... ok
+test_out_of_bounds_numeric_rejected (test_reasoning_contract.ProposalValidationTest.test_out_of_bounds_numeric_rejected) ... ok
+test_recommended_action_must_be_among_alternatives (test_reasoning_contract.ProposalValidationTest.test_recommended_action_must_be_among_alternatives) ... ok
+test_unknown_payload_key_rejected (test_reasoning_contract.ProposalValidationTest.test_unknown_payload_key_rejected) ... ok
+test_unsupported_action_rejected (test_reasoning_contract.ProposalValidationTest.test_unsupported_action_rejected) ... ok
+test_valid_proposal_passes (test_reasoning_contract.ProposalValidationTest.test_valid_proposal_passes) ... ok
+test_load_receipt_roundtrip_and_kind_filter (test_reasoning_receipt.DiskLoadTest.test_load_receipt_roundtrip_and_kind_filter) ... ok
+test_missing_dir_returns_empty (test_reasoning_receipt.DiskLoadTest.test_missing_dir_returns_empty) ... ok
+test_identical_proposals_not_material (test_reasoning_receipt.DivergenceHelperTest.test_identical_proposals_not_material) ... ok
+test_recommended_and_ranking_divergence_is_material (test_reasoning_receipt.DivergenceHelperTest.test_recommended_and_ranking_divergence_is_material) ... ok
+test_confounded_change_detected (test_reasoning_receipt.IsolationHelperTest.test_confounded_change_detected) ... ok
+test_single_variable_evidence_only (test_reasoning_receipt.IsolationHelperTest.test_single_variable_evidence_only) ... ok
+test_single_variable_persona_only (test_reasoning_receipt.IsolationHelperTest.test_single_variable_persona_only) ... ok
+test_adaptive_false_rejected (test_reasoning_receipt.ReceiptValidationTest.test_adaptive_false_rejected) ... ok
+test_authority_smuggling_rejected (test_reasoning_receipt.ReceiptValidationTest.test_authority_smuggling_rejected) ... ok
+test_fabricated_evidence_ref_rejected (test_reasoning_receipt.ReceiptValidationTest.test_fabricated_evidence_ref_rejected) ... ok
+test_out_of_range_estimate_rejected (test_reasoning_receipt.ReceiptValidationTest.test_out_of_range_estimate_rejected) ... ok
+test_proposal_from_invalid_receipt_raises (test_reasoning_receipt.ReceiptValidationTest.test_proposal_from_invalid_receipt_raises) ... ok
+test_recommended_not_among_alts_rejected (test_reasoning_receipt.ReceiptValidationTest.test_recommended_not_among_alts_rejected) ... ok
+test_reconstructed_proposal_passes_engine_schema (test_reasoning_receipt.ReceiptValidationTest.test_reconstructed_proposal_passes_engine_schema) ... ok
+test_tampered_context_digest_rejected (test_reasoning_receipt.ReceiptValidationTest.test_tampered_context_digest_rejected) ... ok
+test_valid_receipt_passes (test_reasoning_receipt.ReceiptValidationTest.test_valid_receipt_passes) ... ok
+test_replay_refuses_to_index_invalid_receipt (test_reasoning_receipt.ReplayCallableTest.test_replay_refuses_to_index_invalid_receipt) ... ok
+test_replay_returns_proposal_on_match_and_none_otherwise (test_reasoning_receipt.ReplayCallableTest.test_replay_returns_proposal_on_match_and_none_otherwise) ... ok
+test_cultural_withheld_does_not_register_experiment_or_queue (test_review_gate.ReviewGateTest.test_cultural_withheld_does_not_register_experiment_or_queue) ... ok
+test_forced_fact_review_failure_blocks_experiment_and_queue (test_review_gate.ReviewGateTest.test_forced_fact_review_failure_blocks_experiment_and_queue) ... ok
+test_forced_voice_review_failure_blocks_experiment_and_queue (test_review_gate.ReviewGateTest.test_forced_voice_review_failure_blocks_experiment_and_queue) ... ok
+test_over_platform_limit_candidate_is_withheld (test_review_gate.ReviewGateTest.test_over_platform_limit_candidate_is_withheld) ... ok
+test_passing_review_still_creates_candidate (test_review_gate.ReviewGateTest.test_passing_review_still_creates_candidate) ... ok
+test_worker_receipt_for_forced_voice_failure_is_not_success (test_review_gate.ReviewGateTest.test_worker_receipt_for_forced_voice_failure_is_not_success) ... ok
+test_worker_receipt_for_withheld_is_not_success (test_review_gate.ReviewGateTest.test_worker_receipt_for_withheld_is_not_success) ... ok
+test_a_failed_call_does_not_bind_its_case (test_review_hardening.AcceptanceEligibilityBindingTest.test_a_failed_call_does_not_bind_its_case)
+A slot recorded as unavailable is not evidence that a proposal exists. ... ok
+test_an_empty_budget_leaves_every_case_unbound (test_review_hardening.AcceptanceEligibilityBindingTest.test_an_empty_budget_leaves_every_case_unbound)
+A ledger with no matching slots names the cases it cannot vouch for. ... ok
+test_eligibility_requires_a_recorded_proposal_per_case (test_review_hardening.AcceptanceEligibilityBindingTest.test_eligibility_requires_a_recorded_proposal_per_case)
+Only slots that actually returned a proposal can back the claim. ... ok
+test_hand_authored_labels_alone_do_not_establish_eligibility (test_review_hardening.AcceptanceEligibilityBindingTest.test_hand_authored_labels_alone_do_not_establish_eligibility)
+Anyone can write 'sanitized-real-canary' into a file; that proves nothing. ... ok
+test_a_torn_slot_file_does_not_abort_the_batch (test_review_hardening.CallBudgetHardeningTest.test_a_torn_slot_file_does_not_abort_the_batch)
+One slot damaged by an earlier crash must not take the rest down. ... ok
+test_a_torn_slot_still_counts_against_the_budget (test_review_hardening.CallBudgetHardeningTest.test_a_torn_slot_still_counts_against_the_budget)
+An unreadable slot is consumed, not free. ... ok
+test_deleting_a_slot_file_does_not_buy_another_call (test_review_hardening.CallBudgetHardeningTest.test_deleting_a_slot_file_does_not_buy_another_call)
+Removing evidence must never widen an authorization. ... ok
+test_an_ambiguous_lane_match_fails_closed (test_review_hardening.DirectionHardeningTest.test_an_ambiguous_lane_match_fails_closed)
+Guessing between two branch matches could silently miss a halt. ... ok
+test_an_unambiguous_branch_match_still_works (test_review_hardening.DirectionHardeningTest.test_an_unambiguous_branch_match_still_works)
+The fallback must keep working for the single-match case it exists for. ... ok
+test_malformed_directions_json_raises_direction_error (test_review_hardening.DirectionHardeningTest.test_malformed_directions_json_raises_direction_error)
+consume documents that only DirectionError escapes it. ... ok
+test_worker_once_records_a_receipt_for_a_malformed_direction (test_review_hardening.DirectionHardeningTest.test_worker_once_records_a_receipt_for_a_malformed_direction)
+Exit 1 must always leave a receipt that says what happened. ... DIRECTION ERROR: directions file for lane 'windows-core' is not valid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+ok
+test_a_refused_mismatch_consumes_no_call_budget (test_review_hardening.ExecutedContextBindingTest.test_a_refused_mismatch_consumes_no_call_budget)
+Binding is checked before reserving, so a mismatch costs no authorization. ... ok
+test_a_substituted_persona_is_refused (test_review_hardening.ExecutedContextBindingTest.test_a_substituted_persona_is_refused)
+Invoking a different persona than the one prepared must not be possible. ... ok
+test_a_substituted_signal_is_refused (test_review_hardening.ExecutedContextBindingTest.test_a_substituted_signal_is_refused)
+Invoking different evidence than the one prepared must not be possible. ... ok
+test_a_summary_only_change_is_refused_by_the_prompt_layer (test_review_hardening.ExecutedContextBindingTest.test_a_summary_only_change_is_refused_by_the_prompt_layer)
+The digest layer is blind to summary; the prompt-payload check is not. ... ok
+test_an_expired_manifest_cannot_be_revived (test_review_hardening.GateHardeningTest.test_an_expired_manifest_cannot_be_revived)
+Expiry is judged against the real clock, always. ... ok
+test_authorize_takes_no_caller_supplied_clock (test_review_hardening.GateHardeningTest.test_authorize_takes_no_caller_supplied_clock)
+A caller-supplied 'now' would be exactly the override this gate forbids. ... ok
+test_a_backfilled_timestamp_is_overwritten (test_review_hardening.HeartbeatHardeningTest.test_a_backfilled_timestamp_is_overwritten)
+emit re-stamps started_at, so a caller cannot forge when a session ran. ... ok
+test_a_refused_duplicate_posts_no_issue_comment (test_review_hardening.HeartbeatHardeningTest.test_a_refused_duplicate_posts_no_issue_comment)
+Durable evidence first: never announce a heartbeat that was not written. ... ok
+test_a_session_cannot_emit_once_per_lane (test_review_hardening.HeartbeatHardeningTest.test_a_session_cannot_emit_once_per_lane)
+One session = one heartbeat is a claim about the session, not the lane. ... ok
+test_a_torn_log_line_does_not_wedge_the_lane (test_review_hardening.HeartbeatHardeningTest.test_a_torn_log_line_does_not_wedge_the_lane)
+One bad append must not make every future heartbeat impossible. ... ok
+test_an_unsafe_lane_name_is_refused (test_review_hardening.HeartbeatHardeningTest.test_an_unsafe_lane_name_is_refused)
+An unvalidated lane is a path-traversal write out of the reports root. ... ok
+test_contract_fields_cannot_be_relabelled (test_review_hardening.HeartbeatHardeningTest.test_contract_fields_cannot_be_relabelled)
+A record cannot be written as a different cadence, status or schema. ... ok
+test_the_post_outcome_goes_in_a_sidecar_not_the_ledger (test_review_hardening.HeartbeatHardeningTest.test_the_post_outcome_goes_in_a_sidecar_not_the_ledger)
+The append-only ledger is never rewritten to match a later post. ... ok
+test_a_valid_manifest_permits_the_live_route (test_review_hardening.LiveRouteGuardTest.test_a_valid_manifest_permits_the_live_route)
+The guard defers to authorize; it is not an independent veto. ... ok
+test_claude_cli_mode_is_refused_without_a_manifest (test_review_hardening.LiveRouteGuardTest.test_claude_cli_mode_is_refused_without_a_manifest)
+SBOTS_REASONING=claude-cli must not be enough to reach the real CLI. ... ok
+test_model_mode_is_live_unless_the_caller_says_it_is_a_replay (test_review_hardening.LiveRouteGuardTest.test_model_mode_is_live_unless_the_caller_says_it_is_a_replay)
+A registered live callable is a live route; a receipt replay is not. ... ok
+test_non_live_modes_are_permitted (test_review_hardening.LiveRouteGuardTest.test_non_live_modes_are_permitted)
+The deterministic modes are not a live route and must not be blocked. ... ok
+test_a_valid_manifest_is_in_force (test_review_hardening.SpawnPointGuardTest.test_a_valid_manifest_is_in_force)
+A structurally valid, unexpired manifest answers yes. ... ok
+test_an_api_key_blocks_regardless_of_manifests (test_review_hardening.SpawnPointGuardTest.test_an_api_key_blocks_regardless_of_manifests)
+The paid-API route is never in force, whatever a manifest says. ... ok
+test_an_injected_runner_is_exempt_because_it_spawns_nothing (test_review_hardening.SpawnPointGuardTest.test_an_injected_runner_is_exempt_because_it_spawns_nothing)
+The test seam must keep working; it launches no subprocess. ... ok
+test_no_manifest_means_no_live_authorization (test_review_hardening.SpawnPointGuardTest.test_no_manifest_means_no_live_authorization)
+The weak, scope-free question the spawn point can actually answer. ... ok
+test_rebinding_REAL_CLI_RUNNER_alias_cannot_un_guard_the_real_launcher (test_review_hardening.SpawnPointGuardTest.test_rebinding_REAL_CLI_RUNNER_alias_cannot_un_guard_the_real_launcher)
+SB-R07-041: rebinding the public alias must not disable spawn refusal. ... ok
+test_resolve_provider_cannot_produce_a_usable_live_route (test_review_hardening.SpawnPointGuardTest.test_resolve_provider_cannot_produce_a_usable_live_route)
+SBOTS_REASONING=claude-cli resolves, but the provider refuses to run. ... ok
+test_run_worker_entrypoint_refuses_live_route_without_manifest (test_review_hardening.SpawnPointGuardTest.test_run_worker_entrypoint_refuses_live_route_without_manifest)
+SB-R07-041: production run_worker.py must exit 6 before any work. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpkqn3cvug/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_the_real_cli_provider_refuses_without_authorization (test_review_hardening.SpawnPointGuardTest.test_the_real_cli_provider_refuses_without_authorization)
+A provider that would launch the real CLI must be unavailable now. ... ok
+test_an_edited_prompt_file_is_caught (test_review_hardening.VerifyStrictnessTest.test_an_edited_prompt_file_is_caught)
+Smuggling different evidence into a prompt file must fail verification. ... ok
+test_an_untouched_matrix_verifies (test_review_hardening.VerifyStrictnessTest.test_an_untouched_matrix_verifies)
+The strict path must still pass a genuine artifact. ... ok
+test_without_prompt_bytes_the_verdict_is_not_verified (test_review_hardening.VerifyStrictnessTest.test_without_prompt_bytes_the_verdict_is_not_verified)
+The prompt file is the payload; a verdict that skipped it means little. ... ok
+test_a_normal_run_records_a_non_live_route (test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_a_normal_run_records_a_non_live_route)
+An ordinary invocation carries a route decision, not an empty field. ... ok
+test_exit_six_and_nothing_else_happens (test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_exit_six_and_nothing_else_happens)
+A live mode exits 6 before the heartbeat, the ack or any task claim. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmptlkam8ev/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_the_refusal_is_recorded_on_the_invocation_receipt (test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_the_refusal_is_recorded_on_the_invocation_receipt)
+live_model_call is derived from the guard, not hard-coded. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmph02kwx3y/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_an_empty_bots_list_is_a_usage_error_not_no_overlap (test_review_hardening.WorkerOnceReportingTest.test_an_empty_bots_list_is_a_usage_error_not_no_overlap)
+Exit 3 means tasks were held; no candidates at all is a misconfiguration. ... USAGE: --bots resolved to no candidate runtimes
+ok
+test_candidates_tried_survives_a_failing_unit (test_review_hardening.WorkerOnceReportingTest.test_candidates_tried_survives_a_failing_unit)
+A unit that took a lease then failed must not look like nothing was tried. ... FAILURE: RuntimeError: unit blew up
+ok
+test_readme_and_runbook_reference_governing_contracts (test_scheduling_assets.HonestyBoundaryDocumentationTest.test_readme_and_runbook_reference_governing_contracts) ... ok
+test_readme_states_scheduler_entry_is_not_proof (test_scheduling_assets.HonestyBoundaryDocumentationTest.test_readme_states_scheduler_entry_is_not_proof) ... ok
+test_runbook_states_scheduler_entry_is_not_proof (test_scheduling_assets.HonestyBoundaryDocumentationTest.test_runbook_states_scheduler_entry_is_not_proof) ... ok
+test_service_has_no_new_privileges_hardening (test_scheduling_assets.LinuxSystemdUnitTest.test_service_has_no_new_privileges_hardening) ... ok
+test_service_is_oneshot (test_scheduling_assets.LinuxSystemdUnitTest.test_service_is_oneshot) ... ok
+test_service_success_exit_status_covers_benign_codes (test_scheduling_assets.LinuxSystemdUnitTest.test_service_success_exit_status_covers_benign_codes) ... ok
+test_timer_has_repeat_interval (test_scheduling_assets.LinuxSystemdUnitTest.test_timer_has_repeat_interval) ... ok
+test_timer_is_persistent (test_scheduling_assets.LinuxSystemdUnitTest.test_timer_is_persistent) ... ok
+test_label_present (test_scheduling_assets.MacLaunchdPlistTest.test_label_present) ... ok
+test_program_arguments_reference_worker_once (test_scheduling_assets.MacLaunchdPlistTest.test_program_arguments_reference_worker_once) ... ok
+test_run_at_load_is_false (test_scheduling_assets.MacLaunchdPlistTest.test_run_at_load_is_false) ... ok
+test_start_interval_present (test_scheduling_assets.MacLaunchdPlistTest.test_start_interval_present) ... ok
+test_every_template_placeholder_is_referenced_by_its_installer (test_scheduling_assets.PlaceholderCoverageTest.test_every_template_placeholder_is_referenced_by_its_installer) ... ok
+test_powershell_installers_set_error_action_preference (test_scheduling_assets.PowerShellInstallerConventionsTest.test_powershell_installers_set_error_action_preference) ... ok
+test_all_required_files_exist (test_scheduling_assets.ScheduledAssetsExistTest.test_all_required_files_exist) ... ok
+test_shell_installers_start_with_shebang_and_use_strict_mode (test_scheduling_assets.ShellInstallerConventionsTest.test_shell_installers_start_with_shebang_and_use_strict_mode) ... ok
+test_action_invokes_python_placeholder_against_worker_once (test_scheduling_assets.WindowsTaskXmlTest.test_action_invokes_python_placeholder_against_worker_once) ... ok
+test_execution_time_limit_present (test_scheduling_assets.WindowsTaskXmlTest.test_execution_time_limit_present) ... ok
+test_multiple_instances_policy_is_ignore_new (test_scheduling_assets.WindowsTaskXmlTest.test_multiple_instances_policy_is_ignore_new) ... ok
+test_root_uses_task_scheduler_namespace (test_scheduling_assets.WindowsTaskXmlTest.test_root_uses_task_scheduler_namespace) ... ok
+test_a_failed_call_still_consumes_its_slot (test_v04_authorization_gate.CallBudgetTest.test_a_failed_call_still_consumes_its_slot)
+No-retry: recording a failure never frees the slot for another attempt. ... ok
+test_audit_reports_reserved_but_unrecorded_slots (test_v04_authorization_gate.CallBudgetTest.test_audit_reports_reserved_but_unrecorded_slots)
+A crash between reservation and invocation is visible, not silently reclaimed. ... ok
+test_budget_cannot_exceed_the_hard_ceiling (test_v04_authorization_gate.CallBudgetTest.test_budget_cannot_exceed_the_hard_ceiling)
+Even a caller asking for more slots is clamped to the policy ceiling. ... ok
+test_exact_budget_is_enforced (test_v04_authorization_gate.CallBudgetTest.test_exact_budget_is_enforced)
+Exactly max_calls slots exist; the next reservation fails closed. ... ok
+test_outcome_is_write_once (test_v04_authorization_gate.CallBudgetTest.test_outcome_is_write_once)
+A recorded slot cannot be relabeled into a better outcome. ... ok
+test_reservation_is_durable_across_process_restart (test_v04_authorization_gate.CallBudgetTest.test_reservation_is_durable_across_process_restart)
+A fresh CallBudget object sees slots consumed by an earlier process. ... ok
+test_unreserved_slot_cannot_record_an_outcome (test_v04_authorization_gate.CallBudgetTest.test_unreserved_slot_cannot_record_an_outcome)
+An outcome may only exist for a slot that was actually reserved. ... ok
+test_api_key_presence_is_refused_even_with_a_valid_manifest (test_v04_authorization_gate.GateTest.test_api_key_presence_is_refused_even_with_a_valid_manifest)
+ANTHROPIC_API_KEY would route to paid billing; the gate hard-stops on it. ... ok
+test_injected_runner_is_refused_even_with_a_valid_manifest (test_v04_authorization_gate.GateTest.test_injected_runner_is_refused_even_with_a_valid_manifest)
+A live batch must use the real provider; no manifest can waive that. ... ok
+test_malformed_manifest_does_not_grant (test_v04_authorization_gate.GateTest.test_malformed_manifest_does_not_grant)
+Unparseable or invalid manifest files are rejected with a stated reason. ... ok
+test_no_manifest_fails_closed (test_v04_authorization_gate.GateTest.test_no_manifest_fails_closed)
+The current canonical state: an empty manifest dir denies live execution. ... ok
+test_repository_state_denies_live_execution_right_now (test_v04_authorization_gate.GateTest.test_repository_state_denies_live_execution_right_now)
+The real canonical manifest directory must deny, not merely be absent. ... ok
+test_valid_scoped_manifest_grants (test_v04_authorization_gate.GateTest.test_valid_scoped_manifest_grants)
+A correctly scoped fixture manifest grants, so denial cases are meaningful. ... ok
+test_wrong_scope_is_denied (test_v04_authorization_gate.GateTest.test_wrong_scope_is_denied)
+A manifest only authorizes the exact artifact, lane and run scope it names. ... ok
+test_every_required_field_is_mandatory (test_v04_authorization_gate.ManifestValidationTest.test_every_required_field_is_mandatory)
+A manifest that omits any required field is rejected, never defaulted. ... ok
+test_expired_manifest_is_rejected (test_v04_authorization_gate.ManifestValidationTest.test_expired_manifest_is_rejected)
+An authorization that has lapsed is not an authorization. ... ok
+test_fixture_manifest_is_structurally_valid (test_v04_authorization_gate.ManifestValidationTest.test_fixture_manifest_is_structurally_valid)
+The fixture baseline must be valid, or every negative case is vacuous. ... ok
+test_max_calls_cannot_exceed_the_hard_ceiling (test_v04_authorization_gate.ManifestValidationTest.test_max_calls_cannot_exceed_the_hard_ceiling)
+No manifest can widen the batch beyond the conservative five-call plan. ... ok
+test_non_subscription_provider_mode_is_rejected (test_v04_authorization_gate.ManifestValidationTest.test_non_subscription_provider_mode_is_rejected)
+Only the existing-subscription Claude Code route may ever be authorized. ... ok
+test_safety_postures_must_be_explicitly_false (test_v04_authorization_gate.ManifestValidationTest.test_safety_postures_must_be_explicitly_false)
+A permissive or truthy safety posture invalidates the whole manifest. ... ok
+test_evidence_only_divergence (test_v04_divergence_acceptance.AdaptiveReceiptDivergenceTest.test_evidence_only_divergence) ... ok
+test_persona_only_divergence_three_workspaces_incl_primandir (test_v04_divergence_acceptance.AdaptiveReceiptDivergenceTest.test_persona_only_divergence_three_workspaces_incl_primandir) ... ok
+test_replay_fails_closed_when_no_receipt_matches (test_v04_divergence_acceptance.AdaptiveReceiptDivergenceTest.test_replay_fails_closed_when_no_receipt_matches) ... ok
+test_authority_smuggling_receipt_is_refused (test_v04_divergence_acceptance.AdaptiveReplayEngineInvariantsTest.test_authority_smuggling_receipt_is_refused) ... ok
+test_recommended_action_is_advisory_policy_selects_by_ranking (test_v04_divergence_acceptance.AdaptiveReplayEngineInvariantsTest.test_recommended_action_is_advisory_policy_selects_by_ranking) ... ok
+test_replayed_create_is_queued_unpublished_with_no_public_effect (test_v04_divergence_acceptance.AdaptiveReplayEngineInvariantsTest.test_replayed_create_is_queued_unpublished_with_no_public_effect) ... ok
+test_contextual_fails_closed_when_adaptive_required (test_v04_divergence_acceptance.ContextualDiagnosticTest.test_contextual_fails_closed_when_adaptive_required) ... ok
+test_engine_persona_only_reaches_different_outcomes (test_v04_divergence_acceptance.ContextualDiagnosticTest.test_engine_persona_only_reaches_different_outcomes) ... ok
+test_evidence_only_divergence_diagnostic (test_v04_divergence_acceptance.ContextualDiagnosticTest.test_evidence_only_divergence_diagnostic) ... ok
+test_persona_only_divergence_diagnostic (test_v04_divergence_acceptance.ContextualDiagnosticTest.test_persona_only_divergence_diagnostic) ... ok
+test_provider_is_diagnostic_only_not_the_live_canary (test_v04_divergence_acceptance.ContextualDiagnosticTest.test_provider_is_diagnostic_only_not_the_live_canary) ... ok
+test_real_canary_receipts_replay_through_adaptive_path (test_v04_divergence_acceptance.RealCanaryReceiptAcceptanceTest.test_real_canary_receipts_replay_through_adaptive_path) ... skipped 'awaiting SB-V04-005 real canary receipt in /workspace/social-bots/acceptance/sb-v04-005-receipts; the seam + isolation are verified by AdaptiveReceiptDivergenceTest; final adaptive acceptance is gated on the real sanitized receipt'
+test_a_receipt_bound_to_another_context_is_rejected (test_v04_divergence_prepare.DivergenceReportTest.test_a_receipt_bound_to_another_context_is_rejected)
+A receipt must bind to its own case's context digest, or it is invalid. ... ok
+test_differing_proposals_are_reported_as_material (test_v04_divergence_prepare.DivergenceReportTest.test_differing_proposals_are_reported_as_material)
+Changed recommendation/ranking/estimates all count as material divergence. ... ok
+test_identical_proposals_are_reported_as_not_material (test_v04_divergence_prepare.DivergenceReportTest.test_identical_proposals_are_reported_as_not_material)
+No-retry at the reporting layer: a null result is recorded, not rerun. ... ok
+test_missing_receipts_are_reported_as_not_material (test_v04_divergence_prepare.DivergenceReportTest.test_missing_receipts_are_reported_as_not_material)
+A comparison with no receipt is never silently counted as divergent. ... ok
+test_synthetic_receipts_are_never_acceptance_evidence (test_v04_divergence_prepare.DivergenceReportTest.test_synthetic_receipts_are_never_acceptance_evidence)
+Even fully material divergence from seam fixtures cannot be acceptance evidence. ... ok
+test_denied_execution_consumes_no_call_budget (test_v04_divergence_prepare.ExecutionGateTest.test_denied_execution_consumes_no_call_budget)
+Failing closed must happen before any slot is reserved. ... ok
+test_execute_batch_fails_closed_without_a_manifest (test_v04_divergence_prepare.ExecutionGateTest.test_execute_batch_fails_closed_without_a_manifest)
+With no canonical manifest, execution is denied before a provider exists. ... ok
+test_injected_provider_cannot_bypass_the_gate (test_v04_divergence_prepare.ExecutionGateTest.test_injected_provider_cannot_bypass_the_gate)
+Supplying a fake provider does not make execution authorized. ... ok
+test_prepare_only_status_states_the_blocked_truth (test_v04_divergence_prepare.ExecutionGateTest.test_prepare_only_status_states_the_blocked_truth)
+The prepare-only verdict must not imply V0.4 empirical acceptance. ... ok
+test_budget_exhaustion_stops_before_a_sixth_call (test_v04_divergence_prepare.ExecutionMechanicsTest.test_budget_exhaustion_stops_before_a_sixth_call)
+The sixth invocation is refused by the budget, not attempted. ... ok
+test_provider_exception_consumes_its_slot (test_v04_divergence_prepare.ExecutionMechanicsTest.test_provider_exception_consumes_its_slot)
+A crashing provider cannot silently hand its slot back. ... ok
+test_schema_invalid_proposal_is_rejected_and_recorded (test_v04_divergence_prepare.ExecutionMechanicsTest.test_schema_invalid_proposal_is_rejected_and_recorded)
+A malformed proposal never becomes a result; its slot is still spent. ... ok
+test_slot_is_reserved_before_the_provider_is_called (test_v04_divergence_prepare.ExecutionMechanicsTest.test_slot_is_reserved_before_the_provider_is_called)
+Atomic pre-spawn accounting: the budget moves before propose() runs. ... ok
+test_unavailable_provider_consumes_its_slot_and_is_recorded_truthfully (test_v04_divergence_prepare.ExecutionMechanicsTest.test_unavailable_provider_consumes_its_slot_and_is_recorded_truthfully)
+A failed call is an outcome, not a cue to retry. ... ok
+test_context_digests_are_distinct_per_case (test_v04_divergence_prepare.HashingTest.test_context_digests_are_distinct_per_case)
+Five identical contexts would make some of the five calls redundant. ... ok
+test_every_case_emits_all_five_required_digests (test_v04_divergence_prepare.HashingTest.test_every_case_emits_all_five_required_digests)
+Context, prompt, prompt-context, evidence bytes and evidence receipt. ... ok
+test_evidence_digests_track_the_snapshot_not_the_persona (test_v04_divergence_prepare.HashingTest.test_evidence_digests_track_the_snapshot_not_the_persona)
+P0-P3 share E1's bytes/receipt digests; only E0 differs. ... ok
+test_prompt_digest_is_over_the_exact_production_prompt (test_v04_divergence_prepare.HashingTest.test_prompt_digest_is_over_the_exact_production_prompt)
+The recorded prompt digest must hash the real prompt text, byte for byte. ... ok
+test_provider_config_is_one_configuration_for_the_whole_batch (test_v04_divergence_prepare.HashingTest.test_provider_config_is_one_configuration_for_the_whole_batch)
+A per-case provider difference would confound any observed divergence. ... ok
+test_all_required_comparisons_are_single_variable (test_v04_divergence_prepare.IsolationTest.test_all_required_comparisons_are_single_variable)
+P0|P1, P0|P2, P0|P3 vary persona alone; P0|E0 varies evidence alone. ... ok
+test_confounded_persona_variant_is_rejected (test_v04_divergence_prepare.IsolationTest.test_confounded_persona_variant_is_rejected)
+If a 'persona-only' case also changed objective, the matrix must not build. ... ok
+test_evidence_change_invisible_to_the_digest_layer_fails_the_build (test_v04_divergence_prepare.IsolationTest.test_evidence_change_invisible_to_the_digest_layer_fails_the_build)
+E2 differing from E1 only in summary makes P0|E0 non-isolated, so build fails. ... ok
+test_prompt_layer_catches_an_evidence_change_the_digest_layer_cannot_see (test_v04_divergence_prepare.IsolationTest.test_prompt_layer_catches_an_evidence_change_the_digest_layer_cannot_see)
+The digest projection omits the signal summary; the prompt layer must not. ... ok
+test_held_constant_fields_are_identical_across_every_case (test_v04_divergence_prepare.MatrixShapeTest.test_held_constant_fields_are_identical_across_every_case)
+Objective, pending count, duplication and prior hypotheses never vary. ... ok
+test_matrix_is_the_five_planned_cases (test_v04_divergence_prepare.MatrixShapeTest.test_matrix_is_the_five_planned_cases)
+The matrix is exactly the plan's P0/P1/P2/P3/E0, in that order. ... ok
+test_missing_persona_slot_or_snapshot_is_refused (test_v04_divergence_prepare.MatrixShapeTest.test_missing_persona_slot_or_snapshot_is_refused)
+An incomplete matrix is an error, not a silently smaller batch. ... ok
+test_one_cultural_workspace_is_included (test_v04_divergence_prepare.MatrixShapeTest.test_one_cultural_workspace_is_included)
+The plan requires a cultural/Primandir workspace among the persona variants. ... ok
+test_fixture_snapshots_mark_the_matrix_engineering_only (test_v04_divergence_prepare.ProvenanceTest.test_fixture_snapshots_mark_the_matrix_engineering_only)
+Fixtures can exercise the machinery but can never be acceptance evidence. ... ok
+test_live_capture_snapshots_clear_the_engineering_only_flag (test_v04_divergence_prepare.ProvenanceTest.test_live_capture_snapshots_clear_the_engineering_only_flag)
+Only real captures make a prepared matrix acceptance-eligible in principle. ... ok
+test_prepared_artifact_is_immutable (test_v04_divergence_prepare.WrittenArtifactTest.test_prepared_artifact_is_immutable)
+A prepared matrix is written once; rewriting it is refused. ... ok
+test_prompt_files_are_written_once_with_their_digests (test_v04_divergence_prepare.WrittenArtifactTest.test_prompt_files_are_written_once_with_their_digests)
+Each case's exact prompt is preserved next to a digest manifest. ... ok
+test_round_trip_verification_recomputes_every_digest (test_v04_divergence_prepare.WrittenArtifactTest.test_round_trip_verification_recomputes_every_digest)
+verify_written re-derives digests from content instead of trusting them. ... ok
+test_tampered_artifact_fails_verification (test_v04_divergence_prepare.WrittenArtifactTest.test_tampered_artifact_fails_verification)
+Editing a written context without fixing its digest is detected. ... ok
+test_ledger_bound_material_still_does_not_self_accept (test_v04_divergence_verifier.IndependentVerifierTest.test_ledger_bound_material_still_does_not_self_accept)
+Even a fully bound engineering bundle never claims ACCEPTED. ... ok
+test_required_comparisons_are_exactly_the_plan_set (test_v04_divergence_verifier.IndependentVerifierTest.test_required_comparisons_are_exactly_the_plan_set)
+P0|P1, P0|P2, P0|P3 persona and P0|E0 evidence must be required. ... ok
+test_seam_fixtures_are_rejected (test_v04_divergence_verifier.IndependentVerifierTest.test_seam_fixtures_are_rejected)
+Synthetic seam fixtures must never produce an acceptance-path verdict. ... ok
+test_self_declared_real_labels_without_ledger_are_incomplete (test_v04_divergence_verifier.IndependentVerifierTest.test_self_declared_real_labels_without_ledger_are_incomplete)
+Writing sanitized-real-canary into JSON is not provenance. ... ok
+test_verify_from_paths_loads_committed_disk_evidence (test_v04_divergence_verifier.IndependentVerifierTest.test_verify_from_paths_loads_committed_disk_evidence)
+The comparator must run from on-disk artifacts, not in-memory only. ... ok
+test_cli_writes_verdict_json (test_v04_divergence_verifier.VerifyCliTest.test_cli_writes_verdict_json) ... ok
+test_concurrent_processes_produce_exactly_one_winner (test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_concurrent_processes_produce_exactly_one_winner)
+N processes racing the same session_id → 1 durable record, N-1 duplicates. ... {
+  "written": "/tmp/tmpw5sdsqim/receipt.json",
+  "verdict": "UNSUITABLE_NOT_PERSISTENT_OWNER_HOST",
+  "suitable_for_v07_live_scheduler": false,
+  "live_claim": false,
+  "blocker_count": 6
+}
+{
+  "acceptance_authority": "ChatGPT lead \u2014 this verifier never self-accepts",
+  "acceptance_claim": false,
+  "all_comparisons_material": false,
+  "divergence_report": {
+    "acceptance_authority": "ChatGPT lead \u2014 this report never self-accepts",
+    "acceptance_evidence_eligible": false,
+    "all_comparisons_material": false,
+    "all_receipts_real_adaptive": false,
+    "call_slot_binding": {
+      "checked": false,
+      "manifest_ids": [],
+      "reason": "no call-budget ledger supplied; receipt labels alone cannot establish that any live call was made",
+      "unbound_cases": []
+    },
+    "cases": [
+      {
+        "case": "P0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P1",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P2",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P3",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "E0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      }
+    ],
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P2",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P3",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|E0",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "evidence"
+      }
+    ],
+    "errors": [
+      "P0: no receipt supplied",
+      "P1: no receipt supplied",
+      "P2: no receipt supplied",
+      "P3: no receipt supplied",
+      "E0: no receipt supplied"
+    ],
+    "generated_at": "2026-09-21T19:38:01Z",
+    "receipt_kinds": [],
+    "run_scope": "v04-divergence-test"
+  },
+  "evidence_class": "ENGINEERING",
+  "independent_rejections": [
+    "prepared matrix is not acceptance_eligible (engineering-fixture snapshots or other prepare-time honesty flags); fixture matrices cannot back LIVE divergence acceptance",
+    "matrix engineering_only_reason: snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "matrix engineering_only_reason: snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "E0: receipt absent",
+    "P0: receipt absent",
+    "P1: receipt absent",
+    "P2: receipt absent",
+    "P3: receipt absent",
+    "no call-budget ledger supplied; self-declared receipt labels are not provenance"
+  ],
+  "ledger_bound": false,
+  "live_model_call_performed": false,
+  "note": "No LIVE acceptance claim. Fixtures/replay/self-declared provenance are rejected for acceptance-path use.",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "required_comparisons_present": true,
+  "schema_version": 1,
+  "self_declared_real_labels_alone": false,
+  "source": {
+    "budget_home": null,
+    "matrix_path": "/tmp/tmph6lfio5c/PREPARED_MATRIX.json",
+    "receipts_dir": "/tmp/tmph6lfio5c/receipts"
+  },
+  "verdict": "REJECTED",
+  "verifier_id": "SB-R07-044"
+}
+ok
+test_flock_availability_is_exported_for_host_assertions (test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_flock_availability_is_exported_for_host_assertions)
+Deployments must be able to refuse the weak non-POSIX path. ... ok
+test_a_second_heartbeat_for_one_session_is_refused (test_v07_session_heartbeat.DurableWriteTest.test_a_second_heartbeat_for_one_session_is_refused)
+ONE SESSION = ONE HEARTBEAT is structural: the second emit raises. ... ok
+test_cadence_and_status_are_the_session_once_contract (test_v07_session_heartbeat.DurableWriteTest.test_cadence_and_status_are_the_session_once_contract)
+New sessions must carry SESSION_ONCE/STARTED, not a legacy timed cadence. ... ok
+test_distinct_sessions_append_distinct_records (test_v07_session_heartbeat.DurableWriteTest.test_distinct_sessions_append_distinct_records)
+Recurring liveness is a sequence of sessions, each with its own record. ... ok
+test_emit_writes_both_the_ledger_and_the_latest_view (test_v07_session_heartbeat.DurableWriteTest.test_emit_writes_both_the_ledger_and_the_latest_view)
+A heartbeat lands in the append-only log and in HEARTBEAT.json. ... ok
+test_legacy_records_without_session_ids_do_not_block_new_sessions (test_v07_session_heartbeat.DurableWriteTest.test_legacy_records_without_session_ids_do_not_block_new_sessions)
+Pre-existing schema-2 lane logs must not be invalidated or rewritten. ... ok
+test_new_session_id_is_unique (test_v07_session_heartbeat.DurableWriteTest.test_new_session_id_is_unique)
+Generated ids must not collide, or the duplicate guard would misfire. ... ok
+test_required_fields_are_present (test_v07_session_heartbeat.DurableWriteTest.test_required_fields_are_present)
+The protocol's minimum heartbeat fields must all be recorded. ... ok
+test_runtime_identity_carries_no_secrets (test_v07_session_heartbeat.DurableWriteTest.test_runtime_identity_carries_no_secrets)
+Host identification is coarse: no user, path, address or env value. ... ok
+test_started_at_is_stamped_from_the_real_clock_at_emit (test_v07_session_heartbeat.DurableWriteTest.test_started_at_is_stamped_from_the_real_clock_at_emit)
+No backfill: a supplied timestamp is overwritten, not honoured. ... ok
+test_comment_body_states_the_session_facts (test_v07_session_heartbeat.IssueVisibilityTest.test_comment_body_states_the_session_facts)
+The visibility comment must carry the same facts as the durable record. ... ok
+test_durable_write_succeeds_with_no_github_transport (test_v07_session_heartbeat.IssueVisibilityTest.test_durable_write_succeeds_with_no_github_transport)
+Missing gh is recorded as a skip reason; the heartbeat still lands. ... ok
+test_failed_post_never_raises_and_never_claims_success (test_v07_session_heartbeat.IssueVisibilityTest.test_failed_post_never_raises_and_never_claims_success)
+Any gh failure returns (False, reason) rather than propagating. ... ok
+test_raising_transport_is_swallowed_into_a_reason (test_v07_session_heartbeat.IssueVisibilityTest.test_raising_transport_is_swallowed_into_a_reason)
+A transport that throws must not take down the session. ... ok
+test_successful_post_is_reported (test_v07_session_heartbeat.IssueVisibilityTest.test_successful_post_is_reported)
+A genuinely successful comment is recorded as posted. ... ok
+test_a_held_task_is_skipped_and_the_next_is_claimed (test_v07_worker_once.ClaimOneTest.test_a_held_task_is_skipped_and_the_next_is_claimed)
+No-overlap is a skip, not a wait and not a contention failure. ... ok
+test_all_tasks_held_claims_nothing (test_v07_worker_once.ClaimOneTest.test_all_tasks_held_claims_nothing)
+When every candidate is live-held, the invocation claims none. ... ok
+test_only_the_first_claimable_task_runs (test_v07_worker_once.ClaimOneTest.test_only_the_first_claimable_task_runs)
+Three candidates, one invocation: exactly one unit executes. ... ok
+test_acknowledgement_records_what_was_consumed (test_v07_worker_once.DirectionTest.test_acknowledgement_records_what_was_consumed)
+The lead can see, from the repo alone, which SHA a session acted on. ... ok
+test_direction_is_read_from_git_without_gh_or_a_token (test_v07_worker_once.DirectionTest.test_direction_is_read_from_git_without_gh_or_a_token)
+Plain git show against the canonical branch is the whole transport. ... ok
+test_exact_canonical_sha_is_recorded (test_v07_worker_once.DirectionTest.test_exact_canonical_sha_is_recorded)
+An audit must be able to say which coordination state a session acted on. ... ok
+test_failed_fetch_degrades_honestly_instead_of_failing (test_v07_worker_once.DirectionTest.test_failed_fetch_degrades_honestly_instead_of_failing)
+An offline host reads the last known ref and records fetch_ok=false. ... ok
+test_frozen_lane_activity_is_read_as_a_halt (test_v07_worker_once.DirectionTest.test_frozen_lane_activity_is_read_as_a_halt)
+A lane the lead froze must not claim work on its next scheduled session. ... ok
+test_live_model_calls_are_not_authorized_by_default (test_v07_worker_once.DirectionTest.test_live_model_calls_are_not_authorized_by_default)
+Absent an explicit grant, a consumed direction never authorizes a model call. ... ok
+test_machine_readable_directions_file_wins_over_state_fallback (test_v07_worker_once.DirectionTest.test_machine_readable_directions_file_wins_over_state_fallback)
+When the lead writes a directions file, it is authoritative for that lane. ... ok
+test_missing_canonical_branch_raises (test_v07_worker_once.DirectionTest.test_missing_canonical_branch_raises)
+With no canonical ref at all, a session cannot pretend it read direction. ... ok
+test_a_crashed_invocation_is_visible_in_the_audit (test_v07_worker_once.InvocationReceiptTest.test_a_crashed_invocation_is_visible_in_the_audit)
+An abandoned open receipt is reported, not silently reclaimed. ... ok
+test_a_receipt_without_a_route_decision_is_counted_as_such (test_v07_worker_once.InvocationReceiptTest.test_a_receipt_without_a_route_decision_is_counted_as_such)
+``live_model_call`` alone means nothing; the route decision is the evidence. ... ok
+test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one (test_v07_worker_once.InvocationReceiptTest.test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one)
+The audit must distinguish 'no live call' from 'never checked'. ... ok
+test_index_records_both_phases (test_v07_worker_once.InvocationReceiptTest.test_index_records_both_phases)
+The index carries an open and a close row so crashes are countable. ... ok
+test_receipt_opens_incomplete_and_closes_terminal (test_v07_worker_once.InvocationReceiptTest.test_receipt_opens_incomplete_and_closes_terminal)
+A crash mid-unit leaves 'incomplete', never a missing or success record. ... ok
+test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt (test_v07_worker_once.WorkerOnceEndToEndTest.test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt)
+The two independent durable traces every scheduled session must leave. ... ok
+test_direction_is_acknowledged_for_the_session (test_v07_worker_once.WorkerOnceEndToEndTest.test_direction_is_acknowledged_for_the_session)
+Every invocation records the direction it consumed, for the lead to read. ... ok
+test_halted_lane_exits_five_and_claims_nothing (test_v07_worker_once.WorkerOnceEndToEndTest.test_halted_lane_exits_five_and_claims_nothing)
+A frozen lane runs, records, and stands down without touching a task. ... ok
+test_no_overlap_exits_three_and_still_writes_both_traces (test_v07_worker_once.WorkerOnceEndToEndTest.test_no_overlap_exits_three_and_still_writes_both_traces)
+A fully contended invocation is benign but still fully evidenced. ... ok
+test_repeated_invocations_produce_a_sequence_of_sessions (test_v07_worker_once.WorkerOnceEndToEndTest.test_repeated_invocations_produce_a_sequence_of_sessions)
+Recurring liveness is repeated bounded invocations, each with its own pair. ... ok
+test_reusing_a_session_id_is_refused (test_v07_worker_once.WorkerOnceEndToEndTest.test_reusing_a_session_id_is_refused)
+A reused session id would forge a second heartbeat for one session. ... DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
+ok
+test_the_heartbeat_records_the_canonical_sha_it_consumed (test_v07_worker_once.WorkerOnceEndToEndTest.test_the_heartbeat_records_the_canonical_sha_it_consumed)
+Direction is consumed before the heartbeat so the attestation is real. ... ok
+test_no_overlap_second_worker_rejected (test_worker.WorkerTest.test_no_overlap_second_worker_rejected) ... ok
+test_restart_resume_advances_state (test_worker.WorkerTest.test_restart_resume_advances_state) ... ok
+test_stale_lease_recovered_with_reconcile (test_worker.WorkerTest.test_stale_lease_recovered_with_reconcile) ... ok
+test_two_invocations_produce_receipts_and_heartbeat (test_worker.WorkerTest.test_two_invocations_produce_receipts_and_heartbeat) ... ok
+
+----------------------------------------------------------------------
+Ran 362 tests in 31.575s
+
+OK (skipped=2)
