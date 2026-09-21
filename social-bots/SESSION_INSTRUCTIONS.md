@@ -1,6 +1,10 @@
 # START NOW — no heartbeat prerequisite
 
-The owner has requested faster execution. Run this canary immediately from an ACTUAL LOCAL host with working Claude Code subscription authentication. Do not wait for heartbeat validation. If this environment is a remote/container session without subscription auth, stop truthfully and launch the branch from a local authenticated Claude Code terminal instead.
+Lead review: LEAD-025
+
+The owner has requested faster execution. Run this canary immediately from an ACTUAL LOCAL host with working Claude Code subscription authentication. Do not wait for heartbeat validation. If this environment is a remote/container session without subscription auth, stop truthfully and submit a BLOCKED worker report; do not substitute fixtures, injected output, API PAYG or hand-authored model JSON.
+
+No Claude worker-generated canary commit/evidence is visible yet. Priority Zero is therefore stalled on execution, not on project planning.
 
 # SESSION_INSTRUCTIONS — V0.4 Real Live Canary
 
@@ -39,7 +43,7 @@ NOT authorized:
 
 ## Preflight
 
-1. Confirm this is an actual Mac/local host environment.
+1. Confirm this is an actual local host environment.
 2. Record:
    - OS;
    - Python;
