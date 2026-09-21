@@ -79,6 +79,52 @@ checks["stale_and_derived"] = {
              and der_missing.availability == metrics.MISSING),
 }
 
+# 5) SEMANTIC KINDS: cumulative snapshots never summed over time; deltas may sum.
+metrics.record("snap-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_end="2026-09-20T00:00:00+00:00", raw_metrics={"video_views": 100}))
+metrics.record("snap-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_end="2026-09-21T00:00:00+00:00", raw_metrics={"video_views": 150}))
+snap_agg = metrics.aggregate_semantic("snap-bot", metrics.VIEW)
+snap = snap_agg["by_platform"]["tiktok"]["kinds"][metrics.CUMULATIVE_SNAPSHOT]
+
+metrics.record("delta-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_end="2026-09-20T00:00:00+00:00", raw_metrics={"new_followers": 100}))
+metrics.record("delta-bot", metrics.normalize(
+    platform="tiktok", source="fixture", content_id="cc",
+    window_end="2026-09-21T00:00:00+00:00", raw_metrics={"new_followers": 50}))
+delta_agg = metrics.aggregate_semantic("delta-bot", metrics.FOLLOW)
+delta = delta_agg["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
+
+checks["semantic_kind_aggregation"] = {
+    "snapshot_100_then_150_value": snap["value"],
+    "delta_100_then_50_value": delta["value"],
+    "pass": snap["value"] == 150.0 and delta["value"] == 150.0,
+}
+
+# 6) snapshot -> delta derivation requires a comparable earlier snapshot and
+#    records the derivation.
+prev = metrics.normalize(platform="tiktok", source="fixture", content_id="cd",
+                         window_end="2026-09-20T00:00:00+00:00",
+                         raw_metrics={"video_views": 100})
+curr = metrics.normalize(platform="tiktok", source="fixture", content_id="cd",
+                         window_end="2026-09-21T00:00:00+00:00",
+                         raw_metrics={"video_views": 150})
+der = metrics.derive_delta_from_snapshots(prev, curr, metrics.VIEW)
+other = metrics.normalize(platform="tiktok", source="fixture", content_id="ce",
+                          window_end="2026-09-21T00:00:00+00:00",
+                          raw_metrics={"video_views": 150})
+der_bad = metrics.derive_delta_from_snapshots(prev, other, metrics.VIEW)
+checks["snapshot_to_delta_derivation"] = {
+    "derived_value": der.value,
+    "derivation_ok": der.derivation["ok"],
+    "non_comparable_missing": der_bad.availability == metrics.MISSING,
+    "pass": (der.value == 50.0 and der.metric_kind == metrics.DELTA
+             and der.derivation["ok"] and der_bad.availability == metrics.MISSING),
+}
+
 summary = {
     "artifact": "SB-V13-001",
     "kind": "fixture-evidence",

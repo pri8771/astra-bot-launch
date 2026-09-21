@@ -13,6 +13,17 @@
       "tiktok_reach": "not_supported",
       "x_reach": "present"
     },
+    "semantic_kind_aggregation": {
+      "delta_100_then_50_value": 150.0,
+      "pass": true,
+      "snapshot_100_then_150_value": 150.0
+    },
+    "snapshot_to_delta_derivation": {
+      "derivation_ok": true,
+      "derived_value": 50.0,
+      "non_comparable_missing": true,
+      "pass": true
+    },
     "stale_and_derived": {
       "derived_formula": "completion / view",
       "derived_formula_version": "1.0.0",
@@ -34,6 +45,6 @@
   },
   "derived_formula_version": "1.0.0",
   "kind": "fixture-evidence",
-  "normalization_version": "1.0.0",
+  "normalization_version": "1.1.0",
   "warning": "FIXTURE metric payloads only; NOT real social metrics."
 }

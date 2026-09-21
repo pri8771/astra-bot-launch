@@ -29,7 +29,27 @@ from pathlib import Path
 from . import paths
 from .jsonstore import append_jsonl, read_jsonl, now_iso
 
-NORMALIZATION_VERSION = "1.0.0"
+NORMALIZATION_VERSION = "1.1.0"
+
+# ------------------------------------------------------------------------- #
+# Metric semantic kinds (SB-V13-001 repair). Every normalized/derived metric
+# declares exactly one. The kind decides how a metric may be aggregated:
+#
+# - cumulative_snapshot: a running total-to-date. NEVER naively summed over
+#   time; the latest snapshot in a series is authoritative.
+# - delta: a change within an observation window. Additive across windows.
+# - gauge: a point-in-time level (e.g. follower count). Not summed; averaged.
+# - rate: a ratio/derived rate. Not summed; averaged.
+# ------------------------------------------------------------------------- #
+CUMULATIVE_SNAPSHOT = "cumulative_snapshot"
+DELTA = "delta"
+GAUGE = "gauge"
+RATE = "rate"
+METRIC_KINDS = (CUMULATIVE_SNAPSHOT, DELTA, GAUGE, RATE)
+
+# The safe default for a mapped count with no explicit kind: a snapshot is never
+# naively summed, so defaulting here fails closed against false aggregation.
+DEFAULT_METRIC_KIND = CUMULATIVE_SNAPSHOT
 
 # ------------------------------------------------------------------------- #
 # Semantic categories and availability states.
@@ -70,6 +90,16 @@ PLATFORM_MAP: dict[str, dict] = {
             "url_link_clicks": CLICK,
             "follows": FOLLOW,
         },
+        # Lifetime content counts are cumulative-to-date snapshots; "follows"
+        # reported for an analytics window is the count of new follows (a delta).
+        "kinds": {
+            "impressions": CUMULATIVE_SNAPSHOT,
+            "video_views": CUMULATIVE_SNAPSHOT,
+            "replies": CUMULATIVE_SNAPSHOT,
+            "retweets": CUMULATIVE_SNAPSHOT,
+            "url_link_clicks": CUMULATIVE_SNAPSHOT,
+            "follows": DELTA,
+        },
     },
     "instagram": {
         "supports": {REACH, VIEW, COMPLETION, SAVE, SHARE, REPLY, FOLLOW},
@@ -82,6 +112,15 @@ PLATFORM_MAP: dict[str, dict] = {
             "comments": REPLY,
             "follows": FOLLOW,
         },
+        "kinds": {
+            "reach": CUMULATIVE_SNAPSHOT,
+            "plays": CUMULATIVE_SNAPSHOT,
+            "video_completions": CUMULATIVE_SNAPSHOT,
+            "saved": CUMULATIVE_SNAPSHOT,
+            "shares": CUMULATIVE_SNAPSHOT,
+            "comments": CUMULATIVE_SNAPSHOT,
+            "follows": DELTA,
+        },
     },
     "tiktok": {
         "supports": {VIEW, COMPLETION, SAVE, SHARE, REPLY, FOLLOW},
@@ -93,6 +132,14 @@ PLATFORM_MAP: dict[str, dict] = {
             "comments": REPLY,
             "new_followers": FOLLOW,
         },
+        "kinds": {
+            "video_views": CUMULATIVE_SNAPSHOT,
+            "completion_views": CUMULATIVE_SNAPSHOT,
+            "favourites": CUMULATIVE_SNAPSHOT,
+            "shares": CUMULATIVE_SNAPSHOT,
+            "comments": CUMULATIVE_SNAPSHOT,
+            "new_followers": DELTA,
+        },
     },
     "reddit": {
         # Reddit has no native reach/view/completion equivalent -> NOT_SUPPORTED.
@@ -103,18 +150,26 @@ PLATFORM_MAP: dict[str, dict] = {
             "outbound_clicks": CLICK,
             "saves": SAVE,
         },
+        "kinds": {
+            "crossposts": CUMULATIVE_SNAPSHOT,
+            "num_comments": CUMULATIVE_SNAPSHOT,
+            "outbound_clicks": CUMULATIVE_SNAPSHOT,
+            "saves": CUMULATIVE_SNAPSHOT,
+        },
     },
 }
 
 
 @dataclass(frozen=True)
 class MetricValue:
-    """A single semantic metric with an explicit availability state."""
+    """A single semantic metric with an explicit availability state and an
+    explicit semantic kind (cumulative_snapshot / delta / gauge / rate)."""
     semantic: str
     availability: str
     value: float | None
     raw_name: str | None
     raw_value: float | None
+    metric_kind: str | None = None
 
     def is_missing(self) -> bool:
         return self.availability != PRESENT
@@ -138,7 +193,8 @@ class NormalizedObservation:
     unmapped_raw: list           # raw names with no semantic mapping (kept, not blended)
 
     def metric(self, semantic: str) -> MetricValue:
-        d = self.normalized[semantic]
+        d = dict(self.normalized[semantic])
+        d.setdefault("metric_kind", None)
         return MetricValue(**d)
 
     def as_dict(self) -> dict:
@@ -154,17 +210,38 @@ def _parse_iso(ts: str | None) -> datetime | None:
         return None
 
 
+def _kind_for(pmap: dict | None, raw_name: str,
+              raw_kinds: dict | None) -> str:
+    """Resolve the semantic kind for a mapped raw metric.
+
+    Priority: explicit per-call override (``raw_kinds``) > platform declaration
+    > safe default (cumulative_snapshot). An invalid kind is rejected.
+    """
+    kind = None
+    if raw_kinds and raw_name in raw_kinds:
+        kind = raw_kinds[raw_name]
+    elif pmap:
+        kind = pmap.get("kinds", {}).get(raw_name)
+    kind = kind or DEFAULT_METRIC_KIND
+    if kind not in METRIC_KINDS:
+        raise ValueError(f"invalid metric_kind {kind!r} for raw metric {raw_name!r}")
+    return kind
+
+
 def normalize(*, platform: str, raw_metrics: dict, source: str,
               account_alias: str | None = None, persona: str | None = None,
               content_id: str | None = None, experiment_id: str | None = None,
               window_start: str | None = None, window_end: str | None = None,
-              collected_at: str | None = None) -> NormalizedObservation:
+              collected_at: str | None = None,
+              raw_kinds: dict | None = None) -> NormalizedObservation:
     """Normalize a platform's raw metric payload into semantic categories.
 
     Retains the full raw payload. A raw metric present with any numeric value
     (including 0) is PRESENT. A supported semantic with no raw metric is MISSING.
     A semantic the platform has no equivalent for is NOT_SUPPORTED. Nothing is
-    coerced to 0.
+    coerced to 0. Every PRESENT metric declares a semantic kind
+    (cumulative_snapshot / delta / gauge / rate); ``raw_kinds`` overrides the
+    platform's declared kind per raw metric.
     """
     pmap = PLATFORM_MAP.get(platform)
     if pmap is None:
@@ -190,14 +267,16 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
         if sem in sem_to_raw:
             raw_name, raw_value = sem_to_raw[sem]
             if isinstance(raw_value, (int, float)):
-                mv = MetricValue(sem, PRESENT, float(raw_value), raw_name, float(raw_value))
+                kind = _kind_for(pmap, raw_name, raw_kinds)
+                mv = MetricValue(sem, PRESENT, float(raw_value), raw_name,
+                                 float(raw_value), metric_kind=kind)
             else:
                 # Present key but non-numeric / null -> collected-but-unavailable.
-                mv = MetricValue(sem, MISSING, None, raw_name, None)
+                mv = MetricValue(sem, MISSING, None, raw_name, None, metric_kind=None)
         elif sem in supports:
-            mv = MetricValue(sem, MISSING, None, None, None)
+            mv = MetricValue(sem, MISSING, None, None, None, metric_kind=None)
         else:
-            mv = MetricValue(sem, NOT_SUPPORTED, None, None, None)
+            mv = MetricValue(sem, NOT_SUPPORTED, None, None, None, metric_kind=None)
         normalized[sem] = asdict(mv)
 
     return NormalizedObservation(
@@ -232,6 +311,8 @@ class DerivedMetric:
     formula: str
     formula_version: str
     inputs: dict
+    metric_kind: str = RATE
+    derivation: dict | None = None
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -248,7 +329,72 @@ def _ratio(obs: NormalizedObservation, name: str, num_sem: str, den_sem: str,
     else:
         avail = PRESENT
         value = num.value / den.value
-    return DerivedMetric(name, avail, value, formula, DERIVED_FORMULA_VERSION, inputs)
+    return DerivedMetric(name, avail, value, formula, DERIVED_FORMULA_VERSION,
+                         inputs, metric_kind=RATE)
+
+
+# ------------------------------------------------------------------------- #
+# Snapshot -> delta derivation (SB-V13-001 acceptance).
+#
+# A cumulative snapshot may be converted to a delta ONLY with a valid earlier
+# comparable snapshot, and the derivation is recorded explicitly.
+# ------------------------------------------------------------------------- #
+def _series_key(obs: NormalizedObservation) -> tuple:
+    return (obs.platform, obs.account_alias, obs.persona, obs.content_id)
+
+
+def derive_delta_from_snapshots(previous: NormalizedObservation,
+                                current: NormalizedObservation,
+                                semantic: str) -> DerivedMetric:
+    """Derive a DELTA for ``semantic`` from two comparable cumulative snapshots.
+
+    Requires: both observations PRESENT and kind ``cumulative_snapshot`` for the
+    semantic, the SAME series (platform/account/persona/content), and the current
+    window ending at or after the previous window. Otherwise returns a MISSING
+    derived metric explaining why — never a fabricated delta.
+    """
+    prev = previous.metric(semantic)
+    curr = current.metric(semantic)
+    name = f"{semantic}_delta"
+    inputs = {"previous": prev.value, "current": curr.value}
+
+    def _missing(reason: str) -> DerivedMetric:
+        return DerivedMetric(name, MISSING, None,
+                             formula="current_snapshot - previous_snapshot",
+                             formula_version=DERIVED_FORMULA_VERSION,
+                             inputs=inputs, metric_kind=DELTA,
+                             derivation={"ok": False, "reason": reason})
+
+    if prev.is_missing() or curr.is_missing():
+        return _missing("a snapshot input is missing")
+    if prev.metric_kind != CUMULATIVE_SNAPSHOT or curr.metric_kind != CUMULATIVE_SNAPSHOT:
+        return _missing("both inputs must be cumulative_snapshot")
+    if _series_key(previous) != _series_key(current):
+        return _missing("snapshots are not from the same comparable series")
+
+    prev_end = _parse_iso(previous.window_end) or _parse_iso(previous.collected_at)
+    curr_end = _parse_iso(current.window_end) or _parse_iso(current.collected_at)
+    if prev_end is None or curr_end is None:
+        return _missing("cannot establish snapshot ordering without windows")
+    if curr_end < prev_end:
+        return _missing("current snapshot precedes previous snapshot")
+    if curr.value < prev.value:
+        # A cumulative counter that decreased indicates a reset/deletion; a naive
+        # difference would be a misleading negative delta.
+        return _missing("cumulative snapshot decreased; not a valid delta")
+
+    derivation = {
+        "ok": True,
+        "previous_observation_id": previous.observation_id,
+        "current_observation_id": current.observation_id,
+        "series_key": list(_series_key(current)),
+        "previous_window_end": previous.window_end,
+        "current_window_end": current.window_end,
+    }
+    return DerivedMetric(name, PRESENT, curr.value - prev.value,
+                         formula="current_snapshot - previous_snapshot",
+                         formula_version=DERIVED_FORMULA_VERSION,
+                         inputs=inputs, metric_kind=DELTA, derivation=derivation)
 
 
 def completion_rate(obs: NormalizedObservation) -> DerivedMetric:
@@ -326,31 +472,93 @@ def trace_content(bot: str, content_id: str) -> dict:
     }
 
 
-def aggregate_semantic(bot: str, semantic: str) -> dict:
-    """Sum a semantic metric, grouped BY platform — never blended across them.
+def _obs_time(o: dict) -> str:
+    """Ordering key for observations within a series (window end, else collected)."""
+    return o.get("window_end") or o.get("collected_at") or ""
 
-    Missing/not-supported values are excluded from the sum (not counted as 0)
-    and reported separately so the caller can see coverage honestly.
+
+def _series_key_dict(o: dict) -> tuple:
+    return (o.get("platform"), o.get("account_alias"), o.get("persona"),
+            o.get("content_id"))
+
+
+def aggregate_semantic(bot: str, semantic: str) -> dict:
+    """Aggregate a semantic metric SEMANTIC-KIND-AWARE, grouped by platform.
+
+    Aggregation depends on each metric's declared kind — the SB-V13-001 core
+    fix so cumulative snapshots are never naively summed:
+
+    - ``delta``:  additive across windows -> summed.
+    - ``cumulative_snapshot``: NOT summed over time. Within a series
+      (platform/account/persona/content) the latest snapshot is authoritative;
+      the platform total is the sum of the latest-per-series snapshots.
+    - ``gauge`` / ``rate``: not summed -> mean of the latest-per-series values.
+
+    Missing / not-supported values are excluded (never counted as 0) and reported
+    separately so coverage is visible.
     """
+    # Collect PRESENT observations by platform then by kind.
     by_platform: dict[str, dict] = {}
     for o in observations_for(bot):
         plat = o.get("platform")
         mv = o.get("normalized", {}).get(semantic)
         if mv is None:
             continue
-        bucket = by_platform.setdefault(
-            plat, {"sum": 0.0, "present": 0, "missing": 0, "not_supported": 0})
+        bucket = by_platform.setdefault(plat, {
+            "kinds": {}, "present": 0, "missing": 0, "not_supported": 0})
         avail = mv.get("availability")
         if avail == PRESENT and isinstance(mv.get("value"), (int, float)):
-            bucket["sum"] += mv["value"]
             bucket["present"] += 1
+            kind = mv.get("metric_kind") or DEFAULT_METRIC_KIND
+            bucket["kinds"].setdefault(kind, []).append(
+                {"value": float(mv["value"]), "obs": o})
         elif avail == NOT_SUPPORTED:
             bucket["not_supported"] += 1
         else:
             bucket["missing"] += 1
+
+    # Reduce each (platform, kind) group by its kind-appropriate rule.
+    for plat, bucket in by_platform.items():
+        reduced: dict[str, dict] = {}
+        for kind, entries in bucket["kinds"].items():
+            if kind == DELTA:
+                reduced[kind] = {
+                    "kind": kind, "aggregation": "sum",
+                    "value": sum(e["value"] for e in entries),
+                    "count": len(entries),
+                }
+            else:
+                # Snapshot / gauge / rate: reduce each series to its latest value.
+                series: dict[tuple, dict] = {}
+                for e in entries:
+                    sk = _series_key_dict(e["obs"])
+                    t = _obs_time(e["obs"])
+                    if sk not in series or t >= series[sk]["t"]:
+                        series[sk] = {"t": t, "value": e["value"]}
+                latest_vals = [s["value"] for s in series.values()]
+                if kind == CUMULATIVE_SNAPSHOT:
+                    reduced[kind] = {
+                        "kind": kind,
+                        "aggregation": "latest_per_series_then_sum",
+                        "value": sum(latest_vals),
+                        "series_count": len(series),
+                        "count": len(entries),
+                        "note": "snapshots never summed over time; latest per series",
+                    }
+                else:  # GAUGE or RATE
+                    mean = sum(latest_vals) / len(latest_vals) if latest_vals else None
+                    reduced[kind] = {
+                        "kind": kind, "aggregation": "mean_of_series_latest",
+                        "value": mean, "series_count": len(series),
+                        "count": len(entries),
+                    }
+        bucket["kinds"] = reduced
+
     return {
         "bot": bot,
         "semantic": semantic,
         "by_platform": by_platform,
-        "note": "grouped per platform; missing excluded from sum (not treated as 0)",
+        "note": ("kind-aware: deltas summed; cumulative snapshots reduced to "
+                 "latest-per-series then summed (never summed over time); "
+                 "gauges/rates averaged; missing excluded (not treated as 0)"),
     }

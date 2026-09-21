@@ -133,8 +133,9 @@ class MetricsTest(unittest.TestCase):
         object.__setattr__(obs, "collected_at", None)
         self.assertTrue(metrics.is_stale(obs, max_age_hours=24))
 
-    # --- honest aggregation ---------------------------------------------- #
+    # --- honest, kind-aware aggregation ---------------------------------- #
     def test_aggregate_excludes_missing_and_groups_by_platform(self):
+        # Two different content items -> two series; latest-per-series summed.
         metrics.record("social-a", metrics.normalize(
             platform="instagram", source="fixture", content_id="c1",
             raw_metrics={"saved": 4}))
@@ -143,9 +144,89 @@ class MetricsTest(unittest.TestCase):
             raw_metrics={"reach": 10}))  # save MISSING here
         agg = metrics.aggregate_semantic("social-a", metrics.SAVE)
         ig = agg["by_platform"]["instagram"]
-        self.assertEqual(ig["sum"], 4.0)      # missing not counted as 0
+        snap = ig["kinds"][metrics.CUMULATIVE_SNAPSHOT]
+        self.assertEqual(snap["value"], 4.0)     # missing not counted as 0
+        self.assertEqual(snap["series_count"], 1)
         self.assertEqual(ig["present"], 1)
         self.assertEqual(ig["missing"], 1)
+
+    def test_metric_declares_semantic_kind(self):
+        obs = metrics.normalize(platform="instagram", source="fixture",
+                                raw_metrics={"reach": 100})
+        self.assertEqual(obs.metric(metrics.REACH).metric_kind,
+                         metrics.CUMULATIVE_SNAPSHOT)
+        obs2 = metrics.normalize(platform="tiktok", source="fixture",
+                                 raw_metrics={"new_followers": 20})
+        self.assertEqual(obs2.metric(metrics.FOLLOW).metric_kind, metrics.DELTA)
+
+    def test_cumulative_snapshots_not_summed_over_time(self):
+        """snapshots 100 then 150 views must NOT aggregate to 250."""
+        for v, end in ((100, "2026-09-20T00:00:00+00:00"),
+                       (150, "2026-09-21T00:00:00+00:00")):
+            metrics.record("social-a", metrics.normalize(
+                platform="tiktok", source="fixture", content_id="same-c",
+                window_end=end, raw_metrics={"video_views": v}))
+        agg = metrics.aggregate_semantic("social-a", metrics.VIEW)
+        snap = agg["by_platform"]["tiktok"]["kinds"][metrics.CUMULATIVE_SNAPSHOT]
+        self.assertEqual(snap["value"], 150.0)      # latest, not 250
+        self.assertEqual(snap["series_count"], 1)
+        self.assertEqual(snap["count"], 2)
+
+    def test_deltas_may_sum(self):
+        """deltas 100 then 50 may aggregate to 150 when semantics declare deltas."""
+        for v, end in ((100, "2026-09-20T00:00:00+00:00"),
+                       (50, "2026-09-21T00:00:00+00:00")):
+            metrics.record("social-a", metrics.normalize(
+                platform="tiktok", source="fixture", content_id="same-c",
+                window_end=end, raw_metrics={"new_followers": v}))
+        agg = metrics.aggregate_semantic("social-a", metrics.FOLLOW)
+        delta = agg["by_platform"]["tiktok"]["kinds"][metrics.DELTA]
+        self.assertEqual(delta["value"], 150.0)
+        self.assertEqual(delta["aggregation"], "sum")
+
+    def test_snapshot_to_delta_derivation_records_derivation(self):
+        prev = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-d",
+            window_end="2026-09-20T00:00:00+00:00",
+            raw_metrics={"video_views": 100})
+        curr = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-d",
+            window_end="2026-09-21T00:00:00+00:00",
+            raw_metrics={"video_views": 150})
+        d = metrics.derive_delta_from_snapshots(prev, curr, metrics.VIEW)
+        self.assertEqual(d.availability, metrics.PRESENT)
+        self.assertEqual(d.value, 50.0)
+        self.assertEqual(d.metric_kind, metrics.DELTA)
+        self.assertTrue(d.derivation["ok"])
+        self.assertEqual(d.derivation["previous_observation_id"], prev.observation_id)
+
+    def test_snapshot_delta_requires_comparable_series(self):
+        prev = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-a",
+            window_end="2026-09-20T00:00:00+00:00",
+            raw_metrics={"video_views": 100})
+        other = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-b",  # different item
+            window_end="2026-09-21T00:00:00+00:00",
+            raw_metrics={"video_views": 150})
+        d = metrics.derive_delta_from_snapshots(prev, other, metrics.VIEW)
+        self.assertEqual(d.availability, metrics.MISSING)
+        self.assertIsNone(d.value)
+        self.assertFalse(d.derivation["ok"])
+
+    def test_snapshot_delta_rejects_decrease(self):
+        prev = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-x",
+            window_end="2026-09-20T00:00:00+00:00",
+            raw_metrics={"video_views": 200})
+        curr = metrics.normalize(
+            platform="tiktok", source="fixture", content_id="c-x",
+            window_end="2026-09-21T00:00:00+00:00",
+            raw_metrics={"video_views": 150})  # cumulative decreased -> invalid
+        d = metrics.derive_delta_from_snapshots(prev, curr, metrics.VIEW)
+        self.assertEqual(d.availability, metrics.MISSING)
+        self.assertEqual(d.derivation["reason"],
+                         "cumulative snapshot decreased; not a valid delta")
 
 
 if __name__ == "__main__":
