@@ -13,10 +13,10 @@ Those are completed batch evidence, not the active repair lanes.
 ## Active repair-lane repository evidence — LEAD-017
 
 - Windows Core/Host expected branch `claude/social-bots-windows-core-host`: **not visible remotely yet**.
-- Intelligence repair branch `claude/social-bots-intelligence-repair-v2`: visible and active at signed Claude head `ecad87e6c722b68c9d8ab8cb1010d35c170bc6b8`.
+- Intelligence repair branch `claude/social-bots-intelligence-repair-v2`: visible and active at signed Claude head `cbd781cab4d751b2a0626c3ce060c5a217d771e9`.
 - Mac QA/control expected branch `claude/social-bots-mac-qa-control`: **not visible remotely yet**.
 
-The Intelligence head reports 139 local tests; GitHub combined status is empty, so these are not independent CI results.
+The latest Intelligence worker report says 145 local tests; independent GitHub CI remains absent.
 
 ## Current version
 
@@ -35,11 +35,9 @@ No milestone promotion is justified by later scaffolding while these required V0
 
 ## Instance A — Windows Core / Host
 
-Branch:
-`claude/social-bots-windows-core-host`
+Branch: `claude/social-bots-windows-core-host`
 
-Packet:
-`artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
+Packet: `artifact-packets/repair-waves/WINDOWS_CORE_WAVE1.md`
 
 Use a separate working tree/clone from every other Windows Claude session.
 
@@ -56,13 +54,11 @@ Immediate heartbeat request: push the first reviewable checkpoint; repository ev
 
 ## Instance B — Intelligence / Evidence Integrity
 
-Branch:
-`claude/social-bots-intelligence-repair-v2`
+Branch: `claude/social-bots-intelligence-repair-v2`
 
-Packet:
-`artifact-packets/repair-waves/INTELLIGENCE_WAVE1.md`
+Packet: `artifact-packets/repair-waves/INTELLIGENCE_WAVE1.md`
 
-### SB-V05-001 repair submission at ecad87e6 — CHANGES REQUIRED
+### SB-V05-001 at `ecad87e6...` — CHANGES_REQUIRED
 
 Positive repair work:
 - caller `mode="live"` alone no longer grants operational-live status;
@@ -70,21 +66,37 @@ Positive repair work:
 - fixture evidence remains honestly fixture-labelled.
 
 Independent LEAD-017 blockers:
-1. `register_trusted_transport(cls)` is a public mutable registration seam. The tests themselves register a caller-created `TrustedLiveStub`, after which it produces `transport_trusted=True` and operational-live evidence. Trust therefore is not yet closed/collector-owned.
-2. `to_signal()` accepts any `is_verified_capture()`, including verified-but-untrusted live receipts, into the normal signal bridge. Operational conversion must require trusted evidence or an explicit test-only route.
-3. Redirect tests override `_perform()` and do not prove the real urllib 30x handling path. Add a non-network test around actual `_perform()` redirect handling.
-4. DNS validation and the later socket connection resolve separately; document/close DNS-rebinding/TOCTOU before calling the live path fully SSRF-safe.
+1. `register_trusted_transport(cls)` is public/mutable. The tests register a caller-created `TrustedLiveStub`, after which it produces operational-live evidence. Trust is therefore still caller-grantable.
+2. `to_signal()` accepts any `is_verified_capture()`, including verified-but-untrusted live receipts, into the normal signal bridge.
+3. Redirect tests override `_perform()` and do not prove the real urllib 30x handling path.
+4. DNS validation and socket connection resolve separately; DNS-rebinding/TOCTOU remains.
 
-Repair SB-V05-001 again before advancing its dependent operational chain.
+### SB-V05-002 at `cbd781ca...` — CHANGES_REQUIRED
 
-Then continue:
-1. SB-V05-002 attributable factual support assessor; caller stance test-only.
-2. SB-V13-001 cumulative_snapshot/delta/gauge/rate semantics + safe aggregation.
-3. SB-V14-001 persona-scoped memory + safe segment allowlist + correct fork semantics.
-4. SB-V15-001 measurement/evidence refs.
-5. SB-V16-001 ClaimSupport validation + persona-scoped history/novelty.
-6. SB-V17-001 receipt-backed, persona-scoped community memory/themes.
-7. SB-V20-002 typed accepted-evidence inputs.
+Positive repair work:
+- added attributable assessor records;
+- added material-claim identification so caller omission no longer trivially bypasses review;
+- preserved hash staleness and fail-closed missing-assessor behavior.
+
+Independent LEAD-017 blockers:
+1. `register_operational_assessor(cls)` repeats the public self-registration trust flaw; arbitrary runtime code can grant its own assessor operational authority.
+2. `evidence_ref_from_receipt()` accepts verified fixture/untrusted captures; the operational fact-review path must require accepted SB-V05-001 operational evidence.
+3. `KeywordSupportAssessor` can mark full `SUPPORTED` from key-term co-occurrence. It must fail conservatively on negation, relation mismatch, numeric/date mismatch and subject-only mentions rather than overclaim factual support.
+
+### Required repair order
+
+Do not treat downstream code as accepted merely because scaffolding is useful.
+
+1. Repair/resubmit SB-V05-001 against the tightened canonical packet.
+2. Repair/resubmit SB-V05-002 against the tightened canonical packet.
+3. SB-V13-001 cumulative_snapshot/delta/gauge/rate semantics + safe aggregation.
+4. SB-V14-001 persona-scoped memory + safe segment allowlist + correct fork semantics.
+5. SB-V15-001 measurement/evidence refs.
+6. SB-V16-001 ClaimSupport validation + persona-scoped history/novelty.
+7. SB-V17-001 receipt-backed, persona-scoped community memory/themes.
+8. SB-V20-002 typed accepted-evidence inputs.
+
+Scaffolding may be committed ahead, but canonical status remains dependency/evidence-gated.
 
 ## Current deep-audit dispositions
 
@@ -98,7 +110,7 @@ Then continue:
 
 ### Intelligence
 - SB-V05-001 CHANGES_REQUIRED after LEAD-017 repair audit.
-- SB-V05-002 CHANGES_REQUIRED.
+- SB-V05-002 CHANGES_REQUIRED after LEAD-017 repair audit.
 - SB-V13-001 CHANGES_REQUIRED.
 - SB-V14-001 CHANGES_REQUIRED.
 - SB-V15-001 CHANGES_REQUIRED.
@@ -109,11 +121,9 @@ Then continue:
 
 ## Mac QA / Control lane
 
-Branch:
-`claude/social-bots-mac-qa-control`
+Branch: `claude/social-bots-mac-qa-control`
 
-Packet:
-`artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
+Packet: `artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
 
 Primary artifact:
 - `SB-CTL-012` — artifact graph validator/readiness reporter — SP3.
