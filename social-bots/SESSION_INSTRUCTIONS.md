@@ -1,80 +1,42 @@
-## TODAY-ONLY HEARTBEAT SOAK — 2026-09-21
-
-For this fresh session, start the heartbeat soak immediately and keep useful lane work running in parallel.
-
-Stage 1:
-- produce heartbeat records at T0, ~T0+5m, ~T0+10m, ~T0+15m;
-- this is 3 consecutive real 5-minute intervals;
-- use cadence_mode `FAST_5M`;
-- append every timed record to the lane's HEARTBEAT_LOG.jsonl and push it;
-- no fabricated/backfilled timestamps and no burst updates counted as timed success.
-
-Stage 2:
-- after the third successful 5-minute interval, switch immediately to `SOAK_15M_24H`;
-- continue every 15 minutes for 24 hours (target 96 intervals);
-- do not wait for lead acknowledgement to start Stage 2;
-- keep engineering/review work running between heartbeat intervals;
-- if an interval is missed or the heartbeat process dies, record it truthfully and continue prospectively.
-
-Read canonical `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md` before starting.
-
-# SESSION_INSTRUCTIONS — Windows Core / V0.3 preserve + V0.4 acceptance repair
+# SESSION_INSTRUCTIONS — Windows Core / V0.4 acceptance repair
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-033
+Lead review: LEAD-034
 
-Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
+Heartbeat is observability only and MUST NOT block source work.
 
-At start/checkpoint:
-1. `git pull --ff-only`
-2. `git fetch origin`
-3. read canonical `FAST_TRACK_EXECUTION.md`, `SESSION_ROUTER.md`, and `artifact-packets/SB-V04-004.md` with `git show`
-4. inspect `worker-reports/windows-core/LEAD_ACK.json`
-5. continue dependency-ready work without routine permission prompts.
+## Today's heartbeat soak — not started yet in durable evidence
 
-## Preserve final V0.3 source/evidence
+Start prospectively now if this session is active:
+- `FAST_5M`: T0, +~5m, +~10m, +~15m;
+- then immediately `SOAK_15M_24H`: every 15 minutes for 24 hours;
+- append every timed record to `worker-reports/windows-core/HEARTBEAT_LOG.jsonl` and push;
+- no synthetic/backfilled timestamps;
+- stage heartbeat files only for heartbeat commits where practical;
+- keep engineering work running in parallel.
 
-- `SB-V03-005` remains ACCEPTED at implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370`.
-- `SB-V03-004` source remains positive; Mac QA owns the independent lifecycle execution required for final acceptance.
-- `SB-V03-006` remains final/prepared at evidence `436787b0a63fdae0e89c224a54054607e32b5187` with exact 130-test OK output.
+LEAD-034 verified the durable Core log still ends at seq14 `2026-09-21T08:37:18Z` in the old `BOOTSTRAP_15M` mode. No `FAST_5M` T0 exists yet.
 
-Do not churn V03 unless independent QA supplies a concrete defect.
+## Preserve V0.3
 
-## Lead review of `76e96dde...` V04-004 attempt
-
-Useful work, but **not acceptance-ready**.
-
-Two tests do not isolate the variable named in the acceptance claim:
-- `test_same_evidence_different_personas_diverge` changes persona AND evidence (`shared` -> `shared2`).
-- `test_same_persona_different_evidence_diverges` does not hold persona/runtime context constant.
-
-Also, all six tests force `SBOTS_REASONING=contextual`, which resolves to `contextual-deterministic-v1` with `adaptive=false`. Keep this suite as supplemental deterministic/context-sensitive engineering coverage, but it cannot prove the adaptive V0.4 divergence required by `SB-V04-002`.
-
-Positive re-audit: preserve the production `bin/run_worker.py` adaptive-required default and fail-closed provider resolution. Do not regress it.
-
-LEAD-033 still sees no new Claude worker-generated commit after `76e96dde...`. Continue the existing bounded repair now; do not wait for another lead message.
+- Final V03 implementation: `796d4e390bd135167e5de2ff8f586bc07ac7f370`.
+- Final V03 evidence: `436787b0a63fdae0e89c224a54054607e32b5187`, exact 130 tests OK.
+- `SB-V03-005` remains ACCEPTED.
+- `SB-V03-004` awaits independent lifecycle execution; do not churn V03 absent a concrete QA defect.
 
 ## Current assignment — SB-V04-004 repair only
 
 Read canonical `artifact-packets/SB-V04-004.md` and implement the bounded repair:
-
-1. Persona-only case: same exact evidence snapshot, objective, runtime state/history, duplication state and policy; vary only persona/workspace.
-2. Evidence-only case: same exact bot/runtime, persona/workspace, objective, state/history, duplication state and policy; vary only evidence.
-3. Keep at least three persona/workspace divergence comparisons including a cultural/Primandir workspace.
-4. Keep deterministic contextual tests as diagnostics if useful.
-5. Add a clean acceptance seam capable of consuming the sanitized real adaptive provider/proposal receipt from `SB-V04-005` without fabricating it.
-6. Do **not** invoke another live model/provider call, API/PAYG, or any new-spend route. The one owner-authorized existing-subscription call belongs to the dedicated canary lane.
+1. Persona-only comparison: hold evidence/objective/runtime/history/dedup/policy constant; vary only persona/workspace.
+2. Evidence-only comparison: hold bot/runtime/persona/workspace/objective/history/dedup/policy constant; vary only evidence.
+3. Keep at least three persona/workspace comparisons including a cultural/Primandir workspace.
+4. Keep deterministic contextual tests only as diagnostics; `contextual-deterministic-v1` is `adaptive=false` and cannot prove V0.4.
+5. Add a clean acceptance seam that can consume sanitized real adaptive proposal/provider evidence from `SB-V04-005` without fabricating it.
+6. Do NOT invoke another live model/provider call from Core. The authorized live subscription call belongs to the dedicated canary lane.
 7. Preserve deterministic policy/authority/no-public-effect invariants.
-8. Commit/push exact tests and report which portions are diagnostic vs still waiting on the real adaptive receipt.
-
-Do NOT execute `SB-V04-005` here. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns the real subscription-authenticated canary.
-
-## Reporting
-
-Reports stay under `social-bots/worker-reports/windows-core/`.
-Commit/push after the bounded repair; do not self-accept the artifact.
+8. Commit/push source/tests/report and distinguish diagnostic evidence from acceptance evidence.
 
 ## Safety
 
-No public effects, Anthropic API/PAYG or other new spend, destructive actions, secrets, fake evidence, or SwarmAI dependency.
+No public effects, Anthropic API/PAYG/new spend, destructive actions, secrets, fake evidence, or SwarmAI dependency.
