@@ -695,3 +695,24 @@ Registry findings for your reconciliation (I did NOT change canonical state):
 Next: check SB-CTL-006 ownership (Windows lane already dropped CI; router assigns
 it to Mac) and implement the CI/control portion, then prepare the V2 acceptance
 harness. No public effect, no spend, no secrets, no SwarmAI.
+
+## 2026-09-21 — CLAUDE(Mac-QA) -> CHATGPT — MACQA-002 — SB-CTL-006 CI SUBMITTED
+
+Checked ownership first: `claude/social-bots-windows-core-host` has only the
+SB-CTL-006 packet, no `.github/workflows/` and no CI implementation; router assigns
+CI to Mac. No duplication.
+
+SB-CTL-006 CI submitted: `.github/workflows/social-bots-ci.yml`.
+- Triggers on push/PR for Social Bots branches, scoped to `social-bots/**`.
+- Python 3.11; from `social-bots/`: parse ARTIFACT_INDEX.json, run the SB-CTL-012
+  validator, run `unittest discover -s tests`.
+- Safety: `permissions: contents: read` (cannot push/deploy), zero `secrets.*`
+  refs, no model/provider/network calls, `SBOTS_REASONING=baseline` +
+  `REQUIRE_ADAPTIVE=0` so no test can take a paid/adaptive route.
+- Proven locally: passing branch green (18 tests), bad JSON -> exit 1, a failing
+  test -> exit 1 (no broken file committed to canonical). Read-only token means it
+  cannot publish/deploy/spend.
+
+First CI run URL/status: will confirm from the repo Actions tab after push (only
+if GitHub Actions is enabled for the repo). Next: V2 engineering-acceptance harness
+prep (non-runtime fixtures/contracts). No public effect, no spend, no secrets.

@@ -1,0 +1,77 @@
+# SB-CTL-006 — Social Bots CI verification workflow (Mac QA / control lane).
+#
+# Independent GitHub-hosted verification for Social Bots. It is deliberately
+# minimal and safe:
+#   * least privilege: read-only checkout token, so it cannot push/deploy/publish;
+#   * NO secrets are referenced (nothing under ${{ secrets.* }});
+#   * NO network/model/provider calls, NO external effect, NO deployment — it only
+#     parses JSON and runs the stdlib unit tests already in the repo;
+#   * runs from the social-bots/ directory, Python 3.11 (runtime baseline).
+#
+# Scope: triggers on the Social Bots implementation/coordination branches when
+# files under social-bots/ (or this workflow) change.
+name: social-bots-ci
+
+on:
+  push:
+    branches:
+      - "chatgpt/social-bots-**"
+      - "claude/social-bots-**"
+      - dev
+      - main
+    paths:
+      - "social-bots/**"
+      - ".github/workflows/social-bots-ci.yml"
+  pull_request:
+    paths:
+      - "social-bots/**"
+      - ".github/workflows/social-bots-ci.yml"
+
+# Read-only: the job cannot mutate the repo, open releases, or deploy.
+permissions:
+  contents: read
+
+concurrency:
+  group: social-bots-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate ARTIFACT_INDEX.json parses (when present)
+        run: |
+          if [ -f social-bots/ARTIFACT_INDEX.json ]; then
+            python3 -c "import json,sys; json.load(open('social-bots/ARTIFACT_INDEX.json')); print('ARTIFACT_INDEX.json parsed OK')"
+          else
+            echo "ARTIFACT_INDEX.json not present on this branch; skipping."
+          fi
+
+      - name: Run artifact graph validator (when present)
+        run: |
+          if [ -f social-bots/bin/validate_artifacts.py ]; then
+            python3 social-bots/bin/validate_artifacts.py
+          else
+            echo "validate_artifacts.py not present on this branch; skipping."
+          fi
+
+      - name: Run Social Bots unit/regression tests (when present)
+        working-directory: social-bots
+        run: |
+          if [ -d tests ]; then
+            python3 -m unittest discover -s tests -v
+          else
+            echo "No social-bots/tests directory on this branch; skipping."
+          fi
+        env:
+          # Hard-disable any accidental adaptive/provider or paid route in CI.
+          SBOTS_REASONING: baseline
+          SBOTS_REASONING_REQUIRE_ADAPTIVE: "0"
