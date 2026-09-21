@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T01:28:00Z",
+  "updated_at": "2026-09-21T02:15:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -166,7 +166,7 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude-Core",
-      "status": "CHANGES_REQUIRED",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-V03-004.md",
       "depends_on": [
         "SB-V03-002",
@@ -174,12 +174,12 @@
       ],
       "story_points": 5,
       "evidence": [
-        "generation fencing materially improves same-host POSIX takeover safety",
-        "deep lead audit: decision log and last_decision writes occur after Fence.fenced_commit returns, so a stalled old worker could later write durable diagnostics after losing the fence",
-        "filesystem multi-write effects are mutually excluded but not transactional; documentation must not claim all-or-nothing",
-        "native Windows strong lock/fence remains unproven and is assigned to SB-V07-WIN-001"
+        "LEAD-018 verified all cycle-owned durable writes including decision log/latest decision moved inside ownership-fenced commit",
+        "stale-owner adversarial regression inspects state/persona/decision/queue/analytics/experiment surfaces",
+        "documentation correctly limits guarantee to ownership fencing, not cross-file transactionality",
+        "accepted for code-level single-POSIX-host/local-filesystem fencing; Windows/WSL host portability remains SB-V07-WIN-001"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
     },
     {
       "id": "SB-V03-005",
@@ -196,12 +196,12 @@
       ],
       "story_points": 4,
       "evidence": [
-        "logical filters for content/experiment/action records exist",
-        "deep lead audit: BotState hypotheses and consumed_signal_ids remain shared by runtime, so cultural/general persona workspaces can change each other's learning and signal eligibility",
-        "ContextualReasoningProvider uses total runtime hypothesis count, creating cross-persona reasoning contamination",
-        "required repair: shared runtime recovery + captured evidence, persona-private consumed/seen ledger, hypotheses, working state and pending decisions"
+        "RuntimeState/PersonaState split fixes primary cross-persona consumed-signal and hypothesis contamination",
+        "same shared signal can now be considered independently by personas and reasoning hypothesis count is persona-private",
+        "remaining narrow migration issue: PersonaState migration marks runtime migrated before persona file save and earlier RuntimeState object may later overwrite marker with stale false value",
+        "remaining canonical isolation issue: raw whole-runtime readers for persona-labeled append-only stores still exist; production persona reads must go through authoritative persona-scoped boundary"
       ],
-      "last_verified_ref": "claude/social-bots-core-to-v2@874b6992fb4fff3e4832dcb8ae078828525f6a51"
+      "last_verified_ref": "claude/social-bots-windows-core-host@5318065aad6e38de1e3313ad984d09451a2dfcb7"
     },
     {
       "id": "SB-V03-006",
@@ -219,7 +219,7 @@
       ],
       "story_points": 3,
       "evidence": [
-        "blocked until V03-005 lead acceptance and fresh evidence regeneration"
+        "blocked only on final V03-005 migration/read-boundary cleanup, then regenerate fresh V0.3 bundle"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
@@ -327,12 +327,12 @@
       ],
       "story_points": 3,
       "evidence": [
-        "collector-generated timestamp/hash/status and fixture honesty are useful",
-        "deep lead audit: arbitrary caller-defined Fetcher with mode=live can return caller bytes and receive live-capture provenance",
-        "UrllibFetcher lacks public-destination/SSRF protections and redirect validation",
-        "extraction failure needs explicit extraction validity before extracted evidence is usable"
+        "repair added extraction validity and obvious public-destination/redirect validation structure",
+        "public mutable register_trusted_transport still lets ordinary in-process caller self-grant trust",
+        "normal signal/evidence bridge must distinguish trusted-operational from fixture/untrusted verified receipts",
+        "DNS validation and actual socket connect still have rebinding/TOCTOU gap; real redirect path not proven"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@cbd781cab4d751b2a0626c3ce060c5a217d771e9"
     },
     {
       "id": "SB-V05-002",
@@ -347,12 +347,13 @@
       ],
       "story_points": 4,
       "evidence": [
-        "support/conflict/stale-hash ledger is useful",
-        "ClaimBinding.stance is caller-supplied, so unrelated evidence can be labeled supports and classified SUPPORTED",
-        "material-claim identification is also caller-supplied",
-        "operational support classification requires attributable assessor/reviewer + evidence excerpt/span/hash and fail-closed behavior"
+        "repair added attributed assessments and omission-detection scaffolding",
+        "public mutable register_operational_assessor still lets caller self-grant assessor authority",
+        "operational evidence refs accept fixture/untrusted verified receipts",
+        "KeywordSupportAssessor and heuristic claim extractor are useful diagnostics but not sufficient as general operational semantic factual verification",
+        "operational semantic assessor/extractor should fail closed until policy-owned accepted provider is available"
       ],
-      "last_verified_ref": "claude/social-bots-intelligence-to-v2@3d249ec885706380a6a12934042ed03c1e15b831"
+      "last_verified_ref": "claude/social-bots-intelligence-repair-v2@cbd781cab4d751b2a0626c3ce060c5a217d771e9"
     },
     {
       "id": "SB-V07-001",
