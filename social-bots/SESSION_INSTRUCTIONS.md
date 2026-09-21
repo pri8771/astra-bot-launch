@@ -1,7 +1,10 @@
 # SESSION_INSTRUCTIONS — Lane 1 / Windows Core Builder
 
-Mode: FRESH SESSION RESET
+Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
 Branch: `claude/social-bots-windows-core-host`
+Lead check: 2026-09-21T15:52:53Z
+
+No worker-generated commit, Issue #3 heartbeat, or progress update has appeared since the reset assignment. Start the fresh session now. Heartbeat is observability only and must not delay engineering work.
 
 Read canonical:
 - `social-bots/RESET_EXECUTION_20260921.md`
