@@ -33,8 +33,10 @@ Required:
 - SB-V04-002 Adaptive alternative generation/prioritization implementation.
 - SB-V04-003 Deterministic policy/authority boundary around reasoning proposals.
 - SB-V04-004 Persona/evidence divergence acceptance suite.
-- SB-V04-005 V0.4 decision-record/evidence bundle showing materially context-sensitive decisions and valid NO_ACTION/BLOCKED behavior.
-- SB-EVD-002 Independent lead/reviewer acceptance evidence.
+- SB-V04-005 **Real adaptive V0.4 canary**: at least one live public-source capture -> actual subscription-authenticated Claude Code provider invocation -> schema/policy -> persisted local decision, with no fixture/injected provider data and no public effect.
+- SB-EVD-002 Independent lead/reviewer acceptance of the real canary evidence.
+
+**Hard promotion rule:** V0.4 is not complete until SB-V04-005 and SB-EVD-002 are ACCEPTED. Unit tests, fixture signals, injected runners and deterministic fake provider output cannot substitute for the real canary.
 
 ## V0.5 — real research / factual review
 Required:
