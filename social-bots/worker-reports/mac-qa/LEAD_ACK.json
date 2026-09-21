@@ -2,11 +2,12 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T13:55:02Z",
-  "lead_review": "LEAD-033",
+  "reviewed_at": "2026-09-21T14:55:00Z",
+  "lead_review": "LEAD-034",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
-  "next_assignment": "Resume hourly coordination heartbeat and immediately perform independent SB-V03-004 lifecycle execution against current Core 796d4e3/final evidence 436787: post-cycle takeover success-receipt rejection, active-cycle lease-loss old-owner commit rejection, staged migration fencing, focused fencing/concurrency tests. No Core source edits. Return exact commands/results and ACCEPT-READY or concrete defect.",
+  "today_soak_fast5m_verified_intervals": 0,
+  "next_assignment": "Immediately perform independent SB-V03-004 lifecycle execution against current Core 796d4e3/final evidence 436787: post-cycle takeover success-receipt rejection, active-cycle lease-loss old-owner commit rejection, staged migration fencing, focused fencing/concurrency tests. No Core source edits. Return exact commands/results and ACCEPT-READY or concrete defect. Start today's FAST_5M->SOAK_15M_24H measurement prospectively in parallel.",
   "notification_delivered": false,
-  "notes": "No new Mac-QA worker evidence after seq10 was visible at LEAD-033 review time. SB-V03-004 independent execution remains the V0.3 gating task; continue now without waiting on another lead message."
+  "notes": "Historical seq7->8->9 coordination bootstrap remains accepted and hourly authorization remains true for that legacy contract. Today's temporary soak is a separate measurement and has no FAST_5M T0 yet. Do not backfill and do not pause QA."
 }
