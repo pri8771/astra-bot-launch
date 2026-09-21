@@ -2,48 +2,48 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-041** (`lead-reviews/LEAD-041_2026-09-21T1852.md`).
+Current lead review: **LEAD-042** (`lead-reviews/LEAD-042_2026-09-21T1556.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 ## Current verified activity
 
-### Recovery / inherited Core descendant
+### Cursor Recovery — ACTIVE / materially productive
 
-- LEAD-040 created `cursor/social-bots-recovery-v07-20260921` at `918c42e...`, but the verified Core descendant continued immediately afterward.
-- Material source commit `a73b7b58de8f3669795b81637bff55247d67943c` moved the no-live authorization-manifest refusal to the actual `ClaudeCodeReasoningProvider` spawn point. That closes alternate entrypoint bypasses while retaining injected-runner fixture seams.
-- Worker evidence for that source reports **312 passed, 1 skipped**, with no live model call.
-- Corrected Core reports/progress continue through `2f14a5cb08c9019fd174c1f54ecda130fa9308d4`.
-- LEAD-041 fast-forwarded the recovery branch to this verified descendant history before assigning new work. This avoids rebuilding from or auditing a stale safety baseline.
-- Immediate implementation gate: **SB-R07-071** atomic cross-process `SESSION_ONCE` uniqueness. The inherited duplicate-session check remains check-then-append and is not yet safe against concurrent processes.
-- At the LEAD-041 cutoff, the recovery lane is **ASSIGNED but not yet evidenced running**; there is no fresh recovery worker heartbeat/source submission after the lead assignment.
+- Fresh recovery session `s-20260921T191500Z-a23cc77e` emitted one durable `SESSION_ONCE` heartbeat at `2026-09-21T19:15:00Z` after reading LEAD-041.
+- Current verified branch head is `d7ecb256d430f437f4ad9249480b6430af52ecf9`; commits are signed by Cursor Agent.
+- `SB-R07-071` source `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb` fixes the cross-process duplicate-session race with `fcntl.flock` around the find+append critical section. The regression uses 8 OS processes x 20 rounds; worker evidence reports 314 passed / 1 skipped. **Disposition: SUBMITTED pending independent Acceptance execution.**
+- `SB-R07-041` source `21cc2e7a65750d20dc609b9e9517f920157389a2` materially improves the real Claude CLI spawn guard by using an import-time captured real runner, but lead source audit found a separate direct-library bypass: `ModelReasoningProvider` invokes a process-registered `_MODEL_CALLABLE` without checking the canonical live manifest. **Disposition: CHANGES_REQUIRED.**
+- `SB-R07-044` source `5179217ea222e94caa5580104fbc6aaacd4b2192` is an honestly engineering-only divergence verifier that refuses to self-accept fixtures. **Disposition: SUBMITTED / pending audit.**
+- `SB-R07-072` source `7f59f915b9f5bb60691d06215a463518fd4519c7` truthfully classifies the current Cursor environment as `UNSUITABLE_NOT_PERSISTENT_OWNER_HOST`. **Do not run/install R07-073 there.**
+- Cursor also reports later no-live engineering submissions R07-042/051/052/053/061 and a cumulative 416 passed / 2 skipped suite. Those submissions are not accepted from self-report and remain queued for lead/independent audit.
 
 ### Legacy Core
 
 - Final V03 implementation/evidence remains accepted with the committed 130-test final bundle and independent lifecycle execution.
 - V04 deterministic/fixture work remains useful engineering evidence, but controlled causal adaptive divergence is still authorization-blocked.
-- The post-LEAD-040 safety work above has been transferred into the recovery branch.
-- Legacy Core is now **PARKED / evidence-only** to prevent overlapping implementation ownership.
+- Legacy Core remains **PARKED / evidence-only** to prevent overlapping implementation ownership.
 
 ### Intelligence
 
 - `SB-V05-001` is **ACCEPTED**: pinned-IP HTTPS retains original-host SNI/certificate verification and Host semantics, avoids implicit DNS reconnect, and fails redirects closed.
 - `SB-V15-001` remains **CHANGES_REQUIRED** because ordinary whole-runtime `load` / `load_all` aliases remain structurally ambiguous despite improved persona-scoped APIs.
-- Intelligence is now **PARKED / evidence-only** during consolidated recovery. Its prior evidence remains available to the recovery lane; no overlapping source edits are assigned.
+- Intelligence remains **PARKED / evidence-only** during consolidated recovery. No overlapping source edits are assigned.
 - `SB-V13-001` and `SB-V14-001` remain accepted. `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` remain changes-required pending dependency repair and independent audit.
 
-### Acceptance / QA
+### Acceptance / QA — STALE / ACTION REQUIRED
 
 - `SB-V03-004` independent lifecycle acceptance is **ACCEPTED**, scoped to a single POSIX host/filesystem.
 - `SB-V04-005` is **ACCEPTED** from the first chronological authorized real canary. The second historical real call exceeded the exactly-one authorization and remains permanently excluded from acceptance evidence.
-- Acceptance is now **REVIEW-ONLY STANDBY**. It owns no runtime source.
-- First new independent target is `SB-R07-071`: execute an actual cross-process duplicate-session race and verify exactly one durable heartbeat record wins. Then audit `SB-R07-041` when explicitly assigned.
+- No post-LEAD-041 worker QA commit is visible; the branch head is still the lead review-only acknowledgement.
+- Immediate independent target is `SB-R07-071`: execute the actual cross-process duplicate-session race against the submitted source and verify exactly one durable heartbeat record wins. Then audit repaired `SB-R07-041` through the direct-library `model` path with worker entrypoints bypassed.
+- Acceptance owns no runtime source and must execute no model call.
 - `SB-EVD-002` remains WITHHELD because `SB-V04-002` / `SB-V04-004` remain blocked on fresh controlled causal evidence.
 
 ### Live canary
 
 - Dedicated canary branch remains **FROZEN / evidence preservation only**.
 - No additional Claude/adaptive/model call is authorized.
-- Any future five-call controlled divergence batch requires fresh explicit owner authorization plus a matching canonical lead authorization manifest before provider spawn.
+- Any future five-call controlled divergence batch requires fresh explicit owner authorization plus a matching canonical lead authorization manifest before provider spawn/callable execution.
 
 ## Artifact reliability table
 
@@ -67,31 +67,33 @@ Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 | SB-V16-001 | 4 | CHANGES_REQUIRED | pending dependency repair + independent audit |
 | SB-V17-001 | 4 | CHANGES_REQUIRED | pending dependency repair + independent audit |
 | SB-V20-002 | 4 | CHANGES_REQUIRED | waits V15 + independent audit |
-| SB-R07-071 | — | READY | atomic cross-process session heartbeat uniqueness |
-| SB-R07-041 | — | READY_AFTER_071 | audit inherited spawn-point live authorization hardening |
+| SB-R07-071 | 1 | SUBMITTED | atomic flock source + multiprocess race; independent QA required |
+| SB-R07-041 | — | CHANGES_REQUIRED | direct registered model callable can bypass manifest when worker entrypoints are bypassed |
+| SB-R07-044 | — | SUBMITTED | engineering verifier; live causal evidence still owner-gated |
+| SB-R07-072 | 1 | SUBMITTED | current Cursor host honestly unsuitable for LIVE scheduler acceptance |
 
 ## Heartbeat quality
 
 Canonical policy is **ONE SESSION = ONE HEARTBEAT**. The earlier FAST_5M / SOAK_15M_24H experiment is superseded.
 
-A session heartbeat establishes fresh worker-session liveness only; it does not establish artifact correctness. The inherited implementation currently has a concurrency defect: duplicate-session detection and durable append are separate operations. `SB-R07-071` must make that uniqueness claim atomic and prove it with an adversarial cross-process race.
+The Cursor recovery session has one real durable heartbeat. This establishes session liveness only; it does not establish artifact correctness. `SB-R07-071` now appears structurally correct in lead source inspection, but independent execution remains required before acceptance.
 
-V0.7 recurring liveness still requires repeated real **OS-scheduled bounded worker sessions** on an owner-controlled persistent host, each producing a session heartbeat plus invocation receipt. Chat liveness, Issue comments, temporary-host fixtures, and a kept-open session do not count.
+V0.7 recurring liveness still requires repeated real **OS-scheduled bounded worker sessions** on an owner-controlled persistent host, each producing a session heartbeat plus invocation receipt. Chat liveness, Issue comments, temporary-host fixtures, and a kept-open session do not count. The current Cursor host has explicitly failed the persistent-host preflight, which is a truthful useful result, not V0.7 evidence.
 
 ## Current lessons
 
-- **Do not let recovery branches lag verified safety work.** LEAD-041 had to fast-forward recovery from `918c42e...` to the verified descendant history through `2f14a5c...` before assigning new work.
-- **Gate at the actual side-effect/spawn point.** `a73b7b5...` is materially stronger because authorization refusal occurs where the real Claude CLI process would spawn, not only in one caller.
-- **Independent adversarial execution matters.** V03 only closed after takeover/migration tests were executed independently; the same standard applies to SB-R07-071.
+- **Guard every live-capable provider boundary, not just the CLI subprocess.** R07-041 exposed a second route: a registered `ModelReasoningProvider` callable can be live-capable even when the Claude CLI spawn point is guarded.
+- **Independent adversarial execution matters.** R07-071 stays submitted until Acceptance reruns the actual OS-process race.
+- **A truthful UNSUITABLE preflight is valuable.** It prevents false V0.7 scheduler claims on an ephemeral cloud agent.
 - **Green tests are not enough.** Synthetic/replayed adaptive receipts do not prove causal model divergence.
 - **Authorization must be machine-visible and fail closed.** Future live-call execution needs an explicit canonical manifest and exact budget, not permissive prose.
 - **Isolation boundaries must be structural.** V15 remains open because ordinary public aliases still cross persona scope.
 
 ## Current concurrency implication
 
-- **Cursor Recovery:** primary implementation; SB-R07-071 first.
+- **Cursor Recovery:** ACTIVE primary implementation; fix R07-041 direct model-callable authorization boundary next.
 - **Legacy Core:** PARKED / evidence-only.
 - **Intelligence:** PARKED / evidence-only.
-- **Acceptance:** REVIEW-ONLY standby; independent SB-R07-071/SB-R07-041 audits when submissions land.
+- **Acceptance:** REVIEW-ONLY but stale; independent R07-071 then repaired R07-041 audit now.
 - **Canary:** FROZEN / evidence-only.
 - **worker-pc:** excluded until private-repo clone/auth is demonstrably fixed.
