@@ -17,10 +17,10 @@
     "withheld": false
   },
   "kind": "finish",
-  "lease_id": "03d5661ed0244861895b507a7ac006d1",
+  "lease_id": "6659f0da25a14cc98b9f299d624cb79d",
   "namespace": "social-c",
-  "receipt_id": "20260921T053147+0000-finish-7efdfe33",
-  "recorded_at": "2026-09-21T05:31:47+00:00",
+  "receipt_id": "20260921T060743+0000-finish-7494b0c7",
+  "recorded_at": "2026-09-21T06:07:43+00:00",
   "task_id": "cycle:social-c",
-  "worker_id": "w-vm-2663-e016ea"
+  "worker_id": "w-vm-2633-f4fa74"
 }

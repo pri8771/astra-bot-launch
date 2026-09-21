@@ -1,4 +1,4 @@
-{"kind": "start", "receipt_id": "20260921T053147+0000-start-3a330eaf", "recorded_at": "2026-09-21T05:31:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2660-3d4786"}
-{"kind": "finish", "receipt_id": "20260921T053147+0000-finish-d11dcbef", "recorded_at": "2026-09-21T05:31:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2660-3d4786"}
-{"kind": "start", "receipt_id": "20260921T053147+0000-start-37b572c4", "recorded_at": "2026-09-21T05:31:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2661-01f1f6"}
-{"kind": "finish", "receipt_id": "20260921T053147+0000-finish-20a8fbba", "recorded_at": "2026-09-21T05:31:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2661-01f1f6"}
+{"kind": "start", "receipt_id": "20260921T060743+0000-start-b36fa36b", "recorded_at": "2026-09-21T06:07:43+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2630-fc8bbb"}
+{"kind": "finish", "receipt_id": "20260921T060743+0000-finish-eb351eed", "recorded_at": "2026-09-21T06:07:43+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2630-fc8bbb"}
+{"kind": "start", "receipt_id": "20260921T060743+0000-start-5f4fdd4f", "recorded_at": "2026-09-21T06:07:43+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2631-5674cf"}
+{"kind": "finish", "receipt_id": "20260921T060743+0000-finish-6e1c6bf7", "recorded_at": "2026-09-21T06:07:43+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-2631-5674cf"}

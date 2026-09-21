@@ -3,10 +3,11 @@
   "evidence": {
     "receipts/evidence/SB-007-dryruns/REPORT.md": "e143edde5b11b068522a7e05c2d859ea",
     "receipts/evidence/SB-007-dryruns/SUMMARY.json": "6751cc42610f67db51162a07e297ce64",
-    "receipts/evidence/SB-V03-006/ENV.txt": "2a5c706cb6f57e0682d1456d11e255e1",
-    "receipts/evidence/SB-V03-006/FOCUSED_RESULTS.txt": "2bfe764858a07461ffe5dce75aac0d16",
+    "receipts/evidence/SB-V03-006/ENV.txt": "febdf52b9dd9cf54a5602523b01be67d",
+    "receipts/evidence/SB-V03-006/FOCUSED_RESULTS.txt": "35264bec3c8172c09e7ad93f3cd9a407",
+    "receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt": "89a94e78a4d02f681e774ec3f57e8274",
     "receipts/evidence/SB-V03-006/dry_run_summary.json": "5aa9cfe0b2fb97616d7cc882661f71d4",
-    "receipts/evidence/SB-V03-006/recurring_proof.json": "066337db44b5fc8b14af67293dfae7a7"
+    "receipts/evidence/SB-V03-006/recurring_proof.json": "91fe8290d8e1b9d5f3f3f9b453102d2b"
   },
-  "impl_sha": "7e4345b041b59b9d1b1036dfea388cedf79b4d3d"
+  "impl_sha": "f73c337e66ccdd5bd09313e37f4c87b4f00df07e"
 }

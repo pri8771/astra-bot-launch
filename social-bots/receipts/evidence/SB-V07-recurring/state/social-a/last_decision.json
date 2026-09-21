@@ -29,9 +29,9 @@
   },
   "fence": {
     "generation": 1,
-    "lease_id": "fafb455173a5496cb6ac484d3045199d",
+    "lease_id": "92216efe505a4ebdac8d1243afdc80bf",
     "task_id": "cycle:social-a",
-    "worker_id": "w-vm-2661-01f1f6"
+    "worker_id": "w-vm-2631-5674cf"
   },
   "learn": {
     "updated": false
@@ -52,7 +52,7 @@
   },
   "outcome": "no_action",
   "persona": "social-a",
-  "recorded_at": "2026-09-21T05:31:47+00:00",
+  "recorded_at": "2026-09-21T06:07:43+00:00",
   "required_authority": "none",
   "schedule": {
     "next_check_in_hours": 24,
