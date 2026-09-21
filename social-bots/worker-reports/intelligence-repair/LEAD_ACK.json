@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "intelligence-repair",
   "reviewed_through_sequence": 7,
-  "reviewed_at": "2026-09-21T10:55:37Z",
-  "lead_review": "LEAD-030",
+  "reviewed_at": "2026-09-21T11:55:27Z",
+  "lead_review": "LEAD-031",
   "bootstrap_consecutive_verified": 1,
   "steady_hourly_authorized": false,
   "next_assignment": "RESUME SOURCE WORK NOW: SB-V05-001 real pinned-IP HTTPS/TLS/SNI/certificate path first, then SB-V15-001 persona-scoped experiment persistence/read boundary. Heartbeat is background-only.",
   "notification_delivered": true,
-  "notes": "No new worker commit or heartbeat after seq7 04:10:36Z was visible at LEAD-030 review time. Seq6->7 ~30m28s still fails bootstrap. Do not wait on heartbeat; dependency-ready implementation remains overdue."
+  "notes": "No new worker commit or heartbeat after seq7 04:10:36Z was visible at LEAD-031 review time. Seq6->7 ~30m28s still fails bootstrap. Do not wait on heartbeat; dependency-ready implementation remains overdue."
 }
