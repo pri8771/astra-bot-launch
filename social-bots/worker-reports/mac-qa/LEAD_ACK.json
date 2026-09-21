@@ -3,10 +3,10 @@
   "lane": "mac-qa",
   "reviewed_through_sequence": 4,
   "reviewed_at": "2026-09-21T02:51:00Z",
-  "lead_review": "LEAD-020",
+  "lead_review": "LEAD-021-fast-track",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "Remain on claude/social-bots-mac-qa-control and produce real approximately-15-minute heartbeat intervals prospectively. Do not backfill. After 3 valid intervals and lead acknowledgement, switch to claude/social-bots-v04-live-canary and execute SB-V04-005.",
+  "next_assignment": "Continue QA/integration harness + heartbeat in background. Dedicated canary lane owns SB-V04-005.",
   "notification_delivered": true,
-  "notes": "Sequences 1-4 are real worker updates but are only seconds/minutes apart, so they do not satisfy the 3x approximately-15-minute bootstrap gate. Owner authorization for one bounded no-additional-spend Claude Code subscription canary is already granted; the remaining canary blocker is an actually authenticated subscription host. Current worker evidence identifies this execution environment as a Linux container with no usable OAuth route, so do not fabricate Mac-host or canary evidence."
+  "notes": "Do not switch this QA session to canary. Heartbeat is observability only."
 }
