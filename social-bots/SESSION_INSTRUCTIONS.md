@@ -2,80 +2,53 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-mac-qa-control`
-Lead review: LEAD-026
+Lead review: LEAD-027
 
 ## Heartbeat
 
-Lead has accepted the durable Mac-QA bootstrap heartbeat evidence and authorized HOURLY cadence.
-Routine heartbeat stays hourly. Artifact submissions and blockers push immediately.
-Heartbeat is coordination observability only and must not pause useful QA/integration work.
-
-Your last durable worker heartbeat remains seq10 at `2026-09-21T03:57:57Z`; no worker heartbeat/report has appeared since. Resume the authorized hourly heartbeat and continue QA work. Lead-only instruction commits do not count as worker liveness.
+Mac-QA bootstrap is accepted and HOURLY coordination cadence is authorized. Resume the hourly worker heartbeat; lead-only instruction commits do not count as worker liveness. Heartbeat is observability only and must not pause QA.
 
 ## Existing accepted controls
 - `SB-CTL-012` artifact validator — ACCEPTED.
 - `SB-CTL-006` GitHub CI/control — ACCEPTED.
 
-Preserve these.
+## PRIORITY 1 — final independent SB-V03-004 execution gate
 
-## Priority 1 — independently verify CURRENT Core V0.3 repair
+Core has completed the V03-005 reader-boundary repair at implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370`, and final prepared V03-006 evidence is at `436787b0a63fdae0e89c224a54054607e32b5187` with exact `Ran 130 tests ... OK` output.
 
-Do not edit Core runtime source. Verify current Core behavior, not superseded defect states.
+LEAD-027 independently ACCEPTED SB-V03-005. Do not spend time re-auditing superseded `f73c337...` reader defects unless the current final source exposes a new concrete problem.
 
-### SB-V03-004 — post-cycle success-receipt fence
+The remaining high-risk V0.3 technical acceptance gate is SB-V03-004 independent lifecycle execution. Do not edit Core runtime source.
 
-Core `7e4345b041b59b9d1b1036dfea388cedf79b4d3d` writes the finish/success receipt through `fence.fenced_commit` and includes `test_stale_owner_cannot_write_success_finish_receipt_after_takeover`.
+Fetch/checkout current Core implementation and independently run/probe at minimum:
+1. `test_stale_owner_cannot_write_success_finish_receipt_after_takeover` (or its exact current test path/name);
+2. active-cycle lease-expiry/takeover old-owner commit rejection;
+3. migration/load side-effect-free-until-fenced-commit regression;
+4. focused fencing/concurrency suite sufficient to show no stale owner writes successful state/effect/completion evidence after takeover.
 
-Independently execute/probe this scenario against current Core history:
-1. cycle durable commit succeeds under owner A;
-2. A stalls before completion receipt;
-3. force lease expiry + generation takeover by B;
-4. resume A;
-5. prove A emits no finish/success receipt and cannot delete B's lease;
-6. verify any A evidence is truthful fenced-out/failure evidence with `candidate_succeeded=false`.
+Report:
+- exact Core implementation SHA tested (must include the current 796d4e3 implementation or a later source-equivalent head);
+- exact commands and output/result counts;
+- PASS/FAIL per lifecycle scenario;
+- host/filesystem scope;
+- whether any concrete source defect was found;
+- no-public-effect/no-spend confirmation.
 
-Spot-check that side-effect-free migration and fenced cycle writes remain intact. Report PASS/FAIL with exact commands/results. Do not self-accept the artifact.
+If PASS, explicitly recommend SB-V03-004 ACCEPT-READY to the lead. If FAIL, provide the minimal reproducible defect and do not edit Core source.
 
-### SB-V03-005 — complete structural raw-reader/persona boundary
+## PRIORITY 2 — integration/CI harness
 
-Core `f73c337e66ccdd5bd09313e37f4c87b4f00df07e` correctly renamed:
-- `pipeline.publish_queue` -> `pipeline.admin_publish_queue`;
-- `analytics.events_for` -> `analytics.admin_events_for`.
-
-LEAD-026 independently found a remaining raw reader:
-- `RuntimeState.content_history()` remains an ordinary publicly named whole-runtime reader, even though its docstring says ADMIN.
-
-Also, the new static/bypass regression guards only the queue/analytics old names, so it is not exhaustive.
-
-Independently inspect/probe the **complete** six-store surface:
-- content history;
-- publish queue;
-- experiments;
-- analytics/history;
-- action history;
-- decision history.
-
-Determine whether every persona-facing sanctioned reader is persona-scoped and every raw whole-runtime reader is explicitly admin/internal/private. Confirm or disprove the `RuntimeState.content_history()` finding. Report exact symbols/call sites and distinguish legitimate runtime-wide admin/reconciliation reads from persona-facing reads.
-
-If Core pushes a narrow LEAD-026 fix while you are working, fetch it and verify that current final SHA rather than reporting only the superseded f73c337 state.
-
-## Priority 2 — V2 integration acceptance preparation
-
-After the Core verification report, continue the non-runtime integration harness/checklist:
-- merge-order checklist for Core + Intelligence;
-- CI commands;
-- full traceability assertions;
-- persona isolation assertions;
-- missing/stale/authority/no-public-effect scenarios;
+After the V03-004 report, continue non-runtime integration work:
+- merge/test checklist;
+- artifact validator / CI maintenance;
+- V2 traceability acceptance harness;
+- persona isolation and missing/stale/authority/no-public-effect assertions;
 - fixture-vs-operational distinction.
-
-Do not edit Core/Intelligence runtime implementation.
 
 ## V0.4 canary
 
-Dedicated local lane `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
-Do not switch this QA branch to the canary branch. Current canary branch still lacks a worker execution commit; QA must not fabricate it.
+Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns SB-V04-005. Do not fabricate or substitute a QA/injected run for the real subscription-authenticated canary.
 
 ## Safety
 
-No runtime feature implementation, public/account effects, paid API/new spend, secrets, fake evidence, or SwarmAI dependency.
+No runtime implementation edits, public/account effects, paid API/new spend, secrets, fake evidence, or SwarmAI dependency.
