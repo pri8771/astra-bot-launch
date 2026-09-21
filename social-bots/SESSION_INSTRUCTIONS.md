@@ -1,45 +1,55 @@
-# SESSION_INSTRUCTIONS — Lane 1 / Windows Core Builder
+# SESSION_INSTRUCTIONS — Lane 1 / Core Builder
 
-Mode: FAST TRACK — LEAD-036
+Mode: LEAD-037 — V0.4 EMPIRICAL GATE PREP -> V0.7 HOST WORK
 Branch: `claude/social-bots-windows-core-host`
-Lead check: 2026-09-21T17:10:00Z
 
-Official phase is **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
-
-Read canonical:
-- `social-bots/lead-reviews/LEAD-036_2026-09-21T1710.md`
+Read canonical first:
+- `social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md`
+- `social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md`
 - `social-bots/STATE.json`
 - `social-bots/WORK_QUEUE.md`
-- `social-bots/artifact-packets/SB-V04-002.md`
-- `social-bots/artifact-packets/SB-V04-004.md`
+- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
 
-## Accepted / frozen
+## Hard rule
 
-- SB-V03-001/002/003/004/005/006 and SB-EVD-001 are accepted. Do not churn V03.
-- SB-V04-001 is accepted.
-- SB-V04-003 is accepted.
-- SB-V04-005 is accepted from the first authorized real canary.
+**DO NOT execute Claude CLI, adaptive reasoning, or any live model/provider call.**
+No live authorization manifest exists.
 
-## Hard authorization boundary
+Synthetic/replayed receipts are engineering fixtures/integration evidence only. Do not claim they prove live causal divergence.
 
-The owner's **exactly one** existing-subscription live model call has been consumed. A later duplicate call occurred and is excluded from acceptance evidence.
+## Priority A — prepare-only V0.4 divergence batch
 
-**DO NOT execute any further `claude` CLI / adaptive provider / live model call.**
-No PAYG/API-key path, no new spend, no public effects.
+Build/test without model calls:
+1. Five planned contexts:
+   - social-a / E1
+   - social-b / same E1
+   - social-c / same E1
+   - one cultural Primandir workspace / same E1
+   - social-a / E2
+2. Emit full bounded context JSON + context SHA-256 + exact prompt SHA-256.
+3. Enforce persona-only and evidence-only single-variable assertions.
+4. Add proposal receipt validation/divergence reporting.
+5. Add a fail-closed authorization-manifest gate and exact call-budget counter.
+6. Because no authorization manifest exists, any live execution entry point must stop before spawning Claude.
+7. No retry-until-pass logic.
+8. Fixture tests must be labeled engineering-only.
 
-## Current mission
+Submit exact SHA/tests/report and stop for lead/QA audit of Priority A.
 
-SB-V04-002 and SB-V04-004 remain CHANGES_REQUIRED because the accepted single canary does not establish the required real adaptive causal-divergence cases.
+## Priority B — SB-V07-001
 
-Work only on non-live engineering that improves acceptance readiness without pretending to fill that evidence gap:
-1. preserve the corrected single-variable deterministic persona/evidence test design;
-2. keep the sanitized real-canary receipt seam deterministic and read-only;
-3. make the suite clearly distinguish `fixture/replay engineering check` from `real adaptive causal-divergence evidence`;
-4. do not label replay of one canary receipt as persona/evidence divergence proof;
-5. document exactly which V04-002/V04-004 acceptance cases remain impossible without additional owner-authorized live model calls;
-6. run focused/full tests and push a bounded report if you make a useful non-live improvement;
-7. otherwise move to dependency-safe non-overlapping Core QA/research only after pulling current canonical instructions.
+After Priority A is pushed, SB-V07-001 is dependency-ready.
 
-Heartbeat runs in parallel. The reset soak is **not yet durable-verified** because the branch HEARTBEAT_LOG lacks reset-epoch FAST_5M entries. Commit real prospective entries only; no backfill.
+Build the authorized-host worker/runbook package with:
+- OS-level scheduling/event invocation rather than chat-session liveness;
+- safe one-task claim;
+- invocation/heartbeat receipts;
+- crash/restart/no-overlap primitives;
+- heartbeat durability independent of Issue-comment transport;
+- durable heartbeat logging even when `gh` is missing;
+- optional human-readable GitHub comment transport;
+- no live model invocation in tests.
 
-No public effects, PAYG/new spend, secrets, fake evidence, destructive actions or SwarmAI dependency.
+Do not self-accept any artifact.
+
+No public effects, PAYG/new spend, secrets, destructive actions, fabricated evidence, engagement manipulation or SwarmAI dependency.
