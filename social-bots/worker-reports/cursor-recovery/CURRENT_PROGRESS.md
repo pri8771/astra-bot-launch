@@ -13,6 +13,8 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 
 ### SB-R07-042 — SUBMITTED (ENGINEERING)
 
+- Implementation source SHA: `22d6234f560e0dce26e6503d32c51058cb7ce0be`
+
 - Live HTTPS freeze of E1 (`example.com`) + E2 (`rfc8259.txt`)
 - Immutable bundle: `evidence/SB-R07-042/freeze/`
 - Collector SB-V05-001 reused; no model call
