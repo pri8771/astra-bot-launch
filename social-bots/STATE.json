@@ -1,17 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T17:33:16Z",
+  "updated_at": "2026-09-21T17:56:20Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
   "status": "v03_closed_v04_in_progress",
   "runtime_scope": {
-    "autonomous_bots": [
-      "social-a",
-      "social-b",
-      "social-c"
-    ],
+    "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -25,27 +21,29 @@
     "core": {
       "branch": "claude/social-bots-windows-core-host",
       "last_verified_worker_head": "74a357d51a26a482d4957561ef194353fff5d24e",
-      "activity": "assigned_v04_prepare_then_v07_001",
-      "assignment": "NO LIVE MODEL CALLS; build prepare-only V0.4 divergence matrix/authorization gate, then dependency-ready SB-V07-001 host-worker packaging"
+      "activity": "active_fresh_session_visible_no_new_pushed_source_yet",
+      "latest_visible_session_id": "s-20260921T174817Z-0e532933",
+      "latest_visible_session_started_at": "2026-09-21T17:48:17Z",
+      "assignment": "NO LIVE MODEL CALLS; finish prepare-only V0.4 divergence matrix/hash/isolation/authorization/call-budget work, push exact evidence, then continue dependency-ready SB-V07-001 host-worker/OS-scheduler/session-heartbeat durability engineering"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
       "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
-      "activity": "active_v15_structural_repair",
-      "assignment": "SB-V05-001 accepted; narrow SB-V15-001 structural admin-alias repair next"
+      "activity": "stale_no_fresh_session_after_lead_038",
+      "assignment": "start fresh session with one SESSION_ONCE heartbeat; repair SB-V15-001 by removing/privatizing ambiguous whole-runtime load/load_all aliases; test, submit, stop"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
       "last_verified_worker_head": "72e380bda71561429154e67bc07636b89143a488",
-      "activity": "active_acceptance_and_v07_prep",
-      "assignment": "no model calls; independent review plus V0.7 host/heartbeat acceptance preparation",
+      "activity": "stale_no_fresh_session_after_lead_038",
+      "assignment": "start fresh session with one SESSION_ONCE heartbeat; independently review new Core/Intelligence submissions and continue V0.7 acceptance/fault preparation; no model calls or runtime source edits",
       "host_scope_note": "independent V03 lifecycle acceptance executed on Linux CCR/POSIX host, not the reset-plan local Mac; guarantee is single POSIX host/filesystem only"
     },
     "v04_live_canary": {
       "branch": "claude/social-bots-v04-live-canary",
       "last_verified_worker_head": "096d20b9062f3f64db080a9687a19aff9cf00b4c",
       "activity": "frozen_authorization_consumed",
-      "assignment": "preserve evidence only; no further Claude CLI/adaptive model calls"
+      "assignment": "preserve evidence only; no further Claude CLI/adaptive model calls or new canary source retrieval"
     },
     "development_sessions_live": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
@@ -53,7 +51,7 @@
       "policy": "ONE_SESSION_ONE_HEARTBEAT",
       "truth_rule": "Each fresh worker session emits exactly one real durable SESSION_ONCE heartbeat appended to its HEARTBEAT_LOG.jsonl after reading current coordination. No periodic in-session heartbeat or soak is required.",
       "periodic_soak_superseded": true,
-      "issue3_visibility": "Best-effort one-comment session visibility only; missing gh/GitHub comment transport must not prevent the durable session heartbeat or useful work.",
+      "issue3_visibility": "Issue #3 is human-readable visibility. A comment can establish session visibility but does not by itself accept an artifact; durable repository heartbeat evidence is preferred when pushed.",
       "v07_liveness_rule": "Recurring liveness is proven by repeated OS-scheduled bounded worker sessions over time, each with one session heartbeat plus an invocation receipt; keeping a chat/session awake is not evidence."
     }
   },
@@ -68,43 +66,35 @@
     "github_ci_status": "success"
   },
   "lead_review": {
-    "review_id": "LEAD-038",
-    "review_ref": "social-bots/lead-reviews/LEAD-038_2026-09-21.md",
+    "review_id": "LEAD-039",
+    "review_ref": "social-bots/lead-reviews/LEAD-039_2026-09-21T1356.md",
     "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
+      "SB-V03-001",
       "SB-V03-002",
       "SB-V03-003",
+      "SB-V03-004",
       "SB-V03-005",
+      "SB-V03-006",
+      "SB-EVD-001",
+      "SB-V04-001",
+      "SB-V04-003",
+      "SB-V04-005",
+      "SB-V05-001",
       "SB-V13-001",
       "SB-V14-001"
     ],
-    "changes_required": [
-      "SB-V05-002",
-      "SB-V15-001",
-      "SB-V16-001",
-      "SB-V17-001",
-      "SB-V20-002"
-    ],
-    "withheld": [
-      "SB-EVD-002"
-    ],
-    "blocked": [
-      "SB-V12-001",
-      "SB-V20-099",
-      "SB-V20-004",
-      "SB-V04-002",
-      "SB-V04-004"
-    ],
+    "changes_required": ["SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
+    "withheld": ["SB-EVD-002"],
+    "blocked": ["SB-V12-001", "SB-V20-099", "SB-V20-004", "SB-V04-002", "SB-V04-004"],
     "key_findings": [
-      "Owner superseded the temporary timed heartbeat soak with ONE_SESSION_ONE_HEARTBEAT; no periodic worker heartbeat loop remains.",
-      "Claude remains the primary implementation worker; ChatGPT lead stays ahead on planning, architecture, independent review and acceptance.",
-      "Repo-native implementation contract added at social-bots/CLAUDE_EXECUTION_TO_V07.md.",
-      "Planning-only forward decomposition added at social-bots/FORWARD_PLAN_V06_TO_V30.md.",
-      "V0.4 milestone truth is unchanged: SB-V04-002 and SB-V04-004 remain owner-authorization-blocked and SB-EVD-002 remains withheld.",
-      "No additional adaptive/model call is authorized.",
-      "SB-V07-001 remains dependency-ready for non-live host-worker/scheduler/session-heartbeat engineering."
+      "Core has a fresh SESSION_ONCE worker session visible from 2026-09-21T17:48:17Z, but no new worker source/report commit from that session was visible on the authoritative Core branch during review, so no artifact status changed.",
+      "Intelligence is stale after LEAD-038; SB-V15-001 still requires removal/privatization of ordinary whole-runtime load/load_all aliases.",
+      "Acceptance is stale after LEAD-038; next work is independent submission review plus V0.7 acceptance/fault preparation.",
+      "The V0.4 canary remains frozen; the first authorized SB-V04-005 call is accepted and the later duplicate remains excluded.",
+      "SB-V04-002 and SB-V04-004 remain owner-authorization-blocked; SB-EVD-002 remains withheld and no additional adaptive/model call is authorized."
     ]
   },
   "public_actions": {
@@ -126,39 +116,30 @@
     "today_engineering_target": "V2.0-readiness (SB-V20-099) if evidence permits",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": [
-      "V1.7",
-      "V2.3",
-      "V3.0"
-    ],
+    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
-    "v04_promotion_blocked_until": [
-      "SB-V04-002",
-      "SB-V04-004",
-      "SB-EVD-002"
-    ]
+    "v04_promotion_blocked_until": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"]
   },
   "next_core": [
-    "read and follow social-bots/CLAUDE_EXECUTION_TO_V07.md",
-    "emit exactly one SESSION_ONCE heartbeat per fresh worker session; no recurring heartbeat loop",
-    "do not execute any Claude CLI/adaptive model call without fresh owner authorization plus canonical lead manifest",
-    "finish prepare-only V0.4 divergence matrix/hash/isolation/authorization/call-budget work",
+    "continue the fresh Core session under social-bots/CLAUDE_EXECUTION_TO_V07.md",
+    "push the session heartbeat/report plus prepare-only V0.4 matrix/hash/isolation/authorization/call-budget evidence to the authoritative Core branch",
+    "do not execute any Claude CLI/adaptive model call without fresh owner authorization plus a canonical lead manifest",
     "then proceed to dependency-ready SB-V07-001 host-worker/runbook/OS-scheduler/session-heartbeat durability engineering with non-live tests"
   ],
   "next_intelligence": [
-    "emit exactly one SESSION_ONCE heartbeat per fresh worker session",
+    "start a fresh worker session and emit exactly one SESSION_ONCE heartbeat",
     "repair SB-V15-001 by removing/privatizing ambiguous whole-runtime load/load_all aliases",
     "add regression proving normal production experiment APIs cannot enumerate another persona",
-    "run focused/full tests, submit, and stop for lead audit unless canonical instructions release the next evidence/intelligence artifact"
+    "run focused/full tests, submit, and stop for lead audit"
   ],
   "next_mac_qa": [
-    "emit exactly one SESSION_ONCE heartbeat per fresh worker session",
+    "start a fresh worker session and emit exactly one SESSION_ONCE heartbeat",
     "no additional model calls",
     "independently review Core/Intelligence submissions when they land",
-    "prepare V0.6/V0.7 acceptance validators/fault cases without editing Core/Intelligence runtime source"
+    "continue V0.7 host/session-heartbeat/scheduler/crash/no-overlap acceptance preparation without editing runtime source"
   ],
   "priority_zero": {
     "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
@@ -185,7 +166,7 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-038_2026-09-21.md",
+    "lead_review_current": "lead-reviews/LEAD-039_2026-09-21T1356.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
     "live_progress_issue": 3,
