@@ -1,98 +1,85 @@
-# Active session router — reset execution
+# Active session router — LEAD-036
 
-Lead-owned routing table.
-Current plan: `RESET_EXECUTION_20260921.md`.
-Lead review: `LEAD-035` at 2026-09-21T15:52:53Z.
-
-Official version remains V0.3.x.
+Canonical plan: `RESET_EXECUTION_20260921.md`.
+Lead review: `LEAD-036` at 2026-09-21T17:10:00Z.
+Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted. V0.4 is not complete.
 
 ## Lane 1 — Windows Core Builder
 
 Branch: `claude/social-bots-windows-core-host`
-Machine: Windows
-Status: **STALE — fresh reset session not started**.
-
-Evidence at LEAD-035:
-- current branch head before lead refresh was reset-only `d3974de...`;
-- `CURRENT_PROGRESS.md` still said the fresh session had not started;
-- no worker Issue #3 heartbeat appeared after reset.
+Machine assignment: Windows
+Status: **ACTIVE / SUBMITTED**.
 
 Owns:
-- SB-V04-004 bounded divergence acceptance repair;
-- dependency-safe Core work after acceptance.
+- non-live SB-V04-004 acceptance/test seam work only;
+- later dependency-safe Core work after lead assignment.
 
-Preserve final V03 implementation/evidence. Do not execute the live canary.
+Current truth:
+- deterministic persona/evidence isolated comparisons are repaired;
+- SB-V04-001 and SB-V04-003 are accepted;
+- SB-V04-002/SB-V04-004 still lack required real adaptive causal-divergence evidence;
+- owner's one-call live-model authorization is consumed.
+
+Hard rule: **no further Claude CLI/adaptive model call**. Do not substitute replay/fixtures for causal adaptive-divergence proof.
 
 ## Lane 2 — Mac Intelligence Builder
 
 Branch: `claude/social-bots-intelligence-repair-v2`
-Machine: Mac
-Status: **STALE — fresh reset session not started**.
-
-Evidence at LEAD-035:
-- current branch head before lead refresh was reset-only `a11c7e4...`;
-- `CURRENT_PROGRESS.md` still said the fresh session had not started;
-- no worker Issue #3 heartbeat appeared after reset.
+Machine assignment: Mac
+Status: **ACTIVE / SUBMITTED**.
 
 Owns:
-1. SB-V05-001 actual pinned-IP HTTPS/TLS/SNI/certificate repair;
-2. SB-V15-001 persona-scoped experiment persistence/read boundary;
-3. later dependency-safe Intelligence repairs.
+1. SB-V15-001 narrow structural admin/read-boundary repair now;
+2. later Intelligence audits/repairs only after lead release.
 
-No Core runtime edits.
+Current truth:
+- SB-V05-001 is accepted at `a462bd6`;
+- V15 persona partitioning is materially improved at `2052955`, but ordinary `load` / `load_all` names still expose whole-runtime reads.
 
-## Lane 3 — Mac Acceptance / Canary
+Next: remove/private/rename ambiguous aliases, preserve explicit `admin_*` readers, add production-surface isolation regression, run tests, submit, stop for lead audit.
+
+## Lane 3 — Acceptance / QA
 
 Primary branch: `claude/social-bots-mac-qa-control`
-Second isolated worktree: `claude/social-bots-v04-live-canary`
-Machine: actual local Mac with working Claude Code subscription auth.
-Status: **STALE — fresh Acceptance session not started; canary unexecuted**.
+Machine assignment in reset plan: actual local Mac
+Status: **ACTIVE / SUBMITTED**.
 
-Evidence at LEAD-035:
-- primary branch head before lead refresh was reset-only `196d9d6...`;
-- primary `CURRENT_PROGRESS.md` still said the fresh session had not started;
-- canary branch head before lead refresh was lead-only `1b2e67d...`;
-- canary has no worker `CURRENT_PROGRESS.md` and no worker execution evidence;
-- no worker Issue #3 heartbeat appeared after reset.
+Current truth:
+- independent SB-V03-004 acceptance at `72e380b` is accepted;
+- V0.3 is closed;
+- actual acceptance execution ran on Linux CCR/POSIX rather than the reset-plan physical Mac, so the lifecycle guarantee is scoped to single POSIX host/filesystem;
+- live canary execution is complete and frozen.
 
-Order:
-1. independently execute SB-V03-004 lifecycle gate against final Core source;
-2. submit QA report and ACCEPT-READY recommendation or concrete defect;
-3. then execute exactly one real SB-V04-005 canary from the second worktree;
-4. push canary evidence and stop canary execution for ChatGPT lead audit;
-5. continue QA/integration work on the primary branch.
+Owns next:
+- non-overlapping QA/CI/V2 acceptance integration;
+- durable prospective heartbeat reporting;
+- no Core/Intelligence runtime source edits.
 
-No Core runtime source edits.
+Hard rule: **no further Claude CLI/adaptive model call**.
+
+## Live-canary worktree
+
+Branch: `claude/social-bots-v04-live-canary`
+Status: **FROZEN — EVIDENCE PRESERVATION ONLY**.
+
+The first chronological real canary (~16:15Z, on the Acceptance-side isolated branch) consumed the owner's exactly-one call authorization and is accepted as SB-V04-005 evidence. A second call (~16:53Z) later occurred on the dedicated branch; it exceeded authorization and is excluded from acceptance evidence.
+
+No additional canary/provider/model execution is authorized.
 
 ## Remote worker-pc
 
-External optional verifier only.
-Control plane: `pri8771/remote-workers`.
-Not on critical path.
-
-Current truth:
-- worker infrastructure is real;
-- Social Bots repository clone/auth still fails on worker-pc;
-- do not redispatch Social Bots until access is demonstrably repaired.
+External optional verifier only; not on critical path.
+Do not redispatch Social Bots until private-repo clone/auth to `pri8771/astra-bot-launch` is demonstrably repaired.
 
 ## Heartbeat / visibility
 
-All reset lanes:
-- Stage 1: three real 5-minute intervals;
-- Stage 2: every 15 minutes for 24 hours;
-- keep real work running in parallel;
-- use `social-bots/bin/heartbeat_reporter.py`;
-- update `CURRENT_PROGRESS.md`;
-- every timed heartbeat posts a concise comment to private GitHub Issue #3.
+Issue #3 is the human-readable feed, but durable `HEARTBEAT_LOG.jsonl` is authoritative for the reset soak.
 
-LEAD-035 truth: no reset FAST_5M T0 is visible on any lane. Historical Mac-QA hourly authorization remains historical coordination evidence only; it does not substitute for today's reset soak.
+At LEAD-036, all three human lanes have active Issue comments but **zero verified reset-epoch FAST_5M intervals in durable logs**. No backfill. Heartbeat does not block engineering.
 
-Heartbeat is observability only and must never block source, QA, or canary execution.
+## Lead authority
 
-## Lead
-
-ChatGPT owns acceptance, canonical reconciliation, next assignments, and hourly monitoring.
-No worker self-accepts a milestone.
+ChatGPT owns artifact acceptance, canonical reconciliation and next assignments. No worker self-accepts a milestone.
 
 ## Safety
 
