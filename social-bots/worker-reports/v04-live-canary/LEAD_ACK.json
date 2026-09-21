@@ -2,12 +2,12 @@
   "schema_version": 1,
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T14:55:00Z",
-  "lead_review": "LEAD-034",
+  "reviewed_at": "2026-09-21T15:52:53Z",
+  "lead_review": "LEAD-035",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW on an actually subscription-authenticated local Claude Code host. Push real source + actual claude CLI subscription + schema/policy + persisted-decision evidence and stop for lead audit. Heartbeat is not a prerequisite. If auth is unavailable, submit a truthful BLOCKED report. Start today's FAST_5M heartbeat prospectively in parallel if the session remains active.",
-  "notification_delivered": false,
-  "notes": "No worker-generated canary evidence and no HEARTBEAT_LOG.jsonl as of LEAD-034. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not."
+  "next_assignment": "Follow the LEAD-035 SESSION_INSTRUCTIONS after the primary Acceptance lane completes its independent V03 lifecycle report; submit evidence and stop for lead review.",
+  "notification_delivered": true,
+  "notes": "No worker-generated canary evidence or durable heartbeat evidence is present. Safety and spend constraints remain unchanged."
 }
