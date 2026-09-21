@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact": "NR-01",
+  "generated_at": "2026-09-21T21:58:00Z",
+  "lead_review": "LEAD-045",
+  "canonical_branch": "chatgpt/social-bots-plan-20260920",
+  "setup_pr_1_merged": false,
+  "official_version": "V0.4.x",
+  "baseline_refs": {
+    "canonical_pre_review_head": "141b03a90657a674c0c82b98c495fd4619f81ecb",
+    "cursor_recovery_head": "488ce0c720d857473ab9f2ce448d9197a955df14",
+    "cursor_latest_material_worker_source": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
+    "mac_qa_head": "a508c06bc87a9f36b7d6347eeb86cde62f4d9907",
+    "fable_fasttrack_head": "a204ad0827748a4e9661f1945b8e025d53d0ae09",
+    "fable_session_id": "s-20260921T211438Z-d5589881"
+  },
+  "acceptance_predicates": {
+    "SB-R07-041": {
+      "status": "CHANGES_REQUIRED",
+      "predicate": "all live-capable direct and worker entrypoints fail closed without a valid canonical authorization manifest; direct registered model callable must be blocked before invocation",
+      "current_gap": "Cursor repair not yet pushed"
+    },
+    "SB-R07-071": {
+      "status": "SUBMITTED",
+      "predicate": "real independent multiprocess race proves exactly one durable SESSION_ONCE heartbeat wins",
+      "current_gap": "independent Acceptance execution missing"
+    },
+    "SB-S20-001": {
+      "status": "SUBMITTED_ENGINEERING",
+      "predicate": "independent source/test review plus later integration/crash-consistency closure",
+      "operational_accepted": false
+    },
+    "SB-S23-001_to_SB-S23-008": {
+      "status": "SUBMITTED_ENGINEERING",
+      "predicate": "independent source/test review; SB-S23-008 requires independent fixture-bundle rerun; operational V2.3 remains separately gated",
+      "operational_accepted": false
+    }
+  },
+  "fable_verification": {
+    "tests_discovered": 523,
+    "tests_passed": 521,
+    "tests_failed": 0,
+    "tests_errors": 0,
+    "tests_skipped": 2,
+    "plan_validator_valid": true,
+    "plan_tasks": 32,
+    "validator_self_tests": 18,
+    "cursor_owned_existing_files_modified": false,
+    "live_model_calls": 0,
+    "public_effects": 0,
+    "new_spend": 0
+  },
+  "next_actions": {
+    "cursor": "repair SB-R07-041 direct model-callable authorization boundary with zero live calls",
+    "acceptance": "independently execute SB-R07-071; then repaired SB-R07-041; then SB-S23-008 fixture lifecycle bundle",
+    "fable": "pause new source work and preserve submitted evidence until explicit lead release",
+    "lead": "accept or reject only from independently verified evidence; do not promote operational version from fixture/local green tests"
+  },
+  "authority": {
+    "live_model_calls_authorized": false,
+    "public_effects_authorized": false,
+    "new_spend_authorized": false,
+    "account_actions_authorized": false,
+    "scheduler_installation_authorized_on_current_cursor_host": false
+  }
+}
