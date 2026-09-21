@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 6,
-  "reviewed_at": "2026-09-21T09:53:00Z",
-  "lead_review": "LEAD-029",
+  "reviewed_at": "2026-09-21T10:55:37Z",
+  "lead_review": "LEAD-030",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
   "next_assignment": "Preserve final V03. Continue SB-V04-004 only: isolate persona-only/evidence-only variables, retain contextual adaptive=false tests as diagnostics, and add an acceptance seam for the real adaptive canary receipt without invoking another model call. Do not execute SB-V04-005 from Core.",
   "notification_delivered": true,
-  "notes": "No new Claude worker commit after signed 76e96dd was visible at LEAD-029 review time. Existing repair remains dependency-ready; continue without waiting on heartbeat or another lead prompt."
+  "notes": "No new Claude worker-generated commit after signed 76e96dd was visible at LEAD-030 review time. Existing repair remains dependency-ready; continue without waiting on heartbeat or another lead prompt."
 }
