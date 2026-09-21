@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_through_sequence": 4,
-  "reviewed_at": "2026-09-21T02:51:00Z",
-  "lead_review": "LEAD-021-fast-track",
-  "bootstrap_consecutive_verified": 0,
-  "steady_hourly_authorized": false,
-  "next_assignment": "Continue QA/integration harness + heartbeat in background. Dedicated canary lane owns SB-V04-005.",
+  "reviewed_through_sequence": 9,
+  "reviewed_at": "2026-09-21T04:02:00Z",
+  "lead_review": "LEAD-022-remote-worker",
+  "bootstrap_consecutive_verified": 3,
+  "steady_hourly_authorized": true,
+  "next_assignment": "Switch heartbeat cadence to hourly; continue QA/integration/CI work. Dedicated canary lane owns SB-V04-005.",
   "notification_delivered": true,
-  "notes": "Do not switch this QA session to canary. Heartbeat is observability only."
+  "notes": "Verified timed heartbeat checkpoints seq7 03:23:24Z, seq8 03:40:08Z, seq9 03:57:16Z. Bootstrap passed. Hourly authorized."
 }
