@@ -2,11 +2,13 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-mac-qa-control`
-Lead review: LEAD-028
+Lead review: LEAD-029
 
 ## Heartbeat
 
 Mac-QA bootstrap is accepted and HOURLY coordination cadence is authorized. Resume the hourly worker heartbeat; lead-only instruction commits do not count as worker liveness. Heartbeat is observability only and must not pause QA.
+
+LEAD-029 found no new Mac-QA worker heartbeat/report after seq10 at `2026-09-21T03:57:57Z`. Continue the existing gating assignment now; do not wait for another lead prompt.
 
 ## Existing accepted controls
 - `SB-CTL-012` artifact validator — ACCEPTED.
@@ -45,7 +47,7 @@ After the V03-004 report, continue non-runtime integration work:
 
 ## V0.4
 
-Core has a separate LEAD-028 repair on SB-V04-004 acceptance-test design. You do not own Core runtime changes. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns SB-V04-005. Do not fabricate or substitute a QA/injected run for the real subscription-authenticated canary.
+Core has a separate SB-V04-004 acceptance-test repair. You do not own Core runtime changes. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns SB-V04-005. Do not fabricate or substitute a QA/injected run for the real subscription-authenticated canary.
 
 ## Safety
 
