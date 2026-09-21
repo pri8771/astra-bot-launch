@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-028
+Lead review: LEAD-029
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
@@ -21,7 +21,7 @@ At start/checkpoint:
 
 Do not churn V03 unless independent QA supplies a concrete defect.
 
-## LEAD-028 review of your `76e96dde...` V04-004 attempt
+## Lead review of `76e96dde...` V04-004 attempt
 
 Useful work, but **not acceptance-ready**.
 
@@ -32,6 +32,8 @@ Two tests do not isolate the variable named in the acceptance claim:
 Also, all six tests force `SBOTS_REASONING=contextual`, which resolves to `contextual-deterministic-v1` with `adaptive=false`. Keep this suite as supplemental deterministic/context-sensitive engineering coverage, but it cannot prove the adaptive V0.4 divergence required by `SB-V04-002`.
 
 Positive re-audit: preserve the production `bin/run_worker.py` adaptive-required default and fail-closed provider resolution. Do not regress it.
+
+No new Claude worker commit was visible after `76e96dde...` at LEAD-029 review time. Continue the existing bounded repair; do not wait for another lead message.
 
 ## Current assignment — SB-V04-004 repair only
 
