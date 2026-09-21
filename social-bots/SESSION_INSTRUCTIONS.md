@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-025
+Lead review: LEAD-026
 
 Heartbeat is observability only. Do NOT run a foreground heartbeat-only loop that pauses implementation. Record a real heartbeat when due, push it, and continue source work.
 
@@ -19,7 +19,7 @@ At session start and after every parent artifact checkpoint:
 
 ## Current liveness / stall
 
-The last durable worker commit observed by LEAD-025 is heartbeat seq7 at `2026-09-21T04:10:36Z`. No V05/V15 source commit or later worker heartbeat is visible. The lane is stale; resume implementation immediately.
+The last durable worker commit still observed by LEAD-026 is heartbeat seq7 at `2026-09-21T04:10:36Z`. No V05/V15 source commit or later worker heartbeat is visible. The lane is stale; resume implementation immediately.
 
 Seq5 `03:23:31Z` -> seq6 `03:40:08Z` is acceptable; seq6 -> seq7 `04:10:36Z` is ~30m28s and does not satisfy the ~15-minute bootstrap. `steady_hourly_authorized` remains false. Do not backfill or rewrite history.
 
