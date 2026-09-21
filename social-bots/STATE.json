@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T07:54:00Z",
+  "updated_at": "2026-09-21T08:51:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "fast_track_v03_waiting_independent_fencing_execution_v04_canary_stalled",
+  "status": "fast_track_v03_waiting_independent_fencing_execution_v04_004_worker_attempt_rejected_canary_stalled",
   "runtime_scope": {
     "autonomous_bots": ["social-a", "social-b", "social-c"],
     "general_personas_required": 3,
@@ -20,11 +20,11 @@
   "worker_lanes": {
     "core": {
       "branch": "claude/social-bots-windows-core-host",
-      "last_verified_head": "1fed0684e10374fc95cbe3b634d0428233c2a824",
-      "last_verified_commit_at": "2026-09-21T07:46:49Z",
+      "last_verified_head": "76e96dde4677346fd5b40c8cba4988f6e4c64fee",
+      "last_verified_commit_at": "2026-09-21T08:37:19Z",
       "final_v03_implementation": "796d4e390bd135167e5de2ff8f586bc07ac7f370",
       "final_v03_evidence": "436787b0a63fdae0e89c224a54054607e32b5187",
-      "activity": "v03_005_accepted_final_130_test_bundle_prepared_core_reassigned_to_dependency_safe_v04_reconciliation"
+      "activity": "v03_stable_v04_004_worker_submission_audited_changes_required_test_isolation_and_adaptive_path"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
@@ -40,7 +40,7 @@
     },
     "development_sessions_live": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
-    "note": "LEAD-027 accepts SB-V03-005 after independent inspection of Core 796d4e3. Final prepared V03-006 evidence at 436787 includes exact 130-test OK output. V03-004 source repair remains positive but independent execution required by its packet is still missing. Mac QA and Intelligence worker outputs remain stale; dedicated canary remains unexecuted. Coordination heartbeats never substitute for V0.7 runtime liveness or product evidence.",
+    "note": "LEAD-028 independently audits signed Core 76e96dd. V04-004 engineering tests are useful but not acceptance-ready: persona/evidence axes are confounded in two named cases and the suite uses contextual-deterministic-v1 adaptive=false. V03 final source/evidence remain stable; V03-004 still waits on packet-required independent execution. Mac QA and Intelligence remain stale and the dedicated real canary remains unexecuted. Coordination heartbeats never substitute for V0.7 runtime liveness or product evidence.",
     "windows_available": true,
     "heartbeat_validation": {
       "target_lanes": ["intelligence", "mac_qa"],
@@ -57,28 +57,31 @@
   },
   "tests": {
     "core_latest_verified_full_suite": 130,
+    "core_latest_worker_reported_full_suite": 136,
     "core_full_suite_evidence_path": "social-bots/receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt",
     "core_full_suite_evidence_commit": "436787b0a63fdae0e89c224a54054607e32b5187",
     "intelligence_latest_worker_reported_full_suite": 185,
     "mac_qa_latest_worker_reported_full_suite": 38,
     "mac_qa_github_ci_head": "success",
     "mac_qa_github_ci_run_id": 35555060783,
-    "lead_note": "Core 796d4e3 closes the final V03-005 raw-reader boundary: persona-scoped readers cover all six private stores and whole-runtime readers are explicit admin/internal. Evidence 436787 records 130 tests OK. V03-004 still requires independent execution before acceptance."
+    "lead_note": "Core V04-004 worker report claims 136 tests, but lead acceptance audit is source-based: two divergence cases fail independent-variable isolation and all six force the non-adaptive contextual provider. Keep 130 as the latest independently verified committed full-suite evidence for the final V03 bundle."
   },
   "lead_review": {
-    "review_id": "LEAD-027",
-    "review_ref": "social-bots/lead-reviews/LEAD-027_2026-09-21T0354.md",
+    "review_id": "LEAD-028",
+    "review_ref": "social-bots/lead-reviews/LEAD-028_2026-09-21T0451.md",
     "accepted": ["SB-CTL-006", "SB-CTL-012", "SB-V03-002", "SB-V03-003", "SB-V03-005", "SB-V13-001", "SB-V14-001"],
     "changes_required": ["SB-V03-001", "SB-V03-004", "SB-EVD-001", "SB-V05-001", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
     "blocked": ["SB-V03-006", "SB-V04-003", "SB-EVD-002", "SB-V12-001", "SB-V20-099", "SB-V20-004"],
     "key_findings": [
-      "SB-V03-005 is ACCEPTED: Core 796d4e3 removes the ordinary content_history raw reader, keeps explicit admin-only whole-runtime surfaces, and structurally covers all six persona-private stores.",
-      "Final V03-006 evidence at 436787 is prepared from 796d4e3 and exact committed output records 130 tests OK; it remains blocked only by predecessor/final lead acceptance gates.",
-      "SB-V03-004 has no newly identified source defect; acceptance remains held solely for the packet-required independent execution of the repaired lifecycle race.",
-      "Mac QA remains stale after seq10 despite hourly authorization and is now the gating independent executor for V03-004.",
+      "Core 76e96dd is real signed worker progress, but the SB-V04-004 worker attempt is not accepted: two named runtime divergence tests change more than one independent variable and therefore do not prove persona-only/evidence-only causality.",
+      "The V04-004 suite forces contextual-deterministic-v1 adaptive=false; it is supplemental engineering coverage and cannot satisfy adaptive V0.4 divergence acceptance. A canonical SB-V04-004 repair packet now defines isolated axes and adaptive-path evidence.",
+      "Current production launcher defaults to require_adaptive=True and provider resolution fails closed on non-adaptive providers; V04-001 source posture is materially improved but status is not promoted while V03 predecessor and integrated real adaptive evidence remain open.",
+      "SB-V04-002 remains CHANGES_REQUIRED because no real subscription-authenticated provider invocation has been accepted; SB-V04-003 remains dependency-blocked.",
+      "V03 final source/evidence remain stable: SB-V03-005 accepted, V03-004 source-positive but waiting only on independent execution, V03-006 final prepared at 130 tests OK.",
+      "Mac QA remains stale after seq10 despite hourly authorization; its independent V03-004 execution is overdue.",
       "Intelligence remains stale after seq7; V05 HTTPS and V15 persona experiment repairs remain unsubmitted and hourly remains unauthorized.",
-      "The dedicated V0.4 canary has no worker-generated real-source/subscription-provider evidence; Priority Zero remains stalled.",
-      "worker-pc retry failed at repository clone before Claude/tests, so it contributes no acceptance evidence and should not be redispatched until clone/auth access is proven fixed."
+      "The dedicated V0.4 canary still has no worker-generated real-source/subscription-provider evidence.",
+      "worker-pc Social Bots retry still failed at repository clone before Claude/tests, so it contributes no acceptance evidence and should not be redispatched until clone/auth access is fixed."
     ]
   },
   "public_actions": {
@@ -105,9 +108,10 @@
     "v04_promotion_blocked_until": ["SB-V04-005", "SB-EVD-002"]
   },
   "next_core": [
-    "preserve accepted SB-V03-005 and prepared 130-test V03-006 evidence",
-    "do not churn V03-004 absent concrete independent QA defect",
-    "while Mac QA executes V03-004, reconcile/test SB-V04-001/002/003 and prepare SB-V04-004 without touching live-canary execution"
+    "preserve final V03 source/evidence and do not churn V03 absent a concrete independent QA defect",
+    "repair SB-V04-004 so persona-only and evidence-only tests each hold every other variable constant",
+    "keep deterministic contextual divergence tests only as supplemental diagnostics and add an acceptance seam for the real adaptive/canary receipt without another unauthorized model call",
+    "preserve V04-001 adaptive-required production default and V04-003 authority wall; do not execute live canary from Core"
   ],
   "next_intelligence": [
     "start SB-V05-001 actual HTTPS pinned-IP TLS/SNI/certificate implementation immediately",
@@ -131,7 +135,7 @@
     "public_effect_allowed": false,
     "owner_authorized_bounded_existing_subscription_call": true,
     "authenticated_host_verified": false,
-    "worker_activity": "not_detected_as_of_LEAD_027"
+    "worker_activity": "not_detected_as_of_LEAD_028"
   },
   "fast_track": {
     "active": true,
@@ -165,7 +169,7 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-027_2026-09-21T0354.md",
+    "lead_review_current": "lead-reviews/LEAD-028_2026-09-21T0451.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md"
   }
