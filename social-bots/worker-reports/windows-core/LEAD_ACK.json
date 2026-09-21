@@ -2,12 +2,12 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 14,
-  "reviewed_at": "2026-09-21T15:05:00Z",
-  "lead_review": "RESET-20260921",
+  "reviewed_at": "2026-09-21T15:52:53Z",
+  "lead_review": "LEAD-035",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "Fresh Lane 1: launch reporter, repair SB-V04-004 only, push report/tests, then pull instructions.",
+  "next_assignment": "STALE WAKE-UP: start fresh Lane 1 now, launch reporter in parallel, repair SB-V04-004 only, push source/tests/report, then pull lead instructions.",
   "notification_delivered": true,
-  "notes": "Reset baseline. V03 source preserved. Issue #3 is live heartbeat feed."
+  "notes": "No worker-generated commit or Issue #3 heartbeat appeared after reset. Preserve final V03; do not execute the live canary. Heartbeat never blocks source work."
 }
