@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T04:03:00Z",
+  "updated_at": "2026-09-21T04:05:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -208,7 +208,10 @@
     "current_task_target_branch": "claude/social-bots-windows-core-host",
     "current_task_purpose": "independent SB-V03-004/SB-V03-005 acceptance audit",
     "dispatch_run_id": 35559393292,
-    "status": "in_progress",
-    "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release."
+    "status": "blocked_repo_auth_visibility",
+    "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release.",
+    "current_task_result": "failed",
+    "current_task_error": "worker-pc gh credential reported target as not-private/unavailable; GitHub repo metadata independently verifies astra-bot-launch is private",
+    "required_fix": "grant/refresh worker-pc gh CLI credential access to pri8771/astra-bot-launch without weakening private-repo guard"
   }
 }
