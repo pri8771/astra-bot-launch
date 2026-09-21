@@ -82,9 +82,9 @@ Current status:
 - prior Social Bots task `socialbots-v03-audit-20260920-01` failed before clone because worker-local GitHub credentials could not establish private-repo visibility/access;
 - private-repo guard must remain intact;
 - the failed result counts as zero Social Bots acceptance evidence;
-- at LEAD-024 review time the shared capacity-1 worker is occupied by another control-plane task.
+- the unrelated shared-worker run that occupied the slot earlier completed with failure at 04:55:35Z, so the slot is no longer known busy.
 
-Do not re-dispatch until both the repo credential visibility problem is fixed and the worker is idle. Mac QA owns current independent V0.3 verification so project progress does not wait on this resource.
+Do not re-dispatch Social Bots until the repo credential visibility problem is actually fixed and the slot is confirmed idle at dispatch time. Repeating the same known-failing clone is not useful work. Mac QA owns current independent V0.3 verification so project progress does not wait on this resource.
 
 ## Lead
 ChatGPT audits checkpoints, updates canonical artifact/state evidence, assigns next work, and prepares integration/V2 runway.
