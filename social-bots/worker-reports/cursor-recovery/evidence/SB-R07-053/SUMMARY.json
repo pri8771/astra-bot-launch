@@ -1,0 +1,13 @@
+{
+  "artifact": "SB-R07-053",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "focused_result": "11 passed",
+  "full_suite_result": "411 passed, 2 skipped",
+  "binding_module": "runtime.cultural_review",
+  "fail_closed": true,
+  "next_artifact": "SB-R07-061",
+  "recorded_at": "2026-09-21T19:52:43Z"
+}

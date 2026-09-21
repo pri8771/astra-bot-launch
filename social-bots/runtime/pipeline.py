@@ -12,7 +12,7 @@ import hashlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import paths, factcheck, content_intelligence as ci
+from . import paths, factcheck, content_intelligence as ci, cultural_review as cr
 from .jsonstore import read_json, write_json, append_jsonl, read_jsonl, now_iso
 
 
@@ -129,17 +129,8 @@ def voice_review(persona: dict, candidate: dict) -> dict:
 
 
 def cultural_review(persona: dict, candidate: dict) -> dict:
-    sr = persona.get("source_requirements", {})
-    if persona.get("kind") != "cultural" and not sr.get("cultural_review_required"):
-        return {"check": "cultural", "required": False, "passed": True,
-                "reason": "not a cultural persona"}
-    reviewer = sr.get("named_reviewer")  # only present once owner binds one
-    has_source = bool(candidate.get("source_refs"))
-    passed = bool(reviewer) and has_source
-    return {"check": "cultural", "required": True, "passed": passed,
-            "status": "ACCEPTED" if passed else "WITHHELD",
-            "reason": ("named reviewer + source bound" if passed
-                       else "no named cultural reviewer and/or source; WITHHELD per contract")}
+    """Cultural-review evidence binding gate (SB-R07-053 / SB-V05-004)."""
+    return cr.evaluate_cultural_review(persona, candidate)
 
 
 def review(persona: dict, candidate: dict) -> dict:

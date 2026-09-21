@@ -22,19 +22,26 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 ### SB-R07-051 — SUBMITTED (ENGINEERING)
 
 - Implementation source SHA: `6eb2e7c66c7daeb45dfae1f51462fa09fbd2b58f`
-
-- Implementation source SHA: 
-
 - Closed operational `BoundedPropositionAssessor` + pipeline integration
 - Adversarial negation/relation/numeric/predicate/conflict/omission tests
 - Full suite: 386 passed, 2 skipped
 
+### SB-R07-052 — SUBMITTED (ENGINEERING)
+
+- Implementation source SHA: `3235dde61fd7d0ae76d7742003d1b0a02cbb6aee`
+- `content_intelligence.plan_variant` hard gate; no silent fact truncation
+- Full suite: 400 passed, 2 skipped
+
+### SB-R07-053 — SUBMITTED (ENGINEERING)
+
+- CulturalReviewBinding fail-closed gate on candidate/evidence/reviewer/version
+- Full suite: 411 passed, 2 skipped
+
 ## Next
 
-1. `SB-R07-052` — platform-native formatting gate
-2. `SB-R07-053` — cultural-review evidence binding
-3. Skip `SB-R07-073` on this UNSUITABLE host
-4. Continue no-LIVE recovery artifacts
+1. `SB-R07-061` — reusable V0.6 dry-run runner
+2. Skip `SB-R07-073` on this UNSUITABLE host
+3. Continue no-LIVE recovery artifacts
 
 ## Blockers
 
