@@ -12,7 +12,8 @@ Base: canonical + Cursor recovery head `488ce0c` merged unedited (`e19003f`); ba
 | SB-S23-007 budget and child-spawn guard | `7b8b31f` | 471 OK / 2 skipped | ENGINEERING | SUBMITTED |
 | SB-S23-003 research specialist adapter | `6f615d5` | 481 OK / 2 skipped | ENGINEERING | SUBMITTED |
 | SB-S23-004 analyst/reviewer adapters | `fc7625a` | 491 OK / 2 skipped | ENGINEERING | SUBMITTED |
+| SB-S23-005 writer/media adapters | `ffef955` | 501 OK / 2 skipped | ENGINEERING | SUBMITTED |
 
-In progress: SB-S23-005 writer/media adapters. Then S23-006, S23-008. S20-002+ index-blocked on SB-S20-000.
+In progress: SB-S23-006 parent validator/integrator. Then S23-008. S20-002+ index-blocked on SB-S20-000.
 
 No Cursor-owned file edits. No model/live call. No public effect.
