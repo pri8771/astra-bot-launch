@@ -1,82 +1,75 @@
-# Active session router — LEAD-037
+# Active session router — LEAD-038
 
 Official phase: **V0.4.x / V0.4 in progress**.
-V0.3 is accepted. V0.4 is empirical-divergence authorization-blocked.
 
-Canonical decision: `V04_DIVERGENCE_ACCEPTANCE_PLAN.md`.
+Primary execution contract: `CLAUDE_EXECUTION_TO_V07.md`.
+
+Heartbeat contract: **one fresh worker session = one durable heartbeat**.
+
+## Universal session start
+
+Every fresh Claude session:
+1. fetches current repository truth;
+2. reads canonical state/queue/router/latest lead review/artifact packet;
+3. inspects its branch and relevant worker evidence;
+4. emits exactly one `SESSION_ONCE` heartbeat;
+5. begins work.
+
+No periodic heartbeat loop.
 
 ## Lane 1 — Core Builder
 
 Branch: `claude/social-bots-windows-core-host`
-Status: **ACTIVE**.
 
-Owns now:
-- prepare-only V0.4 divergence matrix/hashing/isolation/authorization-gate work;
-- then dependency-ready SB-V07-001 host-worker/runbook/OS-scheduler/heartbeat durability work.
+Owns:
+- no-live-call V0.4 empirical harness preparation;
+- V0.7 SB-V07-001 host worker/runbook/scheduler/heartbeat durability after the prep submission.
 
-Hard rule:
-- **no live Claude CLI/adaptive/model call**;
-- no synthetic/replayed receipt may be presented as causal adaptive evidence;
-- no authorization manifest currently exists.
+Hard rule: no adaptive/model call until explicit owner authorization + canonical lead manifest.
 
 ## Lane 2 — Intelligence Builder
 
 Branch: `claude/social-bots-intelligence-repair-v2`
-Status: **ACTIVE**.
 
-Owns now:
-- SB-V15-001 structural admin/read-boundary repair only.
+Owns:
+- current SB-V15-001 structural admin/read-boundary repair;
+- later intelligence/evidence artifacts when lead releases them.
 
-Then submit and stop for lead audit.
+Do not edit Core-owned runtime areas without reassignment.
 
 ## Lane 3 — Acceptance / QA
 
 Branch: `claude/social-bots-mac-qa-control`
-Status: **ACTIVE**.
 
-Owns now:
-- independent review of dependency-ready submissions;
-- V0.7 host/heartbeat acceptance preparation;
-- durable heartbeat truth checking.
+Owns:
+- independent source/evidence review;
+- V0.6/V0.7 acceptance validators and fault cases;
+- host/session-heartbeat truth checking.
 
-Does not own:
-- Core/Intelligence runtime source;
-- any live model/provider execution.
+Does not own live provider execution or Core/Intelligence runtime implementation.
 
-## Live-canary worktree
+## Live-canary branch
 
 Branch: `claude/social-bots-v04-live-canary`
-Status: **FROZEN**.
 
-Preserve evidence only.
+Status: FROZEN — evidence preservation only.
 
-The first chronological authorized canary is accepted for SB-V04-005. The later duplicate call exceeded authorization and remains excluded. No further model calls are authorized.
+## ChatGPT lead role
 
-## V0.4 acceptance state
+ChatGPT stays ahead on:
+- downstream artifact contracts;
+- future version task planning;
+- architecture/product decisions;
+- independent review;
+- acceptance;
+- owner-gate manifests when explicitly authorized.
 
-- SB-V04-001 ACCEPTED
-- SB-V04-003 ACCEPTED
-- SB-V04-005 ACCEPTED
-- SB-V04-002 BLOCKED
-- SB-V04-004 BLOCKED
-- SB-EVD-002 WITHHELD
+Claude remains the primary implementation worker.
 
-The clean future empirical matrix is five controlled provider invocations, but only after a new explicit owner authorization and lead-created authorization manifest.
+## Worker-pc
 
-## Heartbeat
-
-Issue #3 is the human-readable feed.
-`HEARTBEAT_LOG.jsonl` is authoritative for cadence proof.
-
-Current Issue comments are active; durable reset-epoch FAST_5M proof remains zero on all three human lanes.
-
-V0.7 host work must decouple durable logging from the optional GitHub-comment transport so a missing `gh` binary cannot prevent heartbeat evidence.
-
-## Lead authority
-
-Workers submit; ChatGPT lead accepts.
-No worker self-promotes artifacts or versions.
+Still outside the critical path until private-repo clone/auth is demonstrably repaired.
 
 ## Safety
 
-No public social effects, paid API/PAYG/new spend, destructive actions, credentials/secrets, fabricated evidence, engagement manipulation or SwarmAI dependency.
+No public effects, PAYG/new spend, secrets, destructive actions, fabricated evidence, engagement manipulation or SwarmAI dependency.
