@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-mac-qa-control`
-Lead review: LEAD-025
+Lead review: LEAD-026
 
 ## Heartbeat
 
@@ -10,7 +10,7 @@ Lead has accepted the durable Mac-QA bootstrap heartbeat evidence and authorized
 Routine heartbeat stays hourly. Artifact submissions and blockers push immediately.
 Heartbeat is coordination observability only and must not pause useful QA/integration work.
 
-Your last durable worker heartbeat is seq10 at `2026-09-21T03:57:57Z`; no worker heartbeat/report has appeared since. Resume the authorized hourly heartbeat now and continue QA work. Lead-only instruction commits do not count as worker liveness.
+Your last durable worker heartbeat remains seq10 at `2026-09-21T03:57:57Z`; no worker heartbeat/report has appeared since. Resume the authorized hourly heartbeat and continue QA work. Lead-only instruction commits do not count as worker liveness.
 
 ## Existing accepted controls
 - `SB-CTL-012` artifact validator — ACCEPTED.
@@ -18,36 +18,46 @@ Your last durable worker heartbeat is seq10 at `2026-09-21T03:57:57Z`; no worker
 
 Preserve these.
 
-## Priority 1 — independently verify CURRENT Core repair `7e4345b...`
+## Priority 1 — independently verify CURRENT Core V0.3 repair
 
-Do not edit Core runtime source. The prior LEAD-024 defect state has changed; verify the repaired implementation, not the superseded code.
+Do not edit Core runtime source. Verify current Core behavior, not superseded defect states.
 
 ### SB-V03-004 — post-cycle success-receipt fence
 
-Core `7e4345b041b59b9d1b1036dfea388cedf79b4d3d` now writes the finish/success receipt through `fence.fenced_commit` and includes `test_stale_owner_cannot_write_success_finish_receipt_after_takeover`.
+Core `7e4345b041b59b9d1b1036dfea388cedf79b4d3d` writes the finish/success receipt through `fence.fenced_commit` and includes `test_stale_owner_cannot_write_success_finish_receipt_after_takeover`.
 
-Independently execute/probe this scenario:
+Independently execute/probe this scenario against current Core history:
 1. cycle durable commit succeeds under owner A;
 2. A stalls before completion receipt;
 3. force lease expiry + generation takeover by B;
 4. resume A;
 5. prove A emits no finish/success receipt and cannot delete B's lease;
-6. verify any A evidence is a truthful fenced-out/failure record with `candidate_succeeded=false`.
+6. verify any A evidence is truthful fenced-out/failure evidence with `candidate_succeeded=false`.
 
-Also spot-check that the earlier side-effect-free migration and fenced cycle writes remain intact.
+Spot-check that side-effect-free migration and fenced cycle writes remain intact. Report PASS/FAIL with exact commands/results. Do not self-accept the artifact.
 
-Report PASS/FAIL with exact commands and results. Do not self-accept the Core artifact.
+### SB-V03-005 — complete structural raw-reader/persona boundary
 
-### SB-V03-005 — structural raw-reader/persona boundary
+Core `f73c337e66ccdd5bd09313e37f4c87b4f00df07e` correctly renamed:
+- `pipeline.publish_queue` -> `pipeline.admin_publish_queue`;
+- `analytics.events_for` -> `analytics.admin_events_for`.
 
-Lead source review still finds a contract gap after `7e4345b...`:
-- scoped facade and real production-path tests are useful;
-- `_reconcile` correctly uses `isolation.admin_all_records`;
-- but ordinary raw whole-runtime APIs still exist, including `pipeline.publish_queue(bot)`, `analytics.events_for(bot)`, `RuntimeState.content_history()` and analogous direct store readers.
+LEAD-026 independently found a remaining raw reader:
+- `RuntimeState.content_history()` remains an ordinary publicly named whole-runtime reader, even though its docstring says ADMIN.
 
-Independently determine whether a normal persona-facing production caller can still bypass the persona boundary and enumerate another persona's private records. The packet requires raw enumeration to be structurally admin/internal or equivalent, not merely documented by comments.
+Also, the new static/bypass regression guards only the queue/analytics old names, so it is not exhaustive.
 
-Test/trace actual production-facing APIs and report exact symbols/call sites. Distinguish legitimate runtime-wide admin/reconciliation reads from persona-facing reads.
+Independently inspect/probe the **complete** six-store surface:
+- content history;
+- publish queue;
+- experiments;
+- analytics/history;
+- action history;
+- decision history.
+
+Determine whether every persona-facing sanctioned reader is persona-scoped and every raw whole-runtime reader is explicitly admin/internal/private. Confirm or disprove the `RuntimeState.content_history()` finding. Report exact symbols/call sites and distinguish legitimate runtime-wide admin/reconciliation reads from persona-facing reads.
+
+If Core pushes a narrow LEAD-026 fix while you are working, fetch it and verify that current final SHA rather than reporting only the superseded f73c337 state.
 
 ## Priority 2 — V2 integration acceptance preparation
 
