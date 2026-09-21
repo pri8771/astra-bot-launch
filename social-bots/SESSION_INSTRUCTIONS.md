@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-027
+Lead review: LEAD-028
 
 Heartbeat is observability only. Do NOT pause implementation for heartbeat testing. Record genuine timestamps only; no backfill. Hourly cadence remains unauthorized because seq6 -> seq7 was ~30m28s.
 
