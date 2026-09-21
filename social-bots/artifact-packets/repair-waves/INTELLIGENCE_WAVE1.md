@@ -1,3 +1,16 @@
+
+## Same-host concurrency rule
+
+If multiple Claude sessions run simultaneously on the same Windows machine, they MUST NOT share one Git working tree.
+
+Use separate local directories/clones (or carefully configured Git worktrees) per session. Recommended simple layout:
+- Windows Core session: `astra-bot-launch-core`
+- Intelligence session: `astra-bot-launch-intelligence`
+
+Each session owns its own working directory and branch. Never let one session run `git switch`, merge, reset, clean, or checkout inside the other session's working tree.
+
+Shared remote repository is fine; shared local working tree is not.
+
 # Repair wave — Intelligence / Evidence Integrity
 
 Worker instance: second Claude environment
