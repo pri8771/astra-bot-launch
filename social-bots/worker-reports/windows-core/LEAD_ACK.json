@@ -2,12 +2,12 @@
   "schema_version": 1,
   "lane": "windows-core",
   "reviewed_through_sequence": 14,
-  "reviewed_at": "2026-09-21T14:55:00Z",
-  "lead_review": "LEAD-034",
+  "reviewed_at": "2026-09-21T15:05:00Z",
+  "lead_review": "RESET-20260921",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "Preserve final V03. Continue SB-V04-004 only: isolate persona-only/evidence-only variables, retain contextual adaptive=false tests as diagnostics, and add an acceptance seam for the real adaptive canary receipt without invoking another model call. Do not execute SB-V04-005 from Core. Start today's FAST_5M heartbeat prospectively in parallel.",
-  "notification_delivered": false,
-  "notes": "No new worker-generated commit or FAST_5M heartbeat after LEAD-033. Historical log ends seq14 at 08:37:18Z in BOOTSTRAP_15M. Do not backfill; continue source work now."
+  "next_assignment": "Fresh Lane 1: launch reporter, repair SB-V04-004 only, push report/tests, then pull instructions.",
+  "notification_delivered": true,
+  "notes": "Reset baseline. V03 source preserved. Issue #3 is live heartbeat feed."
 }
