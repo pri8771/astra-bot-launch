@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T01:15:00Z",
+  "updated_at": "2026-09-21T01:28:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -1185,6 +1185,23 @@
       "story_points": 5,
       "evidence": [
         "authorized Windows Claude environment now available; actual host proof not yet run"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-012",
+      "name": "Artifact graph validator and readiness reporter",
+      "type": "engineering_control",
+      "version_gate": "engineering-control",
+      "owner": "Claude-Mac-QA",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/SB-CTL-012.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": 3,
+      "evidence": [
+        "lead-prepared non-overlapping Mac QA/control artifact"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
