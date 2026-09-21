@@ -1,15 +1,32 @@
 {
   "schema_version": 1,
   "lane": "windows-core",
-  "reviewed_at": "2026-09-21T17:10:00Z",
-  "lead_review": "LEAD-036",
+  "reviewed_at": "2026-09-21T17:17:00Z",
+  "lead_review": "LEAD-037",
   "official_phase": "V0.4.x_in_progress",
   "today_soak_fast5m_verified_intervals": 0,
   "steady_hourly_authorized_for_reset_soak": false,
-  "accepted": ["SB-V03-004", "SB-V03-006", "SB-V04-001", "SB-V04-003", "SB-V04-005"],
-  "changes_required": ["SB-V04-002", "SB-V04-004"],
-  "next_assignment": "NO LIVE MODEL CALLS. Continue only non-live V04 acceptance seam/test/integration readiness; keep real adaptive causal-divergence gap explicit and do not substitute replay/fixtures.",
+  "accepted": [
+    "SB-V03-004",
+    "SB-V03-006",
+    "SB-V04-001",
+    "SB-V04-003",
+    "SB-V04-005"
+  ],
+  "changes_required": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "next_assignment": "Prepare-only V0.4 divergence matrix/hashes/isolation + fail-closed authorization/call-budget gate; then SB-V07-001 host worker/OS scheduling/heartbeat durability. No live model calls.",
   "authorization_consumed": true,
   "notification_delivered": true,
-  "notes": "V0.3 is closed. Reset Issue comments do not count as durable heartbeat proof; add prospective HEARTBEAT_LOG entries only, never backfill."
+  "notes": "LEAD-037 is authoritative. Issue comments are visibility; durable HEARTBEAT_LOG is cadence evidence. Do not backfill.",
+  "no_live_model_calls_authorized": true,
+  "blocked": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "ready": [
+    "SB-V07-001"
+  ]
 }
