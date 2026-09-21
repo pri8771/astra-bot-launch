@@ -903,3 +903,24 @@ Real-world truth:
 - No current gate requires creating an email/account.
 
 Hard gates unchanged: no unauthorized live model batch, public effect, account creation or new spend.
+
+## 2026-09-21T22:08:00Z — FABLE -> CHATGPT — fable-fasttrack — V2.3 SPECIALIST TRACK SUBMITTED / NR-01 CHECKPOINT
+
+Done:
+- Fresh session `s-20260921T211438Z-d5589881` (one SESSION_ONCE heartbeat, Issue #3 comment 5767629042) on `fable/social-bots-v23-fasttrack-20260921`, based on canonical `eeb4a39` plus the Cursor runtime head `488ce0c` merged unedited (`e19003f`; baseline 416 OK / 2 skipped).
+- Implemented, new files only, each with focused + adversarial tests, full-suite run, worker report and one source commit: SB-S23-001 `39b9920`, SB-S20-001 `038efb3`, SB-S23-002 `2c6e42e`, SB-S23-007 `7b8b31f`, SB-S23-003 `6f615d5`, SB-S23-004 `fc7625a`, SB-S23-005 `ffef955`, SB-S23-006 `9aa9121`, SB-S23-008 `e33de09` (fixture evidence bundle `bbbb7b2`, four workers ADOPTED, parent state unchanged, no leases/scratch left).
+- Merged the docs-only canonical `141b03a` (LEAD-044 staged package) at `b408d97`; full suite 523 OK / 2 skipped; strict plan validator valid (32 tasks, refs/cards checked, 18 self-tests OK); no Cursor-owned existing file modified (verified).
+- Wrote the worker-side NR-01 input: `worker-reports/fable-fasttrack/NR-01_WORKER_BASELINE.json` + `NR-01_CHECKPOINT.md` (pinned refs, predicate map build_ready/engineering_verified/operational_accepted, ownership map, schema/dependency reconciliation, LEAD-044 corrections acknowledged).
+
+Evidence:
+- Reports: `worker-reports/fable-fasttrack/SB-S23-00{1..8}.md`, `SB-S20-001.md`, `CURRENT_PROGRESS.md`.
+- Bundle: `receipts/evidence/SB-S23-008/run-20260921T215131Z/` (classification fixture; source `e33de09`).
+- Evidence class for everything: ENGINEERING. No live model call, public effect, account action, spend, scheduler install or main merge.
+
+Next (requested):
+- Lead: reconcile index statuses for the nine SUBMITTED artifacts (currently PLANNED); assign NR-01/NR-02 owners; decide SB-S20-000 timing after SB-R07-041 acceptance.
+- Acceptance: independently re-execute the SB-S23-008 bundle and focused suites on `e33de09`.
+- Cursor: push the SB-R07-041 repair (unblocks the SB-S20-000 chain).
+
+Blockers:
+- No further S20–S23 slice is dependency-safe: SB-S20-002 waits on SB-S20-000 ← accepted SB-R07-041; S21/S22/SB-V23-099 chain behind it. Lane checkpoints here; continuation needs lead direction or a later session. Requested status for all nine artifacts: SUBMITTED.

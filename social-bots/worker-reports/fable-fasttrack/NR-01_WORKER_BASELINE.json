@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "artifact": "NR-01",
+  "role": "worker input to lead+integrator NR-01 (not canonical BASELINE.json)",
+  "lane": "fable-fasttrack",
+  "session_id": "s-20260921T211438Z-d5589881",
+  "generated_at": "2026-09-21T22:05:00Z",
+  "pinned_refs": {
+    "canonical_coordination": "141b03a90657a674c0c82b98c495fd4619f81ecb",
+    "canonical_note": "LEAD-044 next-round package staged; NEXT_ROUND_NOT_ACTIVE; running assignments unchanged",
+    "fable_branch": "fable/social-bots-v23-fasttrack-20260921",
+    "fable_head": "b408d973593afce131bc8aae02b0e8c786aa96b9",
+    "fable_runtime_base": "488ce0c720d857473ab9f2ce448d9197a955df14",
+    "fable_runtime_base_merge_commit": "e19003f3144bd9770d05ae6eab727eb9ee6e582e",
+    "cursor_recovery_head": "488ce0c720d857473ab9f2ce448d9197a955df14",
+    "cursor_note": "unchanged since session start; SB-R07-041 repair not yet pushed",
+    "mac_qa_head": "a508c06bc87a9f36b7d6347eeb86cde62f4d9907",
+    "mac_qa_note": "no fresh independent review session observed after LEAD-042/043",
+    "planning_source": "8adea683ab327930ebf0242d54c5b5bed87d7ecb"
+  },
+  "engineering_verification_at_head": {
+    "command": "python3 -m unittest discover -s tests (from social-bots/)",
+    "discovered": 523,
+    "passed": 521,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 2,
+    "baseline_before_fable_slices": "416 OK, 2 skipped at e19003f",
+    "plan_validator": {
+      "command": "python3 social-bots/next-round/validate_plan.py --repo-root .",
+      "valid": true,
+      "tasks": 32,
+      "artifact_reference_check": "performed",
+      "work_card_check": "performed",
+      "self_tests": "18 OK"
+    }
+  },
+  "artifacts": [
+    {"id": "SB-S23-001", "source_sha": "39b9920bf194fb3f73b620d29a4f8e9ed1b31a06", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S20-001", "source_sha": "038efb36cbf962565200ecc44dc9e2e1b7fda439", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-002", "source_sha": "2c6e42e1646005b2c3483a42edb1c3454f27a7ac", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-007", "source_sha": "7b8b31f52137df20c23934539f387eb82b4004f6", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-003", "source_sha": "6f615d5ef242c8ae9f3adf3e9fb0fbafc3baed70", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-004", "source_sha": "fc7625aaf041f9dec02b75ab62d7afe62cbdefad", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-005", "source_sha": "ffef95525592476d0dd67924538cf09339fc44a9", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-006", "source_sha": "9aa9121393797394220c86ffe22150f330825274", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"},
+    {"id": "SB-S23-008", "source_sha": "e33de096c7da2633376794b3297d82b320f6229d", "evidence_sha": "bbbb7b2df473a61c029a3098361cd0a084577d38", "evidence_path": "social-bots/receipts/evidence/SB-S23-008/run-20260921T215131Z/", "evidence_classification": "fixture", "build_ready": true, "engineering_verified": true, "operational_accepted": false, "independent_acceptance_execution": "required, not yet performed", "requested_status": "SUBMITTED", "index_status_observed": "PLANNED"}
+  ],
+  "ownership_map": {
+    "fable_claimed_new_files": [
+      "social-bots/runtime/strategy.py",
+      "social-bots/runtime/specialist_contract.py",
+      "social-bots/runtime/specialist_sandbox.py",
+      "social-bots/runtime/specialist_budget.py",
+      "social-bots/runtime/specialist_research.py",
+      "social-bots/runtime/specialist_analysis.py",
+      "social-bots/runtime/specialist_writer.py",
+      "social-bots/runtime/specialist_integrator.py",
+      "social-bots/runtime/specialist_lifecycle.py",
+      "social-bots/bin/prove_v23_specialists.py",
+      "social-bots/tests/test_strategy_store.py",
+      "social-bots/tests/test_specialist_contract.py",
+      "social-bots/tests/test_specialist_sandbox.py",
+      "social-bots/tests/test_specialist_budget.py",
+      "social-bots/tests/test_specialist_research.py",
+      "social-bots/tests/test_specialist_analysis.py",
+      "social-bots/tests/test_specialist_writer.py",
+      "social-bots/tests/test_specialist_integrator.py",
+      "social-bots/tests/test_v23_specialist_acceptance.py",
+      "social-bots/receipts/evidence/SB-S23-008/",
+      "social-bots/worker-reports/fable-fasttrack/"
+    ],
+    "cursor_owned_existing_files_modified": [],
+    "verification": "git diff --name-only 488ce0c HEAD -- social-bots/runtime social-bots/tests social-bots/bin filtered to paths existing at 488ce0c: empty",
+    "shared_docs_touched": ["social-bots/AGENT_MESSAGES.md (append-only handoff entries)"],
+    "runtime_imports_of_cursor_modules": ["paths", "jsonstore", "leasing", "receipts", "isolation", "authorization", "live_route_guard"],
+    "integration_hooks_not_implemented": ["H1", "H2", "H3", "H4"]
+  },
+  "schema_reconciliation": {
+    "specialist_contract_schema": "v2 implemented (SpecialistAuthority frozen, three booleans; external_effect_budget init=False fixed 0; WorkerResult carries schema_version=2 and provenance)",
+    "spec_text_deltas_proposed": [
+      "V20_TO_V23_IMPLEMENTATION_SPEC.md §2.6: add schema_version=2 and provenance to WorkerResult (implemented per canonical schema v2)",
+      "V20_TO_V23_IMPLEMENTATION_SPEC.md §5 S23-006 row: receipts.write_receipt kind is finish|failure with detail.specialist (write_receipt accepts only start|finish|failure; Cursor-owned, unmodified)",
+      "V20_TO_V23_IMPLEMENTATION_SPEC.md §5 S23-005 row: candidate status constant is DRAFT_UNPUBLISHED; pipeline's own drafts use 'ideated'"
+    ],
+    "lead_044_corrections_acknowledged": [
+      "provider fixture/adaptive label is not authorization: BudgetedProvider requires authorization.authorize for adaptive providers regardless of env mode; a provider that mislabels itself adaptive=False is a recorded limitation (SB-S23-007) and a candidate NR closure item",
+      "thread timeout / path wrapper are not hard process boundaries: all specialist reports state in-process only; process pools remain a V3 option",
+      "crash-consistent fenced version publication: strategy.save_version writes version -> HISTORY -> HEAD inside one fence with atomic per-file writes; a crash between files is detectable (history() flags missing rows) but not transactional; candidate NR closure item",
+      "draft reviews follow final content hashes: ReviewResult.reviewed_sha256 is recorded by the reviewer and re-verified by the integrator before adoption"
+    ]
+  },
+  "dependency_reconciliation": {
+    "satisfied": ["SB-S23-001..008 index dependencies (all within the specialist track)", "SB-S20-001 (no dependencies)"],
+    "blocked": {
+      "SB-S20-002": "depends on SB-S20-000, which depends on ACCEPTED SB-R07-041 (currently CHANGES_REQUIRED; Cursor repair not pushed at 488ce0c)",
+      "SB-S21-*": "chain behind SB-S20-004/SB-S20-006",
+      "SB-S22-001": "depends on SB-S21-001",
+      "SB-V23-099": "depends on SB-S20-000, SB-S20-006, SB-S20-007, SB-S21-006, SB-S22-007 (SB-S23-008 satisfied on this branch)"
+    },
+    "stale_status_discrepancies": "ARTIFACT_INDEX.json lists SB-S20-001 and SB-S23-001..008 as PLANNED while this branch carries SUBMITTED worker reports for each; lead reconciliation needed (NR-01)",
+    "no_dependency_safe_released_slice_remains": true
+  },
+  "next_permitted_action": {
+    "fable": "none released; await lead next-round assignment (NR-01 is lead+integrator owned). Candidate non-conflicting work if released: NR-02 alignment inputs for SB-S23-001/SB-S20-001; SB-S20-002 against dict fixtures only if the lead relaxes the SB-S20-000 dependency",
+    "lead": "reconcile index statuses for the nine submissions; decide SB-S20-000 timing after R07-041 acceptance; assign NR-01/NR-02 owners",
+    "acceptance": "independently re-execute receipts/evidence/SB-S23-008 bundle on e33de09 and the focused suites",
+    "cursor": "push SB-R07-041 repair (unblocks SB-S20-000 chain after acceptance)"
+  },
+  "authority_boundaries_observed": {
+    "live_model_calls": 0,
+    "public_effects": 0,
+    "new_spend": 0,
+    "account_actions": 0,
+    "scheduler_installations": 0,
+    "main_merges": 0
+  }
+}
