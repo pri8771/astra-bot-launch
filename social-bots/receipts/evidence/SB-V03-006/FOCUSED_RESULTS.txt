@@ -4,5 +4,6 @@ test_fencing: OK
 test_isolation: OK
 test_isolation_decisions: OK
 test_persona_read_boundary: OK
+test_production_read_paths: OK
 test_concurrency: OK
-OK
+full: OK

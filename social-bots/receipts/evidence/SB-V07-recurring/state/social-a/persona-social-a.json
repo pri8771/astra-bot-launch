@@ -2,7 +2,7 @@
   "consumed_signal_ids": [
     "sig-287ff96f0afb"
   ],
-  "created_at": "2026-09-21T04:21:34+00:00",
+  "created_at": "2026-09-21T05:31:47+00:00",
   "goals": [],
   "hypotheses": {
     "h-social-a-exp-c-fb93d89e0e62": {
@@ -11,13 +11,13 @@
         "experiment exp-c-fb93d89e0e62 registered; awaiting 48h window"
       ],
       "statement": "An account that reliably shows its arithmetic earns saves and high-quality replies even with modest reach.",
-      "updated_at": "2026-09-21T04:21:34+00:00"
+      "updated_at": "2026-09-21T05:31:47+00:00"
     }
   },
   "pending_decisions": [],
   "persona_id": "social-a",
   "runtime": "social-a",
   "schema_version": 1,
-  "updated_at": "2026-09-21T04:21:34+00:00",
+  "updated_at": "2026-09-21T05:31:47+00:00",
   "working_state": {}
 }

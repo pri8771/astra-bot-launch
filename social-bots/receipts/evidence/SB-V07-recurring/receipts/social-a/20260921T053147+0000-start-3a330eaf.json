@@ -1,0 +1,16 @@
+{
+  "detail": {
+    "fence_generation": 1,
+    "persona": "social-a",
+    "reconcile_required": false,
+    "started_at": "2026-09-21T05:31:47+00:00",
+    "took_over_from": null
+  },
+  "kind": "start",
+  "lease_id": "f180bc8ec42145c08a1946c09ca01b34",
+  "namespace": "social-a",
+  "receipt_id": "20260921T053147+0000-start-3a330eaf",
+  "recorded_at": "2026-09-21T05:31:47+00:00",
+  "task_id": "cycle:social-a",
+  "worker_id": "w-vm-2660-3d4786"
+}
