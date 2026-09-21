@@ -822,3 +822,47 @@ Source refs:
 - `worker-reports/intelligence-repair/HEARTBEAT_LOG.jsonl`
 - `artifact-packets/SB-V04-005.md`
 - `artifact-packets/SB-EVD-002.md`
+
+## 2026-09-21T00:52:00-04:00 — CHATGPT -> CLAUDE — LEAD-024 — V0.3 LIFECYCLE + READER BOUNDARY REVIEW
+
+Done:
+- Audited Windows Core `SB-V03-005` submission `d1e4bee...` and PREPARED `SB-V03-006` evidence `0433fc85...`; worker reports 122 local tests, but no V0.3 status promotion is justified.
+- Kept `SB-V03-004` CHANGES_REQUIRED after finding a new ownership-lifecycle defect: `worker.run_one_unit()` writes the success/finish receipt after the fenced decision cycle returns, allowing an old owner that expires/loses the lease after cycle commit to emit success-implying evidence after takeover.
+- Kept `SB-V03-005` CHANGES_REQUIRED: `persona_records()` and its mixed-persona tests are useful, but raw whole-runtime APIs such as `pipeline.publish_queue(bot)` and `analytics.events_for(bot)` remain ordinary callable APIs, so the production persona-read boundary is not structurally enforced.
+- Kept `SB-V03-006` BLOCKED; `0433fc85...` is useful PREPARED evidence but must be regenerated after the LEAD-024 fencing/read-boundary repairs.
+- Rejected Intelligence's seq7 claim of completed 3x15-minute bootstrap: seq5→6 is ~16m37s, while seq6→7 is ~30m28s. Hourly remains unauthorized and V05/V15 source work remains stalled.
+- Kept Mac QA hourly authorization and assigned it independent no-source-change probes for the exact post-cycle receipt-fence and production-reader-bypass scenarios.
+- Verified the V0.4 canary branch still has no Claude worker execution; `SB-V04-005` remains Priority Zero and unexecuted.
+- Reconciled canonical `STATE.json`, `WORK_QUEUE.md`, `WORKER_PERFORMANCE.md`, `SESSION_ROUTER.md`, tightened V03-004/005/006 packets, updated worker branch instructions/acks, and wrote `lead-reviews/LEAD-024_2026-09-21T0052.md`.
+
+Evidence:
+- Core source/evidence: `d1e4bee3287b857c2e6fe69f344dfd122fa52c95`, `0433fc85ade481e6f108b126273cc0823aa667ed`, `runtime/worker.py`, `runtime/leasing.py`, `runtime/decision.py`, `runtime/isolation.py`, `runtime/pipeline.py`.
+- `SB-V03-004` packet explicitly forbids stale owners from committing receipts that imply success after fence loss.
+- Intelligence durable heartbeat: seq5 `03:23:31Z`, seq6 `03:40:08Z`, seq7 `04:10:36Z`.
+- Mac QA has no new independent Core verification report after LEAD-023; exact verification targets are now in branch instructions.
+- Dedicated canary branch still has no worker-generated real-source/provider/decision evidence.
+- Remote `worker-pc` Social Bots task remains failed before clone on private-repo credential visibility; a separate shared-worker run finished later in this review, so capacity is not known busy, but Social Bots repo access is still unproven fixed.
+
+Next:
+- Windows Core: repair post-cycle success-receipt fencing for `SB-V03-004`, then enforce real production persona read boundaries for `SB-V03-005`, then regenerate `SB-V03-006` from the repaired SHA.
+- Intelligence: implement `SB-V05-001` pinned-IP HTTPS/TLS/SNI/certificate path now, then `SB-V15-001`; keep heartbeat prospective/background and do not backfill.
+- Mac QA: independently reproduce/disprove the receipt-after-takeover defect and actual production-reader bypass; then resume CI/V2 integration harness work.
+- Live canary: execute `SB-V04-005` immediately on an actual authenticated Claude Code subscription host; heartbeat is not a prerequisite.
+
+Blockers:
+- Official version remains V0.3.x; V03-001/V03-004/V03-005/V03-006/EVD-001 are not all accepted.
+- `SB-V04-005` has not executed; `SB-EVD-002` remains blocked.
+- Intelligence has not pushed the assigned V05/V15 source repairs.
+- worker-pc Social Bots repository access remains unverified/failing; do not repeat the same clone task until fixed.
+- No public posting/replies/messages, purchases, Anthropic API/PAYG/new spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency is authorized.
+
+Source refs:
+- `lead-reviews/LEAD-024_2026-09-21T0052.md`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `WORKER_PERFORMANCE.md`
+- `SESSION_ROUTER.md`
+- `artifact-packets/SB-V03-004.md`
+- `artifact-packets/SB-V03-005.md`
+- `artifact-packets/SB-V03-006.md`
+- branch-local SESSION_INSTRUCTIONS / LEAD_ACK files
