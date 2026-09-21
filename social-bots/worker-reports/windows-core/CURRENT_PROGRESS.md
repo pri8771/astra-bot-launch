@@ -1,1 +1,1 @@
-Fresh session not started yet. Assigned mission is ready. Heartbeat reporter not started yet.
+SB-V04-004 repair complete and green: fixed the two confounded divergence tests (now single-variable, verified), added the adaptive-receipt acceptance seam (runtime/reasoning_receipt.py) exercising the adaptive=True path via replayed sanitized receipts, and the real-canary intake. Targeted + full suite pass (160 tests, 1 skip = awaiting SB-V04-005 real receipt). Writing worker report; then commit/push. Not self-accepting.
