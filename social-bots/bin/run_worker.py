@@ -13,9 +13,16 @@ Reasoning posture (SB-V04-001):
     ``SBOTS_WORKER_ALLOW_DETERMINISTIC=1`` to allow the configured non-adaptive
     provider; this is explicitly not a production V0.4 posture.
 
+Live-route posture (SB-R07-041):
+    Before any lease or cycle work, a live reasoning mode (``claude-cli`` /
+    ``model``) is refused unless a canonical authorization manifest grants it.
+    The Claude CLI spawn point remains the backstop for alternate callers; this
+    entrypoint check is defense-in-depth for the production launcher itself.
+
 Exit codes:
     0  unit completed (any decision, including NO_ACTION or a fail-closed block)
     3  no-overlap: another live worker holds the lease (expected, benign)
+    6  live model route requested but not authorized (refused before work)
     1  unexpected failure (a failure receipt was written)
 """
 import os
@@ -23,7 +30,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import worker, leasing  # noqa: E402
+from runtime import worker, leasing, live_route_guard  # noqa: E402
+
+EXIT_LIVE_ROUTE_REFUSED = 6
 
 
 def _allow_deterministic() -> bool:
@@ -37,6 +46,17 @@ def main() -> int:
         return 2
     bot = sys.argv[1]
     persona = sys.argv[2] if len(sys.argv) > 2 else bot
+    lane = os.environ.get("SBOTS_LANE", "windows-core")
+    # Refuse a live model route before acquiring a lease or constructing a provider.
+    route = live_route_guard.check(
+        artifact=os.environ.get("SBOTS_ARTIFACT", "SB-RUNTIME-WORKER"),
+        lane=lane,
+        run_scope=f"run-worker:{bot}",
+        manifest_dir=os.environ.get("SBOTS_MANIFEST_DIR") or None,
+    )
+    if not route.permitted:
+        print(f"LIVE ROUTE REFUSED: {route.reason}", file=sys.stderr)
+        return EXIT_LIVE_ROUTE_REFUSED
     # Production V0.4 default: require adaptive reasoning (fail closed). A diagnostic
     # override (None -> env-driven posture) is allowed only when explicitly opted in.
     require_adaptive = None if _allow_deterministic() else True

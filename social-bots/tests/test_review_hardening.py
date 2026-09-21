@@ -242,6 +242,49 @@ class SpawnPointGuardTest(unittest.TestCase):
         self.assertTrue(getattr(provider, "adaptive", False))
         self.assertFalse(provider.available())
 
+    def test_rebinding_REAL_CLI_RUNNER_alias_cannot_un_guard_the_real_launcher(self):
+        """SB-R07-041: rebinding the public alias must not disable spawn refusal.
+
+        An adversarial probe showed that keying only on the rebindable
+        ``_REAL_CLI_RUNNER`` name let ``ClaudeCodeReasoningProvider()`` keep the
+        real launcher while ``_spawns_for_real`` returned False.
+        """
+        from runtime import reasoning_cli
+        from runtime.reasoning_cli import ClaudeCodeReasoningProvider
+        from runtime.reasoning import ReasoningContext
+
+        original_alias = reasoning_cli._REAL_CLI_RUNNER
+        try:
+            reasoning_cli._REAL_CLI_RUNNER = object()   # adversarial rebind
+            provider = ClaudeCodeReasoningProvider()   # still holds real launcher
+            with EnvGuard(ANTHROPIC_API_KEY=None):
+                self.assertTrue(provider._spawns_for_real())
+                self.assertFalse(provider.available())
+                self.assertIn("not authorized", provider.reason)
+                ctx = ReasoningContext(persona={"id": "social-a"}, objective="o",
+                                       top_signal={"id": "sig-1", "tags": []},
+                                       pending_count=0, is_duplicate=False, draft={})
+                self.assertIsNone(provider.propose(ctx))
+        finally:
+            reasoning_cli._REAL_CLI_RUNNER = original_alias
+
+    def test_run_worker_entrypoint_refuses_live_route_without_manifest(self):
+        """SB-R07-041: production run_worker.py must exit 6 before any work."""
+        import run_worker
+        home = self.tmp / "run-worker-home"
+        home.mkdir()
+        argv_prior = sys.argv[:]
+        try:
+            sys.argv = ["run_worker.py", "social-a"]
+            with EnvGuard(SBOTS_REASONING="claude-cli", SBOTS_HOME=str(home),
+                          SBOTS_MANIFEST_DIR=str(self.manifests), ANTHROPIC_API_KEY=None):
+                code = run_worker.main()
+        finally:
+            sys.argv = argv_prior
+        self.assertEqual(code, run_worker.EXIT_LIVE_ROUTE_REFUSED)
+        # No lease/receipts should have been written under the temp home.
+        self.assertFalse(any(home.rglob("*.json")))
+
 
 # --------------------------------------------------------------------------- #
 # F3 — an executed context must be the prepared one.

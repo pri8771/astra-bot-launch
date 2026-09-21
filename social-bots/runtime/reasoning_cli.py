@@ -97,11 +97,18 @@ def _default_cli_runner(prompt: str, *, timeout_s: int, model: str | None) -> CL
     return CLIResult(returncode=proc.returncode, stdout=proc.stdout, stderr=proc.stderr)
 
 
-# The genuine subprocess launcher, captured at import. The authorization guard
-# keys on THIS, not on ``_default_cli_runner``, because that module global is a
-# documented test seam: a suite that points it at a canned result spawns nothing
-# and must not be treated as a live call. Only the real launcher is.
-_REAL_CLI_RUNNER = _default_cli_runner
+# The genuine subprocess launcher, captured at import as an immutable object
+# identity. The authorization guard keys on THIS object — not on the rebindable
+# module attribute ``_REAL_CLI_RUNNER`` — because rebinding that name was an
+# SB-R07-041 bypass: ``ClaudeCodeReasoningProvider()`` would still hold the real
+# launcher via ``_default_cli_runner`` while ``_spawns_for_real`` returned False.
+#
+# The ``_default_cli_runner`` module global remains a documented test seam: a
+# suite may point it at a canned result so ``resolve_provider`` builds a provider
+# that spawns nothing. That seam is exempt because the instance's runner is then
+# no longer the captured real launcher.
+_CAPTURED_REAL_CLI_RUNNER = _default_cli_runner
+_REAL_CLI_RUNNER = _CAPTURED_REAL_CLI_RUNNER  # public alias; rebinding must not weaken the guard
 
 
 def _bounded_context(ctx: ReasoningContext) -> dict:
@@ -299,8 +306,13 @@ class ClaudeCodeReasoningProvider:
         return self._last_reason
 
     def _spawns_for_real(self) -> bool:
-        """True when this instance would launch the actual CLI subprocess."""
-        return self._runner is _REAL_CLI_RUNNER
+        """True when this instance would launch the actual CLI subprocess.
+
+        Identity is checked against the import-time captured launcher object, so
+        rebinding the public ``_REAL_CLI_RUNNER`` alias cannot un-guard a provider
+        that still holds the real function (SB-R07-041).
+        """
+        return self._runner is _CAPTURED_REAL_CLI_RUNNER
 
     def _authorization_block(self) -> str | None:
         """The reason a real spawn is not authorized, or None if it is."""
