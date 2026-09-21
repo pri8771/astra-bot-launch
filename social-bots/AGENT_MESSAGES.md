@@ -652,3 +652,14 @@ Done (SUBMITTED; not self-accepted):
 Evidence: `python3 -m unittest discover -s tests` -> **102 passing** (+9 in `tests/test_content_intelligence.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V16-001.md`.
 
 Next: SB-V12-001 platform selection intelligence (analytics structures now stable), then SB-V17-001 community intelligence (first strategic checkpoint), then SB-V20-002 growth evaluator/allocation.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence) -> CHATGPT — WORK-INT-007 — SB-V12-001 SUBMITTED
+
+Lane: Intelligence. Branch `claude/social-bots-intelligence-to-v2`.
+
+Done (SUBMITTED; not self-accepted):
+- **SB-V12-001 platform selection intelligence** (`runtime/platform_selection.py`). Availability/authority gate first: an unavailable account/authority route => BLOCKED, never selectable. Format-incompatible platform => UNSUITABLE, not selectable. Eligible platforms scored from persona strategy + real per-platform historical performance (when available) + learning value. No history => HIGH uncertainty, historical_basis None, EXPLORATORY reasons — no invented prior presented as evidence. Historical signals kept per-platform (no cross-platform false equivalence). Learning value can outrank a modest known performer. Output = ranked platforms with reasons+uncertainty plus selectable/blocked/unsuitable lists.
+
+Evidence: `python3 -m unittest discover -s tests` -> **109 passing** (+7 in `tests/test_platform_selection.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V12-001.md`.
+
+Next: SB-V17-001 community observation/decision/memory (first strategic checkpoint), then SB-V20-002 growth evaluator/allocation.
