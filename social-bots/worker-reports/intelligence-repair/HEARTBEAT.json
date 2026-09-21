@@ -1,15 +1,21 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lane": "intelligence-repair",
   "branch": "claude/social-bots-intelligence-repair-v2",
+  "sequence": 1,
+  "cadence_mode": "ACTIVE",
   "session_status": "ACTIVE",
   "current_artifact": "SB-V16-001",
   "started_at": "2026-09-21T02:20:00Z",
-  "last_updated_at": "2026-09-21T02:45:00Z",
-  "last_commit_sha": "cd2f48080a1218583555ece3e26c0a17504e5d08",
+  "last_updated_at": "2026-09-21T02:50:00Z",
+  "next_due_at": null,
+  "last_commit_sha": "3f86e61ac65a8d02f86963449146168b3d44e649",
   "canonical_seen_sha": "85c4414a676fea304bb688c0e4797e47806dd072",
+  "instructions_seen_sha": null,
   "lead_message_seen": "LEAD-018",
   "next_artifact": "SB-V16-001",
   "blocker": null,
-  "notes": "LEAD-018 hardening for SB-V05-001 and SB-V05-002 resubmitted (policy-owned trust, DNS pinning, fail-closed redirects, operational bridge; fail-closed operational assessor). V13/V14/V15 submitted. Continuing V16."
+  "notification_pending": false,
+  "notification_reason": null,
+  "notes": "V05-001/002 LEAD-018 hardening resubmitted; V13/V14/V15 submitted. Continuing V16/V17/V20-002."
 }
