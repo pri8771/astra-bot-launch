@@ -117,29 +117,48 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         pending_count=len(pending), is_duplicate=dup, draft=draft,
         state_summary={"hypotheses": len(st.data.get("hypotheses", {})),
                        "cycles": st.data["counters"]["cycles"]})
-    proposal = provider.propose(ctx) if provider.available() else None
     record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
                            "adaptive": getattr(provider, "adaptive", False),
                            "available": provider.available()}
 
-    # -- Fail-closed: reasoning required but unavailable -> BLOCKED, no fakery.
+    # Resolve a proposal, then VALIDATE it before scoring/execution. Any of:
+    # provider unavailable, no proposal, or a proposal that fails the schema
+    # (unsupported action, out-of-bounds numbers, empty/inconsistent
+    # alternatives, authority-smuggling payload) fails closed — never scored.
+    block_reason = None
+    proposal = None
+    if not provider.available():
+        block_reason = getattr(provider, "reason", "no reasoning provider available")
+    else:
+        proposal = provider.propose(ctx)
+        if proposal is None:
+            block_reason = "provider returned no usable proposal"
+        else:
+            contract_errors = reasoning.validate_proposal(proposal, ctx)
+            if contract_errors:
+                proposal = None
+                block_reason = "provider output failed schema validation: " + \
+                    "; ".join(contract_errors)[:240]
+
+    # -- Fail-closed: reasoning required but unavailable/invalid -> BLOCKED.
     if proposal is None:
-        record["reasoning"]["uncertainties"] = ["no reasoning route available"]
-        record["orient"]["uncertain"].append("reasoning model unavailable")
+        record["reasoning"]["uncertainties"] = [block_reason]
+        record["orient"]["uncertain"].append("reasoning unavailable/invalid")
         record["alternatives"] = []
         record["chosen"] = {"action": "BLOCKED_REASONING_UNAVAILABLE",
-                            "rationale": "no reasoning provider available; failing closed"}
+                            "rationale": block_reason}
         record["chosen_reason"] = ("reasoning required to interpret changed evidence but "
-                                   "no provider is available; refusing to fabricate autonomy")
+                                   f"failed closed: {block_reason}")
         record["required_authority"] = "none"
         record["execute"] = {"performed": False, "effect": "none",
-                             "outcome": "blocked_reasoning_unavailable"}
+                             "outcome": "blocked_reasoning_unavailable",
+                             "block_reason": block_reason}
         record["verify"] = {"verified": True, "note": "no effect; blocked"}
         record["learn"] = {"updated": False}
         record["outcome"] = "blocked_reasoning_unavailable"
         record["schedule"] = _schedule(persona, changed=True)
         # Do NOT consume the signal: unreasoned evidence is not decided, so it
-        # stays pending until a reasoning route is available.
+        # stays pending until a valid reasoning route is available.
         record["observe"]["consumed_this_cycle"] = None
         record["observe"]["pending_after"] = len(pending)
         _commit(fence, bot, st, record)
