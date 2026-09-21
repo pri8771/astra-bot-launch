@@ -3,25 +3,44 @@
 Lead-owned routing table for pull-driven Claude coordination.
 Current lead review: LEAD-018.
 
-## Session A — Windows Core / Host
-Branch: `claude/social-bots-windows-core-host`
-Instruction: `social-bots/SESSION_INSTRUCTIONS.md` on that branch.
-Current next: narrow V03-005 migration consistency repair; V03-006; V04 real adaptive provider; Windows/WSL host proof and V0.7 worker liveness.
-Mac owns CI/control unless reassigned.
+## Current heartbeat validation phase
 
-## Session B — Intelligence / Evidence
+Owner has chosen to validate **two Mac-hosted sessions first** before starting/resuming Windows.
+
+Active heartbeat-test lanes:
+1. Intelligence / Evidence — `claude/social-bots-intelligence-repair-v2`
+2. Mac QA / Integration Control — `claude/social-bots-mac-qa-control`
+
+Windows Core / Host is **STANDBY** for this validation phase. Do not assign new Windows work until the owner/lead explicitly reactivates it.
+
+The goal is to observe three genuine ~15-minute worker heartbeat intervals on each active Mac lane. Do not authorize hourly cadence until the lane's durable heartbeat history proves that sequence and the lead acknowledges it.
+
+## Session A — Intelligence / Evidence
 Branch: `claude/social-bots-intelligence-repair-v2`
 Instruction: `social-bots/SESSION_INSTRUCTIONS.md` on that branch.
-Current next: close V05 trusted-evidence boundary without public mutable trust registries; keep heuristic assessor/extractor test-only and fail closed operationally pending accepted semantic provider; then V13/V14/V15/V16/V17/V20-002.
+Heartbeat test: ACTIVE.
+Current implementation next remains V05 trust-boundary cleanup, then V13/V14/V15/V16/V17/V20-002.
 
-## Session C — Mac QA / Integration Control
+## Session B — Mac QA / Integration Control
 Branch: `claude/social-bots-mac-qa-control`
 Instruction: `social-bots/SESSION_INSTRUCTIONS.md` on that branch.
-Current next: SB-CTL-012 artifact graph validator/readiness reporter; SB-CTL-006 CI/control; V2 integration acceptance harness preparation. No runtime source ownership.
+Heartbeat test: ACTIVE.
+Current next: SB-CTL-012 artifact graph validator; SB-CTL-006 CI/control; V2 acceptance harness prep.
+
+## Windows Core / Host — STANDBY
+Branch: `claude/social-bots-windows-core-host`
+Do not continue assigning work during the two-Mac heartbeat validation phase.
+Preserve existing work/branch state. Reactivate only by explicit lead/owner instruction.
 
 ## Lead
-ChatGPT audits submissions, updates canonical artifact state, updates worker SESSION_INSTRUCTIONS.md between checkpoints, watches heartbeat + actual commits, and prepares V2.0/V2.3/V3.0 runway.
+ChatGPT verifies heartbeat history, audits submissions, acknowledges heartbeat sequences, updates assignments, and prepares V2/V2.3/V3 runway.
+
+## Heartbeat acceptance
+- Snapshot sequence numbers alone do not count.
+- HEARTBEAT_LOG.jsonl must contain the actual timestamped sequence history.
+- Need 3 consecutive approximately-15-minute worker intervals.
+- Only after lead acknowledgement may a lane switch to hourly.
 
 ## Concurrency
-Current recommended maximum: 3 Claude workers + ChatGPT lead.
-Do not start a fourth worker until shared state/evidence contracts are accepted and integration becomes the bottleneck.
+Heartbeat validation phase: 2 active Claude workers + ChatGPT lead.
+Windows remains standby.
