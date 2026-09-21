@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "lane": "mac-qa",
+  "reviewed_through_sequence": 0,
+  "reviewed_at": null,
+  "lead_review": "LEAD-018",
+  "bootstrap_consecutive_verified": 0,
+  "steady_hourly_authorized": false,
+  "next_assignment": "SB-CTL-012",
+  "notification_delivered": false,
+  "notes": "Initial lead acknowledgement. Remain on BOOTSTRAP_15M until lead authorizes hourly."
+}
