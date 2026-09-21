@@ -11,7 +11,7 @@
 
 ### SB-R07-071 — SUBMITTED (ENGINEERING)
 
-- Source SHA: `8c2dee8b6cbbf7193720ee0ee74d2be42b2f3c6e`
+- Source SHA: `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb`
 - Change: atomic `fcntl.flock` around find-then-append in `runtime/session_heartbeat.py`
 - Focused: 16 passed (`tests.test_v07_session_heartbeat`)
 - Race: 8 processes × 20 rounds, exactly one winner each round
