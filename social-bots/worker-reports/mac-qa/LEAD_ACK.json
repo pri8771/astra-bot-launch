@@ -2,12 +2,12 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T15:05:00Z",
-  "lead_review": "RESET-20260921",
+  "reviewed_at": "2026-09-21T15:52:53Z",
+  "lead_review": "LEAD-035",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "Fresh Lane 3: launch reporter, independently execute SB-V03-004 gate, then use isolated canary worktree for real SB-V04-005.",
+  "next_assignment": "STALE WAKE-UP: start fresh Acceptance lane now. Execute SB-V03-004 independently first; if PASS, push ACCEPT-READY report, then use isolated canary worktree for exactly one real SB-V04-005 invocation and stop for lead audit.",
   "notification_delivered": true,
-  "notes": "Reset baseline. One session owns acceptance/QA + canary sequentially, no Core source edits. Issue #3 is live heartbeat feed."
+  "notes": "Historical hourly coordination authorization remains true, but today's FAST_5M reset soak has not started. Heartbeat does not block Mission A/B. No Core runtime source edits."
 }
