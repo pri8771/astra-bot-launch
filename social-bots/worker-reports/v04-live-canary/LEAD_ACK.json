@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T05:58:00Z",
-  "lead_review": "LEAD-025",
+  "reviewed_at": "2026-09-21T06:52:00Z",
+  "lead_review": "LEAD-026",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW from an actual local host with working Claude Code subscription authentication. Heartbeat is not a prerequisite. Push the real-source/provider/schema-policy/persisted-decision evidence and stop for lead audit; if subscription auth is unavailable, submit a truthful BLOCKED report instead of substituting fixtures or API PAYG.",
+  "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW from an actual local host with working Claude Code subscription authentication. Heartbeat is not a prerequisite. Push real-source/provider/schema-policy/persisted-decision evidence and stop for lead audit; if subscription auth is unavailable, submit a truthful BLOCKED report instead of substituting fixtures, injected output or API PAYG.",
   "notification_delivered": true,
-  "notes": "Still no Claude worker-generated canary commit or evidence. One bounded existing-subscription call remains authorized; Anthropic API/PAYG/new spend and public effects remain unauthorized."
+  "notes": "Still no Claude worker-generated canary commit/evidence as of LEAD-026. One bounded existing-subscription call remains authorized; Anthropic API/PAYG/new spend and public effects remain unauthorized."
 }
