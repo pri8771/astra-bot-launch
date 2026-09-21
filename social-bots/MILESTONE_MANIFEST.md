@@ -25,7 +25,7 @@ Required acceptance:
 - SB-V03-006 V0.3 adversarial regression/acceptance bundle.
 - SB-EVD-001 In-session worker primitive evidence bundle.
 
-Current version remains V0.3.x until these required artifacts are accepted.
+V0.3 is ACCEPTED/CLOSED as of LEAD-036. Current official phase is V0.4.x.
 
 ## V0.4 — real adaptive autonomous thinking
 Required:
@@ -37,6 +37,8 @@ Required:
 - SB-EVD-002 Independent lead/reviewer acceptance of the real canary evidence.
 
 **Hard promotion rule:** V0.4 is not complete until SB-V04-005 and SB-EVD-002 are ACCEPTED. Unit tests, fixture signals, injected runners and deterministic fake provider output cannot substitute for the real canary.
+
+Current LEAD-037 note: SB-V04-002 and SB-V04-004 are BLOCKED on fresh explicit owner authorization for controlled live adaptive divergence evidence. No additional model call is authorized.
 
 ## V0.5 — real research / factual review
 Required:
