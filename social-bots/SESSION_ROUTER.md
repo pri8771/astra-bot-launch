@@ -2,18 +2,18 @@
 
 Lead-owned routing table for pull-driven Claude coordination.
 Current operating mode: FAST TRACK.
-Current lead review: LEAD-027.
+Current lead review: LEAD-028.
 
 Read:
 - `FAST_TRACK_EXECUTION.md`
 - `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `lead-reviews/LEAD-027_2026-09-21T0354.md`
+- `lead-reviews/LEAD-028_2026-09-21T0451.md`
 
 Heartbeat is observability only. It does not block implementation or the real V0.4 canary.
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE STABLE / V0.4 PREP.
+Status: ACTIVE / V0.3 SOURCE STABLE / SB-V04-004 REPAIR.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
 Verified final V0.3 source/evidence:
@@ -21,7 +21,9 @@ Verified final V0.3 source/evidence:
 - `436787b...` — V03-006 regenerated from `796d4e3...`; exact full-suite output is 130 tests, OK;
 - `SB-V03-005` is lead-ACCEPTED.
 
-Do not churn V0.3 source unless independent QA finds a concrete defect. While Mac QA runs the remaining V03-004 independent execution, reconcile/test SB-V04-001/002/003 and prepare SB-V04-004. Do not execute the live canary from this lane.
+New signed Core `76e96dd...` is useful but its SB-V04-004 worker attempt is not acceptance-ready: two divergence cases fail independent-variable isolation, and the suite uses `contextual-deterministic-v1` (`adaptive=false`). Canonical packet `artifact-packets/SB-V04-004.md` now defines the repair.
+
+Next: fix persona-only/evidence-only isolation, preserve contextual tests as diagnostics, add an acceptance seam for the real adaptive canary receipt, and do not execute another live model call from Core. Preserve the adaptive-required production launcher and deterministic policy wall.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
@@ -65,7 +67,7 @@ Latest Social Bots task reached the real runner but failed repository clone befo
 ChatGPT audits artifacts/evidence, owns canonical reconciliation and acceptance, and keeps dependency-safe work stocked.
 
 ## Version truth
-Official version remains `V0.3.x`. `SB-V03-005` is accepted, but V0.3 still requires packet-required independent acceptance of `SB-V03-004` plus final reconciliation of V03-001/V03-006/SB-EVD-001. V0.4 additionally requires the real `SB-V04-005` canary and independent `SB-EVD-002`.
+Official version remains `V0.3.x`. `SB-V03-005` is accepted, but V0.3 still requires packet-required independent acceptance of `SB-V03-004` plus final reconciliation of V03-001/V03-006/SB-EVD-001. V0.4 additionally requires corrected adaptive divergence evidence, the real `SB-V04-005` canary and independent `SB-EVD-002`.
 
 ## Safety
 No public posting/replies/messages, purchases, paid API/new spend, destructive actions, credentials/secrets, fake evidence, engagement manipulation or SwarmAI dependency.
