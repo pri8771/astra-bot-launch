@@ -107,3 +107,25 @@ A third Claude session becomes useful **after** these shared contracts are stabl
 ## Authority
 
 No public posting/replies/messages, purchases, paid APIs/additional spend, destructive actions, credentials in Git, fake operational evidence, engagement manipulation or SwarmAI dependency.
+
+
+## Optional Mac QA / Control lane — READY
+
+One additional Claude session on Mac is safe now because it does not touch Core or Intelligence runtime source.
+
+Suggested branch:
+`claude/social-bots-mac-qa-control`
+
+Packet:
+`artifact-packets/repair-waves/MAC_QA_CONTROL_WAVE1.md`
+
+Primary artifact:
+- `SB-CTL-012` — artifact graph validator/readiness reporter — SP3.
+
+Purpose:
+- mechanically validate artifact/dependency/manifest consistency;
+- report milestone/readiness blockers;
+- help implement CI/control if Windows has not already claimed it;
+- prepare V2 integration acceptance fixtures/harness without runtime edits.
+
+Do not add a second Mac implementation lane yet. Current practical concurrency target is 3 Claude sessions total: two repair workers + one QA/control worker.
