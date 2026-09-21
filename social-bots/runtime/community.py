@@ -15,6 +15,18 @@ Boundaries (non-negotiable)
   AND a passing deterministic review — and even then this module performs no
   public effect (that remains an unauthorized, out-of-scope external gate).
 - Community themes update audience memory only through real ingested evidence.
+
+SB-V17-001 repair (INTELLIGENCE_WAVE1 §7 + LEAD-014)
+--------------------------------------------------
+- An *operational* read-only signal (``source="read-only-evidence"``) MUST carry
+  a capture/platform ``receipt_ref``; a fixture signal need not (and is never
+  operational). This stops an unbacked signal masquerading as real observation.
+- Private community memory and theme aggregation are scoped by bot +
+  persona/workspace: one persona's signals can never silently enter another
+  persona's private themes or audience evidence on a shared runtime.
+- ``theme_to_audience_evidence`` carries the persona/workspace scope.
+- Any intentionally shared community insight goes through the explicit
+  ``generalize_theme_to_shared`` path — never implicit cross-persona bleed.
 """
 from __future__ import annotations
 
@@ -63,20 +75,30 @@ class CommunitySignal:
     text: str
     observed_at: str
     source: str                # 'fixture' | 'read-only-evidence'
+    receipt_ref: str | None = None   # capture/platform receipt for operational signals
 
     @staticmethod
     def ingest(*, thread_id: str, text: str, source: str = "fixture",
                parent_id: str | None = None, content_id: str | None = None,
                persona: str | None = None, account_alias: str | None = None,
-               author_ref: str = "anon", observed_at: str | None = None) -> "CommunitySignal":
+               author_ref: str = "anon", observed_at: str | None = None,
+               receipt_ref: str | None = None) -> "CommunitySignal":
         if source not in ("fixture", "read-only-evidence"):
             raise ValueError("community ingestion is read-only "
                              "(source must be fixture or read-only-evidence)")
+        if source == "read-only-evidence" and not receipt_ref:
+            # An operational read-only observation must trace to a real
+            # capture/platform receipt, never be asserted bare.
+            raise ValueError("operational read-only signal requires a "
+                             "capture/platform receipt_ref")
         return CommunitySignal(
             id="cs-" + uuid.uuid4().hex[:12], thread_id=thread_id, parent_id=parent_id,
             content_id=content_id, persona=persona, account_alias=account_alias,
             author_ref=author_ref, text=text, observed_at=observed_at or now_iso(),
-            source=source)
+            source=source, receipt_ref=receipt_ref)
+
+    def is_operational(self) -> bool:
+        return self.source == "read-only-evidence" and bool(self.receipt_ref)
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -196,20 +218,35 @@ def clear_for_effect(proposal: ResponseProposal, route: AuthorizedRoute | None,
 
 
 # --------------------------------------------------------------------------- #
-# Community memory + themes.
+# Community memory + themes — persona/workspace scoped.
 # --------------------------------------------------------------------------- #
-def _mem_path(bot: str):
-    return paths.memory_dir(bot) / "community_signals.jsonl"
+_SHARED = "_shared"
 
 
-def remember(bot: str, signal: CommunitySignal, classification: dict) -> None:
+def _mem_path(bot: str, persona: str):
+    if not persona:
+        raise ValueError("community memory is persona/workspace scoped; "
+                         "a persona is required")
+    return paths.memory_dir(bot) / "community" / persona / "community_signals.jsonl"
+
+
+def remember(bot: str, persona: str, signal: CommunitySignal,
+             classification: dict) -> None:
+    """Persist a signal in its persona-scoped private community memory.
+
+    Refuses a signal whose own persona disagrees with the scope, so one persona
+    cannot write into another persona's private memory.
+    """
+    if signal.persona is not None and signal.persona != persona:
+        raise ValueError(
+            f"signal persona {signal.persona!r} does not match memory scope {persona!r}")
     rec = signal.as_dict()
     rec["classification"] = classification
-    append_jsonl(_mem_path(bot), rec)
+    append_jsonl(_mem_path(bot, persona), rec)
 
 
-def signals(bot: str) -> list[dict]:
-    return read_jsonl(_mem_path(bot))
+def signals(bot: str, persona: str) -> list[dict]:
+    return read_jsonl(_mem_path(bot, persona))
 
 
 _WORD = re.compile(r"[a-z]{4,}")
@@ -217,10 +254,11 @@ _STOP = {"this", "that", "with", "your", "have", "what", "when", "they", "from",
          "about", "would", "could", "there", "just", "like", "really"}
 
 
-def community_themes(bot: str, *, top: int = 5, min_count: int = 2) -> list[dict]:
-    """Aggregate recurring themes from SAFE ingested signals only."""
+def community_themes(bot: str, persona: str, *, top: int = 5,
+                     min_count: int = 2) -> list[dict]:
+    """Aggregate recurring themes from a persona's SAFE ingested signals only."""
     counts: dict[str, int] = {}
-    for s in signals(bot):
+    for s in signals(bot, persona):
         if s.get("classification", {}).get("safety") != SAFE:
             continue
         for w in set(_WORD.findall(s.get("text", "").lower())):
@@ -228,12 +266,37 @@ def community_themes(bot: str, *, top: int = 5, min_count: int = 2) -> list[dict
                 continue
             counts[w] = counts.get(w, 0) + 1
     themes = [{"theme": w, "count": n} for w, n in counts.items() if n >= min_count]
-    themes.sort(key=lambda t: t["count"], reverse=True)
+    themes.sort(key=lambda t: (-t["count"], t["theme"]))
     return themes[:top]
 
 
-def theme_to_audience_evidence(bot: str, theme: dict) -> dict:
-    """An evidence ref (from real ingested signals) for audience memory. Carries
-    no invented confidence — audience.py derives that from the observation."""
-    return {"source": "community", "bot": bot, "theme": theme["theme"],
-            "observed_count": theme["count"], "captured_at": now_iso()}
+def theme_to_audience_evidence(bot: str, persona: str, theme: dict) -> dict:
+    """An evidence ref (from real ingested signals) for audience memory, carrying
+    the persona/workspace scope. No invented confidence — audience.py derives
+    that from the observation."""
+    return {"source": "community", "bot": bot, "persona": persona,
+            "scope": {"bot": bot, "persona": persona},
+            "theme": theme["theme"], "observed_count": theme["count"],
+            "captured_at": now_iso()}
+
+
+# --------------------------------------------------------------------------- #
+# Explicit shared-insight generalization (opt-in only; never implicit).
+# --------------------------------------------------------------------------- #
+def _shared_path(bot: str):
+    return paths.memory_dir(bot) / "community" / _SHARED / "shared_themes.jsonl"
+
+
+def generalize_theme_to_shared(bot: str, persona: str, theme: dict) -> dict:
+    """Explicitly promote one persona's community theme into a shared-insight
+    layer, recording which persona it came from. This is the ONLY path by which a
+    persona's community learning becomes shared — it is never implicit."""
+    rec = {"source": "community-shared", "bot": bot, "origin_persona": persona,
+           "theme": theme["theme"], "observed_count": theme["count"],
+           "generalized_at": now_iso()}
+    append_jsonl(_shared_path(bot), rec)
+    return rec
+
+
+def shared_community_insights(bot: str) -> list[dict]:
+    return read_jsonl(_shared_path(bot))
