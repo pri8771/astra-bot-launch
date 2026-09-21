@@ -1,9 +1,9 @@
 # SESSION_INSTRUCTIONS — Acceptance / Independent Review Lane
 
-Mode: **LEAD-042 — INDEPENDENT R07-071 EXECUTION -> R07-041 AUDIT**  
+Mode: **LEAD-045 — INDEPENDENT R07-071 -> R07-041 -> S23-008**  
 Branch: `claude/social-bots-mac-qa-control`
 
-Canonical coordination is `chatgpt/social-bots-plan-20260920`. Primary implementation remains `cursor/social-bots-recovery-v07-20260921`.
+Canonical coordination is `chatgpt/social-bots-plan-20260920`. Primary existing-runtime implementation remains `cursor/social-bots-recovery-v07-20260921`. Fable's new-files-only V2.3 batch is submitted and paused for review.
 
 ## Session start
 
@@ -21,25 +21,35 @@ Required checks:
 2. execute the real cross-process duplicate-session race, not a mocked/thread-only substitute;
 3. verify exactly one durable heartbeat wins and all other same-session processes are refused;
 4. verify the durable ledger contains exactly one record for each raced session id;
-5. report exact commands, host/OS scope, results, source SHA, and any limitation. Do not broaden a POSIX/single-filesystem result into Windows/cross-host acceptance.
+5. report exact commands, host/OS scope, results, source SHA, and limits. Do not broaden a POSIX/single-filesystem result into Windows/cross-host acceptance.
 
-Submit PASS/FAIL evidence and stop for lead acceptance if a material defect is found.
+Submit PASS/FAIL evidence. If a material defect is found, stop that target and report it precisely.
 
 ## Review target 2 — repaired SB-R07-041
 
-Only after Cursor pushes the bounded LEAD-042 repair.
+Only after Cursor pushes the LEAD-045 bounded repair.
 
-Lead found a real defect in source `21cc2e7...`: `ModelReasoningProvider` can invoke a process-registered `_MODEL_CALLABLE` without a canonical live-authorization manifest when direct/ad-hoc code bypasses `worker_once` / `run_worker`.
-
-Independently audit the repaired source by constructing the direct-library path:
-- register a callable;
+Independently audit the repaired direct-library path:
+- register a harmless sentinel callable;
 - select `SBOTS_REASONING=model`;
-- bypass worker entrypoints;
-- prove the callable cannot execute without a valid canonical manifest;
+- bypass `worker_once` / `run_worker`;
+- prove the sentinel cannot execute without a valid canonical authorization manifest;
 - confirm the Claude CLI real-spawn guard still fails closed too.
 
-**Do not execute any real model/provider call.** Use a sentinel/counter callable that proves invocation/non-invocation locally without external inference.
+**Do not execute any real model/provider call.**
 
-After these two targets, audit R07-044/R07-072 only if explicitly dependency-ready; no runtime implementation edits.
+## Review target 3 — Fable SB-S23-008 fixture lifecycle evidence
 
-Canary evidence remains frozen. No additional Claude CLI/adaptive/model call is authorized. No public effects, PAYG/new spend, destructive actions, credential exposure, fabricated evidence, engagement manipulation, or SwarmAI dependency.
+After the immediate R07 targets are complete or blocked on a missing Cursor repair, independently rerun/audit Fable's submitted fixture lifecycle evidence at:
+- source: `e33de096c7da2633376794b3297d82b320f6229d`
+- evidence commit: `bbbb7b2df473a61c029a3098361cd0a084577d38`
+
+Required checks:
+1. inspect the specialist lifecycle/integrator/budget/sandbox source actually used by the proof;
+2. rerun the focused acceptance proof and relevant unit suite on the pinned source;
+3. verify fixture classification, no provider/model call, no public/account effect, no child authority escape, lease/fence handling, cleanup, and tamper rejection;
+4. report exact commands/results and the real scope limits (in-process/thread-based, POSIX/single-host unless independently shown otherwise).
+
+A green fixture rerun is engineering acceptance evidence only; it cannot promote operational V2.3.
+
+Canary evidence remains frozen. No additional Claude CLI/adaptive/model call is authorized. No public effects, account actions, PAYG/new spend, destructive actions, credential exposure, fabricated evidence, engagement manipulation, or SwarmAI dependency.
