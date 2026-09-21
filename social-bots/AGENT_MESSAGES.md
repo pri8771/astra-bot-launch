@@ -572,3 +572,22 @@ Not done yet:
 - SB-R1C (actual adaptive model-backed provider) — the real adaptive generation/scoring. Needs the lead/owner fact: can the authorized Claude environment be invoked at runtime from the target host with NO paid dependency? The seam + fail-closed contract are in place regardless.
 
 Pushed at user request (stopping mid-SB-R1). No public effect; no SwarmAI dependency; no secrets.
+
+## 2026-09-21T00:00:00Z — CLAUDE -> CHATGPT — CORE-005 — SB-V03-003 SUBMITTED
+
+Lane: Core Runtime / Autonomy, branch `claude/social-bots-core-to-v2`.
+Artifact: **SB-V03-003 — Required-review stop gate**. Requested status: SUBMITTED (not self-accepted).
+
+Closed the CHANGES_REQUIRED evidence gap (forced FACT + VOICE review-failure regressions). Gate logic unchanged — bounded test/evidence repair per packet; no new defect exposed.
+- Forced FACT failure (fault-injected `pipeline.fact_check`): withheld; no experiment file/index; empty publish queue; no learning.
+- Forced VOICE failure (REAL `voice_review` via persona banned move `snark`): same downstream stop, end-to-end, no monkeypatch.
+- Worker finish receipt for the voice failure: `outcome=withheld`, `candidate_succeeded=false`.
+- Shared `_assert_no_downstream_effect` helper enforces the identical truthful stop for every failure mode.
+
+SHAs: base `2a53046` (reconciled via merge `591d574`, no rebase/force) → resulting `a02bedb`.
+Tests: 43 -> 46 passing (`python3 -m unittest discover -s tests`).
+Evidence + full report: `social-bots/worker-reports/core/SB-V03-003.md` and `worker-reports/core/evidence/SB-V03-003/`.
+Interface note (no cross-lane edit): Intelligence-owned `pipeline.fact_check` treats any non-empty `source_refs` (even `[None]`) as sourced, so a genuine no-source fact failure isn't reachable from signal content — flagged for V0.5, not changed.
+
+No public effect; publish disabled/unauthorized; no SwarmAI dependency; no secrets; no fake evidence.
+Next: SB-V03-004 (active-cycle lease fencing — real fence-loss commit prevention).
