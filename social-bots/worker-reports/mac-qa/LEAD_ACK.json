@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T12:56:25Z",
-  "lead_review": "LEAD-032",
+  "reviewed_at": "2026-09-21T13:55:02Z",
+  "lead_review": "LEAD-033",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
   "next_assignment": "Resume hourly coordination heartbeat and immediately perform independent SB-V03-004 lifecycle execution against current Core 796d4e3/final evidence 436787: post-cycle takeover success-receipt rejection, active-cycle lease-loss old-owner commit rejection, staged migration fencing, focused fencing/concurrency tests. No Core source edits. Return exact commands/results and ACCEPT-READY or concrete defect.",
   "notification_delivered": false,
-  "notes": "No new Mac-QA worker evidence after seq10 was visible at LEAD-032 review time. SB-V03-004 independent execution remains the V0.3 gating task; continue now without waiting on another lead message."
+  "notes": "No new Mac-QA worker evidence after seq10 was visible at LEAD-033 review time. SB-V03-004 independent execution remains the V0.3 gating task; continue now without waiting on another lead message."
 }
