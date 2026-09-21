@@ -13,7 +13,7 @@
   "observation_window_hours": 48,
   "persona": "social-b",
   "platform": "instagram",
-  "registered_at": "2026-09-21T06:07:43+00:00",
+  "registered_at": "2026-09-21T07:14:46+00:00",
   "result": null,
   "stop_criteria": "no lift above baseline noise within window; or policy flag",
   "success_metric": "shares"

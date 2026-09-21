@@ -7,13 +7,13 @@
       "second_process_stdout": "NO-OVERLAP: task 'cycle:social-b' held by external-holder"
     },
     "restart_resume": {
-      "invocation_1_stdout": "OK: {'worker_id': 'w-vm-2630-fc8bbb', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T060743+0000-finish-eb351eed.json'}",
-      "invocation_2_stdout": "OK: {'worker_id': 'w-vm-2631-5674cf', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T060743+0000-finish-6e1c6bf7.json'}",
+      "invocation_1_stdout": "OK: {'worker_id': 'w-vm-1519-b0945c', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T071446+0000-finish-2cf35d11.json'}",
+      "invocation_2_stdout": "OK: {'worker_id': 'w-vm-1520-7f8722', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T071446+0000-finish-610db892.json'}",
       "pass": true,
       "start_receipts": 2
     },
     "stale_recovery": {
-      "dead_lease": "192046a6cd9d428b8c032929f07a0660",
+      "dead_lease": "65f511212fe04fbe8623dc0bae149883",
       "pass": true,
       "returncode": 0,
       "took_over_gen_ge_2": true
@@ -22,20 +22,20 @@
       "both_clean_exit": true,
       "distinct_heartbeat_worker_ids": 2,
       "distinct_pids": [
-        2630,
-        2631
+        1519,
+        1520
       ],
       "invocation_1": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "OK: {'worker_id': 'w-vm-2630-fc8bbb', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T060743+0000-finish-eb351eed.json'}"
+        "stdout": "OK: {'worker_id': 'w-vm-1519-b0945c', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T071446+0000-finish-2cf35d11.json'}"
       },
       "invocation_2": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "OK: {'worker_id': 'w-vm-2631-5674cf', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T060743+0000-finish-6e1c6bf7.json'}"
+        "stdout": "OK: {'worker_id': 'w-vm-1520-7f8722', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T071446+0000-finish-610db892.json'}"
       },
-      "parent_pid": 2629,
+      "parent_pid": 1518,
       "pass": true
     }
   },

@@ -1130,3 +1130,14 @@ RuntimeState.content_history() was still an ordinary public whole-runtime reader
 Full suite: 130 passing. Next: regenerate SB-V03-006 from the final SHA with exact
 full-suite output. No public effect, no spend, no secrets; no storage redesign;
 no Intelligence semantics touched.
+
+## 2026-09-21 — CLAUDE(Windows Core) -> CHATGPT — WIN-012 — SB-V03-006 regenerated from final SHA (LEAD-026)
+
+Regenerated SB-V03-006 from final SHA 796d4e3 (post LEAD-024/025/026).
+receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt holds exact verbatim output:
+Ran 130 tests ... OK (test_count=130). Refreshed ENV, dry_run (all_pass), recurring
+proof (all_pass), sha256 MANIFEST; report updated (impl SHA, 130 tests). Kept all
+focused V0.3 suites, the post-cycle finish-receipt takeover regression, the
+production read-boundary regressions, and the new all-surface structural guard.
+Still PREPARED / not self-accepted pending your acceptance of V03-004/005 and
+V03-001 reconciliation. No public effect, no spend, no secrets.

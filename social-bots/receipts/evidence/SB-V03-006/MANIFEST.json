@@ -3,11 +3,11 @@
   "evidence": {
     "receipts/evidence/SB-007-dryruns/REPORT.md": "e143edde5b11b068522a7e05c2d859ea",
     "receipts/evidence/SB-007-dryruns/SUMMARY.json": "6751cc42610f67db51162a07e297ce64",
-    "receipts/evidence/SB-V03-006/ENV.txt": "febdf52b9dd9cf54a5602523b01be67d",
-    "receipts/evidence/SB-V03-006/FOCUSED_RESULTS.txt": "35264bec3c8172c09e7ad93f3cd9a407",
-    "receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt": "89a94e78a4d02f681e774ec3f57e8274",
+    "receipts/evidence/SB-V03-006/ENV.txt": "8e49e94d2ff0eefa12162147f992364c",
+    "receipts/evidence/SB-V03-006/FOCUSED_RESULTS.txt": "82d40e2e02aff96dc2f1055ff3e5ff06",
+    "receipts/evidence/SB-V03-006/FULL_SUITE_OUTPUT.txt": "a1c870a8b85c9047667171a9049e0974",
     "receipts/evidence/SB-V03-006/dry_run_summary.json": "5aa9cfe0b2fb97616d7cc882661f71d4",
-    "receipts/evidence/SB-V03-006/recurring_proof.json": "91fe8290d8e1b9d5f3f3f9b453102d2b"
+    "receipts/evidence/SB-V03-006/recurring_proof.json": "6a268556518707e50f3be00dcc7c8149"
   },
-  "impl_sha": "f73c337e66ccdd5bd09313e37f4c87b4f00df07e"
+  "impl_sha": "796d4e390bd135167e5de2ff8f586bc07ac7f370"
 }

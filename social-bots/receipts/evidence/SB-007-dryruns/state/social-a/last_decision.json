@@ -112,7 +112,7 @@
       "baseline heuristic: scores are fixed, not evidence-adaptive"
     ]
   },
-  "recorded_at": "2026-09-21T06:07:43+00:00",
+  "recorded_at": "2026-09-21T07:14:46+00:00",
   "required_authority": "CREATE_CANDIDATE",
   "schedule": {
     "next_check_in_hours": 6,
