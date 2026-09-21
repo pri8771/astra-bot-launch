@@ -2,14 +2,14 @@
   "schema_version": 1,
   "lane": "windows-core",
   "branch": "claude/social-bots-windows-core-host",
-  "session_status": "IDLE",
-  "current_artifact": null,
-  "started_at": null,
-  "last_updated_at": "2026-09-21T02:15:00Z",
+  "session_status": "WORKING",
+  "current_artifact": "SB-V03-005 (LEAD-018 follow-up) -> SB-V03-006 -> SB-V07-WIN-001",
+  "started_at": "2026-09-21T02:20:00Z",
+  "last_updated_at": "2026-09-21T03:05:00Z",
   "last_commit_sha": null,
-  "canonical_seen_sha": null,
+  "canonical_seen_sha": "6fdf030",
   "lead_message_seen": "LEAD-018",
-  "next_artifact": "SB-V03-005",
-  "blocker": null,
-  "notes": "Lead-created initial heartbeat; worker updates on resume."
+  "next_artifact": "SB-V03-006",
+  "blocker": "SB-V07-WIN-001 native-Windows/Task-Scheduler proof BLOCKED: this session runs on a Linux container, not a Windows/WSL host (see WINDOWS_HOST_LOCKING.md).",
+  "notes": "SB-V03-004 accepted (LEAD-018). SB-V03-005 resubmitted with crash-safe two-phase migration + persona-scoped read boundary (113 tests). SB-V04-001/002 submitted (adapter + fail-closed proof; live adaptive acceptance gated on authenticated no-spend host). SB-CTL-006 belongs to Mac QA per router."
 }

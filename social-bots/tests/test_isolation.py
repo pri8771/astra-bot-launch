@@ -277,6 +277,90 @@ class IsolationContractTest(unittest.TestCase):
         gen2 = PersonaState.load(bot, bot)
         self.assertEqual(gen2.consumed_ids(), ["sig-legacy-1", "sig-legacy-2"])
 
+    def test_run_cycle_commits_runtime_with_final_migration_marker(self):
+        # LEAD-018 migration-consistency: run_cycle loads RuntimeState, then
+        # PersonaState (which migrates). The runtime the cycle COMMITS must carry
+        # the final migrated marker — it must not be clobbered by the cycle's own
+        # later rt.save(). Reload from disk after the cycle and check the marker.
+        import json
+        from runtime import paths
+        bot = "social-a"
+        legacy_state = {
+            "bot": bot, "schema_version": 1,
+            "consumed_signal_ids": ["sig-old"],
+            "hypotheses": {"h-old": {"statement": "old", "confidence": 0.5, "evidence": []}},
+            "counters": {"cycles": 3, "actions": 0, "no_action": 0},
+            "recovery": {"last_clean_tick": None, "in_flight": None},
+            "observation_fingerprint": None,
+        }
+        (paths.state_dir(bot) / "bot_state.json").write_text(json.dumps(legacy_state))
+        seed(bot, "post-migration signal", "https://example.org/mig")
+        decision.run_cycle(bot, "social-a")   # loads rt, migrates persona(runtime=rt), commits rt
+
+        rt_disk = json.loads((paths.state_dir(bot) / "bot_state.json").read_text())
+        # The committed runtime carries the final marker and NO active persona keys.
+        self.assertTrue(rt_disk.get("_legacy", {}).get("migrated_to_persona"),
+                        "committed runtime must carry the final migration marker")
+        self.assertNotIn("consumed_signal_ids", rt_disk)
+        self.assertNotIn("hypotheses", rt_disk)
+        self.assertEqual(rt_disk["counters"]["cycles"], 4)  # 3 legacy + this cycle
+        # The persona inherited the legacy ledger AND advanced this cycle.
+        gen = PersonaState.load(bot, bot)
+        self.assertIn("sig-old", gen.consumed_ids())
+        self.assertIn("h-old", gen.data["hypotheses"])
+
+    def test_migration_recovers_when_marker_set_but_persona_file_missing(self):
+        # Crash-safety: if a marker was written but the persona file never became
+        # durable (crash between phases), the next load STILL migrates (the
+        # persona file, not the marker, is the idempotency gate) — no data loss.
+        import json
+        from runtime import paths
+        bot = "social-a"
+        state = {
+            "bot": bot, "schema_version": 2,
+            "counters": {"cycles": 1, "actions": 0, "no_action": 0},
+            "recovery": {"last_clean_tick": None, "in_flight": None},
+            "observation_fingerprint": None,
+            "_legacy": {
+                "archived_persona_private": {"consumed_signal_ids": ["sig-x"],
+                                             "hypotheses": {}},
+                "archived_at": "2026-01-01T00:00:00+00:00",
+                "migrated_to_persona": True,   # marker says done...
+            },
+        }
+        (paths.state_dir(bot) / "bot_state.json").write_text(json.dumps(state))
+        # ...but the persona file is absent (the phase-1 save was lost).
+        self.assertFalse((paths.state_dir(bot) / "persona-social-a.json").exists())
+        gen = PersonaState.load(bot, bot)
+        self.assertEqual(gen.consumed_ids(), ["sig-x"], "must recover the legacy data")
+        self.assertTrue((paths.state_dir(bot) / "persona-social-a.json").exists())
+
+    def test_mixed_persona_production_dedup_read_is_scoped_no_bleed(self):
+        # Production-path regression for the persona-scoped read boundary: the
+        # SAME signal+signature drives BOTH personas; one persona's content
+        # history must NOT make the other's candidate look like a duplicate.
+        bot = "social-a"
+        from runtime import pipeline
+        sig = research.Signal.make("shared dedup signal", "captured", "unit",
+                                   "https://example.org/dedup", "fixture", ["t"])
+        research.capture(bot, sig)
+        # General creates a candidate (writes its content history).
+        rec_gen = decision.run_cycle(bot, "social-a")
+        self.assertEqual(rec_gen["outcome"], "candidate_created")
+        # The general persona now sees ITS candidate as a duplicate...
+        gen_persona = __import__("runtime.personas", fromlist=["load"]).load("social-a")
+        gen_draft = pipeline.ideate(gen_persona, sig.__dict__)
+        self.assertTrue(pipeline.is_duplicate(bot, gen_draft))
+        # ...but the cultural persona's own candidate for the same signal is NOT a
+        # duplicate: the dedup read is persona-scoped, so no cross-persona bleed.
+        cul_persona = __import__("runtime.personas", fromlist=["load"]).load(
+            "cultural-primandir-atman")
+        cul_draft = pipeline.ideate(cul_persona, sig.__dict__)
+        self.assertFalse(pipeline.is_duplicate(bot, cul_draft))
+        # The scoped read API returns only each persona's own keys.
+        self.assertNotEqual(pipeline.persona_content_keys(bot, "social-a"),
+                            pipeline.persona_content_keys(bot, "cultural-primandir-atman"))
+
 
 if __name__ == "__main__":
     unittest.main()

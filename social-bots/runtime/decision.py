@@ -75,7 +75,9 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     # hypotheses are persona-scoped, so two personas on one runtime never
     # contaminate each other's learning or evidence consumption (SB-V03-005).
     rt = RuntimeState.load(bot)
-    ps = PersonaState.load(bot, persona_id)
+    # Pass the shared runtime so a first-time legacy migration sets its marker on
+    # the SAME instance this cycle commits (SB-V03-005 migration-consistency).
+    ps = PersonaState.load(bot, persona_id, runtime=rt)
     rt.data["counters"]["cycles"] += 1
     record: dict = {
         "recorded_at": now_iso(),

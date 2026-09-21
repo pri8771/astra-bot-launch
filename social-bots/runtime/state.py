@@ -172,7 +172,20 @@ class PersonaState:
     data: dict = field(default_factory=dict)
 
     @classmethod
-    def load(cls, bot: str, persona_id: str) -> "PersonaState":
+    def load(cls, bot: str, persona_id: str,
+             runtime: "RuntimeState | None" = None) -> "PersonaState":
+        """Load (or first-time migrate) this persona's private state.
+
+        ``runtime`` is the RuntimeState instance the caller will commit this
+        cycle. When migration runs, the migrated-marker is set on THAT instance
+        (in memory) so the marker the real cycle commits is the final one — it is
+        never written by a throwaway RuntimeState that the cycle's later
+        ``rt.save()`` would clobber (SB-V03-005 migration-consistency repair).
+
+        Idempotency is gated on PERSONA-FILE EXISTENCE, not the runtime marker:
+        once the persona file exists, migration never runs again, so a crash that
+        loses the marker cannot cause re-migration or data loss.
+        """
         if bot not in paths.BOTS:
             raise ValueError(f"unknown bot {bot!r}; expected one of {paths.BOTS}")
         p = _persona_file(bot, persona_id)
@@ -181,51 +194,63 @@ class PersonaState:
             return cls(bot=bot, persona_id=persona_id, data=existing)
         data = _default_persona_state(bot, persona_id)
         obj = cls(bot=bot, persona_id=persona_id, data=data)
-        if cls._migrate_from_legacy(bot, persona_id, data):
-            # Persist the migrated persona state so the migration is durable and
-            # idempotent (the next load reads the file, not the cleared legacy).
-            obj.save()
+        obj._migrate_from_legacy(runtime)
         return obj
 
-    @staticmethod
-    def _migrate_from_legacy(bot: str, persona_id: str, data: dict) -> bool:
-        """One-time migration of legacy shared persona-private state.
+    def _migrate_from_legacy(self, runtime: "RuntimeState | None") -> bool:
+        """Two-phase, crash-safe, idempotent migration of legacy shared state.
 
         Pre-SB-V03-005 runtimes kept a single consumed ledger/hypotheses set at
         the runtime level. That data historically belonged to the default-owner
-        persona (the general persona whose id equals the runtime, e.g.
-        ``social-a`` on runtime ``social-a``). We migrate it into that persona's
-        private state exactly once and mark it migrated on the runtime; other
-        personas start clean so no cross-persona bleed is introduced.
+        persona (the general persona whose id equals the runtime). We migrate it
+        into that persona's private state exactly once. Other personas start clean
+        so no cross-persona bleed is introduced.
+
+        Phase ordering (crash safety):
+          1. copy the archived values into this persona's state and
+             ``save()`` the persona file DURABLY (atomic temp+fsync+rename);
+          2. only THEN set the migrated marker on the runtime instance.
+        A crash between the phases is safe: the persona file already exists, so
+        the next load returns it and does not re-migrate; the (possibly missing)
+        marker is advisory only. A crash before phase 1 leaves the legacy archive
+        intact for a clean retry. If a stale marker exists but the persona file
+        does not, migration still runs (the file, not the marker, is the gate),
+        recovering the data.
         """
+        bot, persona_id = self.bot, self.persona_id
         if persona_id != bot:
             return False
-        rt_raw = read_json(paths.state_dir(bot) / _STATE_FILE, default=None)
-        if not rt_raw:
-            return False
-        legacy = rt_raw.get("_legacy") or {}
-        if legacy.get("migrated_to_persona"):
-            return False
-        # Source the legacy values either from an already-archived ``_legacy``
-        # block (if the runtime state was persisted first) OR directly from the
-        # still-top-level keys of an un-migrated on-disk file (the common case:
-        # ``run_cycle`` loads the runtime in memory but has not saved it yet).
-        archived = dict(legacy.get("archived_persona_private") or {})
-        for k in _PERSONA_PRIVATE_KEYS:
-            if k not in archived and rt_raw.get(k) not in (None, [], {}):
-                archived[k] = rt_raw[k]
+        # Source the legacy archive: prefer the caller's in-memory runtime (the
+        # instance that will be committed), else read the on-disk runtime file
+        # (either an archived ``_legacy`` block or still-top-level legacy keys).
+        archived: dict = {}
+        if runtime is not None:
+            archived = dict((runtime.data.get("_legacy") or {})
+                            .get("archived_persona_private") or {})
+        if not archived:
+            rt_raw = read_json(paths.state_dir(bot) / _STATE_FILE, default=None) or {}
+            disk_legacy = rt_raw.get("_legacy") or {}
+            archived = dict(disk_legacy.get("archived_persona_private") or {})
+            for k in _PERSONA_PRIVATE_KEYS:
+                if k not in archived and rt_raw.get(k) not in (None, [], {}):
+                    archived[k] = rt_raw[k]
         if not archived:
             return False
         for k in _PERSONA_PRIVATE_KEYS:
             if k in archived:
-                data[k] = archived[k]
-        data["_migrated_from_legacy_runtime_state"] = legacy.get("archived_at") or now_iso()
-        # Mark migrated on the runtime so this never double-applies. Loading the
-        # runtime archives the legacy keys into ``_legacy``; saving persists both
-        # the archive and the migrated flag.
-        rt = RuntimeState.load(bot)
-        rt.data.setdefault("_legacy", {})["migrated_to_persona"] = True
-        rt.save()
+                self.data[k] = archived[k]
+        self.data["_migrated_from_legacy_runtime_state"] = now_iso()
+        # PHASE 1: persona file durable BEFORE any marker is written.
+        self.save()
+        # PHASE 2: mark migrated. On the SHARED runtime instance when provided, so
+        # the marker the real cycle commits is final and is not clobbered by a
+        # later save of a different instance. Standalone (no cycle) persists it now.
+        if runtime is not None:
+            runtime.data.setdefault("_legacy", {})["migrated_to_persona"] = True
+        else:
+            rt = RuntimeState.load(bot)
+            rt.data.setdefault("_legacy", {})["migrated_to_persona"] = True
+            rt.save()
         return True
 
     def save(self) -> None:

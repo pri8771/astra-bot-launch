@@ -119,10 +119,23 @@ def content_key(candidate: dict) -> str:
     return hashlib.sha256(basis.encode()).hexdigest()[:16]
 
 
-def is_duplicate(bot: str, candidate: dict) -> bool:
-    key = content_key(candidate)
+def persona_content_keys(bot: str, persona: str) -> set[str]:
+    """Authoritative persona-scoped read of prior content keys (SB-V03-005).
+
+    Production dedup reads must be persona-scoped, not whole-runtime: this returns
+    only the given persona's content keys. (Whole-runtime reads remain available
+    as explicit internal/admin reads, e.g. ``read_jsonl`` directly.)
+    """
     hist = read_jsonl(paths.content_dir(bot) / "content_history.jsonl")
-    return any(h.get("content_key") == key for h in hist)
+    return {h.get("content_key") for h in hist if h.get("persona") == persona}
+
+
+def is_duplicate(bot: str, candidate: dict) -> bool:
+    # Persona-scoped: only the SAME persona's history can make a candidate a
+    # duplicate. content_key is persona-derived, so this is also collision-free
+    # across personas; scoping the READ makes the isolation boundary explicit.
+    key = content_key(candidate)
+    return key in persona_content_keys(bot, candidate["persona"])
 
 
 # --------------------------------------------------------------------------- #
