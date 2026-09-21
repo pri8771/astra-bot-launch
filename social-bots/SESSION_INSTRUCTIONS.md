@@ -2,12 +2,12 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-mac-qa-control`
-Lead review: LEAD-023
+Lead review: LEAD-024
 
 ## Heartbeat
 
-Lead has accepted the durable bootstrap heartbeat evidence and authorized HOURLY cadence in `LEAD_ACK.json`.
-Switch future routine heartbeat checks to hourly. Artifact submissions and blockers still push immediately.
+Lead has accepted the durable Mac-QA bootstrap heartbeat evidence and authorized HOURLY cadence in `LEAD_ACK.json`.
+Routine heartbeat stays hourly. Artifact submissions and blockers push immediately.
 Heartbeat is coordination observability only and must not pause useful QA/integration work.
 
 ## Existing accepted controls
@@ -16,25 +16,32 @@ Heartbeat is coordination observability only and must not pause useful QA/integr
 
 Preserve these.
 
-## Priority 1 — independent SB-V03-004 repair verification
+## Priority 1 — independent Core verification of LEAD-024 findings
 
-Independently validate Windows Core repair commit:
-`175f741fcedace3113191a847d6a7568d77b9cde`
+Do not edit Core runtime source. Independently inspect/execute the current Windows Core branch and return an evidence-based QA report.
 
-Do not edit Core runtime source.
+### SB-V03-004 — post-cycle success-receipt fence
 
-Review/run the relevant tests against that source and report whether the LEAD-019 migration-side-effect defect is actually closed:
-- PersonaState load/migration staging is side-effect free;
-- persona migration + runtime marker persist only under the ownership-fenced commit;
-- forced takeover at commit leaves no stale-owner persona/runtime/decision writes;
-- prior active-cycle fencing tests still pass;
-- no false cross-host/native-Windows guarantee is introduced.
+The migration repair in `175f741...` is still positive, but LEAD-024 found a separate scenario in current `runtime/worker.py`:
+- `decision.run_cycle(..., fence=fence)` can finish its fenced durable commit;
+- `worker.run_one_unit()` then writes the success/finish receipt outside the fence;
+- if the old worker stalls after cycle commit, expires, another worker takes over, and the old worker resumes, it may emit a finish receipt implying success despite no longer owning the fence.
 
-Return an independent QA report with exact commit, commands, results and any defect with file/symbol/scenario. Do not self-accept the Core artifact.
+Independently reproduce or disprove this with a targeted adversarial test/harness. Verify the SB-V03-004 contract that an old owner cannot emit durable success-implying evidence after takeover. Do not accept a TTL increase as a fix.
+
+Also retain checks that PersonaState migration staging is side-effect free and the main decision/state/content writes remain fenced.
+
+### SB-V03-005 — actual production persona read boundary
+
+Current Core commit `d1e4bee...` adds `persona_records()` and generic mixed-persona tests. Independently verify whether real production persona-facing readers are forced through that boundary.
+
+Specifically inspect raw whole-runtime APIs such as `pipeline.publish_queue(bot)`, `analytics.events_for(bot)`, experiment list/load and direct append-only readers. Determine whether a normal production persona-specific caller can bypass `persona_records()` and enumerate another persona's records. Test actual production call paths, not only `isolation.audit()` / the facade itself.
+
+Report exact files/symbols/scenarios and PASS/FAIL for each acceptance property. Do not self-accept Core artifacts.
 
 ## Priority 2 — V2 integration acceptance preparation
 
-Continue the non-runtime integration harness/checklist:
+After the Core verification report, continue the non-runtime integration harness/checklist:
 - merge-order checklist for Core + Intelligence;
 - CI commands;
 - full traceability assertions;
@@ -47,7 +54,7 @@ Do not edit Core/Intelligence runtime implementation.
 ## V0.4 canary
 
 Dedicated local lane `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
-Do not switch this QA branch to the canary branch. Current canary branch still lacks a worker execution commit; QA should not fabricate it.
+Do not switch this QA branch to the canary branch. Current canary branch still lacks a worker execution commit; QA must not fabricate it.
 
 ## Safety
 
