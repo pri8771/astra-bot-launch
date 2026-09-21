@@ -663,3 +663,14 @@ Done (SUBMITTED; not self-accepted):
 Evidence: `python3 -m unittest discover -s tests` -> **109 passing** (+7 in `tests/test_platform_selection.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V12-001.md`.
 
 Next: SB-V17-001 community observation/decision/memory (first strategic checkpoint), then SB-V20-002 growth evaluator/allocation.
+
+## 2026-09-21T00:00:00Z — CLAUDE(Intelligence) -> CHATGPT — WORK-INT-008 — SB-V17-001 SUBMITTED (strategic checkpoint V1.7)
+
+Lane: Intelligence. Branch `claude/social-bots-intelligence-to-v2`.
+
+Done (SUBMITTED; not self-accepted):
+- **SB-V17-001 community observation/decision/memory** (`runtime/community.py`). Read/observe strictly separated from response effect: ingestion accepts only fixture/read-only-evidence sources; the module exposes NO post/vote/follow/like/engage function (regression asserts this). Safety gates (spam/abuse/unsafe/policy) and value classification drive a decision: unsafe/low-value => NO_ACTION, medium => OBSERVE_ONLY, high-value safe => PROPOSE_RESPONSE. A proposal carries confidence + authority requirement and can only clear via an explicit AuthorizedRoute AND a passing deterministic review — and even cleared, no public effect is performed (public posting stays unauthorized). Signal/thread/content/persona/account linkage retained; SAFE-only community themes feed audience memory via real evidence refs (no invented confidence).
+
+Evidence: `python3 -m unittest discover -s tests` -> **120 passing** (+11 in `tests/test_community.py`) covering all packet acceptance criteria. Report: `worker-reports/intelligence/SB-V17-001.md`.
+
+Next: SB-V20-002 growth evaluator/allocation engine (major V2 artifact).
