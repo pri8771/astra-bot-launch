@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T00:25:00Z",
+  "updated_at": "2026-09-21T00:30:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -1047,6 +1047,23 @@
       "story_points": null,
       "evidence": [
         "identified snapshot aggregation, fact review, truncation, baseline, persona-scope risks at implementation head 2a53046f"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-CTL-006",
+      "name": "Social Bots CI verification workflow",
+      "type": "engineering_control",
+      "version_gate": "engineering-control",
+      "owner": "Claude-Core",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/SB-CTL-006.md",
+      "depends_on": [
+        "SB-CTL-003"
+      ],
+      "story_points": 2,
+      "evidence": [
+        "prepared to replace worker-local-only test evidence with GitHub-hosted verification"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
