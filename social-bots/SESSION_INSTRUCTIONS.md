@@ -19,6 +19,29 @@ At start and after every artifact:
 
 Do not rewrite this file.
 
+## Priority Zero handoff after heartbeat validation
+
+Do not start ordinary QA/CI work after the heartbeat bootstrap completes.
+
+When BOTH are true:
+- this lane has 3 real approximately-15-minute heartbeat intervals in HEARTBEAT_LOG.jsonl;
+- LEAD_ACK.json says `steady_hourly_authorized=true`;
+
+then:
+
+1. commit/push any safe QA checkpoint;
+2. `git fetch origin`;
+3. switch to dedicated branch:
+   `claude/social-bots-v04-live-canary`
+4. read that branch's `social-bots/SESSION_INSTRUCTIONS.md`;
+5. execute `SB-V04-005` as the next assignment.
+
+The owner has explicitly required one real V0.4 example before V0.4 can be complete.
+
+Do not use fixtures or injected model output for that canary.
+
+After SB-V04-005 is submitted, stop and wait for ChatGPT lead audit (SB-EVD-002). Only after that may this session return to SB-CTL-012 / SB-CTL-006 / V2 acceptance prep.
+
 ## Next 1 — SB-CTL-012
 
 Build artifact graph validator/readiness reporter per:
