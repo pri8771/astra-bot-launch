@@ -59,12 +59,14 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
 
     # (2) acquire lease atomically; overlap raises LeaseHeld to the caller.
     lease = leasing.acquire(task_id, worker_id, host_alias, ttl_seconds)
+    fence = leasing.Fence(lease)   # active-cycle ownership guard (fencing token)
     hb.beat(status="leased", lease_id=lease.lease_id,
             next_safe_action="reconcile_or_work" if lease.reconcile_required else "work")
 
     start = receipts.write_receipt(
         bot, "start", task_id, worker_id, lease.lease_id,
-        {"persona": persona_id, "took_over_from": lease.took_over_from,
+        {"persona": persona_id, "fence_generation": lease.generation,
+         "took_over_from": lease.took_over_from,
          "reconcile_required": lease.reconcile_required, "started_at": now_iso()})
 
     try:
@@ -74,10 +76,12 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
             reconciled = _reconcile(bot)
             hb.beat(status="reconciled", next_safe_action="work")
 
-        # (3) useful work: one autonomy cycle. Renew lease around the work.
+        # (3) useful work: one autonomy cycle. Renew lease around the work, and
+        # pass the fence so the cycle's durable commit is refused if this worker
+        # loses ownership (lease expiry + takeover) before it commits.
         leasing.renew(lease)
         hb.beat(status="working", next_safe_action="verify")
-        record = decision.run_cycle(bot, persona_id)
+        record = decision.run_cycle(bot, persona_id, fence=fence)
 
         # (4) verify already embedded in the decision record.
         verified = bool(record.get("verify", {}).get("verified"))
@@ -89,6 +93,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
         fin = receipts.write_receipt(
             bot, "finish", task_id, worker_id, lease.lease_id,
             {"persona": persona_id, "cycle": record.get("cycle"),
+             "fence_generation": lease.generation,
              "chosen_action": record.get("chosen", {}).get("action"),
              "outcome": outcome, "withheld": withheld,
              "candidate_succeeded": outcome == "candidate_created",
@@ -108,6 +113,30 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                 "verified": verified, "lease_released": released,
                 "start_receipt": os.path.basename(start),
                 "finish_receipt": os.path.basename(fin),
+                "heartbeat_beats": hb.beats}
+    except leasing.FenceLost as exc:
+        # Lost the fence mid-cycle (lease expired + another worker took over).
+        # Stand down truthfully: NO durable success was committed by us, and we
+        # must NOT delete the new owner's lease. The receipt records fence loss,
+        # never candidate success.
+        receipts.write_receipt(
+            bot, "failure", task_id, worker_id, lease.lease_id,
+            {"persona": persona_id, "outcome": "fence_lost",
+             "candidate_succeeded": False,
+             "fence_generation": lease.generation,
+             "on_disk_generation": (exc.on_disk or {}).get("generation"),
+             "on_disk_owner": (exc.on_disk or {}).get("worker_id"),
+             "detail": "lease expired during active cycle; another worker took "
+                       "over; this worker committed nothing"})
+        hb.beat(status="fenced_out", next_safe_action="exit")
+        released = leasing.release(lease)  # no-op: release only removes OUR lease
+        return {"worker_id": worker_id, "task_id": task_id, "bot": bot,
+                "persona": persona_id, "lease_id": lease.lease_id,
+                "fence_generation": lease.generation,
+                "outcome": "fence_lost", "withheld": False, "verified": False,
+                "committed": False, "lease_released": released,
+                "took_over_by_generation": (exc.on_disk or {}).get("generation"),
+                "start_receipt": os.path.basename(start),
                 "heartbeat_beats": hb.beats}
     except Exception as exc:  # noqa: BLE001 — record any failure as a receipt.
         receipts.write_receipt(

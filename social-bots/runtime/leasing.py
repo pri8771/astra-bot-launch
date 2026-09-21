@@ -54,6 +54,25 @@ class LeaseHeld(LeaseError):
         super().__init__(f"task {task_id!r} held by {holder.get('worker_id')}")
 
 
+class FenceLost(LeaseError):
+    """Raised when a worker tries to commit but no longer owns the fence.
+
+    Ownership is a monotonically increasing per-task ``generation`` (a fencing
+    token). Once another worker takes over — which is only permitted after the
+    prior lease is stale — the on-disk generation is bumped, and the prior
+    owner's fence is permanently invalid. A ``FenceLost`` means: stand down;
+    commit NOTHING (no state, content, experiment, or success receipt)."""
+
+    def __init__(self, task_id: str, mine: dict, on_disk: dict | None):
+        self.task_id = task_id
+        self.mine = mine
+        self.on_disk = on_disk
+        super().__init__(
+            f"fence lost for {task_id!r}: held gen {mine.get('generation')} "
+            f"({mine.get('lease_id')}); on-disk "
+            f"{'absent' if on_disk is None else 'gen ' + str(on_disk.get('generation')) + ' ' + str(on_disk.get('lease_id'))}")
+
+
 @dataclass
 class Lease:
     lease_id: str
@@ -63,6 +82,7 @@ class Lease:
     acquired_at: str
     renewed_at: str
     ttl_seconds: int
+    generation: int = 1
     took_over_from: str | None = None
     reconcile_required: bool = False
 
@@ -142,10 +162,14 @@ def acquire(task_id: str, worker_id: str, host_alias: str = "local",
         existing = _read(path)
         if existing is not None and not is_stale(existing):
             raise LeaseHeld(task_id, existing)
+        # Fencing token: strictly increasing per task. A fresh slot starts at 1;
+        # a stale takeover bumps the prior generation so the prior owner's fence
+        # becomes permanently invalid (it can never match this higher generation).
+        generation = (existing.get("generation", 1) + 1) if existing else 1
         lease = Lease(
             lease_id=uuid.uuid4().hex, task_id=task_id, worker_id=worker_id,
             host_alias=host_alias, acquired_at=now_iso(), renewed_at=now_iso(),
-            ttl_seconds=ttl_seconds,
+            ttl_seconds=ttl_seconds, generation=generation,
             took_over_from=(existing.get("lease_id") if existing else None),
             reconcile_required=existing is not None,   # existing here is always stale
         )
@@ -178,3 +202,68 @@ def release(lease: Lease) -> bool:
 
 def inspect(task_id: str) -> dict | None:
     return _read(paths.leases_dir() / f"{task_id}.lease.json")
+
+
+class Fence:
+    """Active-work ownership guard built on the lease's fencing token.
+
+    A lease alone protects *acquisition*; it does not stop a worker whose lease
+    expired mid-run from writing after another worker has taken over. ``Fence``
+    closes that gap: every durable commit made by an active worker must go
+    through ``check()`` or ``fenced_commit()``. Ownership is verified by matching
+    both the ``lease_id`` and the monotonically increasing ``generation`` against
+    the on-disk lease, *inside the same per-task lock that a takeover uses*. So
+    the check-and-commit is atomic with respect to takeover:
+
+    - if a takeover already happened (on-disk generation is higher, or the slot
+      is a different/absent lease), the commit is refused with ``FenceLost`` and
+      nothing is written;
+    - if this worker is still the sole owner, the commit runs while the lock is
+      held, so no takeover can interleave between the check and the write.
+
+    This is a per-host, single-filesystem guarantee (POSIX ``flock``). Cross-host
+    or non-POSIX deployments must prove their own equivalent — see module notes.
+    """
+
+    def __init__(self, lease: Lease):
+        self.lease = lease
+
+    def token(self) -> dict:
+        return {"lease_id": self.lease.lease_id, "generation": self.lease.generation,
+                "task_id": self.lease.task_id, "worker_id": self.lease.worker_id}
+
+    def _owns(self, on_disk: dict | None) -> bool:
+        return (on_disk is not None
+                and on_disk.get("lease_id") == self.lease.lease_id
+                and on_disk.get("generation") == self.lease.generation)
+
+    def valid(self) -> bool:
+        """True iff this worker still owns the fence (atomic read under lock)."""
+        with _task_lock(self.lease.task_id):
+            return self._owns(_read(self.lease.path()))
+
+    def check(self) -> None:
+        """Raise ``FenceLost`` if this worker no longer owns the fence."""
+        with _task_lock(self.lease.task_id):
+            on_disk = _read(self.lease.path())
+            if not self._owns(on_disk):
+                raise FenceLost(self.lease.task_id, self.token(), on_disk)
+
+    def fenced_commit(self, commit):
+        """Run ``commit()`` atomically iff we still own the fence.
+
+        The ownership check and the commit both run while the per-task lock is
+        held, so a takeover cannot interleave. On fence loss, ``commit`` is never
+        invoked and ``FenceLost`` is raised. Also refreshes the lease heartbeat
+        so a legitimately-owned long cycle keeps its lease alive at commit time.
+        Returns whatever ``commit()`` returns.
+        """
+        with _task_lock(self.lease.task_id):
+            on_disk = _read(self.lease.path())
+            if not self._owns(on_disk):
+                raise FenceLost(self.lease.task_id, self.token(), on_disk)
+            result = commit()
+            # keep-alive: we are still the owner, refresh the TTL window.
+            self.lease.renewed_at = now_iso()
+            _atomic_write(self.lease.path(), self.lease)
+            return result

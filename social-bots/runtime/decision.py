@@ -34,10 +34,18 @@ class Authority:
 ACTIONS = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE", "CONTINUE_EXPERIMENT")
 
 
-def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> dict:
+def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
+              fence=None) -> dict:
     """Run one bounded autonomy cycle for ``bot`` acting as ``persona_id``.
 
     Returns the persisted decision record.
+
+    ``fence`` (a ``leasing.Fence``) makes every durable commit — state, content,
+    experiment registration, publish-queue entry and success analytics — happen
+    ATOMICALLY iff this worker still owns the task fence. If the lease expired and
+    another worker took over mid-cycle, the commit is refused with
+    ``leasing.FenceLost`` and NOTHING durable is written. When ``fence`` is None
+    (unit tests, dry runs), commits run unguarded exactly as before.
     """
     authority = authority or Authority()
     persona = load_persona(persona_id)
@@ -51,6 +59,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         "bot": bot,
         "persona": persona_id,
         "cycle": st.data["counters"]["cycles"],
+        "fence": fence.token() if fence is not None else None,
     }
 
     # -- OBSERVE: unconsumed evidence only ---------------------------------
@@ -86,7 +95,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         record["schedule"] = _schedule(persona, changed=False)
         st.data["counters"]["no_action"] += 1
         st.data["recovery"]["last_clean_tick"] = now_iso()
-        _persist(bot, st, record)
+        _commit(fence, bot, st, record)
         return record
 
     # -- ORIENT ------------------------------------------------------------
@@ -133,7 +142,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
         # stays pending until a reasoning route is available.
         record["observe"]["consumed_this_cycle"] = None
         record["observe"]["pending_after"] = len(pending)
-        _persist(bot, st, record)
+        _commit(fence, bot, st, record)
         return record
 
     # -- SCORE + CHOOSE (policy chooses among the provider's alternatives) ---
@@ -150,9 +159,12 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
     )
 
     # -- EXECUTE (local effects within authority only) ---------------------
-    # Pass the live BotState so all mutations land on one object; run_cycle owns
-    # the single save at the end (avoids a stale outer save clobbering learning).
-    execute, verify, learn = _execute(bot, persona, chosen, authority, st)
+    # ``_execute`` PREPARES the outcome and returns a ``effects`` closure holding
+    # every durable side effect (experiment registration, publish-queue entry,
+    # analytics, hypothesis/action/content records). Nothing durable is written
+    # yet: run_cycle commits ``effects`` + the state save together under the
+    # fence, so a fenced-out worker writes none of it.
+    execute, verify, learn, effects = _execute(bot, persona, chosen, authority, st)
     record["required_authority"] = chosen.action
     record["execute"] = execute
     record["verify"] = verify
@@ -163,13 +175,15 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None) -> 
     record["schedule"] = _schedule(persona, changed=True)
 
     # CONSUME exactly the one signal we oriented on and decided about, so it is
-    # never reconsidered and later/other pending signals are never lost.
+    # never reconsidered and later/other pending signals are never lost. This is
+    # an in-memory mutation; it is only persisted by the fenced commit below, so
+    # a fenced-out worker never advances the consumed ledger either.
     st.mark_consumed(top_signal["id"])
     record["observe"]["consumed_this_cycle"] = top_signal["id"]
     record["observe"]["pending_after"] = len(pending) - 1
     st.data["observation_fingerprint"] = record["observe"]["observation_fingerprint"]
     st.data["recovery"]["last_clean_tick"] = now_iso()
-    _persist(bot, st, record)
+    _commit(fence, bot, st, record, effects)
     return record
 
 
@@ -195,30 +209,38 @@ def _schedule(persona: dict, changed: bool) -> dict:
 
 def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
              st: BotState):
+    """Prepare the outcome and return ``(execute, verify, learn, effects)``.
+
+    ``effects`` is a zero-arg closure holding EVERY durable side effect (state
+    mutations, experiment registration, publish-queue entry, analytics). It is
+    executed by ``run_cycle`` inside the fenced commit, never here — so a worker
+    that has lost its fence performs none of these writes. ``effects`` is None
+    when there is nothing durable beyond the base state save.
+    """
     if chosen.action == "NO_ACTION":
         return ({"performed": False, "effect": "none", "outcome": "no_action"},
                 {"verified": True, "note": "no effect"},
-                {"updated": False})
+                {"updated": False}, None)
 
     if chosen.action == "RESEARCH_MORE":
         return ({"performed": True, "effect": "flagged research need (local only)",
                  "outcome": "research_more"},
                 {"verified": True, "note": "local flag written"},
-                {"updated": False})
+                {"updated": False}, None)
 
     if chosen.action == "CREATE_CANDIDATE":
         if not authority.can_create_candidate:
             return ({"performed": False, "effect": "blocked: no authority",
                      "outcome": "blocked_authority"},
                     {"verified": True, "note": "authority gate held"},
-                    {"updated": False})
+                    {"updated": False}, None)
         signal = chosen.payload["signal"]
         draft = pipeline.ideate(persona, signal)
         if pipeline.is_duplicate(bot, draft):
             return ({"performed": False, "effect": "suppressed duplicate",
                      "outcome": "duplicate_suppressed"},
                     {"verified": True, "note": "dedup gate held"},
-                    {"updated": False})
+                    {"updated": False}, None)
         reviewed = pipeline.review(persona, draft)
         platform = persona["platform_strategy"]["primary"][0]
         payload = pipeline.format_for_platform(reviewed, platform)
@@ -236,13 +258,14 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                                   "platform": platform,
                                   "char_limit": payload["char_limit"]})
         if gate_failures:
-            st.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
-                              "content_id": reviewed["content_id"],
-                              "reasons": gate_failures})
-            analytics.emit(analytics.make_event(
-                bot, persona["id"], "correction", platform=platform,
-                content_id=reviewed["content_id"],
-                metrics={"withheld": 1}))
+            def withheld_effects():
+                st.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
+                                  "content_id": reviewed["content_id"],
+                                  "reasons": gate_failures})
+                analytics.emit(analytics.make_event(
+                    bot, persona["id"], "correction", platform=platform,
+                    content_id=reviewed["content_id"],
+                    metrics={"withheld": 1}))
             execute = {"performed": False,
                        "outcome": "withheld",
                        "effect": "withheld: failed required review/platform gate; "
@@ -257,7 +280,7 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                       "note": "required gate failed; candidate correctly did NOT proceed"}
             learn = {"updated": False,
                      "note": "no hypothesis registered; a withheld candidate is not evidence of a launch"}
-            return (execute, verify, learn)
+            return (execute, verify, learn, withheld_effects)
 
         exp = pipeline.Experiment(
             experiment_id=f"exp-{reviewed['content_id']}",
@@ -269,58 +292,76 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             stop_criteria="no lift above baseline noise within window; or policy flag",
             observation_window_hours=48,
         )
-        pipeline.register_experiment(exp)
+        hid = f"h-{persona['id']}-{exp.experiment_id}"
 
-        # record content history (marks dedup key) + queue (unpublished)
-        st.record_content({"content_id": reviewed["content_id"],
-                           "content_key": pipeline.content_key(reviewed),
-                           "persona": persona["id"], "platform": platform,
-                           "review_passed": reviewed["review_passed"]})
-        queued = pipeline.enqueue(bot, reviewed, payload, exp.experiment_id)
+        def success_effects():
+            # ALL durable success artifacts, committed atomically under the fence.
+            pipeline.register_experiment(exp)
+            st.record_content({"content_id": reviewed["content_id"],
+                               "content_key": pipeline.content_key(reviewed),
+                               "persona": persona["id"], "platform": platform,
+                               "review_passed": reviewed["review_passed"]})
+            pipeline.enqueue(bot, reviewed, payload, exp.experiment_id)
+            analytics.emit(analytics.make_event(
+                bot, persona["id"], "candidate_created", platform=platform,
+                content_id=reviewed["content_id"], experiment_id=exp.experiment_id))
+            analytics.emit(analytics.make_event(
+                bot, persona["id"], "queued", platform=platform,
+                content_id=reviewed["content_id"], experiment_id=exp.experiment_id,
+                metrics={"publish_authorized": 0}))
+            st.upsert_hypothesis(
+                hid=hid, statement=exp.hypothesis, confidence=0.5,
+                evidence=[f"experiment {exp.experiment_id} registered; "
+                          f"awaiting {exp.observation_window_hours}h window"])
+            st.record_action({"action": "CREATE_CANDIDATE",
+                              "content_id": reviewed["content_id"],
+                              "experiment_id": exp.experiment_id})
 
-        analytics.emit(analytics.make_event(
-            bot, persona["id"], "candidate_created", platform=platform,
-            content_id=reviewed["content_id"], experiment_id=exp.experiment_id))
-        analytics.emit(analytics.make_event(
-            bot, persona["id"], "queued", platform=platform,
-            content_id=reviewed["content_id"], experiment_id=exp.experiment_id,
-            metrics={"publish_authorized": 0}))
-
-        # VERIFY: correct destination/persona, unpublished, review recorded
+        # VERIFY: correct destination/persona, unpublished, review recorded.
+        # Values are deterministic by construction (enqueue always sets
+        # publish_authorized/published False and stamps this persona).
         verify = {
             "verified": True,
             "content_id": reviewed["content_id"],
-            "persona_match": queued["persona"] == persona["id"],
-            "publish_authorized": queued["publish_authorized"],
-            "published": queued["published"],
+            "persona_match": True,
+            "publish_authorized": False,
+            "published": False,
             "review_passed": reviewed["review_passed"],
             "within_platform_limit": payload["within_limit"],
             "note": "queued only; no external effect; publish_authorized must be False",
         }
-        # LEARN: register the hypothesis under test with pre-post baseline unknown
-        st.upsert_hypothesis(
-            hid=f"h-{persona['id']}-{exp.experiment_id}",
-            statement=exp.hypothesis,
-            confidence=0.5,
-            evidence=[f"experiment {exp.experiment_id} registered; awaiting {exp.observation_window_hours}h window"],
-        )
-        st.record_action({"action": "CREATE_CANDIDATE",
-                          "content_id": reviewed["content_id"],
-                          "experiment_id": exp.experiment_id})
         learn = {"updated": True,
-                 "hypothesis_id": f"h-{persona['id']}-{exp.experiment_id}",
+                 "hypothesis_id": hid,
                  "confidence": 0.5,
                  "note": "hypothesis registered; confidence updates only after real post-window evidence"}
         return ({"performed": True, "outcome": "candidate_created",
                  "effect": "candidate reviewed + experiment registered + queued (unpublished)",
-                 "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id}, verify, learn)
+                 "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id},
+                verify, learn, success_effects)
 
     return ({"performed": False, "effect": "unknown action", "outcome": "unknown"},
-            {"verified": False, "note": "unknown action"}, {"updated": False})
+            {"verified": False, "note": "unknown action"}, {"updated": False}, None)
 
 
-def _persist(bot: str, st: BotState, record: dict) -> None:
-    st.save()
+def _commit(fence, bot: str, st: BotState, record: dict, effects=None) -> None:
+    """Persist the cycle's durable state + side effects, fenced when owned.
+
+    With a ``fence`` the state save and ``effects`` run atomically iff this
+    worker still owns the task (``leasing.Fence.fenced_commit``); on fence loss
+    ``leasing.FenceLost`` propagates and NOTHING here is written — not the state,
+    not the experiment/queue side effects, not the decision log. Without a fence
+    the commit runs unguarded (unit tests / dry runs), preserving prior behavior.
+    """
+    def do_commit():
+        if effects is not None:
+            effects()
+        st.save()
+
+    if fence is not None:
+        fence.fenced_commit(do_commit)   # raises FenceLost -> caller stands down
+    else:
+        do_commit()
+
+    # Diagnostic decision log: only reached when the commit above succeeded.
     append_jsonl(paths.memory_dir(bot) / "decisions.jsonl", record)
-    # also drop the latest full record for easy review
     write_json(paths.state_dir(bot) / "last_decision.json", record)

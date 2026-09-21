@@ -41,7 +41,7 @@ separate from the host persona's.
 |---|---|
 | `paths.py` | Namespace isolation; safe path helpers. |
 | `jsonstore.py` | Crash-safe atomic JSON writes (`fsync`+`os.replace`) and append-only JSONL. |
-| `leasing.py` | Atomic `O_CREAT\|O_EXCL` task leases; TTL staleness; stale takeover sets `reconcile_required`. |
+| `leasing.py` | `flock`-CAS task leases; TTL staleness; stale takeover sets `reconcile_required`; per-task fencing `generation` + `Fence.fenced_commit` for active-cycle commit fencing. |
 | `heartbeat.py` | Process heartbeat (real pid) — liveness only when the running worker beats. |
 | `receipts.py` | Sanitized start/finish/failure receipts + defensive secret redaction. |
 | `state.py` | Per-bot durable state, hypotheses, ledgers. |
@@ -95,6 +95,51 @@ Overlap raises `LeaseHeld` (the caller treats it as the no-overlap rejection).
   runtime is rejected; 25 rounds of concurrent general+cultural cycles leave the
   cycle counter equal to the number of cycles that ran (no lost update), a
   duplicate-free consumed ledger, and uncorrupted `bot_state.json`.
+
+## Active-cycle fencing (SB-V03-004)
+
+The lease CAS above only protects **acquisition**. It does not, by itself, stop a
+worker whose lease expires *during* `decision.run_cycle()` from committing after
+another worker has taken over. That is closed by a fencing token:
+
+- **Fence token.** Each lease carries a strictly increasing per-task
+  `generation`. A fresh slot starts at 1; a stale takeover bumps the prior
+  generation. A generation is monotonic per task, so a superseded owner can never
+  again match the on-disk generation — its fence is permanently invalid.
+- **Fenced commit.** `leasing.Fence.fenced_commit(commit)` runs the ownership
+  check **and** the commit inside the *same* per-task `flock` critical section
+  that a takeover's `acquire` uses. So the check-and-write is atomic w.r.t.
+  takeover: either this worker is still the sole owner and the commit runs while
+  the lock is held (no takeover can interleave), or a takeover already bumped the
+  generation and the commit is refused with `FenceLost` — writing nothing.
+- **All-or-nothing cycle commit.** `decision.run_cycle(..., fence=...)` PREPARES
+  the outcome, then commits every durable artifact — shared `bot_state.json`
+  (consumed ledger, counters, hypotheses), experiment registration, publish-queue
+  entry, success analytics and the decision log — through one `fenced_commit`.
+  A fenced-out worker therefore advances no state, registers no experiment, queues
+  nothing, and writes no success receipt. `worker.run_one_unit` catches
+  `FenceLost` and stands down with a truthful `fence_lost` receipt
+  (`candidate_succeeded=false`); it never deletes the new owner's lease.
+- **Ownership is inspectable** after a race via `leasing.inspect(task)` (lease_id,
+  generation, worker_id) and via `fence_generation` on start/finish receipts.
+- Proven by `tests/test_fencing.py`: generation increments on takeover; the old
+  owner's fence is invalid and cannot renew or `fenced_commit`; a mid-cycle
+  takeover leaves zero durable artifacts and an unadvanced state while the takeover
+  worker becomes owner (gen 2) and commits; `run_one_unit` returns `fence_lost`.
+
+### Host / filesystem scope (explicit)
+
+- **Guaranteed:** one **POSIX host**, one **local filesystem**. `fcntl.flock`
+  gives the mutual exclusion the fenced commit relies on, and the kernel frees the
+  lock if the holder dies.
+- **Not proven — native Windows.** `FLOCK_AVAILABLE` is False; the fallback is
+  atomic-replace only and does **not** provide the flock critical section, so the
+  strong active-cycle fence is **not** claimed there. A Windows deployment needs a
+  separate, proven mechanism (e.g. `LockFileEx`) before any equivalent claim.
+- **Not proven — cross-host / network filesystem.** `flock` semantics over NFS/SMB
+  and across machines are unreliable; multi-host fencing would require a shared
+  authority (a lease service or a DB with compare-and-set), which is out of scope
+  here and must not be assumed. The Linux always-on host asserts `FLOCK_AVAILABLE`.
 
 ## Evidence, not claims
 
