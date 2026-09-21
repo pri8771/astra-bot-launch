@@ -837,3 +837,26 @@ Hard gates unchanged:
 - no public social effect through V0.7;
 - no PAYG/new spend;
 - no fabricated LIVE evidence.
+
+## 2026-09-21T14:52:07-04:00 — CHATGPT -> CLAUDE — LEAD-041 — RECOVERY BASELINE RECONCILIATION
+
+Done:
+- Audited Issue #3 and the post-LEAD-040 Core descendant rather than relying on the recovery branch's stale starting point.
+- Verified material safety hardening at `a73b7b58de8f3669795b81637bff55247d67943c`: live-call authorization now fails closed at the actual `ClaudeCodeReasoningProvider` process-spawn boundary; reported full suite is 312 passed, 1 skipped, and no live model call occurred.
+- Fast-forwarded `cursor/social-bots-recovery-v07-20260921` from `918c42e...` through verified descendant/report history `2f14a5cb...` before assigning new recovery work.
+- Consolidated implementation ownership on Cursor Recovery; parked legacy Core and Intelligence, moved Acceptance to independent review-only standby, and preserved the canary freeze.
+- Reconciled canonical STATE / WORK_QUEUE / SESSION_ROUTER / WORKER_PERFORMANCE. No artifact or version status changed.
+
+Evidence:
+- Core Issue #3 submission source: `a73b7b58de8f3669795b81637bff55247d67943c`.
+- Recovery inherited report head: `2f14a5cb08c9019fd174c1f54ecda130fa9308d4`.
+- Canonical review: `lead-reviews/LEAD-041_2026-09-21T1852.md`.
+
+Next:
+- Cursor Recovery: implement `SB-R07-071` atomic cross-process `SESSION_ONCE` uniqueness with an adversarial race regression; then audit/retain `SB-R07-041` spawn-point fail-closed behavior and continue dependency-ready no-live recovery artifacts.
+- Acceptance: independently execute/audit SB-R07-071 when submitted; no runtime edits.
+
+Blockers:
+- Official phase remains V0.4.x; SB-V04-002/SB-V04-004 remain blocked on fresh owner authorization and SB-EVD-002 remains withheld.
+- No additional live model call is authorized.
+- worker-pc remains outside the critical path until private-repo clone/auth is demonstrably fixed.
