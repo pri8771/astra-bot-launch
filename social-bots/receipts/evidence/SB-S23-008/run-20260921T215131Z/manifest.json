@@ -1,0 +1,58 @@
+{
+  "artifact": "SB-S23-008",
+  "bot": "social-a",
+  "classification": "fixture",
+  "command": "prove_v23_specialists.py --bot social-a --personas social-a,cultural-primandir-atman --out receipts/evidence/SB-S23-008/run-20260921T215131Z --source-sha e33de096c7da2633376794b3297d82b320f6229d",
+  "decisions": {
+    "w-4ec10a9cfc53": {
+      "cleanup": "RETIRED",
+      "decision": "ADOPTED",
+      "lease_gone": true,
+      "persona": "social-a",
+      "role": "researcher"
+    },
+    "w-7662bdf2b776": {
+      "cleanup": "RETIRED",
+      "decision": "ADOPTED",
+      "lease_gone": true,
+      "persona": "social-a",
+      "role": "reviewer"
+    },
+    "w-b9d683ba440b": {
+      "cleanup": "RETIRED",
+      "decision": "ADOPTED",
+      "lease_gone": true,
+      "persona": "social-a",
+      "role": "analyst"
+    },
+    "w-f65139225575": {
+      "cleanup": "RETIRED",
+      "decision": "ADOPTED",
+      "lease_gone": true,
+      "persona": "cultural-primandir-atman",
+      "role": "writer"
+    }
+  },
+  "files": {
+    "leases_after.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "lifecycle-w-4ec10a9cfc53.json": "28e5649e4f9155d09863172db7b50dd3a1e71e51740841a32494fc6ad533a497",
+    "lifecycle-w-7662bdf2b776.json": "3cd17d867e893e8b460d5c2d6bc4c40ea1b725333862664ea57243c0219cdc9d",
+    "lifecycle-w-b9d683ba440b.json": "790983849b79040bb08412c55a96ad4515a38b0eeb7f943edbece0d40e96992d",
+    "lifecycle-w-f65139225575.json": "323b496379bb62646709f03f6a772d355af23209df2cf26489294ffb83384762",
+    "parent_state_after.sha256": "684f638cad6a5d5009397904f6f8b7159d97b470d4b77112b8e4d7e7ab66dd98",
+    "parent_state_before.sha256": "684f638cad6a5d5009397904f6f8b7159d97b470d4b77112b8e4d7e7ab66dd98",
+    "scratch_after.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "generated_at": "2026-09-21T21:51:31+00:00",
+  "live": false,
+  "max_workers": 3,
+  "note": "engineering acceptance on fixture data in a temporary SBOTS_HOME; not LIVE evidence and cannot promote any milestone",
+  "parent_state_unchanged": true,
+  "personas": [
+    "social-a",
+    "cultural-primandir-atman"
+  ],
+  "run_id": "v23-c3d16e1a",
+  "schema": "SpecialistAcceptanceBundle/1",
+  "source_sha": "e33de096c7da2633376794b3297d82b320f6229d"
+}

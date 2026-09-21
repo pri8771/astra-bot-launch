@@ -1,0 +1,97 @@
+{
+  "bot": "social-a",
+  "cleanup_status": "RETIRED",
+  "decision": "ADOPTED",
+  "finished_at": "2026-09-21T21:51:31+00:00",
+  "lease_gone": true,
+  "lease_released": true,
+  "parent_run_id": "v23-c3d16e1a",
+  "persona": "cultural-primandir-atman",
+  "receipt_ref": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-18ca493b.json",
+  "result": {
+    "bot": "social-a",
+    "calls_used": 0,
+    "cleanup_status": "PENDING",
+    "effect_attempts": 0,
+    "error": null,
+    "evidence_refs": [
+      {
+        "captured_at": "2026-09-21T21:51:31+00:00",
+        "collector_version": "1.0.0",
+        "content_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "evidence_id": "ev-fixture-1",
+        "provenance": "fixture",
+        "source_id": "src-fixture-1",
+        "status": "ok",
+        "url": "https://fixture.invalid/c"
+      }
+    ],
+    "finished_at": "2026-09-21T21:51:31+00:00",
+    "limitations": [],
+    "outputs": [
+      {
+        "path": "outputs/writer_result.json",
+        "schema": "DraftResult/1",
+        "sha256": "5ccd6e8d80043c33ad7d303273d5cce4a162d4c6cc9ccd4245dc06a9498afa39"
+      }
+    ],
+    "parent_run_id": "v23-c3d16e1a",
+    "persona": "cultural-primandir-atman",
+    "provenance": "fixture",
+    "result": "COMPLETED",
+    "role": "writer",
+    "schema_version": 2,
+    "source_ref": "runtime.specialist_writer/1",
+    "started_at": "2026-09-21T21:51:31+00:00",
+    "worker_id": "w-f65139225575"
+  },
+  "role": "writer",
+  "schema_version": 1,
+  "stages": [
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "scratch w-f65139225575; lease=held",
+      "ok": true,
+      "stage": "CREATE"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "context refs: 0; inputs: 2",
+      "ok": true,
+      "stage": "ASSIGN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "result=COMPLETED",
+      "ok": true,
+      "stage": "RUN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "outputs/RESULT.json",
+      "ok": true,
+      "stage": "RETURN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "ok",
+      "ok": true,
+      "stage": "VERIFY"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-18ca493b.json",
+      "ok": true,
+      "stage": "ADOPT"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "cleanup=RETIRED; lease_gone=True",
+      "ok": true,
+      "stage": "RETIRE"
+    }
+  ],
+  "started_at": "2026-09-21T21:51:31+00:00",
+  "verify_errors": [],
+  "worker_id": "w-f65139225575"
+}

@@ -1,0 +1,86 @@
+{
+  "bot": "social-a",
+  "cleanup_status": "RETIRED",
+  "decision": "ADOPTED",
+  "finished_at": "2026-09-21T21:51:31+00:00",
+  "lease_gone": true,
+  "lease_released": true,
+  "parent_run_id": "v23-c3d16e1a",
+  "persona": "social-a",
+  "receipt_ref": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-a1532ad0.json",
+  "result": {
+    "bot": "social-a",
+    "calls_used": 0,
+    "cleanup_status": "PENDING",
+    "effect_attempts": 0,
+    "error": null,
+    "evidence_refs": [],
+    "finished_at": "2026-09-21T21:51:31+00:00",
+    "limitations": [],
+    "outputs": [
+      {
+        "path": "outputs/reviewer_result.json",
+        "schema": "ReviewResult/1",
+        "sha256": "80399a922578fd60786aadb3f997012c26b25fa37525d9021c9d15660c3227e0"
+      }
+    ],
+    "parent_run_id": "v23-c3d16e1a",
+    "persona": "social-a",
+    "provenance": "fixture",
+    "result": "COMPLETED",
+    "role": "reviewer",
+    "schema_version": 2,
+    "source_ref": "runtime.specialist_analysis/1",
+    "started_at": "2026-09-21T21:51:31+00:00",
+    "worker_id": "w-7662bdf2b776"
+  },
+  "role": "reviewer",
+  "schema_version": 1,
+  "stages": [
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "scratch w-7662bdf2b776; lease=held",
+      "ok": true,
+      "stage": "CREATE"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "context refs: 0; inputs: 3",
+      "ok": true,
+      "stage": "ASSIGN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "result=COMPLETED",
+      "ok": true,
+      "stage": "RUN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "outputs/RESULT.json",
+      "ok": true,
+      "stage": "RETURN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "ok",
+      "ok": true,
+      "stage": "VERIFY"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-a1532ad0.json",
+      "ok": true,
+      "stage": "ADOPT"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "cleanup=RETIRED; lease_gone=True",
+      "ok": true,
+      "stage": "RETIRE"
+    }
+  ],
+  "started_at": "2026-09-21T21:51:31+00:00",
+  "verify_errors": [],
+  "worker_id": "w-7662bdf2b776"
+}

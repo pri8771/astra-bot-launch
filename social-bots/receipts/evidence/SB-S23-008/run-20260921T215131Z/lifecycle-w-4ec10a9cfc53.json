@@ -1,0 +1,117 @@
+{
+  "bot": "social-a",
+  "cleanup_status": "RETIRED",
+  "decision": "ADOPTED",
+  "finished_at": "2026-09-21T21:51:31+00:00",
+  "lease_gone": true,
+  "lease_released": true,
+  "parent_run_id": "v23-c3d16e1a",
+  "persona": "social-a",
+  "receipt_ref": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-a5ce746b.json",
+  "result": {
+    "bot": "social-a",
+    "calls_used": 0,
+    "cleanup_status": "PENDING",
+    "effect_attempts": 0,
+    "error": null,
+    "evidence_refs": [
+      {
+        "captured_at": "2026-09-21T21:51:31+00:00",
+        "collector_version": "1.0.0",
+        "content_hash": "9a1732f348f93751a89a61c8a04de2a2e0720d253166d6b8afa0a26d084f6746",
+        "evidence_id": "ev-cap-5f6bd2c2d521",
+        "provenance": "fixture",
+        "source_id": "src-653effcbc48c9cca",
+        "status": "ok",
+        "url": "https://fixture.invalid/a"
+      },
+      {
+        "captured_at": "2026-09-21T21:51:31+00:00",
+        "collector_version": "1.0.0",
+        "content_hash": "947604928422d2c612fc0aa58f1b565e1565cb23885a6718168bc576e518a559",
+        "evidence_id": "ev-cap-d68e30aeed3e",
+        "provenance": "fixture",
+        "source_id": "src-8c6a9a88a92ec16e",
+        "status": "ok",
+        "url": "https://fixture.invalid/b"
+      }
+    ],
+    "finished_at": "2026-09-21T21:51:31+00:00",
+    "limitations": [],
+    "outputs": [
+      {
+        "path": "evidence/000.json",
+        "schema": "EvidenceCapture/1",
+        "sha256": "70dd9719075c23d70c436c95e50346ac76d892ca0abe0e6417ebf79dc2e17977"
+      },
+      {
+        "path": "evidence/001.json",
+        "schema": "EvidenceCapture/1",
+        "sha256": "52362edb8805f7154848c64de0f6325dfadc0625360446e975b5b653565a2885"
+      },
+      {
+        "path": "outputs/research_result.json",
+        "schema": "ResearchResult/1",
+        "sha256": "7752be35103e13f612bff25ff60a84e64f6183ba2ae8224d0e2a22871c2a074e"
+      }
+    ],
+    "parent_run_id": "v23-c3d16e1a",
+    "persona": "social-a",
+    "provenance": "fixture",
+    "result": "COMPLETED",
+    "role": "researcher",
+    "schema_version": 2,
+    "source_ref": "runtime.specialist_research/1",
+    "started_at": "2026-09-21T21:51:31+00:00",
+    "worker_id": "w-4ec10a9cfc53"
+  },
+  "role": "researcher",
+  "schema_version": 1,
+  "stages": [
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "scratch w-4ec10a9cfc53; lease=held",
+      "ok": true,
+      "stage": "CREATE"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "context refs: 0; inputs: 0",
+      "ok": true,
+      "stage": "ASSIGN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "result=COMPLETED",
+      "ok": true,
+      "stage": "RUN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "outputs/RESULT.json",
+      "ok": true,
+      "stage": "RETURN"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "ok",
+      "ok": true,
+      "stage": "VERIFY"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "/tmp/sbots-v23-28epuu1_/receipts/social-a/20260921T215131+0000-finish-a5ce746b.json",
+      "ok": true,
+      "stage": "ADOPT"
+    },
+    {
+      "at": "2026-09-21T21:51:31+00:00",
+      "detail": "cleanup=RETIRED; lease_gone=True",
+      "ok": true,
+      "stage": "RETIRE"
+    }
+  ],
+  "started_at": "2026-09-21T21:51:31+00:00",
+  "verify_errors": [],
+  "worker_id": "w-4ec10a9cfc53"
+}
