@@ -10,32 +10,30 @@
 ## Submitted this session
 
 ### SB-R07-071 — SUBMITTED (ENGINEERING)
-
 - Source SHA: `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb`
-- Atomic `fcntl.flock` SESSION_ONCE uniqueness; race 8×20
-- Evidence: `evidence/SB-R07-071/`
+- Atomic SESSION_ONCE uniqueness + multiprocess race
 
 ### SB-R07-041 — SUBMITTED (ENGINEERING)
-
 - Source SHA: `21cc2e7a65750d20dc609b9e9517f920157389a2`
-- Closed `_REAL_CLI_RUNNER` rebind bypass; `run_worker.py` entrypoint refuse
-- Full suite: 316 passed, 1 skipped
-- Evidence: `evidence/SB-R07-041/`
+- Spawn-guard rebind bypass closed; run_worker entrypoint refuse
 
 ### SB-R07-044 — SUBMITTED (ENGINEERING)
-
 - Source SHA: `5179217ea222e94caa5580104fbc6aaacd4b2192`
-- Independent divergence verifier + CLI; rejects fixtures/self-declared labels
-- Full suite: 322 passed, 1 skipped
-- Evidence: `evidence/SB-R07-044/`
-- No live model call
+- Independent divergence verifier; rejects fixtures/self-declared labels
+
+### SB-R07-072 — SUBMITTED (ENGINEERING)
+- This Cursor Cloud host: **UNSUITABLE_NOT_PERSISTENT_OWNER_HOST**
+- Evidence: `evidence/SB-R07-072/HOST_PREFLIGHT.json`
+- Full suite: 329 passed, 1 skipped
+- No LIVE persistent-host claim. SB-R07-073 blocked on this host.
 
 ## Next
 
-1. `SB-R07-072` — persistent-host preflight (no persistent-host claim on CCR/temp)
-2. Continue dependency-ready no-live recovery artifacts
+1. `SB-R07-042` — freeze controlled V0.4 inputs (no live call)
+2. Skip `SB-R07-073` until an owner-attested persistent host is available
+3. Continue other dependency-ready no-LIVE recovery artifacts
 
 ## Blockers
 
-None for continuing no-live recovery. V0.4 live divergence batch remains
-owner-authorization blocked.
+- Persistent-host LIVE path: this environment is ephemeral (overlay + hostname cursor).
+- V0.4 divergence LIVE batch: owner-authorization blocked (unchanged).

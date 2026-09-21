@@ -1,0 +1,73 @@
+{
+  "blockers": [
+    "host appears ephemeral / non-persistent (Cloud Agent, overlay, or temporary environment); V0.7 LIVE recurring liveness requires an owner-controlled persistent machine",
+    "hostname='cursor' indicates a cloud/agent host",
+    "root filesystem type 'overlay' is ephemeral/overlay",
+    "CURSOR/CURSOR_AGENT environment markers present",
+    "repo under /workspace on hostname cursor (Cloud Agent pattern)",
+    "systemd user instance is 'offline'; user timers are not ready on this host",
+    "no usable user-level scheduler (systemd user offline; no crontab)"
+  ],
+  "evidence_class": "ENGINEERING",
+  "host": {
+    "hostname": "cursor",
+    "machine": "x86_64",
+    "platform": "Linux",
+    "platform_release": "6.12.94+",
+    "root_fs": "overlay",
+    "workspace_fs": null
+  },
+  "live_claim": false,
+  "locking": {
+    "fcntl_flock_available": true,
+    "strong_path": "posix-flock"
+  },
+  "notes": "SB-R07-072 preflight only. Never claim V0.7 LIVE acceptance from this receipt. Ephemeral Cloud Agent / CCR / overlay hosts must be UNSUITABLE; continue dependency-safe non-LIVE artifacts.",
+  "permissions": {
+    "euid": 1000,
+    "uid": 1000,
+    "writable_repo": true
+  },
+  "persistence_signals": {
+    "cursor_env": true,
+    "ephemeral_markers": [
+      "hostname='cursor' indicates a cloud/agent host",
+      "root filesystem type 'overlay' is ephemeral/overlay",
+      "CURSOR/CURSOR_AGENT environment markers present",
+      "repo under /workspace on hostname cursor (Cloud Agent pattern)"
+    ]
+  },
+  "preflight_id": "SB-R07-072",
+  "python": {
+    "executable": "/usr/bin/python3",
+    "version": "3.12.3"
+  },
+  "recorded_at": "2026-09-21T19:29:27Z",
+  "repo": {
+    "git_dir_present": true,
+    "path": "/workspace"
+  },
+  "scheduling": {
+    "crontab": null,
+    "launchctl": null,
+    "schtasks": null,
+    "systemctl": "/usr/bin/systemctl",
+    "systemd_user": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "is-system-running"
+      ],
+      "output": "offline",
+      "returncode": 1
+    }
+  },
+  "schema_version": 1,
+  "suitable_for_v07_live_scheduler": false,
+  "verdict": "UNSUITABLE_NOT_PERSISTENT_OWNER_HOST",
+  "zero_spend": {
+    "ANTHROPIC_API_KEY_present": false,
+    "CLAUDE_CODE_OAUTH_TOKEN_present": false,
+    "policy": "no PAYG / no new spend; subscription route only when authorized"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "artifact": "SB-R07-072",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "verdict": "UNSUITABLE_NOT_PERSISTENT_OWNER_HOST",
+  "suitable_for_v07_live_scheduler": false,
+  "blocker_count": 7,
+  "focused_result": "7 passed",
+  "full_suite_result": "329 passed, 1 skipped",
+  "next_artifact": "SB-R07-042",
+  "recorded_at": "2026-09-21T19:30:17Z"
+}
