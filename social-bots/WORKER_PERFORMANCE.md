@@ -2,22 +2,25 @@
 
 Purpose: measure Claude Code implementation reliability by story-pointed artifact packet and task type. Story points reflect complexity/uncertainty, not time. No worker submission self-accepts.
 
-Current heartbeat review: `LEAD-017` (`lead-reviews/LEAD-017_2026-09-20T2152.md`). Foundational deep audit remains `LEAD-015` (`LEAD_AUDIT_TWO_LANE_BATCH.md`).
+Current lead review: `LEAD-020` (`lead-reviews/LEAD-020_2026-09-20T2251.md`). Foundational deep audits remain LEAD-015/017/019.
 
-At LEAD-017, both implementation repair lanes have fresh signed repository activity:
-- Windows Core/Host through `5318065aad6e38de1e3313ad984d09451a2dfcb7`;
-- Intelligence through `cbd781cab4d751b2a0626c3ce060c5a217d771e9`.
-The optional Mac QA branch was not yet visible remotely. Independent GitHub CI/status checks remain absent, so reported suite counts are worker-local unless source/acceptance behavior is independently inspected.
+Current verified worker/source activity:
+- Windows Core/Host: standby at implementation head `5318065aad6e38de1e3313ad984d09451a2dfcb7`.
+- Intelligence: signed repair progress through `feb30f4c3fd00ae1fa0bb115a92bdb767ae9f67d`; latest worker reports 185 local tests.
+- Mac QA/control: signed progress through `ede387e256be19d6aaaf1e6c96151d7218221d33`; GitHub-hosted `social-bots-ci` run `35555060783` independently verified SUCCESS.
+
+Heartbeat quality is tracked separately from implementation quality. Neither target Mac lane has passed the 3x approximately-15-minute durable heartbeat bootstrap; burst submission heartbeats and snapshot-only sequence advancement do not count.
 
 ## Current observations
 
-The SP2–SP5 sample continues to support worker-first implementation with stronger lead review at trust/isolation boundaries:
-- SP2 bounded test/evidence repair (`SB-V03-003`) closed cleanly after one lead-found coverage gap.
-- SP3 can be strong on bounded state changes (`SB-V03-002`), but `SB-V05-001` shows repeated trust-boundary misses: first `mode="live"` was caller-forgeable; the repair moved trust into a registry, but the public registry still lets arbitrary runtime code self-register a custom class and obtain operational-live evidence.
-- SP4 work shows useful architectural progress but repeated completeness/interface gaps. `SB-V03-005` now correctly splits RuntimeState/PersonaState for private mutable state, yet canonical production-read isolation across mixed append-only stores remains incomplete. `SB-V05-002` fixed original caller-stance/material-claim omissions but repeated the self-registration authority pattern and overclaims factual support from token co-occurrence.
-- SP5 `SB-V03-004` materially improved durable-write fencing and guarantee language, but independent review found a subtle cycle-triggered legacy migration path that still performs durable writes before the final fence check; actual Windows/WSL strong-lock proof also remains absent at the reviewed checkpoint.
+The SP2–SP5 sample continues to support worker-first implementation with strong lead review at trust/isolation boundaries.
 
-This is not a reason to take implementation away from Claude. It is a reason to specify closed trust boundaries, side-effect-free load/migration, dependency provenance, and adversarial production-path tests explicitly in SP3+ artifacts.
+- SP2 bounded control work is strong when the contract is explicit. `SB-CTL-006` CI was accepted after real GitHub-hosted execution.
+- SP3 bounded engineering can pass cleanly (`SB-V03-002`) but trust/transport boundaries remain a recurring failure mode: `SB-V05-001` fixed caller-grantable trust yet independent review found the actual HTTPS connection constructor is invalid for stdlib `HTTPSConnection`.
+- SP4 work has improved substantially after targeted repair. `SB-V13-001` and `SB-V14-001` both closed earlier semantic/privacy findings and are accepted. `SB-V15-001` fixed measurement provenance but still exposes bot-wide production experiment readers, showing cross-cutting isolation must be tested at the actual read API, not just the record model.
+- SP5 fencing remains the highest-risk Core area. `SB-V03-004` is still CHANGES_REQUIRED under LEAD-019 because legacy migration can durably write before the final ownership fence.
+
+This still supports Claude as the implementation workhorse. The lead should keep decomposing SP4/SP5 work into narrow contracts and independently test production-path trust/isolation/fencing invariants.
 
 ## Core lane task results
 
@@ -25,77 +28,73 @@ This is not a reason to take implementation away from Claude. It is a reason to 
 |---|---:|---|---|---|---|
 | SB-V03-002 | 3 | PASS | 0 repair cycles | ACCEPTED | per-signal consumed ledger; later/batch/restart regressions |
 | SB-V03-003 | 2 | PARTIAL | 1 lead gap -> worker added forced FACT + VOICE failures | ACCEPTED | good bounded repair behavior |
-| SB-V03-004 | 5 | PARTIAL | earlier repair added generation fence; deep audit found post-fence decision writes; Windows repair moved them inside fence and corrected transactionality language, but LEAD-017 found durable legacy-migration writes during state load before final fence + no actual Windows/WSL strong-lock proof | CHANGES_REQUIRED | latest submitted head `5318065a...`; 91 worker-local tests across V03-004/005 |
-| SB-V03-005 | 4 | PARTIAL | earlier logical filters left private mutable state runtime-shared; Windows repair now physically splits RuntimeState/PersonaState, but raw production reads over shared content/queue/history remain bot-wide and migration inherits V03-004 unfenced-write problem | CHANGES_REQUIRED | strong root-cause improvement; finish production read boundary + safe migration |
+| SB-V03-004 | 5 | PARTIAL | generation fencing and final fenced commit improved; LEAD-019 found side-effectful legacy migration durable writes before the final fence | CHANGES_REQUIRED | host portability is separate V07 proof; migration ownership defect remains V03 correctness |
+| SB-V03-005 | 4 | PARTIAL | RuntimeState/PersonaState split fixed primary private mutable state; authoritative persona-scoped production reads + crash-safe migration still required | CHANGES_REQUIRED | do not regress state split |
 | SB-V03-006 | 3 | BLOCKED | depends on accepted V03-004/V03-005 | BLOCKED | regenerate only after repair |
-| SB-V04-001 | 3 | PARTIAL | schema validation fixed; production default still baseline/non-adaptive unless env opt-in | CHANGES_REQUIRED | repair default posture; preserve validation |
-| SB-V04-002 | 5 | PARTIAL | contextual provider materially varies by context but truthfully reports adaptive=false | CHANGES_REQUIRED | useful component, not real V0.4 adaptive provider |
-| SB-V04-003 | 4 | PASS-LIKE source review | dependency V04-001 unresolved | BLOCKED | policy boundary looks sound; avoid churn unless upstream repair affects it |
+| SB-V04-001 | 3 | PARTIAL | production fail-closed posture implemented on worker branch but milestone still dependency-gated | CHANGES_REQUIRED | real acceptance also needs canary chain |
+| SB-V04-002 | 5 | PARTIAL | real Claude CLI adapter exists; injected tests prove interface but no real subscription call accepted yet | CHANGES_REQUIRED | `SB-V04-005` is mandatory real proof |
+| SB-V04-003 | 4 | PASS-LIKE source review | dependency unresolved | BLOCKED | deterministic authority boundary looks sound |
 
 ## Intelligence lane task results
 
 | Artifact | SP | First submission | Independent review finding / repair cycles | Current lead disposition |
 |---|---:|---|---|---|
-| SB-V05-001 | 3 | PARTIAL | Repair closed direct `mode=live`, obvious SSRF classes and extraction validity, but LEAD-017 found public mutable `register_trusted_transport` self-certification; `to_signal()` accepts verified-but-untrusted live receipts; real urllib redirect/DNS TOCTOU proof incomplete | CHANGES_REQUIRED |
-| SB-V05-002 | 4 | PARTIAL | Repair added attributable assessor + material-claim identification, but `register_operational_assessor` is publicly self-registerable; operational evidence refs accept verified fixture/untrusted captures; keyword co-occurrence can overclaim full SUPPORTS | CHANGES_REQUIRED |
-| SB-V13-001 | 4 | FAIL acceptance invariant | no snapshot/delta/gauge/rate kind; aggregate sums cumulative snapshots | CHANGES_REQUIRED |
-| SB-V14-001 | 4 | FAIL isolation/privacy invariant | bot-scoped persistence; sensitive-attribute blacklist bypassable; fork converts contradiction into unsupported positive evidence | CHANGES_REQUIRED |
-| SB-V15-001 | 4 | PARTIAL | honest lifecycle behavior, but baseline/treatment lack required normalized-observation/evidence provenance | CHANGES_REQUIRED |
-| SB-V16-001 | 4 | PARTIAL | bot-wide history/novelty plus factual binding is presence-only rather than accepted support-status validation | CHANGES_REQUIRED |
-| SB-V12-001 | 3 | PASS-LIKE source review | good no-fabricated-history/availability behavior; depends on V13 | BLOCKED |
-| SB-V17-001 | 4 | PARTIAL | no-public-effect boundary good; read-only source is caller-asserted and community memory/themes are bot-wide | CHANGES_REQUIRED |
-| SB-V20-002 | 4 | PARTIAL | good missing/no-spend math, but arbitrary numeric performance/audience inputs can drive recommendations without typed accepted evidence | CHANGES_REQUIRED |
+| SB-V05-001 | 3 | PARTIAL | multiple trust repairs closed self-registration and DNS pinning concept; LEAD-020 found actual HTTPS live path invalid because `HTTPSConnection(..., server_hostname=...)` is unsupported | CHANGES_REQUIRED |
+| SB-V05-002 | 4 | PARTIAL | now fails closed with static empty operational assessor policy; diagnostic keyword/heuristic paths no longer claim operational authority | CHANGES_REQUIRED | accepted adaptive semantic provider + working trusted live evidence still required |
+| SB-V13-001 | 4 | FAIL first acceptance invariant | repair added metric kinds, latest snapshot semantics, known-kind-on-missing, overlap-safe deltas and derivation provenance | ACCEPTED | strong repair cycle; fixture-labelled engineering evidence only |
+| SB-V14-001 | 4 | FAIL first isolation/privacy invariant | repair added bot+persona persistence, safe segment allowlist, compound sensitive-trait rejection, same-persona forks | ACCEPTED | strong repair cycle; production private memory boundary now explicit |
+| SB-V15-001 | 4 | PARTIAL | measurement provenance repaired; remaining bot-wide experiment persistence/read API can expose another persona through normal readers | CHANGES_REQUIRED | next repair: authoritative bot+persona readers/writers |
+| SB-V16-001 | 4 | PARTIAL | latest repair submitted but not yet independently source-audited to acceptance in LEAD-020 | CHANGES_REQUIRED |
+| SB-V12-001 | 3 | PASS-LIKE source review | V13 prerequisite now accepted, but operational availability inputs remain acceptance-gated | BLOCKED |
+| SB-V17-001 | 4 | PARTIAL | latest receipt/persona-scope repair submitted but not independently accepted yet | CHANGES_REQUIRED |
+| SB-V20-002 | 4 | PARTIAL | latest typed evidence/persona repair submitted at `feb30f4c...`; pending independent source audit and V15 dependency repair | CHANGES_REQUIRED |
 
-## LEAD-017 focused lessons
+## QA/control lane task results
 
-### Trust registries
+| Artifact | SP | First submission | Independent evidence | Current lead disposition |
+|---|---:|---|---|---|
+| SB-CTL-012 | 3 | PASS | source reviewed; 18 validator regressions; structural failures hard-error; V2 engineering/operational readiness separated | ACCEPTED |
+| SB-CTL-006 | 2 | PASS | workflow source reviewed; read-only token; no secrets/model/deploy; GitHub-hosted run `35555060783` succeeded | ACCEPTED |
+| V2 acceptance harness prep | n/a | PASS-LIKE | 20 harness tests / 38 total reported; non-runtime assertion layer | PREP ONLY | does not promote SB-V20-099 |
 
-A registry is not automatically a trust boundary. If arbitrary runtime code can call the registration function, the caller still controls trust.
+## LEAD-020 focused lessons
 
-For future evidence/security packets, acceptance tests should distinguish:
-- declaring a property;
-- registering oneself;
-- using a module/configuration-owned closed allowlist/capability;
-- test-only dependency injection.
+### Heartbeat evidence must be append-only and time-real
 
-The operational path must use the third model. The fourth is acceptable only when it is structurally prevented from becoming operational evidence.
+A worker snapshot saying sequence 4 is not four heartbeats if the durable history contains only sequence 0. Likewise four submission updates in seven minutes do not prove a 15-minute recurring loop. Future bootstrap acceptance must inspect `HEARTBEAT_LOG.jsonl` timestamps and reject backfilled/burst evidence.
 
-### Side-effect-free load and migration
+### Test the actual trusted transport constructor
 
-A final commit fence is not sufficient if object loading or migration performs durable writes before that fence is reached. State-loading/migration routines used inside a cycle should be pure/staged by default; persistence belongs inside the ownership-fenced commit or an explicitly fenced migration transaction.
+Security architecture can look correct while the real operational path is unusable. `SB-V05-001` now has a strong static trust model and pinning concept, but its HTTPS constructor call is invalid. At least one test must exercise the production transport-construction path rather than only overridden/stubbed helpers.
 
-### Semantic verification
+### Persona isolation must cover readers, not only records
 
-An attributable assessor is necessary but not sufficient. A weak assessor should not be promoted to an operational factual oracle simply because it has a name/version. If it cannot establish proposition/negation/value relations, it should return uncertainty/partial/unsupported rather than full support.
+Adding a `persona` field is insufficient if normal persistence/list/read APIs stay bot-wide. Every SP4+ artifact that stores private workspace state must expose an authoritative persona-scoped production boundary and mixed-persona regression tests through that boundary.
 
-### Dependency provenance
+### Independent CI meaningfully improves evidence quality
 
-A downstream artifact must not silently upgrade fixture/untrusted upstream evidence merely because the object is structurally valid or hash-verified. Operational provenance must survive every interface boundary.
+`SB-CTL-006` is the first independently verified GitHub-hosted Social Bots CI control. Worker-local suites remain useful, but hosted CI now gives a stronger baseline for branches that consume the workflow.
 
-## Independent defect themes
+## Recurring defect themes
+
+### Trust / operational provenance
+- no caller self-registration of operational trust;
+- fixture/untrusted evidence must never be silently upgraded;
+- operational semantic authority must fail closed when unavailable;
+- real network/provider paths require at least one path-level acceptance proof.
 
 ### Persona/workspace isolation
-Repeated across SP4 Intelligence/Core work:
-- V03-005 private mutable state is now physically persona-scoped, but bot-wide production readers still expose mixed append-only content/queue/history surfaces;
-- V14 audience memory bot-wide;
-- V16 novelty/history bot-wide;
-- V17 community themes bot-wide;
-- V20-002 needs validated persona scope.
-
-Action: every SP4+ packet touching memory/history/analytics must state whether data is runtime-shared, persona-private or organization-shared and include mixed-persona tests through real production APIs.
-
-### Metric semantics
-V13 preserved missing-vs-zero but missed the stronger semantic-kind contract despite it being groomed before implementation. Future analytics/experiment work must carry cumulative/delta/gauge/rate semantics through interfaces and acceptance examples.
+- storage scope;
+- read/list scope;
+- migration scope;
+- cross-persona import must be explicit, not an accidental helper parameter.
 
 ### Dependency discipline
-Workers can build useful additive scaffolding ahead of acceptance, but dependent artifact status remains blocked until prerequisites are accepted. Consume the newest canonical repair packet before each artifact.
-
-### Worker-local tests vs independent CI
-Windows Core reports 91 tests at `5318065a...`. Intelligence reports 145 at `cbd781ca...`. Independent GitHub CI/status checks remain absent. Implement `SB-CTL-006` once ownership is resolved to improve acceptance evidence.
+Workers may build additive scaffolding ahead of promotion, but downstream status stays blocked until prerequisites are accepted. `SB-V20-099` is not promoted by a harness or local tests alone.
 
 ## Metrics to continue accumulating
 
-For each SP level:
+For each SP level track:
 - attempts;
 - first-pass accepted;
 - first-pass partial/failed;
@@ -104,15 +103,16 @@ For each SP level:
 - dependency violations/early-start incidents;
 - escaped defects;
 - acceptance after repair;
-- CI vs worker-local evidence.
+- GitHub CI vs worker-local-only evidence;
+- production-path vs fixture-only acceptance evidence.
 
-Do not infer worker quality from one artifact. Current evidence supports high Claude throughput with adversarial lead review at cross-cutting trust, isolation, migration and host-boundary artifacts.
+Do not infer worker quality from one artifact. Current evidence supports high Claude throughput with adversarial lead review focused on trust, isolation, migration, host boundaries and real-operation proof.
 
 ## Current concurrency implication
 
-Keep the planned three-session ceiling:
-- Windows Core/Host implementation;
-- Intelligence repair implementation;
-- Mac QA/control only.
+Keep the current ceiling:
+- Intelligence repair implementation active;
+- Mac QA/control heartbeat validation active;
+- Windows Core/Host standby by owner/lead.
 
-Do not add another runtime coding lane until the shared Core state and Intelligence evidence contracts stabilize.
+Do not start a fourth worker. Priority Zero after valid Mac QA heartbeat bootstrap is the real V0.4 canary.
