@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "mac-qa",
   "reviewed_through_sequence": 10,
-  "reviewed_at": "2026-09-21T05:58:00Z",
-  "lead_review": "LEAD-025",
+  "reviewed_at": "2026-09-21T06:52:00Z",
+  "lead_review": "LEAD-026",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
-  "next_assignment": "Resume hourly coordination heartbeat, then independently execute/probe current Core repair 7e4345b: verify post-cycle finish-receipt takeover fencing and the remaining V03-005 structural raw-reader/persona-boundary gap without editing Core source; then resume V2 integration/CI harness work.",
+  "next_assignment": "Resume hourly coordination heartbeat. Independently execute the current Core V03-004 post-cycle takeover fencing regression and independently audit the complete V03-005 six-store raw-reader boundary, including the LEAD-026 RuntimeState.content_history() finding. If Core pushes the narrow fix, verify the newest final SHA. Do not edit Core runtime source; then resume V2 integration/CI harness work.",
   "notification_delivered": true,
-  "notes": "Mac-QA is stale: last worker heartbeat seq10 was 03:57:57Z and no independent report followed. Verify the repaired SHA, not the superseded LEAD-024 defect state. Dedicated canary lane owns SB-V04-005."
+  "notes": "Mac-QA remains stale since seq10 03:57:57Z. Dedicated canary lane owns SB-V04-005. Independent execution is still required for V03-004 acceptance."
 }
