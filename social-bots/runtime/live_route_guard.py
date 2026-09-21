@@ -59,6 +59,42 @@ def configured_mode() -> str:
     return os.environ.get("SBOTS_REASONING", "baseline").strip().lower()
 
 
+def any_live_authorization(manifest_dir=None) -> tuple[bool, str]:
+    """Is ANY live model call currently authorized at all? Returns ``(ok, reason)``.
+
+    Deliberately weaker than ``check``: it does not know an artifact, lane or run
+    scope, so it cannot say a *particular* batch is authorized. It answers the
+    one question the spawn point itself can answer — "is there a valid, unexpired
+    canonical manifest in force?" — so the real Claude CLI cannot be launched
+    while the answer is no, whatever entrypoint reached it.
+
+    The precise scope check stays in ``authorization.authorize``, which the
+    divergence batch calls before this is ever reached. This is the backstop, not
+    a replacement.
+    """
+    posture = authorization.posture_violations(injected_runner=False)
+    if posture:
+        return False, "; ".join(posture)
+    manifests = authorization.find_manifests(manifest_dir)
+    if not manifests:
+        directory = manifest_dir or authorization.MANIFEST_DIR
+        return False, (f"no canonical authorization manifest in {directory}; no live "
+                       f"model call is authorized")
+    reasons = []
+    for path in manifests:
+        try:
+            manifest, _ = authorization.load_manifest(path)
+        except authorization.AuthorizationDenied as exc:
+            reasons.append(f"{path.name}: {exc}")
+            continue
+        errs = authorization.validate_manifest(manifest)
+        if errs:
+            reasons.append(f"{path.name}: " + "; ".join(errs))
+            continue
+        return True, f"manifest {manifest['manifest_id']} is in force"
+    return False, "no valid manifest in force: " + " | ".join(reasons)
+
+
 def check(*, artifact: str, lane: str, run_scope: str,
           manifest_dir=None, replay_is_live: bool = True) -> RouteDecision:
     """Decide whether a live model route is permitted for this process.

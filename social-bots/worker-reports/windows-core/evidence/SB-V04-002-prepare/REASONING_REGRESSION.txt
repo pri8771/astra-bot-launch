@@ -1,0 +1,55 @@
+test_api_key_present_fails_closed_on_propose (tests.test_reasoning_cli.BillingGuardTest.test_api_key_present_fails_closed_on_propose) ... ok
+test_api_key_present_makes_provider_unavailable (tests.test_reasoning_cli.BillingGuardTest.test_api_key_present_makes_provider_unavailable) ... ok
+test_default_runner_denies_effect_tools_and_strips_api_key (tests.test_reasoning_cli.CommandConstructionTest.test_default_runner_denies_effect_tools_and_strips_api_key) ... ok
+test_cli_unavailable_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_cli_unavailable_fails_closed) ... ok
+test_empty_output_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_empty_output_fails_closed) ... ok
+test_error_wrapper_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_error_wrapper_fails_closed) ... ok
+test_invalid_json_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_invalid_json_fails_closed) ... ok
+test_nonzero_exit_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_nonzero_exit_fails_closed) ... ok
+test_schema_invalid_alternative_blocks_engine (tests.test_reasoning_cli.FailClosedPathsTest.test_schema_invalid_alternative_blocks_engine) ... ok
+test_timeout_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_timeout_fails_closed) ... ok
+test_unknown_action_fails_closed (tests.test_reasoning_cli.FailClosedPathsTest.test_unknown_action_fails_closed) ... ok
+test_bare_envelope_without_wrapper_also_parses (tests.test_reasoning_cli.SuccessMappingTest.test_bare_envelope_without_wrapper_also_parses) ... ok
+test_materially_different_context_yields_different_proposals (tests.test_reasoning_cli.SuccessMappingTest.test_materially_different_context_yields_different_proposals) ... ok
+test_no_action_can_win (tests.test_reasoning_cli.SuccessMappingTest.test_no_action_can_win) ... ok
+test_research_more_can_win (tests.test_reasoning_cli.SuccessMappingTest.test_research_more_can_win) ... ok
+test_valid_cli_proposal_executes_via_engine (tests.test_reasoning_cli.SuccessMappingTest.test_valid_cli_proposal_executes_via_engine) ... ok
+test_adaptive_model_satisfies_the_contract (tests.test_reasoning_contract.AdaptiveRequiredTest.test_adaptive_model_satisfies_the_contract) ... ok
+test_baseline_refused_when_adaptive_required (tests.test_reasoning_contract.AdaptiveRequiredTest.test_baseline_refused_when_adaptive_required) ... ok
+test_close_experiment_in_vocab_but_has_no_executor (tests.test_reasoning_contract.AdaptiveRequiredTest.test_close_experiment_in_vocab_but_has_no_executor) ... ok
+test_engine_fails_closed_when_adaptive_required_but_only_baseline (tests.test_reasoning_contract.AdaptiveRequiredTest.test_engine_fails_closed_when_adaptive_required_but_only_baseline) ... ok
+test_require_adaptive_false_allows_deterministic_diagnostic (tests.test_reasoning_contract.AdaptiveRequiredTest.test_require_adaptive_false_allows_deterministic_diagnostic) ... ok
+test_require_adaptive_param_forces_failclosed_without_env (tests.test_reasoning_contract.AdaptiveRequiredTest.test_require_adaptive_param_forces_failclosed_without_env) ... ok
+test_malformed_model_output_blocks_engine (tests.test_reasoning_contract.MalformedModelFailsClosedTest.test_malformed_model_output_blocks_engine) ... ok
+test_no_swarmai_dependency_in_module (tests.test_reasoning_contract.MalformedModelFailsClosedTest.test_no_swarmai_dependency_in_module) ... ok
+test_authority_smuggling_payload_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_authority_smuggling_payload_rejected) ... ok
+test_create_candidate_requires_signal (tests.test_reasoning_contract.ProposalValidationTest.test_create_candidate_requires_signal) ... ok
+test_empty_alternatives_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_empty_alternatives_rejected) ... ok
+test_out_of_bounds_numeric_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_out_of_bounds_numeric_rejected) ... ok
+test_recommended_action_must_be_among_alternatives (tests.test_reasoning_contract.ProposalValidationTest.test_recommended_action_must_be_among_alternatives) ... ok
+test_unknown_payload_key_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_unknown_payload_key_rejected) ... ok
+test_unsupported_action_rejected (tests.test_reasoning_contract.ProposalValidationTest.test_unsupported_action_rejected) ... ok
+test_valid_proposal_passes (tests.test_reasoning_contract.ProposalValidationTest.test_valid_proposal_passes) ... ok
+test_load_receipt_roundtrip_and_kind_filter (tests.test_reasoning_receipt.DiskLoadTest.test_load_receipt_roundtrip_and_kind_filter) ... ok
+test_missing_dir_returns_empty (tests.test_reasoning_receipt.DiskLoadTest.test_missing_dir_returns_empty) ... ok
+test_identical_proposals_not_material (tests.test_reasoning_receipt.DivergenceHelperTest.test_identical_proposals_not_material) ... ok
+test_recommended_and_ranking_divergence_is_material (tests.test_reasoning_receipt.DivergenceHelperTest.test_recommended_and_ranking_divergence_is_material) ... ok
+test_confounded_change_detected (tests.test_reasoning_receipt.IsolationHelperTest.test_confounded_change_detected) ... ok
+test_single_variable_evidence_only (tests.test_reasoning_receipt.IsolationHelperTest.test_single_variable_evidence_only) ... ok
+test_single_variable_persona_only (tests.test_reasoning_receipt.IsolationHelperTest.test_single_variable_persona_only) ... ok
+test_adaptive_false_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_adaptive_false_rejected) ... ok
+test_authority_smuggling_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_authority_smuggling_rejected) ... ok
+test_fabricated_evidence_ref_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_fabricated_evidence_ref_rejected) ... ok
+test_out_of_range_estimate_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_out_of_range_estimate_rejected) ... ok
+test_proposal_from_invalid_receipt_raises (tests.test_reasoning_receipt.ReceiptValidationTest.test_proposal_from_invalid_receipt_raises) ... ok
+test_recommended_not_among_alts_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_recommended_not_among_alts_rejected) ... ok
+test_reconstructed_proposal_passes_engine_schema (tests.test_reasoning_receipt.ReceiptValidationTest.test_reconstructed_proposal_passes_engine_schema) ... ok
+test_tampered_context_digest_rejected (tests.test_reasoning_receipt.ReceiptValidationTest.test_tampered_context_digest_rejected) ... ok
+test_valid_receipt_passes (tests.test_reasoning_receipt.ReceiptValidationTest.test_valid_receipt_passes) ... ok
+test_replay_refuses_to_index_invalid_receipt (tests.test_reasoning_receipt.ReplayCallableTest.test_replay_refuses_to_index_invalid_receipt) ... ok
+test_replay_returns_proposal_on_match_and_none_otherwise (tests.test_reasoning_receipt.ReplayCallableTest.test_replay_returns_proposal_on_match_and_none_otherwise) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 0.042s
+
+OK

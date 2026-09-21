@@ -170,6 +170,79 @@ class WorkerOnceRefusesLiveRouteTest(unittest.TestCase):
         self.assertEqual(invocation_mod.audit(self.home)["receipts_without_a_route_decision"], 0)
 
 
+class SpawnPointGuardTest(unittest.TestCase):
+    """The refusal must live at the spawn point, not only at each entrypoint.
+
+    ``reasoning.resolve_provider`` builds the CLI provider from an environment
+    variable, so guarding entrypoints one by one leaves every other caller open.
+    These protect the backstop inside the provider itself.
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.manifests = self.tmp / "authorizations"
+        self.manifests.mkdir()
+
+    def test_no_manifest_means_no_live_authorization(self):
+        """The weak, scope-free question the spawn point can actually answer."""
+        ok, reason = live_route_guard.any_live_authorization(self.manifests)
+        self.assertFalse(ok)
+        self.assertIn("no canonical authorization manifest", reason)
+
+    def test_a_valid_manifest_is_in_force(self):
+        """A structurally valid, unexpired manifest answers yes."""
+        (self.manifests / "auth.json").write_text(json.dumps(valid_manifest()),
+                                                  encoding="utf-8")
+        with EnvGuard(ANTHROPIC_API_KEY=None):
+            ok, reason = live_route_guard.any_live_authorization(self.manifests)
+        self.assertTrue(ok)
+        self.assertIn("AUTH-FIXTURE-0001", reason)
+
+    def test_an_api_key_blocks_regardless_of_manifests(self):
+        """The paid-API route is never in force, whatever a manifest says."""
+        (self.manifests / "auth.json").write_text(json.dumps(valid_manifest()),
+                                                  encoding="utf-8")
+        with EnvGuard(ANTHROPIC_API_KEY="fixture-value-never-used"):
+            ok, reason = live_route_guard.any_live_authorization(self.manifests)
+        self.assertFalse(ok)
+        self.assertIn("ANTHROPIC_API_KEY", reason)
+
+    def test_the_real_cli_provider_refuses_without_authorization(self):
+        """A provider that would launch the real CLI must be unavailable now."""
+        from runtime.reasoning_cli import ClaudeCodeReasoningProvider
+        from runtime.reasoning import ReasoningContext
+        provider = ClaudeCodeReasoningProvider()          # no injected runner
+        with EnvGuard(ANTHROPIC_API_KEY=None):
+            self.assertFalse(provider.available())
+            self.assertIn("not authorized", provider.reason)
+            ctx = ReasoningContext(persona={"id": "social-a"}, objective="o",
+                                   top_signal={"id": "sig-1", "tags": []},
+                                   pending_count=0, is_duplicate=False, draft={})
+            self.assertIsNone(provider.propose(ctx))
+        self.assertIn("not authorized", provider.reason)
+
+    def test_an_injected_runner_is_exempt_because_it_spawns_nothing(self):
+        """The test seam must keep working; it launches no subprocess."""
+        from runtime.reasoning_cli import CLIResult, ClaudeCodeReasoningProvider
+        calls = []
+
+        def runner(prompt, *, timeout_s, model):
+            calls.append(prompt)
+            return CLIResult(returncode=0, stdout="{}", stderr="")
+
+        provider = ClaudeCodeReasoningProvider(runner=runner)
+        with EnvGuard(ANTHROPIC_API_KEY=None):
+            self.assertTrue(provider.available())
+
+    def test_resolve_provider_cannot_produce_a_usable_live_route(self):
+        """SBOTS_REASONING=claude-cli resolves, but the provider refuses to run."""
+        from runtime import reasoning
+        with EnvGuard(SBOTS_REASONING="claude-cli", ANTHROPIC_API_KEY=None):
+            provider = reasoning.resolve_provider(require_adaptive=True)
+        self.assertTrue(getattr(provider, "adaptive", False))
+        self.assertFalse(provider.available())
+
+
 # --------------------------------------------------------------------------- #
 # F3 — an executed context must be the prepared one.
 # --------------------------------------------------------------------------- #

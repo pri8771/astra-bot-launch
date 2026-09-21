@@ -12,6 +12,15 @@ Hard boundaries (enforced here, not just documented):
   every tool disallowed, and permission prompts denied, so it cannot publish,
   message, spend, mutate credentials, run commands, fetch URLs or touch any social
   platform. It only emits text.
+* **Authorization guard.** When this provider would launch the REAL CLI (that is,
+  no runner was injected), it refuses unless a valid canonical authorization
+  manifest is currently in force — ``live_route_guard.any_live_authorization``.
+  This sits at the spawn point on purpose: the precise scope check lives in
+  ``authorization.authorize``, but that only protects the code paths that call
+  it, and ``reasoning.resolve_provider`` will happily construct this provider
+  from ``SBOTS_REASONING=claude-cli`` on any entrypoint. Guarding here means no
+  entrypoint can spawn a billable call while nothing authorizes one. An injected
+  runner spawns nothing and is therefore exempt.
 * **Billing guard.** If ``ANTHROPIC_API_KEY`` is present the provider is UNAVAILABLE
   and ``propose`` fails closed — that env var can route Claude Code to paid API
   billing, and this artifact must use the existing subscription only. The value is
@@ -86,6 +95,13 @@ def _default_cli_runner(prompt: str, *, timeout_s: int, model: str | None) -> CL
         env={k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"},
     )
     return CLIResult(returncode=proc.returncode, stdout=proc.stdout, stderr=proc.stderr)
+
+
+# The genuine subprocess launcher, captured at import. The authorization guard
+# keys on THIS, not on ``_default_cli_runner``, because that module global is a
+# documented test seam: a suite that points it at a canned result spawns nothing
+# and must not be treated as a live call. Only the real launcher is.
+_REAL_CLI_RUNNER = _default_cli_runner
 
 
 def _bounded_context(ctx: ReasoningContext) -> dict:
@@ -282,21 +298,42 @@ class ClaudeCodeReasoningProvider:
     def reason(self) -> str | None:
         return self._last_reason
 
+    def _spawns_for_real(self) -> bool:
+        """True when this instance would launch the actual CLI subprocess."""
+        return self._runner is _REAL_CLI_RUNNER
+
+    def _authorization_block(self) -> str | None:
+        """The reason a real spawn is not authorized, or None if it is."""
+        if not self._spawns_for_real():
+            return None
+        from .live_route_guard import any_live_authorization
+        ok, reason = any_live_authorization()
+        return None if ok else f"live model call not authorized: {reason}"
+
     def available(self) -> bool:
         # Billing guard: never use the API-key route for this artifact.
         if os.environ.get("ANTHROPIC_API_KEY"):
             self._last_reason = "ANTHROPIC_API_KEY present; subscription-route " \
                                 "reasoning disabled to avoid paid API billing"
             return False
-        if self._runner is _default_cli_runner and shutil.which("claude") is None:
+        blocked = self._authorization_block()
+        if blocked:
+            self._last_reason = blocked
+            return False
+        if self._runner is _default_cli_runner and shutil.which("claude") is None \
+                and self._spawns_for_real():
             self._last_reason = "claude CLI not found on PATH"
             return False
         return True
 
     def propose(self, ctx: ReasoningContext) -> ReasoningProposal | None:
-        # Re-check the billing guard at call time (env can change between calls).
+        # Re-check both guards at call time (env and manifests can change).
         if os.environ.get("ANTHROPIC_API_KEY"):
             self._last_reason = "ANTHROPIC_API_KEY present; failing closed"
+            return None
+        blocked = self._authorization_block()
+        if blocked:
+            self._last_reason = blocked
             return None
         prompt = build_prompt(ctx)
         try:
