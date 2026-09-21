@@ -145,7 +145,12 @@ def read_file_at(repo_root: str | Path, ref: str, path: str) -> str | None:
 
 
 def _from_directions_file(lane: str, text: str) -> dict:
-    data = json.loads(text)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise DirectionError(f"directions file for lane {lane!r} is not valid JSON: {exc}") from exc
+    if not isinstance(data, dict):
+        raise DirectionError(f"directions file for lane {lane!r} is not a JSON object")
     if data.get("lane") not in (None, lane):
         raise DirectionError(
             f"directions file declares lane {data.get('lane')!r}, not {lane!r}")
@@ -161,17 +166,32 @@ def _from_directions_file(lane: str, text: str) -> dict:
 
 
 def _from_state(lane: str, text: str) -> dict:
-    state = json.loads(text)
+    try:
+        state = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise DirectionError(f"STATE.json is not valid JSON: {exc}") from exc
+    if not isinstance(state, dict):
+        raise DirectionError("STATE.json is not a JSON object")
     lanes = state.get("worker_lanes") or {}
     entry = lanes.get(lane)
     if not isinstance(entry, dict):
         # Lane keys in STATE.json are logical ("core"), while report directories
-        # are host-flavoured ("windows-core"); match on the branch name instead of
-        # forcing the two naming schemes to agree.
-        for candidate in lanes.values():
-            if isinstance(candidate, dict) and lane in str(candidate.get("branch", "")):
-                entry = candidate
-                break
+        # are host-flavoured ("windows-core"); fall back to matching on the branch
+        # name instead of forcing the two naming schemes to agree.
+        #
+        # The match must be UNIQUE. Taking the first of several candidates would
+        # silently bind a session to the wrong lane — and if the lane the lead
+        # actually froze is the one not picked, the halt is missed and the worker
+        # claims work it was told to stand down from. Ambiguity fails closed.
+        matches = [(key, value) for key, value in lanes.items()
+                   if isinstance(value, dict) and lane in str(value.get("branch", ""))]
+        if len(matches) > 1:
+            raise DirectionError(
+                f"lane {lane!r} matches {len(matches)} STATE.json worker_lanes "
+                f"entries by branch ({sorted(k for k, _ in matches)}); refusing to "
+                f"guess which direction applies")
+        if matches:
+            entry = matches[0][1]
     if not isinstance(entry, dict):
         raise DirectionError(f"STATE.json has no worker_lanes entry matching lane {lane!r}")
     activity = str(entry.get("activity") or "")

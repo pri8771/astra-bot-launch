@@ -1,18 +1,18 @@
 {
-  "total_invocations": 6,
-  "complete": 6,
+  "total_invocations": 7,
+  "complete": 7,
   "incomplete": 0,
-  "distinct_sessions": 6,
+  "distinct_sessions": 7,
   "claims": {
     "claimed": 4,
     "no_overlap": 1,
     "none_available": 0,
     "halted_by_direction": 0,
-    "error": 1
+    "error": 2
   },
   "live_model_calls": 0,
+  "live_routes_refused": 1,
+  "receipts_without_a_route_decision": 0,
   "note": "one bounded session per invocation; recurring liveness is the sequence of independently scheduled invocations, not this count on its own"
 }
-heartbeat records: 5
-distinct session_ids: 5
-cadence modes: {'SESSION_ONCE'}
+heartbeat records: 5 | distinct session_ids: 5 | cadence: {'SESSION_ONCE'}

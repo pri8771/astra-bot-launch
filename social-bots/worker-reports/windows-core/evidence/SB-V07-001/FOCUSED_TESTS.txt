@@ -14,8 +14,8 @@ test_required_fields_are_present (tests.test_v07_session_heartbeat.DurableWriteT
 The protocol's minimum heartbeat fields must all be recorded. ... ok
 test_runtime_identity_carries_no_secrets (tests.test_v07_session_heartbeat.DurableWriteTest.test_runtime_identity_carries_no_secrets)
 Host identification is coarse: no user, path, address or env value. ... ok
-test_started_at_cannot_be_supplied_by_a_caller_argument (tests.test_v07_session_heartbeat.DurableWriteTest.test_started_at_cannot_be_supplied_by_a_caller_argument)
-No backfill: a session's timestamp comes from the real clock at emit time. ... ok
+test_started_at_is_stamped_from_the_real_clock_at_emit (tests.test_v07_session_heartbeat.DurableWriteTest.test_started_at_is_stamped_from_the_real_clock_at_emit)
+No backfill: a supplied timestamp is overwritten, not honoured. ... ok
 test_comment_body_states_the_session_facts (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_comment_body_states_the_session_facts)
 The visibility comment must carry the same facts as the durable record. ... ok
 test_durable_write_succeeds_with_no_github_transport (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_durable_write_succeeds_with_no_github_transport)
@@ -50,10 +50,12 @@ test_missing_canonical_branch_raises (tests.test_v07_worker_once.DirectionTest.t
 With no canonical ref at all, a session cannot pretend it read direction. ... ok
 test_a_crashed_invocation_is_visible_in_the_audit (tests.test_v07_worker_once.InvocationReceiptTest.test_a_crashed_invocation_is_visible_in_the_audit)
 An abandoned open receipt is reported, not silently reclaimed. ... ok
+test_a_receipt_without_a_route_decision_is_counted_as_such (tests.test_v07_worker_once.InvocationReceiptTest.test_a_receipt_without_a_route_decision_is_counted_as_such)
+``live_model_call`` alone means nothing; the route decision is the evidence. ... ok
+test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one (tests.test_v07_worker_once.InvocationReceiptTest.test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one)
+The audit must distinguish 'no live call' from 'never checked'. ... ok
 test_index_records_both_phases (tests.test_v07_worker_once.InvocationReceiptTest.test_index_records_both_phases)
 The index carries an open and a close row so crashes are countable. ... ok
-test_no_live_model_call_is_recorded_on_every_receipt (tests.test_v07_worker_once.InvocationReceiptTest.test_no_live_model_call_is_recorded_on_every_receipt)
-A reader can confirm from the receipt alone that nothing was spent. ... ok
 test_receipt_opens_incomplete_and_closes_terminal (tests.test_v07_worker_once.InvocationReceiptTest.test_receipt_opens_incomplete_and_closes_terminal)
 A crash mid-unit leaves 'incomplete', never a missing or success record. ... ok
 test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt)
@@ -67,7 +69,7 @@ A fully contended invocation is benign but still fully evidenced. ... ok
 test_repeated_invocations_produce_a_sequence_of_sessions (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_repeated_invocations_produce_a_sequence_of_sessions)
 Recurring liveness is repeated bounded invocations, each with its own pair. ... ok
 test_reusing_a_session_id_is_refused (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_reusing_a_session_id_is_refused)
-A reused session id would forge a second heartbeat for one session. ... DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in /tmp/tmp1ivn2vni/reports/worker-reports/windows-core/HEARTBEAT_LOG.jsonl; ONE SESSION = ONE HEARTBEAT
+A reused session id would forge a second heartbeat for one session. ... DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
 ok
 test_the_heartbeat_records_the_canonical_sha_it_consumed (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_the_heartbeat_records_the_canonical_sha_it_consumed)
 Direction is consumed before the heartbeat so the attestation is real. ... ok
@@ -93,6 +95,6 @@ test_multiple_instances_policy_is_ignore_new (tests.test_scheduling_assets.Windo
 test_root_uses_task_scheduler_namespace (tests.test_scheduling_assets.WindowsTaskXmlTest.test_root_uses_task_scheduler_namespace) ... ok
 
 ----------------------------------------------------------------------
-Ran 56 tests in 1.948s
+Ran 57 tests in 2.084s
 
 OK

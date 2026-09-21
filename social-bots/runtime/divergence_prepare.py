@@ -52,6 +52,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from dataclasses import dataclass, asdict, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -114,6 +115,22 @@ def _sha256_text(text: str) -> str:
 
 def _sha256_json(obj) -> str:
     return _sha256_text(json.dumps(obj, sort_keys=True, separators=(",", ":")))
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Write via temp + fsync + replace.
+
+    A prepared matrix is immutable and ``write_prepared`` refuses to overwrite,
+    so a half-written file from a crash would be unrecoverable without deleting
+    evidence. Either the whole artifact exists or none of it does.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as fh:
+        fh.write(text)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
 
 
 # --------------------------------------------------------------------------- #
@@ -434,13 +451,22 @@ def _proposal_for_case(matrix: PreparedMatrix, case_id: str, receipt: dict
     return proposal, []
 
 
-def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict]) -> dict:
+def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict],
+                      budget: "authorization.CallBudget | None" = None) -> dict:
     """Validate per-case receipts and report material divergence per comparison.
 
     Truthful by construction: a missing, invalid or non-binding receipt is
     recorded as such and the comparison is reported ``material = False`` with a
     reason. Nothing is rerun, and a failed comparison is never retried into a
     pass — that is the no-retry rule applied at the reporting layer.
+
+    ``acceptance_evidence_eligible`` additionally requires ``budget``: a ledger
+    showing that each case's context digest was actually reserved and returned a
+    proposal under a named manifest. ``receipt_kind`` and ``provenance_label`` are
+    self-declared strings in caller-supplied files, so on their own they prove
+    nothing — anyone can write ``"sanitized-real-canary"`` into a JSON file.
+    Without a budget the report says eligibility is unproven and why, rather than
+    taking those labels at face value.
     """
     errors: list[str] = []
     proposals: dict[str, ReasoningProposal] = {}
@@ -484,6 +510,27 @@ def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict]) -> dict
     kinds = {r.get("receipt_kind") for r in receipts.values() if isinstance(r, dict)}
     all_real = bool(receipts) and kinds == {"sanitized-real-canary"}
     all_material = bool(comparisons) and all(c["material"] for c in comparisons)
+
+    # Bind every case to a consumed call slot that actually returned a proposal.
+    binding: dict = {"checked": budget is not None, "unbound_cases": [],
+                     "manifest_ids": []}
+    if budget is None:
+        binding["reason"] = ("no call-budget ledger supplied; receipt labels alone "
+                             "cannot establish that any live call was made")
+        all_bound = False
+    else:
+        slots = budget.slots()
+        by_digest = {sl.get("context_digest"): sl for sl in slots
+                     if sl.get("outcome") == "proposal_received"}
+        unbound = [c.case_id for c in matrix.cases if c.context_sha256 not in by_digest]
+        binding["unbound_cases"] = unbound
+        binding["manifest_ids"] = sorted({sl.get("manifest_id") for sl in slots
+                                          if sl.get("manifest_id")})
+        binding["slots_consumed"] = budget.consumed()
+        all_bound = not unbound
+        if unbound:
+            binding["reason"] = (f"no recorded call slot returned a proposal for "
+                                 f"cases {unbound}")
     return {
         "run_scope": matrix.run_scope,
         "generated_at": _now_iso(),
@@ -493,10 +540,12 @@ def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict]) -> dict
         "all_comparisons_material": all_material,
         "receipt_kinds": sorted(k for k in kinds if k),
         "all_receipts_real_adaptive": all_real,
+        "call_slot_binding": binding,
         # The only combination that could back an empirical acceptance claim, and
         # even then acceptance is the lead's to grant, never this report's.
         "acceptance_evidence_eligible": bool(
-            all_material and all_real and not errors and matrix.acceptance_eligible),
+            all_material and all_real and all_bound and not errors
+            and matrix.acceptance_eligible),
         "acceptance_authority": "ChatGPT lead — this report never self-accepts",
     }
 
@@ -514,7 +563,7 @@ def write_prepared(matrix: PreparedMatrix, path: str | Path, *,
     payload = matrix.to_dict(include_prompt=include_prompt)
     payload["isolation"] = isolation_report(matrix)
     text = json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
-    path.write_text(text, encoding="utf-8")
+    _atomic_write_text(path, text)
     return path
 
 
@@ -578,10 +627,17 @@ def verify_written(path: str | Path, prompts_dir: str | Path | None = None) -> d
     provider_digest = _sha256_json(matrix.provider_config)
     if provider_digest != matrix.provider_config_sha256:
         digest_errors.append("provider_config_sha256 does not match provider_config")
+    prompt_verified = all(bool(c.prompt) for c in matrix.cases)
+    if not prompt_verified:
+        # The prompt file is the actual payload and the layer that closes the
+        # summary hole. A verdict that ignored it would pass a matrix whose
+        # prompt files had been edited to smuggle different evidence.
+        digest_errors.append(
+            "prompt bytes were not verified: pass the prompts directory so each "
+            "case's exact prompt can be re-hashed from disk")
     # A batch must use one provider configuration; a per-case override would make
     # any observed divergence attributable to configuration, not to the variable.
     report = isolation_report(matrix)
-    prompt_verified = all(bool(c.prompt) for c in matrix.cases)
     return {
         "path": str(path),
         "digests_verified": not digest_errors,
@@ -601,12 +657,12 @@ def write_prompts(matrix: PreparedMatrix, directory: str | Path) -> list[Path]:
         p = directory / f"{case.case_id}.prompt.txt"
         if p.exists():
             raise MatrixError(f"refusing to overwrite existing prompt at {p}")
-        p.write_text(case.prompt, encoding="utf-8")
+        _atomic_write_text(p, case.prompt)
         written.append(p)
     digests = directory / "PROMPT_DIGESTS.json"
     if digests.exists():
         raise MatrixError(f"refusing to overwrite existing digests at {digests}")
-    digests.write_text(json.dumps({
+    _atomic_write_text(digests, json.dumps({
         c.case_id: {
             "prompt_sha256": c.prompt_sha256,
             "prompt_context_sha256": c.prompt_context_sha256,
@@ -614,7 +670,7 @@ def write_prompts(matrix: PreparedMatrix, directory: str | Path) -> list[Path]:
             "evidence_bytes_sha256": c.evidence_bytes_sha256,
             "evidence_receipt_sha256": c.evidence_receipt_sha256,
         } for c in matrix.cases
-    }, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    }, indent=2, sort_keys=True) + "\n")
     written.append(digests)
     return written
 
@@ -639,14 +695,33 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
     authorization gate cannot be skipped. Tests exercise this directly with an
     injected provider, which is engineering-only evidence.
     """
-    slot = budget.reserve(manifest_id=grant.manifest_id,
-                          manifest_digest=grant.manifest_digest,
-                          lane=grant.lane, artifact=grant.artifact,
-                          context_digest=case.context_sha256)
+    # BIND FIRST. The context is rebuilt from caller-supplied personas/snapshots,
+    # so without this check the batch could invoke something other than what was
+    # prepared, hashed and isolation-checked — and the budget slot would still
+    # record the prepared digest, making the ledger assert a call that never
+    # happened. The whole isolation proof only means something if the thing
+    # invoked is the thing prepared. Checked before reserving, so a mismatch
+    # costs no authorization.
     ctx = ReasoningContext(
         persona=persona, objective=objective, top_signal=snapshot_signal,
         pending_count=pending_count, is_duplicate=is_duplicate, draft=draft,
         state_summary={"hypotheses": prior_hypotheses})
+    actual_digest = context_digest(bounded_context(ctx))
+    if actual_digest != case.context_sha256:
+        raise MatrixError(
+            f"{case.case_id}: refusing to invoke a context that does not match the "
+            f"prepared case (prepared {case.context_sha256}, actual {actual_digest})")
+    actual_prompt_digest = _sha256_json(reasoning_cli.prompt_context(ctx))
+    if actual_prompt_digest != case.prompt_context_sha256:
+        raise MatrixError(
+            f"{case.case_id}: refusing to invoke a prompt payload that does not match "
+            f"the prepared case (prepared {case.prompt_context_sha256}, actual "
+            f"{actual_prompt_digest})")
+
+    slot = budget.reserve(manifest_id=grant.manifest_id,
+                          manifest_digest=grant.manifest_digest,
+                          lane=grant.lane, artifact=grant.artifact,
+                          context_digest=case.context_sha256)
     try:
         proposal = provider.propose(ctx)
     except Exception as exc:                          # noqa: BLE001 - outcome, not retry

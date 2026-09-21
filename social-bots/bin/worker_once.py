@@ -11,10 +11,21 @@ A single invocation does exactly this, then exits:
     6. write an invocation receipt;
     7. exit with a code the scheduler can act on.
 
-It is never a daemon, never loops, never keeps a model conversation alive and
-never makes a live model call: the reasoning posture is unchanged from
-``bin/run_worker.py``, so with no adaptive provider configured the cycle fails
-closed to BLOCKED_REASONING_UNAVAILABLE rather than spending anything.
+It is never a daemon, never loops and never keeps a model conversation alive.
+
+It also refuses to make a live model call. That refusal is enforced, not assumed:
+before any work, ``runtime.live_route_guard`` checks the configured reasoning
+mode, and a mode that would resolve to a real provider (``claude-cli``, or
+``model`` with a live callable) is rejected with exit code 6 unless
+``authorization.authorize`` produced a grant. With no canonical lead manifest —
+the current state — that check denies, so ``SBOTS_REASONING=claude-cli`` cannot
+turn a scheduled worker into an unbudgeted model call. The decision is recorded
+on the invocation receipt as ``reasoning_route``, which is what makes the
+receipt's ``live_model_call`` field mean something.
+
+Beyond that the reasoning posture is unchanged from ``bin/run_worker.py``: with
+no authorized adaptive provider the cycle fails closed to
+BLOCKED_REASONING_UNAVAILABLE rather than spending anything.
 
 Ordering matters. Direction is consumed BEFORE the heartbeat so the heartbeat
 can truthfully record which canonical SHA this session read — that is exactly
@@ -31,8 +42,9 @@ Exit codes (the scheduler contract):
     0  a bounded unit completed (any decision, including NO_ACTION or a block)
     3  no-overlap: every candidate task is held by a live worker. BENIGN.
     5  lead direction halted this lane. BENIGN.
+    6  a live model route was configured but is not authorized. REFUSED.
     1  unexpected failure (an invocation receipt records it)
-    2  bad usage
+    2  bad usage (including an empty --bots list)
 """
 from __future__ import annotations
 
@@ -45,7 +57,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import direction as direction_mod  # noqa: E402
 from runtime import invocation as invocation_mod  # noqa: E402
-from runtime import leasing, worker  # noqa: E402
+from runtime import leasing, live_route_guard, worker  # noqa: E402
 from runtime import session_heartbeat as sh  # noqa: E402
 
 EXIT_OK = 0
@@ -53,6 +65,7 @@ EXIT_FAILURE = 1
 EXIT_USAGE = 2
 EXIT_NO_OVERLAP = 3
 EXIT_HALTED = 5
+EXIT_LIVE_ROUTE_REFUSED = 6
 
 DEFAULT_BOTS = ("social-a", "social-b", "social-c")
 
@@ -62,7 +75,8 @@ def _allow_deterministic(flag: bool) -> bool:
         .strip().lower() in {"1", "true", "yes", "on"}
 
 
-def claim_one(bots: list[str], *, require_adaptive: bool | None) -> tuple[dict | None, list]:
+def claim_one(bots: list[str], *, require_adaptive: bool | None,
+              tried: list | None = None) -> tuple[dict | None, list]:
     """Run the FIRST claimable bot's bounded unit. At most one unit ever runs.
 
     Claiming is not a separate probe-then-acquire step: each candidate's unit is
@@ -70,7 +84,10 @@ def claim_one(bots: list[str], *, require_adaptive: bool | None) -> tuple[dict |
     That removes the probe/acquire race entirely — there is no window in which a
     task looks free but is taken before the real acquire.
     """
-    tried: list[dict] = []
+    # The caller may pass the list in so the partial record survives an
+    # exception: a unit that took a lease and then failed must not be reported
+    # as though no candidate was ever attempted.
+    tried = tried if tried is not None else []
     for bot in bots:
         task_id = worker.runtime_task_id(bot)
         try:
@@ -104,9 +121,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--home", default=None, help="runtime data root (else SBOTS_HOME)")
     parser.add_argument("--report-root", default=None,
                         help="override the social-bots root for worker-reports")
+    parser.add_argument("--manifest-dir", default=None,
+                        help="override the canonical authorization manifest dir")
     args = parser.parse_args(argv)
 
     bots = [b.strip() for b in args.bots.split(",") if b.strip()]
+    if not bots:
+        # Exit 3 means "every candidate is held by a live worker". Having no
+        # candidates at all is a misconfiguration, and reporting it as benign
+        # no-overlap would hide a scheduler installed with an empty --bots.
+        print("USAGE: --bots resolved to no candidate runtimes", file=sys.stderr)
+        return EXIT_USAGE
     session_id = args.session_id or sh.new_session_id()
     repo_root = Path(args.repo_root) if args.repo_root else \
         Path(__file__).resolve().parent.parent.parent
@@ -114,7 +139,23 @@ def main(argv: list[str] | None = None) -> int:
     inv = invocation_mod.start(session_id=session_id, lane=args.lane,
                                branch=args.branch, home=args.home)
 
-    # (1) Direction first, so the heartbeat can attest the SHA this session read.
+    # (0) Refuse a live model route before anything else happens. This runs
+    # before direction, before the heartbeat and before any provider exists.
+    route = live_route_guard.check(
+        artifact="SB-V07-001", lane=args.lane,
+        run_scope=f"worker-once:{args.lane}", manifest_dir=args.manifest_dir)
+    inv.update(reasoning_route=route.to_dict(),
+               live_model_call=route.live_route_requested and route.permitted)
+    if not route.permitted:
+        inv.update(claim_outcome=invocation_mod.CLAIM_ERROR,
+                   work_outcome="live_route_refused")
+        inv.close(exit_code=EXIT_LIVE_ROUTE_REFUSED, error=route.reason)
+        print(f"LIVE ROUTE REFUSED: {route.reason}", file=sys.stderr)
+        return EXIT_LIVE_ROUTE_REFUSED
+
+    # (1) Direction next, so the heartbeat can attest the SHA this session read.
+    # Any unexpected failure here is caught too: the documented contract is that
+    # exit 1 always leaves a receipt recording what happened.
     try:
         lead = direction_mod.consume(args.lane, repo_root, fetch=not args.skip_fetch)
     except direction_mod.DirectionError as exc:
@@ -122,6 +163,12 @@ def main(argv: list[str] | None = None) -> int:
                    work_outcome="direction_unavailable")
         inv.close(exit_code=EXIT_FAILURE, error=f"DirectionError: {exc}")
         print(f"DIRECTION ERROR: {exc}", file=sys.stderr)
+        return EXIT_FAILURE
+    except Exception as exc:                       # noqa: BLE001 - always leave a receipt
+        inv.update(claim_outcome=invocation_mod.CLAIM_ERROR,
+                   work_outcome="direction_failed")
+        inv.close(exit_code=EXIT_FAILURE, error=f"{type(exc).__name__}: {exc}"[:300])
+        print(f"DIRECTION FAILURE: {type(exc).__name__}: {exc}", file=sys.stderr)
         return EXIT_FAILURE
 
     inv.update(direction_id=lead.direction_id, direction_source=lead.source,
@@ -136,15 +183,15 @@ def main(argv: list[str] | None = None) -> int:
         notes=(f"invocation={inv.receipt.invocation_id} scheduler="
                f"{inv.receipt.scheduler} direction_source={lead.source} "
                f"fetch_ok={lead.fetch_ok}"))
-    if args.post_issue:
-        posted, reason = sh.post_issue_comment(heartbeat.to_record())
-        heartbeat.issue_comment_posted = posted
-        heartbeat.issue_comment_skipped_reason = reason
-    else:
-        heartbeat.issue_comment_skipped_reason = "not requested"
+    heartbeat.issue_comment_skipped_reason = (
+        "pending: posted after the durable write" if args.post_issue else "not requested")
     try:
-        sh.emit(heartbeat, root=args.report_root)
+        # Durable evidence FIRST. Posting before this would announce a heartbeat
+        # that a refused duplicate then never wrote.
+        record = sh.emit(heartbeat, root=args.report_root)
         inv.update(heartbeat_emitted=True)
+        if args.post_issue:
+            sh.record_issue_post(record, root=args.report_root)
     except sh.DuplicateSessionHeartbeat as exc:
         # A session id must be unique per invocation; reusing one would forge a
         # second heartbeat for one session. Refuse rather than write it.
@@ -181,11 +228,12 @@ def main(argv: list[str] | None = None) -> int:
 
     # (5) Claim at most one task and run its bounded unit.
     require_adaptive = None if _allow_deterministic(args.allow_deterministic) else True
+    tried: list = []
     try:
-        result, tried = claim_one(bots, require_adaptive=require_adaptive)
+        result, tried = claim_one(bots, require_adaptive=require_adaptive, tried=tried)
     except Exception as exc:                       # noqa: BLE001 - record, then fail
         inv.update(claim_outcome=invocation_mod.CLAIM_ERROR, work_outcome="unit_failed",
-                   candidates_tried=[])
+                   candidates_tried=tried)
         inv.close(exit_code=EXIT_FAILURE, error=f"{type(exc).__name__}: {exc}"[:300])
         print(f"FAILURE: {type(exc).__name__}: {exc}", file=sys.stderr)
         return EXIT_FAILURE
@@ -218,6 +266,7 @@ def main(argv: list[str] | None = None) -> int:
                       "work_outcome": record["work_outcome"],
                       "heartbeat_emitted": record["heartbeat_emitted"],
                       "live_model_call": record["live_model_call"],
+                      "reasoning_mode": record["reasoning_route"].get("mode"),
                       "exit_code": EXIT_OK}, indent=2))
     return EXIT_OK
 

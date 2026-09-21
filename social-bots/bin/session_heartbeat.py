@@ -18,14 +18,17 @@ Durable evidence is written FIRST and needs no network:
     social-bots/worker-reports/<lane>/HEARTBEAT_LOG.jsonl   (append-only history)
     social-bots/worker-reports/<lane>/HEARTBEAT.json        (latest record)
 
-``--post-issue`` adds best-effort Issue visibility through ``gh``. A missing or
-unauthenticated ``gh`` is recorded as a skip reason and never fails this command:
-GitHub transport must not gate durable evidence or useful work.
+``--post-issue`` adds best-effort Issue visibility through ``gh``, attempted only
+AFTER the durable write succeeds, with its outcome logged to
+``HEARTBEAT_ISSUE_POSTS.jsonl`` beside the ledger. A missing or unauthenticated
+``gh`` is recorded as a skip reason and never fails this command: GitHub
+transport must not gate durable evidence or useful work, and a comment is never
+posted for a heartbeat that was not written.
 
 Exit codes:
     0  heartbeat emitted
     4  this session_id already emitted a heartbeat (duplicate refused)
-    2  bad usage
+    2  bad usage (including an unsafe lane name)
 """
 from __future__ import annotations
 
@@ -77,22 +80,23 @@ def main(argv: list[str] | None = None) -> int:
         blocker=args.blocker,
         notes=args.notes,
     )
-    # Post BEFORE the durable write only in the sense of computing the flag: the
-    # record must state truthfully whether a comment was actually posted, so the
-    # best-effort attempt runs first and its real outcome is embedded.
-    if args.post_issue:
-        posted, reason = sh.post_issue_comment(hb.to_record(), issue=args.issue,
-                                               repo=args.repo)
-        hb.issue_comment_posted = posted
-        hb.issue_comment_skipped_reason = reason
-    else:
-        hb.issue_comment_skipped_reason = "not requested"
-
+    # Durable evidence FIRST, visibility second. Posting first would announce a
+    # heartbeat that a refused duplicate then never wrote.
+    hb.issue_comment_skipped_reason = (
+        "pending: posted after the durable write" if args.post_issue else "not requested")
     try:
         record = sh.emit(hb, root=args.root)
     except sh.DuplicateSessionHeartbeat as exc:
         print(f"DUPLICATE: {exc}", file=sys.stderr)
         return 4
+    except sh.UnsafeLane as exc:
+        print(f"UNSAFE LANE: {exc}", file=sys.stderr)
+        return 2
+
+    post = {"posted": False, "skipped_reason": "not requested"}
+    if args.post_issue:
+        post = sh.record_issue_post(record, issue=args.issue, repo=args.repo,
+                                    root=args.root)
 
     print(json.dumps({
         "session_id": record["session_id"],
@@ -100,8 +104,8 @@ def main(argv: list[str] | None = None) -> int:
         "cadence_mode": record["cadence_mode"],
         "session_status": record["session_status"],
         "started_at": record["started_at"],
-        "issue_comment_posted": record["issue_comment_posted"],
-        "issue_comment_skipped_reason": record["issue_comment_skipped_reason"],
+        "issue_comment_posted": post["posted"],
+        "issue_comment_skipped_reason": post["skipped_reason"],
         "log": str(sh.lane_dir(record["lane"], args.root) / sh.LOG_FILENAME),
     }, indent=2))
     return 0

@@ -174,8 +174,22 @@ def cmd_prepare(args) -> int:
     return 0
 
 
+def _default_prompts_dir(matrix_path: str, explicit: str | None) -> str | None:
+    """Prompts live beside the matrix unless told otherwise.
+
+    Defaulting to None would make ``verify`` skip the prompt bytes — the layer
+    that actually catches an edited prompt file — so the sibling directory is
+    used automatically when it exists.
+    """
+    if explicit:
+        return explicit
+    sibling = Path(matrix_path).parent / "prompts"
+    return str(sibling) if sibling.is_dir() else None
+
+
 def cmd_verify(args) -> int:
-    result = dp.verify_written(args.matrix, args.prompts_dir)
+    result = dp.verify_written(args.matrix,
+                               _default_prompts_dir(args.matrix, args.prompts_dir))
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0 if result["verified"] else 1
 
@@ -199,14 +213,17 @@ def cmd_gate(args) -> int:
 
 
 def cmd_report(args) -> int:
-    matrix = dp.load_prepared(args.matrix, args.prompts_dir)
+    matrix = dp.load_prepared(
+        args.matrix, _default_prompts_dir(args.matrix, args.prompts_dir))
     receipts: dict[str, dict] = {}
     receipt_dir = Path(args.receipts)
     for case_id, *_ in dp.CASE_SPECS:
         path = receipt_dir / f"{case_id}.json"
         if path.exists():
             receipts[case_id] = json.loads(path.read_text(encoding="utf-8"))
-    report = dp.divergence_report(matrix, receipts)
+    budget = (authorization.CallBudget(matrix.run_scope, len(matrix.cases),
+                                       home=args.home) if args.home else None)
+    report = dp.divergence_report(matrix, receipts, budget=budget)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 
@@ -236,7 +253,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     ver = sub.add_parser("verify", help="re-derive digests and re-check isolation")
     ver.add_argument("--matrix", required=True)
-    ver.add_argument("--prompts-dir", default=None)
+    ver.add_argument("--prompts-dir", default=None,
+                     help="default: the prompts/ directory beside the matrix")
     ver.set_defaults(func=cmd_verify)
 
     gate = sub.add_parser("gate", help="print the fail-closed authorization gate state")
@@ -248,6 +266,9 @@ def build_parser() -> argparse.ArgumentParser:
     rep.add_argument("--prompts-dir", default=None)
     rep.add_argument("--receipts", required=True,
                      help="directory holding <case_id>.json receipts")
+    rep.add_argument("--home", default=None,
+                     help="runtime data root holding the call-budget ledger; without "
+                          "it acceptance eligibility cannot be established")
     rep.set_defaults(func=cmd_report)
     return p
 

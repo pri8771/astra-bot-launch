@@ -1,6 +1,11 @@
-...................................................................................................................................................................................................s...................................................................DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in /tmp/tmp76vebhkc/reports/worker-reports/windows-core/HEARTBEAT_LOG.jsonl; ONE SESSION = ONE HEARTBEAT
+..........................................................................................................................................................DIRECTION ERROR: directions file for lane 'windows-core' is not valid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+......................LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmp5z0lcx3y/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+.LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmp1xwd4fks/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+.USAGE: --bots resolved to no candidate runtimes
+.FAILURE: RuntimeError: unit blew up
+....................................................s....................................................................DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
 ......
 ----------------------------------------------------------------------
-Ran 269 tests in 3.392s
+Ran 306 tests in 4.744s
 
 OK (skipped=1)

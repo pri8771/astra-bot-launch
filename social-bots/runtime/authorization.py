@@ -264,10 +264,6 @@ class CallBudget:
     def _slot_path(self, n: int) -> Path:
         return self.dir / f"slot-{n:04d}.json"
 
-    def consumed(self) -> int:
-        """Slots irrevocably taken (reserved), whether or not the call succeeded."""
-        return len(list(self.dir.glob(self.SLOT_GLOB)))
-
     def remaining(self) -> int:
         return max(0, self.max_calls - self.consumed())
 
@@ -277,17 +273,45 @@ class CallBudget:
             try:
                 out.append(json.loads(p.read_text(encoding="utf-8")))
             except (OSError, json.JSONDecodeError):
-                out.append({"slot_file": p.name, "unreadable": True})
+                try:
+                    number = int(p.stem.split("-")[-1])
+                except ValueError:                    # pragma: no cover - defensive
+                    number = None
+                out.append({"slot": number, "slot_file": p.name,
+                            "unreadable": True, "outcome": None})
         return out
 
     # -- reservation -------------------------------------------------------- #
+    def _high_water(self) -> int:
+        """Highest slot number ever taken, from the slot filenames themselves.
+
+        Reservation starts above this rather than at the first *gap*, so deleting
+        a slot file cannot buy another call. Removing evidence must never widen
+        an authorization.
+        """
+        highest = 0
+        for p in self.dir.glob(self.SLOT_GLOB):
+            try:
+                highest = max(highest, int(p.stem.split("-")[-1]))
+            except ValueError:                        # pragma: no cover - defensive
+                continue
+        return highest
+
+    def consumed(self) -> int:
+        """Slots irrevocably taken, whether or not the call succeeded.
+
+        The high-water mark, not a file count, so deleting a slot file does not
+        appear to free budget.
+        """
+        return self._high_water()
+
     def reserve(self, *, manifest_id: str, manifest_digest: str, lane: str,
                 artifact: str, context_digest: str | None = None) -> CallSlot:
         """Atomically consume the next slot. MUST be called BEFORE spawning.
 
         Raises ``CallBudgetExhausted`` when the exact authorized count is spent.
         """
-        for n in range(1, self.max_calls + 1):
+        for n in range(self._high_water() + 1, self.max_calls + 1):
             path = self._slot_path(n)
             slot = CallSlot(
                 slot=n, run_scope=self.run_scope, manifest_id=manifest_id,
@@ -327,7 +351,15 @@ class CallBudget:
         if not path.exists():
             raise AuthorizationDenied(
                 f"cannot record an outcome for unreserved slot {n} in {self.run_scope!r}")
-        data = json.loads(path.read_text(encoding="utf-8"))
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            # A slot torn by an earlier crash must not abort the rest of the
+            # batch. The slot stays consumed; we rebuild a minimal record that
+            # says so rather than pretending it is free.
+            data = {"slot": n, "run_scope": self.run_scope,
+                    "unreadable_prior_content": f"{type(exc).__name__}",
+                    "outcome": None}
         if data.get("outcome") is not None:
             raise AuthorizationDenied(
                 f"slot {n} already recorded outcome {data['outcome']!r}; a slot's "
@@ -351,7 +383,7 @@ class CallBudget:
         return {
             "run_scope": self.run_scope,
             "max_calls": self.max_calls,
-            "consumed": len(slots),
+            "consumed": self.consumed(),
             "remaining": self.remaining(),
             "reserved_not_recorded": unrecorded,
             "outcomes": [{"slot": s.get("slot"), "outcome": s.get("outcome")} for s in slots],
@@ -395,15 +427,19 @@ def posture_violations(*, injected_runner: bool) -> list[str]:
 
 def authorize(*, artifact: str, lane: str, run_scope: str,
               manifest_dir: str | Path | None = None,
-              injected_runner: bool = False,
-              now: datetime | None = None) -> ExecutionGrant:
+              injected_runner: bool = False) -> ExecutionGrant:
     """Authorize ONE live adaptive batch, or raise ``AuthorizationDenied``.
 
     Call this **before** constructing a provider or spawning anything. There is no
     override: with no canonical manifest on disk this raises, which is the correct
     and expected V0.4 state.
+
+    Expiry is judged against the real clock, deliberately. ``validate_manifest``
+    accepts an injected ``now`` so unit tests can exercise its other rules
+    deterministically, but the gate itself never takes one — a caller-supplied
+    clock would be exactly the kind of override this module promises not to have.
     """
-    now = now or _now()
+    now = _now()
     candidates = find_manifests(manifest_dir)
     if not candidates:
         directory = Path(manifest_dir) if manifest_dir is not None else MANIFEST_DIR

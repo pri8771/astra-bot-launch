@@ -183,12 +183,30 @@ class InvocationReceiptTest(unittest.TestCase):
         self.assertEqual(audit["complete"], 1)
         self.assertEqual(audit["distinct_sessions"], 2)
 
-    def test_no_live_model_call_is_recorded_on_every_receipt(self):
-        """A reader can confirm from the receipt alone that nothing was spent."""
+    def test_a_receipt_without_a_route_decision_is_counted_as_such(self):
+        """``live_model_call`` alone means nothing; the route decision is the evidence.
+
+        An earlier version asserted ``live_model_call is False`` on a bare
+        receipt, which was tautological — the field was a constant and nothing
+        ever set it True. The audit now reports receipts that carry no route
+        decision, so a bare receipt cannot pass for a checked one.
+        """
         inv = invocation_mod.start(session_id="s-1", lane="l", branch="b", home=self.tmp)
         record = inv.close(exit_code=0)
-        self.assertFalse(record["live_model_call"])
-        self.assertEqual(invocation_mod.audit(self.tmp)["live_model_calls"], 0)
+        self.assertEqual(record["reasoning_route"], {})
+        self.assertEqual(invocation_mod.audit(self.tmp)["receipts_without_a_route_decision"], 1)
+
+    def test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one(self):
+        """The audit must distinguish 'no live call' from 'never checked'."""
+        inv = invocation_mod.start(session_id="s-2", lane="l", branch="b", home=self.tmp)
+        inv.update(reasoning_route={"mode": "claude-cli", "live_route_requested": True,
+                                    "permitted": False, "reason": "fixture"},
+                   live_model_call=False)
+        inv.close(exit_code=6)
+        audit = invocation_mod.audit(self.tmp)
+        self.assertEqual(audit["live_routes_refused"], 1)
+        self.assertEqual(audit["live_model_calls"], 0)
+        self.assertEqual(audit["receipts_without_a_route_decision"], 0)
 
     def test_index_records_both_phases(self):
         """The index carries an open and a close row so crashes are countable."""
@@ -297,6 +315,9 @@ class WorkerOnceEndToEndTest(unittest.TestCase):
         audit = invocation_mod.audit(self.home)
         self.assertEqual(audit["complete"], 3)
         self.assertEqual(audit["distinct_sessions"], 3)
+        # Every receipt carries a real route decision, so "no live call" is a
+        # checked fact rather than an unset field.
+        self.assertEqual(audit["receipts_without_a_route_decision"], 0)
         self.assertEqual(audit["live_model_calls"], 0)
 
     def test_reusing_a_session_id_is_refused(self):

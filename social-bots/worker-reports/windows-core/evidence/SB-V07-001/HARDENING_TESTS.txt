@@ -1,0 +1,82 @@
+test_a_failed_call_does_not_bind_its_case (tests.test_review_hardening.AcceptanceEligibilityBindingTest.test_a_failed_call_does_not_bind_its_case)
+A slot recorded as unavailable is not evidence that a proposal exists. ... ok
+test_an_empty_budget_leaves_every_case_unbound (tests.test_review_hardening.AcceptanceEligibilityBindingTest.test_an_empty_budget_leaves_every_case_unbound)
+A ledger with no matching slots names the cases it cannot vouch for. ... ok
+test_eligibility_requires_a_recorded_proposal_per_case (tests.test_review_hardening.AcceptanceEligibilityBindingTest.test_eligibility_requires_a_recorded_proposal_per_case)
+Only slots that actually returned a proposal can back the claim. ... ok
+test_hand_authored_labels_alone_do_not_establish_eligibility (tests.test_review_hardening.AcceptanceEligibilityBindingTest.test_hand_authored_labels_alone_do_not_establish_eligibility)
+Anyone can write 'sanitized-real-canary' into a file; that proves nothing. ... ok
+test_a_torn_slot_file_does_not_abort_the_batch (tests.test_review_hardening.CallBudgetHardeningTest.test_a_torn_slot_file_does_not_abort_the_batch)
+One slot damaged by an earlier crash must not take the rest down. ... ok
+test_a_torn_slot_still_counts_against_the_budget (tests.test_review_hardening.CallBudgetHardeningTest.test_a_torn_slot_still_counts_against_the_budget)
+An unreadable slot is consumed, not free. ... ok
+test_deleting_a_slot_file_does_not_buy_another_call (tests.test_review_hardening.CallBudgetHardeningTest.test_deleting_a_slot_file_does_not_buy_another_call)
+Removing evidence must never widen an authorization. ... ok
+test_an_ambiguous_lane_match_fails_closed (tests.test_review_hardening.DirectionHardeningTest.test_an_ambiguous_lane_match_fails_closed)
+Guessing between two branch matches could silently miss a halt. ... ok
+test_an_unambiguous_branch_match_still_works (tests.test_review_hardening.DirectionHardeningTest.test_an_unambiguous_branch_match_still_works)
+The fallback must keep working for the single-match case it exists for. ... ok
+test_malformed_directions_json_raises_direction_error (tests.test_review_hardening.DirectionHardeningTest.test_malformed_directions_json_raises_direction_error)
+consume documents that only DirectionError escapes it. ... ok
+test_worker_once_records_a_receipt_for_a_malformed_direction (tests.test_review_hardening.DirectionHardeningTest.test_worker_once_records_a_receipt_for_a_malformed_direction)
+Exit 1 must always leave a receipt that says what happened. ... DIRECTION ERROR: directions file for lane 'windows-core' is not valid JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+ok
+test_a_refused_mismatch_consumes_no_call_budget (tests.test_review_hardening.ExecutedContextBindingTest.test_a_refused_mismatch_consumes_no_call_budget)
+Binding is checked before reserving, so a mismatch costs no authorization. ... ok
+test_a_substituted_persona_is_refused (tests.test_review_hardening.ExecutedContextBindingTest.test_a_substituted_persona_is_refused)
+Invoking a different persona than the one prepared must not be possible. ... ok
+test_a_substituted_signal_is_refused (tests.test_review_hardening.ExecutedContextBindingTest.test_a_substituted_signal_is_refused)
+Invoking different evidence than the one prepared must not be possible. ... ok
+test_a_summary_only_change_is_refused_by_the_prompt_layer (tests.test_review_hardening.ExecutedContextBindingTest.test_a_summary_only_change_is_refused_by_the_prompt_layer)
+The digest layer is blind to summary; the prompt-payload check is not. ... ok
+test_an_expired_manifest_cannot_be_revived (tests.test_review_hardening.GateHardeningTest.test_an_expired_manifest_cannot_be_revived)
+Expiry is judged against the real clock, always. ... ok
+test_authorize_takes_no_caller_supplied_clock (tests.test_review_hardening.GateHardeningTest.test_authorize_takes_no_caller_supplied_clock)
+A caller-supplied 'now' would be exactly the override this gate forbids. ... ok
+test_a_backfilled_timestamp_is_overwritten (tests.test_review_hardening.HeartbeatHardeningTest.test_a_backfilled_timestamp_is_overwritten)
+emit re-stamps started_at, so a caller cannot forge when a session ran. ... ok
+test_a_refused_duplicate_posts_no_issue_comment (tests.test_review_hardening.HeartbeatHardeningTest.test_a_refused_duplicate_posts_no_issue_comment)
+Durable evidence first: never announce a heartbeat that was not written. ... ok
+test_a_session_cannot_emit_once_per_lane (tests.test_review_hardening.HeartbeatHardeningTest.test_a_session_cannot_emit_once_per_lane)
+One session = one heartbeat is a claim about the session, not the lane. ... ok
+test_a_torn_log_line_does_not_wedge_the_lane (tests.test_review_hardening.HeartbeatHardeningTest.test_a_torn_log_line_does_not_wedge_the_lane)
+One bad append must not make every future heartbeat impossible. ... ok
+test_an_unsafe_lane_name_is_refused (tests.test_review_hardening.HeartbeatHardeningTest.test_an_unsafe_lane_name_is_refused)
+An unvalidated lane is a path-traversal write out of the reports root. ... ok
+test_contract_fields_cannot_be_relabelled (tests.test_review_hardening.HeartbeatHardeningTest.test_contract_fields_cannot_be_relabelled)
+A record cannot be written as a different cadence, status or schema. ... ok
+test_the_post_outcome_goes_in_a_sidecar_not_the_ledger (tests.test_review_hardening.HeartbeatHardeningTest.test_the_post_outcome_goes_in_a_sidecar_not_the_ledger)
+The append-only ledger is never rewritten to match a later post. ... ok
+test_a_valid_manifest_permits_the_live_route (tests.test_review_hardening.LiveRouteGuardTest.test_a_valid_manifest_permits_the_live_route)
+The guard defers to authorize; it is not an independent veto. ... ok
+test_claude_cli_mode_is_refused_without_a_manifest (tests.test_review_hardening.LiveRouteGuardTest.test_claude_cli_mode_is_refused_without_a_manifest)
+SBOTS_REASONING=claude-cli must not be enough to reach the real CLI. ... ok
+test_model_mode_is_live_unless_the_caller_says_it_is_a_replay (tests.test_review_hardening.LiveRouteGuardTest.test_model_mode_is_live_unless_the_caller_says_it_is_a_replay)
+A registered live callable is a live route; a receipt replay is not. ... ok
+test_non_live_modes_are_permitted (tests.test_review_hardening.LiveRouteGuardTest.test_non_live_modes_are_permitted)
+The deterministic modes are not a live route and must not be blocked. ... ok
+test_an_edited_prompt_file_is_caught (tests.test_review_hardening.VerifyStrictnessTest.test_an_edited_prompt_file_is_caught)
+Smuggling different evidence into a prompt file must fail verification. ... ok
+test_an_untouched_matrix_verifies (tests.test_review_hardening.VerifyStrictnessTest.test_an_untouched_matrix_verifies)
+The strict path must still pass a genuine artifact. ... ok
+test_without_prompt_bytes_the_verdict_is_not_verified (tests.test_review_hardening.VerifyStrictnessTest.test_without_prompt_bytes_the_verdict_is_not_verified)
+The prompt file is the payload; a verdict that skipped it means little. ... ok
+test_a_normal_run_records_a_non_live_route (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_a_normal_run_records_a_non_live_route)
+An ordinary invocation carries a route decision, not an empty field. ... ok
+test_exit_six_and_nothing_else_happens (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_exit_six_and_nothing_else_happens)
+A live mode exits 6 before the heartbeat, the ack or any task claim. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpd5ioe820/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_the_refusal_is_recorded_on_the_invocation_receipt (tests.test_review_hardening.WorkerOnceRefusesLiveRouteTest.test_the_refusal_is_recorded_on_the_invocation_receipt)
+live_model_call is derived from the guard, not hard-coded. ... LIVE ROUTE REFUSED: live reasoning mode 'claude-cli' requested but not authorized: no canonical authorization manifest in /tmp/tmpxj_5v3un/authorizations. A live adaptive batch requires BOTH a fresh explicit owner authorization AND a lead-created canonical manifest naming the artifact/run scope and exact maximum call count. Failing closed before spawning.
+ok
+test_an_empty_bots_list_is_a_usage_error_not_no_overlap (tests.test_review_hardening.WorkerOnceReportingTest.test_an_empty_bots_list_is_a_usage_error_not_no_overlap)
+Exit 3 means tasks were held; no candidates at all is a misconfiguration. ... USAGE: --bots resolved to no candidate runtimes
+ok
+test_candidates_tried_survives_a_failing_unit (tests.test_review_hardening.WorkerOnceReportingTest.test_candidates_tried_survives_a_failing_unit)
+A unit that took a lease then failed must not look like nothing was tried. ... FAILURE: RuntimeError: unit blew up
+ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 1.280s
+
+OK

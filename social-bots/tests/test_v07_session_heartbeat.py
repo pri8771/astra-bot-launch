@@ -60,11 +60,17 @@ class DurableWriteTest(unittest.TestCase):
         self.assertEqual(set(record["runtime"]),
                          {"host", "platform", "platform_release", "python", "pid"})
 
-    def test_started_at_cannot_be_supplied_by_a_caller_argument(self):
-        """No backfill: a session's timestamp comes from the real clock at emit time."""
-        with self.assertRaises(TypeError):
-            sh.SessionHeartbeat(session_id="x", lane="l", branch="b",
-                                current_artifact="a", started_at_override="2020-01-01")
+    def test_started_at_is_stamped_from_the_real_clock_at_emit(self):
+        """No backfill: a supplied timestamp is overwritten, not honoured.
+
+        An earlier version of this test asserted a TypeError for a kwarg that
+        does not exist under any implementation, so it passed against a fully
+        backfillable class. This one changes the value and checks the result.
+        """
+        record = sh.emit(make(started_at="1999-01-01T00:00:00Z"), root=self.root)
+        self.assertNotEqual(record["started_at"], "1999-01-01T00:00:00Z")
+        self.assertEqual(sh.read_log("test-lane", self.root)[0]["started_at"],
+                         record["started_at"])
 
     def test_a_second_heartbeat_for_one_session_is_refused(self):
         """ONE SESSION = ONE HEARTBEAT is structural: the second emit raises."""

@@ -22,8 +22,10 @@ sessions use this module, which:
 * enforces one-session-one-heartbeat structurally: a second call for the same
   ``session_id`` is refused (``DuplicateSessionHeartbeat``) instead of silently
   appending a second record. A loop cannot manufacture liveness;
-* refuses to backfill: ``started_at`` is the real wall clock at emit time and
-  cannot be supplied by the caller;
+* refuses to backfill: ``emit`` re-stamps ``started_at`` from the real clock and
+  re-stamps the contract fields (``schema_version``, ``cadence_mode``,
+  ``session_status``), so a caller cannot hand in a forged timestamp or relabel a
+  record as a different cadence;
 * is the per-invocation unit the V0.7 recurring-liveness argument is built from.
   Recurring liveness is the SEQUENCE of independently OS-scheduled sessions, each
   with one of these records plus its invocation receipt — never a chat kept awake.
@@ -36,6 +38,7 @@ from __future__ import annotations
 import json
 import os
 import platform
+import re
 import socket
 import uuid
 from dataclasses import dataclass, asdict, field
@@ -54,6 +57,19 @@ LOG_FILENAME = "HEARTBEAT_LOG.jsonl"
 PROGRESS_FILENAME = "CURRENT_PROGRESS.md"
 
 
+# A lane names a directory under worker-reports/. Validated, because an
+# unvalidated lane is a path-traversal write out of the reports root.
+_LANE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
+
+
+class UnsafeLane(ValueError):
+    """Raised when a lane name is not a safe single directory component."""
+
+
+class CorruptHeartbeatLog(Exception):
+    """Raised when a lane ledger cannot be read at all."""
+
+
 class DuplicateSessionHeartbeat(Exception):
     """Raised when a session_id already has a heartbeat in the durable log.
 
@@ -66,10 +82,19 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
+def check_lane(lane: str) -> str:
+    """Validate a lane name, or raise ``UnsafeLane``."""
+    if not isinstance(lane, str) or not _LANE_RE.match(lane):
+        raise UnsafeLane(
+            f"lane {lane!r} is not a safe directory component; a lane may not "
+            f"traverse out of the worker-reports root")
+    return lane
+
+
 def lane_dir(lane: str, root: str | Path | None = None) -> Path:
     """Durable per-lane report directory (``worker-reports/<lane>/``)."""
     base = Path(root) if root is not None else ROOT
-    return base / "worker-reports" / lane
+    return base / "worker-reports" / check_lane(lane)
 
 
 def new_session_id(prefix: str = "s") -> str:
@@ -123,16 +148,34 @@ class SessionHeartbeat:
 
 
 def read_log(lane: str, root: str | Path | None = None) -> list[dict]:
-    """Read the append-only durable heartbeat ledger for a lane."""
+    """Read the append-only durable heartbeat ledger for a lane.
+
+    A line that does not parse is surfaced as ``{"_unparseable": True, ...}``
+    rather than raised or dropped. Raising would wedge the lane permanently after
+    one torn append; dropping would hide it. Surfacing keeps the ledger usable
+    and keeps the damage visible to an audit.
+    """
     path = lane_dir(lane, root) / LOG_FILENAME
     if not path.exists():
         return []
     out: list[dict] = []
-    with open(path, "r", encoding="utf-8") as fh:
-        for line in fh:
-            line = line.strip()
-            if line:
-                out.append(json.loads(line))
+    try:
+        content = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise CorruptHeartbeatLog(f"cannot read {path}: {exc}") from exc
+    for number, line in enumerate(content.splitlines(), start=1):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError as exc:
+            out.append({"_unparseable": True, "line_number": number,
+                        "error": str(exc), "raw_prefix": line[:120]})
+            continue
+        out.append(record if isinstance(record, dict) else
+                   {"_unparseable": True, "line_number": number,
+                    "error": "line is not a JSON object"})
     return out
 
 
@@ -143,6 +186,29 @@ def session_ids(lane: str, root: str | Path | None = None) -> set[str]:
         for rec in read_log(lane, root)
         if rec.get("session_id")
     }
+
+
+def lanes_present(root: str | Path | None = None) -> list[str]:
+    """Lane directories that currently hold a heartbeat ledger."""
+    base = (Path(root) if root is not None else ROOT) / "worker-reports"
+    if not base.is_dir():
+        return []
+    return sorted(d.name for d in base.iterdir()
+                  if d.is_dir() and (d / LOG_FILENAME).exists()
+                  and _LANE_RE.match(d.name))
+
+
+def find_session(session_id: str, root: str | Path | None = None) -> str | None:
+    """The lane whose ledger already holds ``session_id``, if any.
+
+    One session = one heartbeat is a claim about the SESSION, not about a lane.
+    Checking only the target lane would let the same session id emit once per
+    lane, so every lane ledger is checked.
+    """
+    for lane in lanes_present(root):
+        if session_id in session_ids(lane, root):
+            return lane
+    return None
 
 
 def _append_jsonl(path: Path, record: dict) -> None:
@@ -176,10 +242,17 @@ def emit(heartbeat: SessionHeartbeat, root: str | Path | None = None) -> dict:
     Raises ``DuplicateSessionHeartbeat`` if this ``session_id`` already emitted.
     """
     directory = lane_dir(heartbeat.lane, root)
-    if heartbeat.session_id in session_ids(heartbeat.lane, root):
+    existing_lane = find_session(heartbeat.session_id, root)
+    if existing_lane is not None:
         raise DuplicateSessionHeartbeat(
             f"session {heartbeat.session_id!r} already has a durable heartbeat in "
-            f"{directory / LOG_FILENAME}; ONE SESSION = ONE HEARTBEAT")
+            f"lane {existing_lane!r}; ONE SESSION = ONE HEARTBEAT")
+    # Re-stamp the fields that define the contract, so a caller cannot backfill a
+    # timestamp or relabel a record as a different schema/cadence/status.
+    heartbeat.started_at = now_iso()
+    heartbeat.schema_version = SCHEMA_VERSION
+    heartbeat.cadence_mode = CADENCE_MODE
+    heartbeat.session_status = SESSION_STATUS_STARTED
     record = heartbeat.to_record()
     _append_jsonl(directory / LOG_FILENAME, record)
     _write_json(directory / HEARTBEAT_FILENAME, record)
@@ -213,6 +286,33 @@ def issue_comment_body(record: dict) -> str:
     if record.get("notes"):
         parts.append(f"- notes: {record['notes']}")
     return "\n".join(parts)
+
+
+ISSUE_POST_FILENAME = "HEARTBEAT_ISSUE_POSTS.jsonl"
+
+
+def record_issue_post(record: dict, *, issue: int = 3, repo: str | None = None,
+                      root: str | Path | None = None, runner=None) -> dict:
+    """Attempt the visibility comment AFTER the durable write, and log the result.
+
+    The durable ledger is append-only and must not be rewritten, so the outcome
+    of the post goes in a sidecar ledger beside it. This ordering matters: an
+    earlier version posted first, so a refused duplicate heartbeat still produced
+    an Issue comment announcing a heartbeat that was never written.
+    """
+    posted, reason = post_issue_comment(record, issue=issue, repo=repo, runner=runner)
+    row = {
+        "session_id": record.get("session_id"),
+        "lane": record.get("lane"),
+        "attempted_at": now_iso(),
+        "issue": issue,
+        "posted": posted,
+        "skipped_reason": reason,
+        "note": ("visibility only; the durable heartbeat in HEARTBEAT_LOG.jsonl is "
+                 "the evidence and is never rewritten to match this"),
+    }
+    _append_jsonl(lane_dir(record["lane"], root) / ISSUE_POST_FILENAME, row)
+    return row
 
 
 def post_issue_comment(record: dict, issue: int = 3, repo: str | None = None,

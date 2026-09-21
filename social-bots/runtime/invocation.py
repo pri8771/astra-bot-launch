@@ -23,8 +23,15 @@ is visible evidence of a crash, and a restart writes a NEW invocation id rather
 than reusing the dead one.
 
 A receipt records outcomes; it never grants authority and never asserts
-acceptance. ``live_model_call`` is recorded on every receipt and is ``False`` for
-all V0.7 host engineering, so a reader can confirm no spend occurred.
+acceptance.
+
+``live_model_call`` is **derived**, not declared. It is set from
+``runtime.live_route_guard``'s decision for the process, and
+``reasoning_route`` records the mode and the reason alongside it. An earlier
+version of this module hard-coded ``live_model_call = False`` and claimed a
+reader could confirm no spend from it; that claim was worthless, because nothing
+ever set it True. A reader should check ``reasoning_route`` — which says which
+mode was configured and whether a live route was refused — not the boolean alone.
 """
 from __future__ import annotations
 
@@ -128,6 +135,7 @@ class InvocationReceipt:
     duration_seconds: float | None = None
     exit_code: int | None = None
     live_model_call: bool = False
+    reasoning_route: dict = field(default_factory=dict)
     error: str | None = None
 
     def to_dict(self) -> dict:
@@ -176,9 +184,22 @@ class Invocation:
         })
         return self
 
-    def update(self, **fields) -> "Invocation":
+    def update(self, persist: bool = True, **fields) -> "Invocation":
+        """Record progress, persisting by default so a crash is forensically useful.
+
+        Without persisting, an ``incomplete`` receipt would carry only start-time
+        values, and a process killed after emitting its heartbeat would still
+        show ``heartbeat_emitted: false`` — technically "as written at open", but
+        misleading to anyone reading the crash. Re-writing on each milestone is a
+        small atomic write and makes an incomplete receipt say how far the
+        process actually got. ``status`` stays ``incomplete`` and ``exit_code``
+        stays ``None`` until ``close``, so a persisted milestone can never be
+        mistaken for a completed invocation.
+        """
         for key, value in fields.items():
             setattr(self.receipt, key, value)
+        if persist:
+            _write_json(self.path, self.receipt.to_dict())
         return self
 
     def close(self, *, exit_code: int, error: str | None = None) -> dict:
@@ -245,6 +266,12 @@ def audit(home: str | Path | None = None) -> dict:
                             CLAIM_HALTED, CLAIM_ERROR)
         },
         "live_model_calls": sum(1 for r in rows if r.get("live_model_call")),
+        "live_routes_refused": sum(
+            1 for r in rows
+            if (r.get("reasoning_route") or {}).get("live_route_requested")
+            and not (r.get("reasoning_route") or {}).get("permitted")),
+        "receipts_without_a_route_decision": sum(
+            1 for r in rows if not (r.get("reasoning_route") or {}).get("mode")),
         "note": ("one bounded session per invocation; recurring liveness is the "
                  "sequence of independently scheduled invocations, not this count "
                  "on its own"),

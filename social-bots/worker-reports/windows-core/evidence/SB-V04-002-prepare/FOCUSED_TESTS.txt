@@ -106,6 +106,6 @@ test_tampered_artifact_fails_verification (tests.test_v04_divergence_prepare.Wri
 Editing a written context without fixing its digest is detected. ... ok
 
 ----------------------------------------------------------------------
-Ran 53 tests in 0.051s
+Ran 53 tests in 0.058s
 
 OK
