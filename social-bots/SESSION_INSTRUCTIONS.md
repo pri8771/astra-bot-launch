@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-032
+Lead review: LEAD-033
 
 Heartbeat is observability only. Do NOT pause implementation for heartbeat testing. Record genuine timestamps only; no backfill. Hourly cadence remains unauthorized because seq6 -> seq7 was ~30m28s.
 
@@ -12,7 +12,7 @@ Heartbeat is observability only. Do NOT pause implementation for heartbeat testi
 
 ## Priority 1 — SB-V05-001 — IMPLEMENT NOW
 
-The lane remains stale: no worker source/heartbeat after seq7 at `2026-09-21T04:10:36Z`. LEAD-032 found no later worker progress; continue this assignment now rather than waiting for another heartbeat or lead prompt.
+The lane remains stale: no worker source/heartbeat after seq7 at `2026-09-21T04:10:36Z`. LEAD-033 found no later worker progress; continue this assignment now rather than waiting for another heartbeat or lead prompt.
 
 Repair the actual HTTPS production path:
 - connect to the already validated/pinned public IP;
