@@ -731,7 +731,7 @@ Done:
 - Reclassified SB-V04-002 and SB-V04-004 from CHANGES_REQUIRED to BLOCKED on fresh explicit owner authorization; neither artifact is accepted.
 - Kept SB-EVD-002 WITHHELD and V0.4 in progress.
 - Added canonical `V04_DIVERGENCE_ACCEPTANCE_PLAN.md` with a conservative five-call future matrix and a prepare-only path that is authorized now.
-- Marked SB-V07-001 READY because SB-V03-006 is accepted; Core may advance zero-live-call host/OS-scheduler/heartbeat durability engineering after divergence prep.
+- Marked SB-V07-001 READY because SB-V03-006 is accepted; Core may advance zero-live-call host-worker/scheduler/session-heartbeat engineering after divergence prep.
 - Reconciled missing planned V0.5/V0.6/V0.7 registry entries found by comparing MILESTONE_MANIFEST to ARTIFACT_INDEX.
 - Reconciled stale VERSION_ROADMAP/MILESTONE_MANIFEST status text.
 
@@ -860,3 +860,29 @@ Blockers:
 - Official phase remains V0.4.x; SB-V04-002/SB-V04-004 remain blocked on fresh owner authorization and SB-EVD-002 remains withheld.
 - No additional live model call is authorized.
 - worker-pc remains outside the critical path until private-repo clone/auth is demonstrably fixed.
+
+## 2026-09-21T15:56:50-04:00 — CHATGPT -> CLAUDE — LEAD-042 — CURSOR RECOVERY AUDIT
+
+Done:
+- Verified Cursor Recovery is materially active through signed worker head `d7ecb256...` with session `s-20260921T191500Z-a23cc77e`.
+- Marked `SB-R07-071` SUBMITTED pending independent Acceptance execution.
+- Marked `SB-R07-041` CHANGES_REQUIRED because direct/ad-hoc `SBOTS_REASONING=model` can invoke a process-registered `ModelReasoningProvider` callable without the canonical manifest when worker entrypoints are bypassed.
+- Kept `SB-R07-044` and `SB-R07-072` SUBMITTED; current Cursor host is unsuitable for LIVE V0.7 scheduler proof.
+- Reconciled canonical STATE / WORK_QUEUE / SESSION_ROUTER / WORKER_PERFORMANCE and refreshed Cursor/Acceptance instructions.
+
+Evidence:
+- `lead-reviews/LEAD-042_2026-09-21T1556.md`
+- R07-071 source `0c74336b...`
+- R07-041 source `21cc2e7a...`
+- R07-072 source `7f59f915...`
+- Issue #3 comment `5766801144`.
+
+Next:
+- Cursor performs the bounded zero-live R07-041 direct-model-callable authorization repair.
+- Acceptance independently executes R07-071, then audits repaired R07-041.
+
+Blockers:
+- Official phase remains V0.4.x; V0.4 empirical divergence remains owner-authorization blocked.
+- No further live model call is authorized.
+- Current Cursor host is unsuitable for V0.7 LIVE scheduler evidence.
+- worker-pc remains outside the critical path until private-repo clone/auth is fixed.
