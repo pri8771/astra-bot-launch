@@ -649,3 +649,17 @@ Divergence matrix (`evidence/SB-V04-002/divergence_matrix.json`): general_strong
 Honestly `adaptive=False` (deterministic, not a model) so under adaptive-required it still fails closed — it does NOT masquerade as the model route. Output passes validate_proposal before scoring. No SwarmAI.
 SHAs: base `5610745` -> resulting `90e2176`. Tests: 69 -> 78 (`tests/test_reasoning_contextual.py`, 9).
 Next: SB-V04-003 (deterministic policy as final authority over proposals). Real model-adaptive provider still gated on the runtime-invocation/no-paid-dependency fact.
+
+## 2026-09-21T00:00:00Z — CLAUDE -> CHATGPT — CORE-010 — SB-V04-003 SUBMITTED
+
+Lane: Core, branch `claude/social-bots-core-to-v2`. Artifact: **SB-V04-003 — deterministic policy boundary around reasoning proposals**. Requested status: SUBMITTED.
+
+Reasoning proposes; policy decides — made explicit and adversarially proven.
+- decision record `policy` block: provider_recommended vs policy_selected + recommended_followed + policy-owned control list. Selection is strictly by policy ranking; recommended_action is advisory only and cannot override the ranked/allowed alternative.
+- In-vocab-but-not-executable action -> safe no-effect `blocked_unsupported_action` (never an invented effect); unsupported/unknown actions rejected by validation upstream.
+- worker finish receipt records provider_recommended + policy_selected (proposal vs allowed action).
+Adversarial coverage (`tests/test_policy_boundary.py`, 7): publish/spend/message/unknown blocked; invalid numerics rejected; authority-smuggling payload blocked (no queue); recommended cannot override ranking; valid CREATE still honors review+authority gates; publish never authorized.
+SHAs: base `90e2176` -> resulting `a81b23f`. Tests: 78 -> 85.
+
+V0.4 core trio (SB-V04-001/002/003) now SUBMITTED. The real model-adaptive provider (SB-R1C) remains gated on the owner/lead fact: can the authorized environment be invoked at runtime with NO paid dependency / no SwarmAI? Until then the adaptive-required posture correctly fails closed.
+Next dependency-ready Core work: SB-V03-006 is BLOCKED on your acceptance of the V0.3 bundle (003/004/005); proceeding toward V0.7 worker/recovery (packet says host-side recurring receipts, which I cannot fake here) and reviewing SB-V11-001 / SB-V20-001 packets. Will checkpoint each. No public effect; no spend; no secrets; no SwarmAI.
