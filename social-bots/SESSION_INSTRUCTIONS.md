@@ -2,76 +2,68 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
+Lead review: LEAD-023
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
-At start:
+At start/checkpoint:
 1. `git pull --ff-only`
 2. `git fetch origin`
 3. read canonical `FAST_TRACK_EXECUTION.md` and `SESSION_ROUTER.md` with `git show`
-4. resume from current branch state; do not discard submitted work.
+4. inspect `worker-reports/windows-core/LEAD_ACK.json`
+5. continue dependency-ready work without routine permission prompts.
 
-## Priority 1 — SB-V03-004 migration fencing repair
+## SB-V03-004 — repair submitted; HOLD implementation unless QA finds a defect
 
-LEAD-019/020 remaining issue:
-legacy migration performs durable writes from load/migration paths before the cycle ownership fence.
+Lead independently inspected commit `175f741fcedace3113191a847d6a7568d77b9cde`.
+The LEAD-019 migration-side-effect defect appears repaired: PersonaState load/migration staging is side-effect free and durable migration writes flow through the fenced commit, with a stale-owner regression.
 
-Required:
-- RuntimeState/PersonaState load must be side-effect free;
-- stage migration in memory;
-- persist persona migration + runtime migration marker only under the valid fenced commit;
-- stale owner must not migrate/write anything after takeover;
-- migration remains crash-safe/idempotent;
-- add real regressions for stale-owner migration and run_cycle ordering.
+Mac QA is assigned an independent verification pass. Do not keep reworking V03-004 unless that review finds a concrete defect.
 
-Submit SB-V03-004.
+## Priority 1 — SB-V03-005 authoritative persona read boundary
 
-## Priority 2 — SB-V03-005 production persona read boundary
+Finish this now.
 
-Keep physical PersonaState split.
+Preserve the RuntimeState/PersonaState split and migration repair.
 
-Add authoritative persona-scoped production APIs for persona-private/personalized stores:
-- content history;
-- experiment reads/listing;
+Add one authoritative persona-scoped production interface for private/personalized stores and route normal production reads through it. At minimum cover actual production paths for:
+- content history/dedup;
+- experiment load/list;
 - action history;
 - decision history;
 - analytics/history where persona-private;
 - publish queue reads where applicable.
 
-Raw whole-runtime reads may remain only as explicitly named admin/internal APIs.
+Raw whole-runtime reads may remain only when explicitly named/documented admin/internal and not used by normal persona-facing production flows.
 
-Add mixed-persona production-path regressions proving one persona cannot enumerate another's records.
+Add mixed-persona regressions through the real production read/list APIs proving one persona cannot enumerate or accidentally consume another persona's private records.
 
-Submit SB-V03-005.
+Submit `SB-V03-005` with exact source SHA, focused tests, full relevant suite, and known limits.
 
-## Priority 3 — SB-V03-006
+## Priority 2 — SB-V03-006 fresh V0.3 acceptance bundle
 
-Once 004/005 pass your full suite:
-- regenerate fresh V0.3 evidence;
-- no reuse of superseded proof;
-- submit SB-V03-006.
+After V03-005 is complete and your branch suite is green:
+- regenerate fresh evidence from the current implementation;
+- include V03-002/003/004/005 adversarial scenarios;
+- do not reuse superseded proof;
+- submit `SB-V03-006`.
 
-## Priority 4 — V04 dependency reconciliation
+## Priority 3 — V0.4 Core dependency reconciliation
 
-After V03 closure:
-- reconcile SB-V04-001/003 against current code;
-- preserve real-provider implementation;
-- do NOT attempt the live canary here unless this environment is actually authenticated subscription host.
-Dedicated branch `claude/social-bots-v04-live-canary` owns the real canary.
+After the V0.3 bundle is submitted:
+- reconcile SB-V04-001/002/003/004 with the current accepted contracts;
+- keep deterministic authority/policy ownership;
+- do not run the real canary from this Linux-container lane.
+The dedicated local authenticated branch `claude/social-bots-v04-live-canary` owns `SB-V04-005`.
 
-## CI
+## CI / review
 
-Mac QA owns CI/control. Do not duplicate.
+Mac QA owns CI/control and independent V03-004 verification. Do not duplicate that lane.
 
 ## Reporting
 
-Reports under `social-bots/worker-reports/windows-core/`.
-Commit/push after each parent artifact.
-Pull instructions after every checkpoint and continue to next dependency-ready artifact without generic permission prompts.
-
-## Heartbeat
-
-Continue heartbeat if the session supports it, but heartbeat proof does not block implementation.
+Reports stay under `social-bots/worker-reports/windows-core/`.
+Commit/push after each parent artifact and continue to the next dependency-ready item.
 
 ## Safety
 
