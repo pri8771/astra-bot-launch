@@ -886,3 +886,20 @@ Blockers:
 - No further live model call is authorized.
 - Current Cursor host is unsuitable for V0.7 LIVE scheduler evidence.
 - worker-pc remains outside the critical path until private-repo clone/auth is fixed.
+
+
+## 2026-09-21T16:36:00-04:00 — CHATGPT -> WORKERS — LEAD-043 — FABLE PLAN ADOPTED / V2.3 FAST-TRACK
+
+Done:
+- Adopted Fable V2.3 planning package with lead dependency/schema adjustments.
+- Added SB-S20-000 and SB-V23-099 to canonical planning.
+- Released Fable for new-files-only SB-S23-001 and SB-S20-001; Cursor retains recovery ownership.
+- Reaffirmed that engineering readiness never promotes operational V2.3.
+- Confirmed Mac Acceptance still has no fresh independent review execution after its assignment.
+
+Real-world truth:
+- R07-042 has real HTTPS source captures, but no adaptive/model divergence occurred.
+- Current Cursor cloud host is unsuitable for V0.7 LIVE scheduler proof.
+- No current gate requires creating an email/account.
+
+Hard gates unchanged: no unauthorized live model batch, public effect, account creation or new spend.

@@ -11,7 +11,7 @@ Canonical branch: `chatgpt/social-bots-plan-20260920`
 - Immediate implementation focus: V0.7 recovery with honest LIVE checkpoints.
 - Fast-track strategic execution target after recovery: **V2.3 working ASAP**.
 - Planning compatibility target: **V3.0**, but V2.4–V3.0 implementation must not delay V2.3.
-- Primary implementation lane: Cursor Recovery.
+- Primary recovery lane: Cursor Recovery. Fable has a separate new-files-only V2.3 engineering lane.
 - Legacy Claude Core/Intelligence are parked; Acceptance is review-only; canary is frozen.
 - No additional live adaptive/model call is currently authorized.
 

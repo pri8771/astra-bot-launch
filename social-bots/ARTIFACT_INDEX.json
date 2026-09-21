@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T18:45:00Z",
+  "updated_at": "2026-09-21T20:36:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -3593,9 +3593,7 @@
       "owner": "Cursor",
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-001.md",
-      "depends_on": [
-        "SB-V19-005"
-      ],
+      "depends_on": [],
       "story_points": 2,
       "evidence": [],
       "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
@@ -3610,7 +3608,7 @@
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-002.md",
       "depends_on": [
         "SB-S20-001",
-        "SB-V20-002"
+        "SB-S20-000"
       ],
       "story_points": 2,
       "evidence": [],
@@ -3656,8 +3654,7 @@
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-005.md",
       "depends_on": [
-        "SB-S20-002",
-        "SB-S19-004"
+        "SB-S20-002"
       ],
       "story_points": 2,
       "evidence": [],
@@ -3704,7 +3701,8 @@
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S21-001.md",
       "depends_on": [
-        "SB-V20-004"
+        "SB-S20-004",
+        "SB-S20-006"
       ],
       "story_points": 1,
       "evidence": [],
@@ -3799,7 +3797,8 @@
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S22-001.md",
       "depends_on": [
-        "SB-V21-001"
+        "SB-S20-001",
+        "SB-S21-001"
       ],
       "story_points": 1,
       "evidence": [],
@@ -3906,9 +3905,7 @@
       "owner": "Cursor",
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S23-001.md",
-      "depends_on": [
-        "SB-V22-001"
-      ],
+      "depends_on": [],
       "story_points": 2,
       "evidence": [],
       "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
@@ -4842,6 +4839,41 @@
       "story_points": 4,
       "evidence": [],
       "last_verified_ref": "social-bots/DETAILED_EXECUTION_V18_TO_V30.md"
+    },
+    {
+      "id": "SB-S20-000",
+      "name": "Intelligence module consolidation onto primary implementation branch",
+      "type": "execution_slice",
+      "version_gate": "V2.0-prerequisite",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v18-v30/SB-S20-000.md",
+      "depends_on": [
+        "SB-R07-041"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-043_2026-09-21T1636.md"
+    },
+    {
+      "id": "SB-V23-099",
+      "name": "V2.3 engineering-readiness integration acceptance",
+      "type": "acceptance_bundle",
+      "version_gate": "V2.3-readiness",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V23-099.md",
+      "depends_on": [
+        "SB-S20-000",
+        "SB-S20-006",
+        "SB-S20-007",
+        "SB-S21-006",
+        "SB-S22-007",
+        "SB-S23-008"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-043_2026-09-21T1636.md"
     }
   ]
 }

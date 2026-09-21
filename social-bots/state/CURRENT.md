@@ -1,46 +1,31 @@
 # Social Bots — compact current state
 
-Source of truth remains `../STATE.json`; this file is the startup summary.
-
-Updated from LEAD-041.
+Source of truth remains `../STATE.json`. Updated from LEAD-043.
 
 ## Version
-
 - Official: **V0.4.x**
 - Completed: V0.3
-- Target sequence: honest V0.7 recovery -> V2.3 ASAP -> continue through V3.0
-- V3.0 is a planning/architecture compatibility target until V2.3 works.
+- Recovery target: honest V0.7
+- Fast-track engineering target: **V2.3 engineering-ready ASAP**
+- Operational V2.3 remains behind the full LIVE chain.
+- V3.0 is the architecture compatibility target until V2.3 works.
 
-## Implementation
+## Recovery
+Cursor remains primary recovery owner.
+- SB-R07-041: CHANGES_REQUIRED / immediate repair.
+- SB-R07-071/044/072: SUBMITTED / pending acceptance.
+- SB-R07-042/051/052/053/061: engineering submissions retained for audit.
+- Current Cursor cloud host is unsuitable for V0.7 LIVE scheduler proof.
+- Mac Acceptance has not yet produced a fresh independent LEAD-042/043 review session.
 
-Primary branch:
-`cursor/social-bots-recovery-v07-20260921`
+## V2.3 fast-track
+Fable planning is lead-adopted.
+- SB-S20-000 added; blocked on accepted SB-R07-041.
+- SB-V23-099 added; engineering readiness only.
+- Released Fable tasks: SB-S23-001 and SB-S20-001, then dependency-safe new-files-only work.
 
-Latest verified material source inherited into recovery:
-`a73b7b58de8f3669795b81637bff55247d67943c`
+## Real-life rule
+A milestone is not working until its required LIVE evidence exists. Engineering artifacts may be accepted independently without promoting the milestone.
 
-Latest verified reported suite:
-**312 passed, 1 skipped**
-
-Immediate artifact:
-**SB-R07-071 — atomic cross-process SESSION_ONCE uniqueness**
-
-Then:
-SB-R07-041 -> SB-R07-044 -> SB-R07-072 -> dependency-ready recovery artifacts.
-
-## Hard blockers / gates
-
-- SB-V04-002 / SB-V04-004 require a future fixed five-call LIVE adaptive divergence batch.
-- That batch is **not authorized**.
-- It requires fresh explicit owner authorization + matching ChatGPT lead authorization manifest.
-- No public social effect or new spend is authorized through the current recovery work.
-- V0.7 LIVE acceptance requires real native OS-scheduler evidence on an owner-controlled persistent host.
-
-## Heartbeat
-
-One fresh session = one heartbeat. Current inherited heartbeat implementation still has an atomicity defect tracked by SB-R07-071.
-
-For full detail, read only when needed:
-- `../STATE.json`
-- `../WORK_QUEUE.md`
-- latest `../lead-reviews/`
+## Authority
+No additional live adaptive/model call, public effect, account creation or new spend is authorized.

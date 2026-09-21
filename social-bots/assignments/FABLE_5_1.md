@@ -1,70 +1,37 @@
-# Assignment — Fable 5.1
+# Assignment — Fable 5.1 — LEAD-043 implementation fast-track
 
-Role: senior planning architect + non-conflicting implementation worker.
+Role: senior implementation architect + non-conflicting V2.3 engineering worker.
 
 ## Priority
+1. Get V2.3 engineering-ready as fast as safely possible without interfering with Cursor recovery.
+2. Keep operational V2.3 behind the complete LIVE chain.
+3. Maintain V3.0 compatibility; do not let V2.4+ implementation delay V2.3.
 
-1. **Get V2.3 genuinely working as fast as honestly possible.**
-2. Harden the plan through V3.0 so a Sonnet 4.6-class worker could execute artifacts without inventing major architecture.
-3. After V2.3 is accepted, continue automatically toward V3.0 when dependencies/authority allow it.
+Your planning pass is lead-adopted with canonical dependency/schema adjustments.
 
-V3.0 planning must inform earlier architecture, but **V2.4–V3.0 implementation must not delay V2.3**.
+## Ownership
+- Cursor owns V0.7 recovery and existing recovery runtime/bin/test files.
+- Fable may implement only lead-released new-files-only V2.3 slices until coordination changes.
 
-## First pass
+## Released work
+1. SB-S23-001 — specialist contract runtime.
+2. SB-S20-001 — versioned strategy store.
+3. SB-S23-002 after S23-001.
+4. Continue dependency-safe new-files-only S20/S21/S22/S23 work after refreshing canonical state.
+5. SB-S20-000 is blocked until SB-R07-041 is ACCEPTED.
 
-- Check useful past project conversation/memory if available.
-- Audit Claude history/heartbeat and latest ChatGPT reviews only as needed to avoid rebuilding rejected work.
-- Audit the active Cursor recovery branch to avoid source collisions.
-- Verify current status against Git before any claim.
-- Emit one Fable `SESSION_ONCE` heartbeat.
+Use `V20_TO_V23_IMPLEMENTATION_SPEC.md`, `V23_CRITICAL_PATH.md`, exact artifact packets, and Specialist Worker Contract schema v2.
 
-## Planning job
+## Efficiency
+Use lower-capability subagents for bounded mechanical work when available. Reserve Fable for architecture, concurrency, authority/security, integration and hard debugging.
 
-Audit existing artifact contracts rather than replacing the roadmap.
+## Evidence
+Fast-track work is ENGINEERING unless the packet explicitly requires LIVE evidence. Fixtures never promote operational V2.0–V2.3.
 
-Make ambiguous critical-path artifacts detailed enough that a Sonnet 4.6-class worker can implement them with:
-- inputs/outputs and interfaces;
-- reuse targets / likely modules;
-- dependency and ownership boundaries;
-- deterministic vs model responsibility;
-- fail-closed/error behavior;
-- focused/adversarial tests;
-- ENGINEERING vs LIVE evidence;
-- owner gates;
-- concise definition of done.
-
-Do not reread or rewrite already-sufficient packets.
-
-## Execution job
-
-Cursor currently owns V0.7 recovery implementation. Do not duplicate active Cursor artifacts.
-
-While Cursor owns recovery:
-- focus Fable on plan hardening, dependency analysis, acceptance/test architecture and genuinely independent future scaffolding;
-- only implement source when canonical ownership permits and it does not overlap active Cursor work.
-
-Fast-track engineering toward V2.3 may run ahead of operational version promotion when dependencies allow, but no later engineering may be used to falsely promote an earlier LIVE gate.
-
-## Token/model efficiency
-
-- Prefer git diff/search and targeted symbol/file reads.
-- Maintain a compact working summary; do not repeatedly summarize the roadmap.
-- Keep reports concise.
-- If subagents/models are available, use the lowest capable model for bounded mechanical work (tests from fixed specs, search, lint/type fixes, fixtures, mechanical schemas, docs).
-- Reserve Fable 5.1 for architecture, dependency reasoning, concurrency, authority/security, cross-module integration and hard debugging.
-- Do not create excessive subagents or merge-conflict fanout.
+## Heartbeat
+One fresh Fable session = one SESSION_ONCE heartbeat.
 
 ## Hard gates
+No unauthorized live model call, public/account effect, new spend/PAYG, destructive action, credential exposure or SwarmAI dependency.
 
-No unauthorized live model calls, public effects, new spend/PAYG, credential exposure, destructive actions, MFA/CAPTCHA bypass, fabricated LIVE evidence, or SwarmAI dependency.
-
-## Handoff
-
-Persist planning changes in Git. At the end return only:
-- exact SHA(s);
-- audited current state;
-- critical path to V2.3;
-- planning files/artifacts changed;
-- first 5 executable non-conflicting tasks;
-- blockers/owner gates;
-- `READY_FOR_LEAD_REVIEW`.
+Workers submit. ChatGPT accepts.

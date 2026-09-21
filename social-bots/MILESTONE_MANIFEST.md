@@ -177,6 +177,11 @@ Required:
 - SB-V23-002 Specialist lifecycle/sandbox/evidence implementation.
 - SB-V23-003 V2.3 checkpoint bundle.
 
+Engineering-readiness artifact:
+- SB-V23-099 V2.3 engineering-readiness integration acceptance.
+
+SB-V23-099 may be accepted on fixture-labeled engineering evidence before operational V2.3. It cannot promote V2.3; operational promotion still requires SB-V23-003 and its full LIVE dependency chain.
+
 ## V2.4 — long-term learning
 Required:
 - SB-V24-001 Institutional memory schema.
