@@ -1,49 +1,59 @@
-# SESSION_INSTRUCTIONS — Intelligence / Evidence Integrity
+# SESSION_INSTRUCTIONS — Lane 2 / Mac Intelligence Builder
 
-Mode: ACTIVE — FAST TRACK
+Mode: FRESH SESSION RESET
 Branch: `claude/social-bots-intelligence-repair-v2`
-Lead review: LEAD-034
 
-Heartbeat is observability only. Do not pause implementation for heartbeat timing.
+Read canonical:
+- `social-bots/RESET_EXECUTION_20260921.md`
+- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
+- `social-bots/SESSION_ROUTER.md`
 
-## Today's heartbeat soak — not started yet in durable evidence
+## Start
 
-Start prospectively now if this session is active:
-- `FAST_5M`: T0, +~5m, +~10m, +~15m;
-- then `SOAK_15M_24H`: every 15 minutes for 24 hours;
-- append/push real timed records; no backfill;
-- continue source work in parallel.
+1. Pull this branch.
+2. Set `social-bots/worker-reports/intelligence-repair/CURRENT_PROGRESS.md`.
+3. Verify `gh auth status`.
+4. Launch in background:
 
-Historical durable history still ends at seq7 `2026-09-21T04:10:36Z`; seq6→7 is ~30m28s, so historical hourly authorization remains false. No `FAST_5M` entry exists yet.
+```bash
+nohup python3 social-bots/bin/heartbeat_reporter.py \
+  --lane INTELLIGENCE \
+  --progress-file social-bots/worker-reports/intelligence-repair/CURRENT_PROGRESS.md \
+  >/tmp/socialbots-intelligence-heartbeat.log 2>&1 &
+echo $!
+```
 
-## Accepted and frozen
-- `SB-V13-001` — ACCEPTED.
-- `SB-V14-001` — ACCEPTED.
+Reporter cadence:
+- T0/+5/+10/+15m;
+- then every 15m for 24h;
+- one Issue #3 comment each heartbeat.
 
-## Priority 1 — SB-V05-001 — IMPLEMENT NOW
+Update CURRENT_PROGRESS.md whenever work changes.
 
-Repair the actual HTTPS production path:
-- connect to the already validated/pinned public IP;
-- preserve original hostname for TLS SNI and certificate verification;
+## Mission
+
+Accepted/frozen:
+- SB-V13-001
+- SB-V14-001
+
+Priority 1 — SB-V05-001:
+- connect to validated/pinned public IP;
+- preserve original hostname for TLS SNI/certificate verification;
 - no hostname re-resolution after validation;
-- correct Host header semantics;
-- redirects fail closed unless each hop is independently validated/pinned;
-- add a regression through the real production connection-construction path that catches invalid stdlib HTTPSConnection use;
-- preserve SSRF protections, collector-owned trust, extraction honesty, fixture-vs-operational distinction and operational signal gating.
+- correct Host header;
+- redirects fail closed unless each hop is revalidated/pinned;
+- preserve SSRF/trust/extraction/fixture-vs-operational controls;
+- add production-path regression catching invalid HTTPS constructor/API use;
+- run tests, commit/push, report exact limitations.
 
-Return exact SHA/tests/limits. Do not claim fixture/stub evidence as live external evidence.
+Priority 2 — SB-V15-001:
+- authoritative bot+persona experiment save/load/list/read APIs;
+- normal persona flows cannot enumerate another persona's experiments;
+- whole-runtime access explicit admin/internal only;
+- mixed-persona production-path regressions;
+- preserve normalized observation provenance and INCONCLUSIVE behavior.
 
-## Priority 2 — SB-V15-001
+After both submit, stop expansion and wait/pull for lead audit.
 
-After V05 submission:
-- implement authoritative bot+persona experiment save/load/list/read APIs;
-- normal persona flows must not enumerate another persona's experiments;
-- whole-runtime access, if retained, must be explicit admin/internal;
-- add mixed-persona production-path regressions;
-- preserve normalized-observation provenance and INCONCLUSIVE-on-missing behavior.
-
-Preserve V16/V17/V20-002 for later lead audit.
-
-## Safety / ownership
-
-Do not edit Core state/decision/reasoning/leasing/worker. No public effects, paid APIs/new spend, secrets, fake metrics/evidence, engagement manipulation, or SwarmAI dependency.
+Do not edit Core runtime.
+No public effects, PAYG/new spend, secrets, fake metrics/evidence, destructive actions or SwarmAI dependency.
