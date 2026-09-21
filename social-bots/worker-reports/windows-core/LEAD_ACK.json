@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "lane": "windows-core",
-  "reviewed_through_sequence": 5,
-  "reviewed_at": "2026-09-21T04:06:00Z",
-  "lead_review": "LEAD-023",
+  "reviewed_through_sequence": 6,
+  "reviewed_at": "2026-09-21T04:52:00Z",
+  "lead_review": "LEAD-024",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "START NOW: complete SB-V03-005 authoritative persona-scoped production read boundary, then regenerate SB-V03-006. Do not defer for heartbeat testing.",
+  "next_assignment": "Repair SB-V03-004 post-cycle success-receipt fencing first, then enforce SB-V03-005 production persona read boundaries, then regenerate SB-V03-006 from the repaired SHA.",
   "notification_delivered": true,
-  "notes": "Lead source inspection of V03-004 repair commit 175f741 is positive; Mac QA is assigned independent verification. Do not rework V03-004 unless QA finds a concrete defect. Heartbeat is observability only."
+  "notes": "Migration staging repair remains good, but LEAD-024 found finish receipts can be written after fence loss because worker.py emits the finish receipt after decision.run_cycle returns and outside the fence. V03-005 facade/tests are useful but raw whole-runtime APIs remain publicly callable, so persona-facing production enforcement is incomplete. Current 0433fc85 V03-006 bundle is PREPARED only and must be regenerated after repairs."
 }
