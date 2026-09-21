@@ -41,8 +41,13 @@ Three classes of data (SB-V03-005):
          ``experiment_id = "exp-" + content_id``. Two personas acting on the
          same signal produce different ids by construction, so one persona's
          record can never be mistaken for another's;
-     (c) every read that must be persona-specific goes through the filters in
-         this module, which select strictly by the ``persona`` field.
+     (c) every read that must be persona-specific goes through the AUTHORITATIVE
+         persona-scoped readers in this module (``persona_*`` /
+         ``persona_records``), which select strictly by the ``persona`` field.
+         Raw whole-runtime enumeration is available ONLY through the explicitly
+         named admin/internal ``admin_all_records`` (used by ``audit``); it must
+         never be used as a persona-facing production read (SB-V03-005 read
+         boundary).
 
 Why logical (not physical nesting): the shared runtime state must stay shared and
 serialized, and the experiment/content stores are owned by the Intelligence lane
@@ -115,7 +120,51 @@ def persona_decisions(bot: str, persona: str) -> list[dict]:
     return [r for r in rows if _persona_of(r) == persona]
 
 
-_READERS = {
+# --------------------------------------------------------------------------- #
+# AUTHORITATIVE persona-scoped production readers (SB-V03-005 read boundary).
+#
+# Production/persona-facing code MUST read a persona's private/personalized
+# append-only history through these readers (or ``persona_records`` below), which
+# select strictly by the ``persona`` field. This is the sanctioned read boundary:
+# it is structurally impossible for one persona to enumerate another's records
+# through them. Every store in ``PERSONA_SCOPED_STORES`` has a reader here.
+# --------------------------------------------------------------------------- #
+PERSONA_SCOPED_READERS = {
+    "content_history": persona_content_history,
+    "publish_queue": persona_publish_queue,
+    "experiments": persona_experiments,
+    "analytics_events": persona_analytics,
+    "action_history": persona_action_history,
+    "decisions": persona_decisions,
+}
+
+
+def persona_records(bot: str, persona: str, store: str) -> list[dict]:
+    """Authoritative persona-scoped read dispatcher for any persona-scoped store.
+
+    ``store`` must be one of ``PERSONA_SCOPED_STORES``. Returns ONLY ``persona``'s
+    records. Prefer this (or the named ``persona_*`` readers) in all production
+    persona-facing code; never read a raw whole-runtime store directly there.
+    """
+    try:
+        reader = PERSONA_SCOPED_READERS[store]
+    except KeyError:
+        raise ValueError(f"unknown persona-scoped store {store!r}; "
+                         f"expected one of {sorted(PERSONA_SCOPED_READERS)}")
+    return reader(bot, persona)
+
+
+# --------------------------------------------------------------------------- #
+# ADMIN / INTERNAL raw whole-runtime readers.
+#
+# These return EVERY record in a store regardless of persona. They are for
+# audit/admin/diagnostics only (e.g. ``audit`` below) and MUST NOT be used as a
+# persona-facing production read — doing so would let one persona see another's
+# records. They are named ``admin_*`` precisely so such misuse is obvious in
+# review. (This is the SB-V03-005 requirement that raw whole-runtime reads remain
+# only as explicitly named admin/internal APIs.)
+# --------------------------------------------------------------------------- #
+_ADMIN_READERS = {
     "content_history": lambda bot: read_jsonl(paths.content_dir(bot) / "content_history.jsonl"),
     "publish_queue": lambda bot: pipeline.publish_queue(bot),
     "experiments": lambda bot: read_jsonl(paths.experiments_dir(bot) / "index.jsonl"),
@@ -123,6 +172,18 @@ _READERS = {
     "action_history": lambda bot: read_jsonl(paths.memory_dir(bot) / "action_history.jsonl"),
     "decisions": lambda bot: read_jsonl(paths.memory_dir(bot) / "decisions.jsonl"),
 }
+
+
+def admin_all_records(bot: str, store: str) -> list[dict]:
+    """ADMIN/INTERNAL: every record in ``store`` across all personas.
+
+    Not a persona-facing production read — use ``persona_records`` for that.
+    """
+    try:
+        reader = _ADMIN_READERS[store]
+    except KeyError:
+        raise ValueError(f"unknown store {store!r}; expected one of {sorted(_ADMIN_READERS)}")
+    return reader(bot)
 
 
 def audit(bot: str, personas: list[str]) -> dict:
@@ -135,7 +196,7 @@ def audit(bot: str, personas: list[str]) -> dict:
     """
     report: dict = {"bot": bot, "personas": list(personas), "stores": {}, "clean": True}
     known = set(personas)
-    for store, reader in _READERS.items():
+    for store, reader in _ADMIN_READERS.items():
         rows = reader(bot)
         labels = [_persona_of(r) for r in rows]
         unlabeled = sum(1 for l in labels if l is None)
