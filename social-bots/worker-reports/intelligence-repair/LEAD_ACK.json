@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "intelligence-repair",
   "reviewed_through_sequence": 0,
-  "reviewed_at": null,
-  "lead_review": "LEAD-018",
+  "reviewed_at": "2026-09-21T02:51:00Z",
+  "lead_review": "LEAD-020",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
-  "next_assignment": "SB-V05-001",
-  "notification_delivered": false,
-  "notes": "Initial lead acknowledgement. Remain on BOOTSTRAP_15M until lead authorizes hourly."
+  "next_assignment": "Repair SB-V05-001 HTTPS pinned-destination TLS execution first, add a regression that exercises the real HTTPSConnection path, and continue prospective approximately-15-minute HEARTBEAT_LOG entries without backfilling. Then repair SB-V15-001 persona-scoped production readers before additional higher-version expansion.",
+  "notification_delivered": true,
+  "notes": "HEARTBEAT.json reports sequence 4, but HEARTBEAT_LOG.jsonl contains only the seed sequence 0; snapshot sequence advancement is not durable heartbeat history and does not satisfy bootstrap. Source progress through feb30f4c is real and separately audited."
 }
