@@ -1,0 +1,36 @@
+ENGINEERING plan-validator execution in an isolated local directory.
+Command: python -m unittest test_validate_plan -v
+
+test_bad_dependency_type (test_validate_plan.PlanTests.test_bad_dependency_type) ... ok
+test_bad_document_shape (test_validate_plan.PlanTests.test_bad_document_shape) ... ok
+test_boolean_points (test_validate_plan.PlanTests.test_boolean_points) ... ok
+test_card_missing (test_validate_plan.PlanTests.test_card_missing) ... ok
+test_card_route_escape (test_validate_plan.PlanTests.test_card_route_escape) ... ok
+test_cycle (test_validate_plan.PlanTests.test_cycle) ... ok
+test_duplicate (test_validate_plan.PlanTests.test_duplicate) ... ok
+test_duplicate_dependency (test_validate_plan.PlanTests.test_duplicate_dependency) ... ok
+test_fixture_reference_universe_only (test_validate_plan.PlanTests.test_fixture_reference_universe_only) ... ok
+test_full_sha_required (test_validate_plan.PlanTests.test_full_sha_required) ... ok
+test_invalid_points (test_validate_plan.PlanTests.test_invalid_points) ... ok
+test_missing_dependency (test_validate_plan.PlanTests.test_missing_dependency) ... ok
+test_no_assignment_override (test_validate_plan.PlanTests.test_no_assignment_override) ... ok
+test_no_automatic_activation (test_validate_plan.PlanTests.test_no_automatic_activation) ... ok
+test_no_self_acceptance (test_validate_plan.PlanTests.test_no_self_acceptance) ... ok
+test_self_cycle (test_validate_plan.PlanTests.test_self_cycle) ... ok
+test_strict_unknown_artifact (test_validate_plan.PlanTests.test_strict_unknown_artifact) ... ok
+test_valid_graph (test_validate_plan.PlanTests.test_valid_graph) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.005s
+
+OK
+
+Command: python validate_plan.py
+{
+  "valid": true,
+  "tasks": 32,
+  "artifact_reference_check": "not_performed",
+  "work_card_check": "not_performed",
+  "runtime_tests": "not_run",
+  "errors": []
+}
