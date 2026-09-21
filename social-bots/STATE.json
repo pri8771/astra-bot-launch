@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T19:55:35-04:00",
+  "updated_at": "2026-09-21T00:10:47Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -9,7 +9,11 @@
   "implementation_pr": 2,
   "status": "lead_audit_changes_required",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -39,9 +43,19 @@
   },
   "artifact_review": {
     "implementation_head": "2cab7219edab5c2f3a7123fad1546f43a2fc140c",
-    "accepted": ["SB-V03-002"],
-    "changes_required": ["SB-V03-001", "SB-V03-003", "SB-V03-004", "SB-V03-005", "SB-EVD-001"],
-    "blocked": ["SB-V03-006"],
+    "accepted": [
+      "SB-V03-002"
+    ],
+    "changes_required": [
+      "SB-V03-001",
+      "SB-V03-003",
+      "SB-V03-004",
+      "SB-V03-005",
+      "SB-EVD-001"
+    ],
+    "blocked": [
+      "SB-V03-006"
+    ],
     "key_findings": [
       "Signal-delta repair is accepted: per-signal consumed ledger with later/batch/restart regressions inspected.",
       "Required-review stop code is directionally correct, but packet-required forced fact and voice failure regressions are missing.",
@@ -76,7 +90,7 @@
   "chatgpt_lead": {
     "last_review_at": "2026-09-20T19:55:35-04:00",
     "last_verified_setup_pr_head": "70801b6bd5f636e0952053a5a8e8c8081f1e1d6b",
-    "last_verified_implementation_pr_head": "2cab7219edab5c2f3a7123fad1546f43a2fc140c",
+    "last_verified_implementation_pr_head": "2a53046f10ed284f6e4164a78c47bbf750aad73d",
     "last_verified_claude_implementation_commit": "2cab7219edab5c2f3a7123fad1546f43a2fc140c",
     "new_worker_activity_since_previous_review": true,
     "new_implementation_activity_since_previous_review": true,
@@ -116,9 +130,18 @@
     "immediate_target_label": "real adaptive autonomous thinking",
     "near_term_engineering_target": "V0.7",
     "first_major_product_target": "V1.0",
-    "long_term_targets": ["V2.0 autonomous growth engine", "V3.0 autonomous multi-brand media organization"],
+    "long_term_targets": [
+      "V2.0 autonomous growth engine",
+      "V3.0 autonomous multi-brand media organization"
+    ],
     "contract": "VERSION_ROADMAP.md",
-    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md"
+    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
+    "today_engineering_target": "V2.0-readiness (SB-V20-099)",
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ]
   },
   "management_model": {
     "style": "artifact_oriented",
@@ -128,5 +151,37 @@
     "worker_packets": "artifact-packets/",
     "status_rule": "version/task status must be derived from accepted artifacts and evidence, not chat claims"
   },
-  "next_artifacts": ["SB-V03-003", "SB-V03-004", "SB-V03-005"]
+  "next_artifacts": [
+    "SB-V03-003",
+    "SB-V03-004",
+    "SB-V03-005",
+    "SB-V05-001",
+    "SB-V13-001"
+  ],
+  "acceleration": {
+    "owner_goal": "V3.0",
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
+    "today_target": "V2.0 engineering-ready",
+    "operational_promotion_note": "V1.0+ and V2.0 operational promotion remain real-evidence gated; public/account/measurement requirements are not waived.",
+    "plan": "EXECUTION_TO_V2_TODAY.md",
+    "lanes": "TEAM_LANES.md",
+    "lane_branches": {
+      "core": "claude/social-bots-core-to-v2",
+      "intelligence": "claude/social-bots-intelligence-to-v2"
+    }
+  },
+  "latest_submission": {
+    "source_ref": "claude/social-bots-independent-arch-ez64l7@2a53046f10ed284f6e4164a78c47bbf750aad73d",
+    "artifact": "SB-V04-001",
+    "status": "changes_required_by_lead_pre_review",
+    "findings": [
+      "reasoning provider seam is useful and SwarmAI-independent",
+      "default SBOTS_REASONING=baseline still processes changed evidence with fixed heuristic instead of failing closed when adaptive reasoning is unavailable",
+      "model proposal fields/actions/numeric bounds require deterministic validation before scoring/execution"
+    ]
+  }
 }
