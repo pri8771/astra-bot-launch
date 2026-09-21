@@ -22,20 +22,22 @@ caller and not the fetcher — owns everything that makes evidence trustworthy:
 
 Anti-forgery invariants (SB-V05-001 repair contract)
 ---------------------------------------------------
-1. **Operational-live provenance requires a trusted transport, not just a
-   ``mode="live"`` claim.** A receipt can only carry ``provenance ==
+1. **Operational-live provenance requires a policy-owned trusted transport, not
+   just a ``mode="live"`` claim.** A receipt can only carry ``provenance ==
    "live-capture"`` (and report ``is_operational_live_evidence() is True``) when
-   the retrieval ran through a transport that is *registered as trusted* AND the
-   transport declares itself live AND the retrieval completed. An arbitrary
-   custom ``Fetcher`` that merely sets ``mode = "live"`` is downgraded to
-   ``provenance == "unverified-untrusted-transport"`` and can never be
-   operational live evidence.
-2. **Live retrieval is restricted to validated public HTTP(S).** The trusted
-   live transport (:class:`UrllibFetcher`) rejects non-HTTP(S) schemes and any
-   destination that resolves to a loopback / private / link-local / multicast /
-   reserved / unspecified address, and re-validates every redirect hop and the
-   final destination. Unsafe destinations yield a failed retrieval, never
-   evidence.
+   the retrieval ran through a transport in the *static, internal trust policy*
+   (:data:`_TRUSTED_OPERATIONAL_TRANSPORTS`) AND the transport declares itself
+   live AND the retrieval completed. There is no public API to grant trust, so an
+   ordinary runtime caller cannot make an arbitrary transport operational. An
+   untrusted ``mode="live"`` fetcher is downgraded to
+   ``provenance == "unverified-untrusted-transport"``.
+2. **Live retrieval is restricted to validated public HTTP(S), pinned to the
+   validated IP.** The trusted transport (:class:`UrllibFetcher`) rejects
+   non-HTTP(S) schemes and any destination that resolves to a loopback /
+   private / link-local / multicast / reserved / unspecified address, then
+   connects to the pinned validated IP (closing the validate-to-connect TOCTOU /
+   DNS-rebinding window). Redirects are refused (fail-closed): a 3xx is a failed
+   retrieval, never followed.
 3. **Extraction failure cannot be presented as extracted factual support.** Each
    receipt records an ``extraction_status`` (``not_attempted`` / ``ok`` /
    ``failed`` / ``empty``). Extraction errors are recorded out-of-band in
@@ -69,7 +71,7 @@ from .jsonstore import write_json, append_jsonl, now_iso
 # Collector identity/version is baked into every receipt so evidence is
 # attributable to the exact collector that produced it.
 COLLECTOR_NAME = "sbots.source-collector"
-COLLECTOR_VERSION = "1.1.0"
+COLLECTOR_VERSION = "1.2.0"
 
 # Retrieval status vocabulary (collector-derived, never caller-supplied).
 STATUS_OK = "ok"            # a complete retrieval with content
@@ -164,27 +166,33 @@ def validate_public_url(url: str) -> urllib.parse.ParseResult:
 
 
 # --------------------------------------------------------------------------- #
-# Trusted-transport registry.
+# Trusted-transport POLICY (LEAD-018 hardening).
 #
-# Operational-live provenance may only be produced by collector-owned trusted
-# transports. Trust is granted by an explicit, auditable registration — never by
-# a caller merely declaring ``mode = "live"`` on an ad-hoc object.
+# Operational-live provenance may only be produced by a *policy-owned, static,
+# internal* transport. There is deliberately NO public registration API: an
+# ordinary runtime caller cannot make an arbitrary transport operational-trusted.
+# The trusted set is fixed at import time to this module's own built-in
+# transports (populated at the bottom of the file, after the class is defined).
 # --------------------------------------------------------------------------- #
-_TRUSTED_TRANSPORT_CLASSES: set[type] = set()
-
-
-def register_trusted_transport(cls: type) -> type:
-    """Register (and return) a transport class as a trusted, collector-owned
-    transport. Usable as a decorator."""
-    _TRUSTED_TRANSPORT_CLASSES.add(cls)
-    return cls
+_TRUSTED_OPERATIONAL_TRANSPORTS: frozenset[type] = frozenset()
 
 
 def is_trusted_transport(fetcher: object) -> bool:
-    """True only when ``fetcher``'s exact class is a registered trusted
-    transport. Subclasses are NOT trusted implicitly — each must be registered,
-    so a subclass cannot silently inherit trust while overriding retrieval."""
-    return type(fetcher) in _TRUSTED_TRANSPORT_CLASSES
+    """True only when ``fetcher``'s exact class is in the static trust policy.
+
+    Subclasses are NOT trusted implicitly — a subclass that overrides retrieval
+    is a different class and is therefore untrusted, which prevents inheriting
+    trust while changing behaviour.
+    """
+    return type(fetcher) in _TRUSTED_OPERATIONAL_TRANSPORTS
+
+
+# Evidence classes for downstream bridges (fixture vs verified-untrusted vs
+# trusted-operational vs unverified).
+EVIDENCE_TRUSTED_OPERATIONAL = "trusted_operational"
+EVIDENCE_VERIFIED_UNTRUSTED = "verified_untrusted"
+EVIDENCE_FIXTURE = "fixture"
+EVIDENCE_UNVERIFIED = "unverified"
 
 
 @dataclass(frozen=True)
@@ -441,15 +449,31 @@ def load_captures(bot: str) -> list[dict]:
 # --------------------------------------------------------------------------- #
 # Bridge to the accepted V0.3 signal API (research.py is left UNCHANGED).
 # --------------------------------------------------------------------------- #
+def evidence_class(receipt: CaptureReceipt) -> str:
+    """Classify a receipt for downstream bridges.
+
+    Distinguishes fixture, verified-untrusted, trusted-operational and
+    unverified evidence so a bridge can enforce its own trust requirement.
+    """
+    if not receipt.is_verified_capture():
+        return EVIDENCE_UNVERIFIED
+    if receipt.capture_mode == MODE_FIXTURE:
+        return EVIDENCE_FIXTURE
+    if receipt.is_operational_live_evidence():
+        return EVIDENCE_TRUSTED_OPERATIONAL
+    return EVIDENCE_VERIFIED_UNTRUSTED
+
+
 def to_signal(receipt: CaptureReceipt, *, title: str, summary: str,
               tags: list[str] | None = None):
     """Build a ``research.Signal`` from a *verified* capture receipt.
 
-    Refuses to create a signal from an unverified (failed/partial/empty)
-    retrieval, so unverified evidence can never enter the signal inbox. The
-    signal's provenance mirrors the receipt's collector-derived provenance — a
-    fixture stays a fixture, a trusted live capture stays a live capture, and an
-    untrusted live transport stays honestly ``unverified-untrusted-transport``.
+    This is the GENERAL (non-operational) bridge: it accepts any verified
+    capture (including fixtures) and mirrors the receipt's collector-derived
+    provenance so the signal stays honestly labelled. It refuses unverified
+    (failed/partial/empty) retrievals. For operational use, prefer
+    :func:`to_operational_signal`, which additionally rejects fixture and
+    verified-untrusted evidence.
     """
     from . import research
     if not receipt.is_verified_capture():
@@ -465,6 +489,20 @@ def to_signal(receipt: CaptureReceipt, *, title: str, summary: str,
         provenance=receipt.provenance,
         tags=tags or [],
     )
+
+
+def to_operational_signal(receipt: CaptureReceipt, *, title: str, summary: str,
+                          tags: list[str] | None = None):
+    """Operational bridge: build a signal ONLY from trusted-operational evidence.
+
+    Rejects fixture and verified-untrusted receipts, so an operational consumer
+    can never be fed a fixture or an unvalidated-transport capture.
+    """
+    cls = evidence_class(receipt)
+    if cls != EVIDENCE_TRUSTED_OPERATIONAL:
+        raise ValueError(
+            f"operational bridge requires trusted-operational evidence, got {cls!r}")
+    return to_signal(receipt, title=title, summary=summary, tags=tags)
 
 
 # --------------------------------------------------------------------------- #
@@ -494,94 +532,126 @@ class FixtureFetcher:
         return FetchResult(ok=True, content=item, final_url=url, http_status=200)
 
 
-# Sentinel for the redirect loop: a validated redirect target to follow next.
 @dataclass(frozen=True)
-class _Redirect:
-    url: str
+class PinnedDestination:
+    """A validated destination pinned to a specific public IP.
+
+    Pinning the exact validated address for the actual connection closes the
+    validate-then-connect TOCTOU / DNS-rebinding window: the socket connects to
+    ``ip`` (proven public), while TLS SNI / cert verification and the HTTP Host
+    header still use ``host``.
+    """
+    scheme: str
+    host: str
+    ip: str
+    port: int
 
 
-@register_trusted_transport
+def resolve_and_validate(url: str) -> PinnedDestination:
+    """Validate ``url`` and pin it to one validated public IP for connection.
+
+    Raises :class:`UnsafeDestinationError` for a bad scheme/host or any resolved
+    address that is not public. The returned IP is the one the caller MUST
+    connect to (do not re-resolve), so the connection cannot be rebound to a
+    private address after validation.
+    """
+    parsed = validate_public_url(url)  # scheme + all resolved addrs are public
+    host = parsed.hostname
+    scheme = parsed.scheme.lower()
+    port = parsed.port or (443 if scheme == "https" else 80)
+    # validate_public_url already proved EVERY resolved address is public; pick
+    # the first and pin it for the actual connection.
+    addresses = sorted(_resolve_addresses(host))
+    for addr in addresses:
+        if _ip_is_public(addr):
+            return PinnedDestination(scheme=scheme, host=host, ip=addr, port=port)
+    raise UnsafeDestinationError(f"host {host!r} has no public address to pin")
+
+
 class UrllibFetcher:
-    """A trusted live fetcher over validated public HTTP(S).
+    """The built-in trusted live fetcher over validated public HTTP(S).
 
-    This is the *only* built-in transport that can produce operational-live
-    evidence, because it is registered as a trusted transport AND it enforces the
-    safety contract:
+    Trust is conferred by the static module policy (see
+    ``_TRUSTED_OPERATIONAL_TRANSPORTS`` at the bottom of this file), NOT by any
+    caller-invokable registration. It enforces the safety contract:
 
     - only ``http`` / ``https`` schemes are permitted;
-    - the initial destination and every redirect hop must resolve to a public
-      address (loopback/private/link-local/multicast/reserved/unspecified are
-      rejected);
-    - redirects are followed manually and re-validated, up to ``max_redirects``.
+    - the destination is resolved, every resolved address must be public, and
+      the connection is PINNED to a validated public IP (closing the
+      validate-to-connect TOCTOU / DNS-rebinding window);
+    - **redirects are refused (fail-closed).** A 3xx response is not followed;
+      it returns a failed retrieval. Following redirects safely would require
+      re-validating and re-pinning each hop; rather than claim that capability
+      without an end-to-end tested implementation, this transport deliberately
+      fails closed on redirects.
 
-    Network access is environment-gated; unit tests exercise the validation and
-    redirect logic without live network by overriding ``_perform``. No cookies,
-    auth headers or private browser state are sent or stored.
+    Network access is environment-gated. No cookies, auth headers or private
+    browser state are sent or stored.
     """
     mode = MODE_LIVE
 
     def __init__(self, *, name: str = "urllib", timeout: float = 15.0,
-                 max_bytes: int = 5_000_000, max_redirects: int = 5,
-                 user_agent: str | None = None):
+                 max_bytes: int = 5_000_000, user_agent: str | None = None):
         self.name = name
         self.timeout = timeout
         self.max_bytes = max_bytes
-        self.max_redirects = max_redirects
         self.user_agent = user_agent or f"{COLLECTOR_NAME}/{COLLECTOR_VERSION}"
 
     def fetch(self, url: str) -> FetchResult:
-        # Validate the caller-supplied destination before any network contact.
+        # Validate + pin the destination before any network contact.
         try:
-            validate_public_url(url)
+            pinned = resolve_and_validate(url)
         except UnsafeDestinationError as exc:
             return FetchResult(ok=False, error=f"unsafe-destination:{exc}",
                                final_url=url)
+        try:
+            return self._perform(url, pinned)
+        except Exception as exc:  # network/DNS/timeout/TLS — a failed retrieval
+            return FetchResult(ok=False, error=type(exc).__name__, final_url=url)
 
-        current = url
-        for _ in range(self.max_redirects + 1):
-            try:
-                outcome = self._perform(current)
-            except Exception as exc:  # network/DNS/timeout — a failed retrieval
-                return FetchResult(ok=False, error=type(exc).__name__,
-                                   final_url=current)
-            if isinstance(outcome, _Redirect):
-                # Re-validate the redirect target BEFORE following it, so a
-                # public URL cannot bounce us to a private/loopback destination.
-                try:
-                    validate_public_url(outcome.url)
-                except UnsafeDestinationError as exc:
-                    return FetchResult(ok=False, error=f"unsafe-redirect:{exc}",
-                                       final_url=outcome.url)
-                current = outcome.url
-                continue
-            return outcome
-        return FetchResult(ok=False, error="too-many-redirects", final_url=current)
+    def _perform(self, url: str, pinned: PinnedDestination) -> FetchResult:
+        """Perform one HTTP(S) exchange against the PINNED IP, failing closed on
+        redirects. Not auto-following redirects removes the overridden-helper
+        redirect claim entirely."""
+        import http.client
+        import ssl
 
-    def _perform(self, url: str) -> FetchResult | _Redirect:
-        """Perform one HTTP(S) exchange WITHOUT auto-following redirects.
+        parsed = urllib.parse.urlparse(url)
+        path = parsed.path or "/"
+        if parsed.query:
+            path += "?" + parsed.query
 
-        Returns a :class:`_Redirect` when the server responded with a redirect,
-        or a :class:`FetchResult` for a terminal response. Overridable in tests
-        to exercise the redirect/validation loop without network access.
-        """
-        import urllib.request
-
-        class _NoRedirect(urllib.request.HTTPRedirectHandler):
-            def redirect_request(self, req, fp, code, msg, headers, newurl):
-                return None  # never auto-follow; the fetch loop validates hops
-
-        opener = urllib.request.build_opener(_NoRedirect)
-        req = urllib.request.Request(url, headers={"User-Agent": self.user_agent})
-        with opener.open(req, timeout=self.timeout) as resp:
-            status = getattr(resp, "status", None) or resp.getcode()
-            location = resp.headers.get("Location")
-            if status and 300 <= int(status) < 400 and location:
-                target = urllib.parse.urljoin(url, location)
-                return _Redirect(target)
+        if pinned.scheme == "https":
+            ctx = ssl.create_default_context()
+            conn = http.client.HTTPSConnection(
+                pinned.ip, pinned.port, timeout=self.timeout, context=ctx,
+                server_hostname=pinned.host)  # SNI/cert use the hostname
+        else:
+            conn = http.client.HTTPConnection(
+                pinned.ip, pinned.port, timeout=self.timeout)
+        try:
+            # Host header carries the real hostname; the socket is on the pinned IP.
+            conn.request("GET", path, headers={
+                "Host": pinned.host, "User-Agent": self.user_agent})
+            resp = conn.getresponse()
+            status = int(resp.status)
+            if 300 <= status < 400:
+                # Fail closed: do not follow redirects.
+                return FetchResult(ok=False,
+                                   error=f"redirect-not-followed:{status}",
+                                   http_status=status, final_url=url)
             raw = resp.read(self.max_bytes + 1)
             partial = len(raw) > self.max_bytes
             content = raw[: self.max_bytes]
-            final_url = resp.geturl()
-            return FetchResult(ok=True, content=content, final_url=final_url,
-                               http_status=int(status) if status else None,
-                               partial=partial)
+            return FetchResult(ok=True, content=content, final_url=url,
+                               http_status=status, partial=partial)
+        finally:
+            conn.close()
+
+
+# --------------------------------------------------------------------------- #
+# Static trust policy (LEAD-018): the ONLY operational-trusted transports.
+# Assigned once here, after the class is defined; there is no public API to add
+# to this set, so an ordinary runtime caller cannot grant operational trust.
+# --------------------------------------------------------------------------- #
+_TRUSTED_OPERATIONAL_TRANSPORTS = frozenset({UrllibFetcher})

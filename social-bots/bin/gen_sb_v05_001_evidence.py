@@ -121,21 +121,33 @@ checks["unsafe_destinations_rejected"] = {
     "pass": all(v["rejected"] for v in unsafe_results.values()),
 }
 
-# 7) redirect validation: a public URL that redirects to a private destination
-#    is rejected at the hop, not followed. (Trusted transport, no network.)
-class _RedirectToPrivate(collector.UrllibFetcher):
-    def _perform(self, url):
-        return collector._Redirect("http://127.0.0.1/secret")
+# 7) destination pinning + fail-closed redirects (LEAD-018 hardening).
+pinned = collector.resolve_and_validate("https://93.184.216.34/x")
+try:
+    collector.resolve_and_validate("http://127.0.0.1/secret")
+    private_rejected = False
+except collector.UnsafeDestinationError:
+    private_rejected = True
+checks["destination_pinning_and_fail_closed"] = {
+    "pinned_ip": pinned.ip,
+    "private_rejected": private_rejected,
+    "no_public_registration_api": not hasattr(collector, "register_trusted_transport"),
+    "pass": (pinned.ip == "93.184.216.34" and private_rejected
+             and not hasattr(collector, "register_trusted_transport")),
+}
 
-
-collector.register_trusted_transport(_RedirectToPrivate)
-rr = collector.Collector(_RedirectToPrivate()).capture("https://93.184.216.34/start")
-checks["redirect_to_private_rejected"] = {
-    "status": rr.status,
-    "error": rr.error,
-    "pass": (rr.status == collector.STATUS_FAILED
-             and (rr.error or "").startswith("unsafe-redirect")
-             and not rr.is_operational_live_evidence()),
+# 7b) operational bridge rejects fixture/untrusted; general bridge labels honestly.
+fx = collector.Collector(collector.FixtureFetcher({URL: b"fx"})).capture(URL)
+op_rejected_fixture = False
+try:
+    collector.to_operational_signal(fx, title="T", summary="S")
+except ValueError:
+    op_rejected_fixture = True
+checks["operational_bridge_rejects_fixture"] = {
+    "evidence_class": collector.evidence_class(fx),
+    "op_rejected_fixture": op_rejected_fixture,
+    "pass": (collector.evidence_class(fx) == collector.EVIDENCE_FIXTURE
+             and op_rejected_fixture),
 }
 
 # 8) extraction failure is never usable factual support and is never smuggled

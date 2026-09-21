@@ -1,22 +1,31 @@
 {
   "all_pass": true,
   "artifact": "SB-V05-002",
-  "assessor_name": "keyword-support-assessor",
-  "assessor_version": "1.0.0",
   "checks": {
-    "caller_stance_not_operational": {
-      "binding_operational": false,
-      "pass": true,
-      "status": "UNKNOWN"
-    },
     "changed_hash_invalidates": {
       "pass": true,
       "stale_reason": "stale-hash-changed",
       "status": "UNSUPPORTED"
     },
-    "conflicting_sources_conflicted": {
+    "conflicting_conflicted": {
       "pass": true,
       "status": "CONFLICTED"
+    },
+    "diagnostic_fails_closed": {
+      "binding_operational": false,
+      "diag_stance": "supports",
+      "pass": true,
+      "status": "UNKNOWN"
+    },
+    "diagnostic_not_operational": {
+      "assessor_operational": false,
+      "is_operational": false,
+      "no_registration_api": true,
+      "pass": true
+    },
+    "fixture_evidence_class": {
+      "evidence_class": "fixture",
+      "pass": true
     },
     "omitted_claim_cannot_bypass": {
       "identified_claims": [
@@ -29,19 +38,14 @@
       ],
       "pass": true
     },
-    "supported_passes": {
-      "assessors": [
-        "keyword-support-assessor@1.0.0"
-      ],
+    "operational_supported_passes": {
       "pass": true,
       "status": "SUPPORTED"
-    },
-    "url_present_unsupported_fails": {
-      "pass": true,
-      "status": "UNSUPPORTED"
     }
   },
+  "diagnostic_assessor": "keyword-support-assessor",
   "extractor": "heuristic-claim-extractor",
   "kind": "fixture-evidence",
-  "warning": "FIXTURE evidence + deterministic assessor; not operational content review."
+  "operational_semantic_provider": "NOT BUNDLED \u2014 Core adaptive provider dependency",
+  "warning": "FIXTURE captures + DIAGNOSTIC assessor; operational support is fail-closed. Operational gating shown with constructed operational assessments (Core provider stand-in). NOT operational content review."
 }

@@ -8,6 +8,12 @@
       "old_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
       "pass": true
     },
+    "destination_pinning_and_fail_closed": {
+      "no_public_registration_api": true,
+      "pass": true,
+      "pinned_ip": "93.184.216.34",
+      "private_rejected": true
+    },
     "extraction_failure_not_usable": {
       "extracted": {},
       "extraction_error": "RuntimeError",
@@ -25,7 +31,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": false,
         "provenance": "unverified-failed",
-        "receipt_id": "cap-dcbfd8bb9fb34178",
+        "receipt_id": "cap-a294f602f8644477",
         "source_url": "https://example.org/fixture-article",
         "status": "failed",
         "transport_trusted": false
@@ -36,10 +42,10 @@
       "is_operational_live_evidence": false,
       "pass": true
     },
-    "redirect_to_private_rejected": {
-      "error": "unsafe-redirect:host '127.0.0.1' resolves to non-public address '127.0.0.1'",
-      "pass": true,
-      "status": "failed"
+    "operational_bridge_rejects_fixture": {
+      "evidence_class": "fixture",
+      "op_rejected_fixture": true,
+      "pass": true
     },
     "same_source_twice": {
       "pass": true,
@@ -52,7 +58,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-1ddd6457e1bf4b3f",
+        "receipt_id": "cap-823c5881a52e475c",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -66,7 +72,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-cc4d7d758fe940d7",
+        "receipt_id": "cap-3bff1f1d6fdd4ea3",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -106,7 +112,7 @@
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "unverified-untrusted-transport",
-        "receipt_id": "cap-1156677c127542d1",
+        "receipt_id": "cap-1fcbe553f6734321",
         "source_url": "https://example.org/fixture-article",
         "status": "ok",
         "transport_trusted": false
@@ -114,7 +120,7 @@
     }
   },
   "collector_name": "sbots.source-collector",
-  "collector_version": "1.1.0",
+  "collector_version": "1.2.0",
   "kind": "fixture-evidence",
   "warning": "FIXTURE evidence only; not operational live capture."
 }

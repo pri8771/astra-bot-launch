@@ -3,13 +3,13 @@
   "lane": "intelligence-repair",
   "branch": "claude/social-bots-intelligence-repair-v2",
   "session_status": "ACTIVE",
-  "current_artifact": "SB-V05-001",
+  "current_artifact": "SB-V16-001",
   "started_at": "2026-09-21T02:20:00Z",
-  "last_updated_at": "2026-09-21T02:20:00Z",
-  "last_commit_sha": "14abeca579aa138740da3e14149d0405612ad126",
+  "last_updated_at": "2026-09-21T02:45:00Z",
+  "last_commit_sha": "cd2f48080a1218583555ece3e26c0a17504e5d08",
   "canonical_seen_sha": "85c4414a676fea304bb688c0e4797e47806dd072",
   "lead_message_seen": "LEAD-018",
-  "next_artifact": "SB-V05-001-hardening",
+  "next_artifact": "SB-V16-001",
   "blocker": null,
-  "notes": "Wave1 first pass done (V05-001/002/V13/V14/V15 submitted). Now applying LEAD-018 hardening to SB-V05-001 (policy-owned trust, fail-closed redirects, DNS pinning, operational bridge) and SB-V05-002 (no self-registered operational assessor; Core semantic-provider dependency)."
+  "notes": "LEAD-018 hardening for SB-V05-001 and SB-V05-002 resubmitted (policy-owned trust, DNS pinning, fail-closed redirects, operational bridge; fail-closed operational assessor). V13/V14/V15 submitted. Continuing V16."
 }

@@ -1,8 +1,11 @@
 """SB-V05-002 — claim-to-source factual support acceptance tests.
 
-Stances come from an attributable assessor, not from caller-declared bindings.
-The operational assessor here (KeywordSupportAssessor) is deterministic and
-inspectable; ManualAssessor stances are explicitly non-operational/test-only.
+Stances come from an attributable assessor. The bundled KeywordSupportAssessor
+is DIAGNOSTIC/test-only (non-operational). Operational support must come from a
+policy-owned assessor over trusted-operational evidence — none is bundled, so the
+system fails closed. Gating logic for operational assessments is exercised by
+constructing operational SupportAssessment values directly (representing what the
+Core adaptive provider will supply).
 """
 import os
 import sys
@@ -16,112 +19,127 @@ from runtime import factcheck as fc, collector  # noqa: E402
 URL = "https://example.org/study"
 
 
-def _verified_ref(content=b"study body", url=URL):
+def _fixture_ref(content=b"study body", url=URL):
     c = collector.Collector(collector.FixtureFetcher({url: content}))
     receipt = c.capture(url)
     return receipt, fc.evidence_ref_from_receipt(receipt)
 
 
-def _item(ref, excerpt, span=None):
-    return fc.EvidenceItem(ref=ref, excerpt=excerpt, span=span)
+def _trusted_ref(receipt_id="cap-op", content_hash="hash-op"):
+    """A ref whose evidence is trusted-operational (as Core would supply)."""
+    return fc.EvidenceRef(receipt_id=receipt_id, source_url=URL,
+                          content_hash=content_hash, retrieved_at="2026-01-01T00:00:00+00:00",
+                          evidence_class=fc.EVIDENCE_TRUSTED_OPERATIONAL)
+
+
+def _op(claim_id, stance, ref, excerpt="e"):
+    """An OPERATIONAL support assessment (what the Core provider yields)."""
+    return fc.SupportAssessment(
+        claim_id=claim_id, stance=stance, evidence=ref, excerpt=excerpt, span=None,
+        assessor_name="core-semantic-assessor", assessor_version="x",
+        operational=True, rationale="core")
 
 
 class FactCheckTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
         os.environ["SBOTS_HOME"] = self.tmp
-        self.assessor = fc.KeywordSupportAssessor()
+        self.diag = fc.KeywordSupportAssessor()
 
-    # --- URL present but unsupported fails -------------------------------- #
-    def test_url_present_but_unsupported_fails(self):
-        receipt, ref = _verified_ref()
-        claim = fc.Claim("cl-1", "The lake froze in July.", kind=fc.FACTUAL)
-        # Evidence is bound (URL present) but the excerpt is about something else.
-        item = _item(ref, "This article discusses quarterly revenue figures.")
-        bindings = fc.assess_bindings(claim, [item], self.assessor)
-        self.assertEqual(bindings[0].stance, fc.UNRELATED)
-        review = fc.review_claims([claim], bindings,
-                                  {receipt.receipt_id: receipt.content_hash})
+    # --- built-ins are diagnostic / fail closed --------------------------- #
+    def test_bundled_assessor_is_diagnostic_not_operational(self):
+        self.assertFalse(self.diag.operational)
+        self.assertFalse(fc.is_operational_assessor(self.diag))
+
+    def test_no_public_operational_registration_api(self):
+        self.assertFalse(hasattr(fc, "register_operational_assessor"))
+
+    def test_diagnostic_assessor_fails_closed(self):
+        """No operational assessor bundled => a required factual claim is
+        withheld even when the diagnostic assessor says SUPPORTS."""
+        _, ref = _fixture_ref()
+        claim = fc.Claim("cl", "Water expands when it freezes.")
+        item = fc.EvidenceItem(ref, "Tests show water expands when it freezes.")
+        bindings = fc.assess_bindings(claim, [item], self.diag)
+        self.assertEqual(bindings[0].stance, fc.SUPPORTS)
+        self.assertFalse(bindings[0].operational)  # fail closed
+        review = fc.review_claims([claim], bindings, {ref.receipt_id: ref.content_hash})
         self.assertFalse(review.passed)
-        self.assertEqual(review.claim_results[0]["status"], fc.UNSUPPORTED)
+        self.assertEqual(review.claim_results[0]["status"], fc.UNKNOWN)
 
-    # --- conflicting sources -> CONFLICTED/withheld ----------------------- #
-    def test_conflicting_sources_yield_conflicted_and_withheld(self):
-        r1, ref1 = _verified_ref(b"supports", url="https://a.org")
-        r2, ref2 = _verified_ref(b"refutes", url="https://b.org")
-        claim = fc.Claim("cl-2", "Vaccines reduce transmission.", kind=fc.FACTUAL)
-        items = [_item(ref1, "Vaccines reduce transmission across the cohort."),
-                 _item(ref2, "There is no evidence vaccines reduce transmission.")]
-        bindings = fc.assess_bindings(claim, items, self.assessor)
-        stances = {b.stance for b in bindings}
-        self.assertIn(fc.SUPPORTS, stances)
-        self.assertIn(fc.REFUTES, stances)
-        hashes = {r1.receipt_id: r1.content_hash, r2.receipt_id: r2.content_hash}
-        review = fc.review_claims([claim], bindings, hashes)
-        self.assertFalse(review.passed)
-        self.assertEqual(review.claim_results[0]["status"], fc.CONFLICTED)
+    def test_operational_stance_requires_trusted_operational_evidence(self):
+        """Even a (hypothetical) operational assessor over FIXTURE evidence does
+        not yield operational support: fixtures are test-only."""
+        _, fx_ref = _fixture_ref()
+        self.assertEqual(fx_ref.evidence_class, fc.EVIDENCE_FIXTURE)
+        # Build the binding as assess_bindings would, but assessor is diagnostic.
+        b = fc.assess_bindings(fc.Claim("c", "x"),
+                               [fc.EvidenceItem(fx_ref, "x")], self.diag)
+        self.assertFalse(b[0].operational)
 
-    # --- supported claim passes with exact evidence ref ------------------- #
-    def test_supported_claim_passes_with_exact_evidence_ref(self):
-        receipt, ref = _verified_ref()
-        claim = fc.Claim("cl-3", "Water expands when it freezes.", kind=fc.FACTUAL)
-        item = _item(ref, "Laboratory results show water expands when it freezes.")
-        bindings = fc.assess_bindings(claim, [item], self.assessor)
-        review = fc.review_claims([claim], bindings,
-                                  {receipt.receipt_id: receipt.content_hash})
+    # --- operational gating logic (Core-provider assessments) ------------- #
+    def test_supported_passes_with_exact_evidence_ref(self):
+        ref = _trusted_ref()
+        claim = fc.Claim("cl-3", "Water expands when it freezes.")
+        b = [_op(claim.id, fc.SUPPORTS, ref)]
+        review = fc.review_claims([claim], b, {ref.receipt_id: ref.content_hash})
         self.assertTrue(review.passed)
         res = review.claim_results[0]
         self.assertEqual(res["status"], fc.SUPPORTED)
-        used = res["used_evidence"][0]
-        self.assertEqual(used["receipt_id"], receipt.receipt_id)
-        self.assertEqual(used["content_hash"], receipt.content_hash)
-        self.assertEqual(used["source_url"], URL)
-        # The passing support is attributed to the operational assessor.
-        self.assertIn("keyword-support-assessor@1.0.0", res["assessors"])
+        self.assertEqual(res["used_evidence"][0]["receipt_id"], ref.receipt_id)
 
-    # --- caller cannot assert operational support directly ---------------- #
-    def test_caller_declared_stance_is_not_operational_support(self):
-        """A ManualAssessor SUPPORTS stance is non-operational and must NOT let a
-        required factual claim pass — the core SB-V05-002 repair contract."""
-        receipt, ref = _verified_ref()
-        claim = fc.Claim("cl-m", "Sales tripled last quarter.", kind=fc.FACTUAL)
-        manual = fc.ManualAssessor({claim.id: fc.SUPPORTS})
-        bindings = fc.assess_bindings(claim, [_item(ref, "irrelevant")], manual)
-        self.assertFalse(bindings[0].operational)
-        review = fc.review_claims([claim], bindings,
-                                  {receipt.receipt_id: receipt.content_hash})
+    def test_url_present_but_unsupported_fails(self):
+        ref = _trusted_ref()
+        claim = fc.Claim("cl-1", "The lake froze in July.")
+        b = [_op(claim.id, fc.UNRELATED, ref)]
+        review = fc.review_claims([claim], b, {ref.receipt_id: ref.content_hash})
         self.assertFalse(review.passed)
-        res = review.claim_results[0]
-        self.assertEqual(res["status"], fc.UNKNOWN)
-        self.assertTrue(res["non_operational_evidence"])
+        self.assertEqual(review.claim_results[0]["status"], fc.UNSUPPORTED)
 
-    def test_manual_assessor_not_registered_operational(self):
-        self.assertFalse(fc.is_operational_assessor(fc.ManualAssessor({})))
-        self.assertTrue(fc.is_operational_assessor(fc.KeywordSupportAssessor()))
+    def test_conflicting_sources_yield_conflicted(self):
+        r1, r2 = _trusted_ref("cap-a", "h-a"), _trusted_ref("cap-b", "h-b")
+        claim = fc.Claim("cl-2", "X causes Y.")
+        b = [_op(claim.id, fc.SUPPORTS, r1), _op(claim.id, fc.REFUTES, r2)]
+        hashes = {r1.receipt_id: r1.content_hash, r2.receipt_id: r2.content_hash}
+        review = fc.review_claims([claim], b, hashes)
+        self.assertFalse(review.passed)
+        self.assertEqual(review.claim_results[0]["status"], fc.CONFLICTED)
 
-    # --- changed source hash invalidates stale support -------------------- #
+    def test_partial_support_passes(self):
+        ref = _trusted_ref()
+        claim = fc.Claim("cl-8", "Solar capacity doubled.")
+        b = [_op(claim.id, fc.PARTIAL_STANCE, ref)]
+        review = fc.review_claims([claim], b, {ref.receipt_id: ref.content_hash})
+        self.assertTrue(review.passed)
+        self.assertEqual(review.claim_results[0]["status"], fc.PARTIAL)
+
     def test_changed_source_hash_invalidates_support(self):
-        receipt, ref = _verified_ref(b"original")
-        claim = fc.Claim("cl-4", "The bridge spans 500 meters.", kind=fc.FACTUAL)
-        item = _item(ref, "The bridge spans 500 meters over the river.")
-        bindings = fc.assess_bindings(claim, [item], self.assessor)
-        # The source has since changed -> different current hash.
-        changed = collector.Collector(
-            collector.FixtureFetcher({URL: b"rewritten"})).capture(URL)
-        self.assertNotEqual(changed.content_hash, receipt.content_hash)
-        review = fc.review_claims([claim], bindings,
-                                  {receipt.receipt_id: changed.content_hash})
+        ref = _trusted_ref("cap-c", "original-hash")
+        claim = fc.Claim("cl-4", "The bridge spans 500 meters.")
+        b = [_op(claim.id, fc.SUPPORTS, ref)]
+        # Source changed -> current hash differs.
+        review = fc.review_claims([claim], b, {ref.receipt_id: "changed-hash"})
         self.assertFalse(review.passed)
         res = review.claim_results[0]
         self.assertEqual(res["status"], fc.UNSUPPORTED)
         self.assertEqual(res["stale_evidence"][0]["reason"], "stale-hash-changed")
+
+    def test_manual_assessor_is_non_operational(self):
+        ref = _trusted_ref()
+        claim = fc.Claim("cl-m", "Sales tripled.")
+        manual = fc.ManualAssessor({claim.id: fc.SUPPORTS})
+        b = fc.assess_bindings(claim, [fc.EvidenceItem(ref, "x")], manual)
+        self.assertFalse(b[0].operational)
+        review = fc.review_claims([claim], b, {ref.receipt_id: ref.content_hash})
+        self.assertFalse(review.passed)
+        self.assertEqual(review.claim_results[0]["status"], fc.UNKNOWN)
 
     # --- opinion / creative not gated ------------------------------------ #
     def test_opinion_and_creative_not_gated(self):
         claim_op = fc.Claim("cl-5", "This is the best tool.", kind=fc.OPINION)
         claim_cr = fc.Claim("cl-6", "Once upon a time...", kind=fc.CREATIVE)
         review = fc.review_claims([claim_op, claim_cr], [], {})
-        self.assertTrue(review.passed)  # not evidence-gated
+        self.assertTrue(review.passed)
         self.assertEqual(review.claim_results[0]["status"], fc.UNKNOWN)
 
     def test_unverified_evidence_cannot_be_bound(self):
@@ -130,22 +148,10 @@ class FactCheckTest(unittest.TestCase):
             fc.evidence_ref_from_receipt(failed)
 
     def test_unknown_when_no_evidence(self):
-        claim = fc.Claim("cl-7", "Unbacked fact.", kind=fc.FACTUAL, required=False)
+        claim = fc.Claim("cl-7", "Unbacked fact.", required=False)
         review = fc.review_claims([claim], [], {})
-        self.assertTrue(review.passed)  # required=False so no withhold
-        self.assertEqual(review.claim_results[0]["status"], fc.UNKNOWN)
-
-    def test_partial_support_passes_required(self):
-        receipt, ref = _verified_ref()
-        claim = fc.Claim("cl-8", "Solar capacity doubled worldwide.", kind=fc.FACTUAL)
-        # Excerpt contains some but not all key terms -> PARTIAL.
-        item = _item(ref, "Solar capacity rose sharply this year.")
-        bindings = fc.assess_bindings(claim, [item], self.assessor)
-        self.assertEqual(bindings[0].stance, fc.PARTIAL_STANCE)
-        review = fc.review_claims([claim], bindings,
-                                  {receipt.receipt_id: receipt.content_hash})
         self.assertTrue(review.passed)
-        self.assertEqual(review.claim_results[0]["status"], fc.PARTIAL)
+        self.assertEqual(review.claim_results[0]["status"], fc.UNKNOWN)
 
     # --- material-claim identification (LEAD-014) ------------------------- #
     def test_material_claim_identification_finds_factual_sentences(self):
@@ -156,40 +162,33 @@ class FactCheckTest(unittest.TestCase):
         kinds = {c.kind for c in claims}
         self.assertIn(fc.FACTUAL, kinds)
         self.assertIn(fc.OPINION, kinds)
-        factual = [c for c in claims if c.kind == fc.FACTUAL]
-        self.assertEqual(len(factual), 2)  # the 2021 claim and the 40 percent claim
+        self.assertEqual(len([c for c in claims if c.kind == fc.FACTUAL]), 2)
 
     def test_omitted_material_claim_cannot_bypass_review(self):
-        """A candidate whose text contains a material factual claim the caller
-        did NOT enumerate is still identified and gated."""
         text = "Trust us, it's great. Sales grew 300 percent in 2023."
-        # Caller enumerates NOTHING factual (tries to bypass review).
         review = fc.review_candidate(text, caller_claims=[], bindings=[],
                                      current_hashes={})
         self.assertFalse(review.passed)
         self.assertTrue(review.identified_claims)
-        # The added claim resolved to UNKNOWN and withheld the candidate.
         self.assertTrue(any(r["status"] == fc.UNKNOWN
                             for r in review.claim_results))
 
-    def test_review_candidate_passes_when_identified_claim_is_supported(self):
-        receipt, ref = _verified_ref()
+    def test_review_candidate_passes_only_with_operational_support(self):
+        ref = _trusted_ref()
         text = "The satellite reached orbit in 2022."
-        # Identify the claim the caller omitted, then support it operationally.
         final, added = fc.reconcile_claims([], text)
         self.assertEqual(len(added), 1)
         auto = added[0]
-        item = _item(ref, "Records confirm the satellite reached orbit in 2022.")
-        bindings = fc.assess_bindings(auto, [item], self.assessor)
-        review = fc.review_candidate(text, caller_claims=[], bindings=bindings,
-                                     current_hashes={receipt.receipt_id: receipt.content_hash})
+        b = [_op(auto.id, fc.SUPPORTS, ref)]
+        review = fc.review_candidate(text, caller_claims=[], bindings=b,
+                                     current_hashes={ref.receipt_id: ref.content_hash})
         self.assertTrue(review.passed)
 
     def test_caller_claim_covers_identified_avoids_duplicate(self):
         text = "Revenue grew 40 percent in 2023."
-        caller = [fc.Claim("c-rev", "Revenue grew 40 percent in 2023.", kind=fc.FACTUAL)]
+        caller = [fc.Claim("c-rev", "Revenue grew 40 percent in 2023.")]
         final, added = fc.reconcile_claims(caller, text)
-        self.assertEqual(added, [])  # caller already covers it
+        self.assertEqual(added, [])
         self.assertEqual(len(final), 1)
 
 

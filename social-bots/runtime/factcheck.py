@@ -4,24 +4,32 @@ The accepted V0.3 fact check only asked "is a source URL present?". This module
 answers the harder, correct question: **is each material factual claim actually
 supported by captured evidence, as judged by an attributable assessor?**
 
-SB-V05-002 repair contract (INTELLIGENCE_WAVE1 §2 + LEAD-014)
------------------------------------------------------------
+SB-V05-002 repair contract (INTELLIGENCE_WAVE1 §2 + LEAD-014 + LEAD-018)
+----------------------------------------------------------------------
 1. **The caller does not get to assert an operational ``stance=supports``.** A
    support stance is produced by a :class:`SupportAssessor` — an attributable
-   assessor with an identity and version. A stance only counts as *operational*
-   when it comes from an assessor whose class is registered as operational
-   (``register_operational_assessor``). A caller-declared / fixture stance
-   (:class:`ManualAssessor`) is retained but explicitly ``operational=False`` and
-   never grants support for gating.
-2. **Every support assessment binds** claim -> evidence excerpt/span/hash ->
+   assessor with an identity and version.
+2. **Operational assessors are policy-owned and fail closed.** A stance counts as
+   *operational* only when it comes from an assessor in the static internal
+   policy (:data:`_OPERATIONAL_ASSESSOR_POLICY`) AND it was assessed over
+   trusted-operational SB-V05-001 evidence. There is NO public registration API,
+   so an ordinary runtime caller cannot self-register an operational assessor.
+   The policy ships EMPTY: no operational semantic assessor is bundled here — the
+   accepted Core adaptive provider is expected to supply it later (recorded as a
+   dependency). Until then the system fails closed.
+3. **Built-ins are diagnostic/test-only.** :class:`KeywordSupportAssessor` is a
+   deterministic diagnostic aid (``operational=False``), NOT authoritative
+   arbitrary-fact verification. :class:`HeuristicClaimExtractor` is a
+   conservative diagnostic identifier, NOT proof that all material facts were
+   found. :class:`ManualAssessor` is an explicit fixture/test stance echo.
+4. **Every support assessment binds** claim -> evidence excerpt/span/hash ->
    assessor identity/version -> support status.
-3. **No operational assessor => UNKNOWN/WITHHELD.** A required factual claim
-   backed only by non-operational assessments is withheld.
-4. **Material claims are identified, not merely trusted from the caller.** A
+5. **No operational assessor => UNKNOWN/WITHHELD.** A required factual claim not
+   backed by an operational assessment is withheld.
+6. **Material claims are identified, not merely trusted from the caller.** A
    bounded, inspectable :class:`ClaimExtractor` scans the candidate text for
    material factual claims. Any material factual claim the caller did not
-   enumerate is added and gated, so omitting a claim from the caller's bindings
-   cannot bypass factual review.
+   enumerate is added and gated, so omitting a claim cannot bypass review.
 
 Staleness (unchanged): a support assessment only counts if the current capture
 receipt is verified AND its content hash still matches the hash recorded when the
@@ -33,6 +41,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field, asdict
 from typing import Protocol, runtime_checkable
+
+# Evidence classes (mirror runtime.collector) used to gate operational stance.
+EVIDENCE_TRUSTED_OPERATIONAL = "trusted_operational"
+EVIDENCE_VERIFIED_UNTRUSTED = "verified_untrusted"
+EVIDENCE_FIXTURE = "fixture"
+EVIDENCE_UNVERIFIED = "unverified"
 
 # Claim kinds.
 FACTUAL = "factual"
@@ -64,11 +78,14 @@ class Claim:
 @dataclass(frozen=True)
 class EvidenceRef:
     """A reference to a captured evidence receipt, with the facts needed to
-    detect staleness. ``content_hash`` is the hash recorded at assessment time."""
+    detect staleness. ``content_hash`` is the hash recorded at assessment time.
+    ``evidence_class`` records the SB-V05-001 trust class of the source receipt so
+    an operational stance can require trusted-operational evidence."""
     receipt_id: str
     source_url: str
     content_hash: str
     retrieved_at: str
+    evidence_class: str = EVIDENCE_UNVERIFIED
 
 
 @dataclass(frozen=True)
@@ -121,22 +138,18 @@ class SupportAssessor(Protocol):
         ...
 
 
-_OPERATIONAL_ASSESSOR_CLASSES: set[type] = set()
-
-
-def register_operational_assessor(cls: type) -> type:
-    """Register (and return) an assessor class as an operational assessor.
-
-    Operational stance can only be produced by an explicitly registered
-    assessor — a caller cannot make an assessment operational by merely setting
-    ``operational = True`` on an ad-hoc object.
-    """
-    _OPERATIONAL_ASSESSOR_CLASSES.add(cls)
-    return cls
+# Static, internal operational-assessor policy (LEAD-018). It ships EMPTY: no
+# operational semantic assessor is bundled in this module. There is no public
+# registration API, so an ordinary runtime caller cannot make an assessor
+# operational. The accepted Core adaptive provider is expected to supply the
+# operational semantic assessor later (recorded dependency); until then the
+# system fails closed.
+_OPERATIONAL_ASSESSOR_POLICY: frozenset[type] = frozenset()
 
 
 def is_operational_assessor(assessor: object) -> bool:
-    return (type(assessor) in _OPERATIONAL_ASSESSOR_CLASSES
+    """True only for an assessor whose exact class is in the static policy."""
+    return (type(assessor) in _OPERATIONAL_ASSESSOR_POLICY
             and bool(getattr(assessor, "operational", False)))
 
 
@@ -152,19 +165,20 @@ def _key_terms(text: str) -> list[str]:
     return [w for w in words if len(w) > 3 and w not in _STOPWORDS]
 
 
-@register_operational_assessor
 class KeywordSupportAssessor:
-    """A deterministic, inspectable operational assessor.
+    """A deterministic, inspectable DIAGNOSTIC assessor — NOT operational.
 
-    It is not a language model; it decides a stance by checking whether the
-    claim's key terms appear in the cited evidence excerpt, and by detecting
-    explicit refutation cues. It is deliberately simple and auditable — its
-    rationale names exactly which terms/cues drove the stance. It is a real
-    attributable assessor (identity + version), registered as operational.
+    It is not a language model and is not authoritative arbitrary-fact
+    verification. It decides a stance by checking whether the claim's key terms
+    appear in the cited evidence excerpt and by detecting explicit refutation
+    cues. It is useful for engineering/diagnostics and tests, but it is
+    ``operational=False`` and is NOT in the operational policy, so it can never
+    grant operational support. Authoritative semantic assessment must come from
+    the Core adaptive provider (recorded dependency).
     """
     name = "keyword-support-assessor"
     version = "1.0.0"
-    operational = True
+    operational = False
 
     _REFUTE_CUES = ("no evidence", "not supported", "is false", "refut",
                     "debunk", "myth", "disproven", "contradict")
@@ -206,8 +220,20 @@ class ManualAssessor:
         return self._stances.get(claim.id, UNRELATED)
 
 
+def _receipt_evidence_class(receipt) -> str:
+    """Classify a capture receipt (mirrors runtime.collector.evidence_class)."""
+    if not receipt.is_verified_capture():
+        return EVIDENCE_UNVERIFIED
+    if getattr(receipt, "capture_mode", None) == "fixture":
+        return EVIDENCE_FIXTURE
+    if receipt.is_operational_live_evidence():
+        return EVIDENCE_TRUSTED_OPERATIONAL
+    return EVIDENCE_VERIFIED_UNTRUSTED
+
+
 def evidence_ref_from_receipt(receipt) -> EvidenceRef:
-    """Build an EvidenceRef from a verified SB-V05-001 capture receipt."""
+    """Build an EvidenceRef from a verified SB-V05-001 capture receipt, carrying
+    the receipt's trust class so operational stance can require trusted evidence."""
     if not receipt.is_verified_capture():
         raise ValueError("cannot bind a claim to an unverified capture receipt")
     return EvidenceRef(
@@ -215,6 +241,7 @@ def evidence_ref_from_receipt(receipt) -> EvidenceRef:
         source_url=receipt.source_url,
         content_hash=receipt.content_hash,
         retrieved_at=receipt.retrieved_at,
+        evidence_class=_receipt_evidence_class(receipt),
     )
 
 
@@ -223,12 +250,15 @@ def assess_bindings(claim: Claim, items: list[EvidenceItem],
     """Run ``assessor`` over each evidence item to produce support assessments.
 
     The stance comes from the assessor; ``operational`` is derived from the
-    operational-assessor registry, not from the assessor's own attribute alone.
+    static operational-assessor policy AND requires trusted-operational evidence
+    (SB-V05-001). A diagnostic assessor, or an operational assessor over
+    fixture/untrusted evidence, yields non-operational assessments.
     """
-    operational = is_operational_assessor(assessor)
+    assessor_operational = is_operational_assessor(assessor)
     out = []
     for item in items:
         stance = assessor.assess(claim, item)
+        evidence_operational = (item.ref.evidence_class == EVIDENCE_TRUSTED_OPERATIONAL)
         out.append(SupportAssessment(
             claim_id=claim.id,
             stance=stance,
@@ -237,7 +267,7 @@ def assess_bindings(claim: Claim, items: list[EvidenceItem],
             span=item.span,
             assessor_name=getattr(assessor, "name", "unknown"),
             assessor_version=getattr(assessor, "version", "unknown"),
-            operational=operational,
+            operational=assessor_operational and evidence_operational,
             rationale=f"{getattr(assessor, 'name', 'unknown')} stance={stance}",
         ))
     return out

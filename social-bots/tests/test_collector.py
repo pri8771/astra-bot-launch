@@ -37,25 +37,24 @@ class CollectorTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             c.capture(URL, capture_mode="live")  # type: ignore[call-arg]
 
-    def test_trusted_live_transport_yields_operational_live_evidence(self):
-        @collector.register_trusted_transport
-        class TrustedLiveStub:
-            mode = collector.MODE_LIVE
-            name = "trusted-live-stub"
+    def test_trusted_operational_evidence_predicate(self):
+        # Trusted-operational evidence is built via the collector only through a
+        # policy-owned transport. We unit-test the receipt predicate/contract by
+        # constructing a receipt with the collector-derived trust flag set.
+        r = collector.CaptureReceipt(
+            receipt_id="cap-x", source_url=URL, canonical_id="src-x",
+            retrieved_at="2026-01-01T00:00:00+00:00", status=collector.STATUS_OK,
+            capture_mode=collector.MODE_LIVE, transport_trusted=True,
+            collector_name="c", collector_version="1", fetcher_name="urllib",
+            content_hash="abc", content_bytes=3, http_status=200, final_url=URL,
+            provenance="live-capture", error=None, partial=False)
+        self.assertTrue(r.is_operational_live_evidence())
+        self.assertEqual(collector.evidence_class(r),
+                         collector.EVIDENCE_TRUSTED_OPERATIONAL)
 
-            def fetch(self, url):
-                return collector.FetchResult(ok=True, content=b"payload",
-                                             final_url=url, http_status=200)
-
-        try:
-            c = collector.Collector(TrustedLiveStub())
-            r = c.capture(URL)
-            self.assertEqual(r.capture_mode, collector.MODE_LIVE)
-            self.assertTrue(r.transport_trusted)
-            self.assertEqual(r.provenance, "live-capture")
-            self.assertTrue(r.is_operational_live_evidence())
-        finally:
-            collector._TRUSTED_TRANSPORT_CLASSES.discard(TrustedLiveStub)
+    def test_no_public_registration_api(self):
+        # LEAD-018: ordinary callers must NOT be able to grant operational trust.
+        self.assertFalse(hasattr(collector, "register_trusted_transport"))
 
     def test_arbitrary_live_fetcher_is_not_operational_live_evidence(self):
         """An ad-hoc object declaring mode='live' must NOT be trusted merely
@@ -197,55 +196,78 @@ class CollectorTest(unittest.TestCase):
         self.assertFalse(res.ok)
         self.assertTrue(res.error.startswith("unsafe-destination"))
 
-    def test_urllib_fetcher_rejects_redirect_to_private_destination(self):
-        """A public URL that redirects to a private/loopback destination is
-        rejected at the redirect hop, not followed."""
-        class RedirectToPrivate(collector.UrllibFetcher):
-            def _perform(self, url):
-                return collector._Redirect("http://127.0.0.1/secret")
+    def test_resolve_and_validate_pins_public_ip(self):
+        # A literal public IP resolves offline and is pinned for connection.
+        pinned = collector.resolve_and_validate("https://93.184.216.34/x")
+        self.assertEqual(pinned.ip, "93.184.216.34")
+        self.assertEqual(pinned.scheme, "https")
+        self.assertEqual(pinned.port, 443)
 
-        c = collector.Collector(RedirectToPrivate())
-        # Register the subclass so trust is not the thing under test here.
-        collector.register_trusted_transport(RedirectToPrivate)
+    def test_resolve_and_validate_rejects_private(self):
+        with self.assertRaises(collector.UnsafeDestinationError):
+            collector.resolve_and_validate("http://10.0.0.1/x")
+
+    def test_redirect_is_failed_closed(self):
+        """A 3xx response is not followed; it is a failed retrieval (no override
+        of network helpers is used to claim redirect support)."""
+        pinned = collector.PinnedDestination(scheme="https", host="ex.org",
+                                             ip="93.184.216.34", port=443)
+
+        class FakeResp:
+            status = 302
+
+            def read(self, n):
+                return b""
+
+        class FakeConn:
+            def __init__(self, *a, **k):
+                pass
+
+            def request(self, *a, **k):
+                pass
+
+            def getresponse(self):
+                return FakeResp()
+
+            def close(self):
+                pass
+
+        import http.client
+        orig = http.client.HTTPSConnection
+        http.client.HTTPSConnection = FakeConn
         try:
-            r = c.capture("https://93.184.216.34/start")
-            self.assertEqual(r.status, collector.STATUS_FAILED)
-            self.assertTrue(r.error.startswith("unsafe-redirect"))
-            self.assertFalse(r.is_operational_live_evidence())
+            res = collector.UrllibFetcher()._perform("https://ex.org/a", pinned)
         finally:
-            collector._TRUSTED_TRANSPORT_CLASSES.discard(RedirectToPrivate)
-
-    def test_urllib_fetcher_follows_validated_public_redirect(self):
-        class RedirectThenContent(collector.UrllibFetcher):
-            def __init__(self):
-                super().__init__()
-                self._hops = 0
-
-            def _perform(self, url):
-                self._hops += 1
-                if self._hops == 1:
-                    return collector._Redirect("https://93.184.216.34/final")
-                return collector.FetchResult(ok=True, content=b"final-bytes",
-                                             final_url=url, http_status=200)
-
-        collector.register_trusted_transport(RedirectThenContent)
-        try:
-            c = collector.Collector(RedirectThenContent())
-            r = c.capture("https://93.184.216.34/start")
-            self.assertEqual(r.status, collector.STATUS_OK)
-            self.assertTrue(r.is_operational_live_evidence())
-        finally:
-            collector._TRUSTED_TRANSPORT_CLASSES.discard(RedirectThenContent)
-
-    def test_urllib_fetcher_too_many_redirects(self):
-        class AlwaysRedirect(collector.UrllibFetcher):
-            def _perform(self, url):
-                return collector._Redirect("https://93.184.216.34/next")
-
-        f = AlwaysRedirect()
-        res = f.fetch("https://93.184.216.34/start")
+            http.client.HTTPSConnection = orig
         self.assertFalse(res.ok)
-        self.assertEqual(res.error, "too-many-redirects")
+        self.assertTrue(res.error.startswith("redirect-not-followed"))
+
+    # --- downstream bridges distinguish evidence classes ------------------ #
+    def test_operational_bridge_rejects_fixture_and_untrusted(self):
+        # fixture receipt -> operational bridge rejects.
+        fx = collector.Collector(collector.FixtureFetcher({URL: b"x"})).capture(URL)
+        self.assertEqual(collector.evidence_class(fx), collector.EVIDENCE_FIXTURE)
+        with self.assertRaises(ValueError):
+            collector.to_operational_signal(fx, title="T", summary="S")
+
+        # verified-untrusted live receipt -> operational bridge rejects.
+        class UntrustedLive:
+            mode = collector.MODE_LIVE
+            name = "untrusted"
+
+            def fetch(self, url):
+                return collector.FetchResult(ok=True, content=b"y", final_url=url,
+                                             http_status=200)
+
+        un = collector.Collector(UntrustedLive()).capture(URL)
+        self.assertEqual(collector.evidence_class(un),
+                         collector.EVIDENCE_VERIFIED_UNTRUSTED)
+        with self.assertRaises(ValueError):
+            collector.to_operational_signal(un, title="T", summary="S")
+
+        # general bridge still accepts a verified fixture (honestly labelled).
+        sig = collector.to_signal(fx, title="T", summary="S")
+        self.assertEqual(sig.provenance, "fixture")
 
     # --- extraction status: failure is never usable factual support ------- #
     def test_extraction_failure_is_not_usable_support(self):
