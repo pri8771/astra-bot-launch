@@ -1,0 +1,62 @@
+{
+  "all_pass": true,
+  "artifact": "SB-V05-001",
+  "checks": {
+    "changed_content": {
+      "changed": true,
+      "new_hash": "8ce00681b2b692152a2568999d1a885e693bd61077bca5d31b4c6dae7a9cb203",
+      "old_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
+      "pass": true
+    },
+    "failed_retrieval_not_verified": {
+      "pass": true,
+      "receipt": {
+        "canonical_id": "src-97c8934078fce654",
+        "capture_mode": "fixture",
+        "content_hash": null,
+        "is_operational_live_evidence": false,
+        "is_verified_capture": false,
+        "provenance": "unverified-failed",
+        "receipt_id": "cap-029509929dd247d2",
+        "source_url": "https://example.org/fixture-article",
+        "status": "failed"
+      }
+    },
+    "fixture_not_operational": {
+      "capture_mode": "fixture",
+      "is_operational_live_evidence": false,
+      "pass": true
+    },
+    "same_source_twice": {
+      "pass": true,
+      "receipt_1": {
+        "canonical_id": "src-97c8934078fce654",
+        "capture_mode": "fixture",
+        "content_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
+        "is_operational_live_evidence": false,
+        "is_verified_capture": true,
+        "provenance": "fixture",
+        "receipt_id": "cap-b1c5f9d1b1394e28",
+        "source_url": "https://example.org/fixture-article",
+        "status": "ok"
+      },
+      "receipt_2": {
+        "canonical_id": "src-97c8934078fce654",
+        "capture_mode": "fixture",
+        "content_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
+        "is_operational_live_evidence": false,
+        "is_verified_capture": true,
+        "provenance": "fixture",
+        "receipt_id": "cap-ce95d31744d14100",
+        "source_url": "https://example.org/fixture-article",
+        "status": "ok"
+      },
+      "separate_receipts": true,
+      "stable_hash": true
+    }
+  },
+  "collector_name": "sbots.source-collector",
+  "collector_version": "1.0.0",
+  "kind": "fixture-evidence",
+  "warning": "FIXTURE evidence only; not operational live capture."
+}
