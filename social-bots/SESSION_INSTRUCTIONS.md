@@ -1,3 +1,7 @@
+# FAST TRACK NOTICE
+
+Heartbeat is observability only and does NOT block implementation. Continue the explicit V05-001 and V15-001 repairs immediately while timed heartbeat proof continues in the background. After each parent artifact, push/report and pull this file again.
+
 # SESSION_INSTRUCTIONS — Intelligence / Evidence Integrity
 
 Lead review: LEAD-020
