@@ -1,21 +1,43 @@
-"""Per-runtime durable state (SB-V03-005 isolation contract).
+"""Two-layer durable state (SB-V03-005 isolation contract).
 
-``bot_state.json`` is SHARED RUNTIME STATE: one per runtime, holding the
-consumed-signal ledger, hypotheses, counters, recovery/in-flight and the
-observation fingerprint. Every persona hosted on the runtime shares it (e.g.
-``social-a`` and ``cultural-primandir-atman`` both run on ``social-a``), because
-evidence is captured for the runtime and consumed exactly once for the runtime.
-Concurrent mutation is prevented by the runtime lease (``cycle:<bot>``) and the
-active-cycle fence (SB-V03-004): only the fenced owner may commit it.
+A single runtime process (``social-a``/``social-b``/``social-c``) hosts more than
+one persona *workspace* — e.g. ``social-a`` hosts the general ``social-a`` persona
+AND the cultural ``cultural-primandir-atman`` persona. Two disjoint layers of
+state keep those personas from contaminating each other's learning:
 
-Non-shared PERSONA data (content history, experiments, publish queue, analytics
-events, action/decision records) lives in the runtime's append-only stores but is
-LOGICALLY isolated per persona: every such record carries an explicit ``persona``
-field and a persona-derived, collision-free identity key. It is NOT physically
-nested per persona. Persona-specific reads go through ``runtime.isolation``;
-``runtime.isolation`` documents and ``tests/test_isolation.py`` proves the
-contract. One bot's ``paths`` namespace can never be written by another bot;
-cross-bot facts use the explicit ``shared`` namespace only.
+1. ``RuntimeState`` — SHARED, one per runtime (``state/<bot>/bot_state.json``).
+   Holds only runtime-wide facts that every persona legitimately shares:
+     - process/health counters (cycles/actions/no_action),
+     - recovery/in-flight status,
+     - the observation fingerprint of the shared capture catalog.
+   The shared captured-evidence catalog itself is the runtime signal inbox
+   (``memory/<bot>/signals_inbox.jsonl``); it is READ-ONLY to cycles (only the
+   research capture path appends to it). Concurrent mutation of RuntimeState is
+   prevented by the runtime lease (``cycle:<bot>``) and the active-cycle fence
+   (SB-V03-004): only the fenced owner may commit it.
+
+2. ``PersonaState`` — PRIVATE, one per persona/workspace
+   (``state/<bot>/persona-<persona_id>.json``). Holds everything that must NOT
+   leak between personas on the same runtime:
+     - ``consumed_signal_ids`` — which shared signals THIS persona has decided on;
+     - ``hypotheses`` — this persona's evidence-tied learning;
+     - ``working_state``, ``pending_decisions``, ``goals`` — private working set.
+   Because consumption is persona-private, the SAME shared signal can be
+   independently considered by ``social-a`` and ``cultural-primandir-atman``:
+   one consuming it does not hide it from the other. One persona's hypothesis
+   count can never change another persona's reasoning context.
+
+NON-SHARED persona *artifacts* (content history, experiments, publish queue,
+analytics events, action/decision records) live in the runtime's append-only
+stores but are LOGICALLY isolated per persona: every such record carries an
+explicit ``persona`` field and a persona-derived, collision-free identity key
+(see ``runtime.isolation``). One bot's ``paths`` namespace can never be written
+by another bot; cross-bot facts use the explicit ``shared`` namespace only.
+
+Migration: an older ``bot_state.json`` carried the persona-private fields at the
+runtime level. On first load they are archived into ``_legacy`` (never silently
+deleted) and, when the default-owner persona (``persona_id == bot``) first loads
+its private state, migrated into it exactly once.
 """
 from __future__ import annotations
 
@@ -27,42 +49,78 @@ from .jsonstore import read_json, write_json, append_jsonl, read_jsonl, now_iso
 
 _STATE_FILE = "bot_state.json"
 
+# Fields that used to live on the shared runtime state but are persona-private.
+_PERSONA_PRIVATE_KEYS = (
+    "consumed_signal_ids", "hypotheses", "working_state", "pending_decisions",
+    "goals",
+)
 
-def _default_state(bot: str) -> dict:
+
+def _default_runtime_state(bot: str) -> dict:
     return {
         "bot": bot,
-        "schema_version": 1,
+        "schema_version": 2,
         "created_at": now_iso(),
         "updated_at": now_iso(),
-        "goals": [],
-        "working_state": {},
-        "hypotheses": {},          # id -> {statement, confidence, evidence[], updated_at}
-        "consumed_signal_ids": [],  # signals already decided upon (evidence consumption)
         "observation_fingerprint": None,  # diagnostic: fingerprint at last cycle
-        "pending_decisions": [],
         "recovery": {"last_clean_tick": None, "in_flight": None},
         "counters": {"cycles": 0, "actions": 0, "no_action": 0},
     }
 
 
 @dataclass
-class BotState:
+class RuntimeState:
+    """Shared, single-writer-per-runtime state. Fenced on commit (SB-V03-004)."""
+
     bot: str
     data: dict = field(default_factory=dict)
 
     @classmethod
-    def load(cls, bot: str) -> "BotState":
+    def load(cls, bot: str) -> "RuntimeState":
         if bot not in paths.BOTS:
             raise ValueError(f"unknown bot {bot!r}; expected one of {paths.BOTS}")
         p = paths.state_dir(bot) / _STATE_FILE
-        data = read_json(p, default=None) or _default_state(bot)
+        data = read_json(p, default=None) or _default_runtime_state(bot)
+        data = cls._migrate_out_persona_private(bot, data)
         return cls(bot=bot, data=data)
+
+    @staticmethod
+    def _migrate_out_persona_private(bot: str, data: dict) -> dict:
+        """Move any legacy persona-private fields into ``_legacy`` (never delete).
+
+        A pre-SB-V03-005 ``bot_state.json`` stored the consumed ledger/hypotheses/
+        working set at the runtime level. We relocate them under ``_legacy`` so the
+        shared file no longer *actively* carries persona-private data, while the
+        old values are preserved for a one-time migration into the default-owner
+        persona (see ``PersonaState.load``). Idempotent: after the first load the
+        top-level keys are gone, so subsequent loads find nothing to move.
+        """
+        moved = {k: data[k] for k in _PERSONA_PRIVATE_KEYS
+                 if k in data and data[k] not in (None, [], {})}
+        had_any = any(k in data for k in _PERSONA_PRIVATE_KEYS)
+        for k in _PERSONA_PRIVATE_KEYS:
+            data.pop(k, None)
+        if moved:
+            legacy = data.setdefault("_legacy", {})
+            # Preserve the very first archived copy; do not clobber on re-load.
+            if "archived_persona_private" not in legacy:
+                legacy["archived_persona_private"] = moved
+                legacy["archived_at"] = now_iso()
+                legacy["default_owner_persona"] = bot
+                legacy["migrated_to_persona"] = False
+        elif had_any:
+            # Legacy keys were present but empty: mark schema touched, nothing to keep.
+            data.setdefault("_legacy", {}).setdefault("migrated_to_persona", True)
+        data["schema_version"] = 2
+        return data
 
     def save(self) -> None:
         self.data["updated_at"] = now_iso()
         write_json(paths.state_dir(self.bot) / _STATE_FILE, self.data)
 
-    # --- memory / ledgers (append-only) -------------------------------------
+    # --- shared append-only stores (persona-LABELED records) ----------------
+    # These append to the runtime's shared stores but every record must carry an
+    # explicit ``persona`` field so ``runtime.isolation`` can partition them.
     def record_observation(self, obs: dict) -> None:
         obs = {"recorded_at": now_iso(), **obs}
         append_jsonl(paths.memory_dir(self.bot) / "observations.jsonl", obs)
@@ -79,7 +137,102 @@ class BotState:
     def content_history(self) -> list[dict]:
         return read_jsonl(paths.content_dir(self.bot) / "content_history.jsonl")
 
-    # --- hypotheses (evidence-tied learning) --------------------------------
+
+# Back-compat alias: older callers/tests import ``BotState`` for runtime-level
+# concerns (counters, recovery, shared stores). It is the shared RuntimeState.
+BotState = RuntimeState
+
+
+def _default_persona_state(bot: str, persona_id: str) -> dict:
+    return {
+        "runtime": bot,
+        "persona_id": persona_id,
+        "schema_version": 1,
+        "created_at": now_iso(),
+        "updated_at": now_iso(),
+        "goals": [],
+        "working_state": {},
+        "pending_decisions": [],
+        "hypotheses": {},          # id -> {statement, confidence, evidence[], updated_at}
+        "consumed_signal_ids": [],  # signals THIS persona has decided upon
+    }
+
+
+def _persona_file(bot: str, persona_id: str):
+    # persona ids match paths._SAFE (validated) so this is a safe filename.
+    return paths.state_dir(bot) / f"persona-{persona_id}.json"
+
+
+@dataclass
+class PersonaState:
+    """Per-persona private state. Never shared across personas on one runtime."""
+
+    bot: str
+    persona_id: str
+    data: dict = field(default_factory=dict)
+
+    @classmethod
+    def load(cls, bot: str, persona_id: str) -> "PersonaState":
+        if bot not in paths.BOTS:
+            raise ValueError(f"unknown bot {bot!r}; expected one of {paths.BOTS}")
+        p = _persona_file(bot, persona_id)
+        existing = read_json(p, default=None)
+        if existing is not None:
+            return cls(bot=bot, persona_id=persona_id, data=existing)
+        data = _default_persona_state(bot, persona_id)
+        obj = cls(bot=bot, persona_id=persona_id, data=data)
+        if cls._migrate_from_legacy(bot, persona_id, data):
+            # Persist the migrated persona state so the migration is durable and
+            # idempotent (the next load reads the file, not the cleared legacy).
+            obj.save()
+        return obj
+
+    @staticmethod
+    def _migrate_from_legacy(bot: str, persona_id: str, data: dict) -> bool:
+        """One-time migration of legacy shared persona-private state.
+
+        Pre-SB-V03-005 runtimes kept a single consumed ledger/hypotheses set at
+        the runtime level. That data historically belonged to the default-owner
+        persona (the general persona whose id equals the runtime, e.g.
+        ``social-a`` on runtime ``social-a``). We migrate it into that persona's
+        private state exactly once and mark it migrated on the runtime; other
+        personas start clean so no cross-persona bleed is introduced.
+        """
+        if persona_id != bot:
+            return False
+        rt_raw = read_json(paths.state_dir(bot) / _STATE_FILE, default=None)
+        if not rt_raw:
+            return False
+        legacy = rt_raw.get("_legacy") or {}
+        if legacy.get("migrated_to_persona"):
+            return False
+        # Source the legacy values either from an already-archived ``_legacy``
+        # block (if the runtime state was persisted first) OR directly from the
+        # still-top-level keys of an un-migrated on-disk file (the common case:
+        # ``run_cycle`` loads the runtime in memory but has not saved it yet).
+        archived = dict(legacy.get("archived_persona_private") or {})
+        for k in _PERSONA_PRIVATE_KEYS:
+            if k not in archived and rt_raw.get(k) not in (None, [], {}):
+                archived[k] = rt_raw[k]
+        if not archived:
+            return False
+        for k in _PERSONA_PRIVATE_KEYS:
+            if k in archived:
+                data[k] = archived[k]
+        data["_migrated_from_legacy_runtime_state"] = legacy.get("archived_at") or now_iso()
+        # Mark migrated on the runtime so this never double-applies. Loading the
+        # runtime archives the legacy keys into ``_legacy``; saving persists both
+        # the archive and the migrated flag.
+        rt = RuntimeState.load(bot)
+        rt.data.setdefault("_legacy", {})["migrated_to_persona"] = True
+        rt.save()
+        return True
+
+    def save(self) -> None:
+        self.data["updated_at"] = now_iso()
+        write_json(_persona_file(self.bot, self.persona_id), self.data)
+
+    # --- hypotheses (evidence-tied learning, persona-private) ---------------
     def upsert_hypothesis(self, hid: str, statement: str, confidence: float,
                           evidence: list[str]) -> None:
         confidence = max(0.0, min(1.0, confidence))
@@ -98,7 +251,10 @@ class BotState:
     def get_hypothesis(self, hid: str) -> dict[str, Any] | None:
         return self.data["hypotheses"].get(hid)
 
-    # --- evidence consumption (restart-safe) --------------------------------
+    def hypothesis_count(self) -> int:
+        return len(self.data.get("hypotheses", {}))
+
+    # --- evidence consumption (persona-private, restart-safe) ---------------
     def consumed_ids(self) -> list[str]:
         return self.data.setdefault("consumed_signal_ids", [])
 

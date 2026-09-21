@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import decision, research, pipeline  # noqa: E402
-from runtime.state import BotState  # noqa: E402
+from runtime.state import BotState, PersonaState  # noqa: E402
 
 
 def seed_signal(bot, n=1):
@@ -73,7 +73,9 @@ class DecisionTest(unittest.TestCase):
         # during EXECUTE. Reload from disk and confirm the hypothesis survives.
         seed_signal("social-b")
         decision.run_cycle("social-b", "social-b")
-        reloaded = BotState.load("social-b")
+        # Hypotheses are persona-private (SB-V03-005): they persist to the
+        # persona-state file, not the shared runtime state.
+        reloaded = PersonaState.load("social-b", "social-b")
         self.assertTrue(reloaded.data["hypotheses"],
                         "hypothesis must persist to disk after CREATE_CANDIDATE")
 
@@ -110,8 +112,8 @@ class DecisionTest(unittest.TestCase):
     def test_consumption_survives_restart(self):
         s1 = seed_signal("social-b", 1)
         decision.run_cycle("social-b", "social-b")         # consumes s1, persists
-        # Simulate a process restart: fresh state load from disk.
-        reloaded = BotState.load("social-b")
+        # Simulate a process restart: fresh persona-state load from disk.
+        reloaded = PersonaState.load("social-b", "social-b")
         self.assertIn(s1.id, reloaded.data["consumed_signal_ids"])
         # A new cycle after restart must not reprocess s1.
         rec = decision.run_cycle("social-b", "social-b")

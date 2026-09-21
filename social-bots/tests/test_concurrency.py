@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import leasing, worker, research  # noqa: E402
-from runtime.state import BotState  # noqa: E402
+from runtime.state import BotState, PersonaState  # noqa: E402
 
 
 class StaleTakeoverRaceTest(unittest.TestCase):
@@ -124,9 +124,12 @@ class SharedRuntimeConcurrencyTest(unittest.TestCase):
         st = BotState.load(bot)
         # No lost update: every cycle that ran incremented the counter exactly once.
         self.assertEqual(st.data["counters"]["cycles"], successes)
-        # Ledger integrity: no duplicate consumption under concurrency.
-        consumed = st.data["consumed_signal_ids"]
-        self.assertEqual(len(consumed), len(set(consumed)))
+        # Ledger integrity: consumption is persona-private (SB-V03-005); each
+        # persona's ledger is duplicate-free under concurrency.
+        for persona in ("social-a", "cultural-primandir-atman"):
+            consumed = PersonaState.load(bot, persona).consumed_ids()
+            self.assertEqual(len(consumed), len(set(consumed)),
+                             f"{persona}: duplicate consumption under concurrency")
         # bot_state on disk is valid JSON (not torn by concurrent writers).
         raw = (Path(self.tmp) / "state" / bot / "bot_state.json").read_text()
         json.loads(raw)

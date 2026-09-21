@@ -89,14 +89,12 @@ def main() -> int:
     os.environ["SBOTS_HOME"] = str(EVID)
 
     from runtime import research, decision, pipeline, personas  # noqa: E402
-    from runtime.state import BotState  # noqa: E402
 
     overall = {"runs": [], "cultural_run": None}
 
     for bot, persona_id in DRY_RUNS:
         _capture(research, bot, SIGNALS[bot])
         record = decision.run_cycle(bot, persona_id)
-        st = BotState.load(bot)
         queue = pipeline.publish_queue(bot)
         exp_files = sorted((EVID / "experiments" / bot).glob("exp-*.json"))
         experiment = json.loads(exp_files[0].read_text()) if exp_files else None

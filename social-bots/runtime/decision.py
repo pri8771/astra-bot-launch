@@ -16,7 +16,7 @@ from dataclasses import dataclass, field, asdict
 
 from . import paths, research, pipeline, analytics, reasoning
 from .reasoning import Candidate, no_action as _no_action, ReasoningContext
-from .state import BotState
+from .state import RuntimeState, PersonaState
 from .personas import load as load_persona
 from .jsonstore import append_jsonl, write_json, now_iso
 
@@ -40,34 +40,51 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
 
     Returns the persisted decision record.
 
-    ``fence`` (a ``leasing.Fence``) makes every durable commit — state, content,
-    experiment registration, publish-queue entry and success analytics — happen
-    ATOMICALLY iff this worker still owns the task fence. If the lease expired and
-    another worker took over mid-cycle, the commit is refused with
-    ``leasing.FenceLost`` and NOTHING durable is written. When ``fence`` is None
-    (unit tests, dry runs), commits run unguarded exactly as before.
+    ``fence`` (a ``leasing.Fence``) gates every durable worker-owned write of the
+    cycle — shared runtime state, persona-private state, content, experiment
+    registration, publish-queue entry, success analytics AND the decision
+    log/last-decision records — behind a single ownership check: they are all
+    written inside one ``leasing.Fence.fenced_commit`` under the per-task lock. If
+    the lease expired and another worker took over mid-cycle, the commit is
+    refused with ``leasing.FenceLost`` and NOTHING durable is written by this
+    (obsolete) owner — including the decision log and last-decision file, which
+    previously slipped out after the fenced region (SB-V03-004 repair). When
+    ``fence`` is None (unit tests, dry runs) the same writes run unguarded.
+
+    Guarantee scope: this is an OWNERSHIP guarantee, not a database transaction.
+    The commit performs several independent single-file atomic writes; a crash
+    *between* them can leave some written and others not. What is guaranteed is
+    (a) each individual file write is crash-atomic (temp+fsync+rename), and
+    (b) an obsolete fence owner commits none of them. Crash-time idempotent
+    recovery across the multi-file set is deferred reliability work.
     """
     authority = authority or Authority()
     persona = load_persona(persona_id)
     if persona["runtime"] != bot:
         raise ValueError(f"persona {persona_id} runs on {persona['runtime']}, not {bot}")
 
-    st = BotState.load(bot)
-    st.data["counters"]["cycles"] += 1
+    # Shared runtime state (counters/recovery/fingerprint) and this persona's
+    # PRIVATE state (consumed ledger, hypotheses, working set). Consumption and
+    # hypotheses are persona-scoped, so two personas on one runtime never
+    # contaminate each other's learning or evidence consumption (SB-V03-005).
+    rt = RuntimeState.load(bot)
+    ps = PersonaState.load(bot, persona_id)
+    rt.data["counters"]["cycles"] += 1
     record: dict = {
         "recorded_at": now_iso(),
         "bot": bot,
         "persona": persona_id,
-        "cycle": st.data["counters"]["cycles"],
+        "cycle": rt.data["counters"]["cycles"],
         "fence": fence.token() if fence is not None else None,
     }
 
-    # -- OBSERVE: unconsumed evidence only ---------------------------------
-    # Consumption is tracked per-signal (not a whole-inbox fingerprint), so a
-    # signal arriving after an earlier cycle, or a batch of signals, is never
-    # skipped: exactly one unconsumed signal is decided upon per cycle and the
-    # rest remain pending for subsequent cycles. Restart-safe via bot_state.
-    consumed = st.consumed_ids()
+    # -- OBSERVE: this persona's unconsumed evidence only ------------------
+    # Consumption is tracked per-signal, per-PERSONA (not a whole-inbox
+    # fingerprint, not runtime-wide): a signal arriving after an earlier cycle,
+    # or a batch of signals, is never skipped, and the same shared signal remains
+    # independently available to every other persona on the runtime. Exactly one
+    # unconsumed signal is decided upon per cycle. Restart-safe via persona state.
+    consumed = ps.consumed_ids()
     pending = research.unconsumed_signals(bot, consumed)
     all_count = len(research.load_signals(bot))
     record["observe"] = {
@@ -93,9 +110,9 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         record["learn"] = {"updated": False}
         record["outcome"] = "no_action"
         record["schedule"] = _schedule(persona, changed=False)
-        st.data["counters"]["no_action"] += 1
-        st.data["recovery"]["last_clean_tick"] = now_iso()
-        _commit(fence, bot, st, record)
+        rt.data["counters"]["no_action"] += 1
+        rt.data["recovery"]["last_clean_tick"] = now_iso()
+        _commit(fence, bot, rt, ps, record)
         return record
 
     # -- ORIENT ------------------------------------------------------------
@@ -115,8 +132,8 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     ctx = ReasoningContext(
         persona=persona, objective=_current_objective(persona), top_signal=top_signal,
         pending_count=len(pending), is_duplicate=dup, draft=draft,
-        state_summary={"hypotheses": len(st.data.get("hypotheses", {})),
-                       "cycles": st.data["counters"]["cycles"]})
+        state_summary={"hypotheses": ps.hypothesis_count(),
+                       "cycles": rt.data["counters"]["cycles"]})
     record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
                            "adaptive": getattr(provider, "adaptive", False),
                            "available": provider.available()}
@@ -161,7 +178,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         # stays pending until a valid reasoning route is available.
         record["observe"]["consumed_this_cycle"] = None
         record["observe"]["pending_after"] = len(pending)
-        _commit(fence, bot, st, record)
+        _commit(fence, bot, rt, ps, record)
         return record
 
     # -- SCORE + CHOOSE (policy chooses among the provider's alternatives) ---
@@ -200,7 +217,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     # analytics, hypothesis/action/content records). Nothing durable is written
     # yet: run_cycle commits ``effects`` + the state save together under the
     # fence, so a fenced-out worker writes none of it.
-    execute, verify, learn, effects = _execute(bot, persona, chosen, authority, st)
+    execute, verify, learn, effects = _execute(bot, persona, chosen, authority, rt, ps)
     record["required_authority"] = chosen.action
     record["execute"] = execute
     record["verify"] = verify
@@ -214,12 +231,12 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     # never reconsidered and later/other pending signals are never lost. This is
     # an in-memory mutation; it is only persisted by the fenced commit below, so
     # a fenced-out worker never advances the consumed ledger either.
-    st.mark_consumed(top_signal["id"])
+    ps.mark_consumed(top_signal["id"])
     record["observe"]["consumed_this_cycle"] = top_signal["id"]
     record["observe"]["pending_after"] = len(pending) - 1
-    st.data["observation_fingerprint"] = record["observe"]["observation_fingerprint"]
-    st.data["recovery"]["last_clean_tick"] = now_iso()
-    _commit(fence, bot, st, record, effects)
+    rt.data["observation_fingerprint"] = record["observe"]["observation_fingerprint"]
+    rt.data["recovery"]["last_clean_tick"] = now_iso()
+    _commit(fence, bot, rt, ps, record, effects)
     return record
 
 
@@ -244,14 +261,15 @@ def _schedule(persona: dict, changed: bool) -> dict:
 
 
 def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
-             st: BotState):
+             rt: RuntimeState, ps: PersonaState):
     """Prepare the outcome and return ``(execute, verify, learn, effects)``.
 
-    ``effects`` is a zero-arg closure holding EVERY durable side effect (state
-    mutations, experiment registration, publish-queue entry, analytics). It is
-    executed by ``run_cycle`` inside the fenced commit, never here — so a worker
-    that has lost its fence performs none of these writes. ``effects`` is None
-    when there is nothing durable beyond the base state save.
+    ``effects`` is a zero-arg closure holding EVERY durable side effect (shared
+    action/content records, persona-private hypothesis updates, experiment
+    registration, publish-queue entry, analytics). It is executed by
+    ``run_cycle`` inside the fenced commit, never here — so a worker that has
+    lost its fence performs none of these writes. ``effects`` is None when there
+    is nothing durable beyond the base state saves.
     """
     if chosen.action == "NO_ACTION":
         return ({"performed": False, "effect": "none", "outcome": "no_action"},
@@ -295,7 +313,7 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                                   "char_limit": payload["char_limit"]})
         if gate_failures:
             def withheld_effects():
-                st.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
+                rt.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
                                   "persona": persona["id"],
                                   "content_id": reviewed["content_id"],
                                   "reasons": gate_failures})
@@ -332,9 +350,10 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
         hid = f"h-{persona['id']}-{exp.experiment_id}"
 
         def success_effects():
-            # ALL durable success artifacts, committed atomically under the fence.
+            # ALL durable success artifacts, committed under the fence in one
+            # ownership-checked region (not a cross-file transaction).
             pipeline.register_experiment(exp)
-            st.record_content({"content_id": reviewed["content_id"],
+            rt.record_content({"content_id": reviewed["content_id"],
                                "content_key": pipeline.content_key(reviewed),
                                "persona": persona["id"], "platform": platform,
                                "review_passed": reviewed["review_passed"]})
@@ -346,11 +365,11 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                 bot, persona["id"], "queued", platform=platform,
                 content_id=reviewed["content_id"], experiment_id=exp.experiment_id,
                 metrics={"publish_authorized": 0}))
-            st.upsert_hypothesis(
+            ps.upsert_hypothesis(
                 hid=hid, statement=exp.hypothesis, confidence=0.5,
                 evidence=[f"experiment {exp.experiment_id} registered; "
                           f"awaiting {exp.observation_window_hours}h window"])
-            st.record_action({"action": "CREATE_CANDIDATE",
+            rt.record_action({"action": "CREATE_CANDIDATE",
                               "persona": persona["id"],
                               "content_id": reviewed["content_id"],
                               "experiment_id": exp.experiment_id})
@@ -387,25 +406,37 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             {"updated": False}, None)
 
 
-def _commit(fence, bot: str, st: BotState, record: dict, effects=None) -> None:
-    """Persist the cycle's durable state + side effects, fenced when owned.
+def _commit(fence, bot: str, rt: RuntimeState, ps: PersonaState, record: dict,
+            effects=None) -> None:
+    """Persist EVERY durable worker-owned write of the cycle behind one fence.
 
-    With a ``fence`` the state save and ``effects`` run atomically iff this
-    worker still owns the task (``leasing.Fence.fenced_commit``); on fence loss
-    ``leasing.FenceLost`` propagates and NOTHING here is written — not the state,
-    not the experiment/queue side effects, not the decision log. Without a fence
-    the commit runs unguarded (unit tests / dry runs), preserving prior behavior.
+    All of it — shared runtime state, persona-private state, the experiment/
+    queue/analytics/content/action side effects AND the decision log +
+    last-decision records — runs inside a single ``leasing.Fence.fenced_commit``.
+    On fence loss ``leasing.FenceLost`` propagates before any write runs, so an
+    obsolete owner writes NOTHING, not even the decision log.
+
+    SB-V03-004 repair: the decision-log/last-decision writes used to run AFTER
+    the fenced region (outside the ownership lock). A worker that stalled past
+    its lease could then resume and write those stale, later-cycle-owned durable
+    records after another worker had already taken over. They are now part of the
+    fenced closure, so a fenced-out worker can no longer emit them.
+
+    This is an ownership gate, NOT a cross-file transaction: each file write is
+    individually crash-atomic, but the multi-file set is not all-or-nothing on a
+    crash. Without a fence (unit tests / dry runs) the same writes run unguarded.
     """
     def do_commit():
         if effects is not None:
             effects()
-        st.save()
+        rt.save()
+        ps.save()
+        # Durable, worker-owned cycle records — must be inside the fence so a
+        # fenced-out owner cannot write them post-takeover (SB-V03-004).
+        append_jsonl(paths.memory_dir(bot) / "decisions.jsonl", record)
+        write_json(paths.state_dir(bot) / "last_decision.json", record)
 
     if fence is not None:
         fence.fenced_commit(do_commit)   # raises FenceLost -> caller stands down
     else:
         do_commit()
-
-    # Diagnostic decision log: only reached when the commit above succeeded.
-    append_jsonl(paths.memory_dir(bot) / "decisions.jsonl", record)
-    write_json(paths.state_dir(bot) / "last_decision.json", record)

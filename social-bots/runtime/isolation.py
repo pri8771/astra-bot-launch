@@ -7,17 +7,26 @@ A runtime (``social-a``/``social-b``/``social-c``) hosts more than one persona:
 those personas coexist on one runtime without corruption or cross-persona
 contamination.
 
-Two disjoint classes of data:
+Three classes of data (SB-V03-005):
 
-1. SHARED RUNTIME STATE — one per runtime, in ``state/<bot>/bot_state.json`` and
-   the runtime signal inbox ``memory/<bot>/signals_inbox.jsonl``:
-     - consumed-signal ledger (evidence consumption),
-     - hypotheses, counters, recovery/in-flight, observation fingerprint,
-     - the captured-signal evidence stream.
-   This is intentionally shared because evidence is captured for the runtime and
-   consumed exactly once for the runtime. Concurrent mutation is prevented by the
-   runtime lease (``worker.runtime_task_id`` -> ``cycle:<bot>``) and the
-   active-cycle fence (SB-V03-004): only the fenced owner may commit it.
+0. SHARED CAPTURE CATALOG — the runtime signal inbox
+   ``memory/<bot>/signals_inbox.jsonl``. Captured evidence is shared and
+   READ-ONLY to decision cycles; the same signal can be independently considered
+   by every persona on the runtime (consumption is tracked per persona, below).
+
+1. SHARED RUNTIME STATE — one per runtime, in ``state/<bot>/bot_state.json``:
+   process/health counters, recovery/in-flight and the observation fingerprint
+   ONLY. It no longer holds the consumed ledger or hypotheses — those are
+   persona-private. Concurrent mutation is prevented by the runtime lease
+   (``worker.runtime_task_id`` -> ``cycle:<bot>``) and the active-cycle fence
+   (SB-V03-004): only the fenced owner may commit it.
+
+1b. PERSONA-PRIVATE STATE — one per persona/workspace, in
+   ``state/<bot>/persona-<persona_id>.json``: this persona's consumed-signal
+   ledger, hypotheses, working state, pending decisions and goals. A signal that
+   ``social-a`` consumes stays unconsumed for ``cultural-primandir-atman`` on the
+   same runtime, and one persona's hypothesis count never enters another
+   persona's reasoning context.
 
 2. NON-SHARED PERSONA DATA — each persona's own content, experiments, publish
    queue, analytics events, action records and decision records. These live in
@@ -49,10 +58,17 @@ from __future__ import annotations
 from . import paths, analytics, pipeline
 from .jsonstore import read_jsonl
 
-# The keys of shared runtime state, for documentation and audit assertions.
+# The keys of SHARED runtime state (bot_state.json), for docs/audit assertions.
+# Note: consumed_signal_ids and hypotheses are NO LONGER here — they are
+# persona-private (see PERSONA_PRIVATE_STATE_KEYS).
 SHARED_RUNTIME_STATE_KEYS = (
-    "consumed_signal_ids", "hypotheses", "counters", "recovery",
-    "observation_fingerprint",
+    "counters", "recovery", "observation_fingerprint",
+)
+
+# The keys of PERSONA-PRIVATE state (persona-<id>.json).
+PERSONA_PRIVATE_STATE_KEYS = (
+    "consumed_signal_ids", "hypotheses", "working_state", "pending_decisions",
+    "goals",
 )
 
 # The non-shared stores that MUST partition cleanly by persona.

@@ -24,8 +24,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import leasing, decision, research, pipeline, worker  # noqa: E402
-from runtime.state import BotState  # noqa: E402
+from runtime import leasing, decision, research, pipeline, worker, paths  # noqa: E402
+from runtime.state import BotState, PersonaState  # noqa: E402
 
 
 def _force_stale(task_id):
@@ -108,13 +108,88 @@ class LeaseFencingTest(unittest.TestCase):
         exp_dir = Path(self.tmp) / "experiments" / bot
         self.assertFalse(any(exp_dir.glob("exp-*.json")) if exp_dir.exists() else False)
         self.assertEqual(pipeline.publish_queue(bot), [])
-        # State never advanced: no bot_state written, so a fresh load shows the
-        # signal still unconsumed (the takeover worker will decide on it).
-        st = BotState.load(bot)
-        self.assertEqual(st.consumed_ids(), [])
-        self.assertEqual(st.data["counters"]["cycles"], 0)
+        # SB-V03-004: the decision log and last-decision are ALSO fenced — a
+        # fenced-out owner writes neither.
+        self.assertFalse((paths.memory_dir(bot) / "decisions.jsonl").exists())
+        self.assertFalse((paths.state_dir(bot) / "last_decision.json").exists())
+        # State never advanced: no runtime/persona state written, so a fresh load
+        # shows the signal still unconsumed (the takeover worker will decide it).
+        rt = BotState.load(bot)
+        ps = PersonaState.load(bot, "social-b")
+        self.assertEqual(ps.consumed_ids(), [])
+        self.assertEqual(rt.data["counters"]["cycles"], 0)
         # Ownership is now the takeover worker's, inspectable after the race.
         self.assertEqual(leasing.inspect(task)["generation"], 2)
+        self.assertEqual(leasing.inspect(task)["worker_id"], "B")
+
+    def test_decision_log_and_last_decision_written_inside_fence(self):
+        # SB-V03-004 repair regression. The decision log + last-decision writes
+        # used to run AFTER the fenced region (outside the ownership lock), so a
+        # stalled ex-owner could write those stale, later-cycle-owned records
+        # after a takeover. They must now be part of the fenced closure. We probe
+        # INSIDE the closure: the files must already exist by the time the
+        # ownership-locked commit body returns. (Against the old ordering this
+        # probe sees them absent and the test fails.)
+        bot = "social-b"
+        research.capture(bot, research.Signal.make(
+            "wonder", "captured evidence", "unit", "https://example.org/x",
+            "fixture", ["n"]))
+        task = worker.runtime_task_id(bot)
+        a = leasing.acquire(task, "A", ttl_seconds=300)
+        seen = {}
+
+        class ProbeFence(leasing.Fence):
+            def fenced_commit(self, commit):
+                def wrapped():
+                    result = commit()  # runs the full durable commit body
+                    seen["decisions"] = (paths.memory_dir(bot) / "decisions.jsonl").exists()
+                    seen["last_decision"] = (paths.state_dir(bot) / "last_decision.json").exists()
+                    return result
+                return super().fenced_commit(wrapped)
+
+        decision.run_cycle(bot, "social-b", fence=ProbeFence(a))
+        self.assertTrue(seen.get("decisions"),
+                        "decisions.jsonl must be written inside the fenced commit")
+        self.assertTrue(seen.get("last_decision"),
+                        "last_decision.json must be written inside the fenced commit")
+        leasing.release(a)
+
+    def test_stale_owner_cannot_write_decision_log_after_takeover(self):
+        # Full adversarial lifecycle: A owns gen 1 and stalls right at its commit;
+        # the lease expires; B takes gen 2; A resumes and attempts to commit. A
+        # must write NO later cycle-owned durable record — not the decision log,
+        # last-decision, state, experiments, queue, analytics or action history.
+        bot = "social-b"
+        research.capture(bot, research.Signal.make(
+            "wonder", "captured evidence", "unit", "https://example.org/x",
+            "fixture", ["n"]))
+        task = worker.runtime_task_id(bot)
+        a = leasing.acquire(task, "A", ttl_seconds=300)
+
+        class TakeoverAtCommit(leasing.Fence):
+            triggered = False
+
+            def fenced_commit(self, commit):
+                if not TakeoverAtCommit.triggered:
+                    TakeoverAtCommit.triggered = True
+                    _force_stale(task)                       # A's lease expires
+                    leasing.acquire(task, "B", ttl_seconds=300)  # B takes gen 2
+                return super().fenced_commit(commit)         # -> FenceLost, no writes
+
+        with self.assertRaises(leasing.FenceLost):
+            decision.run_cycle(bot, "social-b", fence=TakeoverAtCommit(a))
+
+        # Inspect every worker-owned durable surface: none carries A's cycle.
+        self.assertFalse((paths.memory_dir(bot) / "decisions.jsonl").exists())
+        self.assertFalse((paths.state_dir(bot) / "last_decision.json").exists())
+        self.assertFalse((paths.state_dir(bot) / "bot_state.json").exists())
+        self.assertFalse((paths.state_dir(bot) / "persona-social-b.json").exists())
+        self.assertEqual(pipeline.publish_queue(bot), [])
+        self.assertFalse((paths.memory_dir(bot) / "action_history.jsonl").exists())
+        self.assertFalse((paths.analytics_dir(bot) / "events.jsonl").exists())
+        exp_dir = Path(self.tmp) / "experiments" / bot
+        self.assertFalse(any(exp_dir.glob("exp-*.json")) if exp_dir.exists() else False)
+        # B is the sole owner after the race.
         self.assertEqual(leasing.inspect(task)["worker_id"], "B")
 
     def test_worker_run_one_unit_stands_down_on_fence_loss(self):

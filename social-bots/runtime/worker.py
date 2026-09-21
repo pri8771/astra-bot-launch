@@ -32,15 +32,15 @@ def runtime_task_id(bot: str) -> str:
     """Lease key for a runtime cycle.
 
     The exclusion boundary is the RUNTIME (bot), NOT the (bot, persona) pair.
-    A runtime's ``bot_state.json`` (consumed-signal ledger, hypotheses, counters)
-    is shared by every persona workspace hosted on that runtime, so two personas
-    on one runtime must not mutate it concurrently. Keying the lease by ``bot``
-    means a second persona-cycle on the same runtime is rejected (no-overlap)
-    while one is in flight — one writer per runtime state at a time. Personas keep
-    their own isolated experiment/content/memory *namespaces* for non-shared
-    artifacts; only the shared runtime state is serialized here. (If per-runtime
-    concurrency is ever needed, the alternative is to fully split persona-owned
-    mutable state; that is deliberately deferred.)
+    A runtime's SHARED ``bot_state.json`` (process/health counters, recovery,
+    observation fingerprint) is written by every persona cycle on that runtime,
+    so two personas on one runtime must not mutate it concurrently. Keying the
+    lease by ``bot`` means a second persona-cycle on the same runtime is rejected
+    (no-overlap) while one is in flight — one writer per runtime state at a time.
+    Each persona also keeps its own PRIVATE ``persona-<id>.json`` (consumed-signal
+    ledger, hypotheses, working set) and isolated experiment/content/memory
+    *namespaces*; serializing on the runtime protects the shared file and keeps
+    the per-persona files single-writer too (SB-V03-005).
     """
     return f"cycle:{bot}"
 
