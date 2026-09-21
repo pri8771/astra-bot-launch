@@ -1,20 +1,13 @@
 {
   "schema_version": 1,
   "lane": "intelligence-repair",
-  "reviewed_at": "2026-09-21T17:56:20Z",
-  "lead_review": "LEAD-039",
+  "reviewed_at": "2026-09-21T18:52:07Z",
+  "lead_review": "LEAD-041",
   "official_phase": "V0.4.x_in_progress",
-  "session_status": "STALE_NO_FRESH_SESSION_AFTER_LEAD_038",
-  "accepted": [
-    "SB-V05-001",
-    "SB-V13-001",
-    "SB-V14-001"
-  ],
-  "changes_required": [
-    "SB-V15-001"
-  ],
-  "next_assignment": "Start a fresh session, emit one SESSION_ONCE heartbeat, remove/private/rename ambiguous whole-runtime load/load_all aliases, add the structural cross-persona production-surface regression, run focused/full tests, submit SB-V15-001 and stop.",
-  "notification_delivered": true,
-  "notes": "The 2052955 implementation is not accepted because legacy load/load_all remain ordinary cross-persona whole-runtime aliases. One fresh session = one heartbeat; the old timed soak is superseded.",
-  "no_live_model_calls_authorized": true
+  "session_status": "PARKED_EVIDENCE_ONLY",
+  "accepted": ["SB-V05-001", "SB-V13-001", "SB-V14-001"],
+  "changes_required": ["SB-V15-001"],
+  "next_assignment": "No overlapping implementation. Preserve current Intelligence evidence; recovery integration is owned by cursor/social-bots-recovery-v07-20260921 unless a later lead review explicitly reassigns a non-overlapping task.",
+  "no_live_model_calls_authorized": true,
+  "notes": "SB-V15-001 remains changes-required; LEAD-041 parks this legacy implementation branch to avoid duplicate ownership during consolidated recovery."
 }
