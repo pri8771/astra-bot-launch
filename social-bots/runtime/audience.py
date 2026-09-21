@@ -1,22 +1,29 @@
 """Audience memory (SB-V14-001).
 
-Evidence-backed audience *hypotheses* that evolve only with measured results.
+Evidence-backed audience *hypotheses* that evolve only with measured results,
+scoped to a specific bot runtime AND persona/workspace.
 
 Key rules
 ---------
+- **Persona/workspace scoped.** Every hypothesis carries a persistent
+  ``bot`` + ``persona`` scope. Private audience memory is stored under
+  ``memory/<bot>/audience/<persona>/`` and the save/load/list APIs reject or
+  exclude another persona's hypotheses. Two personas on one runtime can hold
+  contradictory hypotheses without overwriting or blending them.
 - **Observation vs inference are separate.** Observations are stored raw facts
   (with refs to the content/experiment/metric that produced them). Confidence is
   an inference *derived* from those observations on read — never a stored,
-  hand-edited number.
+  hand-edited number. Every confidence result identifies the persona/workspace
+  scope and the evidence refs it used.
 - **No metrics => no fake learning.** A hypothesis with no (non-decayed)
-  evidence is ``unlearned`` with confidence ``None``. Confidence cannot move
-  without real observations.
+  evidence is ``unlearned`` with confidence ``None``.
 - **Repeated support raises confidence within bounds; contrary evidence lowers
   it.** Confidence is a bounded evidence ratio with a neutral prior.
 - **Old evidence decays** (exponential half-life), so stale support fades.
-- **Contradictions reduce confidence or fork** a competing hypothesis.
-- **No sensitive-person profiling.** Segment descriptors naming sensitive
-  attributes are rejected.
+- **Contradictions reduce confidence or fork** a competing hypothesis — but a
+  contradiction of A is NOT positive evidence for an arbitrary alternative B.
+- **Safe segment dimensions are an allowlist**, not a sensitive-attribute
+  blacklist: a segment key must be a known content/context dimension.
 """
 from __future__ import annotations
 
@@ -42,7 +49,16 @@ _EPSILON = 0.01  # below this total effective weight -> "unlearned"
 # Fork when contradicting effective weight materially exceeds supporting.
 _FORK_RATIO = 1.5
 
-# Sensitive-person attribute categories that must never drive targeting.
+# Allowlist of safe segment dimensions. A segment describes content/context
+# affinity only. Anything not on this list (including any sensitive-person
+# attribute) is rejected — an allowlist, not a blacklist.
+ALLOWED_SEGMENT_DIMENSIONS = {
+    "topic", "format", "platform", "timezone_band", "language",
+    "content_theme", "posting_time", "series", "campaign", "funnel_stage",
+    "content_length", "audience_interest", "hook_style", "cadence",
+}
+
+# Sensitive-person attribute categories that must never appear as a value either.
 SENSITIVE_ATTRS = {
     "race", "ethnicity", "religion", "religious", "health", "medical",
     "diagnosis", "disability", "sexual_orientation", "sexuality", "gender_identity",
@@ -53,21 +69,32 @@ SENSITIVE_ATTRS = {
 
 
 class SensitiveSegmentError(ValueError):
-    """Raised when a segment descriptor names a sensitive-person attribute."""
+    """Raised when a segment uses a non-allowlisted or sensitive dimension."""
+
+
+class PersonaScopeError(ValueError):
+    """Raised when an audience-memory op crosses a persona/workspace boundary."""
 
 
 def validate_segment(segment: dict) -> dict:
-    """Reject segments that target sensitive-person attributes.
+    """Validate a segment against the allowlist of safe content/context dimensions.
 
-    Segments describe *content/context* affinities (topic, format, timezone
-    band, platform), never protected personal attributes.
+    A segment key MUST be a known content/context dimension
+    (:data:`ALLOWED_SEGMENT_DIMENSIONS`). This is an allowlist, so a sensitive or
+    unknown dimension is rejected by default rather than requiring the blacklist
+    to enumerate it. As defense-in-depth a value naming a sensitive attribute is
+    also rejected.
     """
     if not isinstance(segment, dict):
         raise SensitiveSegmentError("segment must be a mapping of context keys")
+    if not segment:
+        raise SensitiveSegmentError("segment must name at least one safe dimension")
     for key, val in segment.items():
         k = str(key).strip().lower()
-        if k in SENSITIVE_ATTRS:
-            raise SensitiveSegmentError(f"sensitive segment attribute not allowed: {key!r}")
+        if k not in ALLOWED_SEGMENT_DIMENSIONS:
+            raise SensitiveSegmentError(
+                f"segment dimension {key!r} is not in the safe allowlist "
+                f"{sorted(ALLOWED_SEGMENT_DIMENSIONS)}")
         v = str(val).strip().lower()
         if v in SENSITIVE_ATTRS:
             raise SensitiveSegmentError(f"sensitive segment value not allowed: {val!r}")
@@ -101,6 +128,8 @@ class Observation:
 @dataclass
 class Hypothesis:
     id: str
+    bot: str
+    persona: str
     segment: dict
     statement: str
     supporting: list = field(default_factory=list)     # Observation dicts
@@ -108,15 +137,23 @@ class Hypothesis:
     created_at: str = field(default_factory=now_iso)
     last_updated: str = field(default_factory=now_iso)
     forked_from: str | None = None
+    origin_contradiction_refs: list = field(default_factory=list)
+
+    @property
+    def scope(self) -> dict:
+        return {"bot": self.bot, "persona": self.persona}
 
     def as_dict(self) -> dict:
         return asdict(self)
 
 
-def new_hypothesis(segment: dict, statement: str) -> Hypothesis:
+def new_hypothesis(bot: str, persona: str, segment: dict,
+                   statement: str) -> Hypothesis:
+    if not bot or not persona:
+        raise PersonaScopeError("a hypothesis requires a bot and a persona scope")
     validate_segment(segment)
-    return Hypothesis(id="hyp-" + uuid.uuid4().hex[:12], segment=segment,
-                      statement=statement)
+    return Hypothesis(id="hyp-" + uuid.uuid4().hex[:12], bot=bot, persona=persona,
+                      segment=segment, statement=statement)
 
 
 def add_observation(hyp: Hypothesis, obs: Observation) -> Hypothesis:
@@ -156,17 +193,25 @@ def confidence(hyp: Hypothesis, *, now: datetime | None = None,
         newest = max(_parse(o["observed_at"]) for o in all_obs)
         freshness_days = (now - newest).total_seconds() / 86400.0
 
+    # Every confidence result identifies the persona/workspace scope and the
+    # evidence refs it was derived from (acceptance requirement).
+    evidence_refs = [{"id": o.get("id"), "stance": o.get("stance"),
+                      "refs": o.get("refs", {})} for o in all_obs]
+    scope = hyp.scope
+
     if total < _EPSILON:
         return {"status": "unlearned", "confidence": None,
+                "scope": scope, "hypothesis_id": hyp.id,
                 "effective_support": round(s, 6), "effective_contradiction": round(c, 6),
-                "freshness_days": freshness_days,
+                "freshness_days": freshness_days, "evidence_refs": evidence_refs,
                 "note": "no (non-decayed) evidence; confidence is not invented"}
 
     raw = (_PRIOR * _PRIOR_STRENGTH + s) / (_PRIOR_STRENGTH + s + c)
     conf = max(_CONF_MIN, min(_CONF_MAX, raw))
     return {"status": "learned", "confidence": round(conf, 6),
+            "scope": scope, "hypothesis_id": hyp.id,
             "effective_support": round(s, 6), "effective_contradiction": round(c, 6),
-            "freshness_days": freshness_days,
+            "freshness_days": freshness_days, "evidence_refs": evidence_refs,
             "half_life_days": half_life_days}
 
 
@@ -179,35 +224,82 @@ def should_fork(hyp: Hypothesis, *, now: datetime | None = None,
     return c >= _EPSILON and c > s * _FORK_RATIO
 
 
-def fork_hypothesis(hyp: Hypothesis, new_statement: str,
+def fork_hypothesis(hyp: Hypothesis, new_statement: str, *,
+                    persona: str | None = None,
                     segment: dict | None = None) -> Hypothesis:
-    """Create a competing hypothesis carrying the contradicting evidence as its
-    supporting evidence. The original is left intact."""
+    """Create a competing hypothesis for a DIFFERENT statement.
+
+    Contradiction of the parent A is evidence that A is wrong; it is NOT positive
+    evidence for the fork's arbitrary alternative B. So the fork starts with NO
+    supporting evidence (``unlearned`` until real support for B arrives). The
+    triggering contradiction is recorded only as provenance
+    (``origin_contradiction_refs``), never as support. The fork inherits the
+    parent's persona/workspace scope unless explicitly re-scoped.
+    """
     seg = validate_segment(segment) if segment is not None else dict(hyp.segment)
-    fork = Hypothesis(id="hyp-" + uuid.uuid4().hex[:12], segment=seg,
-                      statement=new_statement, forked_from=hyp.id)
-    # The evidence that contradicted the parent supports the alternative.
-    for o in hyp.contradicting:
-        supp = dict(o)
-        supp["stance"] = SUPPORTS
-        fork.supporting.append(supp)
+    fork = Hypothesis(
+        id="hyp-" + uuid.uuid4().hex[:12],
+        bot=hyp.bot,
+        persona=persona or hyp.persona,
+        segment=seg,
+        statement=new_statement,
+        forked_from=hyp.id,
+        origin_contradiction_refs=[
+            {"observation_id": o.get("id"), "refs": o.get("refs", {})}
+            for o in hyp.contradicting
+        ],
+    )
     fork.last_updated = now_iso()
     return fork
 
 
 # --------------------------------------------------------------------------- #
-# Persistence — one JSON file per hypothesis under the bot's memory namespace.
+# Persistence — persona/workspace scoped. One JSON file per hypothesis under
+# memory/<bot>/audience/<persona>/. Ops reject/exclude other personas.
 # --------------------------------------------------------------------------- #
-def _dir(bot: str):
-    d = paths.memory_dir(bot) / "audience"
+def _dir(bot: str, persona: str):
+    if not bot or not persona:
+        raise PersonaScopeError("audience memory ops require bot and persona")
+    d = paths.memory_dir(bot) / "audience" / persona
     d.mkdir(parents=True, exist_ok=True)
     return d
 
 
-def save(bot: str, hyp: Hypothesis) -> None:
-    write_json(_dir(bot) / f"{hyp.id}.json", hyp.as_dict())
+def save(bot: str, persona: str, hyp: Hypothesis) -> None:
+    """Persist a hypothesis under its persona scope.
+
+    Refuses to write a hypothesis whose own bot/persona scope does not match the
+    requested scope — a persona cannot write into another's private memory.
+    """
+    if hyp.bot != bot or hyp.persona != persona:
+        raise PersonaScopeError(
+            f"hypothesis scope {hyp.scope} does not match save scope "
+            f"{{'bot': {bot!r}, 'persona': {persona!r}}}")
+    write_json(_dir(bot, persona) / f"{hyp.id}.json", hyp.as_dict())
 
 
-def load(bot: str, hyp_id: str) -> Hypothesis | None:
-    data = read_json(_dir(bot) / f"{hyp_id}.json")
-    return Hypothesis(**data) if data else None
+def load(bot: str, persona: str, hyp_id: str) -> Hypothesis | None:
+    """Load a hypothesis from a persona scope, or None if it is not that
+    persona's. Cross-persona reads never return another persona's hypothesis."""
+    data = read_json(_dir(bot, persona) / f"{hyp_id}.json")
+    if not data:
+        return None
+    hyp = Hypothesis(**data)
+    if hyp.bot != bot or hyp.persona != persona:
+        # Defensive: stored scope must match the requested scope.
+        return None
+    return hyp
+
+
+def list_hypotheses(bot: str, persona: str) -> list[Hypothesis]:
+    """List only the given persona's hypotheses on the given bot runtime."""
+    d = _dir(bot, persona)
+    out = []
+    for path in sorted(d.glob("hyp-*.json")):
+        data = read_json(path)
+        if not data:
+            continue
+        hyp = Hypothesis(**data)
+        if hyp.bot == bot and hyp.persona == persona:
+            out.append(hyp)
+    return out
