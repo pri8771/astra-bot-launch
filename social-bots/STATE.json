@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T15:52:53Z",
+  "updated_at": "2026-09-21T16:07:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
-  "status": "reset_three_lane_fresh_sessions_stale_not_started",
+  "status": "three_fresh_lanes_started_new_heartbeat_epoch",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -54,7 +58,10 @@
     "windows_available": true,
     "note": "LEAD-035 found that the reset handoff has not produced a worker-generated commit, Issue #3 heartbeat, or progress update on any human lane. Core, Intelligence and Mac-QA CURRENT_PROGRESS files still report that their fresh session has not started; canary remains unexecuted. Lead-only wake-up commits do not count as worker liveness.",
     "heartbeat_validation": {
-      "legacy_target_lanes": ["intelligence", "mac_qa"],
+      "legacy_target_lanes": [
+        "intelligence",
+        "mac_qa"
+      ],
       "legacy_interval_minutes": 15,
       "intelligence_bootstrap_consecutive_verified": 1,
       "intelligence_steady_hourly_authorized": false,
@@ -91,9 +98,35 @@
   "lead_review": {
     "review_id": "LEAD-035",
     "review_ref": "social-bots/lead-reviews/LEAD-035_2026-09-21T1152.md",
-    "accepted": ["SB-CTL-006", "SB-CTL-012", "SB-V03-002", "SB-V03-003", "SB-V03-005", "SB-V13-001", "SB-V14-001"],
-    "changes_required": ["SB-V03-001", "SB-V03-004", "SB-EVD-001", "SB-V04-004", "SB-V05-001", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
-    "blocked": ["SB-V03-006", "SB-V04-003", "SB-EVD-002", "SB-V12-001", "SB-V20-099", "SB-V20-004"],
+    "accepted": [
+      "SB-CTL-006",
+      "SB-CTL-012",
+      "SB-V03-002",
+      "SB-V03-003",
+      "SB-V03-005",
+      "SB-V13-001",
+      "SB-V14-001"
+    ],
+    "changes_required": [
+      "SB-V03-001",
+      "SB-V03-004",
+      "SB-EVD-001",
+      "SB-V04-004",
+      "SB-V05-001",
+      "SB-V05-002",
+      "SB-V15-001",
+      "SB-V16-001",
+      "SB-V17-001",
+      "SB-V20-002"
+    ],
+    "blocked": [
+      "SB-V03-006",
+      "SB-V04-003",
+      "SB-EVD-002",
+      "SB-V12-001",
+      "SB-V20-099",
+      "SB-V20-004"
+    ],
     "key_findings": [
       "No artifact status changed: there is no new worker-generated source, test, QA, canary or heartbeat evidence after the reset handoff.",
       "All three fresh human sessions are stale/not started in repository evidence; Issue #3 has no worker comment after the lead reset comments.",
@@ -118,12 +151,19 @@
     "today_engineering_target": "V2.0-readiness (SB-V20-099)",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "READY_BUT_ACCEPTANCE_SESSION_STALE_AND_NO_WORKER_EXECUTION_VISIBLE",
-    "v04_promotion_blocked_until": ["SB-V04-005", "SB-EVD-002"]
+    "v04_promotion_blocked_until": [
+      "SB-V04-005",
+      "SB-EVD-002"
+    ]
   },
   "next_core": [
     "start the fresh Core session now and launch heartbeat reporting in parallel",
@@ -160,7 +200,11 @@
     "active": true,
     "max_workers": 3,
     "heartbeat_blocks_work": false,
-    "lanes": ["Windows Core Builder", "Mac Intelligence Builder", "Mac Acceptance + Canary"],
+    "lanes": [
+      "Windows Core Builder",
+      "Mac Intelligence Builder",
+      "Mac Acceptance + Canary"
+    ],
     "plan": "FAST_TRACK_EXECUTION.md"
   },
   "remote_worker_infrastructure": {
@@ -189,7 +233,12 @@
   },
   "heartbeat_soak_today": {
     "date": "2026-09-21",
-    "applies_to": ["windows-core", "intelligence-repair", "mac-qa", "v04-live-canary"],
+    "applies_to": [
+      "windows-core",
+      "intelligence-repair",
+      "mac-qa",
+      "v04-live-canary"
+    ],
     "stage1": {
       "cadence_minutes": 5,
       "required_consecutive_intervals": 3,
@@ -205,21 +254,59 @@
     "heartbeat_blocks_work": false,
     "backfill_allowed": false,
     "lead_review_frequency": "hourly",
-    "verified_as_of_lead_035": "no lane has durable FAST_5M T0"
+    "verified_as_of_lead_035": "no lane has durable FAST_5M T0",
+    "epoch_started_at": "2026-09-21T16:07:00Z",
+    "count_only_records_at_or_after_epoch": true,
+    "active_lanes": [
+      "CORE",
+      "INTELLIGENCE",
+      "ACCEPTANCE"
+    ]
   },
   "execution_reset": {
     "plan": "RESET_EXECUTION_20260921.md",
     "human_lanes": 3,
     "lanes": [
-      {"id": "core", "branch": "claude/social-bots-windows-core-host", "machine": "Windows", "mission": "SB-V04-004 Core repair"},
-      {"id": "intelligence", "branch": "claude/social-bots-intelligence-repair-v2", "machine": "Mac", "mission": "SB-V05-001 then SB-V15-001"},
-      {"id": "acceptance", "branch": "claude/social-bots-mac-qa-control", "secondary_worktree": "claude/social-bots-v04-live-canary", "machine": "local Mac", "mission": "SB-V03-004 independent gate then real SB-V04-005 canary"}
+      {
+        "id": "core",
+        "branch": "claude/social-bots-windows-core-host",
+        "machine": "Windows",
+        "mission": "SB-V04-004 Core repair"
+      },
+      {
+        "id": "intelligence",
+        "branch": "claude/social-bots-intelligence-repair-v2",
+        "machine": "Mac",
+        "mission": "SB-V05-001 then SB-V15-001"
+      },
+      {
+        "id": "acceptance",
+        "branch": "claude/social-bots-mac-qa-control",
+        "secondary_worktree": "claude/social-bots-v04-live-canary",
+        "machine": "local Mac",
+        "mission": "SB-V03-004 independent gate then real SB-V04-005 canary"
+      }
     ],
     "live_progress_issue": 3,
     "heartbeat_reporter": "social-bots/bin/heartbeat_reporter.py",
     "heartbeat_stage1": "3 real 5-minute intervals",
     "heartbeat_stage2": "15-minute intervals for 24 hours",
     "heartbeat_blocks_work": false,
-    "chatgpt_review_frequency": "hourly"
+    "chatgpt_review_frequency": "hourly",
+    "fresh_sessions_started_at": "2026-09-21T16:07:00Z",
+    "heartbeat_epoch": "2026-09-21T16:07:00Z",
+    "previous_lane_heartbeats_closed": true,
+    "previous_lane_heartbeats_count_for_current_soak": false,
+    "current_active_lanes": [
+      "core",
+      "intelligence",
+      "acceptance"
+    ],
+    "retired_prior_lanes": [
+      "previous core session",
+      "previous intelligence session",
+      "previous mac qa session",
+      "previous standalone canary session"
+    ]
   }
 }
