@@ -1,40 +1,47 @@
-# Work queue — LEAD-040 V0.7 recovery
+# Work queue — LEAD-041 V0.7 recovery
 
-Official phase remains **V0.4.x**. The owner target is V0.7 with LIVE checkpoint evidence.
+Official phase remains **V0.4.x**. No artifact/version promotion occurred in this review.
 
 Primary recovery contract: `RECOVERY_TO_V07.md`.
 Primary implementation branch: `cursor/social-bots-recovery-v07-20260921`.
-Base source: `claude/quirky-shannon-t1377u@918c42e2a4602589997a7c625d994e049f266d6d`.
+Latest inherited report history transferred into recovery: `2f14a5cb08c9019fd174c1f54ecda130fa9308d4`.
+Latest material source inside that history: `a73b7b58de8f3669795b81637bff55247d67943c`.
+LEAD-041 assignment commits then add the recovery worker instructions/ack on top of that history.
 
-## Current audit
+## Verified delta since LEAD-040
 
-The project is behind V0.7 operationally:
-- V0.4 causal adaptive divergence not yet executed.
-- V0.5 not closed.
-- V0.6 live three-bot dry runs absent.
-- V0.7 native scheduler live evidence absent.
-- two-cycle autonomous lead/worker proof absent.
+LEAD-040 created the recovery branch at `918c42e...`, but the verified Core descendant continued immediately afterward. `a73b7b5...` materially hardened the real Claude route by enforcing the canonical authorization-manifest refusal at the `ClaudeCodeReasoningProvider` spawn point, preventing alternate entrypoints from bypassing the gate. The worker-reported full suite is **312 passed, 1 skipped**, and no live model call occurred. Corrected reports/progress continue through `2f14a5c...`.
 
-Engineering evidence at 918c42e is useful and should be reused, not rebuilt.
+The recovery branch was fast-forwarded to that descendant history before new work was assigned so recovery does not begin from a stale safety baseline.
 
 ## Primary Cursor recovery queue
 
-READY now:
-1. SB-R07-071 atomic session heartbeat.
-2. SB-R07-041 live-route/authorization hardening audit.
-3. SB-R07-044 divergence verifier.
-4. SB-R07-072 persistent-host preflight.
-5. SB-R07-042 controlled input freeze.
-6. SB-R07-051 operational factual-review integration.
+READY / ordered:
+1. **SB-R07-071** — make `SESSION_ONCE` uniqueness atomic across concurrent processes; include an adversarial cross-process duplicate-session race regression.
+2. **SB-R07-041** — independently audit the inherited `a73b7b5...` live-route/authorization hardening; preserve fail-closed spawn-point behavior and fix only evidence-backed defects.
+3. **SB-R07-044** — divergence verifier.
+4. **SB-R07-072** — persistent-host preflight; do not treat a temporary/CCR host as persistent-host acceptance.
+5. **SB-R07-042** — controlled V0.4 input freeze.
+6. **SB-R07-051** — operational factual-review integration.
 
-Then pull dependency-ready SB-R07 artifacts from ARTIFACT_INDEX and RECOVERY_TO_V07.md.
+Then pull dependency-ready SB-R07 artifacts from `ARTIFACT_INDEX.json` and `RECOVERY_TO_V07.md`.
 
-## Hard gate
+## Independent Acceptance
 
-SB-R07-043 live five-call adaptive divergence is BLOCKED until fresh owner authorization plus matching canonical lead authorization manifest.
+`claude/social-bots-mac-qa-control` is review-only. When SB-R07-071 lands, independently execute the concurrency race and verify exactly one durable record wins for a duplicate session ID; then audit SB-R07-041 when explicitly assigned. No runtime source edits.
 
-No public social effect is required through V0.7.
+## Hard gates
 
-## Legacy lanes
+- **SB-R07-043 live five-call adaptive divergence is BLOCKED** until fresh explicit owner authorization **and** a matching canonical lead authorization manifest exist.
+- `SB-V04-002` / `SB-V04-004` remain blocked and `SB-EVD-002` remains withheld until that causal evidence exists.
+- V0.7 native scheduler acceptance still requires real owner-controlled persistent-host OS-scheduler evidence over repeated bounded sessions; chat liveness and fixtures do not count.
+- `worker-pc` remains outside the critical path until private-repo clone/auth is demonstrably fixed.
 
-Do not start new overlapping source work on older Core/Intelligence/Acceptance lanes while Cursor recovery is active unless ChatGPT explicitly reassigns a separate non-overlapping artifact.
+## Legacy branches
+
+- Core: PARKED evidence-only.
+- Intelligence: PARKED evidence-only; SB-V15-001 remains changes-required.
+- Acceptance: REVIEW-ONLY standby.
+- Live canary: FROZEN evidence preservation; no additional live calls.
+
+Do not start overlapping source ownership on legacy branches while Cursor recovery is active unless a later canonical lead review explicitly reassigns a separate non-overlapping task.
