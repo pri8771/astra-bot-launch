@@ -1,88 +1,95 @@
-# Work queue — LEAD-037
+# Work queue — LEAD-038 owner execution simplification
 
-Lead review: `LEAD-037`.
-Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed. V0.4 is not complete.
+Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
-## Architectural decision
+Primary worker contract: `CLAUDE_EXECUTION_TO_V07.md`.
 
-SB-V04-002 and SB-V04-004 are **BLOCKED on fresh explicit owner authorization for empirical adaptive-divergence execution**.
+Forward planning: `FORWARD_PLAN_V06_TO_V30.md`.
 
-Core engineering has repaired the single-variable design and receipt seam, but replay/synthetic receipts cannot prove live model causality. No additional Claude CLI/adaptive/model call is authorized.
+## Owner operating model
 
-Canonical execution design: `V04_DIVERGENCE_ACCEPTANCE_PLAN.md`.
+Claude owns the bulk of implementation.
 
-## Lane 1 — CORE / `claude/social-bots-windows-core-host`
+ChatGPT lead primarily:
+- maintains canonical product/architecture decisions;
+- prepares downstream artifact/task decomposition;
+- independently audits submissions;
+- accepts/rejects artifacts;
+- keeps future work unblocked.
 
-Status: **ACTIVE — NO-LIVE-CALL PREP, THEN V0.7 HOST WORK**.
+Do not duplicate routine implementation between ChatGPT and Claude unless independent repair/review requires it.
 
-Priority A:
-1. Do not execute any live model/provider call.
-2. Build the prepare-only five-context divergence matrix:
-   - social-a / E1;
-   - social-b / same E1;
-   - social-c / same E1;
-   - cultural Primandir / same E1;
-   - social-a / E2.
-3. Emit complete bounded context JSON, context SHA-256 and exact prompt SHA-256 per case.
-4. Assert only persona differs across the first four contexts and only evidence differs for social-a E1 vs E2.
-5. Add fail-closed authorization-manifest + exact call-budget enforcement. No authorization manifest exists now; live execution must therefore stop before spawning Claude.
-6. Add no-retry semantics and engineering-only fixture tests.
-7. Submit and stop for lead/QA audit of this prep.
+## Heartbeat
 
-Priority B after A submission:
-- **SB-V07-001 is READY.**
-- Build authorized-host worker/runbook and OS-level scheduling package with one-task claim, invocation receipts, crash-safe/no-overlap primitives and heartbeat durability.
-- Heartbeat logging must work even when `gh` is unavailable; comment posting is optional transport, durable local/repo log is the evidence source.
-- Tests must not invoke a live model.
+Owner policy is now **ONE SESSION = ONE HEARTBEAT**.
 
-## Lane 2 — INTELLIGENCE / `claude/social-bots-intelligence-repair-v2`
+The old FAST_5M / 24-hour soak is superseded.
 
-Status: **ACTIVE — NARROW REPAIR**.
+Every fresh worker session:
+1. syncs/reads canonical coordination;
+2. appends exactly one real `SESSION_ONCE` heartbeat to the durable lane log;
+3. optionally posts one Issue #3 visibility comment;
+4. works normally with no recurring heartbeat loop.
 
-1. Repair **SB-V15-001** only.
-2. Remove/private/rename ordinary whole-runtime `load(bot,id)` and `load_all(bot)` aliases.
-3. Preserve explicit admin-only whole-runtime readers.
-4. Add regression proving normal production experiment APIs cannot enumerate another persona.
-5. Run focused/full tests, push report and stop for lead audit.
+V0.7 recurring liveness comes from repeated OS-scheduled bounded sessions, each with one heartbeat and an invocation receipt.
 
-Do not expand into V16/V17/V20-002 until lead review.
+See `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`.
 
-## Lane 3 — ACCEPTANCE / QA / `claude/social-bots-mac-qa-control`
+## Current critical path
 
-Status: **ACTIVE — REVIEW + V0.7 PREP**.
+### V0.4
 
-1. No model calls.
-2. Independently review new Core and Intelligence submissions when they land.
-3. Prepare V0.7 host/heartbeat acceptance checks and fault cases without editing Core/Intelligence runtime source.
-4. Validate that durable heartbeat logging is transport-independent and that missed intervals are never backfilled.
+- SB-V04-001 ACCEPTED.
+- SB-V04-003 ACCEPTED.
+- SB-V04-005 ACCEPTED.
+- SB-V04-002 BLOCKED_OWNER_AUTHORIZATION.
+- SB-V04-004 BLOCKED_OWNER_AUTHORIZATION.
+- SB-EVD-002 WITHHELD.
 
-## Live-canary lane
+No additional model call is currently authorized.
 
-`claude/social-bots-v04-live-canary`
+Core may complete prepare-only matrix/hash/isolation/authorization/call-budget work with fixtures, then move to dependency-safe V0.7 host engineering.
 
-Status: **FROZEN — EVIDENCE PRESERVATION ONLY**.
+### V0.5
 
-No further adaptive/model execution.
+- SB-V05-001 ACCEPTED.
+- SB-V05-002 CHANGES_REQUIRED.
+- SB-V05-003/004/005 planned.
 
-## V0.4 critical path
+Intelligence/evidence work may continue where dependency-safe.
 
-1. SB-V04-002 — BLOCKED on owner-authorized empirical divergence batch.
-2. SB-V04-004 — BLOCKED on same batch.
-3. SB-EVD-002 — WITHHELD until both are ACCEPTED.
-4. V0.4 stays in progress.
+### V0.6
 
-No downstream engineering changes this milestone truth.
+Operational dry runs remain dependency-gated, but scaffolding/validators may be prepared without fake operational evidence.
 
-## Heartbeat truth
+### V0.7
 
-Issue #3 contains active progress comments, including Acceptance FAST_5M comments through approximately 17:16Z.
+SB-V07-001 is READY.
 
-The protocol defines durable `HEARTBEAT_LOG.jsonl` entries as authoritative. Current worker branches still contain no reset-epoch FAST_5M durable records.
+Host-worker/scheduler/session-heartbeat/invocation-receipt/no-overlap engineering is dependency-ready now without live model calls.
 
-**Verified durable reset soak: 0 FAST_5M intervals on Core, Intelligence and Acceptance.**
+## Existing lanes
 
-Do not backfill. This does not block useful work.
+### Core — `claude/social-bots-windows-core-host`
+Owns:
+- V0.4 prepare-only divergence/authorization harness;
+- then V0.7 host-worker engineering.
 
-## Safety / authority
+### Intelligence — `claude/social-bots-intelligence-repair-v2`
+Owns:
+- current SB-V15-001 structural repair;
+- evidence/intelligence work only when released by lead.
 
-No public social effects, paid API/PAYG/new spend, destructive actions, credentials/secrets, fabricated evidence, engagement manipulation or SwarmAI dependency.
+### Acceptance — `claude/social-bots-mac-qa-control`
+Owns:
+- independent review;
+- acceptance harnesses;
+- V0.6/V0.7 validators/fault cases;
+- no live model execution.
+
+### Canary — `claude/social-bots-v04-live-canary`
+Frozen for evidence preservation. No further live model calls.
+
+## Safety
+
+No public social effects, paid API/PAYG/new spend, secrets, destructive actions, fabricated operational evidence, engagement manipulation or SwarmAI dependency.
