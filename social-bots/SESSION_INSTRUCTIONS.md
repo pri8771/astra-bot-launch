@@ -1,63 +1,57 @@
-# SESSION_INSTRUCTIONS — Windows Core / V0.3 closure + V0.4 prep
+# SESSION_INSTRUCTIONS — Windows Core / V0.3 preserve + V0.4 acceptance repair
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-027
+Lead review: LEAD-028
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
 At start/checkpoint:
 1. `git pull --ff-only`
 2. `git fetch origin`
-3. read canonical `FAST_TRACK_EXECUTION.md` and `SESSION_ROUTER.md` with `git show`
+3. read canonical `FAST_TRACK_EXECUTION.md`, `SESSION_ROUTER.md`, and `artifact-packets/SB-V04-004.md` with `git show`
 4. inspect `worker-reports/windows-core/LEAD_ACK.json`
 5. continue dependency-ready work without routine permission prompts.
 
-## ACCEPTED by lead — SB-V03-005
+## Preserve final V0.3 source/evidence
 
-LEAD-027 independently inspected final implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370` and accepts SB-V03-005.
+- `SB-V03-005` remains ACCEPTED at implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370`.
+- `SB-V03-004` source remains positive; Mac QA owns the independent lifecycle execution required for final acceptance.
+- `SB-V03-006` remains final/prepared at evidence `436787b0a63fdae0e89c224a54054607e32b5187` with exact 130-test OK output.
 
-Preserve:
-- `RuntimeState.admin_content_history()`; ordinary `content_history()` is gone;
-- `pipeline.admin_publish_queue()` and `analytics.admin_events_for()` explicit admin surfaces;
-- `isolation.PERSONA_SCOPED_STORES` and authoritative persona readers for all six private stores;
-- `isolation.admin_all_records()` as the explicit whole-runtime boundary;
-- all-surface structural regression that fails if bare whole-runtime reader names are reintroduced;
-- logical persona isolation architecture and production-path no-bleed tests.
+Do not churn V03 unless independent QA supplies a concrete defect.
 
-Do not churn V03-005 unless independent QA identifies a concrete defect.
+## LEAD-028 review of your `76e96dde...` V04-004 attempt
 
-## Preserve — SB-V03-004 source repair; independent execution still gates acceptance
+Useful work, but **not acceptance-ready**.
 
-Lead source review continues to support the fencing/migration implementation, including the post-cycle success-receipt takeover repair. SB-V03-004 remains CHANGES_REQUIRED only because its artifact contract requires independent execution of the high-risk lifecycle race. Mac QA owns that verification.
+Two tests do not isolate the variable named in the acceptance claim:
+- `test_same_evidence_different_personas_diverge` changes persona AND evidence (`shared` -> `shared2`).
+- `test_same_persona_different_evidence_diverges` does not hold persona/runtime context constant.
 
-Do not weaken, rewrite, or self-accept this artifact while waiting for QA.
+Also, all six tests force `SBOTS_REASONING=contextual`, which resolves to `contextual-deterministic-v1` with `adaptive=false`. Keep this suite as supplemental deterministic/context-sensitive engineering coverage, but it cannot prove the adaptive V0.4 divergence required by `SB-V04-002`.
 
-## Final V0.3 evidence is PREPARED
+Positive re-audit: preserve the production `bin/run_worker.py` adaptive-required default and fail-closed provider resolution. Do not regress it.
 
-Evidence commit `436787b0a63fdae0e89c224a54054607e32b5187` regenerates SB-V03-006 from final implementation `796d4e3...` and commits exact full-suite output: `Ran 130 tests ... OK`.
+## Current assignment — SB-V04-004 repair only
 
-Do not regenerate again unless:
-- independent QA finds a defect and source changes; or
-- lead explicitly requests evidence refresh.
+Read canonical `artifact-packets/SB-V04-004.md` and implement the bounded repair:
 
-V03-006 remains blocked on V03-004 independent acceptance and final lead reconciliation of V03-001 / SB-EVD-001.
+1. Persona-only case: same exact evidence snapshot, objective, runtime state/history, duplication state and policy; vary only persona/workspace.
+2. Evidence-only case: same exact bot/runtime, persona/workspace, objective, state/history, duplication state and policy; vary only evidence.
+3. Keep at least three persona/workspace divergence comparisons including a cultural/Primandir workspace.
+4. Keep deterministic contextual tests as diagnostics if useful.
+5. Add a clean acceptance seam capable of consuming the sanitized real adaptive provider/proposal receipt from `SB-V04-005` without fabricating it.
+6. Do **not** invoke another live model/provider call, API/PAYG, or any new-spend route. The one owner-authorized existing-subscription call belongs to the dedicated canary lane.
+7. Preserve deterministic policy/authority/no-public-effect invariants.
+8. Commit/push exact tests and report which portions are diagnostic vs still waiting on the real adaptive receipt.
 
-## Current implementation assignment — dependency-safe V0.4 reconciliation/test prep
-
-While Mac QA executes the independent V03-004 probe, use Core capacity without overlapping the dedicated live-canary lane:
-1. Re-audit SB-V04-001 against the current production path. Preserve fail-closed behavior when adaptive reasoning is required; close any remaining schema/authority/default-mode defects with focused tests.
-2. Re-audit SB-V04-002 implementation and tests. Keep injected/provider-runner tests clearly engineering-only; do not represent them as the required real canary.
-3. Re-audit SB-V04-003 deterministic policy boundary and preserve deterministic authority/no-public-effect rules.
-4. Prepare/implement SB-V04-004 persona/evidence divergence acceptance tests if dependency-safe.
-5. Submit exact commits/tests/reports for lead review. Acceptance remains dependency-gated until V0.3 closes.
-
-Do NOT execute SB-V04-005 here and do not make a second canary. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns the real subscription-authenticated canary.
+Do NOT execute `SB-V04-005` here. Dedicated branch `claude/social-bots-v04-live-canary` exclusively owns the real subscription-authenticated canary.
 
 ## Reporting
 
 Reports stay under `social-bots/worker-reports/windows-core/`.
-Commit/push after each parent artifact and continue to the next dependency-ready item.
+Commit/push after the bounded repair; do not self-accept the artifact.
 
 ## Safety
 
