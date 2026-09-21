@@ -2,7 +2,7 @@
 
 Mode: ACTIVE — FAST TRACK
 Branch: `claude/social-bots-windows-core-host`
-Lead review: LEAD-031
+Lead review: LEAD-032
 
 Heartbeat is observability only. Do not wait on heartbeat acceptance before coding.
 
@@ -33,7 +33,7 @@ Also, all six tests force `SBOTS_REASONING=contextual`, which resolves to `conte
 
 Positive re-audit: preserve the production `bin/run_worker.py` adaptive-required default and fail-closed provider resolution. Do not regress it.
 
-LEAD-031 still sees no new Claude worker-generated commit after `76e96dde...`. Continue the existing bounded repair now; do not wait for another lead message.
+LEAD-032 still sees no new Claude worker-generated commit after `76e96dde...`. Continue the existing bounded repair now; do not wait for another lead message.
 
 ## Current assignment — SB-V04-004 repair only
 
