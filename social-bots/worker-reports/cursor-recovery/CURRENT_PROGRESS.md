@@ -21,6 +21,8 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 
 ### SB-R07-051 — SUBMITTED (ENGINEERING)
 
+- Implementation source SHA: `6eb2e7c66c7daeb45dfae1f51462fa09fbd2b58f`
+
 - Implementation source SHA: 
 
 - Closed operational `BoundedPropositionAssessor` + pipeline integration
