@@ -5,6 +5,7 @@
 `claude/social-bots-windows-core-host` @ `c6b67ff`
 **Canonical read:** `671abbc` / **LEAD-038**
 **Contract:** `social-bots/CLAUDE_EXECUTION_TO_V07.md`
+**Source SHA for both submissions:** `a73b7b58de8f3669795b81637bff55247d67943c`
 
 ## Heartbeat
 
@@ -22,20 +23,29 @@ transport. The durable record was **not** rewritten to claim otherwise.
 ## Model-call gate
 
 Canonical state contains **neither** a fresh explicit owner authorization **nor**
-a lead-created canonical authorization manifest
-(`social-bots/authorizations/` does not exist; a repo-wide search found only
-prose references). **No adaptive/model call was made this session.**
+a lead-created canonical authorization manifest (`social-bots/authorizations/`
+does not exist; a repo-wide search found only prose references).
+**No adaptive/model call was made this session.**
+
+That is now enforced in two layers rather than assumed. An adversarial review of
+this session's own code found that `SBOTS_REASONING=claude-cli` was enough to
+make any entrypoint spawn the real Claude Code CLI with no manifest, no budget
+and no accounting — the V0.4 gate only ever guarded the divergence batch.
+`bin/worker_once.py` now refuses such a mode with exit 6 before any provider
+exists, and `ClaudeCodeReasoningProvider` itself refuses at the spawn point
+unless a valid manifest is in force. Evidence:
+`evidence/SB-V04-002-prepare/LIVE_ROUTE_REFUSED.txt`.
 
 ## Submitted this session — `SUBMITTED`, not self-accepted
 
 | Work | Report |
 |---|---|
-| V0.4 prepare-only divergence matrix, hashing, isolation, authorization gate, exact call budget, no-retry | `SB-V04-002-PREPARE.md` |
-| SB-V07-001 host worker package, scheduler adapters, session heartbeat, invocation receipts, direction consumption | `SB-V07-001.md` |
+| V0.4 prepare-only divergence matrix, hashing, two-layer isolation, authorization gate, exact call budget, no-retry | `SB-V04-002-PREPARE.md` |
+| SB-V07-001 host worker package, scheduler adapters, session heartbeat, invocation receipts, direction consumption, real SIGKILL crash/restart proof | `SB-V07-001.md` |
 
-Source SHA: `c2fe1f8e22767dadaf657223f3420b28d6c1f33d`
-Tests: `python3 -m unittest discover -s tests` → **269 passed, 1 skipped**
-(was 160/1; the one skip is the pre-existing real-canary intake skip).
+Tests: `python3 -m unittest discover -s tests` → **312 passed, 1 skipped**
+(was 160/1 at session start; the one skip is the pre-existing real-canary intake
+skip, unchanged).
 
 ## Artifact status — unchanged by this session
 
@@ -45,21 +55,35 @@ Tests: `python3 -m unittest discover -s tests` → **269 passed, 1 skipped**
 - **SB-EVD-002** — `WITHHELD`.
 - **SB-V07-001** — submitted for lead review.
 - **SB-V07-002** — remains `BLOCKED`: no owner-authorized always-on host, and no
-  OS scheduler was registered anywhere. This session's six invocations are direct
-  CLI runs on a Linux CCR container and are labeled engineering demonstration
-  only.
+  OS scheduler was registered anywhere. This session's invocations are direct
+  CLI runs on a Linux CCR container, labeled engineering demonstration only.
+
+## Lanes not touched
+
+Intelligence (`claude/social-bots-intelligence-repair-v2`), Acceptance
+(`claude/social-bots-mac-qa-control`) and the frozen canary branch were not
+edited. `bin/run_worker.py` and `bin/dry_run.py` were left unmodified to avoid
+disturbing other lanes' committed evidence; they inherit the spawn-point refusal
+but do not carry the explicit exit-6 signal.
 
 ## What the lead needs to decide
 
 1. Accept or reject the two submissions above.
 2. If a live V0.4 batch is ever to run: write a canonical authorization manifest
-   under `social-bots/authorizations/` (schema and validation are in
+   under `social-bots/authorizations/` (schema and validation in
    `runtime/authorization.py`; `tests/test_v04_authorization_gate.py` shows a
    valid fixture shape), after a fresh explicit owner authorization. The code
-   cannot attest lead authorship — that is a git-provenance fact for audit.
+   records but cannot attest lead authorship — that is a git-provenance fact.
+   Note that with no manifest present, **all** live model calls are now refused
+   repo-wide, which is the intended posture but is worth knowing before the next
+   authorized batch.
 3. Whether to write `social-bots/directions/<lane>.json` files. Scheduled
    sessions read them in preference to the `STATE.json` fallback, and an explicit
-   `halt` boolean is more reliable than the fallback's keyword heuristic.
+   `halt` boolean is more reliable than the fallback's keyword heuristic. The
+   fallback now refuses to guess when a lane matches more than one branch, so an
+   ambiguous lane name fails closed rather than silently missing a halt.
 4. Whether to retire `bin/heartbeat_reporter.py` and `bin/worker_heartbeat.py`,
    both superseded for new sessions but left in place so committed lane history
    stays readable.
+5. Whether to extend the exit-6 signal to `bin/run_worker.py` and
+   `bin/dry_run.py`, which would need touching another lane's evidence surface.
