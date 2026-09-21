@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "lane": "mac-qa",
-  "reviewed_through_sequence": 9,
-  "reviewed_at": "2026-09-21T04:02:00Z",
-  "lead_review": "LEAD-022-remote-worker",
+  "reviewed_through_sequence": 10,
+  "reviewed_at": "2026-09-21T04:06:00Z",
+  "lead_review": "LEAD-023",
   "bootstrap_consecutive_verified": 3,
   "steady_hourly_authorized": true,
-  "next_assignment": "Switch heartbeat cadence to hourly; continue QA/integration/CI work. Dedicated canary lane owns SB-V04-005.",
+  "next_assignment": "Switch routine heartbeat to hourly and immediately perform an independent QA verification of Windows Core commit 175f741 for SB-V03-004 fencing/migration correctness; then continue V2 integration/CI harness work. Dedicated canary lane owns SB-V04-005.",
   "notification_delivered": true,
-  "notes": "Verified timed heartbeat checkpoints seq7 03:23:24Z, seq8 03:40:08Z, seq9 03:57:16Z. Bootstrap passed. Hourly authorized."
+  "notes": "Durable history contains multiple genuine ~15-18 minute intervals and the timed seq7/8/9 checkpoint series was independently inspected. Heartbeat proves coordination only, not V0.7 runtime liveness. Do not idle after heartbeat validation."
 }
