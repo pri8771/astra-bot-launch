@@ -3,8 +3,8 @@
 **Session:** `s-20260921T191500Z-a23cc77e` (SESSION_ONCE, 2026-09-21T19:15:00Z)
 **Lane:** `cursor-recovery`
 **Branch:** `cursor/social-bots-recovery-v07-20260921`
-**Canonical coordination SHA read:** `13e1846c7ec337165722cbe090866dab90b3dc00` (`chatgpt/social-bots-plan-20260920`)
-**Lead review read:** `LEAD-041` (`social-bots/lead-reviews/LEAD-041_2026-09-21T1852.md`)
+**Canonical coordination SHA read:** `13e1846c7ec337165722cbe090866dab90b3dc00`
+**Lead review read:** `LEAD-041`
 **Runtime:** host=`cursor`, platform=`Linux 6.12.94+`, python=`3.12.3`
 
 ## Submitted this session
@@ -12,21 +12,29 @@
 ### SB-R07-071 — SUBMITTED (ENGINEERING)
 
 - Source SHA: `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb`
-- Change: atomic `fcntl.flock` around find-then-append in `runtime/session_heartbeat.py`
-- Focused: 16 passed (`tests.test_v07_session_heartbeat`)
-- Race: 8 processes × 20 rounds, exactly one winner each round
-- Full suite: 314 passed, 1 skipped
-- Evidence: `worker-reports/cursor-recovery/evidence/SB-R07-071/`
-- Report: `worker-reports/cursor-recovery/SB-R07-071.md`
-- No live model call. No LIVE claim.
+- Atomic `fcntl.flock` SESSION_ONCE uniqueness; race 8×20
+- Evidence: `evidence/SB-R07-071/`
+
+### SB-R07-041 — SUBMITTED (ENGINEERING)
+
+- Source SHA: `21cc2e7a65750d20dc609b9e9517f920157389a2`
+- Closed `_REAL_CLI_RUNNER` rebind bypass; `run_worker.py` entrypoint refuse
+- Full suite: 316 passed, 1 skipped
+- Evidence: `evidence/SB-R07-041/`
+
+### SB-R07-044 — SUBMITTED (ENGINEERING)
+
+- Independent divergence verifier + CLI; rejects fixtures/self-declared labels
+- Full suite: 322 passed, 1 skipped
+- Evidence: `evidence/SB-R07-044/`
+- No live model call
 
 ## Next
 
-1. `SB-R07-041` — audit inherited spawn-point live-route fail-closed hardening
-2. `SB-R07-044` — divergence verifier
-3. `SB-R07-072` — persistent-host preflight (do not claim acceptance on temporary/CCR)
+1. `SB-R07-072` — persistent-host preflight (no persistent-host claim on CCR/temp)
+2. Continue dependency-ready no-live recovery artifacts
 
 ## Blockers
 
-None for continuing no-live recovery artifacts. V0.4 divergence batch remains
-owner-authorization blocked (not this lane's immediate work).
+None for continuing no-live recovery. V0.4 live divergence batch remains
+owner-authorization blocked.

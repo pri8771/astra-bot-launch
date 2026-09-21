@@ -1,0 +1,148 @@
+test_ledger_bound_material_still_does_not_self_accept (tests.test_v04_divergence_verifier.IndependentVerifierTest.test_ledger_bound_material_still_does_not_self_accept)
+Even a fully bound engineering bundle never claims ACCEPTED. ... ok
+test_required_comparisons_are_exactly_the_plan_set (tests.test_v04_divergence_verifier.IndependentVerifierTest.test_required_comparisons_are_exactly_the_plan_set)
+P0|P1, P0|P2, P0|P3 persona and P0|E0 evidence must be required. ... ok
+test_seam_fixtures_are_rejected (tests.test_v04_divergence_verifier.IndependentVerifierTest.test_seam_fixtures_are_rejected)
+Synthetic seam fixtures must never produce an acceptance-path verdict. ... ok
+test_self_declared_real_labels_without_ledger_are_incomplete (tests.test_v04_divergence_verifier.IndependentVerifierTest.test_self_declared_real_labels_without_ledger_are_incomplete)
+Writing sanitized-real-canary into JSON is not provenance. ... ok
+test_verify_from_paths_loads_committed_disk_evidence (tests.test_v04_divergence_verifier.IndependentVerifierTest.test_verify_from_paths_loads_committed_disk_evidence)
+The comparator must run from on-disk artifacts, not in-memory only. ... ok
+test_cli_writes_verdict_json (tests.test_v04_divergence_verifier.VerifyCliTest.test_cli_writes_verdict_json) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.018s
+
+OK
+{
+  "acceptance_authority": "ChatGPT lead \u2014 this verifier never self-accepts",
+  "acceptance_claim": false,
+  "all_comparisons_material": false,
+  "divergence_report": {
+    "acceptance_authority": "ChatGPT lead \u2014 this report never self-accepts",
+    "acceptance_evidence_eligible": false,
+    "all_comparisons_material": false,
+    "all_receipts_real_adaptive": false,
+    "call_slot_binding": {
+      "checked": false,
+      "manifest_ids": [],
+      "reason": "no call-budget ledger supplied; receipt labels alone cannot establish that any live call was made",
+      "unbound_cases": []
+    },
+    "cases": [
+      {
+        "case": "P0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P1",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P2",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "P3",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      },
+      {
+        "case": "E0",
+        "receipt_kind": null,
+        "receipt_present": false,
+        "valid": false
+      }
+    ],
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P2",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|P3",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "persona"
+      },
+      {
+        "comparison": "P0|E0",
+        "material": false,
+        "reason": "one or both receipts are missing or invalid",
+        "variable": "evidence"
+      }
+    ],
+    "errors": [
+      "P0: no receipt supplied",
+      "P1: no receipt supplied",
+      "P2: no receipt supplied",
+      "P3: no receipt supplied",
+      "E0: no receipt supplied"
+    ],
+    "generated_at": "2026-09-21T19:27:13Z",
+    "receipt_kinds": [],
+    "run_scope": "v04-divergence-test"
+  },
+  "evidence_class": "ENGINEERING",
+  "independent_rejections": [
+    "prepared matrix is not acceptance_eligible (engineering-fixture snapshots or other prepare-time honesty flags); fixture matrices cannot back LIVE divergence acceptance",
+    "matrix engineering_only_reason: snapshot E1 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "matrix engineering_only_reason: snapshot E2 provenance is 'engineering-fixture', not 'live-capture': engineering-only, not acceptance evidence",
+    "E0: receipt absent",
+    "P0: receipt absent",
+    "P1: receipt absent",
+    "P2: receipt absent",
+    "P3: receipt absent",
+    "no call-budget ledger supplied; self-declared receipt labels are not provenance"
+  ],
+  "ledger_bound": false,
+  "live_model_call_performed": false,
+  "note": "No LIVE acceptance claim. Fixtures/replay/self-declared provenance are rejected for acceptance-path use.",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "required_comparisons_present": true,
+  "schema_version": 1,
+  "self_declared_real_labels_alone": false,
+  "source": {
+    "budget_home": null,
+    "matrix_path": "/tmp/tmpx35ewjqj/PREPARED_MATRIX.json",
+    "receipts_dir": "/tmp/tmpx35ewjqj/receipts"
+  },
+  "verdict": "REJECTED",
+  "verifier_id": "SB-R07-044"
+}

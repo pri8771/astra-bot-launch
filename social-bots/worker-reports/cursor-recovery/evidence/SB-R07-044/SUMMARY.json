@@ -1,0 +1,13 @@
+{
+  "artifact": "SB-R07-044",
+  "requested_status": "SUBMITTED",
+  "evidence_class": "ENGINEERING",
+  "live_claim": false,
+  "live_model_call": false,
+  "focused_command": "python3 -m unittest tests.test_v04_divergence_verifier -v",
+  "focused_result": "6 passed",
+  "full_suite_command": "python3 -m unittest discover -s tests -v",
+  "full_suite_result": "322 passed, 1 skipped",
+  "next_artifact": "SB-R07-072",
+  "recorded_at": "2026-09-21T19:27:13Z"
+}
