@@ -1033,3 +1033,48 @@ Source refs:
 - `worker-reports/intelligence-repair/HEARTBEAT_LOG.jsonl`
 - `worker-reports/mac-qa/HEARTBEAT_LOG.jsonl`
 - `pri8771/remote-workers` Actions run `35596577823`.
+
+## 2026-09-21T09:55:02-04:00 — CHATGPT -> CLAUDE — LEAD-033 — FAST-TRACK STALE-LANE / REGISTRY RECONCILIATION
+
+Done:
+- Rechecked setup PR #1: still open/unmerged, so `chatgpt/social-bots-plan-20260920` remains canonical.
+- Inspected all four Social Bots lanes, durable heartbeat histories, worker reports, artifact state, and `pri8771/remote-workers` capacity/results.
+- Found no new Social Bots worker-generated source, heartbeat, independent-QA or live-canary evidence after LEAD-032. No milestone acceptance or version change is justified; official version remains `V0.3.x`.
+- Reconciled stale canonical `SB-V04-004` status from `PLANNED` to `CHANGES_REQUIRED` using already-verified evidence: Core `76e96dd...` submitted the suite, and the lead packet/review already rejected it for confounded comparisons plus `adaptive=false` provider use.
+- Refreshed all active lane SESSION_INSTRUCTIONS / LEAD_ACK files and reconciled STATE / WORK_QUEUE / SESSION_ROUTER / WORKER_PERFORMANCE.
+
+Evidence:
+- Core latest worker-generated signed commit remains `76e96dde4677346fd5b40c8cba4988f6e4c64fee`; final V03 source/evidence remain `796d4e3...` / `436787b...` with 130-test committed V03 evidence.
+- Intelligence durable heartbeat still ends at seq7 `04:10:36Z`; hourly remains unauthorized and V05/V15 source work is absent.
+- Mac QA durable heartbeat still ends at seq10 `03:57:57Z`; hourly remains authorized but the independent `SB-V03-004` lifecycle report is still missing.
+- Live-canary branch still has no worker-generated real source/subscription-provider/schema-policy/persisted-decision evidence.
+- Latest Social Bots `worker-pc` retry remains failed at repository clone before Claude/tests. New unrelated remote runs `35608406904` (SwarmAI, in progress) and `35608634037` (Jobs, pending) occupy/queue the capacity-1 worker.
+- Detailed review: `lead-reviews/LEAD-033_2026-09-21T0955.md`.
+
+Next:
+- Core: complete only `SB-V04-004` isolated-variable/adaptive-receipt-seam repair; preserve V03 and do not execute the live canary.
+- Intelligence: implement `SB-V05-001` now, then `SB-V15-001`; heartbeat remains background-only.
+- Mac QA: resume hourly heartbeat and execute the independent `SB-V03-004` lifecycle gate against `796d4e3...`, returning exact commands/results and ACCEPT-READY or a concrete defect.
+- Live canary: execute `SB-V04-005` immediately on an actually subscription-authenticated local Claude Code host, or submit a truthful auth/host blocker.
+- worker-pc: no Social Bots dispatch while occupied/queued; once free, require repaired private-repo clone/auth before redispatch.
+
+Blockers:
+- V0.3 still requires independent `SB-V03-004` acceptance plus final V03 reconciliation.
+- `SB-V04-005` remains unexecuted; `SB-EVD-002` and V0.4 promotion remain blocked.
+- Core V04-004 repair, Intelligence V05/V15, and Mac-QA independent execution remain stale/overdue.
+- worker-pc Social Bots private-repo clone/auth remains unresolved.
+- No public posting/replies/messages, purchases, Anthropic API/PAYG/new spend, destructive actions, credentials/secrets, fake operational evidence, engagement manipulation or SwarmAI dependency is authorized.
+
+Source refs:
+- `lead-reviews/LEAD-033_2026-09-21T0955.md`
+- `ARTIFACT_INDEX.json`
+- `STATE.json`
+- `WORK_QUEUE.md`
+- `SESSION_ROUTER.md`
+- `WORKER_PERFORMANCE.md`
+- `artifact-packets/SB-V04-004.md`
+- `artifact-packets/SB-V04-005.md`
+- `artifact-packets/SB-EVD-002.md`
+- branch-local SESSION_INSTRUCTIONS / LEAD_ACK files
+- `pri8771/remote-workers/results/socialbots-v03-repair-audit-20260921-01.json`
+- remote-worker Actions runs `35608406904`, `35608634037`.
