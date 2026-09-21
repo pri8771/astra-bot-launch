@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "v04-live-canary",
   "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T12:56:25Z",
-  "lead_review": "LEAD-032",
+  "reviewed_at": "2026-09-21T13:55:02Z",
+  "lead_review": "LEAD-033",
   "bootstrap_consecutive_verified": 0,
   "steady_hourly_authorized": false,
   "next_assignment": "PRIORITY ZERO: execute SB-V04-005 NOW on an actually subscription-authenticated local Claude Code host. Push real source + actual claude CLI subscription + schema/policy + persisted-decision evidence and stop for lead audit. If auth is unavailable, submit a truthful BLOCKED report.",
   "notification_delivered": false,
-  "notes": "Still no worker-generated canary evidence as of LEAD-032. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not. Core's V04-004 repair must not consume this live invocation."
+  "notes": "Still no worker-generated canary evidence as of LEAD-033. One bounded existing-subscription call is authorized; Anthropic API/PAYG/new spend and public effects are not. Core's V04-004 repair must not consume this live invocation."
 }
