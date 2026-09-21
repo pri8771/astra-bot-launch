@@ -8,7 +8,8 @@ Base: canonical + Cursor recovery head `488ce0c` merged unedited (`e19003f`); ba
 |---|---|---|---|---|
 | SB-S23-001 specialist contract runtime | `39b9920` | 436 OK / 2 skipped | ENGINEERING | SUBMITTED |
 | SB-S20-001 versioned strategy store | `038efb3` | 446 OK / 2 skipped | ENGINEERING | SUBMITTED |
+| SB-S23-002 specialist sandbox | `2c6e42e` | 459 OK / 2 skipped | ENGINEERING | SUBMITTED |
 
-In progress: SB-S23-002 specialist sandbox. Then dependency-safe S23 slices (S23-007, S23-003, S23-004, S23-005, S23-006, S23-008). S20-002+ index-blocked on SB-S20-000.
+In progress: SB-S23-007 budget/spawn guard. Then S23-003, S23-004, S23-005, S23-006, S23-008. S20-002+ index-blocked on SB-S20-000.
 
 No Cursor-owned file edits. No model/live call. No public effect.
