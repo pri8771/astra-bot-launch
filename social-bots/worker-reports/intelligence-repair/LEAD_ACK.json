@@ -2,11 +2,11 @@
   "schema_version": 1,
   "lane": "intelligence-repair",
   "reviewed_through_sequence": 7,
-  "reviewed_at": "2026-09-21T06:52:00Z",
-  "lead_review": "LEAD-026",
+  "reviewed_at": "2026-09-21T07:54:00Z",
+  "lead_review": "LEAD-027",
   "bootstrap_consecutive_verified": 1,
   "steady_hourly_authorized": false,
-  "next_assignment": "RESUME WORK NOW: implement SB-V05-001 real HTTPS pinned-IP TLS/SNI/certificate path first, then SB-V15-001 persona-scoped experiment boundary. Heartbeat remains background-only and must not pause source work.",
+  "next_assignment": "RESUME SOURCE WORK NOW: SB-V05-001 real pinned-IP HTTPS/TLS/SNI/certificate path first, then SB-V15-001 persona-scoped experiment persistence/read boundary. Heartbeat is background-only.",
   "notification_delivered": true,
-  "notes": "Still stale: no worker source or heartbeat after seq7 at 04:10:36Z. Seq6->7 remains ~30m28s, so hourly remains unauthorized. No backfill. The missing progress is execution, not planning."
+  "notes": "Still no worker commit after seq7 04:10:36Z. Seq6->7 ~30m28s does not satisfy bootstrap. Do not backfill; missing progress is execution, not planning."
 }
