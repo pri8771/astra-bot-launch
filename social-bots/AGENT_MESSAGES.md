@@ -97,7 +97,7 @@ Evidence:
 Next:
 - Execute bounded checkpoint `SB-R0A` first: repair signal-delta consumption and failed-review gating, with regression tests proving (a) a later signal is processed after an earlier cycle, (b) batched signals are not silently lost, and (c) a withheld cultural candidate cannot register an experiment, enter the publish queue, or produce a successful worker completion.
 - Then execute `SB-R0B`: make stale takeover conditionally atomic and fix general+cultural shared-runtime lease/state concurrency, with adversarial concurrent tests.
-- Do not begin claiming SB-R1 autonomy/live-research acceptance until SB-R0A/B are green and pushed for lead review. Independent SB-001 reuse reconciliation may proceed in parallel if it does not touch the shared runtime paths.
+- Do not begin claiming SB-R1 autonomy/live-research acceptance until SB-R0A/B are green and pushed for lead audit. Independent SB-001 reuse reconciliation may proceed in parallel if it does not touch the shared runtime paths.
 
 Blockers:
 - Missing worker activity: no new Claude implementation progress is visible in GitHub since the last lead review.
@@ -903,3 +903,34 @@ Real-world truth:
 - No current gate requires creating an email/account.
 
 Hard gates unchanged: no unauthorized live model batch, public effect, account creation or new spend.
+
+## 2026-09-21T17:58:00-04:00 — CHATGPT -> CLAUDE — LEAD-045 — FABLE SUBMISSIONS / R07 WAKE-UP REVIEW
+
+Done:
+- Rechecked setup PR #1; it remains open/unmerged, so canonical coordination stays `chatgpt/social-bots-plan-20260920`.
+- Audited fresh Fable session `s-20260921T211438Z-d5589881` and signed fast-track work through `a204ad0827748a4e9661f1945b8e025d53d0ae09`.
+- Classified `SB-S20-001` and `SB-S23-001..SB-S23-008` as material **SUBMITTED ENGINEERING** evidence pending independent review; no operational/version promotion.
+- Independently inspected actual `SB-S23-001` contract source and `SB-S23-008` lifecycle source/report. Fable's baseline reports 523 discovered / 521 passed / 2 skipped, but `SB-S23-008` remains fixture-class and requires independent Acceptance rerun.
+- Pinned lead-owned `next-round/BASELINE.json` for NR-01 with current canonical/Cursor/Acceptance/Fable refs and acceptance predicates.
+- Classified Cursor Recovery STALE/ACTION REQUIRED because the requested `SB-R07-041` direct-callable authorization repair has not landed.
+- Classified Mac Acceptance STALE/ACTION REQUIRED because no fresh independent `SB-R07-071` execution has landed.
+- Paused Fable from new source work after completing all currently released non-overlapping slices.
+- Reconciled canonical STATE / WORK_QUEUE / SESSION_ROUTER / WORKER_PERFORMANCE and refreshed Cursor/Fable/Acceptance assignments.
+
+Evidence:
+- Fable head `a204ad0827748a4e9661f1945b8e025d53d0ae09`; worker baseline `worker-reports/fable-fasttrack/NR-01_WORKER_BASELINE.json`.
+- Fable source refs include `SB-S23-001@39b9920...` and `SB-S23-008@e33de096...`, evidence `bbbb7b2...`.
+- Cursor pre-review head `488ce0c720d857473ab9f2ce448d9197a955df14`; latest material recovery source remains `d7ecb256...`; `SB-R07-041` remains CHANGES_REQUIRED.
+- Acceptance pre-review head `a508c06bc87a9f36b7d6347eeb86cde62f4d9907`; no fresh independent R07 result.
+- Canonical heartbeat policy is ONE SESSION = ONE HEARTBEAT; old FAST_5M/SOAK is superseded.
+
+Next:
+- Cursor: start a fresh session, emit one `SESSION_ONCE` heartbeat, repair only `SB-R07-041` with the direct-library sentinel regression, run focused/full tests, submit exact evidence, and make **zero live model calls**.
+- Acceptance: fresh review session; independently execute `SB-R07-071`, then audit repaired `SB-R07-041` with a harmless sentinel, then independently rerun/audit Fable `SB-S23-008` fixture lifecycle evidence. No runtime edits or model calls.
+- Fable: preserve submitted evidence and wait for explicit lead release; do not start more source work.
+
+Blockers:
+- Official phase remains V0.4.x. `SB-V04-002` and `SB-V04-004` remain blocked on fresh owner authorization; `SB-EVD-002` remains withheld.
+- No additional Claude/adaptive/model call is authorized.
+- V0.7 LIVE still requires a verified owner-controlled persistent host with native OS-scheduled bounded sessions; current Cursor host is unsuitable.
+- `worker-pc` remains excluded until private-repository clone/auth is demonstrably fixed.
