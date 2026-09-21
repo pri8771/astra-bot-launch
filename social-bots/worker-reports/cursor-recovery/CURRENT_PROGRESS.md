@@ -37,6 +37,8 @@ See earlier reports under `worker-reports/cursor-recovery/`.
 
 ### SB-R07-061 — SUBMITTED (ENGINEERING)
 
+- Implementation source SHA: `3e7bcc740ff14d667f5913f06b7db8b96a7bc183`
+
 - Implementation source SHA: 
 
 - Reusable three-bot dry-run runner + immutable run manifests
