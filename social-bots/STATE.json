@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T10:55:37Z",
+  "updated_at": "2026-09-21T11:55:27Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -24,7 +24,7 @@
       "last_verified_commit_at": "2026-09-21T08:37:19Z",
       "final_v03_implementation": "796d4e390bd135167e5de2ff8f586bc07ac7f370",
       "final_v03_evidence": "436787b0a63fdae0e89c224a54054607e32b5187",
-      "activity": "no_new_worker_commit_after_LEAD_029_v04_004_repair_still_assigned"
+      "activity": "no_new_worker_commit_after_LEAD_030_v04_004_repair_still_assigned"
     },
     "intelligence": {
       "branch": "claude/social-bots-intelligence-repair-v2",
@@ -40,7 +40,7 @@
     },
     "development_sessions_live": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
-    "note": "LEAD-030 found no new Social Bots worker-generated source, heartbeat, canary or independent-QA evidence after LEAD-029. Existing dispositions remain unchanged. worker-pc is online but its single protocol slot is currently occupied by unrelated Jobs work, while Social Bots private-repo clone/auth remains unresolved.",
+    "note": "LEAD-031 found no new Social Bots worker-generated source, heartbeat, canary or independent-QA evidence after LEAD-030. Existing artifact dispositions remain unchanged. worker-pc is online but its single protocol slot is currently occupied by unrelated SwarmAI work; Social Bots private-repo clone/auth remains unresolved.",
     "windows_available": true,
     "heartbeat_validation": {
       "target_lanes": ["intelligence", "mac_qa"],
@@ -64,20 +64,20 @@
     "mac_qa_latest_worker_reported_full_suite": 38,
     "mac_qa_github_ci_head": "success",
     "mac_qa_github_ci_run_id": 35555060783,
-    "lead_note": "No new test evidence this review. Preserve Core 130 as the latest independently verified committed V03 full-suite evidence. Core's 136-test V04-004 worker claim remains supplemental because the submitted acceptance cases were confounded/non-adaptive."
+    "lead_note": "No new Social Bots test evidence this review. Preserve Core 130 as the latest independently verified committed V03 full-suite evidence. Core's 136-test V04-004 worker claim remains supplemental because the submitted acceptance cases were confounded/non-adaptive."
   },
   "lead_review": {
-    "review_id": "LEAD-030",
-    "review_ref": "social-bots/lead-reviews/LEAD-030_2026-09-21T0655.md",
+    "review_id": "LEAD-031",
+    "review_ref": "social-bots/lead-reviews/LEAD-031_2026-09-21T0755.md",
     "accepted": ["SB-CTL-006", "SB-CTL-012", "SB-V03-002", "SB-V03-003", "SB-V03-005", "SB-V13-001", "SB-V14-001"],
     "changes_required": ["SB-V03-001", "SB-V03-004", "SB-EVD-001", "SB-V05-001", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
     "blocked": ["SB-V03-006", "SB-V04-003", "SB-EVD-002", "SB-V12-001", "SB-V20-099", "SB-V20-004"],
     "key_findings": [
-      "No new Social Bots worker-generated commit or heartbeat appeared on Core, Intelligence, Mac QA or the live-canary lane after LEAD-029; lead-only assignment commits do not count as worker progress.",
+      "No new Social Bots worker-generated commit or heartbeat appeared on Core, Intelligence, Mac QA or the live-canary lane after LEAD-030; newer branch heads are lead-only coordination acknowledgements.",
       "No artifact status changes are justified. V03 final source/evidence remain stable, and V03-004 still waits on packet-required independent execution.",
       "SB-V04-005 remains unexecuted; there is still no real public-source/subscription-provider/persisted-decision canary evidence to audit.",
       "Intelligence remains stale after seq7 and Mac QA after seq10; existing assignments remain dependency-ready and unchanged.",
-      "worker-pc Social Bots retry still failed at repository clone before Claude/tests. Its single protocol slot is currently occupied by unrelated Jobs task jobs-v14-p0a-adversarial-tests-20260921-0642 / Actions run 35590523591, so no Social Bots dispatch is queued this review."
+      "worker-pc Social Bots retry remains failed at repository clone before Claude/tests. Its single protocol slot is now occupied by unrelated SwarmAI task swarmai-v13-task-pool-freeze-05 / Actions run 35596577823, so no Social Bots dispatch is queued this review."
     ]
   },
   "public_actions": {
@@ -131,7 +131,7 @@
     "public_effect_allowed": false,
     "owner_authorized_bounded_existing_subscription_call": true,
     "authenticated_host_verified": false,
-    "worker_activity": "not_detected_as_of_LEAD_030"
+    "worker_activity": "not_detected_as_of_LEAD_031"
   },
   "fast_track": {
     "active": true,
@@ -155,9 +155,9 @@
     "last_social_bots_task": "socialbots-v03-repair-audit-20260921-01",
     "last_social_bots_task_result": "failed",
     "last_social_bots_task_error": "Repository clone failed on worker-pc before Claude/tests",
-    "current_protocol_task": "jobs-v14-p0a-adversarial-tests-20260921-0642",
-    "current_protocol_task_project": "Jobs",
-    "current_protocol_task_run_id": 35590523591,
+    "current_protocol_task": "swarmai-v13-task-pool-freeze-05",
+    "current_protocol_task_project": "SwarmAI",
+    "current_protocol_task_run_id": 35596577823,
     "status": "capacity_occupied_external_task_socialbots_clone_access_still_unresolved",
     "required_fix": "after the current external task frees capacity, repair worker-pc GitHub clone/auth access to pri8771/astra-bot-launch without weakening private-repository controls before another Social Bots dispatch",
     "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release."
@@ -168,7 +168,7 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-030_2026-09-21T0655.md",
+    "lead_review_current": "lead-reviews/LEAD-031_2026-09-21T0755.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md"
   }
