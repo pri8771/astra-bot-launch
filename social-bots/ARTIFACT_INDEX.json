@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-20T18:37:00-04:00",
+  "updated_at": "2026-09-20T19:55:35-04:00",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -24,9 +24,7 @@
       "canonical_ref": "social-bots/README.md",
       "depends_on": [],
       "story_points": null,
-      "evidence": [
-        "setup PR #1 coordination package"
-      ],
+      "evidence": ["setup PR #1 coordination package"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -39,9 +37,7 @@
       "canonical_ref": "social-bots/VERSION_ROADMAP.md",
       "depends_on": [],
       "story_points": null,
-      "evidence": [
-        "lead-authored version contract"
-      ],
+      "evidence": ["lead-authored version contract"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -54,9 +50,7 @@
       "canonical_ref": "social-bots/ARTIFACT_MANAGEMENT.md",
       "depends_on": [],
       "story_points": null,
-      "evidence": [
-        "lead-authored artifact management contract committed on canonical setup branch"
-      ],
+      "evidence": ["lead-authored artifact management contract committed on canonical setup branch"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -69,9 +63,7 @@
       "canonical_ref": "social-bots/WORK_MANAGEMENT.md",
       "depends_on": [],
       "story_points": null,
-      "evidence": [
-        "story point rubric and worker-first contract"
-      ],
+      "evidence": ["story point rubric and worker-first contract"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -82,13 +74,9 @@
       "owner": "Claude",
       "status": "ACCEPTED",
       "canonical_ref": "PR #2 persona JSON files",
-      "depends_on": [
-        "SB-CTL-001"
-      ],
+      "depends_on": ["SB-CTL-001"],
       "story_points": null,
-      "evidence": [
-        "lead provisional acceptance"
-      ],
+      "evidence": ["lead provisional acceptance of persona contract/distinctness direction"],
       "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
     },
     {
@@ -99,14 +87,10 @@
       "owner": "Claude",
       "status": "ACCEPTED",
       "canonical_ref": "PR #2 cultural persona JSON files",
-      "depends_on": [
-        "SB-CTL-001"
-      ],
+      "depends_on": ["SB-CTL-001"],
       "story_points": null,
-      "evidence": [
-        "cultural review requirement present"
-      ],
-      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
+      "evidence": ["cultural review requirement present; runtime workspace storage isolation is separately gated by SB-V03-005"],
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219"
     },
     {
       "id": "SB-V03-001",
@@ -116,15 +100,14 @@
       "owner": "Claude",
       "status": "CHANGES_REQUIRED",
       "canonical_ref": "PR #2 social-bots/runtime/",
-      "depends_on": [
-        "SB-PER-001",
-        "SB-PER-002"
-      ],
+      "depends_on": ["SB-PER-001", "SB-PER-002"],
       "story_points": null,
       "evidence": [
-        "foundation built; known P1 defects remain"
+        "signal-delta repair accepted at head 2cab7219",
+        "review stop implementation improved but packet evidence incomplete",
+        "active-cycle lease fencing and persona workspace isolation still require repair"
       ],
-      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@689cfe12"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V03-002",
@@ -132,16 +115,15 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude",
-      "status": "READY",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-V03-002.md",
-      "depends_on": [
-        "SB-V03-001"
-      ],
+      "depends_on": ["SB-V03-001"],
       "story_points": 3,
       "evidence": [
-        "PR #2 finding 4058061254"
+        "lead source review at PR #2 head 2cab7219: per-signal consumed ledger, arrival-ordered unconsumed selection, consume-one-per-cycle",
+        "regressions inspected: later signal, batched signals, restart persistence, no-change path"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V03-003",
@@ -149,16 +131,16 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude",
-      "status": "READY",
+      "status": "CHANGES_REQUIRED",
       "canonical_ref": "social-bots/artifact-packets/SB-V03-003.md",
-      "depends_on": [
-        "SB-V03-001"
-      ],
+      "depends_on": ["SB-V03-001"],
       "story_points": 2,
       "evidence": [
-        "PR #2 finding 4058061259"
+        "head 2cab7219 stops review/platform failures before experiment and queue and records WITHHELD outcome",
+        "current test_review_gate.py covers cultural failure, worker receipt, platform limit, and passing control",
+        "packet-required forced fact-review failure and voice-review failure regressions are missing"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V03-004",
@@ -166,17 +148,17 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude",
-      "status": "PLANNED",
+      "status": "CHANGES_REQUIRED",
       "canonical_ref": "social-bots/artifact-packets/SB-V03-004.md",
-      "depends_on": [
-        "SB-V03-002",
-        "SB-V03-003"
-      ],
+      "depends_on": ["SB-V03-002", "SB-V03-003"],
       "story_points": 5,
       "evidence": [
-        "PR #2 finding 4058061263"
+        "head 2cab7219 flock critical section fixes simultaneous fresh/stale acquisition race on one POSIX host",
+        "lead finding: lease can expire during decision.run_cycle; stale takeover can occur while old owner continues and old owner has no commit-time fence validation",
+        "artifact requires old owner cannot renew/commit after fence loss; adversarial active-cycle expiry test absent",
+        "native-Windows and cross-host strong fencing are not proven"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V03-005",
@@ -184,17 +166,16 @@
       "type": "source_and_tests",
       "version_gate": "V0.3",
       "owner": "Claude",
-      "status": "PLANNED",
-      "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V03-002",
-        "SB-V03-003"
-      ],
+      "status": "CHANGES_REQUIRED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V03-005.md",
+      "depends_on": ["SB-V03-002", "SB-V03-003", "SB-V03-004"],
       "story_points": 4,
       "evidence": [
-        "PR #2 finding 4058061265"
+        "runtime task key cycle:<bot> correctly serializes personas while a valid lease is held",
+        "acceptance depends on active-cycle fencing in SB-V03-004",
+        "architecture claims isolated persona experiment/content/memory namespaces but paths.py and decision/pipeline storage are bot-scoped; contract/code mismatch must be reconciled"
       ],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V03-006",
@@ -202,16 +183,11 @@
       "type": "acceptance_bundle",
       "version_gate": "V0.3",
       "owner": "Claude",
-      "status": "PLANNED",
-      "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V03-002",
-        "SB-V03-003",
-        "SB-V03-004",
-        "SB-V03-005"
-      ],
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-V03-006.md",
+      "depends_on": ["SB-V03-002", "SB-V03-003", "SB-V03-004", "SB-V03-005"],
       "story_points": 3,
-      "evidence": [],
+      "evidence": ["blocked until SB-V03-003/004/005 are lead-accepted and evidence is regenerated on the accepted implementation"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -222,14 +198,14 @@
       "owner": "Claude",
       "status": "CHANGES_REQUIRED",
       "canonical_ref": "PR #2 receipts/evidence/SB-002-run/",
-      "depends_on": [
-        "SB-V03-001"
-      ],
+      "depends_on": ["SB-V03-001"],
       "story_points": null,
       "evidence": [
-        "bounded run only; lease logic later found defective; not always-on"
+        "regenerated summary at head 2cab7219 shows in-session heartbeat/no-overlap/restart/stale-recovery",
+        "newest committed heartbeat 2026-09-20T23:24:34+00:00 is terminal status done on host_alias local",
+        "active-cycle lease expiry fencing remains unresolved and always-on host liveness is still unverified"
       ],
-      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7"
+      "last_verified_ref": "claude/social-bots-independent-arch-ez64l7@2cab7219edab5c2f3a7123fad1546f43a2fc140c"
     },
     {
       "id": "SB-V04-001",
@@ -239,9 +215,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/SB-V04-001.md",
-      "depends_on": [
-        "SB-V03-006"
-      ],
+      "depends_on": ["SB-V03-006"],
       "story_points": 3,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -254,9 +228,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V04-001"
-      ],
+      "depends_on": ["SB-V04-001"],
       "story_points": 5,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -269,9 +241,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V04-001"
-      ],
+      "depends_on": ["SB-V04-001"],
       "story_points": 4,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -284,10 +254,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V04-002",
-        "SB-V04-003"
-      ],
+      "depends_on": ["SB-V04-002", "SB-V04-003"],
       "story_points": 3,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -300,9 +267,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "social-bots/artifact-packets/SB-V05-001.md",
-      "depends_on": [
-        "SB-V04-004"
-      ],
+      "depends_on": ["SB-V04-004"],
       "story_points": 3,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -315,9 +280,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V05-001"
-      ],
+      "depends_on": ["SB-V05-001"],
       "story_points": 4,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -330,9 +293,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V03-006"
-      ],
+      "depends_on": ["SB-V03-006"],
       "story_points": 3,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -345,13 +306,9 @@
       "owner": "Claude",
       "status": "BLOCKED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-V07-001"
-      ],
+      "depends_on": ["SB-V07-001"],
       "story_points": 4,
-      "evidence": [
-        "authorized always-on host not yet evidenced"
-      ],
+      "evidence": ["authorized always-on host not yet evidenced"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -362,9 +319,7 @@
       "owner": "ChatGPT",
       "status": "ACCEPTED",
       "canonical_ref": "social-bots/PLATFORM_ROUTE_RESEARCH.md",
-      "depends_on": [
-        "SB-CTL-003"
-      ],
+      "depends_on": ["SB-CTL-003"],
       "story_points": null,
       "evidence": [
         "current official Buffer API/support documentation",
@@ -382,13 +337,9 @@
       "owner": "Claude",
       "status": "BLOCKED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-008"
-      ],
+      "depends_on": ["SB-ACC-008"],
       "story_points": 2,
-      "evidence": [
-        "requires authorized browser/account access; reuse existing account first"
-      ],
+      "evidence": ["requires authorized browser/account access; reuse existing account first"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -399,10 +350,7 @@
       "owner": "Claude",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-009",
-        "SB-V03-006"
-      ],
+      "depends_on": ["SB-ACC-009", "SB-V03-006"],
       "story_points": 3,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -415,10 +363,7 @@
       "owner": "ChatGPT",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-009",
-        "SB-PER-001"
-      ],
+      "depends_on": ["SB-ACC-009", "SB-PER-001"],
       "story_points": null,
       "evidence": [],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
@@ -431,13 +376,9 @@
       "owner": "ChatGPT",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-008"
-      ],
+      "depends_on": ["SB-ACC-008"],
       "story_points": null,
-      "evidence": [
-        "direct Meta official docs need separate verification"
-      ],
+      "evidence": ["direct Meta official docs need separate verification"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -448,13 +389,9 @@
       "owner": "ChatGPT",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-008"
-      ],
+      "depends_on": ["SB-ACC-008"],
       "story_points": null,
-      "evidence": [
-        "Devvit user actions official route identified; exact social persona flow pending"
-      ],
+      "evidence": ["Devvit user actions official route identified; exact social persona flow pending"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -465,13 +402,9 @@
       "owner": "ChatGPT",
       "status": "PLANNED",
       "canonical_ref": "TBD",
-      "depends_on": [
-        "SB-ACC-008"
-      ],
+      "depends_on": ["SB-ACC-008"],
       "story_points": null,
-      "evidence": [
-        "direct route requires app/scope authorization and public-post audit"
-      ],
+      "evidence": ["direct route requires app/scope authorization and public-post audit"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     },
     {
@@ -482,13 +415,9 @@
       "owner": "ChatGPT",
       "status": "BLOCKED",
       "canonical_ref": "social-bots/PLATFORM_ROUTE_RESEARCH.md",
-      "depends_on": [
-        "SB-ACC-008"
-      ],
+      "depends_on": ["SB-ACC-008"],
       "story_points": null,
-      "evidence": [
-        "official X API is pay-per-use; no additional spend authorized"
-      ],
+      "evidence": ["official X API is pay-per-use; no additional spend authorized"],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
   ]
