@@ -1,0 +1,47 @@
+{
+  "all_pass": true,
+  "artifact": "SB-V05-002",
+  "assessor_name": "keyword-support-assessor",
+  "assessor_version": "1.0.0",
+  "checks": {
+    "caller_stance_not_operational": {
+      "binding_operational": false,
+      "pass": true,
+      "status": "UNKNOWN"
+    },
+    "changed_hash_invalidates": {
+      "pass": true,
+      "stale_reason": "stale-hash-changed",
+      "status": "UNSUPPORTED"
+    },
+    "conflicting_sources_conflicted": {
+      "pass": true,
+      "status": "CONFLICTED"
+    },
+    "omitted_claim_cannot_bypass": {
+      "identified_claims": [
+        {
+          "id": "auto-1",
+          "kind": "factual",
+          "required": true,
+          "text": "Sales grew 300 percent in 2023."
+        }
+      ],
+      "pass": true
+    },
+    "supported_passes": {
+      "assessors": [
+        "keyword-support-assessor@1.0.0"
+      ],
+      "pass": true,
+      "status": "SUPPORTED"
+    },
+    "url_present_unsupported_fails": {
+      "pass": true,
+      "status": "UNSUPPORTED"
+    }
+  },
+  "extractor": "heuristic-claim-extractor",
+  "kind": "fixture-evidence",
+  "warning": "FIXTURE evidence + deterministic assessor; not operational content review."
+}
