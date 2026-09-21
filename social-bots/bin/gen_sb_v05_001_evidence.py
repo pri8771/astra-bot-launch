@@ -32,10 +32,13 @@ def brief(r):
         "canonical_id": r.canonical_id,
         "status": r.status,
         "capture_mode": r.capture_mode,
+        "transport_trusted": r.transport_trusted,
         "provenance": r.provenance,
         "content_hash": r.content_hash,
+        "extraction_status": r.extraction_status,
         "is_verified_capture": r.is_verified_capture(),
         "is_operational_live_evidence": r.is_operational_live_evidence(),
+        "has_usable_extraction": r.has_usable_extraction(),
     }
 
 
@@ -75,6 +78,81 @@ checks["fixture_not_operational"] = {
     "capture_mode": r1.capture_mode,
     "is_operational_live_evidence": r1.is_operational_live_evidence(),
     "pass": r1.capture_mode == "fixture" and not r1.is_operational_live_evidence(),
+}
+
+# 5) an arbitrary caller object declaring mode="live" is NOT operational-live
+#    evidence — provenance is downgraded to unverified-untrusted-transport.
+class _UntrustedLive:
+    mode = collector.MODE_LIVE
+    name = "untrusted-live"
+
+    def fetch(self, url):
+        return collector.FetchResult(ok=True, content=b"claimed-live",
+                                     final_url=url, http_status=200)
+
+
+ru = collector.Collector(_UntrustedLive()).capture(URL)
+checks["untrusted_live_not_operational"] = {
+    "receipt": brief(ru),
+    "pass": (ru.capture_mode == "live"
+             and not ru.transport_trusted
+             and ru.provenance == "unverified-untrusted-transport"
+             and not ru.is_operational_live_evidence()),
+}
+
+# 6) live retrieval is restricted to validated public HTTP(S): unsafe
+#    destinations (loopback / private / link-local / disallowed scheme) are
+#    refused before any network contact.
+unsafe = {
+    "loopback": "http://127.0.0.1/x",
+    "cloud_metadata_link_local": "http://169.254.169.254/latest/meta-data/",
+    "private": "http://10.0.0.1/x",
+    "disallowed_scheme": "file:///etc/passwd",
+}
+unsafe_results = {}
+for label, u in unsafe.items():
+    try:
+        collector.validate_public_url(u)
+        unsafe_results[label] = {"rejected": False}
+    except collector.UnsafeDestinationError as exc:
+        unsafe_results[label] = {"rejected": True, "reason": str(exc)}
+checks["unsafe_destinations_rejected"] = {
+    "results": unsafe_results,
+    "pass": all(v["rejected"] for v in unsafe_results.values()),
+}
+
+# 7) redirect validation: a public URL that redirects to a private destination
+#    is rejected at the hop, not followed. (Trusted transport, no network.)
+class _RedirectToPrivate(collector.UrllibFetcher):
+    def _perform(self, url):
+        return collector._Redirect("http://127.0.0.1/secret")
+
+
+collector.register_trusted_transport(_RedirectToPrivate)
+rr = collector.Collector(_RedirectToPrivate()).capture("https://93.184.216.34/start")
+checks["redirect_to_private_rejected"] = {
+    "status": rr.status,
+    "error": rr.error,
+    "pass": (rr.status == collector.STATUS_FAILED
+             and (rr.error or "").startswith("unsafe-redirect")
+             and not rr.is_operational_live_evidence()),
+}
+
+# 8) extraction failure is never usable factual support and is never smuggled
+#    into the extracted evidence dict.
+def _boom(content, res):
+    raise RuntimeError("parse-failure")
+
+
+re_fail = collector.Collector(
+    collector.FixtureFetcher({URL: b"body"})).capture(URL, extractor=_boom)
+checks["extraction_failure_not_usable"] = {
+    "extraction_status": re_fail.extraction_status,
+    "extracted": re_fail.extracted,
+    "extraction_error": re_fail.extraction_error,
+    "pass": (re_fail.extraction_status == collector.EXTRACTION_FAILED
+             and re_fail.extracted == {}
+             and not re_fail.has_usable_extraction()),
 }
 
 summary = {

@@ -8,18 +8,27 @@
       "old_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
       "pass": true
     },
+    "extraction_failure_not_usable": {
+      "extracted": {},
+      "extraction_error": "RuntimeError",
+      "extraction_status": "failed",
+      "pass": true
+    },
     "failed_retrieval_not_verified": {
       "pass": true,
       "receipt": {
         "canonical_id": "src-97c8934078fce654",
         "capture_mode": "fixture",
         "content_hash": null,
+        "extraction_status": "not_attempted",
+        "has_usable_extraction": false,
         "is_operational_live_evidence": false,
         "is_verified_capture": false,
         "provenance": "unverified-failed",
-        "receipt_id": "cap-029509929dd247d2",
+        "receipt_id": "cap-dcbfd8bb9fb34178",
         "source_url": "https://example.org/fixture-article",
-        "status": "failed"
+        "status": "failed",
+        "transport_trusted": false
       }
     },
     "fixture_not_operational": {
@@ -27,36 +36,85 @@
       "is_operational_live_evidence": false,
       "pass": true
     },
+    "redirect_to_private_rejected": {
+      "error": "unsafe-redirect:host '127.0.0.1' resolves to non-public address '127.0.0.1'",
+      "pass": true,
+      "status": "failed"
+    },
     "same_source_twice": {
       "pass": true,
       "receipt_1": {
         "canonical_id": "src-97c8934078fce654",
         "capture_mode": "fixture",
         "content_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
+        "extraction_status": "not_attempted",
+        "has_usable_extraction": false,
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-b1c5f9d1b1394e28",
+        "receipt_id": "cap-1ddd6457e1bf4b3f",
         "source_url": "https://example.org/fixture-article",
-        "status": "ok"
+        "status": "ok",
+        "transport_trusted": false
       },
       "receipt_2": {
         "canonical_id": "src-97c8934078fce654",
         "capture_mode": "fixture",
         "content_hash": "aec7f277add588da02834802100f55c95f001f67c299f3cfa83a736e6e111251",
+        "extraction_status": "not_attempted",
+        "has_usable_extraction": false,
         "is_operational_live_evidence": false,
         "is_verified_capture": true,
         "provenance": "fixture",
-        "receipt_id": "cap-ce95d31744d14100",
+        "receipt_id": "cap-cc4d7d758fe940d7",
         "source_url": "https://example.org/fixture-article",
-        "status": "ok"
+        "status": "ok",
+        "transport_trusted": false
       },
       "separate_receipts": true,
       "stable_hash": true
+    },
+    "unsafe_destinations_rejected": {
+      "pass": true,
+      "results": {
+        "cloud_metadata_link_local": {
+          "reason": "host '169.254.169.254' resolves to non-public address '169.254.169.254'",
+          "rejected": true
+        },
+        "disallowed_scheme": {
+          "reason": "scheme 'file' is not an allowed public scheme ('http', 'https')",
+          "rejected": true
+        },
+        "loopback": {
+          "reason": "host '127.0.0.1' resolves to non-public address '127.0.0.1'",
+          "rejected": true
+        },
+        "private": {
+          "reason": "host '10.0.0.1' resolves to non-public address '10.0.0.1'",
+          "rejected": true
+        }
+      }
+    },
+    "untrusted_live_not_operational": {
+      "pass": true,
+      "receipt": {
+        "canonical_id": "src-97c8934078fce654",
+        "capture_mode": "live",
+        "content_hash": "3f362d8c0d81287872b92cb6fbf825ea5737c4aafe2ce7113a2f2b067ead7a16",
+        "extraction_status": "not_attempted",
+        "has_usable_extraction": false,
+        "is_operational_live_evidence": false,
+        "is_verified_capture": true,
+        "provenance": "unverified-untrusted-transport",
+        "receipt_id": "cap-1156677c127542d1",
+        "source_url": "https://example.org/fixture-article",
+        "status": "ok",
+        "transport_trusted": false
+      }
     }
   },
   "collector_name": "sbots.source-collector",
-  "collector_version": "1.0.0",
+  "collector_version": "1.1.0",
   "kind": "fixture-evidence",
   "warning": "FIXTURE evidence only; not operational live capture."
 }
