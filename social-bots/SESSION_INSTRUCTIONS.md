@@ -1,7 +1,10 @@
 # SESSION_INSTRUCTIONS — Lane 2 / Mac Intelligence Builder
 
-Mode: FRESH SESSION RESET
+Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
 Branch: `claude/social-bots-intelligence-repair-v2`
+Lead check: 2026-09-21T15:52:53Z
+
+No worker-generated commit, Issue #3 heartbeat, or progress update has appeared since the reset assignment. Start useful work now. Heartbeat is observability only and must run in parallel rather than delay V05/V15 implementation.
 
 Read canonical:
 - `social-bots/RESET_EXECUTION_20260921.md`
