@@ -2,58 +2,67 @@
 
 Lead-owned routing table for pull-driven Claude coordination.
 Current operating mode: FAST TRACK.
-Current lead review: LEAD-023.
+Current lead review: LEAD-024.
 
 Read:
 - `FAST_TRACK_EXECUTION.md`
 - `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `lead-reviews/LEAD-023_2026-09-21T0006.md`
+- `lead-reviews/LEAD-024_2026-09-21T0052.md`
 
 Heartbeat is observability only. It does not block implementation or the real V0.4 canary.
 
 ## Lane A — Windows Core / V0.3 closure
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE.
+Status: ACTIVE / REPAIR REQUIRED.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
-`SB-V03-004` repair `175f741...` has positive lead source review and is assigned to Mac QA for independent execution/verification. Do not keep reworking it unless QA finds a concrete defect.
+Latest worker source/evidence:
+- `d1e4bee...` — `SB-V03-005` persona-read facade submission;
+- `0433fc85...` — `SB-V03-006` regenerated PREPARED evidence, 122 worker-reported tests.
 
-Next Core implementation:
-1. close `SB-V03-005` authoritative persona-scoped production reads;
-2. regenerate `SB-V03-006` fresh V0.3 acceptance evidence;
-3. reconcile V0.4 Core dependency chain.
+LEAD-024 independent findings:
+1. `SB-V03-004`: migration staging is repaired, but `worker.run_one_unit()` emits its success/finish receipt after the fenced decision cycle returns. Repair the post-cycle ownership gap and add a forced takeover regression proving a stale owner cannot emit success-implying finish evidence.
+2. `SB-V03-005`: preserve the new `persona_records()` facade/tests, but enforce the boundary in real production readers. Whole-runtime APIs such as `pipeline.publish_queue(bot)` / `analytics.events_for(bot)` must not remain accidental persona-facing bypasses; raw access must be explicit admin/internal or equivalent.
+3. Regenerate `SB-V03-006` only after the two repairs above.
+4. Then reconcile the V0.4 Core dependency chain.
+
+Do not defer source work for heartbeat testing.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
-Status: ACTIVE / implementation resume required.
+Status: ACTIVE / IMPLEMENTATION STALLED.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
-Durable seq5/seq6 timed checkpoints are real, but the lane has no new V05/V15 source repair since fast-track activation. Heartbeat remains background-only and hourly is not yet authorized.
+Heartbeat seq7 does not complete bootstrap: seq5→6 is ~16m37s but seq6→7 is ~30m28s. `steady_hourly_authorized=false` remains authoritative. Do not backfill.
 
 Next:
-1. `SB-V05-001` actual HTTPS pinned-IP TLS/SNI/certificate repair + production-constructor regression;
+1. `SB-V05-001` actual HTTPS pinned-IP TLS/SNI/certificate repair + production-constructor regression **now**;
 2. `SB-V15-001` persona-scoped production experiment save/load/list/read boundary;
 3. preserve V16/V17/V20-002 for later lead audit.
+
+Heartbeat runs in the background and must not replace implementation.
 
 ## Lane C — Mac QA / Integration Control
 Branch: `claude/social-bots-mac-qa-control`
 Status: ACTIVE / hourly coordination heartbeat authorized.
 Instruction: branch-local `social-bots/SESSION_INSTRUCTIONS.md`.
 
+No independent Core verification report has landed since LEAD-023.
+
 Immediate assignment:
-1. independently verify Windows Core `175f741...` for V03-004 migration/fence correctness without editing Core source;
-2. report exact commands/results/defects;
-3. then continue CI/control, artifact validation and V2 acceptance/integration harness.
+1. independently reproduce/disprove the V03-004 post-cycle success-receipt takeover scenario without editing Core source;
+2. independently probe V03-005 real production-reader bypass paths, not only the safe isolation facade;
+3. report exact commands/results/files/symbols;
+4. then continue CI/control, artifact validation and V2 acceptance/integration harness.
 
 Heartbeat proves coordination only, not V0.7 runtime liveness.
 
 ## Lane D — Mac LOCAL real V0.4 canary
 Branch: `claude/social-bots-v04-live-canary`
-Status: READY / NO WORKER EXECUTION VISIBLE.
+Status: PRIORITY ZERO / READY / NO WORKER EXECUTION VISIBLE.
 
-Priority Zero:
-- execute `SB-V04-005` immediately on an actual local host with working Claude Code subscription authentication;
-- do not wait for heartbeat validation;
+Execute `SB-V04-005` immediately on an actual local host with working Claude Code subscription authentication:
+- heartbeat validation is not a prerequisite;
 - real current public source + actual existing-subscription Claude Code invocation;
 - no fixture/injected runner/prewritten proposal/API PAYG;
 - validate schema + deterministic policy;
@@ -70,23 +79,20 @@ Capacity: 1 protocol task.
 Project authority remains in this repository.
 
 Current status:
-- attempted task `socialbots-v03-audit-20260920-01` failed before clone;
-- worker-local GitHub credential could not establish private-repo visibility/access for `pri8771/astra-bot-launch`;
+- prior Social Bots task `socialbots-v03-audit-20260920-01` failed before clone because worker-local GitHub credentials could not establish private-repo visibility/access;
 - private-repo guard must remain intact;
-- no result from that task counts as Social Bots acceptance evidence.
+- the failed result counts as zero Social Bots acceptance evidence;
+- at LEAD-024 review time the shared capacity-1 worker is occupied by another control-plane task.
 
-Do not re-dispatch until credential visibility is repaired. Mac QA owns the current independent V03-004 verification so Core progress does not wait on worker-pc.
+Do not re-dispatch until both the repo credential visibility problem is fixed and the worker is idle. Mac QA owns current independent V0.3 verification so project progress does not wait on this resource.
 
 ## Lead
 ChatGPT audits checkpoints, updates canonical artifact/state evidence, assigns next work, and prepares integration/V2 runway.
 
-## Concurrency
-Primary fast-track lanes are Windows Core, Intelligence, Mac QA and local V0.4 canary. `worker-pc` is optional extra capacity only after its credential blocker is repaired. Do not overlap source ownership.
-
 ## Version truth
 Official version remains `V0.3.x` and artifact/evidence-gated.
 Heartbeat success is not a product-version gate.
-V0.4 cannot complete without real `SB-V04-005` + independent `SB-EVD-002` and the rest of the V0.4 manifest.
+V0.4 cannot complete without all V0.4 manifest artifacts, including real `SB-V04-005` + independent `SB-EVD-002`.
 
 ## Safety
 No public posting/replies/messages, purchases, paid API/new spend, destructive actions, credentials/secrets, fake evidence, engagement manipulation or SwarmAI dependency.
