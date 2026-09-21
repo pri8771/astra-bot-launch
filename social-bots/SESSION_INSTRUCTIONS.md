@@ -1,3 +1,7 @@
+# START NOW — no heartbeat prerequisite
+
+The owner has requested faster execution. Run this canary immediately from an ACTUAL LOCAL host with working Claude Code subscription authentication. Do not wait for heartbeat validation. If this environment is a remote/container session without subscription auth, stop truthfully and launch the branch from a local authenticated Claude Code terminal instead.
+
 # SESSION_INSTRUCTIONS — V0.4 Real Live Canary
 
 Lane: dedicated V0.4 live-canary execution
