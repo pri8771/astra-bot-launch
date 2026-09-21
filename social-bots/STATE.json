@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T17:17:00Z",
+  "updated_at": "2026-09-21T17:33:16Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -50,15 +50,11 @@
     "development_sessions_live": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
     "heartbeat_validation": {
-      "truth_rule": "Only durable HEARTBEAT_LOG.jsonl entries with real elapsed intervals count; Issue comments/snapshots/notes do not prove cadence.",
-      "temporary_today_policy": "FAST_5M x3 real intervals, then SOAK_15M_24H for 24h on the three human lanes; canary worktree is frozen after execution",
-      "legacy_authorizations_do_not_skip_today_soak": true,
-      "today_fast5m_verified_intervals": {
-        "windows-core": 0,
-        "intelligence-repair": 0,
-        "mac-qa": 0
-      },
-      "issue3_visibility": "live comments continue, including Acceptance FAST_5M comments through approximately 17:16Z, but durable reset-epoch HEARTBEAT_LOG entries are still absent; verified durable Stage-1 intervals remain zero"
+      "policy": "ONE_SESSION_ONE_HEARTBEAT",
+      "truth_rule": "Each fresh worker session emits exactly one real durable SESSION_ONCE heartbeat appended to its HEARTBEAT_LOG.jsonl after reading current coordination. No periodic in-session heartbeat or soak is required.",
+      "periodic_soak_superseded": true,
+      "issue3_visibility": "Best-effort one-comment session visibility only; missing gh/GitHub comment transport must not prevent the durable session heartbeat or useful work.",
+      "v07_liveness_rule": "Recurring liveness is proven by repeated OS-scheduled bounded worker sessions over time, each with one session heartbeat plus an invocation receipt; keeping a chat/session awake is not evidence."
     }
   },
   "tests": {
@@ -72,18 +68,9 @@
     "github_ci_status": "success"
   },
   "lead_review": {
-    "review_id": "LEAD-037",
-    "review_ref": "social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md",
-    "accepted_now": [
-      "SB-V03-001",
-      "SB-V03-004",
-      "SB-V03-006",
-      "SB-EVD-001",
-      "SB-V04-001",
-      "SB-V04-003",
-      "SB-V04-005",
-      "SB-V05-001"
-    ],
+    "review_id": "LEAD-038",
+    "review_ref": "social-bots/lead-reviews/LEAD-038_2026-09-21.md",
+    "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -111,13 +98,13 @@
       "SB-V04-004"
     ],
     "key_findings": [
-      "V0.4 remains in progress; no additional adaptive/model calls are authorized.",
-      "Core's isolated-variable and receipt-replay repair is engineering-ready but cannot prove live adaptive causal divergence.",
-      "SB-V04-002 and SB-V04-004 are now BLOCKED on fresh explicit owner authorization rather than CHANGES_REQUIRED.",
-      "The conservative future acceptance matrix is five bounded subscription-provider calls: four personas on E1 plus social-a on E2; no retry-until-pass behavior.",
-      "The accepted first canary remains SB-V04-005 evidence only; the unauthorized second call remains excluded.",
-      "SB-V07-001 is dependency-ready because SB-V03-006 is accepted; Core may prepare host/OS-scheduler/heartbeat durability work without live model calls.",
-      "Issue #3 is active, but durable reset FAST_5M evidence remains zero on all three human lanes."
+      "Owner superseded the temporary timed heartbeat soak with ONE_SESSION_ONE_HEARTBEAT; no periodic worker heartbeat loop remains.",
+      "Claude remains the primary implementation worker; ChatGPT lead stays ahead on planning, architecture, independent review and acceptance.",
+      "Repo-native implementation contract added at social-bots/CLAUDE_EXECUTION_TO_V07.md.",
+      "Planning-only forward decomposition added at social-bots/FORWARD_PLAN_V06_TO_V30.md.",
+      "V0.4 milestone truth is unchanged: SB-V04-002 and SB-V04-004 remain owner-authorization-blocked and SB-EVD-002 remains withheld.",
+      "No additional adaptive/model call is authorized.",
+      "SB-V07-001 remains dependency-ready for non-live host-worker/scheduler/session-heartbeat engineering."
     ]
   },
   "public_actions": {
@@ -155,22 +142,23 @@
     ]
   },
   "next_core": [
-    "do not execute any Claude CLI/adaptive model call",
-    "build prepare-only five-context divergence matrix with context/prompt hashes and single-variable assertions",
-    "add fail-closed authorization-manifest and exact call-budget enforcement without creating an authorization manifest",
-    "submit no-call prep for lead/QA review",
-    "then proceed to dependency-ready SB-V07-001 host-worker/runbook/OS-scheduler/heartbeat durability engineering using non-live tests"
+    "read and follow social-bots/CLAUDE_EXECUTION_TO_V07.md",
+    "emit exactly one SESSION_ONCE heartbeat per fresh worker session; no recurring heartbeat loop",
+    "do not execute any Claude CLI/adaptive model call without fresh owner authorization plus canonical lead manifest",
+    "finish prepare-only V0.4 divergence matrix/hash/isolation/authorization/call-budget work",
+    "then proceed to dependency-ready SB-V07-001 host-worker/runbook/OS-scheduler/session-heartbeat durability engineering with non-live tests"
   ],
   "next_intelligence": [
+    "emit exactly one SESSION_ONCE heartbeat per fresh worker session",
     "repair SB-V15-001 by removing/privatizing ambiguous whole-runtime load/load_all aliases",
     "add regression proving normal production experiment APIs cannot enumerate another persona",
-    "run focused/full tests, submit, and stop for lead audit"
+    "run focused/full tests, submit, and stop for lead audit unless canonical instructions release the next evidence/intelligence artifact"
   ],
   "next_mac_qa": [
+    "emit exactly one SESSION_ONCE heartbeat per fresh worker session",
     "no additional model calls",
     "independently review Core/Intelligence submissions when they land",
-    "prepare V0.7 host/heartbeat acceptance checks without Core/Intelligence runtime edits",
-    "treat durable HEARTBEAT_LOG as authoritative and do not backfill"
+    "prepare V0.6/V0.7 acceptance validators/fault cases without editing Core/Intelligence runtime source"
   ],
   "priority_zero": {
     "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
@@ -197,9 +185,11 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-037_2026-09-21T1717.md",
+    "lead_review_current": "lead-reviews/LEAD-038_2026-09-21.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
-    "live_progress_issue": 3
+    "live_progress_issue": 3,
+    "execution_contract": "CLAUDE_EXECUTION_TO_V07.md",
+    "forward_plan": "FORWARD_PLAN_V06_TO_V30.md"
   }
 }
