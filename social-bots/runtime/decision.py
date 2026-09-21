@@ -35,10 +35,17 @@ ACTIONS = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE", "CONTINUE_EXPERIMEN
 
 
 def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
-              fence=None) -> dict:
+              fence=None, require_adaptive: bool | None = None) -> dict:
     """Run one bounded autonomy cycle for ``bot`` acting as ``persona_id``.
 
     Returns the persisted decision record.
+
+    ``require_adaptive`` sets the V0.4 reasoning posture for this cycle: None
+    (default) follows the env-driven ``reasoning.adaptive_required()``; True
+    forces the adaptive-required posture so a non-adaptive provider fails closed
+    (the production worker passes True). Baseline/contextual deterministic
+    providers stay available for tests/diagnostics but cannot satisfy an
+    adaptive-required cycle.
 
     ``fence`` (a ``leasing.Fence``) gates every durable worker-owned write of the
     cycle — shared runtime state, persona-private state, content, experiment
@@ -128,7 +135,9 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     top_signal = pending[0]
     draft = pipeline.ideate(persona, top_signal)
     dup = pipeline.is_duplicate(bot, draft)
-    provider = reasoning.resolve_provider()
+    provider = reasoning.resolve_provider(require_adaptive=require_adaptive)
+    effective_require = (reasoning.adaptive_required() if require_adaptive is None
+                         else bool(require_adaptive))
     ctx = ReasoningContext(
         persona=persona, objective=_current_objective(persona), top_signal=top_signal,
         pending_count=len(pending), is_duplicate=dup, draft=draft,
@@ -136,6 +145,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
                        "cycles": rt.data["counters"]["cycles"]})
     record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
                            "adaptive": getattr(provider, "adaptive", False),
+                           "adaptive_required": effective_require,
                            "available": provider.available()}
 
     # Resolve a proposal, then VALIDATE it before scoring/execution. Any of:
@@ -396,10 +406,12 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                  "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id},
                 verify, learn, success_effects)
 
-    # A validated but not-yet-executable vocabulary action (e.g. CONTINUE_EXPERIMENT
-    # before its executor exists) produces NO effect — the policy never invents an
-    # effect for an action it cannot safely perform. Unsupported/unknown actions
-    # never reach here: they are rejected by validate_proposal upstream.
+    # A validated but not-yet-executable vocabulary action (CONTINUE_EXPERIMENT or
+    # CLOSE_EXPERIMENT — in the schema vocabulary but with NO effect executor yet)
+    # produces NO effect. The policy never invents an effect for an action it
+    # cannot safely perform, and we deliberately do not add future effect
+    # executors just because an action is in the schema (SB-V04-001).
+    # Unsupported/unknown actions never reach here: validate_proposal rejects them.
     return ({"performed": False, "outcome": "blocked_unsupported_action",
              "effect": f"no executor for action {chosen.action!r}; no effect performed"},
             {"verified": True, "note": "no effect; action not executable by policy"},

@@ -47,11 +47,16 @@ def runtime_task_id(bot: str) -> str:
 
 def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                  host_alias: str = "local", worker_id: str | None = None,
-                 ttl_seconds: int = 120, source_ref: str = "social-bots/runtime") -> dict:
+                 ttl_seconds: int = 120, source_ref: str = "social-bots/runtime",
+                 require_adaptive: bool | None = None) -> dict:
     """Run a single bounded unit. Returns a summary dict.
 
     Raises ``leasing.LeaseHeld`` if another live worker owns the task — callers
     treat that as the no-overlap rejection (choose another task or exit).
+
+    ``require_adaptive`` sets the reasoning posture (see ``decision.run_cycle``):
+    None follows the env default; the production launcher passes True so a V0.4
+    run fails closed without a real adaptive provider.
     """
     worker_id = worker_id or _worker_id()
     hb = Heartbeat(worker_id=worker_id, host_alias=host_alias, source_ref=source_ref)
@@ -81,7 +86,8 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
         # loses ownership (lease expiry + takeover) before it commits.
         leasing.renew(lease)
         hb.beat(status="working", next_safe_action="verify")
-        record = decision.run_cycle(bot, persona_id, fence=fence)
+        record = decision.run_cycle(bot, persona_id, fence=fence,
+                                    require_adaptive=require_adaptive)
 
         # (4) verify already embedded in the decision record.
         verified = bool(record.get("verify", {}).get("verified"))

@@ -24,8 +24,19 @@ import os
 from dataclasses import dataclass, field
 from typing import Callable, Protocol
 
-# Bounded allowed action vocabulary (the policy layer knows how to handle each).
-ACTION_VOCAB = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE", "CONTINUE_EXPERIMENT")
+# Bounded allowed action VOCABULARY, reconciled with REASONING_PROPOSAL_SCHEMA.md.
+# A model MAY propose any of these; the deterministic policy decides eligibility.
+# NOTE (SB-V04-001): being in the vocabulary does NOT imply an effect executor
+# exists. CONTINUE_EXPERIMENT and CLOSE_EXPERIMENT are accepted as valid proposal
+# actions but have NO executor yet, so ``decision._execute`` routes them to a safe
+# ``blocked_unsupported_action`` no-effect. We deliberately do not implement
+# future effect executors just because an action appears in the schema.
+ACTION_VOCAB = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE",
+                "CONTINUE_EXPERIMENT", "CLOSE_EXPERIMENT")
+
+# Actions that currently HAVE a deterministic effect executor in ``decision``.
+# Everything else in ACTION_VOCAB validates but performs no effect (fail-safe).
+EXECUTABLE_ACTIONS = ("NO_ACTION", "RESEARCH_MORE", "CREATE_CANDIDATE")
 
 # Per-candidate numeric estimate fields that must be finite and within [0, 1].
 _NUMERIC_FIELDS = ("expected_value", "expected_learning", "relevance", "confidence",
@@ -366,6 +377,10 @@ class ModelReasoningProvider:
 # SB-R1C). Kept as a module global so no import-time model dependency exists.
 _MODEL_CALLABLE: Callable[[ReasoningContext], ReasoningProposal] | None = None
 
+# Optional model id for the SB-V04-002 Claude Code CLI provider (mode
+# 'claude-cli'); None lets the CLI use its configured default model.
+_CLI_MODEL: str | None = os.environ.get("SBOTS_REASONING_CLI_MODEL") or None
+
 
 def register_model_callable(fn: Callable[[ReasoningContext], ReasoningProposal] | None) -> None:
     global _MODEL_CALLABLE
@@ -384,25 +399,34 @@ def adaptive_required() -> bool:
         in {"1", "true", "yes", "on"}
 
 
-def resolve_provider() -> ReasoningProvider:
+def resolve_provider(require_adaptive: bool | None = None) -> ReasoningProvider:
     """Resolve the configured provider.
 
-    - ``SBOTS_REASONING`` selects the mode: 'baseline' (deterministic, explicitly
-      NOT adaptive — for tests/legacy/debug) or 'model' (adaptive; fail-closed to
-      unavailable unless a model callable was registered).
-    - When ``adaptive_required()`` is True and the resolved provider is not
-      adaptive, return an unavailable provider so the engine fails closed to
-      BLOCKED_REASONING_UNAVAILABLE instead of running the fixed baseline and
-      pretending it is adaptive autonomy.
+    - ``SBOTS_REASONING`` selects the mode: 'baseline'/'contextual' (deterministic,
+      explicitly NOT adaptive — for tests/diagnostics/debug) or 'model' (adaptive;
+      fail-closed to unavailable unless a model callable was registered).
+    - ``require_adaptive`` overrides the adaptive-required posture for this call:
+      None (default) uses the env-driven ``adaptive_required()``; the production
+      worker passes True so a V0.4 production run cannot silently fall back to a
+      deterministic provider. When the effective requirement is True and the
+      resolved provider is not adaptive, an unavailable provider is returned so
+      the engine fails closed to BLOCKED_REASONING_UNAVAILABLE instead of running
+      the fixed baseline and pretending it is adaptive autonomy.
     """
+    require = adaptive_required() if require_adaptive is None else bool(require_adaptive)
     mode = os.environ.get("SBOTS_REASONING", "baseline").strip().lower()
     if mode == "model":
         provider = ModelReasoningProvider(_MODEL_CALLABLE)
+    elif mode == "claude-cli":
+        # SB-V04-002 real adaptive route: bounded, effect-free Claude Code CLI
+        # subprocess on the existing subscription. Lazy import avoids a cycle.
+        from .reasoning_cli import ClaudeCodeReasoningProvider
+        provider = ClaudeCodeReasoningProvider(model=_CLI_MODEL)
     elif mode == "contextual":
-        provider = ContextualReasoningProvider()   # SB-V04-002: context-sensitive
+        provider = ContextualReasoningProvider()   # context-sensitive, adaptive=False
     else:
         provider = BaselineReasoningProvider()
-    if adaptive_required() and not getattr(provider, "adaptive", False):
+    if require and not getattr(provider, "adaptive", False):
         return _UnavailableProvider(
             provider_id=f"unavailable-adaptive-required(mode={mode})",
             reason="adaptive reasoning required but no adaptive provider is "

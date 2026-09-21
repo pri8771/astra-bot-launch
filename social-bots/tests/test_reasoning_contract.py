@@ -75,6 +75,42 @@ class AdaptiveRequiredTest(unittest.TestCase):
         self.assertTrue(p.available())
         self.assertTrue(getattr(p, "adaptive", False))
 
+    def test_require_adaptive_param_forces_failclosed_without_env(self):
+        # SB-V04-001: the production worker posture (require_adaptive=True) fails
+        # closed on the deterministic default even when the env flag is unset.
+        seed("social-b")
+        self.assertFalse(reasoning.adaptive_required())  # env default off
+        rec = decision.run_cycle("social-b", "social-b", require_adaptive=True)
+        self.assertEqual(rec["outcome"], "blocked_reasoning_unavailable")
+        self.assertTrue(rec["reasoning"]["adaptive_required"])
+        self.assertIsNone(rec["observe"]["consumed_this_cycle"])  # evidence stays pending
+
+    def test_require_adaptive_false_allows_deterministic_diagnostic(self):
+        # Explicit diagnostic posture: deterministic providers stay usable.
+        seed("social-b")
+        os.environ["SBOTS_REASONING_REQUIRE_ADAPTIVE"] = "1"  # env would require adaptive
+        rec = decision.run_cycle("social-b", "social-b", require_adaptive=False)
+        # Override wins: the baseline provider runs and a real decision is made.
+        self.assertFalse(rec["reasoning"]["adaptive_required"])
+        self.assertNotEqual(rec["outcome"], "blocked_reasoning_unavailable")
+
+    def test_close_experiment_in_vocab_but_has_no_executor(self):
+        # SB-V04-001 schema reconciliation: CLOSE_EXPERIMENT is valid vocabulary
+        # (validates) but has NO effect executor — it must resolve to a safe
+        # no-effect block, never an invented effect.
+        self.assertIn("CLOSE_EXPERIMENT", reasoning.ACTION_VOCAB)
+        self.assertNotIn("CLOSE_EXPERIMENT", reasoning.EXECUTABLE_ACTIONS)
+        prop = _proposal([_good_candidate("CLOSE_EXPERIMENT", payload={})], "CLOSE_EXPERIMENT")
+        self.assertEqual(reasoning.validate_proposal(prop), [])  # passes schema
+        seed("social-b")
+        os.environ["SBOTS_REASONING"] = "model"
+        reasoning.register_model_callable(
+            lambda ctx: _proposal([_good_candidate("CLOSE_EXPERIMENT", payload={})],
+                                  "CLOSE_EXPERIMENT"))
+        rec = decision.run_cycle("social-b", "social-b")
+        self.assertEqual(rec["outcome"], "blocked_unsupported_action")
+        self.assertFalse(rec["execute"]["performed"])
+
 
 class ProposalValidationTest(unittest.TestCase):
     def test_valid_proposal_passes(self):

@@ -4,16 +4,31 @@
 Usage:
     python3 bin/run_worker.py <bot> [persona_id]
 
+Reasoning posture (SB-V04-001):
+    This is the PRODUCTION V0.4 entrypoint, so it runs the adaptive-required
+    posture by DEFAULT: if no adaptive reasoning provider is available the cycle
+    fails closed to BLOCKED_REASONING_UNAVAILABLE and consumes no evidence (the
+    signal stays pending). It never silently falls back to a deterministic
+    provider. For tests/diagnostics/comparison ONLY, set
+    ``SBOTS_WORKER_ALLOW_DETERMINISTIC=1`` to allow the configured non-adaptive
+    provider; this is explicitly not a production V0.4 posture.
+
 Exit codes:
-    0  unit completed (any decision, including NO_ACTION)
+    0  unit completed (any decision, including NO_ACTION or a fail-closed block)
     3  no-overlap: another live worker holds the lease (expected, benign)
     1  unexpected failure (a failure receipt was written)
 """
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import worker, leasing  # noqa: E402
+
+
+def _allow_deterministic() -> bool:
+    return os.environ.get("SBOTS_WORKER_ALLOW_DETERMINISTIC", "0").strip().lower() \
+        in {"1", "true", "yes", "on"}
 
 
 def main() -> int:
@@ -22,17 +37,20 @@ def main() -> int:
         return 2
     bot = sys.argv[1]
     persona = sys.argv[2] if len(sys.argv) > 2 else bot
+    # Production V0.4 default: require adaptive reasoning (fail closed). A diagnostic
+    # override (None -> env-driven posture) is allowed only when explicitly opted in.
+    require_adaptive = None if _allow_deterministic() else True
     # Lease keyed by RUNTIME (bot), not (bot, persona): personas on one runtime
     # share bot_state.json and must not mutate it concurrently. See
     # worker.runtime_task_id for the rationale.
     task_id = worker.runtime_task_id(bot)
     try:
-        res = worker.run_one_unit(task_id, bot, persona)
+        res = worker.run_one_unit(task_id, bot, persona, require_adaptive=require_adaptive)
     except leasing.LeaseHeld as held:
         print(f"NO-OVERLAP: {held}")
         return 3
-    print("OK:", {k: res[k] for k in ("worker_id", "chosen_action", "verified",
-                                      "lease_released", "finish_receipt")})
+    print("OK:", {k: res.get(k) for k in ("worker_id", "chosen_action", "outcome",
+                                           "verified", "lease_released", "finish_receipt")})
     return 0
 
 
