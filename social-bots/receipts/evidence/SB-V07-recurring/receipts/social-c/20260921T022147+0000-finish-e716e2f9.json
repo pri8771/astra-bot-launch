@@ -1,0 +1,26 @@
+{
+  "detail": {
+    "candidate_succeeded": true,
+    "chosen_action": "CREATE_CANDIDATE",
+    "cycle": 1,
+    "fence_generation": 2,
+    "outcome": "candidate_created",
+    "persona": "social-c",
+    "policy_selected": "CREATE_CANDIDATE",
+    "provider_recommended": "CREATE_CANDIDATE",
+    "reconciled": {
+      "queue_items": 0,
+      "safe": true,
+      "unauthorized_published": 0
+    },
+    "verified": true,
+    "withheld": false
+  },
+  "kind": "finish",
+  "lease_id": "0dda8dbbd6fc4acca4ad3d8adfb8a261",
+  "namespace": "social-c",
+  "receipt_id": "20260921T022147+0000-finish-e716e2f9",
+  "recorded_at": "2026-09-21T02:21:47+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-vm-7805-27997a"
+}

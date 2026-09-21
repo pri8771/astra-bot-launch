@@ -1,0 +1,16 @@
+{
+  "bot": "social-a",
+  "counters": {
+    "actions": 1,
+    "cycles": 2,
+    "no_action": 1
+  },
+  "created_at": "2026-09-21T02:21:47+00:00",
+  "observation_fingerprint": "6ca2e5476d9a7e9a",
+  "recovery": {
+    "in_flight": null,
+    "last_clean_tick": "2026-09-21T02:21:47+00:00"
+  },
+  "schema_version": 2,
+  "updated_at": "2026-09-21T02:21:47+00:00"
+}

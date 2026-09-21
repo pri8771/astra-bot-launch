@@ -1,0 +1,44 @@
+{
+  "all_pass": true,
+  "checks": {
+    "no_overlap": {
+      "pass": true,
+      "second_process_returncode": 3,
+      "second_process_stdout": "NO-OVERLAP: task 'cycle:social-b' held by external-holder"
+    },
+    "restart_resume": {
+      "invocation_1_stdout": "OK: {'worker_id': 'w-vm-7802-fbe917', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T022147+0000-finish-0a711db5.json'}",
+      "invocation_2_stdout": "OK: {'worker_id': 'w-vm-7803-293d1e', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T022147+0000-finish-deb38cab.json'}",
+      "pass": true,
+      "start_receipts": 2
+    },
+    "stale_recovery": {
+      "dead_lease": "7eca190fdb1f40769023fb5eff07dbcc",
+      "pass": true,
+      "returncode": 0,
+      "took_over_gen_ge_2": true
+    },
+    "two_separate_processes": {
+      "both_clean_exit": true,
+      "distinct_heartbeat_worker_ids": 2,
+      "distinct_pids": [
+        7802,
+        7803
+      ],
+      "invocation_1": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "OK: {'worker_id': 'w-vm-7802-fbe917', 'chosen_action': 'CREATE_CANDIDATE', 'outcome': 'candidate_created', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T022147+0000-finish-0a711db5.json'}"
+      },
+      "invocation_2": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "OK: {'worker_id': 'w-vm-7803-293d1e', 'chosen_action': 'NO_ACTION', 'outcome': 'no_action', 'verified': True, 'lease_released': True, 'finish_receipt': '20260921T022147+0000-finish-deb38cab.json'}"
+      },
+      "parent_pid": 7800,
+      "pass": true
+    }
+  },
+  "evidence_dir": "social-bots/receipts/evidence/SB-V07-recurring",
+  "host_process_model": "posix-subprocess"
+}

@@ -1,0 +1,22 @@
+{
+  "detail": {
+    "candidate_succeeded": false,
+    "chosen_action": "NO_ACTION",
+    "cycle": 2,
+    "fence_generation": 1,
+    "outcome": "no_action",
+    "persona": "social-a",
+    "policy_selected": null,
+    "provider_recommended": null,
+    "reconciled": null,
+    "verified": true,
+    "withheld": false
+  },
+  "kind": "finish",
+  "lease_id": "877e315ad2af48b783f9de7a4fc6c7b2",
+  "namespace": "social-a",
+  "receipt_id": "20260921T022147+0000-finish-deb38cab",
+  "recorded_at": "2026-09-21T02:21:47+00:00",
+  "task_id": "cycle:social-a",
+  "worker_id": "w-vm-7803-293d1e"
+}

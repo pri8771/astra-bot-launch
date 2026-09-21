@@ -1,0 +1,4 @@
+{"kind": "start", "receipt_id": "20260921T022147+0000-start-02268c56", "recorded_at": "2026-09-21T02:21:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-7802-fbe917"}
+{"kind": "finish", "receipt_id": "20260921T022147+0000-finish-0a711db5", "recorded_at": "2026-09-21T02:21:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-7802-fbe917"}
+{"kind": "start", "receipt_id": "20260921T022147+0000-start-f49ab622", "recorded_at": "2026-09-21T02:21:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-7803-293d1e"}
+{"kind": "finish", "receipt_id": "20260921T022147+0000-finish-deb38cab", "recorded_at": "2026-09-21T02:21:47+00:00", "task_id": "cycle:social-a", "worker_id": "w-vm-7803-293d1e"}
