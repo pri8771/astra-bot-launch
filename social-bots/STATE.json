@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T03:30:00Z",
+  "updated_at": "2026-09-21T04:03:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -38,7 +38,7 @@
       "branch": "claude/social-bots-mac-qa-control",
       "last_verified_head": "ede387e256be19d6aaaf1e6c96151d7218221d33",
       "last_verified_commit_at": "2026-09-21T02:42:30Z",
-      "activity": "active_qa_integration_heartbeat_background"
+      "activity": "heartbeat_bootstrap_passed_hourly_authorized_qa_active"
     },
     "development_sessions_live": true,
     "current_remote_activity_evidence": "signed Intelligence repair commits plus signed Mac-QA commits and successful GitHub CI",
@@ -56,8 +56,8 @@
       "windows_standby": false,
       "intelligence_bootstrap_consecutive_verified": 0,
       "intelligence_steady_hourly_authorized": false,
-      "mac_qa_bootstrap_consecutive_verified": 0,
-      "mac_qa_steady_hourly_authorized": false,
+      "mac_qa_bootstrap_consecutive_verified": 3,
+      "mac_qa_steady_hourly_authorized": true,
       "truth_rule": "Only durable HEARTBEAT_LOG.jsonl worker entries approximately 15 minutes apart count; do not infer cadence from HEARTBEAT.json sequence or burst submission updates."
     }
   },
@@ -186,14 +186,29 @@
   },
   "fast_track": {
     "active": true,
-    "max_workers": 4,
+    "max_workers": 5,
     "heartbeat_blocks_work": false,
     "lanes": [
       "Windows Core / V0.3 closure",
       "Intelligence / evidence+experiments",
       "Mac QA / integration control",
-      "Mac local V0.4 live canary"
+      "Mac local V0.4 live canary",
+      "worker-pc / independent verification or bounded implementation, capacity 1"
     ],
     "plan": "FAST_TRACK_EXECUTION.md"
+  },
+  "remote_worker_infrastructure": {
+    "control_plane": "pri8771/remote-workers",
+    "owns_project": false,
+    "worker": "worker-pc",
+    "capacity": 1,
+    "executor": "claude",
+    "current_task": "socialbots-v03-audit-20260920-01",
+    "current_task_mode": "read-only",
+    "current_task_target_branch": "claude/social-bots-windows-core-host",
+    "current_task_purpose": "independent SB-V03-004/SB-V03-005 acceptance audit",
+    "dispatch_run_id": 35559393292,
+    "status": "in_progress",
+    "policy": "Remote worker is an implementation/verification resource only; Social Bots repo remains authoritative for scope, roadmap, acceptance and release."
   }
 }
