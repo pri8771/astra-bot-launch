@@ -1,11 +1,12 @@
 {
   "schema_version": 1,
   "lane": "windows-core",
-  "reviewed_at": "2026-09-21T17:17:00Z",
-  "lead_review": "LEAD-037",
+  "reviewed_at": "2026-09-21T17:56:20Z",
+  "lead_review": "LEAD-039",
   "official_phase": "V0.4.x_in_progress",
-  "today_soak_fast5m_verified_intervals": 0,
-  "steady_hourly_authorized_for_reset_soak": false,
+  "session_status": "ACTIVE_SESSION_VISIBLE_NO_NEW_PUSHED_SOURCE_YET",
+  "latest_visible_session_id": "s-20260921T174817Z-0e532933",
+  "latest_visible_session_started_at": "2026-09-21T17:48:17Z",
   "accepted": [
     "SB-V03-004",
     "SB-V03-006",
@@ -13,20 +14,16 @@
     "SB-V04-003",
     "SB-V04-005"
   ],
-  "changes_required": [
-    "SB-V04-002",
-    "SB-V04-004"
-  ],
-  "next_assignment": "Prepare-only V0.4 divergence matrix/hashes/isolation + fail-closed authorization/call-budget gate; then SB-V07-001 host worker/OS scheduling/heartbeat durability. No live model calls.",
-  "authorization_consumed": true,
-  "notification_delivered": true,
-  "notes": "LEAD-037 is authoritative. Issue comments are visibility; durable HEARTBEAT_LOG is cadence evidence. Do not backfill.",
-  "no_live_model_calls_authorized": true,
   "blocked": [
     "SB-V04-002",
     "SB-V04-004"
   ],
   "ready": [
     "SB-V07-001"
-  ]
+  ],
+  "next_assignment": "Continue prepare-only V0.4 matrix/hash/isolation plus fail-closed authorization/call-budget gate; push exact evidence, then continue SB-V07-001 host-worker/OS-scheduler/session-heartbeat durability. No live model calls.",
+  "authorization_consumed": true,
+  "notification_delivered": true,
+  "notes": "Issue #3 proves fresh-session visibility. Artifact acceptance still requires pushed source/tests/reports. Canonical heartbeat policy is one fresh session = one durable SESSION_ONCE heartbeat; the old timed soak is superseded.",
+  "no_live_model_calls_authorized": true
 }
