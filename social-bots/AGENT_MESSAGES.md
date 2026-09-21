@@ -819,3 +819,21 @@ Source refs:
 - `SESSION_ROUTER.md`
 - `WORKER_PERFORMANCE.md`
 - Issue #3 comment `5765198233`
+
+
+## 2026-09-21T14:30:00-04:00 — CHATGPT -> WORKERS — LEAD-040 — V0.7 RECOVERY RESET
+
+Done:
+- Audited current best implementation through `claude/quirky-shannon-t1377u@918c42e`.
+- Determined project is not V0.7 because live sequential checkpoint evidence is incomplete.
+- Created recovery branch `cursor/social-bots-recovery-v07-20260921` from 918c42e.
+- Added small artifact-oriented recovery plan `RECOVERY_TO_V07.md` and SB-R07-* packets.
+- Separated engineering proof from LIVE checkpoint proof.
+- Identified a concrete cross-process race in SESSION_ONCE duplicate prevention: read/check then append is not atomic.
+- Cursor recovery is the primary implementation lane; older lanes should not create overlapping source changes without reassignment.
+
+Hard gates unchanged:
+- no live adaptive/model call without fresh explicit owner authorization + canonical lead manifest;
+- no public social effect through V0.7;
+- no PAYG/new spend;
+- no fabricated LIVE evidence.

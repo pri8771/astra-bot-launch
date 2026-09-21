@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T17:34:04Z",
+  "updated_at": "2026-09-21T18:30:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -2257,6 +2257,407 @@
       "story_points": null,
       "evidence": [],
       "last_verified_ref": "social-bots/MASTER_PLAN_V04_TO_V30.md"
+    },
+    {
+      "id": "SB-R07-041",
+      "name": "V0.4 live-route and authorization hardening audit",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.4-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-041.md",
+      "depends_on": [],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-042",
+      "name": "V0.4 controlled divergence input freeze",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.4-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-042.md",
+      "depends_on": [
+        "SB-R07-041"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-043",
+      "name": "V0.4 five-call live adaptive divergence execution",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.4-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-043.md",
+      "depends_on": [
+        "SB-R07-042"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-044",
+      "name": "V0.4 divergence acceptance verifier",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.4-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-044.md",
+      "depends_on": [
+        "SB-R07-041"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-045",
+      "name": "V0.4 closeout evidence bundle",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.4-recovery",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-045.md",
+      "depends_on": [
+        "SB-R07-043",
+        "SB-R07-044"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-051",
+      "name": "V0.5 operational fact-review assessor integration",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.5-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-051.md",
+      "depends_on": [],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-052",
+      "name": "V0.5 platform-native formatting gate",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.5-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-052.md",
+      "depends_on": [
+        "SB-R07-051"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-053",
+      "name": "V0.5 cultural-review evidence binding",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.5-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-053.md",
+      "depends_on": [
+        "SB-R07-051"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-054",
+      "name": "V0.5 live current-evidence acceptance run",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.5-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-054.md",
+      "depends_on": [
+        "SB-R07-045",
+        "SB-R07-051",
+        "SB-R07-052",
+        "SB-R07-053"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-055",
+      "name": "V0.5 mechanical evidence validator",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.5-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-055.md",
+      "depends_on": [
+        "SB-R07-054"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-061",
+      "name": "V0.6 reusable dry-run runner",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-061.md",
+      "depends_on": [
+        "SB-R07-051",
+        "SB-R07-052",
+        "SB-R07-053"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-062",
+      "name": "V0.6 social-a live zero-public dry run",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-062.md",
+      "depends_on": [
+        "SB-R07-045",
+        "SB-R07-055",
+        "SB-R07-061"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-063",
+      "name": "V0.6 social-b live zero-public dry run",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-063.md",
+      "depends_on": [
+        "SB-R07-045",
+        "SB-R07-055",
+        "SB-R07-061"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-064",
+      "name": "V0.6 social-c live zero-public dry run",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-064.md",
+      "depends_on": [
+        "SB-R07-045",
+        "SB-R07-055",
+        "SB-R07-061"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-065",
+      "name": "V0.6 independent final-candidate review",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-065.md",
+      "depends_on": [
+        "SB-R07-062",
+        "SB-R07-063",
+        "SB-R07-064"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-066",
+      "name": "V0.6 closeout validator bundle",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.6-recovery",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-066.md",
+      "depends_on": [
+        "SB-R07-065"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-071",
+      "name": "V0.7 atomic one-session heartbeat",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-071.md",
+      "depends_on": [],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-072",
+      "name": "V0.7 persistent-host preflight and selection receipt",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-072.md",
+      "depends_on": [
+        "SB-R07-071"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-073",
+      "name": "V0.7 OS scheduler installation proof",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-073.md",
+      "depends_on": [
+        "SB-R07-072"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-074",
+      "name": "V0.7 three real scheduled invocation receipts",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-074.md",
+      "depends_on": [
+        "SB-R07-073"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-075",
+      "name": "V0.7 live scheduler no-overlap proof",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-075.md",
+      "depends_on": [
+        "SB-R07-074"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-076",
+      "name": "V0.7 live host crash/restart stale-takeover proof",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-076.md",
+      "depends_on": [
+        "SB-R07-074"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-077",
+      "name": "V0.7 canonical direction consumption proof",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-077.md",
+      "depends_on": [
+        "SB-R07-074"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-078",
+      "name": "V0.7 autonomous lead-worker cycle A",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-078.md",
+      "depends_on": [
+        "SB-R07-075",
+        "SB-R07-076",
+        "SB-R07-077"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-079",
+      "name": "V0.7 autonomous lead-worker cycle B",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-079.md",
+      "depends_on": [
+        "SB-R07-078"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-R07-07A",
+      "name": "V0.7 final live acceptance bundle",
+      "type": "recovery_checkpoint",
+      "version_gate": "V0.7-recovery",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-07A.md",
+      "depends_on": [
+        "SB-R07-079",
+        "SB-R07-066"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
     }
   ]
 }

@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T17:56:20Z",
+  "updated_at": "2026-09-21T18:30:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
   "status": "v03_closed_v04_in_progress",
   "runtime_scope": {
-    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
     "general_personas_required": 3,
     "general_personas_built": 3,
     "cultural_persona_workspaces_required": 2,
@@ -53,6 +57,12 @@
       "periodic_soak_superseded": true,
       "issue3_visibility": "Issue #3 is human-readable visibility. A comment can establish session visibility but does not by itself accept an artifact; durable repository heartbeat evidence is preferred when pushed.",
       "v07_liveness_rule": "Recurring liveness is proven by repeated OS-scheduled bounded worker sessions over time, each with one session heartbeat plus an invocation receipt; keeping a chat/session awake is not evidence."
+    },
+    "cursor_recovery": {
+      "branch": "cursor/social-bots-recovery-v07-20260921",
+      "base_verified_ref": "claude/quirky-shannon-t1377u@918c42e2a4602589997a7c625d994e049f266d6d",
+      "activity": "primary_recovery_implementation",
+      "assignment": "execute small recovery artifacts in RECOVERY_TO_V07.md; collect LIVE checkpoints; no live model call without fresh owner authorization + canonical lead manifest"
     }
   },
   "tests": {
@@ -66,8 +76,8 @@
     "github_ci_status": "success"
   },
   "lead_review": {
-    "review_id": "LEAD-039",
-    "review_ref": "social-bots/lead-reviews/LEAD-039_2026-09-21T1356.md",
+    "review_id": "LEAD-040",
+    "review_ref": "social-bots/lead-reviews/LEAD-040_2026-09-21T1830.md",
     "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
@@ -86,15 +96,32 @@
       "SB-V13-001",
       "SB-V14-001"
     ],
-    "changes_required": ["SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
-    "withheld": ["SB-EVD-002"],
-    "blocked": ["SB-V12-001", "SB-V20-099", "SB-V20-004", "SB-V04-002", "SB-V04-004"],
+    "changes_required": [
+      "SB-V05-002",
+      "SB-V15-001",
+      "SB-V16-001",
+      "SB-V17-001",
+      "SB-V20-002"
+    ],
+    "withheld": [
+      "SB-EVD-002"
+    ],
+    "blocked": [
+      "SB-V04-002",
+      "SB-V04-004",
+      "SB-V06-001",
+      "SB-V06-002",
+      "SB-V06-003",
+      "SB-V07-002",
+      "SB-V07-005"
+    ],
     "key_findings": [
-      "Core has a fresh SESSION_ONCE worker session visible from 2026-09-21T17:48:17Z, but no new worker source/report commit from that session was visible on the authoritative Core branch during review, so no artifact status changed.",
-      "Intelligence is stale after LEAD-038; SB-V15-001 still requires removal/privatization of ordinary whole-runtime load/load_all aliases.",
-      "Acceptance is stale after LEAD-038; next work is independent submission review plus V0.7 acceptance/fault preparation.",
-      "The V0.4 canary remains frozen; the first authorized SB-V04-005 call is accepted and the later duplicate remains excluded.",
-      "SB-V04-002 and SB-V04-004 remain owner-authorization-blocked; SB-EVD-002 remains withheld and no additional adaptive/model call is authorized."
+      "Project is not V0.7; engineering scaffolding exceeds operational/live acceptance evidence.",
+      "Newest Core source 918c42e reports 306 tests passed, 1 skipped and a real POSIX SIGKILL/restart engineering proof, but no native OS-scheduler live proof on an owner-controlled persistent host.",
+      "SESSION_ONCE heartbeat uniqueness is not atomic across concurrent processes because duplicate check and append are separate operations.",
+      "Recovery execution is decomposed into small SB-R07-* artifacts with distinct engineering and LIVE evidence checkpoints.",
+      "Cursor recovery branch created from 918c42e and is the primary recovery implementation lane.",
+      "No live adaptive/model call, public effect or new spend is authorized by this review."
     ]
   },
   "public_actions": {
@@ -116,12 +143,20 @@
     "today_engineering_target": "V2.0-readiness (SB-V20-099) if evidence permits",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
-    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
+    "strategic_checkpoints": [
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
     "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
-    "v04_promotion_blocked_until": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"]
+    "v04_promotion_blocked_until": [
+      "SB-V04-002",
+      "SB-V04-004",
+      "SB-EVD-002"
+    ]
   },
   "next_core": [
     "continue the fresh Core session under social-bots/CLAUDE_EXECUTION_TO_V07.md",
@@ -171,6 +206,7 @@
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
     "live_progress_issue": 3,
     "execution_contract": "CLAUDE_EXECUTION_TO_V07.md",
-    "forward_plan": "FORWARD_PLAN_V06_TO_V30.md"
+    "forward_plan": "FORWARD_PLAN_V06_TO_V30.md",
+    "recovery_plan": "RECOVERY_TO_V07.md"
   }
 }
