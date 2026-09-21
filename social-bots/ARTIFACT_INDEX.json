@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T02:15:00Z",
+  "updated_at": "2026-09-21T03:15:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -1203,6 +1203,46 @@
       "story_points": 3,
       "evidence": [
         "lead-prepared non-overlapping Mac QA/control artifact"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-V04-005",
+      "name": "Real adaptive V0.4 canary",
+      "type": "live_acceptance_canary",
+      "version_gate": "V0.4",
+      "owner": "Claude-Core",
+      "status": "READY",
+      "canonical_ref": "social-bots/artifact-packets/SB-V04-005.md",
+      "depends_on": [
+        "SB-V04-001",
+        "SB-V04-002",
+        "SB-V04-003"
+      ],
+      "story_points": 3,
+      "evidence": [
+        "owner hard rule: V0.4 cannot complete without one real non-fixture adaptive example"
+      ],
+      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+    },
+    {
+      "id": "SB-EVD-002",
+      "name": "Independent V0.4 real-canary acceptance",
+      "type": "acceptance_evidence",
+      "version_gate": "V0.4",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/SB-EVD-002.md",
+      "depends_on": [
+        "SB-V04-001",
+        "SB-V04-002",
+        "SB-V04-003",
+        "SB-V04-004",
+        "SB-V04-005"
+      ],
+      "story_points": null,
+      "evidence": [
+        "blocked until real SB-V04-005 evidence exists and lead audit completes"
       ],
       "last_verified_ref": "chatgpt/social-bots-plan-20260920"
     }
