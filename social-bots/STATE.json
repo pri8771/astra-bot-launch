@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T03:06:00Z",
+  "updated_at": "2026-09-21T03:20:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -119,7 +119,14 @@
       "V2.3",
       "V3.0"
     ],
-    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md"
+    "promotion_rule": "derived from lead-accepted artifacts in MILESTONE_MANIFEST.md",
+    "v04_real_canary_required": true,
+    "v04_real_canary_artifact": "SB-V04-005",
+    "v04_real_canary_status": "READY_after_heartbeat_validation",
+    "v04_promotion_blocked_until": [
+      "SB-V04-005",
+      "SB-EVD-002"
+    ]
   },
   "next_core": [
     "pull branch and read SESSION_INSTRUCTIONS.md",
@@ -151,9 +158,19 @@
     "Then verify/wire existing-subscription Claude Code adaptive provider for V04 and continue CI/host proof"
   ],
   "next_mac_qa": [
-    "checkout/pull claude/social-bots-mac-qa-control and read SESSION_INSTRUCTIONS.md",
-    "SB-CTL-012 artifact graph validator",
-    "SB-CTL-006 CI/control",
-    "V2 acceptance harness prep"
-  ]
+    "complete/verify 3x15m heartbeat bootstrap first",
+    "after lead acknowledgement switch to claude/social-bots-v04-live-canary",
+    "execute SB-V04-005 real adaptive canary",
+    "wait for SB-EVD-002 lead audit",
+    "then resume SB-CTL-012 / SB-CTL-006 / V2 acceptance harness"
+  ],
+  "priority_zero": {
+    "artifact": "SB-V04-005",
+    "branch": "claude/social-bots-v04-live-canary",
+    "executor_plan": "Mac QA session switches to canary branch after 3 verified 15-minute heartbeat intervals",
+    "real_source_required": true,
+    "actual_claude_subscription_call_required": true,
+    "fixtures_or_injected_runner_allowed": false,
+    "public_effect_allowed": false
+  }
 }
