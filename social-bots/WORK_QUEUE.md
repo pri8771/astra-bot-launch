@@ -1,7 +1,7 @@
 # Work queue — FAST TRACK
 
 Canonical execution plan: `FAST_TRACK_EXECUTION.md`.
-Current lead review: `lead-reviews/LEAD-027_2026-09-21T0354.md`.
+Current lead review: `lead-reviews/LEAD-028_2026-09-21T0451.md`.
 
 ## Priority Zero — real V0.4 canary
 
@@ -27,20 +27,25 @@ After submission, ChatGPT lead audits `SB-V04-005` and, if accepted, performs `S
 
 ## Lane A — Windows Core
 Branch: `claude/social-bots-windows-core-host`
-Status: ACTIVE / V0.3 SOURCE REPAIR COMPLETE, V0.4 PREP ASSIGNED.
+Status: ACTIVE / V0.3 SOURCE STABLE / V0.4-004 REPAIR ASSIGNED.
 
-Verified new progress after LEAD-026:
-- `796d4e390bd135167e5de2ff8f586bc07ac7f370` closes the last known SB-V03-005 raw-reader boundary defect: ordinary `RuntimeState.content_history()` is removed/renamed to an explicit admin surface, the authoritative persona readers cover all six persona-private stores, and the structural regression covers the complete sanctioned/prohibited surface.
-- `436787b0a63fdae0e89c224a54054607e32b5187` regenerates final prepared SB-V03-006 evidence from `796d4e3...`.
-- exact committed `FULL_SUITE_OUTPUT.txt` records **Ran 130 tests in 1.502s — OK**.
-- later signed worker heartbeat head `1fed0684...` reports quiet hold awaiting lead audit.
+Verified new progress after LEAD-027:
+- signed Claude worker commit `76e96dde4677346fd5b40c8cba4988f6e4c64fee` adds a six-test V04 divergence suite and worker report;
+- production `bin/run_worker.py` now clearly defaults to `require_adaptive=True` unless an explicit diagnostic override is selected;
+- the worker honestly labels `contextual-deterministic-v1` as `adaptive=false` and the V04-004 work as engineering-only.
 
-LEAD-027 disposition:
-1. **SB-V03-005 — ACCEPTED.** Preserve the final logical-isolation/admin-boundary implementation; do not churn absent a concrete defect.
-2. **SB-V03-004 — CHANGES_REQUIRED only for independent execution.** Lead finds no new source defect in the repaired fencing/migration/completion-evidence path. Mac QA must execute the high-risk lifecycle regressions before acceptance.
-3. **SB-V03-006 — BLOCKED / FINAL PREPARED.** The bundle is now tied to final implementation `796d4e3...` with exact 130-test evidence at `436787b...`. Do not regenerate unless QA exposes a defect/source changes.
-4. After V03-004 independent acceptance, lead reconciles `SB-V03-001`, `SB-EVD-001`, and V03-006 to close V0.3.
-5. While waiting on Mac QA, Core should use capacity on dependency-safe V0.4 reconciliation/tests: SB-V04-001/002/003 and SB-V04-004 prep. Do not execute the real canary in this lane.
+LEAD-028 independent disposition:
+1. **SB-V04-004 worker attempt is NOT acceptance-ready.** `test_same_evidence_different_personas_diverge` changes both persona and evidence (`shared` vs `shared2`), while `test_same_persona_different_evidence_diverges` fails to hold persona/runtime context constant. The claimed causal axes are therefore confounded.
+2. The suite forces `SBOTS_REASONING=contextual`, which invokes `contextual-deterministic-v1` (`adaptive=false`). This is useful supplemental regression coverage but cannot prove the adaptive V0.4 behavior required by `SB-V04-002`.
+3. Canonical packet `artifact-packets/SB-V04-004.md` now requires strict independent-variable isolation plus an adaptive-path acceptance seam. Do not trigger an extra paid/API/provider invocation; reuse the authorized canary receipt where practical.
+4. **SB-V04-001 source posture is materially improved but not promoted this review.** Preserve the adaptive-required production default while V03 predecessor acceptance and integrated real adaptive evidence remain open.
+5. `SB-V04-002` remains CHANGES_REQUIRED; `SB-V04-003` remains dependency-blocked.
+6. Preserve final V03 implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370` and final prepared evidence `436787b0a63fdae0e89c224a54054607e32b5187` (130 tests OK). Do not churn V03 absent a concrete QA finding.
+
+Next Core packet:
+- repair only SB-V04-004 test isolation and adaptive acceptance seam;
+- keep contextual tests as diagnostics if useful;
+- do not execute the real live canary from Core.
 
 ## Lane B — Intelligence
 Branch: `claude/social-bots-intelligence-repair-v2`
@@ -67,7 +72,7 @@ The last durable worker heartbeat remains seq10 at `03:57:57Z`; no independent C
 
 Immediate QA assignment:
 1. resume hourly coordination heartbeat;
-2. independently execute current Core `796d4e3...`, especially `test_stale_owner_cannot_write_success_finish_receipt_after_takeover`, active-cycle lease-loss old-owner commit rejection, and staged migration fencing;
+2. independently execute current final V03 implementation `796d4e3...`, especially post-cycle takeover/finish-receipt fencing, active-cycle lease-loss old-owner commit rejection and staged migration fencing;
 3. report exact commands/results, implementation SHA, host/filesystem scope and ACCEPT-READY or a concrete reproducible defect;
 4. do not edit Core runtime source;
 5. then continue CI/control, artifact validation, V2 acceptance/integration harness and merge/test checklist.
@@ -103,7 +108,7 @@ Do not repeat Social Bots dispatch until clone/auth access to `pri8771/astra-bot
 
 V0.3 cannot close until `SB-V03-004` receives its packet-required independent execution/acceptance and the lead reconciles `SB-V03-001`, `SB-V03-006`, and `SB-EVD-001` against the final accepted chain.
 
-V0.4 additionally requires all manifest artifacts including the real `SB-V04-005` canary and independent `SB-EVD-002` acceptance. Later-version scaffolding does not advance the official product version.
+V0.4 additionally requires all manifest artifacts including corrected adaptive divergence evidence, the real `SB-V04-005` canary and independent `SB-EVD-002` acceptance. Later-version scaffolding does not advance the official product version.
 
 ## Authority
 
