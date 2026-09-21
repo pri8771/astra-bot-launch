@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
   "lane": "v04-live-canary",
-  "reviewed_through_sequence": 0,
-  "reviewed_at": "2026-09-21T15:52:53Z",
-  "lead_review": "LEAD-035",
-  "bootstrap_consecutive_verified": 0,
-  "steady_hourly_authorized": false,
+  "reviewed_at": "2026-09-21T17:10:00Z",
+  "lead_review": "LEAD-036",
+  "status": "FROZEN_EVIDENCE_ONLY",
   "today_soak_fast5m_verified_intervals": 0,
-  "next_assignment": "Follow the LEAD-035 SESSION_INSTRUCTIONS after the primary Acceptance lane completes its independent V03 lifecycle report; submit evidence and stop for lead review.",
+  "steady_hourly_authorized_for_reset_soak": false,
+  "artifact": "SB-V04-005",
+  "artifact_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
+  "authorization_consumed": true,
+  "next_assignment": "Do not execute any further Claude CLI/adaptive/model call. Preserve evidence only and wait for explicit lead instruction.",
   "notification_delivered": true,
-  "notes": "No worker-generated canary evidence or durable heartbeat evidence is present. Safety and spend constraints remain unchanged."
+  "notes": "The dedicated-branch second live call exceeded the owner's exactly-one call authorization and is excluded from acceptance evidence. SB-EVD-002 remains withheld on SB-V04-002/SB-V04-004 dependencies."
 }
