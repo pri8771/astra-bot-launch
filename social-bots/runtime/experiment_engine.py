@@ -20,6 +20,17 @@ Honesty rules
   refs that trace to the baseline/treatment measurement observation ids, and
   only when it produced a real (non-inconclusive) effect.
 
+Persona-scoped persistence (SB-V15-001 boundary repair)
+-------------------------------------------------------
+Persistence and reads are authoritatively **bot + persona** scoped. Each
+persona's experiments live in a physically separate directory
+(``engine/personas/<persona>/``), so a persona-facing ``save_experiment`` /
+``load_experiment`` / ``list_experiments`` / ``register_experiment`` can only
+ever touch that persona's own partition — a normal persona cannot enumerate or
+read another persona's experiments. Cross-persona / whole-runtime access is
+available ONLY through the explicitly named ``admin_*`` readers, which are for
+operator/admin auditing and must not be exposed to a persona flow.
+
 This module is additive; the accepted `pipeline.Experiment` registry is left
 unchanged. Experiments here persist under an `engine/` subnamespace.
 """
@@ -289,42 +300,171 @@ def overlaps(exp: Experiment, other: dict) -> bool:
     )
 
 
+def find_overlaps_for_persona(bot: str, persona: str,
+                              exp: Experiment) -> list[dict]:
+    """Persona-scoped overlap detection: only THIS persona's experiments are
+    considered, so a persona's overlap check never reads another persona's data.
+    """
+    _require_owner(bot, persona, exp)
+    return [o for o in list_experiments(bot, persona) if overlaps(exp, o)]
+
+
 def find_overlaps(bot: str, exp: Experiment) -> list[dict]:
-    return [o for o in load_all(bot) if overlaps(exp, o)]
+    """Backwards-compatible overlap check, scoped to the experiment's own
+    persona (derived from ``exp.persona``)."""
+    return find_overlaps_for_persona(bot, exp.persona, exp)
 
 
 # --------------------------------------------------------------------------- #
-# Persistence (engine subnamespace; does not touch pipeline's registry).
+# Persistence — AUTHORITATIVELY bot + persona scoped (SB-V15-001).
+#
+# Every persona's experiments live in a physically separate directory
+# (``engine/personas/<persona>/``). A persona-facing save/load/list/read requires
+# BOTH ``bot`` and ``persona`` and can only ever touch that persona's directory,
+# so a normal persona cannot enumerate or read another persona's experiments —
+# the isolation is structural (separate path), not merely a filter. Persona
+# identifiers are validated (``paths._check``) so a crafted persona string cannot
+# traverse out of its partition. Cross-persona / whole-runtime reads are provided
+# ONLY through the explicitly named ``admin_*`` readers below.
 # --------------------------------------------------------------------------- #
-def _dir(bot: str):
+def _engine_dir(bot: str):
     d = paths.experiments_dir(bot) / "engine"
     d.mkdir(parents=True, exist_ok=True)
     return d
 
 
-def register(bot: str, exp: Experiment, *, reject_overlap: bool = True) -> Experiment:
-    """Persist an experiment; refuse a duplicate overlapping one by default."""
-    dups = find_overlaps(bot, exp)
+def _safe_persona(persona: str) -> str:
+    """Validate a persona identifier for use as a path component."""
+    if not isinstance(persona, str):
+        raise ValueError(f"persona must be a string, got {type(persona).__name__}")
+    try:
+        return paths._check(persona)
+    except ValueError as exc:
+        raise ValueError(f"unsafe persona identifier: {persona!r}") from exc
+
+
+def _persona_dir(bot: str, persona: str):
+    d = _engine_dir(bot) / "personas" / _safe_persona(persona)
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _require_owner(bot: str, persona: str, exp: Experiment) -> None:
+    """Refuse to save/register an experiment under a (bot, persona) it does not
+    belong to — a persona cannot write into another persona's partition."""
+    _safe_persona(persona)
+    if exp.bot != bot or exp.persona != persona:
+        raise PermissionError(
+            f"experiment {exp.id} belongs to (bot={exp.bot!r}, "
+            f"persona={exp.persona!r}), not (bot={bot!r}, persona={persona!r})")
+
+
+# ----- persona-facing production APIs (require bot + persona) --------------- #
+def save_experiment(bot: str, persona: str, exp: Experiment) -> None:
+    """Persona-scoped write. Requires bot+persona and that the experiment
+    actually belongs to them."""
+    _require_owner(bot, persona, exp)
+    write_json(_persona_dir(bot, persona) / f"{exp.id}.json", exp.as_dict())
+
+
+def register_experiment(bot: str, persona: str, exp: Experiment, *,
+                        reject_overlap: bool = True) -> Experiment:
+    """Persona-scoped register: overlap detection and persistence stay inside
+    this persona's partition."""
+    _require_owner(bot, persona, exp)
+    dups = find_overlaps_for_persona(bot, persona, exp)
     if dups and reject_overlap:
         raise ValueError(
             f"overlapping active experiment(s) detected: {[d['id'] for d in dups]}")
-    save(bot, exp)
-    append_jsonl(_dir(bot) / "index.jsonl", {
+    save_experiment(bot, persona, exp)
+    append_jsonl(_persona_dir(bot, persona) / "index.jsonl", {
         "id": exp.id, "persona": exp.persona, "primary_metric": exp.primary_metric,
         "intervention": exp.intervention, "status": exp.status,
         "registered_at": now_iso()})
     return exp
 
 
+def load_experiment(bot: str, persona: str, exp_id: str) -> Experiment | None:
+    """Persona-scoped read: returns the experiment ONLY if it belongs to this
+    persona. Another persona's experiment id is not visible here (returns None) —
+    the record lives in a different directory and is never reached."""
+    data = read_json(_persona_dir(bot, persona) / f"{exp_id}.json")
+    if not data:
+        return None
+    exp = Experiment(**data)
+    # Defense in depth: never hand back a record whose stored owner differs.
+    if exp.bot != bot or exp.persona != persona:
+        return None
+    return exp
+
+
+def list_experiments(bot: str, persona: str) -> list[dict]:
+    """Persona-scoped enumeration: ONLY this persona's experiments."""
+    d = _persona_dir(bot, persona)
+    out = []
+    for p in sorted(d.glob("exp-*.json")):
+        data = read_json(p)
+        if data and data.get("bot") == bot and data.get("persona") == persona:
+            out.append(data)
+    return out
+
+
+# ----- ADMIN / INTERNAL whole-runtime readers (NOT persona-facing) --------- #
+def admin_load_all_experiments(bot: str) -> list[dict]:
+    """ADMIN/INTERNAL whole-runtime reader: every persona's experiments for the
+    bot, across all persona partitions (plus any legacy flat records).
+
+    This deliberately crosses persona boundaries and MUST NOT be exposed to a
+    normal persona flow — it exists for operator/admin auditing only. Persona
+    code paths use :func:`list_experiments` / :func:`load_experiment` instead.
+    """
+    out: list[dict] = []
+    personas_root = _engine_dir(bot) / "personas"
+    if personas_root.exists():
+        for pd in sorted(personas_root.iterdir()):
+            if pd.is_dir():
+                for p in sorted(pd.glob("exp-*.json")):
+                    data = read_json(p)
+                    if data:
+                        out.append(data)
+    # Legacy flat records written before persona partitioning (defensive).
+    for p in sorted(_engine_dir(bot).glob("exp-*.json")):
+        data = read_json(p)
+        if data:
+            out.append(data)
+    return out
+
+
+def admin_load_experiment(bot: str, exp_id: str) -> Experiment | None:
+    """ADMIN/INTERNAL cross-persona lookup by id. NOT persona-facing."""
+    for data in admin_load_all_experiments(bot):
+        if data.get("id") == exp_id:
+            return Experiment(**data)
+    return None
+
+
+# ----- backwards-compatible aliases (route to persona-scoped storage) ------ #
 def save(bot: str, exp: Experiment) -> None:
-    write_json(_dir(bot) / f"{exp.id}.json", exp.as_dict())
+    """Compat: persist using the experiment's own persona partition."""
+    save_experiment(bot, exp.persona, exp)
+
+
+def register(bot: str, exp: Experiment, *, reject_overlap: bool = True) -> Experiment:
+    """Compat: register into the experiment's own persona partition."""
+    return register_experiment(bot, exp.persona, exp, reject_overlap=reject_overlap)
 
 
 def load(bot: str, exp_id: str) -> Experiment | None:
-    data = read_json(_dir(bot) / f"{exp_id}.json")
-    return Experiment(**data) if data else None
+    """ADMIN/INTERNAL compat lookup by id across personas.
+
+    Retained for existing callers/tests; it is a whole-runtime (cross-persona)
+    read and is therefore NOT persona-facing. Persona code must use
+    :func:`load_experiment` with an explicit persona.
+    """
+    return admin_load_experiment(bot, exp_id)
 
 
 def load_all(bot: str) -> list[dict]:
-    d = _dir(bot)
-    return [read_json(p) for p in sorted(d.glob("exp-*.json")) if read_json(p)]
+    """ADMIN/INTERNAL alias for :func:`admin_load_all_experiments` (not
+    persona-facing)."""
+    return admin_load_all_experiments(bot)

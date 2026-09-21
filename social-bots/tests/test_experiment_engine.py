@@ -164,6 +164,101 @@ class ExperimentEngineTest(unittest.TestCase):
         self.assertEqual(back.status, ee.RUNNING)
         self.assertEqual(back.baseline_ref().value, 10.0)
 
+    # --- SB-V15-001: authoritative bot + persona scoping ------------------- #
+    def _design_for(self, bot, persona, intervention="new-hook"):
+        return ee.design(bot, persona, hypothesis="H",
+                         baseline_observation=_obs(10.0), intervention=intervention,
+                         primary_metric=metrics.SAVE, min_observation_hours=24.0,
+                         stop_criteria={"min_effect": 1.0, "direction": "increase"})
+
+    def test_persona_scoped_roundtrip_requires_bot_and_persona(self):
+        exp = ee.register_experiment("social-a", "social-a",
+                                     ee.start(self._design_for("social-a", "social-a")))
+        back = ee.load_experiment("social-a", "social-a", exp.id)
+        self.assertIsNotNone(back)
+        self.assertEqual(back.id, exp.id)
+        self.assertEqual(back.persona, "social-a")
+
+    def test_normal_persona_cannot_read_another_personas_experiment(self):
+        # Two personas of the SAME bot register experiments through the API.
+        a = ee.register_experiment("social-a", "social-a",
+                                   ee.start(self._design_for("social-a", "social-a")))
+        b = ee.register_experiment("social-a", "social-b",
+                                   ee.start(self._design_for("social-a", "social-b")))
+        # persona-b cannot read persona-a's experiment id and vice versa.
+        self.assertIsNone(ee.load_experiment("social-a", "social-b", a.id))
+        self.assertIsNone(ee.load_experiment("social-a", "social-a", b.id))
+        # each persona can read only its own.
+        self.assertIsNotNone(ee.load_experiment("social-a", "social-a", a.id))
+        self.assertIsNotNone(ee.load_experiment("social-a", "social-b", b.id))
+
+    def test_normal_persona_cannot_enumerate_another_personas_experiments(self):
+        a = ee.register_experiment("social-a", "social-a",
+                                   ee.start(self._design_for("social-a", "social-a")))
+        b = ee.register_experiment("social-a", "social-b",
+                                   ee.start(self._design_for("social-a", "social-b")))
+        a_ids = {e["id"] for e in ee.list_experiments("social-a", "social-a")}
+        b_ids = {e["id"] for e in ee.list_experiments("social-a", "social-b")}
+        self.assertEqual(a_ids, {a.id})
+        self.assertEqual(b_ids, {b.id})
+        self.assertNotIn(b.id, a_ids)
+        self.assertNotIn(a.id, b_ids)
+
+    def test_cannot_save_under_a_persona_you_do_not_own(self):
+        exp = self._design_for("social-a", "social-a")
+        # Attempt to register persona-a's experiment under persona-b is refused.
+        with self.assertRaises(PermissionError):
+            ee.register_experiment("social-a", "social-b", exp)
+        with self.assertRaises(PermissionError):
+            ee.save_experiment("social-a", "social-b", exp)
+
+    def test_overlap_detection_is_persona_scoped(self):
+        # Same intervention/metric under DIFFERENT personas is NOT an overlap.
+        ee.register_experiment("social-a", "social-a",
+                               ee.start(self._design_for("social-a", "social-a")))
+        # persona-b registering the "same" experiment shape must succeed.
+        b2 = self._design_for("social-a", "social-b")
+        ee.register_experiment("social-a", "social-b", ee.start(b2))
+        self.assertEqual(ee.find_overlaps_for_persona("social-a", "social-b", b2), [])
+        # But a second overlapping one under the SAME persona is rejected.
+        with self.assertRaises(ValueError):
+            ee.register_experiment("social-a", "social-a",
+                                   self._design_for("social-a", "social-a"))
+
+    def test_admin_reader_is_the_only_cross_persona_view(self):
+        a = ee.register_experiment("social-a", "social-a",
+                                   ee.start(self._design_for("social-a", "social-a")))
+        b = ee.register_experiment("social-a", "social-b",
+                                   ee.start(self._design_for("social-a", "social-b")))
+        all_ids = {e["id"] for e in ee.admin_load_all_experiments("social-a")}
+        self.assertEqual(all_ids, {a.id, b.id})
+        # admin lookup by id reaches across personas; persona reads do not.
+        self.assertIsNotNone(ee.admin_load_experiment("social-a", b.id))
+
+    def test_unsafe_persona_identifier_is_rejected(self):
+        exp = self._design_for("social-a", "social-a")
+        for bad in ("../social-b", "social/../b", "..", "a/b"):
+            with self.assertRaises(ValueError):
+                ee.load_experiment("social-a", bad, exp.id)
+
+    def test_missing_metric_still_inconclusive_through_persona_api(self):
+        # Retain INCONCLUSIVE behavior for missing measurements end-to-end.
+        start = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        exp = ee.start(self._design_for("social-a", "social-a"), now=start)
+        ee.register_experiment("social-a", "social-a", exp)
+        later = start + timedelta(hours=25)
+        treat = metrics.normalize(platform="instagram", source="fixture",
+                                  content_id="c-1", persona="social-a",
+                                  window_start=W2[0], window_end=W2[1],
+                                  raw_metrics={"reach": 5})  # save MISSING
+        exp = ee.close(exp, treat, now=later)
+        ee.save_experiment("social-a", "social-a", exp)
+        self.assertEqual(exp.outcome, ee.INCONCLUSIVE)
+        back = ee.load_experiment("social-a", "social-a", exp.id)
+        self.assertEqual(back.outcome, ee.INCONCLUSIVE)
+        # provenance retained: baseline still bound to its observation id.
+        self.assertTrue(back.baseline["observation_id"].startswith("obs-"))
+
 
 if __name__ == "__main__":
     unittest.main()
