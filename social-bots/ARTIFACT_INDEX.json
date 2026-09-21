@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T18:30:00Z",
+  "updated_at": "2026-09-21T18:35:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -2658,6 +2658,728 @@
       "story_points": null,
       "evidence": [],
       "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+    },
+    {
+      "id": "SB-S08-001",
+      "name": "V0.8 account registry implementation",
+      "type": "execution_slice",
+      "version_gate": "V0.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S08-001.md",
+      "depends_on": [
+        "SB-V07-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S08-002",
+      "name": "V0.8 read-only route probe harness",
+      "type": "execution_slice",
+      "version_gate": "V0.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S08-002.md",
+      "depends_on": [
+        "SB-S08-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S08-003",
+      "name": "V0.8 destination/persona lock",
+      "type": "execution_slice",
+      "version_gate": "V0.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S08-003.md",
+      "depends_on": [
+        "SB-S08-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S08-004",
+      "name": "V0.8 analytics-route verifier",
+      "type": "execution_slice",
+      "version_gate": "V0.8-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S08-004.md",
+      "depends_on": [
+        "SB-S08-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S08-005",
+      "name": "V0.8 connectivity acceptance index",
+      "type": "execution_slice",
+      "version_gate": "V0.8-slice",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S08-005.md",
+      "depends_on": [
+        "SB-S08-002",
+        "SB-S08-003",
+        "SB-S08-004"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-001",
+      "name": "V0.9 canary authorization compiler",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-001.md",
+      "depends_on": [
+        "SB-ACC-007"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-002",
+      "name": "V0.9 exactly-once public effect wrapper",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-002.md",
+      "depends_on": [
+        "SB-S09-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-003",
+      "name": "V0.9 social-a public canary",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-003.md",
+      "depends_on": [
+        "SB-S09-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-004",
+      "name": "V0.9 social-b public canary",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-004.md",
+      "depends_on": [
+        "SB-S09-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-005",
+      "name": "V0.9 social-c public canary",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-005.md",
+      "depends_on": [
+        "SB-S09-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S09-006",
+      "name": "V0.9 post-window analytics and learning",
+      "type": "execution_slice",
+      "version_gate": "V0.9-slice",
+      "owner": "Cursor",
+      "status": "BLOCKED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S09-006.md",
+      "depends_on": [
+        "SB-S09-003",
+        "SB-S09-004",
+        "SB-S09-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S10-001",
+      "name": "V1.0 three-bot continuous-run harness",
+      "type": "execution_slice",
+      "version_gate": "V1.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S10-001.md",
+      "depends_on": [
+        "SB-EVD-013"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S10-002",
+      "name": "V1.0 effect-idempotency reconciler",
+      "type": "execution_slice",
+      "version_gate": "V1.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S10-002.md",
+      "depends_on": [
+        "SB-S10-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S10-003",
+      "name": "V1.0 owner-gate instrumentation",
+      "type": "execution_slice",
+      "version_gate": "V1.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S10-003.md",
+      "depends_on": [
+        "SB-S10-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S10-004",
+      "name": "V1.0 measurement-to-next-decision chain",
+      "type": "execution_slice",
+      "version_gate": "V1.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S10-004.md",
+      "depends_on": [
+        "SB-S10-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S10-005",
+      "name": "V1.0 standalone dependency audit",
+      "type": "execution_slice",
+      "version_gate": "V1.0-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S10-005.md",
+      "depends_on": [
+        "SB-S10-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S11-001",
+      "name": "V1.1 fault-matrix runner",
+      "type": "execution_slice",
+      "version_gate": "V1.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S11-001.md",
+      "depends_on": [
+        "SB-V10-005"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S11-002",
+      "name": "V1.1 restart/idempotency proof",
+      "type": "execution_slice",
+      "version_gate": "V1.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S11-002.md",
+      "depends_on": [
+        "SB-S11-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S11-003",
+      "name": "V1.1 outage degradation policy",
+      "type": "execution_slice",
+      "version_gate": "V1.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S11-003.md",
+      "depends_on": [
+        "SB-S11-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S11-004",
+      "name": "V1.1 unattended live soak",
+      "type": "execution_slice",
+      "version_gate": "V1.1-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S11-004.md",
+      "depends_on": [
+        "SB-S11-002",
+        "SB-S11-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S12-001",
+      "name": "V1.2 platform capability registry",
+      "type": "execution_slice",
+      "version_gate": "V1.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S12-001.md",
+      "depends_on": [
+        "SB-V11-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S12-002",
+      "name": "V1.2 platform-choice scorer",
+      "type": "execution_slice",
+      "version_gate": "V1.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S12-002.md",
+      "depends_on": [
+        "SB-S12-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S12-003",
+      "name": "V1.2 no-platform option",
+      "type": "execution_slice",
+      "version_gate": "V1.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S12-003.md",
+      "depends_on": [
+        "SB-S12-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S12-004",
+      "name": "V1.2 choice-divergence acceptance",
+      "type": "execution_slice",
+      "version_gate": "V1.2-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S12-004.md",
+      "depends_on": [
+        "SB-S12-002",
+        "SB-S12-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S13-001",
+      "name": "V1.3 metric semantic registry",
+      "type": "execution_slice",
+      "version_gate": "V1.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S13-001.md",
+      "depends_on": [
+        "SB-V12-002",
+        "SB-V13-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S13-002",
+      "name": "V1.3 analytics adapter conformance",
+      "type": "execution_slice",
+      "version_gate": "V1.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S13-002.md",
+      "depends_on": [
+        "SB-S13-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S13-003",
+      "name": "V1.3 cross-platform comparison guard",
+      "type": "execution_slice",
+      "version_gate": "V1.3-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S13-003.md",
+      "depends_on": [
+        "SB-S13-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S14-001",
+      "name": "V1.4 audience hypothesis store conformance",
+      "type": "execution_slice",
+      "version_gate": "V1.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S14-001.md",
+      "depends_on": [
+        "SB-V13-002",
+        "SB-V14-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S14-002",
+      "name": "V1.4 confidence update policy",
+      "type": "execution_slice",
+      "version_gate": "V1.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S14-002.md",
+      "depends_on": [
+        "SB-S14-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S14-003",
+      "name": "V1.4 decay and contradiction engine",
+      "type": "execution_slice",
+      "version_gate": "V1.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S14-003.md",
+      "depends_on": [
+        "SB-S14-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S14-004",
+      "name": "V1.4 privacy boundary acceptance",
+      "type": "execution_slice",
+      "version_gate": "V1.4-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S14-004.md",
+      "depends_on": [
+        "SB-S14-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S15-001",
+      "name": "V1.5 experiment API structural isolation",
+      "type": "execution_slice",
+      "version_gate": "V1.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S15-001.md",
+      "depends_on": [
+        "SB-V14-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S15-002",
+      "name": "V1.5 measurement compatibility gate",
+      "type": "execution_slice",
+      "version_gate": "V1.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S15-002.md",
+      "depends_on": [
+        "SB-S15-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S15-003",
+      "name": "V1.5 lifecycle closeout engine",
+      "type": "execution_slice",
+      "version_gate": "V1.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S15-003.md",
+      "depends_on": [
+        "SB-S15-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S15-004",
+      "name": "V1.5 overlap and dedup gate",
+      "type": "execution_slice",
+      "version_gate": "V1.5-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S15-004.md",
+      "depends_on": [
+        "SB-S15-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S16-001",
+      "name": "V1.6 canonical idea lineage",
+      "type": "execution_slice",
+      "version_gate": "V1.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S16-001.md",
+      "depends_on": [
+        "SB-V15-002"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S16-002",
+      "name": "V1.6 platform-native transformation",
+      "type": "execution_slice",
+      "version_gate": "V1.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S16-002.md",
+      "depends_on": [
+        "SB-S16-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S16-003",
+      "name": "V1.6 novelty and repetition gate",
+      "type": "execution_slice",
+      "version_gate": "V1.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S16-003.md",
+      "depends_on": [
+        "SB-S16-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S16-004",
+      "name": "V1.6 factual-lineage preservation acceptance",
+      "type": "execution_slice",
+      "version_gate": "V1.6-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S16-004.md",
+      "depends_on": [
+        "SB-S16-002",
+        "SB-S16-003"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-001",
+      "name": "V1.7 read-only community collector",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-001.md",
+      "depends_on": [
+        "SB-V16-002"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-002",
+      "name": "V1.7 conversation memory",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-002.md",
+      "depends_on": [
+        "SB-S17-001"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-003",
+      "name": "V1.7 reply authority classifier",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-003.md",
+      "depends_on": [
+        "SB-S17-001"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-004",
+      "name": "V1.7 safe reply-candidate generator",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-004.md",
+      "depends_on": [
+        "SB-S17-002",
+        "SB-S17-003"
+      ],
+      "story_points": 2,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-005",
+      "name": "V1.7 anti-manipulation and abuse gate",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-005.md",
+      "depends_on": [
+        "SB-S17-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-006",
+      "name": "V1.7 exact thread/destination binding",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-006.md",
+      "depends_on": [
+        "SB-S17-004"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-007",
+      "name": "V1.7 community learning update",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "Cursor",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-007.md",
+      "depends_on": [
+        "SB-S17-002",
+        "SB-S17-005"
+      ],
+      "story_points": 1,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
+    },
+    {
+      "id": "SB-S17-008",
+      "name": "V1.7 strategic checkpoint evidence index",
+      "type": "execution_slice",
+      "version_gate": "V1.7-slice",
+      "owner": "ChatGPT",
+      "status": "PLANNED",
+      "canonical_ref": "social-bots/artifact-packets/v07-v17/SB-S17-008.md",
+      "depends_on": [
+        "SB-S17-001",
+        "SB-S17-002",
+        "SB-S17-003",
+        "SB-S17-004",
+        "SB-S17-005",
+        "SB-S17-006",
+        "SB-S17-007"
+      ],
+      "story_points": null,
+      "evidence": [],
+      "last_verified_ref": "social-bots/V07_TO_V17_EXECUTION.md"
     }
   ]
 }
