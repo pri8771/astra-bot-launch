@@ -95,6 +95,8 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
             {"persona": persona_id, "cycle": record.get("cycle"),
              "fence_generation": lease.generation,
              "chosen_action": record.get("chosen", {}).get("action"),
+             "provider_recommended": record.get("policy", {}).get("provider_recommended"),
+             "policy_selected": record.get("policy", {}).get("policy_selected"),
              "outcome": outcome, "withheld": withheld,
              "candidate_succeeded": outcome == "candidate_created",
              "verified": verified, "reconciled": reconciled})

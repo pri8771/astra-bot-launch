@@ -177,6 +177,23 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
            else "clears authority and reversibility bar")
     )
 
+    # -- POLICY BOUNDARY (SB-V04-003) --------------------------------------
+    # The policy selects strictly by its own deterministic ranking of the
+    # validated alternatives. A provider's ``recommended_action`` is ADVISORY
+    # ONLY: it never selects, and it can never override the ranked/allowed
+    # alternatives. The record makes the proposal-vs-allowed distinction explicit;
+    # authority/spend/messaging/review/dedup/platform/leases/scheduling/verify
+    # remain owned by deterministic code downstream, not by the proposal.
+    record["policy"] = {
+        "provider_recommended": proposal.recommended_action,
+        "policy_selected": chosen.action,
+        "recommended_followed": proposal.recommended_action == chosen.action,
+        "selection_basis": "deterministic policy ranking; recommended_action is advisory only",
+        "authority_owned_by_policy": ["public_post", "spend", "messaging", "review_gate",
+                                      "dedup", "platform_limit", "lease_fence",
+                                      "scheduling", "effect_verification"],
+    }
+
     # -- EXECUTE (local effects within authority only) ---------------------
     # ``_execute`` PREPARES the outcome and returns a ``effects`` closure holding
     # every durable side effect (experiment registration, publish-queue entry,
@@ -360,8 +377,14 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                  "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id},
                 verify, learn, success_effects)
 
-    return ({"performed": False, "effect": "unknown action", "outcome": "unknown"},
-            {"verified": False, "note": "unknown action"}, {"updated": False}, None)
+    # A validated but not-yet-executable vocabulary action (e.g. CONTINUE_EXPERIMENT
+    # before its executor exists) produces NO effect — the policy never invents an
+    # effect for an action it cannot safely perform. Unsupported/unknown actions
+    # never reach here: they are rejected by validate_proposal upstream.
+    return ({"performed": False, "outcome": "blocked_unsupported_action",
+             "effect": f"no executor for action {chosen.action!r}; no effect performed"},
+            {"verified": True, "note": "no effect; action not executable by policy"},
+            {"updated": False}, None)
 
 
 def _commit(fence, bot: str, st: BotState, record: dict, effects=None) -> None:
