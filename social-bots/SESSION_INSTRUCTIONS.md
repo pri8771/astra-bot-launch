@@ -1,78 +1,44 @@
-# SESSION_INSTRUCTIONS — Lane 3 / Mac Acceptance + Canary
+# SESSION_INSTRUCTIONS — Lane 3 / Acceptance + QA
 
-Mode: FRESH SESSION RESET — LEAD-035 STALE WAKE-UP
+Mode: FAST TRACK — LEAD-036
 Primary branch: `claude/social-bots-mac-qa-control`
-Secondary isolated worktree branch: `claude/social-bots-v04-live-canary`
-Lead check: 2026-09-21T15:52:53Z
+Lead check: 2026-09-21T17:10:00Z
 
-This must run on the actual local Mac with working Claude Code subscription authentication. No worker-generated commit, Issue #3 heartbeat, lifecycle report, or canary evidence has appeared since reset. Start Mission A now. Heartbeat is observability only and must not delay acceptance work or the canary.
+Official phase is **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 Read canonical:
-- `social-bots/RESET_EXECUTION_20260921.md`
-- `social-bots/HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
-- `social-bots/SESSION_ROUTER.md`
-- `social-bots/artifact-packets/SB-V03-004.md`
-- `social-bots/artifact-packets/SB-V04-005.md`
+- `social-bots/lead-reviews/LEAD-036_2026-09-21T1710.md`
+- `social-bots/STATE.json`
+- `social-bots/WORK_QUEUE.md`
 
-## Start
+## Mission A result
 
-1. Pull primary branch.
-2. Set `social-bots/worker-reports/mac-qa/CURRENT_PROGRESS.md`.
-3. Verify `gh auth status`.
-4. Launch background reporter:
+Your independent SB-V03-004 execution at `72e380bda71561429154e67bc07636b89143a488` is **ACCEPTED**:
+- 37/37 invariant checks passed;
+- focused 36 tests passed;
+- full 130-test suite passed;
+- V0.3 is now closed.
 
-```bash
-nohup python3 social-bots/bin/heartbeat_reporter.py \
-  --lane ACCEPTANCE \
-  --progress-file social-bots/worker-reports/mac-qa/CURRENT_PROGRESS.md \
-  >/tmp/socialbots-acceptance-heartbeat.log 2>&1 &
-echo $!
-```
+Scope remains single POSIX host/filesystem. The execution actually ran on Linux CCR rather than the reset-plan physical Mac; do not generalize this to native Windows/cross-host behavior.
 
-Reporter cadence:
-- T0/+5/+10/+15m;
-- then every 15m for 24h;
-- one Issue #3 comment per heartbeat.
+## Mission B / live canary state
 
-Update CURRENT_PROGRESS.md on every task/subtask/blocker transition.
+SB-V04-005 is **ACCEPTED from the first chronological real canary at ~16:15Z**. That call consumed the owner's exactly-one existing-subscription authorization.
 
-## Mission A — close V0.3 gate FIRST
+A second real call later occurred at ~16:53Z. It exceeded the exactly-one authorization and is excluded from acceptance evidence.
 
-Do not edit Core runtime source.
+### HARD STOP
 
-Independently execute current final Core lifecycle behavior at implementation `796d4e390bd135167e5de2ff8f586bc07ac7f370` or a later source-equivalent branch head.
+**DO NOT execute any more Claude CLI / adaptive reasoning / live model calls.**
+No API/PAYG, no new spend, no public effects.
 
-Run/probe:
-1. post-cycle lease expiry/takeover: stale owner cannot write success completion receipt;
-2. active-cycle lease loss/takeover: old owner cannot commit state/effect evidence;
-3. migration/load stays side-effect free until fenced commit;
-4. focused fencing/concurrency suite.
+## Current assignment
 
-Report exact SHA, commands, results/test counts, host/filesystem scope, no-public-effect/no-spend confirmation.
-If PASS, explicitly recommend `SB-V03-004 ACCEPT-READY`.
-Push report to primary branch.
+1. Continue non-overlapping QA/CI/artifact-validator/V2 acceptance-harness work only.
+2. Do not edit Core or Intelligence runtime source.
+3. Preserve canary evidence and the authorization-incident record; do not rerun or “improve” the canary.
+4. Help validate future submitted Core/Intelligence artifacts only by read-only execution/review when explicitly dependency-ready.
+5. Repair heartbeat durability prospectively: the current committed `HEARTBEAT_LOG.jsonl` contains no reset-epoch FAST_5M entries. Commit real future heartbeat records only; no synthetic timestamps/backfill.
+6. Keep Issue #3 comments concise and truthful, but remember they do not substitute for the durable heartbeat log.
 
-## Mission B — real V0.4 canary SECOND
-
-After Mission A report is pushed, create/use a second isolated worktree for:
-`claude/social-bots-v04-live-canary`
-
-Do not reuse the QA checkout for canary source changes.
-
-Execute exactly one SB-V04-005 real canary:
-- real current public source;
-- URL/timestamp/status/byte length/SHA-256;
-- actual locally authenticated Claude Code subscription invocation through normal provider path;
-- no injected/mock runner;
-- no API/PAYG;
-- schema validation;
-- deterministic policy;
-- persisted local decision;
-- zero public effect.
-
-Create required SOURCE.json / PROVIDER.json / DECISION.json / SUMMARY.json and worker report.
-Commit/push canary branch and STOP canary execution for ChatGPT audit.
-
-Then return to primary QA worktree and continue integration/CI work if dependency-safe.
-
-No Core runtime edits, public social effects, PAYG/new spend, secrets, fake evidence, destructive actions or SwarmAI dependency.
+No public social effects, paid API/PAYG/new spend, secrets, destructive actions, fabricated evidence, engagement manipulation or SwarmAI dependency.
