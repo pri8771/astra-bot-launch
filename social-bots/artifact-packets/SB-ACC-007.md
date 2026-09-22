@@ -4,7 +4,8 @@ Artifact: Analytics route map
 Milestone: V0.8  
 Owner: Claude-Connectivity  
 Story points: 3  
-Planned status: PLANNED
+Planned status: SUBMITTED (BLOCKED_EXTERNAL_CREDENTIALS)  
+Evidence: social-bots/receipts/evidence/ANTIGRAVITY_V08_PLATFORM_ROUTES_20260922/
 
 ## Purpose
 

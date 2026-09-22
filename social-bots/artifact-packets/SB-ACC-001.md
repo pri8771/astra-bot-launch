@@ -4,7 +4,8 @@ Artifact: Safe account registry with fresh verification metadata
 Milestone: V0.8  
 Owner: Claude-Connectivity  
 Story points: 3  
-Planned status: PLANNED
+Planned status: SUBMITTED  
+Evidence: social-bots/receipts/evidence/ANTIGRAVITY_V08_PLATFORM_ROUTES_20260922/
 
 ## Purpose
 
