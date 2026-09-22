@@ -246,7 +246,7 @@ Current ready worker artifacts:
 Prepared future artifacts:
 - `SB-V03-004` — race-safe lease fencing/stale takeover — SP5 — packet already groomed.
 - `SB-V04-001` — reasoning-provider interface + fail-closed contract — SP3 — V0.4 packet already groomed.
-- `SB-V05-001` — machine-captured current-source receipt collector — SP3 — V0.5 packet already groomed.
+- `SB-V05-001` — machine-captured current-source receipt collector — SP3 — packet already groomed.
 
 Operating rule:
 - Work the artifact, not the prose task.
@@ -970,3 +970,40 @@ Source refs:
 - `MILESTONE_MANIFEST.md`
 - `HEARTBEAT_ASSIGNMENT_PROTOCOL.md`
 - private Issue #3 comment `5768751584`.
+
+## 2026-09-21T19:52:46-04:00 — CHATGPT -> CLAUDE — LEAD-047 — DELIVERY RELEASE / SOURCE-AUDIT FINDINGS / OWNERSHIP HANDOFF
+
+Done:
+- Rechecked setup PR #1; it remains open/unmerged, so canonical coordination remains `chatgpt/social-bots-plan-20260920`.
+- Imported and reconciled the owner-approved delivery package at canonical commit `eece1d3a62417802e4316f028fbec098f3220128`; official version remains V0.4.x and no artifact was accepted by the import.
+- Independently audited current source and preserved the six LEAD-047 negative findings: direct callable authorization bypass, false fixture/capability bypass, pre-dispatch budget races/reentry/wrapper isolation failures, retained-output integrity failure, lifecycle finalization/deadline risk, and crash-consistent strategy/integration gaps.
+- Released Fable as sole primary implementation/integration owner under `social-bots/delivery/FINAL_RUN.md`; superseded the prior pause/new-files-only restriction.
+- Delivered the LEAD-047 assignment directly to Fable branch, parked Cursor at safe handoff, and refreshed Acceptance as review-only. The resulting branch-head commits are lead-authored coordination and do not count as worker acknowledgements, heartbeats, tests or implementation.
+- Reconciled canonical `STATE.json` and `WORKER_PERFORMANCE.md` to the delivered handoff. No version promotion or operational acceptance occurred.
+
+Evidence:
+- Canonical release/audit: `lead-reviews/LEAD-047_DELIVERY_RELEASE_20260921.md`, `delivery/FINAL_RUN.md`, `delivery/reviews/LEAD047_AUDIT.md`, and `delivery/reviews/LEAD047_PROBES.json`.
+- Lead source-excerpt probes reproduced 6 defect scenarios with harmless local sentinels/test doubles and zero real model/network/public effects; the lead did not run the full current checkout.
+- Supplied delivery validator reports 30 passing package tests; this is planning/package validation, not runtime acceptance.
+- Fable material worker checkpoint remains `a204ad0827748a4e9661f1945b8e025d53d0ae09`; LEAD-047 branch handoff head is `347de2b5c91c774670c3b884cc542c88fa6eabfa`.
+- Cursor park handoff head is `bf18ac0083b15194c011b18dc791f4bd3d3e8019`; latest verified material worker source remains `d7ecb256d430f437f4ad9249480b6430af52ecf9`.
+- Acceptance review assignment head is `bd6cbde805684efb2a4bbf06c3886cefdb842650`; no fresh reviewer result is claimed.
+
+Next:
+- Fable starts one genuinely fresh worker session, emits exactly one `SESSION_ONCE`, reproduces the LEAD-047 negatives against actual current modules, repairs P0 authorization/capability/budget defects first, then integrity/finalization/persistence and missing S20/S21/S22 + H1–H4 / DEVELOPMENT_ARTIFACT integration, runs focused/full tests, and returns a pinned candidate with exact evidence.
+- Acceptance independently executes R07-071 and audits the repaired provider/budget/integrity/lifecycle paths on the pinned candidate with harmless sentinels and zero real inference.
+- Cursor/Core/Intelligence remain parked from overlapping source; preserve/push only already-existing material at safe handoff.
+
+Blockers:
+- `SB-V04-002` and `SB-V04-004` remain blocked on fresh explicit owner authorization; `SB-EVD-002` remains withheld.
+- No additional Claude/adaptive/product-model call is authorized; the prior canary authorization is consumed.
+- Operational V0.7 still requires a verified owner-controlled persistent host with real native OS-scheduled bounded sessions.
+- `worker-pc` remains outside the critical path until private-repository clone/auth is demonstrably fixed.
+
+Source refs:
+- `social-bots/lead-reviews/LEAD-047_DELIVERY_RELEASE_20260921.md`
+- `social-bots/delivery/FINAL_RUN.md`
+- `social-bots/delivery/reviews/LEAD047_AUDIT.md`
+- `social-bots/STATE.json`
+- `social-bots/WORKER_PERFORMANCE.md`
+- private Issue #3 LEAD-047 comment.
