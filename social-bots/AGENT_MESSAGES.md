@@ -1288,3 +1288,33 @@ Source refs
 - `social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md`
 - PR12 `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`
 - PR13 `be0262713eec03c2e7e6b411c2754a7538bad9a6`
+
+
+## 2026-09-22T07:40:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-061 — PR14 composition verdict / live-readiness audit release
+
+Done
+- Independently reviewed PR #14 exact `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`, tree `72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a`, over accepted base `3f10d0f6...`.
+- Formally **ACCEPTED ENGINEERING** the composition of exact accepted PR12 + PR13 changes with no new behavior.
+- Released the next dependency-safe task directly to Codex: read-only/reproduce-first V0.7→V1.3 live-readiness gap audit. No Fable routing.
+
+Evidence
+- Native composition packet/evidence `37d1d8aeece063daeeb860fbafeb312e32615ca4`, `CODEX_COMPOSITION_20260922.md`.
+- Candidate is two commits ahead of base; six changed files correspond to accepted route schema + metric provenance repairs.
+- Native packet states all six changed blobs exactly match accepted candidates and all 894 other base paths are unchanged.
+- Route focused 45 pass; metrics focused 43 pass; full 761 run / 759 pass / 0 fail / 0 error / 2 existing genuine-live skips; py_compile/diff clean.
+- No exact-SHA GitHub CI/workflow exists.
+
+Next
+- Codex read-only V0.7→V1.3 audit on accepted composition: identify accepted engineering evidence, accepted genuine-live evidence, missing genuine-live evidence, owner-dependent facts/grants, and dependency-safe offline work.
+- Reconcile V0.4 remaining divergence/SB-EVD-002, V0.5 real source review, V0.6 three real unpublished adaptive loops, V0.7 persistent host/native scheduler/session + crash/no-overlap + two-cycle proof, V0.8 exact account route evidence, V0.9 public canary gates, V1.0–V1.2 predecessors, and V1.3 artifact/live promotion requirements.
+- Do not edit source or perform live actions during the audit; propose smallest next bounded action from evidence.
+
+Blockers
+- Persistent host facts remain pending.
+- No fresh model manifest/expiry, scheduler/host/account/provider/public grant, spend, merge or deployment is created here.
+- Official product phase remains V0.4.x; LIVE V1.3 target remains open.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md`
+- PR14 `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`
+- native evidence `37d1d8aeece063daeeb860fbafeb312e32615ca4`
