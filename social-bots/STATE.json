@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T05:01:00Z",
+  "updated_at": "2026-09-22T06:02:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-056",
+    "lead_release": "LEAD-057",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -129,11 +129,11 @@
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
       "activity": "direct_v13_reproduce_rootcause_repair_verify",
-      "assignment": "V0.8 route freshness SP1: require timezone-aware last_verified_at, 24h freshness horizon, +5m future skew allowance, deterministic now injection, fail closed on missing/malformed/naive/stale/future; no live account call.",
+      "assignment": "V0.8 route-selection SP1: exact-scope matches, independently evaluate route health/freshness, select only unique eligible route, fail closed on zero/multiple eligible, registry-order invariant, preserve downstream capability/authority flags; no live account call.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
-      "latest_accepted_checkpoint": "V1.3 finite metrics engineering repair",
+      "latest_accepted_candidate": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "latest_accepted_checkpoint": "V0.8 route freshness + community health engineering repair",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT"
     }
@@ -283,15 +283,41 @@
       },
       "repair_status": "RELEASED_TO_CODEX_SP1",
       "live_account_calls": 0
+    },
+    "codex_route_freshness_author_submission": {
+      "exact_source": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "tree": "4566673973dacbfb04530b123e529ef3cd61b327",
+      "base": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "focused": {
+        "passed": 32
+      },
+      "full": {
+        "run": 732,
+        "passed": 730,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "account_route_order_reproduction": {
+      "source": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "evidence": "4a90be07b78277b6d8fc49d3568f4a6b107eb921",
+      "symptom": "same exact-scope revoked+fresh routes return blocked vs authorized solely from registry order because availability_for uses matches[0]",
+      "root_cause": "first-match selection instead of eligibility-based deterministic selection",
+      "contract": "select unique eligible exact-scope route; zero eligible fail closed; multiple eligible fail closed ambiguous; registry order never authority",
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-056",
-    "review_ref": "social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md",
-    "review_type": "pr9_metrics_exact_sha_and_v08_route_freshness_contract",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md",
+    "review_id": "LEAD-057",
+    "review_ref": "social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md",
+    "review_type": "pr10_freshness_exact_sha_and_route_selection_contract",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md",
     "accepted_now": [
-      "PR9-finite-metrics@30a2ebdfb45110b2bc6fea0f3d50876583487f9c"
+      "PR10-route-freshness@ccfbaf7865557ba30d9148bcce6839b71e9159f1"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -365,11 +391,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR #9 exact 30a2ebdfb45110b2bc6fea0f3d50876583487f9c ACCEPTED ENGINEERING for finite-value admission, legacy invalid metric defense, and overflow containment.",
-      "Author evidence: 26 focused pass, 728/726/0/0/2 full; no exact-SHA CI and no live analytics claim.",
-      "Account route freshness defect reproduced: _route_ok ignores last_verified_at and can present missing/ancient verification as current availability.",
-      "Lead contract fixed at 24h freshness with +5m future skew allowance; missing/malformed/naive/stale/future-out-of-window fail closed.",
-      "Bounded V0.8 freshness repair released directly to Codex; no live account call and no Fable routing."
+      "PR #10 exact ccfbaf7865557ba30d9148bcce6839b71e9159f1 ACCEPTED ENGINEERING for LEAD-056 24h/+5m freshness enforcement and community reply health/freshness gating.",
+      "Author evidence: 32 focused pass, 732/730/0/0/2 full; no exact-SHA CI and no live account/public claim.",
+      "Separate registry-order defect reproduced: availability_for uses matches[0], so same exact-scope routes can flip availability solely by array order.",
+      "Lead selection contract: evaluate all exact-scope matches; unique eligible selects; zero eligible fail closed; multiple eligible fail closed ambiguous; registry order never grants authority.",
+      "Bounded route-selection repair released directly to Codex; no inferred destination priority, no Fable routing, no live account/provider/model/public/scheduler action."
     ]
   },
   "public_actions": {
