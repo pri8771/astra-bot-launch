@@ -112,3 +112,13 @@ Canonical647c41a/LEAD056 still current. Exact route-freshness candidateccfbaf7 P
 ## Continuation — live frontier audit
 
 Canonical647c41a unchanged. CODEX_LIVE_FRONTIER_20260922.md separates already-consumed canary authority, missing fresh model manifest/expiry, persistent ownerhost/scheduler facts and later reviewer/account/analytics evidence. Existing conditional account setup permission is preserved. No genuine live execution is currently available from these records; do not replace it with fixtures or another timer. PR10/sourceccfbaf7 and route-order policy request remain pending, with no Fable dispatch.
+
+## Continuation — accepted composition and authority review
+
+Owner target remains Bots V1.3, Jobs V2.0 and SwarmAI V2.0. Bots canonical647c41a and pending PR10/sourceccfbaf7 are unchanged; freshness review and explicit route-selection policy remain pending. The live frontier is recorded at88b9f2be540c85151786aa7692a920230ba6292a; no new SESSION_ONCE or scheduler, model, account or public action occurred.
+
+Jobs integration e1dbfeb6d4ddac9c49a5ac2b3d8d0a5c6ebc8273 was independently accepted as composition atc54bb7d. The golden-workflow diagnostic found missing candidate-reply application/contact attribution (native280bbb3), and lead398656d released that narrow repair. Codex is implementing it with synthetic tests and disposable PostgreSQL only; the full golden workflow and genuine gates remain open.
+
+Swarm R28b-1 exact2ebaa5a was accepted at4fa4bd0. R28b-2 source a06b8a82925daa4dd08a137cb1eb724aaa2d4efb / PR23 is now ready for formal review, with source-bound native evidence99a7b2c736abf45335e63f41eb602825796a1c6f:578 passed, real PostgreSQL authority/admission checks, Ruff and mypy171 passed. CP1 attempt2 remains FAILED, with lead provenance acknowledgement at933fe98; no third attempt authorized. R28c stays held.
+
+Derived portfolio status is Jobs coordination/codex/STATUS.md at41c34c0. Native queues are not duplicated here. No Fable handoff, live promotion, main merge, deployment or background-operation claim.
