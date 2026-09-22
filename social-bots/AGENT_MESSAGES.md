@@ -1347,3 +1347,46 @@ Blockers
 Source refs
 - `social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md`
 - audit `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0`
+
+
+## 2026-09-22T08:13:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-063 — SB-V11 rework / reconciliation repair release / retry policy held
+
+Done
+- Confirmed SB-V11 diagnostic REWORK_FOUND against accepted composition `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`.
+- Reproduced/accepted finding that reconciliation `safe=false` is currently ignored and work/finish can proceed.
+- Incorporated source-grounded persistence boundary: releasing the owned lease clears the slot, so next acquire has `reconcile_required=false`; therefore a takeover-only gate is insufficient.
+- Released only a persistent fail-closed reconciliation repair: run existing read-only reconciliation before every unit; unsafe blocks decision/effects/normal finish on every fresh process until the underlying violation is gone.
+- Confirmed retry gap, specified exact retry policy, but HELD implementation pending separate lead release.
+- Prepared dormant V0.4 five-call owner approval request + non-executable manifest template. Prior one-call authority remains consumed. No model calls authorized.
+
+Retry policy
+- identity: bot + persona + signal + reasoning_unavailable class + deterministic blocker fingerprint;
+- max automatic attempts: 3;
+- after attempt 1: 15m backoff;
+- after attempt 2: 60m backoff;
+- after attempt 3: EXHAUSTED / no automatic retry;
+- BACKOFF/EXHAUSTED signals stay unconsumed but do not starve later eligible unconsumed signals;
+- time/process restart never resets exhausted;
+- changed blocker fingerprint/no blocker rearms with a new retry identity;
+- operator reset must be exact, explicit and auditable and grants no model authority.
+
+Next
+- Codex may implement only the unsafe-reconciliation repair first.
+- Required negative: stale takeover unsafe -> no decision cycle/new product effects/finish receipt, truthful blocked/failure evidence, own lease release only.
+- Required persistence: immediate fresh second unit against unchanged unsafe queue remains blocked despite `reconcile_required=false`.
+- Safe reconciliation still permits ordinary work.
+- Return exact SHA/tree, red-before/green-after, focused/full evidence.
+- Do not implement retry policy yet.
+
+Dormant V0.4 preparation
+- request: `social-bots/lead-reviews/V04_DIVERGENCE_OWNER_APPROVAL_REQUEST_20260922.md`
+- template: `social-bots/lead-reviews/V04_DIVERGENCE_5CALL_DORMANT_MANIFEST.json`
+- stored outside runtime authorization path; status DORMANT_NOT_AUTHORIZED.
+
+Blockers
+- No fresh model authorization/manifest is active.
+- No live provider/account/public/host/scheduler action, SESSION_ONCE, spend, merge, deploy, or Fable handoff authorized.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-063_2026-09-22T0813.md`
+- diagnostic proposal `a2d108f`
