@@ -1,16 +1,20 @@
 # Fable fast-track — LEAD_ACK
 
-## LEAD-047 — 2026-09-21 19:52 ET
+## LEAD-050 — 2026-09-21 20:51 ET
 
-Lead release materially changes the lane assignment.
+Lead review confirms the canonical LIVE V1.7-only scope released by LEAD-048 has **not yet been acknowledged by a fresh Fable worker session**.
 
-- Canonical release commit: `eece1d3a62417802e4316f028fbec098f3220128`.
-- Fable is now the **sole primary implementation/integration owner** for the active Social Bots delivery campaign, including shared recovery/runtime integration.
-- The LEAD-045/046 pause and LEAD-043 new-files-only restriction are superseded.
-- Preserve signed material checkpoint `a204ad0827748a4e9661f1945b8e025d53d0ae09`; do not reset or discard newer local/material work from any parked lane.
-- Start by reading `social-bots/delivery/FINAL_RUN.md` and `social-bots/delivery/reviews/LEAD047_AUDIT.md` from current canonical coordination.
-- Immediate work is the actual-module negative-reproduction/repair sequence: R07-041 direct callable authorization, false fixture/capability bypass, durable pre-dispatch budget accounting, retained-output integrity, then finalization/persistence and missing S20/S21/S22 + H1–H4 integration.
-- Start a genuinely fresh top-level session and emit exactly one `SESSION_ONCE` heartbeat. A lead instruction/comment is not a worker acknowledgement.
-- Run focused regressions and the full suite, push recoverable artifact-prefixed checkpoints, and return exact evidence. Do not self-accept any artifact or version.
+- Canonical coordination remains `chatgpt/social-bots-plan-20260920` because setup PR #1 is still unmerged.
+- Official phase remains **V0.4.x / V0.4 in progress**.
+- Fable remains the sole implementation/integration owner through **LIVE V1.7 only, then hard stop**.
+- The historical branch name does not authorize V1.8+, V2.3, V3.0, or H1–H4 continuation. Preserve existing later code/evidence but do not advance it.
+- Preserve material checkpoint `a204ad0827748a4e9661f1945b8e025d53d0ae09` and all newer valid source history.
+- Current worker status at the review cutoff: **STALE / ACTION REQUIRED**. Branch evidence contained no fresh worker commit, session heartbeat, or worker acknowledgement after LEAD-048.
+- Start a fresh top-level worker session, read `delivery/V17_LIVE.md`, `V17_SCOPE.json`, and `V17_ACCEPTANCE.md`, emit exactly one `SESSION_ONCE` heartbeat, and update `CURRENT_PROGRESS.md` truthfully.
+- Immediate implementation order is: direct/ad-hoc model-callable authorization → capability/fixture bypass → shared durable budgets → heartbeat/lease durability → retained-output/final-review integrity → prospective persona-scoped experiment boundary → read-only V1.7 preflight.
+- QA/Acceptance is independent review-only. Cursor/Core/Intelligence remain parked from overlapping source edits.
+- Worker-local green tests do not self-accept an artifact or version.
 
-No additional live Claude/adaptive/product-model call, public/account effect beyond separately scoped necessary owner-approved setup, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, main/public release, or SwarmAI dependency is authorized.
+No additional live Claude/adaptive/product-model call, public/account effect, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, main/public release, or SwarmAI dependency is authorized. The prior exactly-one canary authorization is consumed.
+
+`worker_acknowledged: false`
