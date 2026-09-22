@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T19:20:00Z",
+  "updated_at": "2026-09-22T20:10:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,8 +22,8 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-067",
-    "last_review": "LEAD-067",
+    "lead_release": "LEAD-068",
+    "last_review": "LEAD-068",
     "target": "V1.7",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.7",
@@ -128,8 +128,8 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_failfast_repair_plus_capture_lineage_prep",
-      "assignment": "Implement minimal execute_batch fail-fast repair only; separately continue read-only E1 replacement + deterministic extraction lineage for E1/E2. No real inference/final matrix/manifest activation.",
+      "activity": "direct_composition_and_final_matrix_prepare_only",
+      "assignment": "Mechanically compose accepted PR19+PR20+PR21 over accepted PR18 d8a211fc; no semantic edits. On exact composition source, prepare/freeze final P0/P1/P2/P3/E0 matrix using accepted PR21 E1/E2 signals and accepted ollama-local config. Produce source/tree/matrix/prompt/evidence digests, isolation report, no-active-manifest proof, zero call slots. No inference.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
       "latest_accepted_candidate": "d8a211fc32802c59b07b1739bef47f9c551ed8dc",
@@ -141,8 +141,9 @@
         "V0.8 route_type schema SP1 repair (ACCOUNT_REGISTRY_SCHEMA enum only)"
       ],
       "latest_accepted_candidates": [
-        "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
-        "be0262713eec03c2e7e6b411c2754a7538bad9a6"
+        "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+        "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+        "89057863423c3ad6e995dcd57cad4a61da2a6099"
       ]
     }
   },
@@ -432,12 +433,14 @@
     }
   },
   "lead_review": {
-    "review_id": "LEAD-067",
-    "review_ref": "social-bots/lead-reviews/LEAD-067_2026-09-22T1920.md",
-    "review_type": "pr18_local_adapter_ci_acceptance_and_failfast_release",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md",
+    "review_id": "LEAD-068",
+    "review_ref": "social-bots/lead-reviews/LEAD-068_2026-09-22T2010.md",
+    "review_type": "pr19_pr20_pr21_exact_verdicts_and_final_matrix_prepare_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-067_2026-09-22T1920.md",
     "accepted_now": [
-      "PR18-local-adapter-ci@d8a211fc32802c59b07b1739bef47f9c551ed8dc"
+      "PR19-failfast@f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+      "PR20-mac-prepare@f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+      "PR21-corrected-captures@89057863423c3ad6e995dcd57cad4a61da2a6099"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -641,14 +644,16 @@
     "exact_source": "da53159704e3e1dfefb8d7e4d2518fdc889317fb",
     "tree": "32a7e6c18f2fea4e6f6f32b5d7ae65af56f18e6d",
     "capture_integrity": "ACCEPTED",
-    "final_pair_suitability": "REWORK_REQUIRED",
-    "e2": "SUITABLE_PENDING_LINEAGE_EXTRACTION",
-    "e1": "REPLACE_FOR_RECENCY",
+    "final_pair_suitability": "ACCEPTED_VIA_PR21_CORRECTION",
+    "e2": "SUITABLE_TIKTOK_2026-09-14",
+    "e1": "SUITABLE_META_THREADS_2026-09-16",
     "reasons": [
       "E1 published 2026-06-04 is too old for September current-evidence causal acceptance",
       "both receipts extraction_status=not_attempted",
       "model-facing signal summaries are not yet bound to accepted extraction output from exact frozen raw bytes"
-    ]
+    ],
+    "corrected_pair_source": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+    "corrected_pair_tree": "7bced4eaad8cbcf6b903eb1d90095afa906cb803"
   },
   "local_v04_provider_preparation": {
     "status": "ACCEPTED_ENGINEERING_NO_INFERENCE",
@@ -669,10 +674,19 @@
     "ci_conclusion": "success"
   },
   "fail_fast_batch_diagnostic": {
-    "status": "REWORK_FOUND_REPAIR_RELEASED",
+    "status": "ACCEPTED_ENGINEERING",
     "evidence": "b188f03",
     "exact_source": "fec97738ec0e9407415f60228f7c3938613396c3",
     "observed": "first-case provider_unavailable/provider_exception/invalid_proposal each continue through all 5 and consume all 5",
-    "repair_contract": "stop after first non-proposal_received; failed slot retained; later cases unattempted/unconsumed; no retry"
+    "repair_contract": "stop after first non-proposal_received; failed slot retained; later cases unattempted/unconsumed; no retry",
+    "accepted_source": "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+    "accepted_tree": "735a2c59fc5557cb15bbd1adfe84222e6264b049"
+  },
+  "mac_host_preparation": {
+    "status": "ACCEPTED_ENGINEERING_PREPARE_ONLY",
+    "source": "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+    "tree": "90189e58f0f267e0f3ad52ca7f879f08e58e90cb",
+    "persistent_host_accepted": false,
+    "scheduler_authorized": false
   }
 }
