@@ -173,3 +173,11 @@ Jobs PR23 final1e54aafa61ef06ed2ef8a7a681c806ba89ef3268/tree8972a90de1f7aafd469f
 ## Continuation — exact V0.4 preparation and authorization binding gap
 
 Accepted8c86898/tree72bccc0 freeze and five prompts verify; trusted public capture receipts match, but controlled example/RFC content needs lead suitability verdict. Agent plus independent root reproduced internally consistent matrix substitution passing actual gate to an offline sentinel before external action. CODEX_V04_APPROVAL_PREPARATION_20260922.md and native hashed packet preserve exact inputs, inactive owner request and red evidence. REWORK_FOUND; request narrow machine-binding release before live approval/activation. Zero live calls authorized; no source edits, canonical runtime grant, new SESSION_ONCE, Fable or external action. PR15 reconciliation remains separately pending; retry implementation remains held.
+
+## Continuation — LEAD064 accepts reconciliation and releases exact binding
+
+Canonical47bd5e680f364d21bdff7a070257a2b6d2d0fcf1 formally accepts PR15 exact9de61f6/treebe23e67 engineeringonly. Retry remainsheld. It confirms ac36e6f bindinggap and releasesonlysourceSHA/tree plus deterministicfullmatrixclosure enforcement beforebudget/provider and atdeepdispatch. Rootisolated bots-binding-source basedaccepted9de61 nowowns3runtimefiles; twoagentsowndisjointexistingcompatibilitytests/newbindingregressions. Noimplementationaccepted yet.
+
+LEAD064 explicitlyjudges retainedexample.com/RFCcaptures unsuitableforfinalV0.4productacceptance. Theyremain engineeringfixtures despitegenuineHTTPScaptureprovenance. No newcapture or modelcallauthorized. Dormantownerrequestmustwaitforbindingacceptance, suitablecurrentcapturedinputsleadreview, exactsource/digestpin. Zeroauthorizedlivecalls; noSESSION_ONCE, Fable, host/scheduler/newspend/publicaction.
+
+Jobsconfig PR24 exact413a18e/treef40e443a readywith488pass1hostskip58focused,Ruff/mypy74,actualsanitizeddefaultconfigprojection/noDB; native d254971. SwarmR28c PR24 exactba458eb/tree8c22e55 formallyaccepted8ce9f5e;593pass0skip,PGcleanup0,nativef05c13a. NextR29adiagnostic b727cfc mapsversion/legacyreceiptcompatibility forleadclarification; R28dheld. Goal2.0/2.0/1.3 remainsactivewithgenuinegatesopen.
