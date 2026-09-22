@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-057** (`lead-reviews/LEAD-057_2026-09-22T0602.md`).  
+Current lead review: **LEAD-058** (`lead-reviews/LEAD-058_2026-09-22T0705.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -150,3 +150,12 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Separate diagnostic `4a90be07...` reproduces first-match order dependence in `availability_for`.
 - Product rule fixed: all exact-scope matches are evaluated; exactly one eligible route selects; zero eligible fails closed; multiple eligible fails closed ambiguous. No inferred tie-break or destination authority.
 - Codex SP1 released directly; no Fable routing or live account/provider/model/public/scheduler action.
+
+## LEAD-058 deterministic route selection + V13 audit release
+
+- PR #11 exact `3f10d0f6eb031c00fff679aae18aa8045d8bd025`, tree `9efb375fe672df97526b6edf86d629c421d8a5b3`, is **ACCEPTED ENGINEERING** for deterministic unique-eligible route selection and platform-qualified community reply authority.
+- Accepted-parent baseline: 7 focused cases with 6 expected failures; candidate 25 focused pass; full 739 run / 737 pass / 0 fail / 0 error / 2 existing genuine-live skips. No exact-SHA CI/workflow.
+- Shared selector evaluates all exact bot/persona/platform matches under one clock, selects only one eligible route, returns deterministic no-eligible diagnostics, and fails closed on multiple eligible ambiguity. Capabilities are applied after selection.
+- Community now reuses the selector and binds effect authority to platform+alias; two-eligible and wrong-platform alias cases fail closed with zero effects.
+- Next dependency-safe work: SB-V13-002 reproduce-first provenance/window audit; no source edit unless a concrete defect is reproduced.
+- No Fable routing or live external actions.
