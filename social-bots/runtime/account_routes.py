@@ -31,6 +31,7 @@ REGISTRY_FILE = "registry.json"
 SCHEMA_VERSION = 1
 
 _REQUIRED = ("route_id", "platform", "bot", "persona", "route_type", "capabilities")
+_ROUTE_TYPES = {"API", "browser", "Buffer", "manual", "unsupported"}
 _SECRET_MARKERS = ("password", "passwd", "token", "cookie", "secret", "totp",
                    "recovery", "session", "private_key", "apikey", "api_key")
 _UNHEALTHY = {"unhealthy", "revoked", "suspended", "locked", "expired"}
@@ -88,6 +89,8 @@ def load_routes(home: str | Path | None = None) -> list[dict] | None:
         missing = [k for k in _REQUIRED if k not in r]
         if missing:
             raise RouteRegistryError(f"route[{i}] missing {missing}")
+        if not isinstance(r["route_type"], str) or r["route_type"] not in _ROUTE_TYPES:
+            raise RouteRegistryError(f"route[{i}] route_type is outside the documented enum")
         if not isinstance(r["capabilities"], dict):
             raise RouteRegistryError(f"route[{i}] capabilities must be an object")
     return routes
