@@ -1,0 +1,62 @@
+{
+  "blockers": [
+    "observable tooling looks present, but owner has not attested this machine as the persistent V0.7 host; do not install LIVE schedulers or claim V0.7 acceptance without that attestation"
+  ],
+  "evidence_class": "ENGINEERING",
+  "host": {
+    "hostname": "Apple-M5-Pro-87",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "platform_release": "25.6.0",
+    "root_fs": null,
+    "workspace_fs": null
+  },
+  "live_claim": false,
+  "locking": {
+    "fcntl_flock_available": true,
+    "strong_path": "posix-flock"
+  },
+  "notes": "SB-R07-072 preflight only. Never claim V0.7 LIVE acceptance from this receipt. Ephemeral Cloud Agent / CCR / overlay hosts must be UNSUITABLE; continue dependency-safe non-LIVE artifacts.",
+  "permissions": {
+    "euid": 501,
+    "uid": 501,
+    "writable_repo": true
+  },
+  "persistence_signals": {
+    "cursor_env": false,
+    "ephemeral_markers": []
+  },
+  "preflight_id": "SB-R07-072",
+  "python": {
+    "executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "version": "3.14.7"
+  },
+  "recorded_at": "2026-09-22T19:38:55Z",
+  "repo": {
+    "git_dir_present": true,
+    "path": "/private/tmp/bots-ollama-local-20260922"
+  },
+  "scheduling": {
+    "crontab": "/usr/bin/crontab",
+    "launchctl": "/bin/launchctl",
+    "schtasks": null,
+    "systemctl": null,
+    "systemd_user": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "is-system-running"
+      ],
+      "output": "systemctl not on PATH",
+      "returncode": null
+    }
+  },
+  "schema_version": 1,
+  "suitable_for_v07_live_scheduler": false,
+  "verdict": "INCONCLUSIVE_NEED_OWNER_CONFIRMATION",
+  "zero_spend": {
+    "ANTHROPIC_API_KEY_present": false,
+    "CLAUDE_CODE_OAUTH_TOKEN_present": false,
+    "policy": "no PAYG / no new spend; subscription route only when authorized"
+  }
+}
