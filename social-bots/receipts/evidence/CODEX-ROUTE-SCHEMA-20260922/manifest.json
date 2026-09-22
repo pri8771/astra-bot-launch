@@ -1,0 +1,14 @@
+{
+  "bots-route-schema-diagnostic-20260922.md": {
+    "bytes": 1327,
+    "sha256": "15e64e7e119643312a1006e9db2bbbc6fad5a4836de674d104b0615fdcd65c40"
+  },
+  "bots-route-schema-repro-20260922.py": {
+    "bytes": 1018,
+    "sha256": "a5cf69b7eb0e5d7ab6729ce421f6c3d5b5d963a9e31213cd65fb52f7f8654f6e"
+  },
+  "bots-route-schema-repro-20260922.txt": {
+    "bytes": 806,
+    "sha256": "cbb9f7a848532bf24696a3ddf4a39175bae2e1a586621f9da93eb30fb84850e0"
+  }
+}
