@@ -1,4 +1,4 @@
-# Work queue — LEAD-062 — target LIVE V1.3
+# Work queue — LEAD-063 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
@@ -24,8 +24,11 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 9. **PR #12 route_type schema repair is ACCEPTED ENGINEERING** at exact `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`: documented enum enforced at registry ingest; unknown type rejects whole registry; valid `unsupported` remains parsed/ineligible.
 10. **PR #14 composition is ACCEPTED ENGINEERING** at exact `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`: exact accepted PR12 + PR13 changes compose without new behavior.
 11. **LEAD-061 live-readiness audit CONFIRMED** at native evidence `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0`: live promotion remains REVIEW_BLOCKED; ten rows separate accepted engineering/live proof, missing live proof, owner gates and safe offline work.
-12. **Codex read-only RELEASED — SB-V11-001/002 reliability audit:** inspect/reproduce existing crash, duplicate, stale-fence, restart/reconciliation, outage, bounded-retry/dead-letter and duplicate-effect behavior. Do not add tests or edit source until a concrete current-code gap is reproduced and returned for lead release.
-13. Preserve and satisfy every genuine V0.4→V1.3 gate in sequence; final LIVE V1.3 promotion requires independently accepted genuine evidence.
+12. **SB-V11 diagnostic REWORK_FOUND:** unsafe reconciliation can proceed to decision/finish; unchanged reasoning-unavailable signal lacks durable retry ceiling/backoff/exhausted state.
+13. **Codex SP1 RELEASED — persistent unsafe-reconciliation gate only:** run existing read-only reconciliation before every unit; unsafe blocks decision/effects/finish receipt across fresh processes and releases only own lease. Retry implementation remains held.
+14. **Retry policy SPECIFIED / HELD:** max 3 attempts per unchanged persona+signal blocker fingerprint; 15m then 60m backoff; third => EXHAUSTED; later eligible signals may proceed; only changed blocker fingerprint or explicit audited operator reset rearms.
+15. **V0.4 five-call approval request PREPARED / NOT AUTHORIZED:** dormant request + manifest template only; prior one-call grant remains consumed; zero live calls authorized.
+16. Preserve and satisfy every genuine V0.4→V1.3 gate in sequence; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
