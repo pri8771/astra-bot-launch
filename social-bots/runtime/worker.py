@@ -20,7 +20,7 @@ import socket
 import uuid
 from collections.abc import Callable
 
-from . import leasing, receipts, decision
+from . import decision, leasing, receipts
 from .heartbeat import Heartbeat
 from .jsonstore import now_iso
 
@@ -82,11 +82,30 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
         # Failure aborts the unit through the ordinary failure/release path.
         if on_claim is not None:
             fence.fenced_commit(on_claim)
-        # (2b) reconcile prior owner's uncertain external effects before new work.
-        reconciled = None
-        if lease.reconcile_required:
-            reconciled = _reconcile(bot)
-            hb.beat(status="reconciled", next_safe_action="work")
+        # (2b) Reconcile every unit: releasing a blocked lease must not let a
+        # fresh acquisition bypass an unchanged unsafe external-effect record.
+        reconciled = _reconcile(bot)
+        if reconciled.get("safe") is not True:
+            failure = receipts.write_receipt(
+                bot, "failure", task_id, worker_id, lease.lease_id,
+                {"persona": persona_id, "outcome": "blocked_reconciliation_unsafe",
+                 "candidate_succeeded": False, "verified": False,
+                 "cycle_committed": False, "reconciled": reconciled,
+                 "fence_generation": lease.generation,
+                 "took_over_from": lease.took_over_from})
+            hb.beat(status="blocked", last_receipt=os.path.basename(failure),
+                    next_safe_action="resolve_unsafe_reconciliation")
+            released = leasing.release(lease)
+            return {"worker_id": worker_id, "task_id": task_id, "bot": bot,
+                    "persona": persona_id, "lease_id": lease.lease_id,
+                    "took_over_from": lease.took_over_from,
+                    "outcome": "blocked_reconciliation_unsafe",
+                    "verified": False, "withheld": True, "committed": False,
+                    "reconciled": reconciled, "lease_released": released,
+                    "start_receipt": os.path.basename(start),
+                    "failure_receipt": os.path.basename(failure),
+                    "heartbeat_beats": hb.beats}
+        hb.beat(status="reconciled", next_safe_action="work")
 
         # (3) useful work: one autonomy cycle. Renew lease around the work, and
         # pass the fence so the cycle's durable commit is refused if this worker
@@ -180,7 +199,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                 "took_over_by_generation": (exc.on_disk or {}).get("generation"),
                 "start_receipt": os.path.basename(start),
                 "heartbeat_beats": hb.beats}
-    except Exception as exc:  # noqa: BLE001 — record any failure as a receipt.
+    except Exception as exc:
         receipts.write_receipt(
             bot, "failure", task_id, worker_id, lease.lease_id,
             {"persona": persona_id, "error_type": type(exc).__name__, "error": str(exc)[:300]})
