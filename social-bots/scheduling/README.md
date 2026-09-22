@@ -29,6 +29,7 @@ alone. It does not hold state, retry loops, or long-lived connections.
 | `0` | Unit completed | success |
 | `3` | No-overlap: every candidate task already leased by a live worker | benign, expected — not a failure |
 | `5` | Lead direction halted this lane | benign, expected — not a failure |
+| `6` | Unauthorized live model route refused (`live_route_refused`) | blocked; inspect the authorization refusal receipt |
 | `1` | Unexpected failure (a receipt was written) | failure |
 | `2` | Bad usage (bad arguments) | failure — check the invocation, not the worker logic |
 
