@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-055** (`lead-reviews/LEAD-055_2026-09-22T0501.md`).  
+Current lead review: **LEAD-056** (`lead-reviews/LEAD-056_2026-09-22T0501.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -132,3 +132,12 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Root cause: Python bool is an int subclass and current normalize/aggregate use broad `isinstance(...,(int,float))` checks without finite validation.
 - **Codex SP1 released:** finite, non-bool PRESENT predicate + legacy-invalid aggregation defense + provenance/MISSING preservation + red/green/full evidence.
 - Owner target is V1.3 genuine-live; no new external/live grant and no Fable handoff.
+
+## LEAD-056 finite metrics + route freshness
+
+- PR #9 exact `30a2ebdfb45110b2bc6fea0f3d50876583487f9c` is **ACCEPTED ENGINEERING** for finite-number admission, legacy-invalid defense, and overflow containment.
+- Author evidence: 26 focused pass; full 728 run / 726 pass / 0 fail / 0 error / 2 existing genuine-evidence skips. No exact-SHA CI/workflow.
+- Repair preserves raw provenance and MISSING semantics; nonfinite aggregate/ratio/snapshot-difference results become unavailable rather than NaN/inf.
+- Next reproduced defect: `account_routes.py::_route_ok` ignores `last_verified_at`; missing/2020 verification can still yield account_available and draft authorization.
+- Lead contract: freshness <=24h; future clock skew <=5m; timestamp required, timezone-aware and parseable; exactly 24h old allowed, older stale; >+5m future invalid.
+- Codex SP1 released with deterministic time injection and no live account call. No Fable routing.
