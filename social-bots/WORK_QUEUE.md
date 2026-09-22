@@ -1,4 +1,4 @@
-# Work queue — LEAD-055 — target LIVE V1.3
+# Work queue — LEAD-056 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
@@ -16,8 +16,10 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 2. **SB-R07-072 remains ACCEPTED** at exact `7acc1695...` as the portable host-test isolation repair only.
 3. **V1.7-era due-rotation crash-window repair remains ACCEPTED ENGINEERING** at exact `84f8f05...`; it is reusable infrastructure evidence, not a V1.3 live gate.
 4. **PR #8 content-integrity repair is ACCEPTED ENGINEERING** at exact `9d497b4567e022a8e7f93a3ee890af206272b5be`: separate scoped final-review receipt anchor + strict measured-baseline validation. This does not prove receipt immutability or genuine baseline provenance.
-5. **Codex SP1 RELEASED:** repair V1.3 metrics validity on current source: bool/NaN/±inf must not become PRESENT; legacy invalid PRESENT observations must not contaminate aggregation; preserve raw provenance/MISSING semantics; red-before/green-after + affected/full tests. No V1.8+ work.
-6. Preserve and satisfy every genuine V0.7→V1.3 gate in order. Submit final LIVE V1.3 packet only when genuine prerequisites are independently accepted, then stop.
+5. **PR #9 finite-metrics repair is ACCEPTED ENGINEERING** at exact `30a2ebdfb45110b2bc6fea0f3d50876583487f9c`: invalid fresh/legacy metric values and arithmetic overflow fail closed without losing raw provenance.
+6. **Codex SP1 RELEASED — V0.8 route freshness:** `last_verified_at` required, timezone-aware, fresh <=24h, future allowance <=5m; missing/malformed/naive/stale/>+5m fail closed. Deterministic `now`; no real account call.
+
+7. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
