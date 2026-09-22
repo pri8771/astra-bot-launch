@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-053** (`lead-reviews/LEAD-053_2026-09-22T0344.md`).  
+Current lead review: **LEAD-054** (`lead-reviews/LEAD-054_2026-09-22T0418.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution ceiling: **LIVE V1.7 only, then hard stop**.
 
@@ -112,3 +112,13 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Author-run submission evidence: 711 run / 709 passed / 0 failed / 0 errors / 2 genuine-evidence skips; host module 11 passed. No independent CI/workflow exists for this exact SHA, so those counts are not labeled independent acceptance.
 - ChatGPT formal verdict: **SB-R07-072 ACCEPTED at exact SHA** strictly as the portable test-isolation repair. V0.7 host/model/reviewer/time prerequisites remain open.
 - No Fable handoff, scheduler/model/public/account/spend/merge/release action was authorized.
+
+## LEAD-054 due-rotation exact candidate review
+
+- Exact candidate: `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`, one commit over accepted `7acc1695...`.
+- Original defect reproduced: the fairness cursor was persisted only after unit completion/release, leaving a crash/write-failure window that could reselect the just-completed bot.
+- Repair accepted at engineering scope: claim cursor is persisted inside the current lease generation fence before reconciliation/useful work; persistence failure aborts before the cycle; later cycle failure retains rotation; held candidates do not advance it.
+- Author evidence: 2 red regressions before edit; 39 focused pass; full 713 run / 711 pass / 0 fail / 0 error / 2 unchanged genuine-evidence skips; no exact-SHA CI/workflow run.
+- User reports a separate 49-test bounded mechanical review with no defect, but that transcript was not present in published `f4e8d56` evidence and is not used as independent execution evidence here.
+- Verdict: **ACCEPTED ENGINEERING**, not V0.7 operational acceptance and not version promotion.
+- No Fable handoff. Codex remains direct isolated implementer under owner direction.
