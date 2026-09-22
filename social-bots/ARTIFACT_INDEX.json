@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T02:36:00Z",
+  "updated_at": "2026-09-22T03:44:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -2531,19 +2531,20 @@
       "name": "V0.7 persistent-host preflight and selection receipt",
       "type": "recovery_checkpoint",
       "version_gate": "V0.7-recovery",
-      "owner": "Fable",
-      "status": "CHANGES_REQUIRED",
+      "owner": "Codex",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-072.md",
       "depends_on": [
         "SB-R07-071"
       ],
       "story_points": 1,
       "evidence": [
-        "Codex independent macOS full discovery at f0f1307 ran 707 tests: 703 passed, 2 failed, 2 skipped, 0 errors",
-        "Both failures are portable test-isolation defects in tests/test_host_preflight.py: Linux scheduler binaries are mocked without mocking platform.system(), so Darwin follows launchctl path and fails before attestation",
-        "No real persistent-host suitability verdict is implied; repair is limited to SP1 test isolation unless a separate production defect is demonstrated"
+        "exact candidate 7acc1695d2961267580a156f31df6a5991476654 is one commit ahead of e9678f8bead4f872c199bdf09dbf709a8f649159 and changes only social-bots/tests/test_host_preflight.py",
+        "independent ChatGPT exact-diff review confirms Linux/Darwin simulation is explicit, scheduler absence remains fail-closed, attested hosts remain candidates only, and production runtime/host predicates are unchanged",
+        "Codex author-run exact-source submission evidence: 711 run / 709 passed / 0 failed / 0 errors / 2 genuine-evidence skips; host-preflight module 11 passed; these counts are not labeled independent acceptance",
+        "no CI/workflow run exists for exact candidate; acceptance is scoped to the deterministic test-isolation repair and does not qualify any real host or V0.7 operational liveness"
       ],
-      "last_verified_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md"
     },
     {
       "id": "SB-R07-073",
