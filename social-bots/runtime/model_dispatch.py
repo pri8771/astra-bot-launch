@@ -241,7 +241,22 @@ def validate_bound_context(scope: DispatchScope, ctx: Any) -> str | None:
     return actual[0]
 
 
+def _validate_local_provider(scope: DispatchScope | None, provider_id: str,
+                             invocation=None) -> None:
+    """A LOCAL grant must never authorize a hosted provider through the shared gate."""
+    if scope is None or scope.execution_binding is None:
+        return
+    config = scope.execution_binding.closure().get("provider_config", {})
+    if config.get("provider_mode") == "ollama-local":
+        from . import reasoning_local
+        if (config != reasoning_local.provider_config()
+                or provider_id != reasoning_local.PROVIDER_ID
+                or (invocation is not None and type(invocation) is not reasoning_local._LocalInvocation)):
+            raise DispatchRefused("local_provider_binding_mismatch")
+
+
 def _reserve(scope: DispatchScope, *, context_digest: str | None, provider_id: str):
+    _validate_local_provider(scope, provider_id)
     posture = authorization.posture_violations(injected_runner=False)
     if posture:
         raise DispatchRefused("; ".join(posture))
@@ -332,6 +347,7 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
                                          "a live model route needs a production scope with "
                                          "a canonical authorization manifest")
         raise DispatchRefused(st.last.refusal)
+    _validate_local_provider(scope, provider_id, fn)
     adopted = st.token
     if adopted is not None:
         st.token = None                               # single use

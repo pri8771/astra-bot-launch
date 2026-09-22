@@ -26,6 +26,7 @@ def fixture_binding(run_scope="v04-divergence-test"):
     closure = {
         "artifacts": ["SB-V04-002", "SB-V04-004"],
         "cases": [],
+        "provider_config": {"provider_mode": "claude-cli"},
         "lane": "windows-core",
         "run_scope": run_scope,
     }
@@ -99,10 +100,10 @@ class ManifestValidationTest(unittest.TestCase):
             valid_manifest(max_calls=authorization.HARD_MAX_CALLS + 1))
         self.assertTrue(any("hard ceiling" in e for e in errs), errs)
 
-    def test_non_subscription_provider_mode_is_rejected(self):
-        """Only the existing-subscription Claude Code route may ever be authorized."""
+    def test_unrecognized_provider_mode_is_rejected(self):
+        """Unrecognized generic model routes cannot be authorized."""
         errs = authorization.validate_manifest(valid_manifest(provider_mode="model"))
-        self.assertTrue(any("subscription route" in e for e in errs), errs)
+        self.assertTrue(any("authorized route" in e for e in errs), errs)
 
     def test_expired_manifest_is_rejected(self):
         """An authorization that has lapsed is not an authorization."""
