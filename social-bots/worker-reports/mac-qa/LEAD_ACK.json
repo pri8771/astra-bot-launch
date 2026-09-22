@@ -1,6 +1,6 @@
 {
-  "lead_review": "LEAD-050",
-  "updated_at": "2026-09-22T00:51:00Z",
+  "lead_review": "LEAD-051",
+  "updated_at": "2026-09-22T01:55:00Z",
   "lane": "ACCEPTANCE",
   "branch": "claude/social-bots-mac-qa-control",
   "status": "STALE_ACTION_REQUIRED",
@@ -9,22 +9,27 @@
   "hard_stop_after": "V1.7",
   "worker_acknowledged": false,
   "official_phase": "V0.4.x / V0.4 in progress",
-  "current_branch_state": "At the LEAD-050 review cutoff there was no fresh post-LEAD-048 reviewer session, reviewer heartbeat, or independent result; prior branch head was lead-authored assignment only.",
+  "current_branch_state": "Fable has now produced real post-LEAD-050 V1.7 worker commits through af3fded92eaba5e68c8088737b68c6f043e40a5e, but this Acceptance branch still has no fresh independent post-LEAD-050 review result.",
+  "lead_findings": [
+    "Fable 12c807e materially hardens raw live callable and real CLI dispatch but R07-041 remains CHANGES_REQUIRED because exact EngineeringStub/injected-runner seams can execute arbitrary caller-supplied callables/runners when no dispatch scope exists.",
+    "Fable b5fd038 due-work anti-starvation, c4d31fee final-content review/prospective experiment work, 3da19a9 producer consolidation and af3fded preflight are submitted engineering evidence pending independent review.",
+    "Fable host is an ephemeral Linux VM without a native scheduler; social routes are CONNECT-403; no account registry or authorization manifest exists. Those are blockers, not operational acceptance."
+  ],
   "next": [
-    "Start a fresh top-level local-Mac review session and emit exactly one SESSION_ONCE heartbeat.",
-    "Confirm an actual post-LEAD-050 Fable worker implementation commit before treating that lane as active.",
-    "Independently execute SB-R07-071 multiprocess/session race when applicable.",
-    "Audit repaired direct/ad-hoc model-callable authorization with a harmless sentinel and zero real inference.",
-    "Audit shared durable budget accounting under concurrency, re-entry and failure.",
-    "Audit heartbeat/session lease durability, retained-output/final-review integrity, and persona-scoped prospective experiment boundaries.",
-    "Review read-only persistent-host/account/provider preflight evidence for LIVE V1.7."
+    "Start a fresh local-Mac review session if needed and emit exactly one SESSION_ONCE heartbeat; do not duplicate a heartbeat on resume.",
+    "Wait for and independently audit the repaired R07-041 seam using harmless sentinels: no-scope must refuse EngineeringStub and injected-runner arbitrary execution; explicit engineering scope only; production scope refuses seams; zero real inference.",
+    "Independently execute SB-R07-071 multiprocess/session race on the pinned candidate.",
+    "Independently exercise b5fd038 due-work rotation/anti-starvation.",
+    "Audit c4d31fee C05/C06/C07 replacement/symlink/late-write/wrong-scope/final-text-hash/prospective-experiment negative controls.",
+    "Audit enabled V1.7 producer/dispatcher boundary and confirm parked future modules are unreachable.",
+    "Review af3fded preflight/gate dossier only as factual blocker evidence."
   ],
   "prohibitions": [
     "No runtime/product source edits in Acceptance.",
     "No additional live Claude/adaptive/product-model call.",
     "No public posting/reply/message or other social effect.",
     "No PAYG/new spend.",
-    "No destructive action or credential exposure.",
+    "No account mutation, destructive action or credential exposure.",
     "No fabricated operational evidence or engagement manipulation.",
     "No main/public release.",
     "No SwarmAI dependency.",
