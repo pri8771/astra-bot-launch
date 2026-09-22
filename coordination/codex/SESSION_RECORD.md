@@ -25,3 +25,18 @@ owner_actions[]: project_id / gate_id / missing_action / existing_authority_ref 
 next_resume: project_id / artifact_id / required_reads / exact_next_command_or_action
 
 Never record ACCEPTED or COMPLETE without the actual applicable lead decision. Codex's review recommendation uses READY_FOR_LEAD_REVIEW / RECOMMEND_ACCEPT / REWORK_SUGGESTED or the native worker equivalents. Before ending, mark ended implementation sessions truthfully and avoid implying a stopped model continues in the background.
+
+## 2026-09-22 current public capture checkpoint
+
+`session_id`: `codex-current-capture-prep-20260922`
+`role`: coordinator / released capture-preparation executor
+`target_scope`: LEAD-065 only; exactly two public current-source captures; no model/provider, matrix activation, account, posting, spend, host, or scheduler action.
+`updated_at`: `2026-09-22T11:28:42+00:00`
+`project`: Social Bots
+`coordination_ref`: `chatgpt/social-bots-plan-20260920@7451465a74bd06a2676efd7a04cd0f60a86463c5`
+`source_ref`: `codex/bots-execution-binding-20260922@fec97738ec0e9407415f60228f7c3938613396c3` (tree `43e80b92d8ae559db55a41ed33329695e6fd03fc`)
+`artifact`: LEAD-065 current-public capture preparation
+`activity`: exactly two accepted-collector captures frozen: E1 Meta Reels India (`cap-7920a4414afe4fe4`) and E2 TikTok creator-led series (`cap-9701ad2cb45c4b19`), each `ok` / trusted `live-capture` / HTTP 200; raw hashes and receipt-file hashes are in `social-bots/receipts/evidence/CODEX_CURRENT_CAPTURE_20260922/CAPTURE_INDEX.json`.
+`review_state`: READY_FOR_LEAD_SUITABILITY_REVIEW; no self-acceptance.
+`blocker`: final-divergence-input suitability and any subsequent matrix/owner model-call gate remain lead-controlled.
+`next_action`: lead review of the frozen bytes, receipts, signals and relevance notes in `social-bots/lead-reviews/CODEX_CURRENT_CAPTURE_PREP_20260922.md`; no capture retry or model action before disposition.
