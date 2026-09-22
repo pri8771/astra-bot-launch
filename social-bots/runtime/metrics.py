@@ -30,7 +30,7 @@ from pathlib import Path
 from . import paths
 from .jsonstore import append_jsonl, read_jsonl, now_iso
 
-NORMALIZATION_VERSION = "1.1.1"
+NORMALIZATION_VERSION = "1.1.2"
 
 
 def _finite_number(value: object) -> float | None:
@@ -213,13 +213,57 @@ class NormalizedObservation:
         return asdict(self)
 
 
-def _parse_iso(ts: str | None) -> datetime | None:
-    if not ts:
+def _parse_iso(ts: object) -> datetime | None:
+    if not isinstance(ts, str) or not ts.strip():
         return None
     try:
-        return datetime.fromisoformat(ts)
+        parsed = datetime.fromisoformat(ts)
     except ValueError:
         return None
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        return None
+    return parsed
+
+
+def _metadata_error(o: dict) -> str | None:
+    """Validate attributable source and any supplied observation time boundaries."""
+    source = o.get("source")
+    if not isinstance(source, str) or not source.strip():
+        return "invalid_source"
+    if _parse_iso(o.get("collected_at")) is None:
+        return "invalid_collected_at"
+    for field in ("window_start", "window_end"):
+        if o.get(field) is not None and _parse_iso(o[field]) is None:
+            return f"invalid_{field}"
+    start, end = _parse_iso(o.get("window_start")), _parse_iso(o.get("window_end"))
+    if start is not None and end is not None and start >= end:
+        return "invalid_window_order"
+    return None
+
+
+def _observation_error(o: dict) -> str | None:
+    """Recheck persisted normalized claims before treating them as evidence."""
+    error = _metadata_error(o)
+    if error:
+        return error
+    normalized = o.get("normalized")
+    if not isinstance(normalized, dict):
+        return "invalid_normalized_metrics"
+    platform = o.get("platform")
+    pmap = PLATFORM_MAP.get(platform) if isinstance(platform, str) else None
+    mapping = pmap["raw_to_semantic"] if pmap else {}
+    for semantic, metric in normalized.items():
+        if not isinstance(metric, dict):
+            return "invalid_normalized_metrics"
+        if metric.get("availability") != PRESENT:
+            continue
+        if metric.get("metric_kind") not in METRIC_KINDS:
+            return "invalid_metric_kind"
+        raw_name = metric.get("raw_name")
+        if (not isinstance(raw_name, str) or mapping.get(raw_name) != semantic
+                or metric.get("semantic") != semantic):
+            return "invalid_metric_mapping"
+    return None
 
 
 def _kind_for(pmap: dict | None, raw_name: str,
@@ -270,6 +314,11 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
     (cumulative_snapshot / delta / gauge / rate); ``raw_kinds`` overrides the
     platform's declared kind per raw metric.
     """
+    collected_at = now_iso() if collected_at is None else collected_at
+    error = _metadata_error({"source": source, "collected_at": collected_at,
+                             "window_start": window_start, "window_end": window_end})
+    if error:
+        raise ValueError(error)
     pmap = PLATFORM_MAP.get(platform)
     if pmap is None:
         # Unknown platform: everything is MISSING (we cannot assert support).
@@ -323,7 +372,7 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
         experiment_id=experiment_id,
         window_start=window_start,
         window_end=window_end,
-        collected_at=collected_at or now_iso(),
+        collected_at=collected_at,
         normalization_version=NORMALIZATION_VERSION,
         raw_metrics=dict(raw_metrics),
         normalized=normalized,
@@ -357,6 +406,11 @@ def _ratio(obs: NormalizedObservation, name: str, num_sem: str, den_sem: str,
     num = obs.metric(num_sem)
     den = obs.metric(den_sem)
     inputs = {num_sem: num.value, den_sem: den.value}
+    error = _observation_error(obs.as_dict())
+    if error:
+        return DerivedMetric(name, MISSING, None, formula, DERIVED_FORMULA_VERSION,
+                             inputs, metric_kind=RATE,
+                             derivation={"ok": False, "reason": error})
     numerator, denominator = _finite_number(num.value), _finite_number(den.value)
     if num.is_missing() or den.is_missing() or numerator is None or denominator in (None, 0):
         avail = MISSING
@@ -400,6 +454,9 @@ def derive_delta_from_snapshots(previous: NormalizedObservation,
                              inputs=inputs, metric_kind=DELTA,
                              derivation={"ok": False, "reason": reason})
 
+    error = _observation_error(previous.as_dict()) or _observation_error(current.as_dict())
+    if error:
+        return _missing(error)
     if prev.is_missing() or curr.is_missing():
         return _missing("a snapshot input is missing")
     previous_value, current_value = _finite_number(prev.value), _finite_number(curr.value)
@@ -467,12 +524,14 @@ def derive_all(obs: NormalizedObservation) -> dict[str, dict]:
 # ------------------------------------------------------------------------- #
 def observation_age_seconds(obs: NormalizedObservation,
                             now: datetime | None = None) -> float | None:
+    if _observation_error(obs.as_dict()):
+        return None
     end = _parse_iso(obs.window_end) or _parse_iso(obs.collected_at)
     if end is None:
         return None
     now = now or datetime.now(timezone.utc)
-    if end.tzinfo is None:
-        end = end.replace(tzinfo=timezone.utc)
+    if now.tzinfo is None or now.utcoffset() is None:
+        return None
     return (now - end).total_seconds()
 
 
@@ -492,6 +551,9 @@ def _store(bot: str) -> Path:
 
 
 def record(bot: str, obs: NormalizedObservation) -> None:
+    error = _observation_error(obs.as_dict())
+    if error:
+        raise ValueError(error)
     append_jsonl(_store(bot), obs.as_dict())
 
 
@@ -501,7 +563,10 @@ def observations_for(bot: str) -> list[dict]:
 
 def trace_content(bot: str, content_id: str) -> dict:
     """Trace one content item from raw metrics up to persona/experiment."""
-    obs = [o for o in observations_for(bot) if o.get("content_id") == content_id]
+    rows = [o for o in observations_for(bot) if o.get("content_id") == content_id]
+    excluded = [{"reason": error, "observation": o} for o in rows
+                if (error := _observation_error(o))]
+    obs = [o for o in rows if _observation_error(o) is None]
     personas = sorted({o.get("persona") for o in obs if o.get("persona")})
     experiments = sorted({o.get("experiment_id") for o in obs if o.get("experiment_id")})
     return {
@@ -511,12 +576,16 @@ def trace_content(bot: str, content_id: str) -> dict:
         "experiments": experiments,
         "observation_count": len(obs),
         "observations": obs,
+        "excluded_observation_count": len(excluded),
+        "excluded_observations": excluded,
     }
 
 
-def _obs_time(o: dict) -> str:
-    """Ordering key for observations within a series (window end, else collected)."""
-    return o.get("window_end") or o.get("collected_at") or ""
+def _obs_time(o: dict) -> datetime:
+    """Order validated observations by actual instants, not ISO text/UTC offset."""
+    value = _parse_iso(o.get("window_end")) or _parse_iso(o.get("collected_at"))
+    assert value is not None  # metadata was checked before entering aggregation
+    return value
 
 
 def _series_key_dict(o: dict) -> tuple:
@@ -530,7 +599,7 @@ def _win(o: dict) -> tuple | None:
     if not s or not e:
         return None
     a, b = _parse_iso(s), _parse_iso(e)
-    if a is None or b is None:
+    if a is None or b is None or a >= b:
         return None
     return (a, b)
 
@@ -566,11 +635,14 @@ def aggregate_semantic(bot: str, semantic: str) -> dict:
     by_platform: dict[str, dict] = {}
     for o in observations_for(bot):
         plat = o.get("platform")
-        mv = o.get("normalized", {}).get(semantic)
+        bucket = by_platform.setdefault(plat, {
+            "kinds": {}, "present": 0, "missing": 0, "not_supported": 0, "invalid": 0})
+        if _observation_error(o):
+            bucket["invalid"] += 1
+            continue
+        mv = o["normalized"].get(semantic)
         if mv is None:
             continue
-        bucket = by_platform.setdefault(plat, {
-            "kinds": {}, "present": 0, "missing": 0, "not_supported": 0})
         avail = mv.get("availability")
         number = _finite_number(mv.get("value"))
         if avail == PRESENT and number is not None:
