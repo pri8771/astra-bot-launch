@@ -1098,3 +1098,35 @@ Source refs
 - `social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md`
 - PR #7 `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`
 - coordination evidence `f4e8d566b98f9bfeeaa2bf2c3945db0185bbf072`
+
+
+## 2026-09-22T05:01:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-055 — PR8 verdict / V1.3 goal / metrics SP1 release
+
+Done
+- Applied owner scope update: Bots target/ceiling is now **LIVE V1.3 with genuine tests**, superseding the prior V1.7 ceiling while preserving all genuine predecessor gates and all external/live restrictions.
+- Independently reviewed PR #8 exact `9d497b4567e022a8e7f93a3ee890af206272b5be` over accepted `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`.
+- Formally **ACCEPTED ENGINEERING** the bounded C05/C06 separate review-receipt anchor and C07 strict measured-baseline validation repair.
+- Confirmed/released the newly reproduced V1.3 metrics-validity SP1 directly to Codex. No Fable routing.
+
+Evidence
+- PR #8 exact SHA `9d497b4567e022a8e7f93a3ee890af206272b5be`.
+- Native integrity packet/evidence coordination `9f6ec65ad00bf3f96116c23dd2381d0ebe230489`.
+- Author full suite: 723 run / 721 passed / 2 existing genuine-evidence skips; bounded agent reports 89 focused pass. No exact-SHA CI/workflow.
+- Owner goal record `coordination/codex/GOAL_20260922.md@7e0faa40da77e708e0b2db4fea7b8e3cc7a066e6`.
+- V1.3 metrics diagnostic at `9d497b4...`: bool/NaN/±inf can be normalized as PRESENT and persisted/aggregated to nonfinite outputs; existing 21 metric tests do not cover this.
+
+Next
+- Codex SP1: in `runtime/metrics.py`, require PRESENT mapped values to be finite int/float and not bool; invalid mapped values remain MISSING with raw provenance retained.
+- Defensively exclude legacy stored invalid PRESENT bool/non-numeric/nonfinite values from aggregation; never convert them to zero.
+- Add red-before/green-after tests through normalize, persistence/reload, and aggregation; prove ordinary numeric zero remains PRESENT and outputs stay finite.
+- Run metrics/affected/full suites; publish exact SHA, commands/exits and hashed evidence for ChatGPT formal review.
+- Continue direct Codex only; no Fable handoff.
+
+Blockers
+- Owner target change supplies no model/public/account/host/scheduler/spend/deployment/main-merge grant.
+- Genuine V0.7→V1.3 live prerequisites remain mandatory and cannot be replaced by fixtures/synthetic evidence.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md`
+- PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`
+- owner goal `7e0faa40da77e708e0b2db4fea7b8e3cc7a066e6`
