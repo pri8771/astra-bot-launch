@@ -1,15 +1,19 @@
-> **Latest owner assignment — 2026-09-22:** Antigravity is the next Social Bots implementation owner; target accepted LIVE V1.7. Read `social-bots/OWNER_RACE_V17_20260922.md` and `social-bots/prompts/ANTIGRAVITY_BOTS_V17_RACE_20260922.md` first. State: ASSIGNED_WAITING_FOR_WORKER, not launched. This supersedes older worker/pause routing below only; existing evidence, review holds and action grants are unchanged. No new scheduler or watcher.
+> **Latest owner assignment — 2026-09-22:** Antigravity is active Social Bots implementation owner; target accepted LIVE V1.7. PR22 candidate (`3bad054`) and frozen Mac matrix (`1549df4`) independently verified and accepted for engineering composition (`social-bots/lead-reviews/ANTIGRAVITY_PR22_MATRIX_DISPOSITION_20260922.md`). Dormant activation proposal prepared outside authorizations. Zero live calls executed, zero public actions, zero scheduler mutations. State: BLOCKED_OWNER_AUTHORIZATION for 5-call local divergence batch and named cultural reviewer.
 
-# Current state — LEAD-048: LIVE V1.7 ONLY
+# Current state — LIVE V1.7 RACE
 
-Official version remains **V0.4.x**; V0.3 is accepted. No new runtime acceptance was performed by this scope update.
+Official version remains **V0.4.x**; V0.3 is accepted.
 
-**Owner target: live V1.7, then stop development.** No automatic V1.8/V2.3/V3.0 continuation. Future roadmap and submitted strategy/specialist code are preserved and parked.
+**Owner target: LIVE V1.7, then stop development.** No automatic V1.8/V2.3/V3.0 continuation.
 
-Fable remains sole integrator on `fable/social-bots-v23-fasttrack-20260921`; the branch name is historical. Fetch canonical and read `delivery/V17_LIVE.md`, `V17_SCOPE.json` and the active artifact card. Shared in-scope runtime edits are released; preserve incoming work. Cursor/legacy source lanes parked at safe handoff; QA review-only.
+- **Active implementation owner**: Antigravity on Mac (`Apple-M5-Pro-87`).
+- **Verified Source**: Candidate `3bad0541fde8afb584bc6e396ea093b5d1f3c407`, tree `781fc16b1b0a982c7014ea04942437d6ada803e6`. Full unittest suite: 789 passed, 2 skipped, 0 failures, 0 errors.
+- **Prepared Matrix**: `CODEX_MAC_FINAL_MATRIX_20260922` (digest `sha256:30e0fe73...`, file SHA `1549df40...`, run scope `v04-mac-local-20260922`).
+- **Dormant Activation Proposal**: `CODEX_MAC_FINAL_MATRIX_20260922/DORMANT_ACTIVATION_PROPOSAL.md` prepared outside `social-bots/authorizations/`.
+- **Persistent Host & Platform Routes Packet**: `social-bots/receipts/evidence/ANTIGRAVITY_HOST_AND_PLATFORM_PACKET_20260922.md` created.
+- **Current Blockers**:
+  1. Owner explicit 5-call grant for local Ollama `qwen3.5:9b` divergence batch (Mac selection does not infer execution grant).
+  2. Owner nomination of cultural reviewer (owner self-review vs named alias).
+  3. Persistent host attestation for V0.7 (Mac preflight is `INCONCLUSIVE_NEED_OWNER_CONFIRMATION`).
+  4. X official API cost policy conflict under zero-spend constraint.
 
-Last observed worker head: 347de2b5c91c774670c3b884cc542c88fa6eabfa, a lead-authored direction update. Material checkpoint a204ad0827748a4e9661f1945b8e025d53d0ae09 and worker-reported 523 discovered/521 passed/2 skipped are historical, not fresh independent runtime proof. No worker consumption of LEAD-048 is inferred.
-
-Immediate work: active provider authorization/budgets, heartbeat/lease validation, final review/prospective experiments; early host/account/provider preflight; real V0.4–V0.7 gates; verified accounts/canaries/operation; integrated V1.1–V1.7 behavior. Unused future specialist acceptance and V2 H1–H4 are not prerequisites.
-
-No new live-model/public/spend/main-merge permission. Required earlier live evidence still must exist. Real V1.7 community reads/decisions/reviewed drafts do not claim sent replies. One fresh session = one SESSION_ONCE; no periodic watcher.

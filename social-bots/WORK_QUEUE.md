@@ -1,16 +1,17 @@
-> **Latest owner assignment — 2026-09-22:** Antigravity is the next Social Bots implementation owner; target accepted LIVE V1.7. Read `social-bots/OWNER_RACE_V17_20260922.md` and `social-bots/prompts/ANTIGRAVITY_BOTS_V17_RACE_20260922.md` first. State: ASSIGNED_WAITING_FOR_WORKER, not launched. This supersedes older worker/pause routing below only; existing evidence, review holds and action grants are unchanged. No new scheduler or watcher.
+> **Latest owner assignment — 2026-09-22:** Antigravity is active Social Bots implementation owner; target accepted LIVE V1.7. PR22 candidate (`3bad054`) and frozen Mac matrix (`1549df4`) independently verified and accepted for engineering composition. Dormant activation proposal prepared outside authorizations. Zero live calls executed, zero public actions, zero scheduler mutations. State: BLOCKED_OWNER_AUTHORIZATION for 5-call local divergence batch and named cultural reviewer.
 
-# Work queue — LEAD-051 — stop at LIVE V1.7
+# Work queue — Antigravity LIVE V1.7 RACE
 
 Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V1.7 only**, not V1.8+, V2.3 or V3.0. Active contract: `delivery/V17_LIVE.md`; scope filter: `delivery/V17_SCOPE.json`; exit criteria: `delivery/V17_ACCEPTANCE.md`.
 
 ## Current lane truth
 
-- **Fable Integrator — ACTIVE.** Worker session `s-20260921T211438Z-d5589881` ingested the V1.7-only scope and produced signed material work through `af3fded92eaba5e68c8088737b68c6f043e40a5e`.
-- **Mac Acceptance — STALE / ACTION REQUIRED.** No fresh independent post-LEAD-050 reviewer result is visible.
-- **Cursor/Core/Intelligence — PARKED / evidence-only.** No overlapping source work.
-- **V0.4 canary — FROZEN / evidence preservation.** No further model call authorized.
-- **worker-pc — outside critical path** until private-repo clone/auth is demonstrably repaired.
+- **Antigravity Implementation Finisher — ACTIVE.** Working on Mac host (`Apple-M5-Pro-87`), candidate `3bad0541fde8afb584bc6e396ea093b5d1f3c407` (tree `781fc16b1b0a982c7014ea04942437d6ada803e6`). 789 unittests pass, 2 skips.
+- **Mac Matrix Verification — COMPLETED & ACCEPTED FOR ENGINEERING.** PR22 and `CODEX_MAC_FINAL_MATRIX_20260922` independently reviewed and accepted (`ANTIGRAVITY_PR22_MATRIX_DISPOSITION_20260922.md`).
+- **Dormant Activation Proposal — PREPARED.** `DORMANT_ACTIVATION_PROPOSAL.md` prepared outside authorizations.
+- **Host & Platform Packet — PREPARED.** `ANTIGRAVITY_HOST_AND_PLATFORM_PACKET_20260922.md` documents persistent host gaps (SB-R07-073/074) and platform route status (X cost conflict vs zero-spend).
+- **V0.4 Canary / Divergence — BLOCKED_OWNER_AUTHORIZATION.** 5 local Ollama calls awaiting explicit owner grant; cultural reviewer awaiting owner nomination. No execution without explicit grant.
+- **Other Lanes — PARKED.** No overlapping writers.
 
 ## Immediate order
 
