@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-060** (`lead-reviews/LEAD-060_2026-09-22T0732.md`).  
+Current lead review: **LEAD-061** (`lead-reviews/LEAD-061_2026-09-22T0740.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -177,3 +177,11 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - PR13 retains malformed legacy rows as raw evidence while excluding them from stronger trace/aggregate/derived claims; valid kind overrides and optional windows remain supported.
 - Next task is composition only: combine both accepted disjoint repairs on base `3f10d0f6...`, verify exact diffs/hashes, run targeted and full suites, and make no new behavior changes.
 - No live external action or Fable handoff.
+
+## LEAD-061 accepted composition
+
+- PR14 exact `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`, tree `72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a`, is **ACCEPTED ENGINEERING** as the mechanical composition of accepted PR12 + PR13.
+- Native packet reports all six changed blobs exactly match accepted candidates and all 894 other base paths unchanged; no semantic adaptation/conflict.
+- Route focused 45 pass; metrics focused 43 pass; full 761 run / 759 pass / 0 fail / 0 error / 2 existing genuine-live skips; py_compile/diff clean. No exact-SHA CI.
+- Next dependency-safe work is a read-only V0.7→V1.3 live-readiness gap audit on the accepted composition; no code edits or live actions during that audit.
+- No Fable handoff or external effect.
