@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-058** (`lead-reviews/LEAD-058_2026-09-22T0705.md`).  
+Current lead review: **LEAD-059** (`lead-reviews/LEAD-059_2026-09-22T0705.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -159,3 +159,13 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Community now reuses the selector and binds effect authority to platform+alias; two-eligible and wrong-platform alias cases fail closed with zero effects.
 - Next dependency-safe work: SB-V13-002 reproduce-first provenance/window audit; no source edit unless a concrete defect is reproduced.
 - No Fable routing or live external actions.
+
+## LEAD-059 route_type schema diagnostic
+
+- Accepted source under diagnosis: `3f10d0f6eb031c00fff679aae18aa8045d8bd025`; native evidence `63bb73fffe7de1b52e551e952d7ed7d9531c4675`.
+- Reproduced defect: undocumented `route_type="telepathy"` with healthy/fresh route state is admitted as account_available and draft-authorized.
+- Root cause: `load_routes` validates route_type presence only; `_route_ok` rejects only literal `unsupported`.
+- Bounded Codex SP1 released: registry-ingest enum validation exactly matching schema `API|browser|Buffer|manual|unsupported`; any unknown type rejects the whole registry; valid `unsupported` still parses but is unavailable.
+- No boolean-schema contract is added where the document does not define one.
+- SB-V13-002 metrics audit continues separately and remains reproduce-first/no-source-edit-until-failure.
+- No live external action or Fable handoff.
