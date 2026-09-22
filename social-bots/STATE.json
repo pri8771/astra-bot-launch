@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T08:05:00Z",
+  "updated_at": "2026-09-22T08:13:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,8 +22,8 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-062",
-    "last_review": "LEAD-062",
+    "lead_release": "LEAD-063",
+    "last_review": "LEAD-063",
     "target": "V1.3",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.3",
@@ -128,8 +128,8 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v13_reliability_readonly_audit",
-      "assignment": "Read-only/reproduce-first SB-V11-001/002 reliability audit on accepted composition. No new tests/source edits until a concrete current-code gap is reproduced and returned for lead release.",
+      "activity": "direct_v11_reconciliation_repair_first",
+      "assignment": "Implement persistent fail-closed unsafe reconciliation gate only: run existing read-only reconciliation before every unit; unsafe => no decision cycle/effects/finish receipt, truthful blocked/failure receipt, release only own lease; unchanged unsafe condition blocks subsequent fresh processes. Retry implementation held.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
       "latest_accepted_candidate": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
@@ -418,13 +418,24 @@
       "recommendation": "REVIEW_BLOCKED_FOR_LIVE_PROMOTION",
       "source_changes": 0,
       "live_actions": 0
+    },
+    "codex_v11_reliability_diagnostic": {
+      "accepted_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "accepted_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "evidence": "a2d108f",
+      "findings": [
+        "unsafe reconciliation safe=false ignored and decision.run_cycle + verified finish proceed",
+        "same oldest signal can hit blocked_reasoning_unavailable across fresh processes without durable retry ceiling/backoff/exhausted state"
+      ],
+      "classification": "synthetic engineering diagnostic; no full live host/scheduler/provider proof",
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-062",
-    "review_ref": "social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md",
-    "review_type": "live_readiness_audit_confirmation_scope_reconciliation_reliability_audit_release",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md",
+    "review_id": "LEAD-063",
+    "review_ref": "social-bots/lead-reviews/LEAD-063_2026-09-22T0813.md",
+    "review_type": "sb_v11_rework_reconciliation_release_retry_policy_v04_dormant_request",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md",
     "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
@@ -473,7 +484,8 @@
       "SB-V15-001",
       "SB-V16-001",
       "SB-V17-001",
-      "SB-V20-002"
+      "SB-V20-002",
+      "SB-V11-001"
     ],
     "active_changes_required": [
       "SB-V05-002",
@@ -494,15 +506,16 @@
       "SB-V06-002",
       "SB-V06-003",
       "SB-V07-002",
-      "SB-V07-005"
+      "SB-V07-005",
+      "SB-V11-002"
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "LEAD-061 live-readiness audit at b58ba6d... confirmed; live promotion remains REVIEW_BLOCKED.",
-      "First authorized V0.4 canary remains accepted; one-call grant consumed; second call excluded; controlled divergence and SB-EVD-002 remain open.",
-      "Persistent-host facts, three genuine V0.6 dry runs, V0.8 account route evidence, V0.9 public canaries, and V1.0–V1.2 operational predecessors remain distinct open gates.",
-      "STATE/routing metadata reconciled to owner target LIVE V1.3, Codex direct implementation, no Fable handoff; stale V1.7/Fable instructions removed from active fields.",
-      "Next dependency-safe assignment: read-only/reproduce-first SB-V11-001/002 reliability audit; no source/test edits until a concrete gap is reproduced."
+      "SB-V11-001 CHANGES_REQUIRED: unsafe reconciliation is detected but ignored; unchanged reasoning-unavailable signal has no durable retry ceiling/block state.",
+      "Persistent reconciliation rule required because releasing the owned lease clears reconcile_required on the next empty-slot acquisition.",
+      "Released only reconciliation repair: run read-only reconcile before every unit; unsafe remains fail-closed across fresh processes with no decision cycle/new effects/finish receipt.",
+      "Retry policy specified (3 attempts; 15m then 60m backoff; third => exhausted; later-signal fairness; fingerprint rearm; explicit audited operator reset) but implementation is HELD.",
+      "Dormant V0.4 five-call owner approval request + non-executable manifest template prepared; prior one-call grant remains consumed and no live calls are authorized."
     ]
   },
   "public_actions": {
@@ -514,7 +527,7 @@
     "v04_canary_authorization_consumed": true,
     "duplicate_live_call_incident": "Second call at approximately 2026-09-21T16:53Z exceeded the exact-one authorization and remains excluded from acceptance.",
     "future_v04_divergence_batch_authorized": false,
-    "future_v04_divergence_batch_requires": "fresh explicit owner authorization plus matching canonical scoped lead manifest",
+    "future_v04_divergence_batch_requires": "fresh explicit owner approval matching dormant five-call request; lead activation of canonical scoped manifest with 2h expiry",
     "no_further_live_model_calls": true,
     "account_setup_scope": "owner's conditional necessary existing-account/verified Unsubscriber Google Cloud alias setup allowance; verify real mechanism/necessity/consent; not a public/model/spend grant"
   },
@@ -598,5 +611,27 @@
     "fable_assignment": "historical only; no active handoff",
     "cursor_assignment": "historical evidence only",
     "pause_policy": "Do not infer liveness from historical heartbeats. Codex may continue only explicitly released dependency-safe work. Genuine live gates require owner facts/authorization and exact evidence."
+  },
+  "reliability_retry_policy": {
+    "scope": "same bot/persona/signal repeatedly BLOCKED_REASONING_UNAVAILABLE under unchanged blocker",
+    "blocker_identity": "bot + persona_id + signal_id + blocker_class(reasoning_unavailable) + deterministic blocker_fingerprint(provider/mode/adaptive-required/dispatch-authorization availability/stable reason code)",
+    "attempt_ceiling": 3,
+    "backoff_minutes_after_attempt_1": 15,
+    "backoff_minutes_after_attempt_2": 60,
+    "after_attempt_3": "EXHAUSTED_NO_AUTOMATIC_RETRY",
+    "fairness": "BACKOFF/EXHAUSTED signals remain unconsumed but are skipped for automatic selection so oldest other eligible unconsumed signal may proceed",
+    "rearm": "only materially changed blocker fingerprint or no blocker; time/process restart alone never reset exhausted",
+    "operator_reset": "explicit audited exact bot/persona/signal/fingerprint/actor-reference/reason/timestamp; grants no model authority",
+    "implementation_status": "SPECIFIED_HELD_NOT_RELEASED"
+  },
+  "v04_divergence_preparation": {
+    "status": "DORMANT_NOT_AUTHORIZED",
+    "owner_request": "social-bots/lead-reviews/V04_DIVERGENCE_OWNER_APPROVAL_REQUEST_20260922.md",
+    "dormant_manifest": "social-bots/lead-reviews/V04_DIVERGENCE_5CALL_DORMANT_MANIFEST.json",
+    "max_calls": 5,
+    "prior_one_call_grant": "CONSUMED",
+    "duplicate_call": "EXCLUDED",
+    "zero_new_spend": true,
+    "authorized": false
   }
 }
