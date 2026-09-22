@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-058",
+    "lead_release": "LEAD-059",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -128,14 +128,18 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v13_reproduce_rootcause_repair_verify",
-      "assignment": "SB-V13-002 reproduce-first adversarial provenance/window audit; no source edits until a concrete defect is reproduced; then smallest repair only if needed.",
+      "activity": "direct_v13_parallel_bounded_repairs",
+      "assignment": "Continue SB-V13-002 reproduce-first audit unchanged. Separately repair account route_type enum validation in isolated branch: reject whole registry on undocumented route type; preserve valid unsupported as parsed but unavailable; no new boolean contract.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
       "latest_accepted_candidate": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
       "latest_accepted_checkpoint": "V0.8 deterministic unique-eligible route selection + community platform/alias scope",
       "no_fable_handoff": true,
-      "formal_acceptor": "ChatGPT"
+      "formal_acceptor": "ChatGPT",
+      "parallel_assignments": [
+        "SB-V13-002 reproduce-first provenance/window audit (no source edits until reproduced defect)",
+        "V0.8 route_type schema SP1 repair (ACCOUNT_REGISTRY_SCHEMA enum only)"
+      ]
     }
   },
   "tests": {
@@ -330,16 +334,29 @@
       },
       "classification": "author/mechanical engineering evidence; no exact-SHA CI",
       "live_actions": 0
+    },
+    "account_route_type_reproduction": {
+      "source": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "evidence": "63bb73fffe7de1b52e551e952d7ed7d9531c4675",
+      "symptom": "route_type='telepathy' admitted account_available=true and authorized=true",
+      "root_cause": "load_routes validates route_type presence but not documented enum; _route_ok rejects only literal unsupported",
+      "allowed_route_types": [
+        "API",
+        "browser",
+        "Buffer",
+        "manual",
+        "unsupported"
+      ],
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-058",
-    "review_ref": "social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md",
-    "review_type": "pr11_route_selection_exact_sha_and_v13_provenance_audit_release",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md",
-    "accepted_now": [
-      "PR11-route-selection@3f10d0f6eb031c00fff679aae18aa8045d8bd025"
-    ],
+    "review_id": "LEAD-059",
+    "review_ref": "social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md",
+    "review_type": "route_type_schema_rework_release_parallel_v13_audit",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md",
+    "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -412,11 +429,12 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR #11 exact 3f10d0f6eb031c00fff679aae18aa8045d8bd025 ACCEPTED ENGINEERING for unique-eligible exact-scope route selection and platform-qualified community reply authority.",
-      "Accepted-parent baseline: 7 tests with 6 expected failures; candidate 25 focused pass and 739/737/0/0/2 full; no exact-SHA CI.",
-      "Shared selector evaluates all exact bot/persona/platform matches under one clock; unique eligible selects, zero fails closed, multiple fail closed ambiguous; capabilities applied after selection.",
-      "Community now uses same selector keyed by platform+alias, closing two-eligible and wrong-platform alias clearance while preserving persona alias recognition.",
-      "Next dependency-safe Codex assignment is reproduce-first SB-V13-002 provenance/window adversarial audit; no source change unless a concrete defect is reproduced."
+      "Documented route_type enum defect reproduced at accepted 3f10d0f6: undocumented 'telepathy' route is currently admitted as available/authorized.",
+      "Root cause is ingest schema validation gap: load_routes checks presence but not enum membership, while _route_ok rejects only literal unsupported.",
+      "Bounded repair released: reject whole registry on any undocumented route_type; valid unsupported remains parseable but unavailable.",
+      "No new boolean type contract is inferred beyond the documented route_type enum.",
+      "SB-V13-002 metrics provenance/window diagnostic continues unchanged in parallel; no source edits there unless a concrete defect is reproduced.",
+      "No Fable routing or external/live action."
     ]
   },
   "public_actions": {
