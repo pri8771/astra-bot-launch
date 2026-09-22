@@ -2,57 +2,68 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-045** (`lead-reviews/LEAD-045_2026-09-21T1758.md`).  
+Current lead review: **LEAD-047** (`lead-reviews/LEAD-047_DELIVERY_RELEASE_20260921.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 
 ## Current verified activity
 
-### Fable Fast-track — MATERIAL SUBMISSIONS / PAUSED FOR REVIEW
+### Fable Fast-track — RELEASED AS PRIMARY INTEGRATOR / AWAITING FRESH WORKER SESSION
 
-- Fresh session `s-20260921T211438Z-d5589881` emitted one durable `SESSION_ONCE` heartbeat and produced signed work on `fable/social-bots-v23-fasttrack-20260921` through reviewed head `a204ad0827748a4e9661f1945b8e025d53d0ae09`.
-- Fable submitted **SB-S20-001** and **SB-S23-001..SB-S23-008** as engineering evidence. Lead inspected actual `SB-S23-001` contract source and `SB-S23-008` lifecycle source/report rather than relying only on self-report.
-- Worker baseline reports **523 tests discovered, 521 passed, 0 failed, 0 errors, 2 skipped**, plus a valid 32-task next-round plan and 18 validator self-tests.
-- Diff/ownership evidence says no Cursor-owned existing runtime source was edited; the lane used new specialist/strategy modules, tests, proof code, fixture evidence, and append-only handoff records.
-- `SB-S23-008` is explicitly fixture-class evidence. It demonstrates useful engineering behavior but does not prove a live specialist process boundary or operational V2.3. Independent Acceptance rerun is required.
-- Known limits remain explicit: specialist execution is in-process/thread-based on one POSIX host; strategy version publication is detectable but not transactionally crash-consistent; live-provider trust/call-budget closure remains a next-round concern.
-- **Disposition:** nine artifacts are reviewable engineering submissions, not operational acceptance. Fable is now paused from new source until explicit lead release.
+- Latest verified material worker checkpoint remains `a204ad0827748a4e9661f1945b8e025d53d0ae09` from session `s-20260921T211438Z-d5589881`.
+- Fable submitted **SB-S20-001** and **SB-S23-001..SB-S23-008** as engineering evidence. Worker baseline reports **523 discovered / 521 passed / 0 failed / 0 errors / 2 skipped**.
+- `SB-S23-008` remains fixture-class evidence; it does not prove hard process isolation or operational V2.3.
+- LEAD-047 source review reproduced six failure scenarios with isolated copied-source/test-double probes: direct no-grant callable execution; false fixture/capability dispatch; concurrent, reentrant and independent-wrapper budget overruns; and consumption of tampered retained output. Those probes are defect reproduction, not a full-checkout acceptance run.
+- Additional source-review risks remain: hard timeout/finalization, crash-consistent strategy publication, final-content review binding, missing strategy/planner pieces, H1–H4 integration, and distinct DEVELOPMENT_ARTIFACT dispatch.
+- Canonical delivery campaign now releases Fable as **sole primary implementation/integration owner**, including shared recovery/runtime repair. The old pause and new-files-only restriction are superseded.
+- LEAD-047 branch handoff was delivered directly through Fable head `347de2b5c91c774670c3b884cc542c88fa6eabfa`. That head is lead-authored coordination, **not** a worker acknowledgement, heartbeat, test run or implementation result.
+- **Disposition:** material engineering submissions preserved; no operational V2.3 acceptance; next worker evidence must come from a fresh session against `delivery/FINAL_RUN.md`.
 
-### Cursor Recovery — STALE / ACTION REQUIRED
+### Cursor Recovery — PARKED_SAFE_HANDOFF
 
-- The previously verified recovery session `s-20260921T191500Z-a23cc77e` produced useful submissions, but the current branch head remains lead acknowledgement `488ce0c720d857473ab9f2ce448d9197a955df14`; no requested `SB-R07-041` repair has landed since the lead finding.
-- `SB-R07-071` source `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb` fixes the cross-process duplicate-session race with `fcntl.flock` around the find+append critical section. The regression uses 8 OS processes x 20 rounds; worker evidence reports 314 passed / 1 skipped. **Disposition: SUBMITTED pending independent Acceptance execution.**
-- `SB-R07-041` source `21cc2e7a65750d20dc609b9e9517f920157389a2` materially improves the Claude CLI spawn guard, but lead audit found a separate direct-library bypass: `ModelReasoningProvider` can invoke a process-registered `_MODEL_CALLABLE` without checking the canonical live manifest when worker entrypoints are bypassed. **Disposition: CHANGES_REQUIRED.**
-- `SB-R07-044` is an engineering-only divergence verifier that refuses to self-accept fixtures. **Disposition: SUBMITTED / pending audit.**
-- `SB-R07-072` truthfully classifies the current Cursor environment as `UNSUITABLE_NOT_PERSISTENT_OWNER_HOST`. Do not run/install the LIVE scheduler there.
-- Immediate worker action remains a bounded zero-live `SB-R07-041` repair plus a direct-library sentinel regression.
+- Latest verified material recovery source remains `d7ecb256d430f437f4ad9249480b6430af52ecf9`; historical recovery session `s-20260921T191500Z-a23cc77e` remains evidence of one prior session only.
+- `SB-R07-071` source `0c74336b793189b4ba32d1f1229de0fb4d3e5ebb` implements `fcntl.flock` around the duplicate-session find+append critical section. Worker regression uses 8 OS processes × 20 rounds; worker evidence reports 314 passed / 1 skipped. **Disposition: SUBMITTED pending independent QA execution.**
+- `SB-R07-041` remains **CHANGES_REQUIRED**. LEAD-047 independently reproduced the direct `ModelReasoningProvider` callable bypass with a harmless sentinel and additionally found related provider capability/budget problems requiring shared repair.
+- `SB-R07-044` and `SB-R07-072` remain submitted engineering evidence; the previously evaluated Cursor host remains unsuitable for LIVE scheduler acceptance.
+- Cursor was explicitly parked at safe handoff; current branch head `bf18ac0083b15194c011b18dc791f4bd3d3e8019` is lead-authored park coordination, not worker progress. Fable owns new shared-runtime implementation.
 
 ### Legacy Core
 
 - Final V03 implementation/evidence remains accepted with the committed 130-test final bundle and independent lifecycle execution.
 - V04 deterministic/fixture work remains useful engineering evidence, but controlled causal adaptive divergence is still authorization-blocked.
-- Legacy Core remains **PARKED / evidence-only** to prevent overlapping implementation ownership.
+- Legacy Core remains **PARKED / evidence-only**.
 
 ### Intelligence
 
-- `SB-V05-001` is **ACCEPTED**: pinned-IP HTTPS retains original-host SNI/certificate verification and Host semantics, avoids implicit DNS reconnect, and fails redirects closed.
+- `SB-V05-001` is **ACCEPTED**: pinned-IP HTTPS preserves original-host SNI/certificate verification and Host semantics, avoids implicit DNS reconnect, and fails redirects closed.
 - `SB-V15-001` remains **CHANGES_REQUIRED** because ordinary whole-runtime `load` / `load_all` aliases remain structurally ambiguous despite improved persona-scoped APIs.
-- Intelligence remains **PARKED / evidence-only** during consolidated recovery. No overlapping source edits are assigned.
+- Intelligence remains **PARKED / evidence-only**. Fable may consolidate reviewed pieces on the integrated candidate without treating unresolved semantics as accepted.
 - `SB-V13-001` and `SB-V14-001` remain accepted. `SB-V16-001`, `SB-V17-001`, and `SB-V20-002` remain changes-required pending dependency repair and independent audit.
 
-### Acceptance / QA — STALE / ACTION REQUIRED
+### Acceptance / QA — REVIEW_ONLY / ASSIGNMENT DELIVERED
 
-- `SB-V03-004` independent lifecycle acceptance is **ACCEPTED**, scoped to a single POSIX host/filesystem.
-- `SB-V04-005` is **ACCEPTED** from the first chronological authorized real canary. The second historical real call exceeded the exactly-one authorization and remains permanently excluded from acceptance evidence.
-- No fresh independent R07 execution is visible at current branch head `a508c06bc87a9f36b7d6347eeb86cde62f4d9907`.
-- Immediate independent order: execute `SB-R07-071`; audit repaired `SB-R07-041` direct-library route with a harmless sentinel; then independently rerun/audit Fable `SB-S23-008` fixture lifecycle evidence.
-- Acceptance owns no runtime source and must execute no model call.
+- `SB-V03-004` independent lifecycle acceptance remains **ACCEPTED**, scoped to a single POSIX host/filesystem.
+- `SB-V04-005` remains **ACCEPTED** from the first chronological authorized real canary. The second historical real call exceeded the exactly-one authorization and remains permanently excluded from acceptance evidence.
+- No fresh worker-generated post-LEAD-047 reviewer result exists yet. Branch head `bd6cbde805684efb2a4bbf06c3886cefdb842650` is lead-authored review assignment delivery.
+- Ordered independent work: execute the real `SB-R07-071` process race; then audit Fable's repaired R07-041/provider-capability/budget/integrity paths on actual candidate modules using harmless sentinels and zero real inference; then rerun specialist lifecycle/integrated-candidate tests and report exact scope.
+- Acceptance owns no runtime source and must execute no real model call.
 - `SB-EVD-002` remains WITHHELD because `SB-V04-002` / `SB-V04-004` remain blocked on fresh controlled causal evidence.
 
 ### Live canary
 
 - Dedicated canary branch remains **FROZEN / evidence preservation only**.
-- No additional Claude/adaptive/model call is authorized.
-- Any future five-call controlled divergence batch requires fresh explicit owner authorization plus a matching canonical lead authorization manifest before provider spawn/callable execution.
+- No additional Claude/adaptive/product-model call is authorized.
+- Any future five-call controlled divergence batch requires fresh explicit owner authorization plus a matching canonical scoped lead authorization manifest before provider spawn/callable execution.
+
+## LEAD-047 source-audit findings that must be repaired
+
+1. **P0 — R07-041 direct callable bypass:** direct `ModelReasoningProvider.propose` can invoke a registered callable without the canonical authorization check.
+2. **P0 — false fixture/capability bypass:** caller-controlled capability/adaptive labeling can bypass refused routes; production must construct policy-owned capabilities.
+3. **P0 — budget accounting after dispatch / wrapper-private:** reserve atomically and durably before dispatch across concurrency, reentry, wrappers/processes and restart; errors/crashes consume or remain uncertain.
+4. **P1 — retained evidence integrity:** verify canonical path/type and the exact bytes/hash consumed; cover wrong scope, replacement, symlink and late-write cases.
+5. **P1 — lifecycle finalization/deadline:** add reliable finalization and supervised hard-deadline behavior while keeping helper scope distinct from arbitrary-code OS isolation.
+6. **P1 — strategy publication/integration:** make strategy publication crash-consistent/fenced and complete missing strategy/planner + H1–H4 + DEVELOPMENT_ARTIFACT production integration.
+
+Lead probes used harmless sentinels/test doubles and made zero real provider/network/public calls. They reproduce defects but are not a substitute for actual-module candidate tests or the full suite.
 
 ## Artifact reliability table
 
@@ -77,38 +88,37 @@ Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.
 | SB-V17-001 | 4 | CHANGES_REQUIRED | pending dependency repair + independent audit |
 | SB-V20-002 | 4 | CHANGES_REQUIRED | waits V15 + independent audit |
 | SB-R07-071 | 1 | SUBMITTED | atomic flock source + multiprocess race; independent QA required |
-| SB-R07-041 | — | CHANGES_REQUIRED | direct registered model callable can bypass manifest when worker entrypoints are bypassed |
+| SB-R07-041 | — | CHANGES_REQUIRED | direct callable plus shared capability/budget boundaries still unsafe |
 | SB-R07-044 | — | SUBMITTED | engineering verifier; live causal evidence still owner-gated |
 | SB-R07-072 | 1 | SUBMITTED | current Cursor host honestly unsuitable for LIVE scheduler acceptance |
-| SB-S20-001 | 2 | SUBMITTED ENGINEERING | Fable versioned strategy store; independent audit/integration pending |
-| SB-S23-001 | 2 | SUBMITTED ENGINEERING | least-authority specialist contract; independently inspect before acceptance |
-| SB-S23-002..007 | — | SUBMITTED ENGINEERING | new-files-only specialist components; independent audit pending |
-| SB-S23-008 | 3 | SUBMITTED ENGINEERING | fixture lifecycle bundle; independent Acceptance rerun required |
+| SB-S20-001 | 2 | SUBMITTED ENGINEERING | strategy store useful; publication/integration hardening required |
+| SB-S23-001 | 2 | SUBMITTED ENGINEERING | least-authority specialist contract; integrated enforcement pending |
+| SB-S23-002..007 | — | SUBMITTED ENGINEERING | specialist components preserved; lead audit found shared guard/integrity gaps |
+| SB-S23-008 | 3 | SUBMITTED ENGINEERING | fixture lifecycle bundle; independent actual-candidate rerun required |
 
 ## Heartbeat quality
 
 Canonical policy is **ONE SESSION = ONE HEARTBEAT**. The earlier FAST_5M / SOAK_15M_24H experiment is superseded.
 
-Fable's fresh durable session heartbeat establishes session liveness only. Cursor's historical recovery heartbeat likewise establishes that one session existed, not that the current assignment is progressing. Artifact correctness requires source/test/evidence review.
+A lead-authored branch assignment is not a heartbeat or worker acknowledgement. Fable's historical `SESSION_ONCE` and Cursor's historical recovery heartbeat establish only that those prior sessions existed. The new LEAD-047 campaign is **awaiting a fresh worker session** at this review cutoff.
 
-V0.7 recurring liveness still requires repeated real **OS-scheduled bounded worker sessions** on an owner-controlled persistent host, each producing a session heartbeat plus invocation receipt. Chat liveness, Issue comments, temporary-host fixtures, and a kept-open session do not count. The current Cursor host has explicitly failed the persistent-host preflight, which is a truthful useful result, not V0.7 evidence.
+V0.7 recurring liveness still requires repeated real **OS-scheduled bounded worker sessions** on an owner-controlled persistent host, each producing a session heartbeat plus invocation receipt. Chat liveness, Issue comments, temporary-host fixtures and a kept-open session do not count.
 
 ## Current lessons
 
-- **New-files-only parallelism works when ownership is explicit.** Fable completed a large specialist engineering batch without editing Cursor-owned existing runtime files.
-- **Guard every live-capable provider boundary, not just the CLI subprocess.** R07-041 exposed a second route through a registered model callable.
-- **Independent adversarial execution matters.** R07-071 and S23-008 stay submitted until Acceptance reruns the required cases.
-- **Fixture evidence stays fixture evidence.** A green specialist lifecycle bundle does not establish hard process isolation or operational V2.3.
-- **A truthful UNSUITABLE preflight is valuable.** It prevents false V0.7 scheduler claims on an ephemeral cloud agent.
-- **Authorization must be machine-visible and fail closed.** Future live-call execution needs an explicit canonical manifest and exact budget, not permissive prose.
-- **Isolation boundaries must be structural.** V15 remains open because ordinary public aliases still cross persona scope.
+- Consolidated ownership is preferable to stale cross-lane dependency deadlock when shared-file repair is required; independence is preserved through review, not by freezing all implementation.
+- Guard every live-capable provider boundary and capability source, not just the CLI subprocess.
+- Reserve budgets before dispatch and share the durable accounting boundary across wrappers/processes/reentry.
+- Verify the exact retained bytes consumed; receipt metadata without read-time integrity is insufficient.
+- Fixture evidence stays fixture evidence; green worker-local tests do not establish operational V2.3.
+- Authorization must remain machine-visible, scoped and fail-closed.
 
 ## Current concurrency implication
 
-- **Cursor Recovery:** primary implementation but STALE / ACTION REQUIRED; repair R07-041 now.
-- **Fable Fast-track:** PAUSED after material engineering submissions; preserve evidence, await explicit next release.
+- **Fable Fast-track:** sole primary implementation/integration owner; released and assignment delivered; awaiting fresh worker-generated session/evidence.
+- **Cursor Recovery:** PARKED_SAFE_HANDOFF; preserve/push only already-existing local material.
 - **Legacy Core:** PARKED / evidence-only.
 - **Intelligence:** PARKED / evidence-only.
-- **Acceptance:** REVIEW-ONLY and STALE; independent R07-071 -> repaired R07-041 -> S23-008.
+- **Acceptance:** REVIEW-ONLY; assignment delivered; awaiting fresh independent reviewer evidence.
 - **Canary:** FROZEN / evidence-only.
 - **worker-pc:** excluded until private-repo clone/auth is demonstrably fixed.
