@@ -99,3 +99,8 @@ Final repair checkpoint 2026-09-22T04:48:08.961694+00:00: Swarm currente924351 p
 ## 2026-09-22 — direct metrics repair and next diagnosis
 
 Owner target remains BotsV1.3 (peers Jobs/SwarmV2.0). Current native LEAD055@0d5b183 accepts exact9d497b4 and releases finite metrics repair. Codex candidate30a2ebdfb45110b2bc6fea0f3d50876583487f9c / PR9 is ready for review;26focused pass,728run/726pass/2live skips. See social-bots/lead-reviews/CODEX_METRICS_20260922.md and source-bound manifest. Freshness failure in account_routes.py reproduced with synthetic registry; no repair until fixed horizon decision. No model/account/public/host/scheduler action, Fable handoff or new SESSION_ONCE on this continuation. Existing genuine-live gates remain open.
+
+
+## 2026-09-22 — LEAD056 and route repair checkpoint
+
+LEAD056@647c41a accepts exact30a2ebd metrics repair and releases24h/+5m freshness. Sourceccfbaf7865557ba30d9148bcce6839b71e9159f1 / PR10 nowreadyforreview;32focused/732run730pass2live skips. Native CODEX_ROUTES_20260922 record links source-bound evidence and red-before community health bypass. Genuine-provider connectivity remains unproved. No new SESSION_ONCE, scheduler, host change, Fable dispatch or public/model/account call.

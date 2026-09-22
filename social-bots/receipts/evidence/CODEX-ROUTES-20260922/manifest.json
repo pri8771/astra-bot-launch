@@ -1,0 +1,38 @@
+{
+  "checks.json": {
+    "bytes": 1278,
+    "sha256": "c14efaeec24cab243370af051c707dcbb1dfad6c9cd7cec7c38518886ecd2cc1"
+  },
+  "community-baseline-repro.py": {
+    "bytes": 2193,
+    "sha256": "0dc282d4e29ab3db6a2aec944e57b09f1371b22e75c0b51179147676b029bfee"
+  },
+  "community-baseline.txt": {
+    "bytes": 1388,
+    "sha256": "8b21e934871dace65059165215fa199dd6d7ce3313cdf38a5bd7f00c1c7ed899"
+  },
+  "community-cause.md": {
+    "bytes": 1855,
+    "sha256": "c521236cdacb152595b26ba3382521ef88069391f5a928b550f8b5061d4f1a98"
+  },
+  "focused.txt": {
+    "bytes": 5457,
+    "sha256": "9370ce031469dae1f0607e7e307726546f8085c4ebca2b50f89b3be1f701421f"
+  },
+  "freshness-baseline.txt": {
+    "bytes": 346,
+    "sha256": "1c77237edf87a766ec2b2cea61f4f0fd8d57228ecdb126484b63d30ef4f8139e"
+  },
+  "freshness-cause.md": {
+    "bytes": 2093,
+    "sha256": "a304b3186c3e272e6c203ba3ba42a71737956317d90452375eb2d35dc6bad7de"
+  },
+  "full.txt": {
+    "bytes": 6499,
+    "sha256": "f0aceb4fdc00c73b284ba7069eabd0548e44c39c0a6e2764c6bd40eee6965dfc"
+  },
+  "mechanical-check.txt": {
+    "bytes": 712,
+    "sha256": "b4a37784aca8d84b20cf181cac2d6f1e755fd554a74d64ea0cd5e94462a3724d"
+  }
+}
