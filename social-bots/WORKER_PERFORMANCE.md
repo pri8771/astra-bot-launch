@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-062** (`lead-reviews/LEAD-062_2026-09-22T0805.md`).  
+Current lead review: **LEAD-063** (`lead-reviews/LEAD-063_2026-09-22T0813.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -194,3 +194,13 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Persistent host facts, three genuine V0.6 dry runs, V0.8 exact route readbacks, V0.9 public canaries/measurement, and V1.0–V1.2 operational predecessors remain distinct open gates.
 - Canonical active metadata is reconciled to owner target **LIVE V1.3**, Codex direct implementation, **no Fable handoff**, LEAD-062 current. Stale V1.7/Fable active text is not executable.
 - Next dependency-safe assignment: read-only/reproduce-first SB-V11-001/002 reliability audit. No tests/source edits until a concrete gap is reproduced.
+
+## LEAD-063 SB-V11 reliability disposition
+
+- Diagnostic against accepted `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3` / tree `72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a` is **REWORK_FOUND**.
+- Gap 1: stale takeover reconciliation can return `safe=false` yet the worker proceeds to `decision.run_cycle` and writes a verified finish. Releasing the owned lease then makes the next empty-slot acquire `reconcile_required=false`, so a stale-takeover-only gate would not remain safe across restarts.
+- Released repair: execute existing read-only reconciliation before every unit; unsafe => no decision cycle/new product effect/normal finish, truthful blocked/failure receipt, own-lease release only; unchanged unsafe condition blocks every later fresh process.
+- Gap 2: unchanged `blocked_reasoning_unavailable` can retry the same oldest unconsumed signal across fresh processes with no durable ceiling/backoff/exhausted state.
+- Retry contract specified but implementation HELD: 3 attempts; 15m then 60m backoff; third => EXHAUSTED; persona+signal+blocker fingerprint identity; later-signal fairness; changed blocker fingerprint or explicit audited operator reset only.
+- Dormant V0.4 five-call owner approval request and non-executable manifest template prepared. Prior one-call authority remains consumed; no further model calls authorized.
+- No live external action or Fable handoff.
