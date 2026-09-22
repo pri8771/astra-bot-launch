@@ -1,44 +1,27 @@
 # Astra Bot Launch — Claude / Fable entrypoint
 
-This repository contains multiple historical projects and handoff documents. **Do not read the entire repo at startup.**
+This repo contains several historical projects. For **Social Bots only**, current owner scope is **LIVE V1.7, then stop development** (LEAD-048). V1.8–V3.0 work is parked, despite older prompts and the historical v23 worker branch name. Do not preload the whole repo.
 
-For Social Bots work, the canonical project lives under `social-bots/`.
+## Roles and authority
 
-## Roles
-
-- Owner: product/authority decisions.
-- ChatGPT: engineering/product lead and acceptance authority.
-- Claude/Fable/Cursor: implementation/planning workers as assigned.
-- GitHub canonical coordination is project truth. Past conversation/memory explains intent only.
+Owner sets product scope and external-action permission. ChatGPT is engineering/product lead and acceptance authority. Claude/Fable/Cursor are workers as assigned. Current Git proves project status; available past conversation/memory explains intent only. A new explicit owner instruction can supersede older repo direction, but never invents execution evidence.
 
 ## Social Bots startup
 
-Read only:
-
+Fetch `chatgpt/social-bots-plan-20260920`; read the current files from that ref:
 1. `social-bots/coordination/SESSION_START.md`
 2. `social-bots/state/CURRENT.md`
-3. `social-bots/coordination/READ_ROUTER.md`
-4. the assignment file named by SESSION_START
-5. the active artifact packet(s) named by that assignment
+3. your assignment and `social-bots/delivery/V17_LIVE.md`
+4. the active artifact card only, using `social-bots/delivery/V17_SCOPE.json` as the scope filter.
 
-Then use targeted git diff/search. Do not preload all roadmaps or artifact packets.
+Use the read router for deeper context. `delivery/FINAL_RUN.md` forwards to V17_LIVE. Never continue automatically beyond V1.7.
 
-## Stable rules
+## Stable execution rules
 
-- Artifact-oriented development; prefer SP1/SP2 work.
-- One fresh worker session = one real `SESSION_ONCE` heartbeat.
-- Engineering evidence and LIVE evidence are different.
-- Workers submit; ChatGPT alone accepts/promotes.
-- Never fabricate provenance, liveness, tests, or operational evidence.
-- No public post/reply/message, new spend/PAYG, destructive action, account/MFA bypass, or live model call outside the current authorization contract.
-- Social Bots must remain independent of SwarmAI.
-- Reuse existing brownfield code before creating parallel subsystems.
-- Do not overlap another active worker's source ownership.
+Artifact-oriented; small reviewable changes; reuse existing code. Fable is sole active integrator; preserve other workers' incoming work and check path ownership. Workers submit; ChatGPT alone accepts/promotes. Engineering, real host execution and LIVE source/model/account/public/analytics evidence are different claims.
 
-## Efficiency
+One genuinely fresh session = one real SESSION_ONCE heartbeat. None repeated on resume/compaction; no periodic chat heartbeat watcher. Lease renewal and invocation completion are separate.
 
-- Prefer specific symbols, diffs and current artifact cards over full-file rereads.
-- Keep reports compact and machine-readable.
-- If subagents/models are available, use lower-cost models for bounded mechanical work; reserve the strongest model for architecture, integration, concurrency, authority/safety and difficult debugging.
+No fabricated evidence, credentials in Git, unauthorized public/model calls, new spend/PAYG, destructive external action, MFA/CAPTCHA bypass, engagement manipulation or SwarmAI dependency. Existing necessary account setup scope is distinct from posting/model permission. Exact grants and readback govern real effects.
 
-If instructions conflict, follow the current canonical Social Bots coordination and latest ChatGPT lead review.
+Use targeted diffs/symbol reads and compact reports. Use already-supported authorized lower-cost subagents for bounded mechanical work; strongest reasoning for architecture, active safety boundaries and hard integration. Do not spend tokens finishing parked future products while V1.7 is blocked.

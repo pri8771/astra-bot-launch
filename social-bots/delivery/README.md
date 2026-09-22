@@ -1,19 +1,9 @@
-# Social Bots delivery package — imported and reconciled by LEAD-047
+# Delivery — current campaign is LIVE V1.7 ONLY
 
-**Start at FINAL_RUN.md.** ChatGPT is lead; Fable is the released implementation/integration worker. This is the repo-native adoption of the supplied `social_bots_delivery_plan.patch`, not a request to download/apply it again.
+Start: **V17_LIVE.md**. Scope filter: **V17_SCOPE.json**. Exit evidence: **V17_ACCEPTANCE.md**. Current release: LEAD-048.
 
-The supplied 31 closure cards, 27 version exit records, 10 reconciliation records and offline validator/test code are retained. Duplicated prose is consolidated with the already-committed `../next-round/` contracts. The imported JSON is reformatted; this is a reviewed semantic import, not a byte-for-byte recreation of the patch. See IMPORT.md for provenance.
+The owner narrowed the previous V2.3/V3.0 campaign to V1.7 live and stop. The imported patch, older full Cxx/NR worklists, future code and roadmap remain preserved, but are not blanket active assignments. Select only the V17-scoped recovery/feature/closure work. Do not apply the downloaded patch again or build another roadmap.
 
-Use only one execution queue: TASKS.json plus the existing SB-* artifact packets, interpreted by FINAL_RUN.md and ACTIVE_EXECUTION.json. The older NR-* queue is supporting audit/reference material, not a second queue to implement. These closure tasks integrate and verify existing capabilities; they do not replace the feature work required by the milestone manifest.
+Fable is sole integrator on its historical branch; ChatGPT accepts. Cursor/legacy source is parked at safe handoff; preserve incoming work. No fresh live-model/public/spend grant is implied. No operational version was promoted by the scope update.
 
-Read only the active card (`python3 social-bots/delivery/validate_delivery.py --card C04`) and its contract. Contracts in `../next-round/` remain available for details; do not reload the entire roadmap at every checkpoint.
-
-Build-ready, engineering-verified and operationally accepted remain separate. No product version is promoted by this package. Proposed test profiles in GATES.json are not authorizations. Existing account/alias setup scope is not a public/model/spending grant. No additional live product-model calls are authorized by LEAD-047.
-
-Validation:
-```
-python3 social-bots/delivery/validate_delivery.py
-python3 -m unittest discover -s social-bots/delivery/tests -v
-python3 social-bots/delivery/validate_delivery.py --repo .
-```
-The last command checks the actual checkout and must be run by the integrator. Our local package validation was not a complete runtime or repository audit. See VALIDATION.json and reviews/LEAD047_PROBES.json.
+Historical planning-tool validation, source findings and limitations remain in VALIDATION.md and reviews/. Running validate_delivery.py checks that broader package's structure, not current campaign completion. It does not enforce the V17 cap in a deployed worker; apply the scope at task selection and test that no later task is dispatched.

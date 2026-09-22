@@ -1,69 +1,27 @@
-# Social Bots — read router
+# Read router — current scope is LIVE V1.7 ONLY
 
-Purpose: minimize context use. **Do not read every file below. Read only the route matching the active work.**
+Paths below are relative to social-bots/ unless stated otherwise. Do not load all files.
 
-## Always read
+## Startup
 
-- `coordination/SESSION_START.md`
-- `state/CURRENT.md`
-- your assignment file
-- active artifact packet(s)
+Root CLAUDE.md -> coordination/SESSION_START.md -> state/CURRENT.md -> assignments/FABLE_5_1.md -> delivery/V17_LIVE.md -> active artifact card. Apply delivery/V17_SCOPE.json before choosing any task.
 
-## V0.4–V0.7 recovery implementation
+## Recovery V0.4–V0.7
 
-Read:
-- `RECOVERY_TO_V07.md`
-- exact `artifact-packets/recovery-v07/<ARTIFACT>.md`
-- relevant source/tests only
-
-Read `AUTHORIZATION_MANIFEST_SCHEMA.md` only for authorization/live-provider work.
-Read `INVOCATION_RECEIPT_SCHEMA.md` only for worker/scheduler receipt work.
+RECOVERY_TO_V07.md plus exact artifact-packets/recovery-v07/SB-R07-*.md and relevant source/tests. Read authorization/invocation schemas only when modifying those boundaries. Current scope/authority takes precedence over old broad work orders.
 
 ## V0.8–V1.7
 
-Read:
-- `V07_TO_V17_EXECUTION.md`
-- exact `artifact-packets/v07-v17/<ARTIFACT>.md`
+V07_TO_V17_EXECUTION.md plus exact artifact-packets/v07-v17/SB-S08..17 card. Read the relevant account, metric, experiment, content or community contract only when needed. Reuse existing producers; no growth/strategy/planner prerequisite.
 
-Load account/public-effect schemas only when working those surfaces.
+## Production and evidence
 
-## V1.8–V3.0
+Current checklist: delivery/V17_ACCEPTANCE.md. Detail: only in-scope portions of delivery/CONTRACTS.md and delivery/TASKS.json as selected by V17_SCOPE.json. The older full Cxx and NR queues are not active blanket assignments. Safety findings: delivery/reviews/LEAD047_AUDIT.md only where the affected route is enabled/reused through V1.7; disable unsafe unused future routes instead of completing their products.
 
-Read:
-- `DETAILED_EXECUTION_V18_TO_V30.md`
-- exact `artifact-packets/v18-v30/<ARTIFACT>.md`
+## Lead review
 
-For V2.3 specialist work, also read:
-- `SPECIALIST_WORKER_CONTRACT_SCHEMA.md`
+Read STATE.json's current review reference and relevant worker reports/real run receipts. Use ARTIFACT_INDEX.json as canonical artifact status; roadmap storage alone does not release work. Check actual heads/diffs before progress claims. Preserve prior source/evidence; new explicit owner direction overrides older execution targets.
 
-For V2.4+/V3 memory, also read:
-- `ORGANIZATIONAL_MEMORY_SCHEMA.md`
+## Parked
 
-For V2.8+/V3 allocation, also read:
-- `PORTFOLIO_RESOURCE_BUDGET_SCHEMA.md`
-
-For V3 architecture, read:
-- `V3_TARGET_ARCHITECTURE.md`
-
-## Roadmap/planning audit only
-
-Only when explicitly assigned architecture/planning, read:
-- `VERSION_ROADMAP.md`
-- `MILESTONE_MANIFEST.md`
-- `MASTER_PLAN_V04_TO_V30.md`
-- `V07_TO_V17_EXECUTION.md`
-- `DETAILED_EXECUTION_V18_TO_V30.md`
-
-Do not load all 298 artifact packets. Query/filter `ARTIFACT_INDEX.json` and open only the required cards.
-
-## Status / lead review
-
-Use targeted reads:
-- `STATE.json` for machine-readable truth
-- `WORK_QUEUE.md` for immediate queue
-- latest `lead-reviews/LEAD-*.md` only when acceptance/status matters
-- `AGENT_MESSAGES.md` tail only when a recent handoff is relevant
-
-## Historical context
-
-Past conversations/memory and legacy branches are useful for intent/why. They never outrank current canonical Git state.
+DETAILED_EXECUTION_V18_TO_V30.md, V20_TO_V23_IMPLEMENTATION_SPEC.md, V23_CRITICAL_PATH.md, V3_TARGET_ARCHITECTURE.md and future artifact cards remain available as history only. Do not read/build them by default or continue there when an in-scope live gate is blocked. No V1.9 72h requirement or V2.3 H1–H4 requirement belongs to this campaign.

@@ -1,9 +1,9 @@
-# One reusable next-session instruction
+# Fable restart — LIVE V1.7 ONLY
 
-Work in pri8771/astra-bot-launch. Fetch canonical chatgpt/social-bots-plan-20260920, read CLAUDE.md and social-bots/delivery/FINAL_RUN.md from that ref, then execute the lead-released delivery assignment on the preserved Fable implementation branch.
+Fetch canonical `chatgpt/social-bots-plan-20260920` in `pri8771/astra-bot-launch`. ChatGPT is lead; you are the sole integrator. Read root CLAUDE.md then `social-bots/delivery/V17_LIVE.md` from the fetched ref.
 
-LEAD-047 releases Fable from the old pause/new-files-only restriction and assigns integration, including the outstanding recovery repair. Preserve incoming work and verify there is no concurrent shared-file owner. Do not restart from an obsolete SHA or rewrite another branch.
+LEAD-048 replaces all V2.3/V3.0 execution instructions: reach live V1.7 and stop. Preserve current source on the historical `fable/social-bots-v23-fasttrack-20260921` branch; do not reset/rename just because the scope changed. Apply V17_SCOPE before selecting any artifact. Future work is parked, not deleted.
 
-Start with the audit reproductions, repair the real boundaries, finish missing strategy/planner work, integrate H1–H4 and run the ordinary entrypoint. Use only the active task card. One fresh session, one SESSION_ONCE heartbeat; resumed session, no duplicate heartbeat. Available memory explains intent; live Git controls current status.
+Repair and integrate enabled <=V1.7 paths, collect permitted real source/host/account/measurement/community evidence, and submit the final V1.7 packet. Existing required model/public/host grants remain. Do not let one blocked live test stop other in-scope safe work; do not use the block to start V2 features.
 
-Continue safe artifact-oriented work toward genuinely working V2.3, then V3.0. All operational grants and evidence remain required. Do not self-accept, invent a real result, silently add spend/public/model permission, or stop merely because one external gate blocks while other released code is possible. Preserve exact source/evidence, counts and blockers. No additional broad planning pass.
+Use targeted reads and supported lower-cost subagents for bounded mechanical tasks. Check available history for intent, Git for facts. One fresh session/one SESSION_ONCE; none repeated on resume. No self-acceptance, fake LIVE result, paid fallback or automatic post-V1.7 development.

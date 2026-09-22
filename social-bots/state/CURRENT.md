@@ -1,13 +1,13 @@
-# Current state — LEAD-047
+# Current state — LEAD-048: LIVE V1.7 ONLY
 
-Official version **V0.4.x**, unchanged. V0.3 is accepted. Source/engineering breadth is ahead of operational proof.
+Official version remains **V0.4.x**; V0.3 is accepted. No new runtime acceptance was performed by this scope update.
 
-**Fable is released as sole integrator.** Read `social-bots/delivery/FINAL_RUN.md` from current canonical coordination. This replaces the old pause and new-files-only restriction; Cursor/legacy implementation lanes are parked at safe handoff. No worker acknowledgement or current activity is inferred from this assignment.
+**Owner target: live V1.7, then stop development.** No automatic V1.8/V2.3/V3.0 continuation. Future roadmap and submitted strategy/specialist code are preserved and parked.
 
-Audited Fable branch head: 72a55319cf41f9910c5d3b9623129de3ac0eea31 (lead pause acknowledgement). Material checkpoint a204ad0827748a4e9661f1945b8e025d53d0ae09: nine submitted engineering components; worker-reported 523 discovered, 521 passed, 2 skipped. Latest observed session ran on a Linux vm, not a verified local Mac.
+Fable remains sole integrator on `fable/social-bots-v23-fasttrack-20260921`; the branch name is historical. Fetch canonical and read `delivery/V17_LIVE.md`, `V17_SCOPE.json` and the active artifact card. Shared in-scope runtime edits are released; preserve incoming work. Cursor/legacy source lanes parked at safe handoff; QA review-only.
 
-Lead found persistent callable/fixture authorization bypass, after-dispatch/private budget accounting and retained-output integrity failure. Six isolated copied-source sentinel scenarios reproduced; full production suite was not independently run by the lead. See delivery/reviews/LEAD047_AUDIT.md.
+Last observed worker head: 347de2b5c91c774670c3b884cc542c88fa6eabfa, a lead-authored direction update. Material checkpoint a204ad0827748a4e9661f1945b8e025d53d0ae09 and worker-reported 523 discovered/521 passed/2 skipped are historical, not fresh independent runtime proof. No worker consumption of LEAD-048 is inferred.
 
-Next: repair exact regressions, integrate Intelligence and missing strategy/planner work, connect H1–H4/real development dispatch, run the ordinary entrypoint, then permitted real proofs. Genuinely working V2.3 first, then V3.0.
+Immediate work: active provider authorization/budgets, heartbeat/lease validation, final review/prospective experiments; early host/account/provider preflight; real V0.4–V0.7 gates; verified accounts/canaries/operation; integrated V1.1–V1.7 behavior. Unused future specialist acceptance and V2 H1–H4 are not prerequisites.
 
-No new live product-model/public/spend/main-merge grant. The old five-call gate still needs explicit owner approval plus lead manifest. Necessary existing-account/verified Unsubscriber setup scope remains separate. One fresh session = one heartbeat; no periodic loop.
+No new live-model/public/spend/main-merge permission. Required earlier live evidence still must exist. Real V1.7 community reads/decisions/reviewed drafts do not claim sent replies. One fresh session = one SESSION_ONCE; no periodic watcher.

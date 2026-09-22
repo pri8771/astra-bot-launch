@@ -1,9 +1,9 @@
-# Next round — activated through LEAD-047 delivery release
+# Next round — LIVE V1.7 ONLY (LEAD-048)
 
-Read **`social-bots/delivery/FINAL_RUN.md`**.
+Current entrypoint: **`social-bots/delivery/V17_LIVE.md`**.
 
-The owner-approved delivery patch is imported and reconciled with the older next-round package. Use delivery/TASKS.json (C01–C31) plus existing SB feature packets as the single closure queue. The NR-* contracts/files remain supporting reference and historical evidence; do not perform duplicate campaigns.
+The owner narrowed the goal to live V1.7 and stop. All earlier V2.3/V3.0 targets and automatic continuation are superseded. Future plans, code and historical audits stay preserved.
 
-LEAD-047 releases Fable as integrator and supersedes the previous pause/new-files-only restriction at a safe handoff. Preserve active/just-pushed work. Existing source is reused, not reset or blindly overwritten. This is a real implementation release, not another planning-only instruction.
+Use delivery/V17_SCOPE.json to select only applicable existing recovery/S08–S17 artifacts and delivery clauses; delivery/V17_ACCEPTANCE.md defines the real integrated exit. Do not run the older full Cxx/NR queue or build H1–H4 V2.3 hooks to finish V1.7.
 
-All original milestone acceptance and scoped external-authority requirements remain. No version or LIVE artifact is accepted by the import. A completed planning validator is not a runtime test. Source-audit evidence and validation limits are in delivery/reviews/LEAD047_AUDIT.md and delivery/VALIDATION.json.
+Fable remains sole integrator with shared runtime edits permitted. Preserve local/incoming work; Cursor/legacy lanes parked at safe handoff; QA review-only. No new operational acceptance or external grants. One fresh session = one heartbeat; no periodic watcher.
