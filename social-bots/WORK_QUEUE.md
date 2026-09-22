@@ -1,4 +1,4 @@
-# Work queue — LEAD-058 — target LIVE V1.3
+# Work queue — LEAD-059 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
@@ -20,8 +20,9 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 6. **PR #10 route freshness/community health repair is ACCEPTED ENGINEERING** at exact `ccfbaf7865557ba30d9148bcce6839b71e9159f1`; LEAD-056 24h/+5m policy is implemented, community unhealthy/stale routes fail closed, zero effects remain zero.
 
 7. **PR #11 route-selection repair is ACCEPTED ENGINEERING** at exact `3f10d0f6eb031c00fff679aae18aa8045d8bd025`: unique eligible route selection, fail-closed zero/multiple matches, platform+alias community scope.
-8. **Codex reproduce-first assignment — SB-V13-002:** adversarially audit provenance source validity, observation/window validity, compatibility semantics, legacy malformed observation defense, and persona/content/experiment traceability. Do not edit source unless a concrete defect is reproduced; then smallest repair only.
-9. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
+8. **Codex reproduce-first assignment — SB-V13-002:** continues unchanged; no source edits until a concrete metrics/provenance/window defect is reproduced.
+9. **Codex parallel SP1 RELEASED — route_type schema:** enforce `API|browser|Buffer|manual|unsupported` at registry ingest; any undocumented type rejects the whole registry; valid `unsupported` still parses but remains unavailable. No new boolean contract.
+10. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
