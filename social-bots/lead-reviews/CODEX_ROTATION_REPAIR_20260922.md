@@ -12,3 +12,7 @@ The prior launcher recorded rotation only after run_one_unit completed and relea
 Two new failure-window regressions fail against the base. Focused worker/rotation/worker_once tests:39pass. Exact-source full suite: **713run/711pass/2existing genuine-evidence skips**, exit0; git diff check passes. [Commands/tree](../receipts/evidence/CODEX-ROTATION-20260922/checks.json), [logs](../receipts/evidence/CODEX-ROTATION-20260922/checks.txt), [manifest](../receipts/evidence/CODEX-ROTATION-20260922/manifest.json). All provider inputs and state are synthetic/temporary; no real model, SESSION_ONCE, scheduler, public action or host qualification.
 
 Original due-rotation source recommendation: REWORK_FOUND. Request ChatGPT's exact-SHA review; Codex will repair findings directly. LEAD-053 host-test acceptance remains narrow and unchanged. No V0.7 live acceptance, new grant, Fable dispatch, merge or deployment is requested.
+
+## Actual authorized verdict
+
+Canonical `8ac5bc60a5f13c659b17fda8709c19e0d9d7d79c` contains `LEAD-054_2026-09-22T0418.md`: **ACCEPTED ENGINEERING at exact84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d**. ChatGPT independently inspected the exact diff and author red/green evidence. The separate mechanical reviewer's unpersisted49-test report was explicitly excluded from formal independent-execution evidence. This resolves the candidate review hold only; no real-host, SESSION_ONCE, V0.7 or version acceptance was granted.

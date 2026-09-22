@@ -1,5 +1,11 @@
 # Compact Codex session record
 
+## Final verified checkpoint — 2026-09-22T04:17:40.563855+00:00
+
+- Actual Bots LEAD-054 at8ac5bc6 ACCEPTED ENGINEERING84f8f05; LEAD-053 accepted7acc169 test-only. Native records link original author evidence and actual lead verdicts; no live/host/version acceptance.
+- Jobs6ae659f/PR14 and Swarm193e454/PR20 plus1c9ff44/PR19 are published for independent review; no applicable returned verdict observed. R28a stays held. Existing lead histories contain requests, not fabricated acknowledgements. Combined status is Jobs coordination/codex/STATUS.md.
+- All current evidence manifests rehashed without mismatch. Temporary Jobs and Swarm PG services stopped; original worker checkouts/product services/heartbeat untouched. No Fable handoff, new scheduler or background coordination. Pending owner live-input/host/route/reviewer facts still gate genuine minimums.
+
 ## Due-rotation repair checkpoint — 2026-09-22T04:10:55.259916+00:00
 
 - Isolated Codex84f8f05 repairs the cursor-after-completion failure window in submitted b5fd038. Two red regressions;39focusedpass;713fullrun/711pass/2genuine-evidence skips. [Native repair](../../social-bots/lead-reviews/CODEX_ROTATION_REPAIR_20260922.md). Lead review pending; no live effect or Fable routing.
