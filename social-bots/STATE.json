@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T02:36:00Z",
+  "updated_at": "2026-09-22T03:44:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-052",
+    "lead_release": "LEAD-053",
     "last_review": "LEAD-051",
     "target": "V1.7",
     "target_kind": "operational_live",
@@ -43,8 +43,8 @@
       "branch_head": "6d6cae422c0527a94da8be8df73d1a0caf0f71b3",
       "latest_verified_material_checkpoint": "af3fded92eaba5e68c8088737b68c6f043e40a5e",
       "last_verified_session_id": "s-20260921T211438Z-d5589881",
-      "activity": "active_v17_integration_r07_041_accepted_host_test_sp1_assigned",
-      "assignment": "SP1 only now: portable host-preflight test isolation in social-bots/tests/test_host_preflight.py; then return exact Mac module/full-suite counts. Preserve LIVE V1.7 ceiling and all grants.",
+      "activity": "existing_ownership_preserved_no_new_handoff",
+      "assignment": "Existing unrelated ownership preserved. Owner explicitly prohibits new Social Bots routing/message/assignment/handoff to Fable; Codex handles new concrete repairs only in isolated repair branches pending ChatGPT acceptance.",
       "scope": "sole implementation/integration owner for enabled recovery and live V1.7 only; existing shared runtime edits allowed; later features parked; stop development at V1.7",
       "branch_name_is_historical": true,
       "superseded_restrictions": [
@@ -74,7 +74,7 @@
       ],
       "submitted_future_work_disposition": "preserve; not a V1.7 acceptance prerequisite unless narrowly reused in an enabled production path",
       "operational_acceptance": false,
-      "lead_disposition": "SB-R07-041 ACCEPTED narrowly at LEAD-052 from source review plus independent Mac focused evidence. SB-R07-072 CHANGES_REQUIRED only for portable host-preflight test isolation; no operational host acceptance.",
+      "lead_disposition": "SB-R07-041 remains ACCEPTED narrowly. No new Fable task is authorized.",
       "handoff_note": "Worker scope consumption and material progress are verified. Current branch head includes LEAD-051 lead-authored instruction/ack commits after material worker head af3fded; lead commits are not worker progress."
     },
     "cursor_recovery": {
@@ -123,6 +123,15 @@
       "fable_resume_rule_applied": "same session resumed after container restore; no second heartbeat expected",
       "issue3_visibility": "human visibility only, not evidence of artifact correctness",
       "v07_liveness_rule": "Actual native OS-scheduled sessions and invocation receipts on a verified persistent host, plus actual development artifact/lead cycles; not a kept-open chat."
+    },
+    "codex_repair": {
+      "branch": "codex/bots-host-tests-20260922",
+      "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
+      "base": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+      "activity": "direct_isolated_repairs_by_owner_direction",
+      "assignment": "Codex may implement concrete review findings directly in isolated repair branches; ChatGPT remains formal acceptor; no Fable handoff.",
+      "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
+      "operational_acceptance": false
     }
   },
   "tests": {
@@ -182,15 +191,36 @@
       },
       "finding": "R07-041 focused boundaries pass independently; two full-suite failures are Darwin test-isolation defects, not a real-host suitability verdict",
       "live_calls": 0
+    },
+    "codex_r07_072_author_submission": {
+      "exact_source": "7acc1695d2961267580a156f31df6a5991476654",
+      "base": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+      "full": {
+        "run": 711,
+        "passed": 709,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "host_preflight": {
+        "run": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "classification": "author-run submission evidence; not independent acceptance execution",
+      "independent_ci": "none found",
+      "production_predicates_changed": false
     }
   },
   "lead_review": {
-    "review_id": "LEAD-052",
-    "review_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md",
-    "review_type": "codex_pr5_independent_evidence_formal_verdict",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-051_2026-09-21T2155.md",
+    "review_id": "LEAD-053",
+    "review_ref": "social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md",
+    "review_type": "exact_sha_r07_072_test_isolation_formal_verdict",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md",
     "accepted_now": [
-      "SB-R07-041"
+      "SB-R07-072"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -239,15 +269,13 @@
       "SB-V15-001",
       "SB-V16-001",
       "SB-V17-001",
-      "SB-V20-002",
-      "SB-R07-072"
+      "SB-V20-002"
     ],
     "active_changes_required": [
       "SB-V05-002",
       "SB-V15-001",
       "SB-V16-001",
-      "SB-V17-001",
-      "SB-R07-072"
+      "SB-V17-001"
     ],
     "deferred_changes_required": [
       "SB-V20-002"
@@ -266,10 +294,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "SB-R07-041 accepted narrowly: 0bca4e no-scope repair independently passed 118 focused Mac checks on production-equivalent f0f1307 with zero live effects.",
-      "Full Mac discovery is not green: 707 run / 703 passed / 2 failed / 2 skipped; both failures are host-preflight test isolation because Linux tool mocks do not pin platform.system() on Darwin.",
-      "Only SP1 portable host-test isolation is routed to Fable; no production change unless a separate real defect is demonstrated.",
-      "Official phase remains V0.4.x. V0.4-V0.7 live predecessors and all model/host/public/spend grants remain unchanged."
+      "SB-R07-072 ACCEPTED at exact 7acc1695d2961267580a156f31df6a5991476654 strictly as a test-only portable host-preflight isolation repair.",
+      "GitHub compare proves one-file test-only delta from e9678f8; production host predicates are unchanged.",
+      "Codex author tests report 711/709/0/0/2 and 11 host tests; no independent CI exists, so those runs are not mislabeled independent acceptance.",
+      "Owner prohibits new Fable routing. Codex handles concrete fixes directly in isolated repair branches; ChatGPT remains formal acceptor.",
+      "Official phase remains V0.4.x; V0.7 genuine host/model/reviewer/time prerequisites remain open."
     ]
   },
   "public_actions": {
