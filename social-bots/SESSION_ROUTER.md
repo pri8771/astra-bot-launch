@@ -1,4 +1,4 @@
-# Session router — LEAD-055 — LIVE V1.3 TARGET
+# Session router — LEAD-056 — LIVE V1.3 TARGET
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -14,7 +14,7 @@ Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method:
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Current released SP1 repair:** V1.3 metrics validity in `runtime/metrics.py`: reject bool/nonfinite mapped values from PRESENT normalization; defensively exclude legacy invalid PRESENT values from aggregation; preserve raw provenance/MISSING semantics; add focused red/green and full verification. No broader analytics redesign without a separately reproduced defect.
+**Current released SP1 repair — V0.8 account route freshness:** in `runtime/account_routes.py`, require timezone-aware `last_verified_at`, enforce 24-hour freshness and at most +5 minutes future clock skew, fail closed otherwise, inject deterministic evaluation time for tests, and preserve all existing health/capability/secret/scope checks. No live account call or broader registry redesign.
 
 No Fable routing/message/assignment/handoff is authorized.
 
