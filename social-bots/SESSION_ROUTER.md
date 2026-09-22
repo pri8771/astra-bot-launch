@@ -1,4 +1,4 @@
-# Session router — LEAD-063 — LIVE V1.3 TARGET
+# Session router — LEAD-066 — LIVE V1.7 TARGET
 
 ## Fable: HISTORICAL EVIDENCE ONLY — NO ACTIVE HANDOFF
 
@@ -8,19 +8,16 @@ Owner direction is controlling: **do not route, message, assign or hand off new 
 
 ## Codex: direct implementation owner
 
-Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method: reproduce → root-cause → smallest repair → verify → detailed notes. Bounded mechanical agents may assist but never self-accept.
+Owner target is **LIVE V1.7**. Official product remains **V0.4.x**.
 
-Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
+Current bounded Codex work:
+1. PR17 suitability rework: keep E2; replace stale E1 with a materially distinct public Social Bots-domain source published within 30 days unless later lead-approved otherwise; add deterministic extraction/signal-lineage binding for both. No final five-call matrix yet.
+2. LOCAL provider adapter engineering from accepted PR16 `fec97738...`: distinct `ollama-local` mode, loopback-only `127.0.0.1:11434`, exact model/config binding, no remote fallback, no model pull/download, no daemon changes, five durable attempts/no retries. Tests only; no real inference.
+3. Fail-fast diagnostic: offline reproduction only of whether a failed case allows a later case to reserve/execute. No source edit until confirmed and separately released.
 
-**Current direct Codex assignment — SB-V11 unsafe-reconciliation repair only:** on accepted composition `8c86898d...`, run the existing read-only reconciliation before every bounded unit. If `safe is not True`, do not call `decision.run_cycle`, do not create new product effects, do not write a normal finish receipt, write a truthful blocked/failure receipt, and release only the current worker's owned lease. A fresh later process must reconcile again so unchanged unsafe evidence remains blocked even though `reconcile_required` resets on an empty slot.
+Retry/backoff implementation remains HELD. SB-R07-073/074 remain PLANNED. No duplicate SESSION_ONCE/watcher.
 
-**Retry implementation is HELD.** Policy is specified in LEAD-063 but no retry source/test change is authorized until a separate release.
-
-**V0.4 five-call batch is PREPARATION ONLY.** Dormant request/template exist under `lead-reviews/`; no runtime authorization manifest is active and no live call is authorized.
-
-No live analytics/account/provider/model/public/scheduler action.
-
-No Fable routing/message/assignment/handoff is authorized.
+No live local/Claude model call, public/account action, scheduler/host action, spend, merge or deployment is authorized.
 
 ## Acceptance: independent review-only
 
