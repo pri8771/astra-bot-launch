@@ -1,0 +1,9 @@
+test_no_overlap_second_worker_rejected (test_worker.WorkerTest.test_no_overlap_second_worker_rejected) ... ok
+test_restart_resume_advances_state (test_worker.WorkerTest.test_restart_resume_advances_state) ... ok
+test_stale_lease_recovered_with_reconcile (test_worker.WorkerTest.test_stale_lease_recovered_with_reconcile) ... ok
+test_two_invocations_produce_receipts_and_heartbeat (test_worker.WorkerTest.test_two_invocations_produce_receipts_and_heartbeat) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.024s
+
+OK

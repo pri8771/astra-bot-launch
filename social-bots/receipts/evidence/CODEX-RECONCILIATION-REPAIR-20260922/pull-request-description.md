@@ -1,0 +1,3 @@
+Every bounded worker unit now checks the existing read-only reconciliation result before the decision cycle. Unsafe state returns blocked_reconciliation_unsafe, writes a truthful failure receipt/heartbeat, and releases only its own lease; a fresh invocation remains blocked until the underlying violation is resolved. No queue evidence is rewritten and no retry policy/effect journal is added.
+
+Exact9de61f6c8db9d06b11e9c71a8f84b2f7802633c7: 764 tests run, 762 passed, 2 genuine-live skips; focused stale/fresh/strict-boolean/takeover regressions pass and fail on accepted8c86898. Fencing/worker suites and changed-file Ruff pass. Source-bound synthetic engineering proof only; no live V1.3 or SB-V11 acceptance claimed. Lead release LEAD063; retry implementation remains held.

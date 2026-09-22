@@ -1,0 +1,221 @@
+diff --git a/social-bots/runtime/worker.py b/social-bots/runtime/worker.py
+index 26b84ea..feb6d56 100644
+--- a/social-bots/runtime/worker.py
++++ b/social-bots/runtime/worker.py
+@@ -20,7 +20,7 @@ import socket
+ import uuid
+ from collections.abc import Callable
+ 
+-from . import leasing, receipts, decision
++from . import decision, leasing, receipts
+ from .heartbeat import Heartbeat
+ from .jsonstore import now_iso
+ 
+@@ -82,11 +82,30 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
+         # Failure aborts the unit through the ordinary failure/release path.
+         if on_claim is not None:
+             fence.fenced_commit(on_claim)
+-        # (2b) reconcile prior owner's uncertain external effects before new work.
+-        reconciled = None
+-        if lease.reconcile_required:
+-            reconciled = _reconcile(bot)
+-            hb.beat(status="reconciled", next_safe_action="work")
++        # (2b) Reconcile every unit: releasing a blocked lease must not let a
++        # fresh acquisition bypass an unchanged unsafe external-effect record.
++        reconciled = _reconcile(bot)
++        if reconciled.get("safe") is not True:
++            failure = receipts.write_receipt(
++                bot, "failure", task_id, worker_id, lease.lease_id,
++                {"persona": persona_id, "outcome": "blocked_reconciliation_unsafe",
++                 "candidate_succeeded": False, "verified": False,
++                 "cycle_committed": False, "reconciled": reconciled,
++                 "fence_generation": lease.generation,
++                 "took_over_from": lease.took_over_from})
++            hb.beat(status="blocked", last_receipt=os.path.basename(failure),
++                    next_safe_action="resolve_unsafe_reconciliation")
++            released = leasing.release(lease)
++            return {"worker_id": worker_id, "task_id": task_id, "bot": bot,
++                    "persona": persona_id, "lease_id": lease.lease_id,
++                    "took_over_from": lease.took_over_from,
++                    "outcome": "blocked_reconciliation_unsafe",
++                    "verified": False, "withheld": True, "committed": False,
++                    "reconciled": reconciled, "lease_released": released,
++                    "start_receipt": os.path.basename(start),
++                    "failure_receipt": os.path.basename(failure),
++                    "heartbeat_beats": hb.beats}
++        hb.beat(status="reconciled", next_safe_action="work")
+ 
+         # (3) useful work: one autonomy cycle. Renew lease around the work, and
+         # pass the fence so the cycle's durable commit is refused if this worker
+@@ -180,7 +199,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
+                 "took_over_by_generation": (exc.on_disk or {}).get("generation"),
+                 "start_receipt": os.path.basename(start),
+                 "heartbeat_beats": hb.beats}
+-    except Exception as exc:  # noqa: BLE001 — record any failure as a receipt.
++    except Exception as exc:
+         receipts.write_receipt(
+             bot, "failure", task_id, worker_id, lease.lease_id,
+             {"persona": persona_id, "error_type": type(exc).__name__, "error": str(exc)[:300]})
+diff --git a/social-bots/tests/test_reconciliation_gate.py b/social-bots/tests/test_reconciliation_gate.py
+new file mode 100644
+index 0000000..d145010
+--- /dev/null
++++ b/social-bots/tests/test_reconciliation_gate.py
+@@ -0,0 +1,157 @@
++"""LEAD-063: every worker unit fails closed on unsafe reconciliation."""
++from __future__ import annotations
++
++import json
++import os
++import tempfile
++import unittest
++from pathlib import Path
++from unittest.mock import patch
++
++from runtime import decision, leasing, paths, worker
++from runtime.heartbeat import read_heartbeat
++from runtime.jsonstore import append_jsonl
++
++
++class ReconciliationGateTest(unittest.TestCase):
++    def setUp(self) -> None:
++        self.home = tempfile.TemporaryDirectory()
++        self.addCleanup(self.home.cleanup)
++        self.env = patch.dict(os.environ, {"SBOTS_HOME": self.home.name})
++        self.env.start()
++        self.addCleanup(self.env.stop)
++        self.bot = "social-a"
++        self.task = worker.runtime_task_id(self.bot)
++
++    def _seed_unsafe_queue(self) -> Path:
++        queue = paths.content_dir(self.bot) / "publish_queue.jsonl"
++        append_jsonl(
++            queue,
++            {
++                "content_id": "historical-violation",
++                "persona": self.bot,
++                "bot": self.bot,
++                "published": True,
++                "publish_authorized": False,
++            },
++        )
++        return queue
++
++    def _failure_detail(self) -> dict:
++        failures = sorted(paths.receipts_dir(self.bot).glob("*failure*.json"))
++        self.assertEqual(len(failures), 1)
++        return json.loads(failures[0].read_text())["detail"]
++
++    @staticmethod
++    def _cycle_record() -> dict:
++        return {
++            "cycle": 1,
++            "chosen": {"action": "NO_ACTION"},
++            "policy": {},
++            "outcome": "no_action",
++            "verify": {"verified": True, "withheld": False},
++        }
++
++    def _assert_blocked(self, result: dict, run_cycle) -> None:
++        self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
++        self.assertFalse(result["verified"])
++        self.assertFalse(result["committed"])
++        self.assertTrue(result["lease_released"])
++        self.assertNotIn("finish_receipt", result)
++        run_cycle.assert_not_called()
++        detail = self._failure_detail()
++        self.assertEqual(detail["outcome"], "blocked_reconciliation_unsafe")
++        self.assertFalse(detail["candidate_succeeded"])
++        self.assertFalse(detail["cycle_committed"])
++        self.assertFalse(detail["verified"])
++        self.assertEqual(
++            detail["reconciled"],
++            {"queue_items": 1, "unauthorized_published": 1, "safe": False},
++        )
++        heartbeat = read_heartbeat(result["worker_id"])
++        self.assertIn(heartbeat["status"], {"blocked", "failed"})
++
++    def test_unsafe_stale_then_fresh_remain_blocked_without_product_mutation(self) -> None:
++        queue = self._seed_unsafe_queue()
++        before = queue.read_bytes()
++        stale = leasing.acquire(self.task, "dead-worker", ttl_seconds=0)
++
++        with patch.object(decision, "run_cycle", return_value=self._cycle_record()) as run_cycle:
++            first = worker.run_one_unit(self.task, self.bot, self.bot, worker_id="takeover")
++        self.assertEqual(first["took_over_from"], stale.lease_id)
++        self._assert_blocked(first, run_cycle)
++        self.assertEqual(queue.read_bytes(), before)
++
++        # Receipt files are lifecycle evidence, while product-owned stores remain
++        # absent and the unresolved queue evidence stays byte-for-byte unchanged.
++        for product_dir in ("state", "memory", "experiments", "analytics"):
++            self.assertFalse((Path(self.home.name) / product_dir / self.bot).exists())
++
++        # A deleted old lease and fresh generation cannot clear the violation.
++        with patch.object(decision, "run_cycle", return_value=self._cycle_record()) as run_cycle:
++            second = worker.run_one_unit(self.task, self.bot, self.bot, worker_id="fresh")
++        self.assertIsNone(second["took_over_from"])
++        self.assertEqual(second["outcome"], "blocked_reconciliation_unsafe")
++        self.assertFalse(second["verified"])
++        self.assertFalse(second["committed"])
++        run_cycle.assert_not_called()
++        self.assertEqual(queue.read_bytes(), before)
++        self.assertIsNone(leasing.inspect(self.task))
++
++    def test_only_literal_true_is_safe_and_safe_unit_proceeds(self) -> None:
++        record = self._cycle_record()
++        unsafe_values = [False, None, 1, "true", [], {}]
++        for index, safe in enumerate(unsafe_values):
++            with self.subTest(safe=safe), \
++                    patch.object(worker, "_reconcile", return_value={
++                        "queue_items": 1, "unauthorized_published": 1, "safe": safe,
++                    }), patch.object(decision, "run_cycle", return_value=record) as run_cycle:
++                result = worker.run_one_unit(
++                    self.task, self.bot, self.bot, worker_id=f"unsafe-{index}"
++                )
++                self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
++                run_cycle.assert_not_called()
++
++        with patch.object(worker, "_reconcile", return_value={
++            "queue_items": 0, "unauthorized_published": 0, "safe": True,
++        }), patch.object(decision, "run_cycle", return_value=record) as run_cycle:
++            result = worker.run_one_unit(self.task, self.bot, self.bot, worker_id="safe")
++        run_cycle.assert_called_once()
++        self.assertEqual(result["outcome"], "no_action")
++        self.assertTrue(result["verified"])
++        self.assertTrue(result["lease_released"])
++        self.assertIn("finish_receipt", result)
++
++    def test_unsafe_release_does_not_delete_takeover_workers_lease(self) -> None:
++        self._seed_unsafe_queue()
++        original_write = worker.receipts.write_receipt
++        replacement = {}
++
++        def write_then_take_over(namespace, kind, task_id, worker_id, lease_id, detail):
++            receipt = original_write(namespace, kind, task_id, worker_id, lease_id, detail)
++            if kind == "failure" and "lease" not in replacement:
++                lease_path = paths.leases_dir() / f"{task_id}.lease.json"
++                current = json.loads(lease_path.read_text())
++                current["renewed_at"] = "1970-01-01T00:00:00+00:00"
++                lease_path.write_text(json.dumps(current))
++                replacement["lease"] = leasing.acquire(task_id, "new-owner", ttl_seconds=300)
++            return receipt
++
++        with patch.object(worker.receipts, "write_receipt", side_effect=write_then_take_over), \
++                patch.object(
++                    decision, "run_cycle", return_value=self._cycle_record()
++                ) as run_cycle:
++            result = worker.run_one_unit(
++                self.task, self.bot, self.bot, worker_id="old-owner", ttl_seconds=300
++            )
++
++        run_cycle.assert_not_called()
++        self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
++        self.assertFalse(result["lease_released"])
++        current = leasing.inspect(self.task)
++        self.assertEqual(current["lease_id"], replacement["lease"].lease_id)
++        self.assertEqual(current["worker_id"], "new-owner")
++
++
++if __name__ == "__main__":
++    unittest.main()

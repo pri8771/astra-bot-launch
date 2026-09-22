@@ -1,0 +1,53 @@
+{
+  "source": "9de61f6c8db9d06b11e9c71a8f84b2f7802633c7",
+  "tree": "be23e6784c23db399db423f918ca4df912f2f252",
+  "result": "PASS_TWO_FRESH_PROCESSES_REMAIN_BLOCKED",
+  "results": [
+    {
+      "worker_id": "takeover",
+      "task_id": "cycle:social-a",
+      "bot": "social-a",
+      "persona": "social-a",
+      "lease_id": "5a1d7a73140a4ae9b47786c9aa3b0573",
+      "took_over_from": "1e19710d9cff411795e898b03180a627",
+      "outcome": "blocked_reconciliation_unsafe",
+      "verified": false,
+      "withheld": true,
+      "committed": false,
+      "reconciled": {
+        "queue_items": 1,
+        "unauthorized_published": 1,
+        "safe": false
+      },
+      "lease_released": true,
+      "start_receipt": "20260922T083613+0000-start-d7e9e265.json",
+      "failure_receipt": "20260922T083613+0000-failure-cd94734b.json",
+      "heartbeat_beats": 3
+    },
+    {
+      "worker_id": "fresh",
+      "task_id": "cycle:social-a",
+      "bot": "social-a",
+      "persona": "social-a",
+      "lease_id": "269af0fafc104d659991b971ce360f06",
+      "took_over_from": null,
+      "outcome": "blocked_reconciliation_unsafe",
+      "verified": false,
+      "withheld": true,
+      "committed": false,
+      "reconciled": {
+        "queue_items": 1,
+        "unauthorized_published": 1,
+        "safe": false
+      },
+      "lease_released": true,
+      "start_receipt": "20260922T083613+0000-start-84116e08.json",
+      "failure_receipt": "20260922T083613+0000-failure-a8accd2b.json",
+      "heartbeat_beats": 3
+    }
+  ],
+  "queue_unchanged": true,
+  "finish_receipts": 0,
+  "failure_receipts": 2,
+  "decision_records": 0
+}

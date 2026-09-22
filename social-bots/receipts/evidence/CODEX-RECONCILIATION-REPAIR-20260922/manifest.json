@@ -1,0 +1,99 @@
+{
+  "artifact": "CODEX-BOTS-RECONCILIATION-REPAIR-20260922",
+  "files": [
+    {
+      "bytes": 6164,
+      "path": "baseline-red.log",
+      "sha256": "2eeebc77873ec4ccb94602fbd50fb8b5f495310df550017f64be86c5b5ad4855"
+    },
+    {
+      "bytes": 397,
+      "path": "candidate-commit.txt",
+      "sha256": "c749c55433a660435777dda02aa557bfaa7d1d06e67604fe86070ccacabed70f"
+    },
+    {
+      "bytes": 10698,
+      "path": "candidate.patch",
+      "sha256": "9e2672d2bac0cb86f2bc12a4b8b28be0e74d242e89fa96f4695778a742c2dd70"
+    },
+    {
+      "bytes": 39,
+      "path": "changed-files-ruff-fix.log",
+      "sha256": "6f4e3c8cb6a43f32a8b47add0b65207f17bd814c84308623b3720ad789c0d769"
+    },
+    {
+      "bytes": 1773,
+      "path": "checks.json",
+      "sha256": "7150dd8833ecf0d2c2ea54ce1bbdbe06e8e78a807b58689f52c15f7a2e6933ee"
+    },
+    {
+      "bytes": 2058,
+      "path": "commands.txt",
+      "sha256": "71f247dbb2541e3f5556027a055bca445afd3694a062cacdf8d818ca023e7606"
+    },
+    {
+      "bytes": 1547,
+      "path": "fencing-pre-lint.log",
+      "sha256": "053b2f29c61e00e6452e130954ac4ece9f14925ee9b342cc84b15eec354de5d2"
+    },
+    {
+      "bytes": 101,
+      "path": "focused-green-pre-lint.log",
+      "sha256": "55acadf0454ddcc94b077c0c2c736842df089ee096c225ff97919952791f409d"
+    },
+    {
+      "bytes": 1621,
+      "path": "fresh-process-proof.log",
+      "sha256": "ad1c3b6fdeb99609cf37364f9ebff8994d299dc0867fff6465525ee24dd614d6"
+    },
+    {
+      "bytes": 2424,
+      "path": "fresh-process-proof.py",
+      "sha256": "bf71214f4b228e3e31a33e1498a6241a6eb6c48f51119067fd72d8a971d41479"
+    },
+    {
+      "bytes": 128926,
+      "path": "full.log",
+      "sha256": "4e406fd4255433d157c6870926c2e630fb8e11c619cfd5b6fe00175bcfe7ae39"
+    },
+    {
+      "bytes": 778,
+      "path": "pull-request-description.md",
+      "sha256": "74299cf3b1190273ade1b3597292ff39c0f8c446560bbb676bfb327877549c96"
+    },
+    {
+      "bytes": 52,
+      "path": "pull-request.txt",
+      "sha256": "836bac3ae9bc5fb1070069448e9ee11e2f1a7f3092722d75583d582cf6fd41e7"
+    },
+    {
+      "bytes": 2910,
+      "path": "review.md",
+      "sha256": "9ee4bf6d2cff65218166c005155812c834c46750f60f317b69facb3a3135db04"
+    },
+    {
+      "bytes": 458,
+      "path": "source-checksums.txt",
+      "sha256": "5684e2ebb84a6e0ae93018add8dd581a9b1cff0c1ffb8cf213d0e9a00e61b947"
+    },
+    {
+      "bytes": 0,
+      "path": "test-diffcheck-pre-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 19,
+      "path": "test-ruff-pre-final.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "bytes": 562,
+      "path": "worker-pre-lint.log",
+      "sha256": "c6beeccb32f39efc8541f875d75494036719b362f15154c69d8205bb99db03fa"
+    }
+  ],
+  "pull_request": "https://github.com/pri8771/astra-bot-launch/pull/15",
+  "release_ref": "309fafc",
+  "source_sha": "9de61f6c8db9d06b11e9c71a8f84b2f7802633c7",
+  "source_tree": "be23e6784c23db399db423f918ca4df912f2f252"
+}

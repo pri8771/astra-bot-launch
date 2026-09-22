@@ -1,0 +1,15 @@
+test_decision_log_and_last_decision_written_inside_fence (test_fencing.LeaseFencingTest.test_decision_log_and_last_decision_written_inside_fence) ... ok
+test_fence_invalid_after_takeover (test_fencing.LeaseFencingTest.test_fence_invalid_after_takeover) ... ok
+test_fenced_commit_refuses_after_fence_loss (test_fencing.LeaseFencingTest.test_fenced_commit_refuses_after_fence_loss) ... ok
+test_generation_increments_on_takeover_and_is_inspectable (test_fencing.LeaseFencingTest.test_generation_increments_on_takeover_and_is_inspectable) ... ok
+test_old_owner_cycle_commits_nothing_after_midcycle_takeover (test_fencing.LeaseFencingTest.test_old_owner_cycle_commits_nothing_after_midcycle_takeover) ... ok
+test_stale_owner_cannot_write_decision_log_after_takeover (test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_decision_log_after_takeover) ... ok
+test_stale_owner_cannot_write_success_finish_receipt_after_takeover (test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_success_finish_receipt_after_takeover) ... ok
+test_stale_owner_in_migration_path_leaves_no_write (test_fencing.LeaseFencingTest.test_stale_owner_in_migration_path_leaves_no_write) ... ok
+test_takeover_worker_becomes_owner_and_commits (test_fencing.LeaseFencingTest.test_takeover_worker_becomes_owner_and_commits) ... ok
+test_worker_run_one_unit_stands_down_on_fence_loss (test_fencing.LeaseFencingTest.test_worker_run_one_unit_stands_down_on_fence_loss) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.036s
+
+OK
