@@ -1,6 +1,6 @@
 {
   "schema_version":1,
-  "updated_at":"2026-09-21T23:52:25Z",
+  "updated_at":"2026-09-21T23:59:30Z",
   "coordination_repo":"pri8771/astra-bot-launch",
   "coordination_path":"social-bots/",
   "setup_branch":"chatgpt/social-bots-plan-20260920",
@@ -11,28 +11,30 @@
   "worker_lanes":{
     "fable_fasttrack":{
       "branch":"fable/social-bots-v23-fasttrack-20260921",
-      "branch_head":"72a55319cf41f9910c5d3b9623129de3ac0eea31",
+      "branch_head":"347de2b5c91c774670c3b884cc542c88fa6eabfa",
       "latest_verified_material_checkpoint":"a204ad0827748a4e9661f1945b8e025d53d0ae09",
       "last_verified_session_id":"s-20260921T211438Z-d5589881",
-      "activity":"released_awaiting_worker_ack",
+      "activity":"released_instruction_delivered_awaiting_worker_session",
       "assignment":"social-bots/delivery/FINAL_RUN.md",
       "scope":"sole implementation/integration owner including shared recovery runtime; preserve incoming work; repair audit defects before operational use; integrated V2.3 first, then existing V3.0 roadmap",
       "superseded_restrictions":["LEAD-045/046 pause","LEAD-043 new-files-only"],
       "worker_reported_suite":"523 discovered; 521 passed; 0 failed; 0 errors; 2 skipped",
       "submitted_engineering":["SB-S20-001","SB-S23-001","SB-S23-002","SB-S23-003","SB-S23-004","SB-S23-005","SB-S23-006","SB-S23-007","SB-S23-008"],
-      "operational_acceptance":false
+      "operational_acceptance":false,
+      "handoff_note":"Branch head is lead-authored LEAD-047 instruction/ack delivery, not a worker acknowledgement, heartbeat or implementation result."
     },
     "cursor_recovery":{
       "branch":"cursor/social-bots-recovery-v07-20260921",
-      "branch_head":"74a515b7f3e30c94979e0f66dc6daae66daed571",
+      "branch_head":"bf18ac0083b15194c011b18dc791f4bd3d3e8019",
       "latest_verified_material_worker_source":"d7ecb256d430f437f4ad9249480b6430af52ecf9",
       "latest_verified_session_id":"s-20260921T191500Z-a23cc77e",
-      "activity":"parked_safe_handoff",
-      "assignment":"preserve and push any existing local work at a safe boundary; no new overlapping implementation; Fable now owns R07-041 and shared recovery integration"
+      "activity":"parked_safe_handoff_instruction_delivered",
+      "assignment":"preserve and push any existing local work at a safe boundary; no new overlapping implementation; Fable now owns R07-041 and shared recovery integration",
+      "handoff_note":"Current branch head is lead-authored park/ack delivery, not worker progress."
     },
     "core":{"branch":"claude/social-bots-windows-core-host","last_verified_material_source_from_descendant_lane":"a73b7b58de8f3669795b81637bff55247d67943c","activity":"parked_evidence_only","assignment":"preserve evidence; no overlapping implementation"},
     "intelligence":{"branch":"claude/social-bots-intelligence-repair-v2","last_verified_worker_head":"205295531e7755a5045fb1e458d3964d986edd56","activity":"parked_evidence_only","assignment":"preserve evidence; integrator may selectively consolidate reviewed modules without accepting unresolved semantics"},
-    "mac_qa":{"branch":"claude/social-bots-mac-qa-control","branch_head":"d57a10459dc441e94015168801254771d8e96b1a","latest_verified_material_worker_head":"72e380bda71561429154e67bc07636b89143a488","activity":"independent_review_only","assignment":"independently reproduce candidate R07-071/R07-041 and specialist regression/lifecycle tests; no runtime source edits or real model calls; return exact evidence","host_scope_note":"A Mac lane name does not prove local Mac execution. Prior acceptance was a single POSIX host/filesystem."},
+    "mac_qa":{"branch":"claude/social-bots-mac-qa-control","branch_head":"bd6cbde805684efb2a4bbf06c3886cefdb842650","latest_verified_material_worker_head":"72e380bda71561429154e67bc07636b89143a488","activity":"independent_review_assignment_delivered_awaiting_worker_session","assignment":"independently reproduce candidate R07-071/R07-041 and LEAD-047 specialist guard/integrity/lifecycle regressions on the pinned candidate; no runtime source edits or real model calls; return exact evidence","host_scope_note":"A Mac lane name does not prove local Mac execution. Prior acceptance was a single POSIX host/filesystem.","handoff_note":"Current branch head is lead-authored review assignment delivery, not a fresh reviewer heartbeat or result."},
     "v04_live_canary":{"branch":"claude/social-bots-v04-live-canary","activity":"frozen_evidence_only_authorization_consumed","assignment":"preserve evidence; no further product-model/canary calls"},
     "development_sessions_live":null,
     "historical_development_sessions_evidenced":true,
@@ -67,10 +69,10 @@
     "blocked":["SB-V04-002","SB-V04-004","SB-V06-001","SB-V06-002","SB-V06-003","SB-V07-002","SB-V07-005"],
     "additional_operational_findings":"delivery/reviews/LEAD047_AUDIT.md",
     "key_findings":[
-      "Fable submitted useful strategy-store and specialist components; latest branch head is a lead pause acknowledgement, not new material source.",
+      "Fable submitted useful strategy-store and specialist components; its latest worker material remains a204ad082..., while the new 347de2b5... head is lead-authored assignment delivery rather than worker progress.",
       "Six isolated copied-source/test-double scenarios reproduced direct-callable/false-fixture dispatch, concurrent/reentrant/private-wrapper budget overruns and consumption of altered retained output.",
       "The complete runtime suite was not independently executed by this lead turn. Historical fixture counts do not prove operational V2.3.",
-      "Fable is released as sole integrator so shared-file ownership and stale review lanes no longer deadlock safe development. No worker acknowledgement is fabricated.",
+      "Fable is released as sole integrator so shared-file ownership and stale review lanes no longer deadlock safe development. Cursor park and QA review assignments were delivered directly to their branches; no worker acknowledgement is fabricated.",
       "The supplied delivery patch is semantically imported and reconciled with the existing next-round docs: one active Cxx closure queue, original SB feature/milestone requirements retained.",
       "No additional live product-model call, public effect, new spend or main merge is authorized. No version promotion."
     ]
@@ -94,7 +96,7 @@
     "v04_real_canary_required":true,"v04_real_canary_artifact":"SB-V04-005","v04_real_canary_status":"ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
     "v04_promotion_blocked_until":["SB-V04-002","SB-V04-004","SB-EVD-002"]
   },
-  "next_recovery":["Fable preserves the current candidate and reproduces the source-audit negatives against actual modules","Fable repairs shared call authority/budgets/integrity/finalization, then completes and connects the strategy/planner/specialist pipeline","Independent candidate evidence is returned before lead acceptance; safe offline work can continue while genuine external gates remain","Follow delivery/FINAL_RUN.md, not the superseded Fable pause"],
+  "next_recovery":["Fable starts a fresh worker session from the delivered LEAD-047 branch assignment and reproduces the source-audit negatives against actual modules","Fable repairs shared call authority/budgets/integrity/finalization, then completes and connects the strategy/planner/specialist pipeline","Independent candidate evidence is returned before lead acceptance; safe offline work can continue while genuine external gates remain","Follow delivery/FINAL_RUN.md, not the superseded Fable pause"],
   "priority_zero":{"artifact":"SB-V04-002/SB-V04-004 empirical divergence gate","status":"BLOCKED_OWNER_AUTHORIZATION","plan":"social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md","required_future_batch_calls":5,"owner_authorized_bounded_existing_subscription_call":false,"authorization_consumed":true,"additional_spend_authorized":false,"public_effect_allowed":false},
   "remote_worker_infrastructure":{"control_plane":"pri8771/remote-workers","worker":"worker-pc","capacity":1,"status":"excluded_from_critical_path_until_private_repo_clone_auth_fixed","last_social_bots_actions_run":35615370153,"last_social_bots_task_result":"Repository clone failed before Claude/tests","policy":"Do not redispatch until private-repo clone/auth is demonstrably fixed. Worker results are evidence, not project authority."},
   "management_model":{
