@@ -694,7 +694,9 @@ def _verify_execution_inputs(matrix: PreparedMatrix, *, personas: dict,
         "injected_runner": False, "model": None,
         "timeout_s": reasoning_cli.DEFAULT_TIMEOUT_S, "retry_allowed": False,
     }
-    if matrix.provider_config != expected_provider:
+    from . import reasoning_local
+    if (matrix.provider_config != expected_provider
+            and matrix.provider_config != reasoning_local.provider_config()):
         raise MatrixError("reviewed provider configuration differs from the batch provider")
 
 
@@ -856,8 +858,12 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
     binding = execution_binding(matrix)
 
     budget = authorization.CallBudget(matrix.run_scope, grant.max_calls, home=home)
-    provider = provider_factory() if provider_factory is not None else \
-        reasoning_cli.ClaudeCodeReasoningProvider()
+    if matrix.provider_config["provider_mode"] == "ollama-local":
+        from .reasoning_local import OllamaLocalReasoningProvider
+        provider = OllamaLocalReasoningProvider(matrix.provider_config)
+    else:
+        provider = provider_factory() if provider_factory is not None else \
+            reasoning_cli.ClaudeCodeReasoningProvider()
 
     # SB-R07-041 / C04: the provider's own deep gate consults the process-wide
     # dispatch scope; hold it to THIS batch's artifact/lane/run scope/manifest

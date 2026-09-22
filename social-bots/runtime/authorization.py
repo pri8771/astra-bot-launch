@@ -144,6 +144,8 @@ def _validate_execution_binding(manifest: dict, binding: ExecutionBinding | None
                 or artifact not in closure["artifacts"]
                 or not set(closure["artifacts"]).issubset(manifest["artifact_scope"])):
             raise ValueError("scope mismatch")
+        if closure["provider_config"]["provider_mode"] != manifest["provider_mode"]:
+            raise ValueError("provider mode mismatch")
     except (KeyError, TypeError, ValueError) as exc:
         raise AuthorizationDenied("execution_binding_scope_mismatch") from exc
 
@@ -222,10 +224,13 @@ def validate_manifest(manifest, *, now: datetime | None = None) -> list[str]:
             if not isinstance(value, str) or re.fullmatch(pattern, value) is None:
                 errs.append(f"missing or invalid required binding field {name!r}")
 
-    # Subscription-authenticated Claude Code provider only.
-    if manifest["provider_mode"] != "claude-cli":
-        errs.append(f"provider_mode {manifest['provider_mode']!r} is not the authorized "
-                    f"subscription route 'claude-cli'")
+    # LOCAL remains real, budgeted inference, never an engineering-stub bypass.
+    if manifest["provider_mode"] not in ("claude-cli", "ollama-local"):
+        errs.append(f"provider_mode {manifest['provider_mode']!r} is not an authorized route")
+    if manifest["provider_mode"] == "ollama-local" and (
+            not isinstance(scope, list) or not scope
+            or any(a not in BOUND_ARTIFACTS for a in scope if isinstance(a, str))):
+        errs.append("ollama-local requires the exact bound divergence artifact scope")
 
     max_calls = manifest["max_calls"]
     if isinstance(max_calls, bool) or not isinstance(max_calls, int) or max_calls < 1:
