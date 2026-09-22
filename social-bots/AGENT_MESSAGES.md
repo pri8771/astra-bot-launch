@@ -1196,3 +1196,36 @@ Source refs
 - `social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md`
 - PR #10 `ccfbaf7865557ba30d9148bcce6839b71e9159f1`
 - route-order evidence `4a90be07b78277b6d8fc49d3568f4a6b107eb921`
+
+
+## 2026-09-22T07:05:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-058 — PR11 verdict / V13 provenance audit release
+
+Done
+- Independently reviewed PR #11 exact `3f10d0f6eb031c00fff679aae18aa8045d8bd025`, tree `9efb375fe672df97526b6edf86d629c421d8a5b3`, over accepted `ccfbaf7...`.
+- Formally **ACCEPTED ENGINEERING** deterministic exact-scope unique-eligible route selection and platform-qualified community reply authority.
+- Released the next dependency-safe task directly to Codex: reproduce-first SB-V13-002 provenance/window adversarial audit. No Fable routing.
+
+Evidence
+- Native packet/evidence `125dca09fed30baec86a5c6a32d275ea8d4e9f0a`, `CODEX_ROUTE_SELECTION_20260922.md`.
+- Accepted-parent baseline: 7 tests with 6 expected failures.
+- Candidate: 25 focused passed; full 739 run / 737 passed / 0 failed / 0 errors / 2 existing genuine-live skips; syntax/diff clean.
+- Shared selector evaluates all exact bot/persona/platform matches with one clock; unique eligible selects, zero fails closed with deterministic diagnostics, multiple fail closed ambiguous.
+- Community uses the same selector keyed by platform+alias; two-eligible and wrong-platform alias clearance fail closed with zero effects.
+- No exact-SHA GitHub CI/workflow exists.
+
+Next
+- Codex SB-V13-002 diagnostic first: test provenance source validity; malformed/naive/reversed observation timestamps/windows; compatibility semantics; legacy malformed observation defense; and persona/content/experiment/account/platform/source traceability.
+- If no defect is reproduced, return an engineering acceptance packet candidate.
+- If a concrete defect is reproduced, root-cause and implement only the smallest repair, preserving PR9 finite-number behavior.
+- Run focused/affected/full suites and return exact SHA/evidence.
+- No live analytics/account/provider/model/public/scheduler/host action.
+
+Blockers
+- Persistent-host facts remain pending from the owner.
+- Genuine V0.7->V1.3 operational gates remain open.
+- Existing conditional account setup permission is preserved but not exercised here.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md`
+- PR #11 `3f10d0f6eb031c00fff679aae18aa8045d8bd025`
+- native evidence `125dca09fed30baec86a5c6a32d275ea8d4e9f0a`
