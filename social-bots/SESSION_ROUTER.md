@@ -1,4 +1,4 @@
-# Session router — LEAD-059 — LIVE V1.3 TARGET
+# Session router — LEAD-060 — LIVE V1.3 TARGET
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -14,9 +14,7 @@ Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method:
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Parallel direct Codex assignments:**
-1. **SB-V13-002 reproduce-first adversarial audit** continues unchanged: provenance source validity, observation/window validity, compatibility semantics, malformed legacy observation defense, and traceability. No source edit until a concrete defect is reproduced.
-2. **V0.8 route_type schema SP1**: validate `route_type` at registry ingest against exactly `API|browser|Buffer|manual|unsupported`; reject the whole registry on any undocumented value; keep valid `unsupported` parsed but unavailable. Preserve LEAD-056/057/058 freshness, selection, capability and community behavior. No boolean/type expansion beyond this documented enum.
+**Current direct Codex assignment — composition/integration only:** create an isolated branch from accepted base `3f10d0f6...` and apply the exact accepted PR12 (`a4e7926...`) and PR13 (`be026271...`) changes without semantic modification. Verify route schema/freshness/selection/community and metric finite/provenance/window/legacy behavior together, then run full suite and syntax/diff checks. If composition needs any behavior change beyond mechanical conflict resolution, stop and return REWORK_FOUND.
 
 No live analytics/account/provider/model/public/scheduler action.
 
