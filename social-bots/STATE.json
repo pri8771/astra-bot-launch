@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T06:02:00Z",
+  "updated_at": "2026-09-22T07:05:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-057",
+    "lead_release": "LEAD-058",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -129,11 +129,11 @@
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
       "activity": "direct_v13_reproduce_rootcause_repair_verify",
-      "assignment": "V0.8 route-selection SP1: exact-scope matches, independently evaluate route health/freshness, select only unique eligible route, fail closed on zero/multiple eligible, registry-order invariant, preserve downstream capability/authority flags; no live account call.",
+      "assignment": "SB-V13-002 reproduce-first adversarial provenance/window audit; no source edits until a concrete defect is reproduced; then smallest repair only if needed.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
-      "latest_accepted_checkpoint": "V0.8 route freshness + community health engineering repair",
+      "latest_accepted_candidate": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "latest_accepted_checkpoint": "V0.8 deterministic unique-eligible route selection + community platform/alias scope",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT"
     }
@@ -309,15 +309,36 @@
       "contract": "select unique eligible exact-scope route; zero eligible fail closed; multiple eligible fail closed ambiguous; registry order never authority",
       "repair_status": "RELEASED_TO_CODEX_SP1",
       "live_account_calls": 0
+    },
+    "codex_route_selection_author_submission": {
+      "exact_source": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "tree": "9efb375fe672df97526b6edf86d629c421d8a5b3",
+      "base": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "baseline": {
+        "run": 7,
+        "expected_failures": 6
+      },
+      "focused": {
+        "passed": 25
+      },
+      "full": {
+        "run": 739,
+        "passed": 737,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-057",
-    "review_ref": "social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md",
-    "review_type": "pr10_freshness_exact_sha_and_route_selection_contract",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md",
+    "review_id": "LEAD-058",
+    "review_ref": "social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md",
+    "review_type": "pr11_route_selection_exact_sha_and_v13_provenance_audit_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md",
     "accepted_now": [
-      "PR10-route-freshness@ccfbaf7865557ba30d9148bcce6839b71e9159f1"
+      "PR11-route-selection@3f10d0f6eb031c00fff679aae18aa8045d8bd025"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -391,11 +412,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR #10 exact ccfbaf7865557ba30d9148bcce6839b71e9159f1 ACCEPTED ENGINEERING for LEAD-056 24h/+5m freshness enforcement and community reply health/freshness gating.",
-      "Author evidence: 32 focused pass, 732/730/0/0/2 full; no exact-SHA CI and no live account/public claim.",
-      "Separate registry-order defect reproduced: availability_for uses matches[0], so same exact-scope routes can flip availability solely by array order.",
-      "Lead selection contract: evaluate all exact-scope matches; unique eligible selects; zero eligible fail closed; multiple eligible fail closed ambiguous; registry order never grants authority.",
-      "Bounded route-selection repair released directly to Codex; no inferred destination priority, no Fable routing, no live account/provider/model/public/scheduler action."
+      "PR #11 exact 3f10d0f6eb031c00fff679aae18aa8045d8bd025 ACCEPTED ENGINEERING for unique-eligible exact-scope route selection and platform-qualified community reply authority.",
+      "Accepted-parent baseline: 7 tests with 6 expected failures; candidate 25 focused pass and 739/737/0/0/2 full; no exact-SHA CI.",
+      "Shared selector evaluates all exact bot/persona/platform matches under one clock; unique eligible selects, zero fails closed, multiple fail closed ambiguous; capabilities applied after selection.",
+      "Community now uses same selector keyed by platform+alias, closing two-eligible and wrong-platform alias clearance while preserving persona alias recognition.",
+      "Next dependency-safe Codex assignment is reproduce-first SB-V13-002 provenance/window adversarial audit; no source change unless a concrete defect is reproduced."
     ]
   },
   "public_actions": {
