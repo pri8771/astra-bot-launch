@@ -1,4 +1,4 @@
-# Session router — LEAD-060 — LIVE V1.3 TARGET
+# Session router — LEAD-061 — LIVE V1.3 TARGET
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -14,7 +14,7 @@ Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method:
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Current direct Codex assignment — composition/integration only:** create an isolated branch from accepted base `3f10d0f6...` and apply the exact accepted PR12 (`a4e7926...`) and PR13 (`be026271...`) changes without semantic modification. Verify route schema/freshness/selection/community and metric finite/provenance/window/legacy behavior together, then run full suite and syntax/diff checks. If composition needs any behavior change beyond mechanical conflict resolution, stop and return REWORK_FOUND.
+**Current direct Codex assignment — V0.7→V1.3 live-readiness gap audit:** on accepted composition `8c86898d...`, reconcile which milestone requirements already have accepted engineering evidence, accepted live evidence, missing live evidence, owner-dependent grants/facts, and dependency-safe offline work. Read-only/reproduce-first: do not edit source or perform external/live actions during the audit. Return a machine-readable/table record with exact refs and recommended next bounded actions ordered by dependency and authority.
 
 No live analytics/account/provider/model/public/scheduler action.
 
