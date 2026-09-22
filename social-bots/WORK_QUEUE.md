@@ -1,4 +1,4 @@
-# Work queue — LEAD-056 — target LIVE V1.3
+# Work queue — LEAD-057 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
@@ -17,9 +17,10 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 3. **V1.7-era due-rotation crash-window repair remains ACCEPTED ENGINEERING** at exact `84f8f05...`; it is reusable infrastructure evidence, not a V1.3 live gate.
 4. **PR #8 content-integrity repair is ACCEPTED ENGINEERING** at exact `9d497b4567e022a8e7f93a3ee890af206272b5be`: separate scoped final-review receipt anchor + strict measured-baseline validation. This does not prove receipt immutability or genuine baseline provenance.
 5. **PR #9 finite-metrics repair is ACCEPTED ENGINEERING** at exact `30a2ebdfb45110b2bc6fea0f3d50876583487f9c`: invalid fresh/legacy metric values and arithmetic overflow fail closed without losing raw provenance.
-6. **Codex SP1 RELEASED — V0.8 route freshness:** `last_verified_at` required, timezone-aware, fresh <=24h, future allowance <=5m; missing/malformed/naive/stale/>+5m fail closed. Deterministic `now`; no real account call.
+6. **PR #10 route freshness/community health repair is ACCEPTED ENGINEERING** at exact `ccfbaf7865557ba30d9148bcce6839b71e9159f1`; LEAD-056 24h/+5m policy is implemented, community unhealthy/stale routes fail closed, zero effects remain zero.
 
-7. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
+7. **Codex SP1 RELEASED — route selection order:** exact bot/persona/platform matches only; evaluate health/freshness for all; select exactly one eligible route; zero eligible fails closed; multiple eligible fails closed as ambiguous; registry order never determines authority. No live account call.
+8. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
