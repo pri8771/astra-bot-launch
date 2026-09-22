@@ -121,6 +121,30 @@ class ClaimOneRotationTest(unittest.TestCase):
         self.assertIsNone(result)
         self.assertEqual(due_rotation.read_cursor()["last_claimed"], "social-a")
 
+    def test_cursor_write_failure_prevents_any_unit_execution(self):
+        from unittest.mock import patch
+        with patch.object(due_rotation, "record_claim", side_effect=OSError("cursor unavailable")), \
+             patch.object(worker_once.worker.decision, "run_cycle",
+                          wraps=worker_once.worker.decision.run_cycle) as cycle:
+            with self.assertRaisesRegex(OSError, "cursor unavailable"):
+                worker_once.claim_one(BOTS, require_adaptive=None)
+            cycle.assert_not_called()
+        # Failure releases the lease, so recovery can actually claim the bot.
+        self.assertEqual(self._claim()[0], "social-a")
+
+    def test_cursor_is_durable_before_cycle_can_fail(self):
+        from unittest.mock import patch
+        seen = []
+        def fail_cycle(*args, **kwargs):
+            cursor = due_rotation.read_cursor()
+            seen.append(cursor.get("last_claimed") if cursor else None)
+            raise RuntimeError("cycle failed after claim")
+        with patch.object(worker_once.worker.decision, "run_cycle", side_effect=fail_cycle):
+            with self.assertRaisesRegex(RuntimeError, "cycle failed after claim"):
+                worker_once.claim_one(BOTS, require_adaptive=None)
+        self.assertEqual(seen, ["social-a"])
+        self.assertEqual(self._claim()[0], "social-b")
+
     def test_an_explicit_home_is_honoured_for_the_cursor(self):
         home = Path(tempfile.mkdtemp())
         result, _ = worker_once.claim_one(BOTS, require_adaptive=None, home=home,
