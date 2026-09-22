@@ -1,5 +1,16 @@
 # Compact Codex session record
 
+## Actual management checkpoint — 2026-09-22T02:32Z
+
+- Session: `01a0c6e2-5109-75f2-905e-6550217395aa`; role: Codex coordinator / independent review preparation. No implementation takeover. Same session resumed after owner clarification; no duplicate SESSION_ONCE.
+- Owner minimums: Jobs V1.7, **Bots V0.7**, SwarmAI V1.7, with genuine live tests. Native development ceilings remain V1.7 for all; no future scope activated.
+- Jobs: canonical `main@1a4efbb0ae68937c4e93e57e9e26fea883ed4ca0`; Fable source `dd2e0deb15ce0ff8983c4ed502e3e17206db2e80`, production `113c584d731bee4c46e2d54d6048344991e6e16d`. 84 independent focused tests + Ruff/mypy passed; REWORK_FOUND for bounded-batch isolation and replay success semantics. P0A/V1.5 acceptance preserved; G14–G17 unpassed. Native review: `pri8771/jobs:coordination/reviews/CODEX_PORTFOLIO_20260922.md`. Heartbeat #45 at 02:21:13Z requests the ingestion review and reports independent V1.6 work.
+- Bots: canonical `6f794a0cfa1a55c3a8089090b8b9cbbb19106f8b`; Fable source `e9678f8bead4f872c199bdf09dbf709a8f649159`, production-equivalent tested `f0f1307cf99c181cf07f113672d5308cf5528386`. 118 focused passed; full 707 run / 703 pass / 2 fail / 2 skip. R07-041 RECOMMEND_ACCEPT narrowly; Mac host-test REWORK_FOUND; live minimum REVIEW_BLOCKED. Native review/evidence: `social-bots/lead-reviews/CODEX_PREPARATION_20260922.md`, `social-bots/receipts/evidence/CODEX-20260922/`. Fable resumed with material commits; SESSION_ONCE remains once, runtime recurrence unproven.
+- SwarmAI: canonical `580f11867496958e5ef7756894888771667da65d`; Fable source `05fe7807db3509d68dd8a86a0616c9e8ffaa2307`. 40 focused checks passed (20 on isolated PostgreSQL), Ruff/mypy passed; replacement-grant overuse reproduced. R27c REWORK_FOUND, matching the existing formal CHANGES REQUIRED; R27e/R28a stay held. Native review: `pri8771/swarmai:docs/coordination/reviews/CODEX_PREPARATION_20260922.md`. Latest observed timer 02:20:06Z versus meaningful activity 02:08:48Z; R02b attempt 2 reported running, terminal result unavailable.
+- Local review worktrees clean; remote worker process/dirty state UNKNOWN. No matching local Codex automation files were found; this does not establish remote schedules. Existing lead tasks and live coordination writers were observed; no schedule was changed.
+- Writes are isolated docs-only proposals while canonical leads own their records. Small repair assignments are PREPARED / WAITING_FOR_WORKER_ACK, not dispatched or running. No live/model/account/mailbox/public actions or new spend.
+- Next: publish native review proposals, request actual ChatGPT verdicts, capture any acknowledgements; then reconcile new evidence without crossing independent review or live gates. Management is active only during this task, with no new background process.
+
 Use this format when Codex actually starts coordinating. This file is a specification, not a fabricated active session/heartbeat. Persist one small checkpoint on the appropriate coordination branch at material handoffs, not every thought or timer tick. Keep private local paths/host details out of shared logs where unnecessary.
 
 ## Session header
