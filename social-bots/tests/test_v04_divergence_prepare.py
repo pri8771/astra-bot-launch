@@ -12,6 +12,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import authorization, divergence_prepare as dp  # noqa: E402
@@ -381,13 +382,24 @@ class ExecutionMechanicsTest(unittest.TestCase):
     """
 
     def setUp(self):
-        from tests.test_v04_authorization_gate import valid_manifest
+        from tests.test_v04_authorization_gate import (
+            FIXTURE_SOURCE_SHA,
+            FIXTURE_SOURCE_TREE,
+            valid_manifest,
+        )
         self.matrix = build()
+        self.binding = dp.execution_binding(self.matrix)
         self.tmp = Path(tempfile.mkdtemp())
         self.manifests = self.tmp / "authorizations"
         self.manifests.mkdir()
         (self.manifests / "fixture.json").write_text(
-            json.dumps(valid_manifest(run_scope=self.matrix.run_scope)), encoding="utf-8")
+            json.dumps(valid_manifest(
+                run_scope=self.matrix.run_scope,
+                execution_matrix_sha256=self.binding.digest)), encoding="utf-8")
+        self.source_patch = mock.patch.object(
+            authorization, "source_identity",
+            return_value=(FIXTURE_SOURCE_SHA, FIXTURE_SOURCE_TREE))
+        self.source_patch.start()
         self._api_key = os.environ.pop("ANTHROPIC_API_KEY", None)
         self.grant = authorization.ExecutionGrant(
             manifest_id="AUTH-FIXTURE-0001", manifest_path="(fixture)",
@@ -395,10 +407,13 @@ class ExecutionMechanicsTest(unittest.TestCase):
             owner_authorization_ref="engineering fixture", artifact="SB-V04-002",
             lane="windows-core", run_scope=self.matrix.run_scope,
             provider_mode="claude-cli", max_calls=5, expires_at="2099-01-01T00:00:00Z",
-            granted_at="2026-09-21T00:00:00Z")
+            granted_at="2026-09-21T00:00:00Z", source_sha=FIXTURE_SOURCE_SHA,
+            source_tree=FIXTURE_SOURCE_TREE,
+            execution_matrix_sha256=self.binding.digest)
         self.budget = authorization.CallBudget(self.matrix.run_scope, 5, home=self.tmp)
 
     def tearDown(self):
+        self.source_patch.stop()
         if self._api_key is not None:
             os.environ["ANTHROPIC_API_KEY"] = self._api_key
 
@@ -409,7 +424,7 @@ class ExecutionMechanicsTest(unittest.TestCase):
             persona=PERSONAS[case.persona_slot], objective=self.matrix.objective,
             snapshot_signal=default_snapshots()[case.evidence_id].signal,
             pending_count=0, is_duplicate=False, prior_hypotheses=0,
-            manifest_dir=self.manifests)
+            manifest_dir=self.manifests, execution_binding=self.binding)
 
     def test_a_hand_built_grant_without_a_canonical_manifest_buys_nothing(self):
         """SB-R07-041 direct-library bypass: the grant object is not the authority."""
@@ -490,8 +505,8 @@ class ExecutionMechanicsTest(unittest.TestCase):
                 return None
 
         provider = Provider()
-        for _ in range(5):
-            self._run(provider)
+        for case in self.matrix.cases:
+            self._run(provider, case.case_id)
         with self.assertRaises(authorization.CallBudgetExhausted):
             self._run(provider)
 

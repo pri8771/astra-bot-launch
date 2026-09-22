@@ -49,13 +49,17 @@ OFFLINE evidence stay distinguishable. Nothing here performs a model call itself
 from __future__ import annotations
 
 import threading
+from collections.abc import Callable
 from contextlib import contextmanager
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from . import authorization
-from .authorization import AuthorizationDenied, CallBudgetExhausted
+from .authorization import AuthorizationDenied
+from .authorization import (
+    CallBudgetExhausted as CallBudgetExhausted,  # noqa: PLC0414 - public re-export
+)
 
 LIVE_MODEL = "LIVE_MODEL"
 RECEIPT_REPLAY = "RECEIPT_REPLAY"
@@ -82,6 +86,7 @@ class DispatchScope:
     manifest_dir: str | None = None
     home: str | None = None
     allow_engineering_stubs: bool = False
+    execution_binding: authorization.ExecutionBinding | None = None
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -102,6 +107,9 @@ class DispatchRecord:
     outcome: str | None = None
     refusal: str | None = None
     scope_kind: str | None = None             # "production" | "engineering" | None
+    source_sha: str | None = None
+    source_tree: str | None = None
+    execution_matrix_sha256: str | None = None
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -121,7 +129,8 @@ def _state():
 
 
 def configure(artifact: str, lane: str, run_scope: str, *, manifest_dir=None, home=None,
-              allow_engineering_stubs: bool = False) -> DispatchScope:
+              allow_engineering_stubs: bool = False,
+              execution_binding: authorization.ExecutionBinding | None = None) -> DispatchScope:
     """Set the process-wide PRODUCTION dispatch scope (entrypoints call this once).
 
     Engineering seams cannot be enabled here under any other artifact id: the
@@ -135,7 +144,8 @@ def configure(artifact: str, lane: str, run_scope: str, *, manifest_dir=None, ho
     scope = DispatchScope(artifact=str(artifact), lane=str(lane), run_scope=str(run_scope),
                           manifest_dir=str(manifest_dir) if manifest_dir is not None else None,
                           home=str(home) if home is not None else None,
-                          allow_engineering_stubs=bool(allow_engineering_stubs))
+                          allow_engineering_stubs=bool(allow_engineering_stubs),
+                          execution_binding=execution_binding)
     set_scope(scope)
     return scope
 
@@ -199,7 +209,7 @@ def last_record() -> DispatchRecord | None:
 # --------------------------------------------------------------------------- #
 def classify(fn: Any) -> str:
     """LIVE_MODEL unless ``fn`` is exactly a policy-owned non-live type."""
-    from . import reasoning, reasoning_receipt          # lazy: avoids import cycles
+    from . import reasoning, reasoning_receipt  # lazy: avoids import cycles
     t = type(fn)
     if t is reasoning_receipt.ReceiptReplay:
         return RECEIPT_REPLAY
@@ -211,16 +221,44 @@ def classify(fn: Any) -> str:
 # --------------------------------------------------------------------------- #
 # Reservation (used by the batch executor) and dispatch (used by every provider)
 # --------------------------------------------------------------------------- #
+def validate_bound_context(scope: DispatchScope, ctx: Any) -> str | None:
+    if scope.artifact not in authorization.BOUND_ARTIFACTS:
+        return
+    if scope.execution_binding is None:
+        raise DispatchRefused("execution_binding_required")
+    from . import reasoning_cli, reasoning_receipt
+    actual = (reasoning_receipt.context_digest(reasoning_receipt.bounded_context(ctx)),
+              authorization.sha256_json(reasoning_cli.prompt_context(ctx)),
+              authorization.sha256_bytes(reasoning_cli.build_prompt(ctx).encode("utf-8")))
+    try:
+        cases = scope.execution_binding.closure()["cases"]
+        permitted = {(c["context_sha256"], c["prompt_context_sha256"], c["prompt_sha256"])
+                     for c in cases}
+    except (KeyError, TypeError, ValueError) as exc:
+        raise DispatchRefused("execution_binding_invalid") from exc
+    if actual not in permitted:
+        raise DispatchRefused("dispatch_context_not_in_reviewed_matrix")
+    return actual[0]
+
+
 def _reserve(scope: DispatchScope, *, context_digest: str | None, provider_id: str):
     posture = authorization.posture_violations(injected_runner=False)
     if posture:
         raise DispatchRefused("; ".join(posture))
     grant = authorization.authorize(artifact=scope.artifact, lane=scope.lane,
-                                    run_scope=scope.run_scope, manifest_dir=scope.manifest_dir)
+                                    run_scope=scope.run_scope, manifest_dir=scope.manifest_dir,
+                                    execution_binding=scope.execution_binding)
+    expected_contexts = None
+    if scope.artifact in authorization.BOUND_ARTIFACTS:
+        expected_contexts = tuple(c["context_sha256"]
+                                  for c in scope.execution_binding.closure()["cases"])
     budget = authorization.CallBudget(scope.run_scope, grant.max_calls, home=scope.home)
     slot = budget.reserve(manifest_id=grant.manifest_id, manifest_digest=grant.manifest_digest,
                           lane=grant.lane, artifact=grant.artifact,
-                          context_digest=context_digest)
+                          context_digest=context_digest, source_sha=grant.source_sha,
+                          source_tree=grant.source_tree,
+                          execution_matrix_sha256=grant.execution_matrix_sha256,
+                          expected_contexts=expected_contexts)
     return grant, budget, slot
 
 
@@ -237,7 +275,7 @@ def reserved(scope: DispatchScope, *, context_digest: str | None = None,
     if st.active:
         raise DispatchRefused("cannot reserve inside an active live dispatch (reentrant)")
     grant, budget, slot = _reserve(scope, context_digest=context_digest, provider_id=provider_id)
-    st.token = (grant, budget, slot)
+    st.token = (grant, budget, slot, scope)
     try:
         yield grant, budget, slot
     finally:
@@ -297,7 +335,18 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
     adopted = st.token
     if adopted is not None:
         st.token = None                               # single use
-        grant, budget, slot = adopted
+        _grant, budget, slot, reserved_scope = adopted
+        if reserved_scope.artifact in authorization.BOUND_ARTIFACTS:
+            if scope != reserved_scope:
+                raise DispatchRefused("reserved_execution_scope_mismatch")
+            authorization.authorize(artifact=scope.artifact, lane=scope.lane,
+                                    run_scope=scope.run_scope, manifest_dir=scope.manifest_dir,
+                                    execution_binding=scope.execution_binding)
+            actual_context = validate_bound_context(scope, ctx)
+            if actual_context != slot.context_digest:
+                raise DispatchRefused("reserved_execution_context_mismatch")
+        elif scope is not None and scope.artifact in authorization.BOUND_ARTIFACTS:
+            raise DispatchRefused("reserved_execution_scope_mismatch")
         record_here = False
     else:
         if st.active:
@@ -311,7 +360,10 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
                                              "with a canonical authorization manifest")
             raise DispatchRefused(st.last.refusal)
         try:
-            grant, budget, slot = _reserve(scope, context_digest=context_digest,
+            actual_context = validate_bound_context(scope, ctx)
+            if actual_context is not None:
+                context_digest = actual_context
+            _grant, budget, slot = _reserve(scope, context_digest=context_digest,
                                            provider_id=provider_id)
         except AuthorizationDenied as exc:            # includes CallBudgetExhausted
             st.last = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=False,
@@ -322,7 +374,9 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
     st.active += 1
     rec = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=True,
                          slot=slot.slot, run_scope=slot.run_scope,
-                         manifest_id=slot.manifest_id, scope_kind="production")
+                         manifest_id=slot.manifest_id, scope_kind="production",
+                         source_sha=slot.source_sha, source_tree=slot.source_tree,
+                         execution_matrix_sha256=slot.execution_matrix_sha256)
     st.last = rec
     try:
         value = fn(ctx)
@@ -365,7 +419,8 @@ def availability(scope: DispatchScope | None = None) -> tuple[bool, str]:
         return False, "; ".join(posture)
     try:
         grant = authorization.authorize(artifact=scope.artifact, lane=scope.lane,
-                                        run_scope=scope.run_scope, manifest_dir=scope.manifest_dir)
+                                        run_scope=scope.run_scope, manifest_dir=scope.manifest_dir,
+                                        execution_binding=scope.execution_binding)
     except AuthorizationDenied as exc:
         return False, str(exc)
     budget = authorization.CallBudget(scope.run_scope, grant.max_calls, home=scope.home)
@@ -381,7 +436,8 @@ def budget_audit(scope: DispatchScope | None = None) -> dict | None:
     d = (Path(scope.home) if scope.home else None)
     try:
         grant = authorization.authorize(artifact=scope.artifact, lane=scope.lane,
-                                        run_scope=scope.run_scope, manifest_dir=scope.manifest_dir)
+                                        run_scope=scope.run_scope, manifest_dir=scope.manifest_dir,
+                                        execution_binding=scope.execution_binding)
     except AuthorizationDenied:
         return {"run_scope": scope.run_scope, "authorized": False}
     return authorization.CallBudget(scope.run_scope, grant.max_calls, home=d).audit()

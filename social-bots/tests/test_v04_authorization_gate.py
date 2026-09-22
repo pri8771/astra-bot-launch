@@ -12,9 +12,25 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import authorization  # noqa: E402
+
+
+FIXTURE_SOURCE_SHA = "1" * 40
+FIXTURE_SOURCE_TREE = "2" * 40
+
+
+def fixture_binding(run_scope="v04-divergence-test"):
+    closure = {
+        "artifacts": ["SB-V04-002", "SB-V04-004"],
+        "cases": [],
+        "lane": "windows-core",
+        "run_scope": run_scope,
+    }
+    return authorization.ExecutionBinding(
+        json.dumps(closure, sort_keys=True, separators=(",", ":")))
 
 
 def _iso(dt):
@@ -41,6 +57,9 @@ def valid_manifest(**overrides):
         "spend_authorized": False,
         "api_key_allowed": False,
         "injected_runner_allowed": False,
+        "source_sha": FIXTURE_SOURCE_SHA,
+        "source_tree": FIXTURE_SOURCE_TREE,
+        "execution_matrix_sha256": fixture_binding().digest,
     }
     manifest.update(overrides)
     return manifest
@@ -57,7 +76,8 @@ class ManifestValidationTest(unittest.TestCase):
                       "owner_authorization_ref", "artifact_scope", "run_scope",
                       "lane", "provider_mode", "max_calls", "expires_at",
                       "retry_allowed", "public_effect_allowed", "spend_authorized",
-                      "api_key_allowed", "injected_runner_allowed"):
+                      "api_key_allowed", "injected_runner_allowed", "source_sha",
+                      "source_tree", "execution_matrix_sha256"):
             with self.subTest(field=field):
                 manifest = valid_manifest()
                 del manifest[field]
@@ -96,6 +116,13 @@ class GateTest(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.manifests = self.tmp / "authorizations"
         self.manifests.mkdir()
+        self.source_patch = mock.patch.object(
+            authorization, "source_identity",
+            return_value=(FIXTURE_SOURCE_SHA, FIXTURE_SOURCE_TREE))
+        self.source_patch.start()
+
+    def tearDown(self):
+        self.source_patch.stop()
 
     def _write(self, manifest, name="auth.json"):
         (self.manifests / name).write_text(json.dumps(manifest, indent=2), encoding="utf-8")
@@ -121,7 +148,8 @@ class GateTest(unittest.TestCase):
         self._write(valid_manifest())
         grant = authorization.authorize(artifact="SB-V04-004", lane="windows-core",
                                         run_scope="v04-divergence-test",
-                                        manifest_dir=self.manifests)
+                                        manifest_dir=self.manifests,
+                                        execution_binding=fixture_binding())
         self.assertEqual(grant.max_calls, 5)
         self.assertFalse(grant.retry_allowed)
         self.assertFalse(grant.authorship_attested_by_code)

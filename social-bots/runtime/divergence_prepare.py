@@ -53,7 +53,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-from dataclasses import dataclass, asdict, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -155,7 +155,7 @@ class EvidenceSnapshot:
     @staticmethod
     def from_bytes(snapshot_id: str, signal: dict, raw: bytes, receipt: dict,
                    *, provenance_label: str = ENGINEERING_FIXTURE,
-                   captured_at: str | None = None) -> "EvidenceSnapshot":
+                   captured_at: str | None = None) -> EvidenceSnapshot:
         return EvidenceSnapshot(
             snapshot_id=snapshot_id,
             signal=dict(signal),
@@ -438,8 +438,8 @@ def _proposal_for_case(matrix: PreparedMatrix, case_id: str, receipt: dict
         return None, [f"{case_id}: invalid receipt: " + "; ".join(errs)]
     case = matrix.case(case_id)
     if receipt.get("context_digest") != case.context_sha256:
-        return None, [f"{case_id}: receipt context_digest {receipt.get('context_digest')!r} "
-                      f"does not bind to the prepared case context {case.context_sha256!r}"]
+        return None, [(f"{case_id}: receipt context_digest {receipt.get('context_digest')!r} "
+                       f"does not bind to the prepared case context {case.context_sha256!r}")]
     try:
         proposal = proposal_from_receipt(receipt)
     except ReceiptError as exc:
@@ -452,7 +452,7 @@ def _proposal_for_case(matrix: PreparedMatrix, case_id: str, receipt: dict
 
 
 def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict],
-                      budget: "authorization.CallBudget | None" = None) -> dict:
+                      budget: authorization.CallBudget | None = None) -> dict:
     """Validate per-case receipts and report material divergence per comparison.
 
     Truthful by construction: a missing, invalid or non-binding receipt is
@@ -610,6 +610,11 @@ def verify_written(path: str | Path, prompts_dir: str | Path | None = None) -> d
     recorded digest, so a hand-edited artifact fails verification.
     """
     matrix = load_prepared(path, prompts_dir)
+    return {"path": str(path), **verify_matrix(matrix)}
+
+
+def verify_matrix(matrix: PreparedMatrix) -> dict:
+    """Re-derive the same content checks for both written and executing matrices."""
     digest_errors: list[str] = []
     for case in matrix.cases:
         checks = [
@@ -639,13 +644,58 @@ def verify_written(path: str | Path, prompts_dir: str | Path | None = None) -> d
     # any observed divergence attributable to configuration, not to the variable.
     report = isolation_report(matrix)
     return {
-        "path": str(path),
         "digests_verified": not digest_errors,
         "prompt_bytes_verified": prompt_verified,
         "digest_errors": digest_errors,
         "isolation": report,
         "verified": bool(not digest_errors and report["all_isolated"]),
     }
+
+
+def execution_binding(matrix: PreparedMatrix) -> authorization.ExecutionBinding:
+    """Commit to every reviewed input, including exact prompt and receipt bytes."""
+    if [(c.case_id, c.persona_slot, c.evidence_id, c.role) for c in matrix.cases] != list(CASE_SPECS):
+        raise MatrixError("execution matrix case sequence differs from P0/P1/P2/P3/E0")
+    if matrix.artifacts != list(BATCH_ARTIFACTS):
+        raise MatrixError("execution matrix artifact scope differs")
+    if not verify_matrix(matrix)["verified"]:
+        raise MatrixError("execution matrix digests or isolation are invalid")
+    payload = matrix.to_dict(include_prompt=True)
+    # Preparation time and report prose do not change the executable closure.
+    for name in ("prepared_at", "note", "live_execution_performed"):
+        payload.pop(name)
+    return authorization.ExecutionBinding(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")))
+
+
+def _verify_execution_inputs(matrix: PreparedMatrix, *, personas: dict,
+                             snapshots: dict, draft: dict) -> None:
+    """Check all cases before any budget/provider rather than discovering drift mid-batch."""
+    if matrix.snapshots != [snapshots[sid].to_dict() for sid in ("E1", "E2")]:
+        raise MatrixError("execution evidence closure differs from reviewed snapshots")
+    for case in matrix.cases:
+        snapshot = snapshots[case.evidence_id]
+        if (case.evidence_bytes_sha256 != snapshot.raw_bytes_sha256
+                or case.evidence_receipt_sha256 != snapshot.receipt_sha256
+                or case.evidence_provenance != snapshot.provenance_label):
+            raise MatrixError("execution evidence binding mismatch")
+        ctx = _context_for(
+            personas[case.persona_slot], snapshot, objective=matrix.objective,
+            pending_count=matrix.held_constant["pending_count"],
+            is_duplicate=matrix.held_constant["is_duplicate"],
+            prior_hypotheses=matrix.held_constant["prior_hypotheses"], draft=draft)
+        if (context_digest(bounded_context(ctx)) != case.context_sha256
+                or _sha256_json(reasoning_cli.prompt_context(ctx)) != case.prompt_context_sha256
+                or _sha256_text(reasoning_cli.build_prompt(ctx)) != case.prompt_sha256):
+            raise MatrixError("execution context or exact prompt differs from reviewed case")
+    expected_provider = {
+        "provider_mode": "claude-cli", "provider_id": "claude-code-subscription-v1",
+        "auth_route": "existing-subscription", "anthropic_api_key_expected_absent": True,
+        "injected_runner": False, "model": None,
+        "timeout_s": reasoning_cli.DEFAULT_TIMEOUT_S, "retry_allowed": False,
+    }
+    if matrix.provider_config != expected_provider:
+        raise MatrixError("reviewed provider configuration differs from the batch provider")
 
 
 def write_prompts(matrix: PreparedMatrix, directory: str | Path) -> list[Path]:
@@ -683,7 +733,8 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
                       persona: dict, objective: str, snapshot_signal: dict,
                       pending_count: int, is_duplicate: bool,
                       prior_hypotheses: int,
-                      manifest_dir: str | Path | None = None) -> dict:
+                      manifest_dir: str | Path | None = None,
+                      execution_binding: authorization.ExecutionBinding | None = None) -> dict:
     """Reserve a slot, invoke ONCE, record the outcome truthfully. Never retries.
 
     ATOMIC PRE-SPAWN ACCOUNTING: the slot is reserved before ``provider.propose``
@@ -735,33 +786,38 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
     scope = model_dispatch.DispatchScope(
         artifact=grant.artifact, lane=grant.lane, run_scope=budget.run_scope,
         manifest_dir=str(manifest_dir) if manifest_dir is not None else None,
-        home=str(budget.dir.parent.parent))
+        home=str(budget.dir.parent.parent), execution_binding=execution_binding)
+    model_dispatch.validate_bound_context(scope, ctx)
     with model_dispatch.reserved(scope, context_digest=case.context_sha256,
                                  provider_id=getattr(provider, "provider_id", "batch")) \
             as (_grant, _budget, slot):
+        binding_evidence = {
+            "source_sha": slot.source_sha, "source_tree": slot.source_tree,
+            "execution_matrix_sha256": slot.execution_matrix_sha256,
+        }
         try:
             proposal = provider.propose(ctx)
         except Exception as exc:                      # noqa: BLE001 - outcome, not retry
             budget.record_outcome(slot, "provider_exception",
                                   {"error_type": type(exc).__name__})
-            return {"case": case.case_id, "slot": slot.slot,
+            return {**binding_evidence, "case": case.case_id, "slot": slot.slot,
                     "outcome": "provider_exception", "proposal": None}
     if proposal is None:
         budget.record_outcome(slot, "provider_unavailable",
                               {"reason": getattr(provider, "reason", None)})
-        return {"case": case.case_id, "slot": slot.slot,
+        return {**binding_evidence, "case": case.case_id, "slot": slot.slot,
                 "outcome": "provider_unavailable", "proposal": None}
     errs = validate_proposal(proposal, ctx)
     if errs:
         budget.record_outcome(slot, "invalid_proposal", {"violations": errs[:10]})
-        return {"case": case.case_id, "slot": slot.slot, "outcome": "invalid_proposal",
+        return {**binding_evidence, "case": case.case_id, "slot": slot.slot, "outcome": "invalid_proposal",
                 "proposal": None, "violations": errs}
     budget.record_outcome(slot, "proposal_received", {
         "recommended_action": proposal.recommended_action,
         "provider_id": proposal.provider_id,
         "adaptive": proposal.adaptive,
     })
-    return {"case": case.case_id, "slot": slot.slot, "outcome": "proposal_received",
+    return {**binding_evidence, "case": case.case_id, "slot": slot.slot, "outcome": "proposal_received",
             "proposal": proposal}
 
 
@@ -782,7 +838,8 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
     """
     grant = authorization.authorize(
         artifact=artifact, lane=lane, run_scope=matrix.run_scope,
-        manifest_dir=manifest_dir, injected_runner=provider_factory is not None)
+        manifest_dir=manifest_dir, injected_runner=provider_factory is not None,
+        execution_binding=execution_binding(matrix))
 
     if grant.max_calls < len(matrix.cases):
         raise authorization.AuthorizationDenied(
@@ -792,6 +849,11 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
     if personas is None or snapshots is None:
         raise MatrixError("execute_batch requires the personas and snapshots the "
                           "matrix was built from, to rebuild exact contexts")
+
+    if matrix.lane != lane:
+        raise MatrixError("execution lane differs from reviewed matrix")
+    _verify_execution_inputs(matrix, personas=personas, snapshots=snapshots, draft=draft or {})
+    binding = execution_binding(matrix)
 
     budget = authorization.CallBudget(matrix.run_scope, grant.max_calls, home=home)
     provider = provider_factory() if provider_factory is not None else \
@@ -803,7 +865,8 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
     from . import model_dispatch
     prior_scope = model_dispatch.current_scope()
     model_dispatch.configure(artifact, lane, matrix.run_scope,
-                             manifest_dir=manifest_dir, home=home)
+                             manifest_dir=manifest_dir, home=budget.dir.parent.parent,
+                             execution_binding=binding)
     results = []
     try:
         for case in matrix.cases:
@@ -814,7 +877,7 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
                 pending_count=matrix.held_constant["pending_count"],
                 is_duplicate=matrix.held_constant["is_duplicate"],
                 prior_hypotheses=matrix.held_constant["prior_hypotheses"],
-                manifest_dir=manifest_dir))
+                manifest_dir=manifest_dir, execution_binding=binding))
     finally:
         model_dispatch.set_scope(prior_scope)
     return {"grant": asdict(grant), "results": results, "budget": budget.audit()}
@@ -832,7 +895,8 @@ def prepare_only_status(matrix: PreparedMatrix, *, lane: str,
     gates = {
         art: authorization.gate_status(artifact=art, lane=lane,
                                        run_scope=matrix.run_scope,
-                                       manifest_dir=manifest_dir)
+                                       manifest_dir=manifest_dir,
+                                       execution_binding=execution_binding(matrix))
         for art in BATCH_ARTIFACTS
     }
     return {
