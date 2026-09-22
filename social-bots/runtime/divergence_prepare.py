@@ -874,19 +874,31 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
                              manifest_dir=manifest_dir, home=budget.dir.parent.parent,
                              execution_binding=binding)
     results = []
+    batch_stop = None
     try:
-        for case in matrix.cases:
-            results.append(_execute_one_case(
+        for index, case in enumerate(matrix.cases):
+            result = _execute_one_case(
                 case, provider, budget, grant=grant, draft=draft or {},
                 persona=personas[case.persona_slot], objective=matrix.objective,
                 snapshot_signal=snapshots[case.evidence_id].signal,
                 pending_count=matrix.held_constant["pending_count"],
                 is_duplicate=matrix.held_constant["is_duplicate"],
                 prior_hypotheses=matrix.held_constant["prior_hypotheses"],
-                manifest_dir=manifest_dir, execution_binding=binding))
+                manifest_dir=manifest_dir, execution_binding=binding)
+            results.append(result)
+            if result["outcome"] != "proposal_received":
+                batch_stop = {
+                    "case": case.case_id,
+                    "outcome": result["outcome"],
+                    "unattempted_cases": [later.case_id for later in matrix.cases[index + 1:]],
+                }
+                break
     finally:
         model_dispatch.set_scope(prior_scope)
-    return {"grant": asdict(grant), "results": results, "budget": budget.audit()}
+    report = {"grant": asdict(grant), "results": results, "budget": budget.audit()}
+    if batch_stop is not None:
+        report["batch_stop"] = batch_stop
+    return report
 
 
 def prepare_only_status(matrix: PreparedMatrix, *, lane: str,
