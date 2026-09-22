@@ -1,0 +1,424 @@
+{
+  "accepted_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "accepted_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+  "audit_kind": "derived_readiness_not_queue_or_authority",
+  "canonical_ref": "53baa7f4c3898f2a6aac34cffc9e670d6a374db7",
+  "input_hashes": [
+    {
+      "git_blob": "cd7190be6c12e1748078c3c9c9fe1e86b1675949",
+      "path": "social-bots/ARTIFACT_INDEX.json",
+      "sha256": "f232b28e5d0b2aea1c0ba0082e4b21c49997efb934c1fe45a564973a310a55e1"
+    },
+    {
+      "git_blob": "51072f1886914972d3f4e9864b828f2d067fa1d2",
+      "path": "social-bots/MILESTONE_MANIFEST.md",
+      "sha256": "040c395bfe9a76df6ed5753af3752c25195727aed1b1bbb831eee2ea178da50b"
+    },
+    {
+      "git_blob": "15371eb86c18443f6dff7ff9a75d7ae0213ec08f",
+      "path": "social-bots/STATE.json",
+      "sha256": "a85cc274ef3dd8142e4cb452b4f51ea483c44ef5a4b65f80241ddab23563fdcc"
+    },
+    {
+      "git_blob": "071bb08d2cc6427319bcbec5e0a1beff804ca3b3",
+      "path": "social-bots/RECOVERY_TO_V07.md",
+      "sha256": "1ef2d595067f38b171eba9d3686032c6ef8ac05f98f6e8c559d61df989da3467"
+    },
+    {
+      "git_blob": "0a64c2b80923e8426c5cd24db1468c7be887da46",
+      "path": "social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md",
+      "sha256": "9a83dc9de4ed637a7c3122e2a03dae4573651f796b767e749c5d79fe868396a6"
+    },
+    {
+      "git_blob": "8b6656f240df3f64049aee72e1e5aee62b28b794",
+      "path": "social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md",
+      "sha256": "cd29f7d208614bba052d0e7a1f0d3d71ecd9c936058a2357be3042e3bb6b101d"
+    },
+    {
+      "git_blob": "d98d69dc5bc581e6d3a53467c4b5f332e5763d10",
+      "path": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md",
+      "sha256": "d2ea3e49d9e2ee034b381c6916aaaa55412cc081202583f780cb2b0661373fa0"
+    },
+    {
+      "git_blob": "e5559bdce4aa5f39215731c71f58e8500981ccef",
+      "path": "social-bots/artifact-packets/SB-V04-004.md",
+      "sha256": "509db911d9fe0af5afbfb85b650a5672fa319d6b2048457cffc79b6b2dee890c"
+    },
+    {
+      "git_blob": "8d67b96da7b5300a1904bcebaeac4ea6b7a09f41",
+      "path": "social-bots/artifact-packets/SB-V05-005.md",
+      "sha256": "212560c886433f52b971728207e1767c5af3db5fc5496ec9f0ba303e92a1d268"
+    },
+    {
+      "git_blob": "ed7a4578907c17eef0d1445321c3c5ade590b475",
+      "path": "social-bots/artifact-packets/SB-V06-005.md",
+      "sha256": "b6f5065f8d9f7442e164820fc8175e81e1fc7a7971e900193b5f107711d95d84"
+    },
+    {
+      "git_blob": "d038f59a2d1418d4a5e09b4caa9fc95f08dcbee4",
+      "path": "social-bots/artifact-packets/SB-V07-002.md",
+      "sha256": "8773bd1c6ea0d0db4fbb89c65c55e5cd6690c05c21a0fab8d856fc15ab99645e"
+    },
+    {
+      "git_blob": "2122e9bd0f406b9daf95ed105429bbbf0ee7d8ee",
+      "path": "social-bots/artifact-packets/SB-V07-005.md",
+      "sha256": "e2529990cfd3d760989acafb124cc235e15533374ced0c95b2693aadb13698fb"
+    },
+    {
+      "git_blob": "f0f904f3e52b647e46ce7ee70392edd9226084d0",
+      "path": "social-bots/artifact-packets/SB-ACC-001.md",
+      "sha256": "95caf5a32e9bcc6c1553308989d1e2f8433a997160f9e6023f53c4fc131ec38f"
+    },
+    {
+      "git_blob": "d39a48da20228a527068d2adafea91b35cdd34c7",
+      "path": "social-bots/artifact-packets/SB-EVD-010.md",
+      "sha256": "9dfcd099cad2529b93c3a2cf2e84c5156567abe682a9b28fa4a61ac16dadbee7"
+    },
+    {
+      "git_blob": "31ae75f4b82b9b99b73c245357c9f837cec7d38d",
+      "path": "social-bots/artifact-packets/SB-EVD-013.md",
+      "sha256": "35499cfae55ae2a71a7a970e00e4fb583f3da1a0388a01656693220ff69663db"
+    },
+    {
+      "git_blob": "16148f55aeb05d93ad0aefd884f0b28ae1940ac0",
+      "path": "social-bots/artifact-packets/SB-V10-001.md",
+      "sha256": "bc925044a616206eaf90ae7f8f243a093c89dc2e0f754c8a106006dd98d4977b"
+    },
+    {
+      "git_blob": "e63bc61a2def34a640742bf25eaec9deba877a8f",
+      "path": "social-bots/artifact-packets/SB-V11-002.md",
+      "sha256": "b0428c036660513ab95b0d670c05ead6cc98a4f138e9bb9d07ab5f29000f1578"
+    },
+    {
+      "git_blob": "771428174e94ef2fe2d78a02da509e9f24978861",
+      "path": "social-bots/artifact-packets/SB-V12-002.md",
+      "sha256": "33f2a55b5efb85170165f7b1fcae14e8c9e0df40632e0114677b30f08a6d9d58"
+    }
+  ],
+  "official_product": "V0.4.x",
+  "owner_target": "LIVE V1.3",
+  "recommendation": "REVIEW_BLOCKED_FOR_LIVE_PROMOTION",
+  "reconciliation_notes": [
+    "STATE.version.execution_target/ceiling and next_recovery still mention V1.7/Fable; current owner instruction plus LEAD061 target V1.3/no Fable are controlling. Request lead metadata reconciliation, do not execute stale text.",
+    "STATE.lead_review remains LEAD060 while separate LEAD061 accepts composition; latest exact verdict takes precedence.",
+    "RECOVERY_TO_V07 references historical primitive defects/source918c42e; do not reopen accepted Codex repairs or treat that old snapshot as current source.",
+    "No new provider, account, host, scheduler, public action or SESSION_ONCE occurred. No source defect was newly reproduced in this read-only audit."
+  ],
+  "rows": [
+    {
+      "accepted_engineering": "Provider/policy engineering accepted; divergence controls prepared.",
+      "accepted_genuine_live": "First authorized 2026-09-21T16:15Z real source\u2192subscription Claude\u2192schema/policy\u2192local decision accepted as SB-V04-005. Second 16:53Z call excluded permanently.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V04-001.md",
+          "id": "SB-V04-001",
+          "native_status_at_ref": "ACCEPTED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V04-002.md",
+          "id": "SB-V04-002",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V04-003.md",
+          "id": "SB-V04-003",
+          "native_status_at_ref": "ACCEPTED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V04-004.md",
+          "id": "SB-V04-004",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V04-005.md",
+          "id": "SB-V04-005",
+          "native_status_at_ref": "ACCEPTED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-EVD-002.md",
+          "id": "SB-EVD-002",
+          "native_status_at_ref": "WITHHELD"
+        }
+      ],
+      "missing_genuine_live": "Controlled persona/evidence divergence and independent SB-EVD-002 milestone acceptance. SB-V04-002/004 BLOCKED; SB-EVD-002 WITHHELD.",
+      "missing_owner_or_authority": "Prior exactly-one-call authority consumed. Fresh fixed five-call batch authorization, matching lead manifest, designated lane, bounded scope/expiry and zero-new-spend posture missing.",
+      "permitted_or_proposed_offline_work": "Read-only reconciliation and prepare-only review can continue; no additional model call.",
+      "version": "V0.4"
+    },
+    {
+      "accepted_engineering": "Source collector SB-V05-001 accepted. Operational semantic assessor/extractor SB-V05-002 remains CHANGES_REQUIRED; fixture support is insufficient.",
+      "accepted_genuine_live": "No accepted complete V0.5 live bundle in current artifact index.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V05-001.md",
+          "id": "SB-V05-001",
+          "native_status_at_ref": "ACCEPTED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V05-002.md",
+          "id": "SB-V05-002",
+          "native_status_at_ref": "CHANGES_REQUIRED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V05-003.md",
+          "id": "SB-V05-003",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V05-004.md",
+          "id": "SB-V05-004",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V05-005.md",
+          "id": "SB-V05-005",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "Current-source factual support, native formatting, cultural review and independently accepted bundle.",
+      "missing_owner_or_authority": "Trusted operational model/evidence route and named required reviewers; explicit scoped execution release after V0.4 dependencies.",
+      "permitted_or_proposed_offline_work": "Lead may release bounded source/evidence audit of existing SB-V05-002; not released by this audit.",
+      "version": "V0.5"
+    },
+    {
+      "accepted_engineering": "Reusable dry-run/validator engineering exists in recovery lineage; artifact set remains BLOCKED.",
+      "accepted_genuine_live": "No accepted three-bot real adaptive unpublished dry-run set.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V06-001.md",
+          "id": "SB-V06-001",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V06-002.md",
+          "id": "SB-V06-002",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V06-003.md",
+          "id": "SB-V06-003",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V06-004.md",
+          "id": "SB-V06-004",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V06-005.md",
+          "id": "SB-V06-005",
+          "native_status_at_ref": "BLOCKED"
+        }
+      ],
+      "missing_genuine_live": "Social-A/B/C genuine current-evidence adaptive runs, independent final-candidate review and zero-public-effect validator.",
+      "missing_owner_or_authority": "V0.4/V0.5 accepted dependencies plus bounded model/real-source authority and review identities.",
+      "permitted_or_proposed_offline_work": "Existing packet schema/preflight inspection only; do not substitute fixtures for three real runs.",
+      "version": "V0.6"
+    },
+    {
+      "accepted_engineering": "Worker-once, lease/heartbeat and scheduler engineering assets; previous local host checks are preparation. Index SB-V07-001 READY; recurring proof BLOCKED.",
+      "accepted_genuine_live": "Historical real one-session heartbeat and temporary POSIX kill/restart are narrower evidence, not accepted persistent-host operation.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V07-001.md",
+          "id": "SB-V07-001",
+          "native_status_at_ref": "READY"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V07-002.md",
+          "id": "SB-V07-002",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V07-003.md",
+          "id": "SB-V07-003",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V07-004.md",
+          "id": "SB-V07-004",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V07-005.md",
+          "id": "SB-V07-005",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "Verified persistent owner host; three native firings over two intervals; contention/killed-holder/takeover and two changed lead-direction cycles consumed later.",
+      "missing_owner_or_authority": "Host alias/OS/runtime path/existing native scheduler owner and sleep/reboot/install facts; any needed scoped host and scheduled model authority. Owner fact question remains unanswered.",
+      "permitted_or_proposed_offline_work": "Prepare-only host package inspection is dependency-safe; use existing scheduler, never start another. SESSION_ONCE remains once per fresh session.",
+      "version": "V0.7"
+    },
+    {
+      "accepted_engineering": "PR10/11/12 freshness, unique selection and exact route-type schema accepted. These are registry engineering, not SB-ACC-001 operational acceptance.",
+      "accepted_genuine_live": "No accepted exact-destination route readbacks in required artifact set.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-001.md",
+          "id": "SB-ACC-001",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-002.md",
+          "id": "SB-ACC-002",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-003.md",
+          "id": "SB-ACC-003",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-004.md",
+          "id": "SB-ACC-004",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-005.md",
+          "id": "SB-ACC-005",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-006.md",
+          "id": "SB-ACC-006",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-ACC-007.md",
+          "id": "SB-ACC-007",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "Fresh credential-free registry and genuine X/Instagram/TikTok/Reddit/Facebook/read-only analytics routes after V0.7 prerequisites.",
+      "missing_owner_or_authority": "Exact owner accounts/destinations and access/consent where needed. Existing conditional existing-account/verified Google Cloud alias setup permission is preserved; no new spend/public/model authority.",
+      "permitted_or_proposed_offline_work": "Static route/evidence validation only; no claimed connectivity from a registry flag.",
+      "version": "V0.8"
+    },
+    {
+      "accepted_engineering": "Canary/measurement controls may exist; current artifacts BLOCKED.",
+      "accepted_genuine_live": "No accepted required real A/B/C public canary set.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-EVD-010.md",
+          "id": "SB-EVD-010",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-EVD-011.md",
+          "id": "SB-EVD-011",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-EVD-012.md",
+          "id": "SB-EVD-012",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-EVD-013.md",
+          "id": "SB-EVD-013",
+          "native_status_at_ref": "BLOCKED"
+        }
+      ],
+      "missing_genuine_live": "Exact authorized publication, destination/permalink/readback, actual measurement windows and subsequent learning/next decisions.",
+      "missing_owner_or_authority": "Per-content hash/destination/action grant and bounded count/window/expiry, followed by elapsed measurement time. Posting/spend/customer-message grants currently false.",
+      "permitted_or_proposed_offline_work": "Review-only gate/input validation; no public action or shortened observation window.",
+      "version": "V0.9"
+    },
+    {
+      "accepted_engineering": "Artifacts PLANNED; independent runtime constraint retained.",
+      "accepted_genuine_live": "No accepted continuous three-bot operational acceptance chain.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V10-001.md",
+          "id": "SB-V10-001",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V10-002.md",
+          "id": "SB-V10-002",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V10-003.md",
+          "id": "SB-V10-003",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V10-004.md",
+          "id": "SB-V10-004",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V10-005.md",
+          "id": "SB-V10-005",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "V0.9 accepted predecessors, continuous run, per-bot real measurement\u2192learning\u2192decision, recovery/deduplication, owner-boundary and independence proof.",
+      "missing_owner_or_authority": "Existing authorized host/routes/actions plus explicit acceptance window after prerequisites; no fabricated elapsed time.",
+      "permitted_or_proposed_offline_work": "Evidence inventory only; no autonomous run released.",
+      "version": "V1.0"
+    },
+    {
+      "accepted_engineering": "Artifact index remains PLANNED despite existing recovery engineering; acceptance not inferred from test totals.",
+      "accepted_genuine_live": "No accepted V1.1 unattended reliability bundle.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V11-001.md",
+          "id": "SB-V11-001",
+          "native_status_at_ref": "PLANNED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V11-002.md",
+          "id": "SB-V11-002",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "Bounded fault matrix, restart/idempotency and unattended evidence classified separately.",
+      "missing_owner_or_authority": "Live host/time authority for operational portions; formal engineering release for a new bounded audit.",
+      "permitted_or_proposed_offline_work": "Best next dependency-safe proposal: read/reproduce existing reliability behavior against SB-V11-001/002, reuse code/tests and stop at first concrete gap. SB-V03-006 dependency is accepted; lead release still required.",
+      "version": "V1.1"
+    },
+    {
+      "accepted_engineering": "Metric prerequisite accepted; platform ranking engineering exists, SB-V12-001 remains BLOCKED on operational authority/availability; SB-V12-002 PLANNED.",
+      "accepted_genuine_live": "No accepted complete platform-selection operational bundle.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V12-001.md",
+          "id": "SB-V12-001",
+          "native_status_at_ref": "BLOCKED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V12-002.md",
+          "id": "SB-V12-002",
+          "native_status_at_ref": "PLANNED"
+        }
+      ],
+      "missing_genuine_live": "Attributable evidence/state changes alter selection; NO_ACTION/no-platform remains possible; genuine availability where operational claims depend on it.",
+      "missing_owner_or_authority": "Accepted account/route provenance and required upstream operational gates.",
+      "permitted_or_proposed_offline_work": "Existing selection evidence can be reviewed after explicit bounded lead release; accepted route repairs alone do not promote artifact/product.",
+      "version": "V1.2"
+    },
+    {
+      "accepted_engineering": "Both engineering artifacts ACCEPTED; PR13 exactbe02627 accepted LEAD060; combined exact8c86898/tree72bccc0 accepted LEAD061.",
+      "accepted_genuine_live": "No accepted sequential genuine product chain to V1.3.",
+      "artifact_refs": [
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V13-001.md",
+          "id": "SB-V13-001",
+          "native_status_at_ref": "ACCEPTED"
+        },
+        {
+          "canonical_path": "social-bots/artifact-packets/SB-V13-002.md",
+          "id": "SB-V13-002",
+          "native_status_at_ref": "ACCEPTED"
+        }
+      ],
+      "missing_genuine_live": "Earlier V0.4\u2192V1.2 genuine operational predecessors, real measurement provenance/windows and final lead product verdict.",
+      "missing_owner_or_authority": "All preceding scoped host/model/account/public/time inputs remain distinct.",
+      "permitted_or_proposed_offline_work": "No more V1.3 metrics code required by current verdict; retain exact accepted evidence and work on released unmet predecessors only.",
+      "version": "V1.3"
+    }
+  ]
+}
