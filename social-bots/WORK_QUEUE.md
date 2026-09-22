@@ -1,3 +1,5 @@
+> **Latest owner assignment — 2026-09-22:** Antigravity is the next Social Bots implementation owner; target accepted LIVE V1.7. Read `social-bots/OWNER_RACE_V17_20260922.md` and `social-bots/prompts/ANTIGRAVITY_BOTS_V17_RACE_20260922.md` first. State: ASSIGNED_WAITING_FOR_WORKER, not launched. This supersedes older worker/pause routing below only; existing evidence, review holds and action grants are unchanged. No new scheduler or watcher.
+
 # Work queue — LEAD-066 — target LIVE V1.7
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.7**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.

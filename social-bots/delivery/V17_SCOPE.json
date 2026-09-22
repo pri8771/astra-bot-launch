@@ -35,5 +35,16 @@
   "heartbeat": "one SESSION_ONCE per fresh session; none repeated on resume; lease renewal is separate",
   "promotion": "ChatGPT only, original milestones through V1.7 and their real evidence remain required",
   "scope_filter_is_not_runtime_enforcement": true,
-  "worker_requirement": "Before every task selection apply this cap to the queue and any generated/replanned work; make a narrow scope guard/test if the actual dispatcher would otherwise auto-pull later artifacts."
+  "worker_requirement": "Before every task selection apply this cap to the queue and any generated/replanned work; make a narrow scope guard/test if the actual dispatcher would otherwise auto-pull later artifacts.",
+  "next_session_assignment": {
+    "owner_directive_ref": "social-bots/OWNER_RACE_V17_20260922.md",
+    "implementation_owner": "Antigravity",
+    "prompt_ref": "social-bots/prompts/ANTIGRAVITY_BOTS_V17_RACE_20260922.md",
+    "state": "ASSIGNED_WAITING_FOR_WORKER",
+    "target_version": "1.7",
+    "auto_launch": false,
+    "new_live_grant": false,
+    "new_scheduler_grant": false,
+    "changes_acceptance": false
+  }
 }

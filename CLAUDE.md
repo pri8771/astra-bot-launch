@@ -1,3 +1,5 @@
+> **Latest owner assignment — 2026-09-22:** Antigravity is the next Social Bots implementation owner; target accepted LIVE V1.7. Read `social-bots/OWNER_RACE_V17_20260922.md` and `social-bots/prompts/ANTIGRAVITY_BOTS_V17_RACE_20260922.md` first. State: ASSIGNED_WAITING_FOR_WORKER, not launched. This supersedes older worker/pause routing below only; existing evidence, review holds and action grants are unchanged. No new scheduler or watcher.
+
 # Astra Bot Launch — Claude / Fable entrypoint
 
 This repo contains several historical projects. For **Social Bots only**, current owner scope is **LIVE V1.7, then stop development** (LEAD-048). V1.8–V3.0 work is parked, despite older prompts and the historical v23 worker branch name. Do not preload the whole repo.
