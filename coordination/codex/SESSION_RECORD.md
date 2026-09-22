@@ -1,5 +1,12 @@
 # Compact Codex session record
 
+## Verified review checkpoint — 2026-09-22T04:10Z
+
+- Bots canonical290eaef contains actual LEAD-053 acceptance of host-test-only7acc169 and the previously missing LEAD-052 detail. Real-host/V0.7 acceptance remains ungranted; owner host/route/reviewer facts pending. No SESSION_ONCE repeat, model/public action or Fable routing.
+- Swarm canonical51270d6 records R27c-R1 bounded acceptance atfb34b2c and direct Codex R27e assignment. Codex ACKed; isolated R27e candidate da441b5 is running required real-child-process/PG checks, with R28a held. Independent R02c candidate1c9ff44/PR19 has60missiontests pass; lead review requested. Native evidence stays in Swarm.
+- Jobs final candidate6ae659f/PR14:442pass/1Mac host skip,Ruff/mypy; native evidence published in coordination0bd5e92. Lead exact-SHA review requested; no verdict inferred from delivery. Jobs ephemeral PG is stopped.
+- Genuine minimum targets still unpassed. No new scheduler, shared runtime/data, new spend or background-operation promise.
+
 ## Direct-completion checkpoint — 2026-09-22T03:44Z
 
 - Latest owner directs Codex to finish; **NO_FABLE_HANDOFF**. Earlier approval-to-handoff text below is superseded, not a current blocker. Codex directly owns isolated repair work; no worker checkout is overwritten and ChatGPT keeps formal acceptance.
