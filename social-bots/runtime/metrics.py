@@ -21,6 +21,7 @@ left unchanged.
 """
 from __future__ import annotations
 
+import math
 import uuid
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
@@ -29,7 +30,18 @@ from pathlib import Path
 from . import paths
 from .jsonstore import append_jsonl, read_jsonl, now_iso
 
-NORMALIZATION_VERSION = "1.1.0"
+NORMALIZATION_VERSION = "1.1.1"
+
+
+def _finite_number(value: object) -> float | None:
+    """A collected number must be representable, finite, and not a boolean."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    try:
+        number = float(value)
+    except (OverflowError, ValueError):
+        return None
+    return number if math.isfinite(number) else None
 
 # ------------------------------------------------------------------------- #
 # Metric semantic kinds (SB-V13-001 repair). Every normalized/derived metric
@@ -283,10 +295,11 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
     for sem in SEMANTICS:
         if sem in sem_to_raw:
             raw_name, raw_value = sem_to_raw[sem]
-            if isinstance(raw_value, (int, float)):
+            number = _finite_number(raw_value)
+            if number is not None:
                 kind = _kind_for(pmap, raw_name, raw_kinds)
-                mv = MetricValue(sem, PRESENT, float(raw_value), raw_name,
-                                 float(raw_value), metric_kind=kind)
+                mv = MetricValue(sem, PRESENT, number, raw_name,
+                                 number, metric_kind=kind)
             else:
                 # Present key but non-numeric / null -> collected-but-unavailable.
                 # Keep the expected kind: the platform knows what this metric IS.
@@ -321,7 +334,7 @@ def normalize(*, platform: str, raw_metrics: dict, source: str,
 # ------------------------------------------------------------------------- #
 # Derived metrics — always record formula + version; MISSING if any input is.
 # ------------------------------------------------------------------------- #
-DERIVED_FORMULA_VERSION = "1.0.0"
+DERIVED_FORMULA_VERSION = "1.0.1"
 
 
 @dataclass(frozen=True)
@@ -344,12 +357,13 @@ def _ratio(obs: NormalizedObservation, name: str, num_sem: str, den_sem: str,
     num = obs.metric(num_sem)
     den = obs.metric(den_sem)
     inputs = {num_sem: num.value, den_sem: den.value}
-    if num.is_missing() or den.is_missing() or den.value in (None, 0):
+    numerator, denominator = _finite_number(num.value), _finite_number(den.value)
+    if num.is_missing() or den.is_missing() or numerator is None or denominator in (None, 0):
         avail = MISSING
         value = None
     else:
-        avail = PRESENT
-        value = num.value / den.value
+        value = _finite_number(numerator / denominator)
+        avail = PRESENT if value is not None else MISSING
     return DerivedMetric(name, avail, value, formula, DERIVED_FORMULA_VERSION,
                          inputs, metric_kind=RATE)
 
@@ -388,6 +402,9 @@ def derive_delta_from_snapshots(previous: NormalizedObservation,
 
     if prev.is_missing() or curr.is_missing():
         return _missing("a snapshot input is missing")
+    previous_value, current_value = _finite_number(prev.value), _finite_number(curr.value)
+    if previous_value is None or current_value is None:
+        return _missing("a snapshot input is not a finite number")
     if prev.metric_kind != CUMULATIVE_SNAPSHOT or curr.metric_kind != CUMULATIVE_SNAPSHOT:
         return _missing("both inputs must be cumulative_snapshot")
     if _series_key(previous) != _series_key(current):
@@ -399,10 +416,14 @@ def derive_delta_from_snapshots(previous: NormalizedObservation,
         return _missing("cannot establish snapshot ordering without windows")
     if curr_end < prev_end:
         return _missing("current snapshot precedes previous snapshot")
-    if curr.value < prev.value:
+    if current_value < previous_value:
         # A cumulative counter that decreased indicates a reset/deletion; a naive
         # difference would be a misleading negative delta.
         return _missing("cumulative snapshot decreased; not a valid delta")
+
+    delta = _finite_number(current_value - previous_value)
+    if delta is None:
+        return _missing("snapshot difference is not a finite number")
 
     derivation = {
         "ok": True,
@@ -412,7 +433,7 @@ def derive_delta_from_snapshots(previous: NormalizedObservation,
         "previous_window_end": previous.window_end,
         "current_window_end": current.window_end,
     }
-    return DerivedMetric(name, PRESENT, curr.value - prev.value,
+    return DerivedMetric(name, PRESENT, delta,
                          formula="current_snapshot - previous_snapshot",
                          formula_version=DERIVED_FORMULA_VERSION,
                          inputs=inputs, metric_kind=DELTA, derivation=derivation)
@@ -551,11 +572,12 @@ def aggregate_semantic(bot: str, semantic: str) -> dict:
         bucket = by_platform.setdefault(plat, {
             "kinds": {}, "present": 0, "missing": 0, "not_supported": 0})
         avail = mv.get("availability")
-        if avail == PRESENT and isinstance(mv.get("value"), (int, float)):
+        number = _finite_number(mv.get("value"))
+        if avail == PRESENT and number is not None:
             bucket["present"] += 1
             kind = mv.get("metric_kind") or DEFAULT_METRIC_KIND
             bucket["kinds"].setdefault(kind, []).append(
-                {"value": float(mv["value"]), "obs": o})
+                {"value": number, "obs": o})
         elif avail == NOT_SUPPORTED:
             bucket["not_supported"] += 1
         else:
@@ -618,6 +640,10 @@ def aggregate_semantic(bot: str, semantic: str) -> dict:
                         "value": mean, "series_count": len(series),
                         "count": len(entries),
                     }
+        for result in reduced.values():
+            if result["value"] is not None and _finite_number(result["value"]) is None:
+                result["value"] = None
+                result["unavailable_reason"] = "non_finite_result"
         bucket["kinds"] = reduced
 
     return {
