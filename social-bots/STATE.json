@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T04:18:00Z",
+  "updated_at": "2026-09-22T05:01:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,19 +22,19 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-054",
+    "lead_release": "LEAD-055",
     "last_review": "LEAD-051",
-    "target": "V1.7",
+    "target": "V1.3",
     "target_kind": "operational_live",
-    "hard_stop_after": "V1.7",
+    "hard_stop_after": "V1.3",
     "auto_continue_after_target": false,
     "contract": "delivery/V17_LIVE.md",
     "scope_filter": "delivery/V17_SCOPE.json",
     "acceptance_contract": "delivery/V17_ACCEPTANCE.md",
-    "owner_instruction": "Lets focus on getting to 1.7 live and thats it.",
-    "supersedes": "LEAD-047 V2.3/V3.0 campaign and all older automatic continuation beyond V1.7",
+    "owner_instruction": "Owner explicitly changed Bots goal to V1.3 with genuine live tests; direct Codex implementation/no Fable.",
+    "supersedes": "prior V1.7 ceiling/target; preserves all genuine V0.7→V1.3 gates",
     "future_roadmap": "preserved and parked; not deleted or accepted",
-    "authority_change": "scope and code work only; no fresh model/public/spend grant",
+    "authority_change": "development target only; no fresh model/public/account/host/scheduler/spend/deployment/main-merge grant",
     "worker_consumption": "verified_acknowledged_in_session_s-20260921T211438Z-d5589881"
   },
   "worker_lanes": {
@@ -128,12 +128,14 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_isolated_repairs_by_owner_direction",
-      "assignment": "Codex may continue concrete review fixes directly in isolated repair branches only; no Fable routing; ChatGPT remains formal acceptor.",
+      "activity": "direct_v13_reproduce_rootcause_repair_verify",
+      "assignment": "SP1 V1.3 metrics validity repair: reject bool/nonfinite PRESENT values at normalize; defensively exclude legacy invalid PRESENT values in aggregation; preserve raw provenance/MISSING semantics; add red/green tests and run affected/full suite.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
-      "latest_accepted_checkpoint": "V1.7 due-rotation crash-window engineering repair"
+      "latest_accepted_candidate": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "latest_accepted_checkpoint": "C05/C06 review-anchor + C07 measured-baseline integrity engineering repair",
+      "no_fable_handoff": true,
+      "formal_acceptor": "ChatGPT"
     }
   },
   "tests": {
@@ -232,15 +234,37 @@
       "classification": "author-run engineering submission evidence; no independent CI",
       "live_scheduler_sessions": 0,
       "live_model_calls": 0
+    },
+    "codex_content_integrity_author_submission": {
+      "exact_source": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "base": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+      "full": {
+        "run": 723,
+        "passed": 721,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "agent_focused_reported": 89,
+      "classification": "author/agent engineering evidence; no exact-SHA CI; formal verdict from independent source review",
+      "live_actions": 0
+    },
+    "v13_metrics_reproduction": {
+      "source": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "symptom": "bool, NaN and +/-infinity accepted as PRESENT and may persist/aggregate to nonfinite results",
+      "root_cause": "isinstance(value,(int,float)) accepts bool and nonfinite floats in normalize/aggregate",
+      "existing_metric_tests": 21,
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-054",
-    "review_ref": "social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md",
-    "review_type": "exact_sha_due_rotation_crash_window_formal_verdict",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md",
+    "review_id": "LEAD-055",
+    "review_ref": "social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md",
+    "review_type": "pr8_content_integrity_exact_sha_and_v13_goal_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md",
     "accepted_now": [
-      "V17-due-rotation-repair@84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d"
+      "PR8-content-integrity@9d497b4567e022a8e7f93a3ee890af206272b5be"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -314,12 +338,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "V1.7 due-rotation crash-window repair ACCEPTED ENGINEERING at exact 84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d.",
-      "Prior behavior persisted rotation only after run_one_unit returned; candidate persists the real claim under the lease fence before reconciliation/useful work.",
-      "Cursor write failure prevents decision.run_cycle; later cycle failure retains rotation; LeaseHeld candidates never advance the cursor.",
-      "Codex author evidence reports 39 focused pass and 713/711/0/0/2 full-suite result; no exact-SHA CI exists and author runs are not mislabeled independent acceptance.",
-      "No registry milestone artifact is invented for this V1.7 engineering checkpoint; V0.7 operational gates remain open.",
-      "Owner prohibits new Fable routing; Codex remains direct isolated implementer and ChatGPT formal acceptor."
+      "PR #8 exact 9d497b4567e022a8e7f93a3ee890af206272b5be ACCEPTED ENGINEERING for C05/C06 separate scoped review receipt anchoring and C07 strict measured-baseline shape/provenance validation.",
+      "Receipt store is only a local audit anchor; acceptance does not claim cryptographic immutability or genuine live measurement.",
+      "Owner development target superseded to Bots V1.3 genuine-live; no new model/public/account/host/scheduler/spend/deploy/merge grant.",
+      "V1.3 metrics diagnostic reproduced bool/NaN/infinity accepted as PRESENT and aggregation contamination; bounded SP1 guard released directly to Codex.",
+      "No Fable routing; Codex implements concrete fixes in isolated branches, ChatGPT remains formal acceptor."
     ]
   },
   "public_actions": {
