@@ -397,6 +397,7 @@ Lead lane:
 - Continue preparing acceptance packets and integration contracts through V2.3/V3.0.
 - Own cross-lane integration assignment and canonical artifact acceptance.
 - Target SB-V20-099 V2.0 engineering-readiness bundle today.
+
 Evidence / source refs:
 - `EXECUTION_TO_V2_TODAY.md`
 - `TEAM_LANES.md`
@@ -496,6 +497,7 @@ Done:
 Evidence:
 - Intelligence branch commits `ecad87e6...`, `cbd781ca...`.
 - Detailed review `lead-reviews/LEAD-017_2026-09-20T2152.md`.
+
 Next:
 - Intelligence closes collector trust/HTTPS and assessor authority.
 - Windows Core and Mac QA push their first checkpoints.
