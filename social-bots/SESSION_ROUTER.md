@@ -1,20 +1,18 @@
-# Session router — LEAD-061 — LIVE V1.3 TARGET
+# Session router — LEAD-062 — LIVE V1.3 TARGET
 
-## Fable: existing ownership preserved — NO NEW HANDOFF
+## Fable: HISTORICAL EVIDENCE ONLY — NO ACTIVE HANDOFF
 
-Branch: `fable/social-bots-v23-fasttrack-20260921` (historical name, not scope).
+Branch: `fable/social-bots-v23-fasttrack-20260921` is historical evidence only.
 
-Owner direction supersedes any pending repair dispatch: **do not route, message, assign or hand off new Social Bots work to Fable without fresh owner approval.** Preserve existing unrelated ownership and submitted evidence; no overlapping source work is created here.
+Owner direction is controlling: **do not route, message, assign or hand off new Social Bots work to Fable**. Prior Fable source/evidence remains preserved for audit; it is not current implementation authority.
 
-R07-041 is already ACCEPTED narrowly by LEAD-052. R07-072 test isolation is ACCEPTED at exact `7acc1695d2961267580a156f31df6a5991476654` by LEAD-053.
-
-## Codex: direct isolated implementation owner
+## Codex: direct implementation owner
 
 Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method: reproduce → root-cause → smallest repair → verify → detailed notes. Bounded mechanical agents may assist but never self-accept.
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Current direct Codex assignment — V0.7→V1.3 live-readiness gap audit:** on accepted composition `8c86898d...`, reconcile which milestone requirements already have accepted engineering evidence, accepted live evidence, missing live evidence, owner-dependent grants/facts, and dependency-safe offline work. Read-only/reproduce-first: do not edit source or perform external/live actions during the audit. Return a machine-readable/table record with exact refs and recommended next bounded actions ordered by dependency and authority.
+**Current direct Codex assignment — SB-V11-001/002 reliability read-only audit:** inspect and reproduce existing reliability behavior on accepted composition `8c86898d...` against the current V1.1 artifact contracts. Cover crash-before/after-commit, duplicate invocation/delivery, stale lease/fence loss/takeover, restart/reconciliation, unavailable reasoning/research/account/provider paths, bounded retry/dead-letter behavior, idempotency/effect-journal controls, and duplicate experiment/content/effect eligibility. **Do not add tests or edit source until a concrete current-code gap is reproduced and returned for lead release.**
 
 No live analytics/account/provider/model/public/scheduler action.
 
@@ -33,7 +31,7 @@ Ordered work:
 
 ## Cursor / legacy Core / Intelligence: PARKED / evidence-only
 
-No new overlapping source. Preserve prior evidence and already-existing material. Fable owns enabled shared-runtime implementation through the V1.7 ceiling.
+No new overlapping source. Preserve prior evidence and already-existing material. Codex owns newly released implementation/review work through the owner target V1.3; legacy lanes remain evidence-only.
 
 ## Live gates through V1.3
 
