@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "DORMANT_NOT_AUTHORIZED",
+  "authorized": false,
+  "purpose": "SB-V04-002/SB-V04-004 controlled adaptive divergence; support later SB-EVD-002 review",
+  "prior_authority": {
+    "exactly_one_call_grant": "CONSUMED",
+    "accepted_call": "first chronological authorized V0.4 canary",
+    "duplicate_call": "EXCLUDED_AUTHORIZATION_OVERRUN",
+    "carries_forward": false
+  },
+  "prepared_source": {
+    "sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+    "tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+    "rule": "lead must re-pin an accepted source at activation if this baseline is superseded"
+  },
+  "designated_executor": "Codex direct isolated V0.4 divergence lane",
+  "provider": {
+    "route": "existing subscription-authenticated Claude Code adaptive provider",
+    "anthropic_api_key": "MUST_BE_ABSENT",
+    "injected_runner": false,
+    "payg_api_fallback": false,
+    "zero_new_spend": true
+  },
+  "call_budget": {
+    "maximum": 5,
+    "retries": 0,
+    "durable_counter_required": true,
+    "refuse_call_number": 6
+  },
+  "matrix": [
+    {
+      "id": "P0",
+      "persona": "social-a",
+      "evidence": "E1"
+    },
+    {
+      "id": "P1",
+      "persona": "social-b",
+      "evidence": "E1"
+    },
+    {
+      "id": "P2",
+      "persona": "social-c",
+      "evidence": "E1"
+    },
+    {
+      "id": "P3",
+      "persona": "cultural-primandir-atman",
+      "evidence": "E1"
+    },
+    {
+      "id": "E0",
+      "persona": "social-a",
+      "evidence": "E2"
+    }
+  ],
+  "isolation_rules": {
+    "E1": "same exact frozen bytes/hash for P0-P3",
+    "E2": "materially different frozen bytes/hash",
+    "fixed": [
+      "objective",
+      "runtime/state summary",
+      "policy posture",
+      "allowed actions",
+      "provider model/version",
+      "prompt structure"
+    ],
+    "persona_only": [
+      "P0 vs P1",
+      "P0 vs P2",
+      "P0 vs P3"
+    ],
+    "evidence_only": [
+      "P0 vs E0"
+    ]
+  },
+  "effects": {
+    "public": false,
+    "account_mutation": false,
+    "message": false,
+    "purchase": false,
+    "destructive": false,
+    "effect_tools": false
+  },
+  "activation": {
+    "owner_approval_required": true,
+    "approved_at": null,
+    "activated_at": null,
+    "expires_at": null,
+    "expiry_rule": "activated_at + 2 hours",
+    "fail_fast": true
+  },
+  "note": "This file is deliberately stored as a dormant lead-review template, not in a runtime authorization-manifest directory. It cannot authorize execution."
+}
