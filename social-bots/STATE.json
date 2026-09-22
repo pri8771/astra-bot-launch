@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T07:32:00Z",
+  "updated_at": "2026-09-22T07:40:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-060",
+    "lead_release": "LEAD-061",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -128,12 +128,12 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v13_composition_after_two_acceptances",
-      "assignment": "Create isolated composition branch from accepted base 3f10d0f6 containing exact accepted PR12+PR13 changes only; run targeted route+metrics suites and full suite; no semantic modifications.",
+      "activity": "direct_v13_live_readiness_gap_audit",
+      "assignment": "Read-only/reproduce-first V0.7→V1.3 live-readiness gap audit on accepted composition. Reconcile accepted engineering/live evidence, missing live evidence, owner gates, and dependency-safe offline next work. No live actions.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
-      "latest_accepted_checkpoint": "V0.8 deterministic unique-eligible route selection + community platform/alias scope",
+      "latest_accepted_candidate": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "latest_accepted_checkpoint": "PR14 accepted engineering composition of PR12+PR13",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT",
       "parallel_assignments": [
@@ -389,16 +389,35 @@
       "classification": "author/mechanical engineering evidence; no exact-SHA CI",
       "artifact": "SB-V13-002",
       "live_actions": 0
+    },
+    "codex_composition_author_submission": {
+      "exact_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "route_focused": {
+        "passed": 45
+      },
+      "metrics_focused": {
+        "passed": 43
+      },
+      "full": {
+        "run": 761,
+        "passed": 759,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/integration engineering evidence; no exact-SHA CI",
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-060",
-    "review_ref": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md",
-    "review_type": "pr12_route_schema_and_pr13_v13_provenance_exact_sha_verdicts",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md",
+    "review_id": "LEAD-061",
+    "review_ref": "social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md",
+    "review_type": "pr14_composition_exact_sha_and_live_readiness_audit_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md",
     "accepted_now": [
-      "PR12-route-schema@a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
-      "SB-V13-002@be0262713eec03c2e7e6b411c2754a7538bad9a6"
+      "PR14-composition@8c86898d1c6641adbf5c9884e1aa7ab2923b1af3"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -472,11 +491,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR12 exact a4e7926c79231bfadfc55b56a70a741cc85a2b4e ACCEPTED ENGINEERING for exact documented route_type enum validation at registry ingest.",
-      "PR13 exact be0262713eec03c2e7e6b411c2754a7538bad9a6 ACCEPTED ENGINEERING and SB-V13-002 marked ACCEPTED for provenance/window/compatibility/legacy fail-closed semantics.",
-      "PR12 and PR13 are disjoint one-commit children of accepted base 3f10d0f6 and can be mechanically composed without intended behavior changes.",
-      "Next released task is composition/integration only: combine exact accepted changes, run targeted route+metrics suites and full suite, stop on any required semantic modification.",
-      "Official product phase remains V0.4.x; live V1.3 promotion remains blocked by genuine earlier operational gates."
+      "PR14 exact 8c86898d1c6641adbf5c9884e1aa7ab2923b1af3 ACCEPTED ENGINEERING as pure composition of accepted PR12+PR13 changes.",
+      "Composition evidence: six changed blobs match accepted candidates; all other base paths unchanged; 45 route + 43 metrics focused pass; 761/759/0/0/2 full; no exact-SHA CI.",
+      "No new behavior introduced by composition; official product phase remains V0.4.x.",
+      "Next dependency-safe assignment is read-only V0.7→V1.3 live-readiness gap audit against accepted composition.",
+      "No Fable or live external actions authorized."
     ]
   },
   "public_actions": {
