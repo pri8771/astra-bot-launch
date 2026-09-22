@@ -1130,3 +1130,35 @@ Source refs
 - `social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md`
 - PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`
 - owner goal `7e0faa40da77e708e0b2db4fea7b8e3cc7a066e6`
+
+
+## 2026-09-22T05:01:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-056 — PR9 verdict / V0.8 route freshness release
+
+Done
+- Independently reviewed PR #9 exact `30a2ebdfb45110b2bc6fea0f3d50876583487f9c` over accepted `9d497b4567e022a8e7f93a3ee890af206272b5be`.
+- Formally **ACCEPTED ENGINEERING** the finite-number admission, legacy-invalid defense and overflow-containment repair.
+- Reproduced/confirmed the next V0.8 defect: `account_routes.py::_route_ok` ignores `last_verified_at`, allowing missing/ancient verification to appear currently available/authorized.
+- Defined the lead-owned deterministic route freshness contract and released the smallest repair directly to Codex. No Fable routing.
+
+Evidence
+- PR #9 exact source `30a2ebdfb45110b2bc6fea0f3d50876583487f9c`.
+- Native packet/evidence `f10f15a`, `social-bots/lead-reviews/CODEX_METRICS_20260922.md`.
+- Author checks: 26 focused passed; full 728 run / 726 passed / 0 failed / 0 errors / 2 existing genuine-evidence skips; no exact-SHA GitHub CI/workflow.
+- Route reproducer: missing and 2020 `last_verified_at` both yielded `account_available=True`, `authorized=True` with `health_status=verified`.
+- Schema contract: stale verification cannot be presented as current connectivity.
+
+Next
+- Codex SP1: require parseable timezone-aware `last_verified_at`; fresh when age <=24 hours; permit future skew up to +5 minutes only.
+- Missing/malformed/naive/>24h stale/>+5m future verification fails closed to unavailable/unauthorized/publishable false with precise reason.
+- Inject evaluation `now` for deterministic tests. Preserve exact route scope, capabilities, health rules, secret rejection and publish authorization.
+- Test missing, malformed, naive, ancient, exactly-24h, just-over-24h, +5m, >+5m, and healthy/fresh cases; red-before/green-after + affected/full suites.
+- No real account/provider/network/model/public/scheduler/host action.
+
+Blockers
+- Genuine V0.7→V1.3 operational prerequisites remain mandatory.
+- Route freshness engineering acceptance will not itself prove a live account route.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md`
+- PR #9 `30a2ebdfb45110b2bc6fea0f3d50876583487f9c`
+- native evidence `f10f15a`
