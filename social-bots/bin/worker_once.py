@@ -96,15 +96,18 @@ def claim_one(bots: list[str], *, require_adaptive: bool | None,
     tried = tried if tried is not None else []
     for bot in due_rotation.ordered(bots, home):
         task_id = worker.runtime_task_id(bot)
+        def persist_claim():
+            tried.append({"bot": bot, "task_id": task_id, "result": "claimed"})
+            due_rotation.record_claim(bot, bots, home, session_id=session_id)
+
         try:
             result = worker.run_one_unit(task_id, bot, bot,
-                                         require_adaptive=require_adaptive)
+                                         require_adaptive=require_adaptive,
+                                         on_claim=persist_claim)
         except leasing.LeaseHeld as held:
             tried.append({"bot": bot, "task_id": task_id, "result": "lease_held",
                           "holder": (held.holder or {}).get("worker_id")})
             continue
-        tried.append({"bot": bot, "task_id": task_id, "result": "claimed"})
-        due_rotation.record_claim(bot, bots, home, session_id=session_id)
         return result, tried
     return None, tried
 

@@ -18,6 +18,7 @@ from __future__ import annotations
 import os
 import socket
 import uuid
+from collections.abc import Callable
 
 from . import leasing, receipts, decision
 from .heartbeat import Heartbeat
@@ -48,7 +49,8 @@ def runtime_task_id(bot: str) -> str:
 def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                  host_alias: str = "local", worker_id: str | None = None,
                  ttl_seconds: int = 120, source_ref: str = "social-bots/runtime",
-                 require_adaptive: bool | None = None) -> dict:
+                 require_adaptive: bool | None = None,
+                 on_claim: Callable[[], None] | None = None) -> dict:
     """Run a single bounded unit. Returns a summary dict.
 
     Raises ``leasing.LeaseHeld`` if another live worker owns the task — callers
@@ -76,6 +78,10 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
 
     cycle_committed = False   # True once run_cycle's fenced durable commit returns
     try:
+        # Persist scheduler claim state under the live lease before useful work.
+        # Failure aborts the unit through the ordinary failure/release path.
+        if on_claim is not None:
+            fence.fenced_commit(on_claim)
         # (2b) reconcile prior owner's uncertain external effects before new work.
         reconciled = None
         if lease.reconcile_required:
