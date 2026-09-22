@@ -1,0 +1,219 @@
+{
+  "classification": "OFFLINE_ENGINEERING_DIAGNOSTIC_ONLY",
+  "source_sha": "fec97738ec0e9407415f60228f7c3938613396c3",
+  "source_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc",
+  "authorization_mocked": false,
+  "source_identity_mocked": false,
+  "provider_transport": "in-process sentinel replaces CLI constructor as in existing execution-binding tests",
+  "external_calls": 0,
+  "scenarios": [
+    {
+      "scenario": "provider_unavailable",
+      "sentinel_attempts": 5,
+      "attempts": [
+        {
+          "persona": "social-a",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-b",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-c",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "cultural-primandir-atman",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-a",
+          "signal": "sig-e2"
+        }
+      ],
+      "ledger_slots": 5,
+      "outcomes": [
+        {
+          "case": "P0",
+          "outcome": "provider_unavailable"
+        },
+        {
+          "case": "P1",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P2",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P3",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "E0",
+          "outcome": "proposal_received"
+        }
+      ],
+      "exact_source_and_tree": true,
+      "execution_binding": true,
+      "restored_dispatch_scope": true
+    },
+    {
+      "scenario": "provider_exception",
+      "sentinel_attempts": 5,
+      "attempts": [
+        {
+          "persona": "social-a",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-b",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-c",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "cultural-primandir-atman",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-a",
+          "signal": "sig-e2"
+        }
+      ],
+      "ledger_slots": 5,
+      "outcomes": [
+        {
+          "case": "P0",
+          "outcome": "provider_exception"
+        },
+        {
+          "case": "P1",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P2",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P3",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "E0",
+          "outcome": "proposal_received"
+        }
+      ],
+      "exact_source_and_tree": true,
+      "execution_binding": true,
+      "restored_dispatch_scope": true
+    },
+    {
+      "scenario": "invalid_proposal",
+      "sentinel_attempts": 5,
+      "attempts": [
+        {
+          "persona": "social-a",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-b",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-c",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "cultural-primandir-atman",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-a",
+          "signal": "sig-e2"
+        }
+      ],
+      "ledger_slots": 5,
+      "outcomes": [
+        {
+          "case": "P0",
+          "outcome": "invalid_proposal"
+        },
+        {
+          "case": "P1",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P2",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P3",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "E0",
+          "outcome": "proposal_received"
+        }
+      ],
+      "exact_source_and_tree": true,
+      "execution_binding": true,
+      "restored_dispatch_scope": true
+    },
+    {
+      "scenario": "valid_identical_proposals",
+      "sentinel_attempts": 5,
+      "attempts": [
+        {
+          "persona": "social-a",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-b",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-c",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "cultural-primandir-atman",
+          "signal": "sig-e1"
+        },
+        {
+          "persona": "social-a",
+          "signal": "sig-e2"
+        }
+      ],
+      "ledger_slots": 5,
+      "outcomes": [
+        {
+          "case": "P0",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P1",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P2",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "P3",
+          "outcome": "proposal_received"
+        },
+        {
+          "case": "E0",
+          "outcome": "proposal_received"
+        }
+      ],
+      "exact_source_and_tree": true,
+      "execution_binding": true,
+      "restored_dispatch_scope": true
+    }
+  ]
+}
