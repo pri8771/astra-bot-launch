@@ -1,0 +1,32 @@
+{
+  "source_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "source_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+  "authorized": false,
+  "live_calls_authorized": 0,
+  "files": {
+    "E1.receipt.json": "dc57f00144a6ed18a22884c5f594c4641d4f27ec5266ade318005db03174b46c",
+    "E2.receipt.json": "6eba8b0726d7b645e8a355845e3f51573ea39660e9c6c67b7cc02163bf2ec4a2",
+    "FREEZE_MANIFEST.json": "80476c3d7b785c35a4b1ad455f7241c0afad35d0869f54ec874cec6b4d5bf674",
+    "ISOLATION.json": "27b815dfc9de16f48deca546d76015c88ab5e8f78ab1cf5ddcb3bb4c1e4a7f45",
+    "PREPARED_MATRIX.json": "f4c5dadf6357bdb941fa5b62f451b2fd9eef40198e8982bd61c04f07294a0059",
+    "approval-request.md": "69e9a218b4a3ffd7c213ac8ff38182eb7df1fb24f3b1a15be2fa4be64482366a",
+    "audit.json": "ca4676d8ce0a5edee104884f9e7b3dbfc37e08f23d835414895eabb4c999839b",
+    "checks.json": "fe0c1122a11be14cba902f963df54bfed05a2d4a2855e482ab16c2e9cac11863",
+    "commands.txt": "eab41dc3070cf075d7546ab5650e6dd4cc836a8eeb639065a8c8222e02a1b978",
+    "dormant-review-binding.json": "d8cd8f29da2f643d09edd106db65ee212a007130ab41733576baad148fa77a85",
+    "gate-denied.json": "76af4e23ca2206054fd51bbd516b62617a97d41c9bedfa774b5e56bc786316bd",
+    "manifest.json": "6ffbaa59b54f72099086edcc6a4f8c2b298b5b7330dd3579fb1202216ccbeeec",
+    "matrix-binding-finding.md": "1d0194b151f889ee27b4795bca6ba53295f2cefbf4b75afca501aa1e2d1c57c7",
+    "matrix-binding-repro.log": "58c50afa2a19f7402b8213c7f7df56b360bd3ba807bb8a4a35a71bdb2cebcab7",
+    "matrix-binding-repro.py": "822add5b8a9fdceb3b1d1fe82ff05229f7de6187c600adaf43cdfc8f125b1118",
+    "matrix-binding-root.log": "58c50afa2a19f7402b8213c7f7df56b360bd3ba807bb8a4a35a71bdb2cebcab7",
+    "prompts/E0.prompt.txt": "f95d74c207771918426033a9ef96d6d5f35e48eb504064f58188bbe2ec231ef2",
+    "prompts/P0.prompt.txt": "44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+    "prompts/P1.prompt.txt": "bd1da46f533a3b9d446ac1c6c33e390b0ca654c156d0d9b9ffc1c4f0a9e465c7",
+    "prompts/P2.prompt.txt": "e1471b089fde27eb1164c8dbf0a17fc0d96674329588c90223380e20f87b5226",
+    "prompts/P3.prompt.txt": "6575a3729bdf511c07de804296400b0a87f78857ff98369c6520fa91f83a45af",
+    "prompts/PROMPT_DIGESTS.json": "7c60afc5719b118ae3054caeb2646ddcc18b4cd3b66d99b5e5c9874de2189df8",
+    "source-identity.txt": "b2c3dea342a9ad997c530c813c876cb32caebcdda2681367b551179d6508999e",
+    "verify-written.json": "289fdd9b477f10cbc1cabc492b8f6a67e58e012198c2d151c1964957c4a3252d"
+  }
+}

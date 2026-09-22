@@ -1,0 +1,6 @@
+origin https://github.com/pri8771/astra-bot-launch.git
+HEAD 8c86898d1c6641adbf5c9884e1aa7ab2923b1af3
+TREE 72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a
+BRANCH codex/bots-accepted-composition-20260922
+STATUS_BEGIN
+STATUS_END

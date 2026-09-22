@@ -1,0 +1,42 @@
+Social Bots independent offline mechanical checks
+Source worktree: <isolated-review-root>/bots-source
+Pinned HEAD: f0f1307cf99c181cf07f113672d5308cf5528386
+Commit: social-bots: V1.7 C25 community path offline (observe -> scoped memory -> decide -> bound reply candidate)
+Evidence class: ENGINEERING only
+Safety review: selected tests use temporary homes, deterministic callables/fixtures, subprocess tripwires, and local child interpreters. No live model, network, account, publication, or external-effect action was invoked. The opt-in real HTTPS freeze test remained disabled.
+
+Command 1:
+  cd <isolated-review-root>/bots-source/social-bots
+  python3 -m unittest -v tests.test_model_dispatch_gate tests.test_v07_session_heartbeat tests.test_due_rotation tests.test_review_binding tests.test_prospective_experiments tests.test_v17_scope_guard tests.test_v17_loop_wiring tests.test_v17_community_path
+Exit: 0
+Result: Ran 118 tests in 0.690s; OK; 0 failures, 0 errors, 0 skipped.
+Boundary verified: raw callable and provider refuse without scope; EngineeringStub and injected runner refuse without scope, execute only in explicit ENGINEERING scope, and refuse in production scope; real CLI launcher is protected by a subprocess tripwire; shared budget, last-slot concurrency, reentry, stale/revoked grant, exception/crash accounting, and entrypoint scope wiring passed. Atomic SESSION_ONCE cross-process race, due rotation, final review binding, prospective experiment honesty, V1.7 parked-route guard, V1.2-V1.6 loop wiring, and offline community negative controls passed.
+
+Command 2:
+  cd <isolated-review-root>/bots-source/social-bots
+  python3 -m unittest discover -s tests -v
+Exit: 1
+Result: Ran 707 tests in 3.619s; FAILED (failures=2, skipped=2); 703 passed by arithmetic; 0 errors.
+Skipped: the opt-in real HTTPS freeze test was skipped unless SBOTS_LIVE_FREEZE_TEST=1; one additional skip was reported by unittest. No live test was enabled.
+Failures:
+  tests.test_host_preflight.HostPreflightTest.test_attested_clean_host_is_suitable_candidate
+    actual UNSUITABLE_NOT_PERSISTENT_OWNER_HOST
+    expected SUITABLE_PERSISTENT_HOST_CANDIDATE
+  tests.test_host_preflight.HostPreflightTest.test_clean_host_without_attestation_is_inconclusive
+    actual UNSUITABLE_NOT_PERSISTENT_OWNER_HOST
+    expected INCONCLUSIVE_NEED_OWNER_CONFIRMATION
+
+Command 3:
+  cd <isolated-review-root>/bots-source/social-bots
+  python3 -m unittest -v tests.test_host_preflight
+Exit: 1
+Result: Ran 7 tests in 0.014s; FAILED (failures=2); 5 passed, 0 errors, 0 skipped. Same two failures reproduced.
+
+Reproducible finding:
+  The two clean-host tests mock Linux scheduler binaries (systemctl and crontab) but do not mock platform.system(). On this Darwin review host, collect() follows the Darwin branch and requires launchctl. The test's shutil.which side effect returns a path only for systemctl/crontab, so launchctl becomes None and creates the blocker "launchctl unavailable on Darwin". The verdict is therefore UNSUITABLE before owner-attestation logic. This is a cross-platform test-isolation defect at tests/test_host_preflight.py:52-85, not evidence that a real host is suitable or unsuitable. It passed in the worker's Linux environment and fails reproducibly on macOS.
+
+Review disposition:
+  The focused R07-041 and referenced V0.7/V1.7 offline boundaries pass independently at f0f1307. The full-suite worker claim "707 OK / 2 skipped" is not portable to this macOS review host: observed result is 703 passed / 2 failed / 2 skipped. No source fix was made. Operational V0.4-V0.7 live gates remain outside this evidence.
+
+Fresh coordination note supplied by portfolio coordinator after execution:
+  canonical 6f794a0 updates LEAD-051 and records R07-041 as SUBMITTED/READY for independent acceptance. Implementation e9678f8 differs from tested f0f1307 only by SESSION_INSTRUCTIONS, so f0f1307 is the current production-code-equivalent test source. This mechanical run is not the formal Mac Acceptance decision.

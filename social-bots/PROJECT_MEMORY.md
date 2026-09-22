@@ -1,3 +1,5 @@
+> Latest owner instruction, 2026-09-22T17:32Z: PAUSED_BY_OWNER; target V2.0 for all three projects. See OWNER_PAUSE_V20_20260922.md. Earlier ceilings are superseded; no acceptance or live grant is implied.
+
 # Compact project memory
 
 Updated: 2026-09-20

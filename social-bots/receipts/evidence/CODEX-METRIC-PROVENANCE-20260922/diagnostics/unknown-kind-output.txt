@@ -1,0 +1,117 @@
+{
+  "aggregate": {
+    "bot": "bot-a",
+    "by_platform": {
+      "x": {
+        "invalid": 0,
+        "kinds": {
+          "invented_kind": {
+            "aggregation": "mean_of_series_latest",
+            "count": 1,
+            "kind": "invented_kind",
+            "series_count": 1,
+            "value": 9.0
+          }
+        },
+        "missing": 0,
+        "not_supported": 0,
+        "present": 1
+      }
+    },
+    "note": "kind-aware: deltas summed; cumulative snapshots reduced to latest-per-series then summed (never summed over time); gauges/rates averaged; missing excluded (not treated as 0)",
+    "semantic": "reach"
+  },
+  "stored": [
+    {
+      "account_alias": null,
+      "collected_at": "2026-09-22T12:00:00+00:00",
+      "content_id": "content-a",
+      "experiment_id": null,
+      "normalization_version": "1.1.2",
+      "normalized": {
+        "click": {
+          "availability": "missing",
+          "metric_kind": "cumulative_snapshot",
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "click",
+          "value": null
+        },
+        "completion": {
+          "availability": "not_supported",
+          "metric_kind": null,
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "completion",
+          "value": null
+        },
+        "conversion": {
+          "availability": "not_supported",
+          "metric_kind": null,
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "conversion",
+          "value": null
+        },
+        "follow": {
+          "availability": "missing",
+          "metric_kind": "delta",
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "follow",
+          "value": null
+        },
+        "reach": {
+          "availability": "present",
+          "metric_kind": "invented_kind",
+          "raw_name": "impressions",
+          "raw_value": 9.0,
+          "semantic": "reach",
+          "value": 9.0
+        },
+        "reply": {
+          "availability": "missing",
+          "metric_kind": "cumulative_snapshot",
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "reply",
+          "value": null
+        },
+        "save": {
+          "availability": "not_supported",
+          "metric_kind": null,
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "save",
+          "value": null
+        },
+        "share": {
+          "availability": "missing",
+          "metric_kind": "cumulative_snapshot",
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "share",
+          "value": null
+        },
+        "view": {
+          "availability": "missing",
+          "metric_kind": "cumulative_snapshot",
+          "raw_name": null,
+          "raw_value": null,
+          "semantic": "view",
+          "value": null
+        }
+      },
+      "observation_id": "obs-33a031ea99bb4823",
+      "persona": "persona-a",
+      "platform": "x",
+      "raw_metrics": {
+        "impressions": 9
+      },
+      "source": "capture:receipt",
+      "unmapped_raw": [],
+      "window_end": null,
+      "window_start": null
+    }
+  ]
+}

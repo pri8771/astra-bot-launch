@@ -1,0 +1,20 @@
+{
+  "source_sha": "fec97738ec0e9407415f60228f7c3938613396c3",
+  "source_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc",
+  "base": "9de61f6c8db9d06b11e9c71a8f84b2f7802633c7",
+  "release": "47bd5e680f364d21bdff7a070257a2b6d2d0fcf1",
+  "full": {
+    "run": 772,
+    "passed": 770,
+    "skipped": 2,
+    "exit": 0
+  },
+  "focused_existing": 90,
+  "focused_new": 8,
+  "exact_git_identity_no_mock": true,
+  "offline_sentinel_calls": 5,
+  "temporary_slots": 5,
+  "negative_new_slots": 0,
+  "authorized_live_calls": 0,
+  "engineering_only": true
+}

@@ -1,0 +1,44 @@
+LEAD-062 bounded read-only audit — first concrete gap
+
+Source: 8c86898d1c6641adbf5c9884e1aa7ab2923b1af3
+Tree: 72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a
+Native release: coordination commit ed3aee4cf21da403f92ef565f66e48a1824b67c2,
+social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md
+
+REPRODUCED GAP: a stale-lease takeover continues into eligible work even when
+reconciliation explicitly returns safe=false.
+
+Causal path:
+- runtime/worker.py:85-89 invokes _reconcile for a takeover but only stores the
+  returned dict and emits a heartbeat.
+- runtime/worker.py:94-98 unconditionally renews and calls decision.run_cycle.
+- runtime/worker.py:192-210 detects unauthorized published queue records and
+  returns {safe:false, unauthorized_published:N}; the caller never branches on it.
+
+Synthetic /tmp reproduction (no provider/model/network/public effect):
+  python3 /tmp/bots-lead062-unsafe-reconcile-repro.py
+Output: /tmp/bots-lead062-unsafe-reconcile-repro.log
+Observed on the exact accepted source:
+- stale owner was taken over;
+- _reconcile observed queue_items=1, unauthorized_published=1, safe=false;
+- decision.run_cycle was still called once;
+- worker wrote a verified finish receipt and released its lease.
+
+Existing coverage does not catch the failure:
+- tests/test_fencing.py:323-342 covers only a safe takeover that commits.
+- tests/test_production_read_paths.py:146-164 verifies the admin-wide read with
+  only unpublished/authorized-safe fixture rows and asserts safe=true.
+- leasing/Fence coverage is strong for same-POSIX-host acquisition, generation,
+  stale-owner commit refusal, and takeover ownership, but it does not make the
+  reconciliation verdict authoritative.
+
+Smallest next repair after lead release:
+Fail closed in run_one_unit when reconcile result safe is not exactly true:
+record a truthful blocked/failure receipt, perform no decision cycle, and release
+only the takeover owner's lease. Add one focused regression with an unsafe queue
+record asserting zero run_cycle calls, no new content/experiment/queue effects,
+and a non-success result. Do not broaden into public delivery or host proof.
+
+Evidence class: ENGINEERING synthetic single-host filesystem. Genuine scheduler,
+crash/restart elapsed-time, cross-host fencing, provider delivery and unattended
+operation remain unproven and were not exercised.

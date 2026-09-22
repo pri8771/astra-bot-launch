@@ -1,0 +1,58 @@
+{
+  "accepted_blob_matches": {
+    "social-bots/runtime/account_routes.py": {
+      "accepted": "4386eb678b33df60a6a1d32590f1a8946a342bd5",
+      "head": "4386eb678b33df60a6a1d32590f1a8946a342bd5",
+      "match": true
+    },
+    "social-bots/runtime/metrics.py": {
+      "accepted": "9478b69c5bb687a9a9ce40af6838f3c500badce8",
+      "head": "9478b69c5bb687a9a9ce40af6838f3c500badce8",
+      "match": true
+    },
+    "social-bots/tests/test_account_route_schema.py": {
+      "accepted": "f1f2b0cc9d63af7992bf5f727c84a1600163a2f0",
+      "head": "f1f2b0cc9d63af7992bf5f727c84a1600163a2f0",
+      "match": true
+    },
+    "social-bots/tests/test_metrics_legacy_kinds.py": {
+      "accepted": "55f81d8a39190c7642aaeedab1c6b3990ba2463f",
+      "head": "55f81d8a39190c7642aaeedab1c6b3990ba2463f",
+      "match": true
+    },
+    "social-bots/tests/test_metrics_provenance.py": {
+      "accepted": "c1b5330597cd9b454d18c9f41f843d0c24c59fb0",
+      "head": "c1b5330597cd9b454d18c9f41f843d0c24c59fb0",
+      "match": true
+    },
+    "social-bots/tests/test_metrics_windows.py": {
+      "accepted": "297a181f8acd6be20b0b50fea117c021ff6f1079",
+      "head": "297a181f8acd6be20b0b50fea117c021ff6f1079",
+      "match": true
+    }
+  },
+  "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+  "changed_paths": [
+    "social-bots/runtime/account_routes.py",
+    "social-bots/runtime/metrics.py",
+    "social-bots/tests/test_account_route_schema.py",
+    "social-bots/tests/test_metrics_legacy_kinds.py",
+    "social-bots/tests/test_metrics_provenance.py",
+    "social-bots/tests/test_metrics_windows.py"
+  ],
+  "changed_paths_match_union": true,
+  "composition": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "composition_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+  "expected_union": [
+    "social-bots/runtime/account_routes.py",
+    "social-bots/runtime/metrics.py",
+    "social-bots/tests/test_account_route_schema.py",
+    "social-bots/tests/test_metrics_legacy_kinds.py",
+    "social-bots/tests/test_metrics_provenance.py",
+    "social-bots/tests/test_metrics_windows.py"
+  ],
+  "metrics_candidate": "be0262713eec03c2e7e6b411c2754a7538bad9a6",
+  "route_candidate": "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+  "unchanged_base_path_count": 894,
+  "unexpected_unchanged_path_differences": []
+}

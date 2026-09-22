@@ -1,0 +1,30 @@
+{
+  "baseline-red.txt": {
+    "bytes": 7808,
+    "sha256": "63138edf13e16f309ffd2ac3bfeb07928fe5260aa8d4191aa7661c5d564870c9"
+  },
+  "causal-note.md": {
+    "bytes": 1130,
+    "sha256": "98bff738cc7c91ca34fd19f28eb79b03dacac55cb878b08d89b71002140e09f3"
+  },
+  "checks.json": {
+    "bytes": 1039,
+    "sha256": "f7afb0d5b97c9639a0546e331293ba545479d933a6233a3b423cf467688528e6"
+  },
+  "focused-green.txt": {
+    "bytes": 4462,
+    "sha256": "81a4a2509b556a02340cbfb33ee3598c2e3c1f9166d92ae8b6100d130ead558e"
+  },
+  "full.txt": {
+    "bytes": 6506,
+    "sha256": "bd4c6afa72ef6233a17b64ce5f7d8e1d1feafb9a9407e9abb321b996493c17a0"
+  },
+  "mechanical-review.txt": {
+    "bytes": 1500,
+    "sha256": "82c5c97f5f225e0b65f35eb78026e4b1fca93bfa6c9778e3c9f455ea9579bb76"
+  },
+  "source-checksums.txt": {
+    "bytes": 596,
+    "sha256": "3e921b89a8f4d275456e1376a140b97d87032b4b138287f351eca48104b3e8ec"
+  }
+}

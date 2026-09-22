@@ -1,0 +1,19 @@
+{
+  "social-bots/runtime/divergence_prepare.py": "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+  "social-bots/tests/test_v04_batch_failfast.py": "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+  "social-bots/receipts/evidence/CODEX_MAC_HOST_PREPARE_20260922/HOST_PREFLIGHT.json": "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+  "social-bots/scheduling/README.md": "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+  "social-bots/scheduling/RUNBOOK.md": "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E1.extracted.txt": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E1.lineage.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E1.raw": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E1.receipt.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E1.signal.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E2.extracted.txt": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E2.lineage.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E2.raw": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E2.receipt.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/E2.signal.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/REPRODUCIBILITY.json": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+  "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922/extract.py": "89057863423c3ad6e995dcd57cad4a61da2a6099"
+}

@@ -1,0 +1,165 @@
+..FFFFFFFFFFFF.FFFFF
+======================================================================
+FAIL: test_legacy_invalid_metadata_is_excluded_from_trace_and_aggregate (__main__.MetricWindowBoundaryTest.test_legacy_invalid_metadata_is_excluded_from_trace_and_aggregate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 81, in test_legacy_invalid_metadata_is_excluded_from_trace_and_aggregate
+    self.assertEqual(trace["observation_count"], 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_start', value='not-a-time')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_start', value=123)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_start', value='2026-09-22T01:00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_end', value='not-a-time')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_end', value=123)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='window_end', value='2026-09-22T01:00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='collected_at', value='not-a-time')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='collected_at', value=123)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_malformed_nonstring_and_naive_metadata (__main__.MetricWindowBoundaryTest.test_normalize_rejects_malformed_nonstring_and_naive_metadata) (field='collected_at', value='2026-09-22T01:00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 52, in test_normalize_rejects_malformed_nonstring_and_naive_metadata
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_reversed_and_equal_windows (__main__.MetricWindowBoundaryTest.test_normalize_rejects_reversed_and_equal_windows) (start='2026-09-22T01:00:00+00:00', end='2026-09-22T00:00:00+00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 58, in test_normalize_rejects_reversed_and_equal_windows
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_reversed_and_equal_windows (__main__.MetricWindowBoundaryTest.test_normalize_rejects_reversed_and_equal_windows) (start='2026-09-22T00:00:00+00:00', end='2026-09-22T00:00:00+00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 58, in test_normalize_rejects_reversed_and_equal_windows
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_revalidates_metadata_before_persisting (__main__.MetricWindowBoundaryTest.test_record_revalidates_metadata_before_persisting) (field='window_start', value='bad')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 70, in test_record_revalidates_metadata_before_persisting
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_revalidates_metadata_before_persisting (__main__.MetricWindowBoundaryTest.test_record_revalidates_metadata_before_persisting) (field='window_end', value=123)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 70, in test_record_revalidates_metadata_before_persisting
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_revalidates_metadata_before_persisting (__main__.MetricWindowBoundaryTest.test_record_revalidates_metadata_before_persisting) (field='collected_at', value='2026-09-22T01:00:00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 70, in test_record_revalidates_metadata_before_persisting
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_revalidates_metadata_before_persisting (__main__.MetricWindowBoundaryTest.test_record_revalidates_metadata_before_persisting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 72, in test_record_revalidates_metadata_before_persisting
+    self.assertEqual(metrics.observations_for("social-a"), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'account_alias': None, 'collected_at': '[5181 chars]00'}] != []
+
+First list contains 3 additional elements.
+First extra element 0:
+{'account_alias': None, 'collected_at': '2026-09-22T07:15:19+00:00', 'content_id': 'content-1', 'experiment_id': None, 'normalization_version': '1.1.1', 'normalized': {'click': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'click', 'value': None}, 'completion': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'completion', 'value': None}, 'conversion': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'conversion', 'value': None}, 'follow': {'availability': 'present', 'metric_kind': 'delta', 'raw_name': 'new_followers', 'raw_value': 7.0, 'semantic': 'follow', 'value': 7.0}, 'reach': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'reach', 'value': None}, 'reply': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'reply', 'value': None}, 'save': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'save', 'value': None}, 'share': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'share', 'value': None}, 'view': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'view', 'value': None}}, 'observation_id': 'obs-2e0cc7c9bc5741f1', 'persona': 'social-a', 'platform': 'tiktok', 'raw_metrics': {'new_followers': 7}, 'source': 'fixture:window-boundary', 'unmapped_raw': [], 'window_end': '2026-09-22T01:00:00+00:00', 'window_start': 'bad'}
+
+Diff is 9904 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_snapshot_latest_uses_actual_instant_not_iso_lexical_order (__main__.MetricWindowBoundaryTest.test_snapshot_latest_uses_actual_instant_not_iso_lexical_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_windows.py", line 145, in test_snapshot_latest_uses_actual_instant_not_iso_lexical_order
+    self.assertEqual(snap["kinds"][metrics.CUMULATIVE_SNAPSHOT]["value"], 20.0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 10.0 != 20.0
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.007s
+
+FAILED (failures=17)
+exit=1

@@ -1,0 +1,102 @@
+{
+  "digest_errors": [],
+  "digests_verified": true,
+  "isolation": {
+    "all_isolated": true,
+    "case_count": 5,
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:ba84869ed56202ac74b5ecc91d6fa609b0e37f7b8f686ab334d3853ea7d8b60d",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:f777fb3e1f1448d04a335b6fe8f3b23698735e895dc4a0ac8e687e9d0925583f"
+        }
+      },
+      {
+        "comparison": "P0|P2",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:d9f136709f694cbad464620e5c3846a195549c390d416b3b8fad559d726ebfab",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:ab0aa0968611923c7d9e0549ee9b000297ac1e47f4ae506efbbfe77bafc3ca38"
+        }
+      },
+      {
+        "comparison": "P0|P3",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:234c95b908979f116d42519298259bd75bfc10ebb203c3a435671ef2225ace72",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:c782349217a63f05aa9d1e34f16192b2a1ab254b40351cad5b78067cc838285d"
+        }
+      },
+      {
+        "comparison": "P0|E0",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:1a19d9affd8168244968bccade14a3af2957d3e5d693e8ca8138c1372c0c452c",
+          "differing_variables": [
+            "evidence"
+          ],
+          "ok": true
+        },
+        "expected_variable": "evidence",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "signal"
+          ],
+          "expected_key": "signal",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:e3ce101df3d210cfe719236faf7e9e01e2443e7b2705db522f10644eb8906861"
+        }
+      }
+    ],
+    "distinct_contexts": true
+  },
+  "path": "/Users/pchordia/Downloads/swarm_codex/coordination/astra-bot-launch/social-bots/receipts/evidence/CODEX_MAC_FINAL_MATRIX_20260922/PREPARED_MATRIX.json",
+  "prompt_bytes_verified": true,
+  "verified": true
+}

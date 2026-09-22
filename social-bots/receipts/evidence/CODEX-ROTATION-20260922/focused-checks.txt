@@ -1,0 +1,71 @@
+test_a_skipped_held_bot_is_first_in_line_next_time (tests.test_due_rotation.ClaimOneRotationTest.test_a_skipped_held_bot_is_first_in_line_next_time)
+Skipping does not advance the cursor past the skipped bot. ... ok
+test_an_explicit_home_is_honoured_for_the_cursor (tests.test_due_rotation.ClaimOneRotationTest.test_an_explicit_home_is_honoured_for_the_cursor) ... ok
+test_cursor_is_durable_before_cycle_can_fail (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_is_durable_before_cycle_can_fail) ... ok
+test_cursor_write_failure_prevents_any_unit_execution (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_write_failure_prevents_any_unit_execution) ... ok
+test_first_bot_never_starves_the_others_across_invocations (tests.test_due_rotation.ClaimOneRotationTest.test_first_bot_never_starves_the_others_across_invocations)
+Six invocations, every bot always claimable: each bot runs twice. ... ok
+test_no_claim_leaves_the_cursor_untouched (tests.test_due_rotation.ClaimOneRotationTest.test_no_claim_leaves_the_cursor_untouched) ... ok
+test_a_claim_rotates_the_next_invocation_past_the_claimed_bot (tests.test_due_rotation.RotationOrderTest.test_a_claim_rotates_the_next_invocation_past_the_claimed_bot) ... ok
+test_a_corrupt_or_foreign_cursor_never_blocks_selection (tests.test_due_rotation.RotationOrderTest.test_a_corrupt_or_foreign_cursor_never_blocks_selection) ... ok
+test_a_last_claimed_bot_that_is_no_longer_a_candidate_is_ignored (tests.test_due_rotation.RotationOrderTest.test_a_last_claimed_bot_that_is_no_longer_a_candidate_is_ignored) ... ok
+test_no_cursor_keeps_the_callers_order (tests.test_due_rotation.RotationOrderTest.test_no_cursor_keeps_the_callers_order) ... ok
+test_rotation_is_shared_across_processes (tests.test_due_rotation.RotationOrderTest.test_rotation_is_shared_across_processes)
+A separate interpreter continues where this one left off. ... ok
+test_the_cursor_is_durable_json_next_to_the_runtime_root (tests.test_due_rotation.RotationOrderTest.test_the_cursor_is_durable_json_next_to_the_runtime_root) ... ok
+test_no_overlap_second_worker_rejected (tests.test_worker.WorkerTest.test_no_overlap_second_worker_rejected) ... ok
+test_restart_resume_advances_state (tests.test_worker.WorkerTest.test_restart_resume_advances_state) ... ok
+test_stale_lease_recovered_with_reconcile (tests.test_worker.WorkerTest.test_stale_lease_recovered_with_reconcile) ... ok
+test_two_invocations_produce_receipts_and_heartbeat (tests.test_worker.WorkerTest.test_two_invocations_produce_receipts_and_heartbeat) ... ok
+test_a_held_task_is_skipped_and_the_next_is_claimed (tests.test_v07_worker_once.ClaimOneTest.test_a_held_task_is_skipped_and_the_next_is_claimed)
+No-overlap is a skip, not a wait and not a contention failure. ... ok
+test_all_tasks_held_claims_nothing (tests.test_v07_worker_once.ClaimOneTest.test_all_tasks_held_claims_nothing)
+When every candidate is live-held, the invocation claims none. ... ok
+test_only_the_first_claimable_task_runs (tests.test_v07_worker_once.ClaimOneTest.test_only_the_first_claimable_task_runs)
+Three candidates, one invocation: exactly one unit executes. ... ok
+test_acknowledgement_records_what_was_consumed (tests.test_v07_worker_once.DirectionTest.test_acknowledgement_records_what_was_consumed)
+The lead can see, from the repo alone, which SHA a session acted on. ... ok
+test_direction_is_read_from_git_without_gh_or_a_token (tests.test_v07_worker_once.DirectionTest.test_direction_is_read_from_git_without_gh_or_a_token)
+Plain git show against the canonical branch is the whole transport. ... ok
+test_exact_canonical_sha_is_recorded (tests.test_v07_worker_once.DirectionTest.test_exact_canonical_sha_is_recorded)
+An audit must be able to say which coordination state a session acted on. ... ok
+test_failed_fetch_degrades_honestly_instead_of_failing (tests.test_v07_worker_once.DirectionTest.test_failed_fetch_degrades_honestly_instead_of_failing)
+An offline host reads the last known ref and records fetch_ok=false. ... ok
+test_frozen_lane_activity_is_read_as_a_halt (tests.test_v07_worker_once.DirectionTest.test_frozen_lane_activity_is_read_as_a_halt)
+A lane the lead froze must not claim work on its next scheduled session. ... ok
+test_live_model_calls_are_not_authorized_by_default (tests.test_v07_worker_once.DirectionTest.test_live_model_calls_are_not_authorized_by_default)
+Absent an explicit grant, a consumed direction never authorizes a model call. ... ok
+test_machine_readable_directions_file_wins_over_state_fallback (tests.test_v07_worker_once.DirectionTest.test_machine_readable_directions_file_wins_over_state_fallback)
+When the lead writes a directions file, it is authoritative for that lane. ... ok
+test_missing_canonical_branch_raises (tests.test_v07_worker_once.DirectionTest.test_missing_canonical_branch_raises)
+With no canonical ref at all, a session cannot pretend it read direction. ... ok
+test_a_crashed_invocation_is_visible_in_the_audit (tests.test_v07_worker_once.InvocationReceiptTest.test_a_crashed_invocation_is_visible_in_the_audit)
+An abandoned open receipt is reported, not silently reclaimed. ... ok
+test_a_receipt_without_a_route_decision_is_counted_as_such (tests.test_v07_worker_once.InvocationReceiptTest.test_a_receipt_without_a_route_decision_is_counted_as_such)
+``live_model_call`` alone means nothing; the route decision is the evidence. ... ok
+test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one (tests.test_v07_worker_once.InvocationReceiptTest.test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one)
+The audit must distinguish 'no live call' from 'never checked'. ... ok
+test_index_records_both_phases (tests.test_v07_worker_once.InvocationReceiptTest.test_index_records_both_phases)
+The index carries an open and a close row so crashes are countable. ... ok
+test_receipt_opens_incomplete_and_closes_terminal (tests.test_v07_worker_once.InvocationReceiptTest.test_receipt_opens_incomplete_and_closes_terminal)
+A crash mid-unit leaves 'incomplete', never a missing or success record. ... ok
+test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt)
+The two independent durable traces every scheduled session must leave. ... ok
+test_direction_is_acknowledged_for_the_session (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_direction_is_acknowledged_for_the_session)
+Every invocation records the direction it consumed, for the lead to read. ... ok
+test_halted_lane_exits_five_and_claims_nothing (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_halted_lane_exits_five_and_claims_nothing)
+A frozen lane runs, records, and stands down without touching a task. ... ok
+test_no_overlap_exits_three_and_still_writes_both_traces (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_no_overlap_exits_three_and_still_writes_both_traces)
+A fully contended invocation is benign but still fully evidenced. ... ok
+test_repeated_invocations_produce_a_sequence_of_sessions (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_repeated_invocations_produce_a_sequence_of_sessions)
+Recurring liveness is repeated bounded invocations, each with its own pair. ... ok
+test_reusing_a_session_id_is_refused (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_reusing_a_session_id_is_refused)
+A reused session id would forge a second heartbeat for one session. ... DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
+ok
+test_the_heartbeat_records_the_canonical_sha_it_consumed (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_the_heartbeat_records_the_canonical_sha_it_consumed)
+Direction is consumed before the heartbeat so the attestation is real. ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 1.143s
+
+OK

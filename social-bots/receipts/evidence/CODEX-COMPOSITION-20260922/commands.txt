@@ -1,0 +1,31 @@
+BASE=3f10d0f6eb031c00fff679aae18aa8045d8bd025
+ROUTE_ACCEPTED=a4e7926c79231bfadfc55b56a70a741cc85a2b4e
+METRICS_ACCEPTED=be0262713eec03c2e7e6b411c2754a7538bad9a6
+COMPOSITION=8c86898d1c6641adbf5c9884e1aa7ab2923b1af3
+
+Structural comparison:
+git diff --name-only $BASE $COMPOSITION
+git rev-parse $COMPOSITION^{tree}
+git rev-parse <revision>:<each changed path>
+git ls-tree -r --name-only $BASE and per-path blob comparison
+Result: exact six-path union; all changed blobs match accepted candidates; 894 unchanged base paths match.
+
+Route focused:
+cd social-bots
+PYTHONPATH=. python3 -m unittest tests.test_account_route_schema tests.test_account_route_freshness tests.test_account_route_selection tests.test_v17_community_path tests.test_community
+Result: exit 0; 45 passed.
+
+Metrics focused:
+cd social-bots
+PYTHONPATH=. python3 -m unittest tests.test_metrics tests.test_metrics_finite tests.test_metrics_provenance tests.test_metrics_windows tests.test_metrics_legacy_kinds
+Result: exit 0; 43 passed.
+
+Full offline suite:
+cd social-bots
+PYTHONPATH=. python3 -m unittest discover -s tests
+Result: exit 0; 761 run, 759 passed, 2 existing genuine-live skips, 3.742s.
+
+Static checks:
+python3 -m py_compile <all six changed files>
+git diff --check $BASE $COMPOSITION
+Result: both exit 0.

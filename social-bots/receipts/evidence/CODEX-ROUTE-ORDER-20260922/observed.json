@@ -1,0 +1,20 @@
+{
+  "bad_then_good": {
+    "account_available": false,
+    "analytics_route": null,
+    "authorized": false,
+    "publishable": false,
+    "reason": "route health revoked",
+    "route_id": "revoked-first",
+    "route_type": "API"
+  },
+  "good_then_bad": {
+    "account_available": true,
+    "analytics_route": null,
+    "authorized": true,
+    "publishable": false,
+    "reason": "route fresh-second verified",
+    "route_id": "fresh-second",
+    "route_type": "API"
+  }
+}

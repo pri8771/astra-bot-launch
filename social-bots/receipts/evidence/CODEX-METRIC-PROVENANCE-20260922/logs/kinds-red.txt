@@ -1,0 +1,26 @@
+test_declared_valid_raw_kind_override_remains_supported (tests.test_metrics_legacy_kinds.MetricsLegacyKindsTest.test_declared_valid_raw_kind_override_remains_supported) ... ok
+test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate (tests.test_metrics_legacy_kinds.MetricsLegacyKindsTest.test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate) ... FAIL
+test_record_rejects_direct_observation_with_unknown_present_kind (tests.test_metrics_legacy_kinds.MetricsLegacyKindsTest.test_record_rejects_direct_observation_with_unknown_present_kind) ... FAIL
+
+======================================================================
+FAIL: test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate (tests.test_metrics_legacy_kinds.MetricsLegacyKindsTest.test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 63, in test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate
+    self.assertEqual(trace["observation_count"], 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_record_rejects_direct_observation_with_unknown_present_kind (tests.test_metrics_legacy_kinds.MetricsLegacyKindsTest.test_record_rejects_direct_observation_with_unknown_present_kind)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 47, in test_record_rejects_direct_observation_with_unknown_present_kind
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (failures=2)

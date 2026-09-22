@@ -1,0 +1,62 @@
+{
+  "accepted_base_legacy_repeat": {
+    "command": "PYTHONPATH=social-bots python3 /Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py",
+    "result": "4 tests, 4 intended failing assertions across 3 methods and 1 compatibility error: positive test referenced new invalid counter absent on accepted source. Separate accepted positive probe passes GAUGE override/value9; error is not a product defect.",
+    "scripts": [
+      "diagnostics/unknown-kind-accepted-baseline.json",
+      "diagnostics/map-accepted-baseline.json"
+    ],
+    "source": "3f10d0f6eb031c00fff679aae18aa8045d8bd025"
+  },
+  "additional": [
+    "py_compile passed",
+    "git diff --check passed",
+    "final bounded read-only review found no actionable issue"
+  ],
+  "diagnostics": [
+    {
+      "case": "empty_whitespace_nonstring_source",
+      "command": "PYTHONPATH=$PWD/social-bots python3 /tmp/bots-v13-source-provenance-repro-20260922.py",
+      "result": "exit 0; baseline defect reproduced"
+    },
+    {
+      "case": "reversed_window",
+      "command": "PYTHONPATH=$PWD/social-bots python3 /tmp/bots-metrics-window-repro.py",
+      "result": "exit 0; baseline defect reproduced"
+    },
+    {
+      "case": "actual_instant_offset_ordering",
+      "command": "python3 -m unittest tests.test_metrics_windows.MetricWindowBoundaryTest.test_snapshot_latest_uses_actual_instant_not_iso_lexical_order -v",
+      "result": "exit 0 within final focused run"
+    },
+    {
+      "case": "unknown_legacy_kind",
+      "command": "PYTHONPATH=$PWD/social-bots python3 /tmp/bots-v13-review-kind-repro.py",
+      "result": "exit 0; baseline defect reproduced"
+    },
+    {
+      "case": "legacy_platform_mapping_mismatch",
+      "command": "PYTHONPATH=$PWD/social-bots python3 /tmp/bots-v13-legacy-map-repro-20260922.py",
+      "result": "exit 0; TikTok unsupported reach and X unmapped likes defects reproduced"
+    }
+  ],
+  "focused_final": {
+    "command": "python3 -m unittest -v tests.test_metrics_legacy_kinds tests.test_metrics_provenance tests.test_metrics_windows tests.test_metrics tests.test_metrics_finite",
+    "result": "exit 0; 43 passed in 0.015s"
+  },
+  "full_final": {
+    "command": "python3 -m unittest discover -s tests",
+    "result": "exit 0; 756 run, 754 passed, 2 existing genuine-live skips in 3.638s",
+    "supersedes": "earlier 752-test result before legacy kind/mapping repair"
+  },
+  "red_regressions": {
+    "legacy_kind": "valid GAUGE override passed; two intended cases failed",
+    "source": "valid identity passed; four intended areas failed",
+    "windows": "repair-target cases failed"
+  },
+  "source": {
+    "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+    "commit": "be0262713eec03c2e7e6b411c2754a7538bad9a6",
+    "tree": "f572da02fcbc60bfeb4d6f620e96aeea43193501"
+  }
+}

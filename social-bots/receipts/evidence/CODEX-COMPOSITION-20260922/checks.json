@@ -1,0 +1,23 @@
+{
+  "evidence_class": "ENGINEERING",
+  "canonical_release": "20a0a9b753aaa86950a63a896581d78294392702",
+  "base_sha": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+  "route_accepted_sha": "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+  "metrics_accepted_sha": "be0262713eec03c2e7e6b411c2754a7538bad9a6",
+  "composition_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "composition_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+  "changed_paths": 6,
+  "accepted_blob_matches": 6,
+  "unchanged_base_paths": 894,
+  "unexpected_differences": 0,
+  "route_focused": {"run": 45, "passed": 45, "exit": 0},
+  "metrics_focused": {"run": 43, "passed": 43, "exit": 0},
+  "full": {"run": 761, "passed": 759, "skipped_live": 2, "seconds": 3.742, "exit": 0},
+  "py_compile": {"exit": 0},
+  "diff_check": {"exit": 0},
+  "conflicts": false,
+  "new_behavior": false,
+  "recommendation": "RECOMMEND_ACCEPT",
+  "formal_acceptance": false,
+  "live_claim": false
+}

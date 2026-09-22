@@ -1,0 +1,10 @@
+commit 9de61f6c8db9d06b11e9c71a8f84b2f7802633c7
+Author:     Priyansh Chordia <priyansh.chordia@gmail.com>
+AuthorDate: Tue Sep 22 04:33:22 2026 -0400
+Commit:     Priyansh Chordia <priyansh.chordia@gmail.com>
+CommitDate: Tue Sep 22 04:33:22 2026 -0400
+
+    style: normalize worker imports and failure comment
+
+ social-bots/runtime/worker.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)

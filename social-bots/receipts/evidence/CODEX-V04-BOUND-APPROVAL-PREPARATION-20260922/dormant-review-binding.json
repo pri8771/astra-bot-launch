@@ -1,0 +1,22 @@
+{
+  "artifact_scope": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"],
+  "authorized": false,
+  "owner_authorization_received": false,
+  "activation_timestamp": null,
+  "expiry": null,
+  "accepted_source_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "accepted_source_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+  "freeze_id": "SB-R07-042",
+  "run_scope": "v04-divergence-freeze",
+  "lane": "codex-direct-isolated-v04-divergence",
+  "provider_mode": "claude-cli-subscription",
+  "max_live_calls": 5,
+  "retry_allowed": false,
+  "spend_authorized": false,
+  "api_key_allowed": false,
+  "injected_runner_allowed": false,
+  "public_effect_allowed": false,
+  "account_mutation_allowed": false,
+  "matrix_sequence": ["P0", "P1", "P2", "P3", "E0"],
+  "note": "Review binding supplement only. Not a canonical authorization manifest and not executable authority. Exact matrix/freeze digests are in audit.json."
+}

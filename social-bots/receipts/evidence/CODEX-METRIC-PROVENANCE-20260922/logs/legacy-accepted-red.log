@@ -1,0 +1,50 @@
+EFFFF
+======================================================================
+ERROR: test_declared_valid_raw_kind_override_remains_supported (__main__.MetricsLegacyKindsTest.test_declared_valid_raw_kind_override_remains_supported)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 85, in test_declared_valid_raw_kind_override_remains_supported
+    self.assertEqual(aggregate["by_platform"]["x"]["invalid"], 0)
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'invalid'
+
+======================================================================
+FAIL: test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate (__main__.MetricsLegacyKindsTest.test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 63, in test_legacy_unknown_kind_is_retained_but_excluded_from_trace_and_aggregate
+    self.assertEqual(trace["observation_count"], 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows (__main__.MetricsLegacyKindsTest.test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows) (platform='tiktok', claimed_raw='impressions')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 114, in test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows (__main__.MetricsLegacyKindsTest.test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows) (platform='x', claimed_raw='likes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 114, in test_platform_mapping_mismatches_fail_closed_for_record_and_legacy_rows
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_rejects_direct_observation_with_unknown_present_kind (__main__.MetricsLegacyKindsTest.test_record_rejects_direct_observation_with_unknown_present_kind)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_legacy_kinds.py", line 47, in test_record_rejects_direct_observation_with_unknown_present_kind
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+FAILED (failures=4, errors=1)

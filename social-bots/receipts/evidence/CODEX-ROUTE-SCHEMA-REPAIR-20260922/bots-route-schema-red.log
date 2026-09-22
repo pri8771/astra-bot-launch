@@ -1,0 +1,86 @@
+.FFFFFFFFF..
+======================================================================
+FAIL: test_mixed_registry_is_rejected_in_both_orders (tests.test_account_route_schema.RouteSchemaTest.test_mixed_registry_is_rejected_in_both_orders) (routes=[{'route_id': 'route-a', 'platform': 'x', 'bot': 'social-a', 'persona': 'social-a', 'route_type': 'API', 'capabilities': {'draft': True, 'publish': True}, 'publish_authorized': True, 'health_status': 'verified', 'last_verified_at': '2026-09-22T12:00:00+00:00'}, {'route_id': 'route-b', 'platform': 'x', 'bot': 'another-bot', 'persona': 'social-a', 'route_type': 'telepathy', 'capabilities': {'draft': True, 'publish': True}, 'publish_authorized': True, 'health_status': 'verified', 'last_verified_at': '2026-09-22T12:00:00+00:00'}])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 54, in test_mixed_registry_is_rejected_in_both_orders
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_mixed_registry_is_rejected_in_both_orders (tests.test_account_route_schema.RouteSchemaTest.test_mixed_registry_is_rejected_in_both_orders) (routes=[{'route_id': 'route-b', 'platform': 'x', 'bot': 'another-bot', 'persona': 'social-a', 'route_type': 'telepathy', 'capabilities': {'draft': True, 'publish': True}, 'publish_authorized': True, 'health_status': 'verified', 'last_verified_at': '2026-09-22T12:00:00+00:00'}, {'route_id': 'route-a', 'platform': 'x', 'bot': 'social-a', 'persona': 'social-a', 'route_type': 'API', 'capabilities': {'draft': True, 'publish': True}, 'publish_authorized': True, 'health_status': 'verified', 'last_verified_at': '2026-09-22T12:00:00+00:00'}])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 54, in test_mixed_registry_is_rejected_in_both_orders
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind='telepathy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind='api')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+======================================================================
+FAIL: test_unknown_or_malformed_type_rejects_whole_registry (tests.test_account_route_schema.RouteSchemaTest.test_unknown_or_malformed_type_rejects_whole_registry) (kind={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-schema-source/social-bots/tests/test_account_route_schema.py", line 39, in test_unknown_or_malformed_type_rejects_whole_registry
+    with self.assertRaises(account_routes.RouteRegistryError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RouteRegistryError not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+FAILED (failures=9)

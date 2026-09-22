@@ -1,0 +1,22 @@
+Bots receipt-anchor mechanical review — 2026-09-22
+
+Source: /Users/pchordia/Downloads/swarm_codex/review/bots-integrity-source/social-bots
+HEAD inspected: 9d497b4567e022a8e7f93a3ee890af206272b5be
+Working tree at final inspection: clean; git diff --check: exit 0.
+
+Finding: no actionable fail-open or receipt-consumer compatibility defect found in the bounded slice.
+
+Mechanics checked:
+- final_review writes a distinct kind=review receipt and places its ID in review_binding.review_receipt_id.
+- Both payload and queued-entry verification invoke _review_receipt_problems; missing, malformed, symlinked, cross-scope, identity-mismatched, digest-mismatched, content-hash-mismatched, and cultural-attribution-mutated anchors fail closed in the copied regression cases.
+- _binding_digest excludes only review_receipt_id, so the receipt commits the remaining final binding fields.
+- receipts.write_receipt permits review, while count_invocations still counts only start receipts. Lifecycle/fencing consumers searched do not classify review as finish or failure.
+- Baseline validation requires the declared metric, a finite numeric non-bool value, MEASURED status, nonempty source, and timezone-aware ISO measured_at.
+
+Executed:
+python3 -m unittest -v tests.test_review_receipt_anchor tests.test_prospective_baseline_validation tests.test_review_binding tests.test_prospective_experiments tests.test_worker tests.test_fencing tests.test_specialist_integrator tests.test_v23_specialist_acceptance tests.test_production_read_paths tests.test_v17_community_path
+Result: exit 0; 89 tests; OK; 0 failures/errors/skips; 0.721s.
+
+Boundary: this establishes local fail-closed linkage and compatibility for the tested consumers. The receipt directory remains a local writable evidence store rather than a cryptographically immutable or externally attested store; a writer able to rewrite both binding and receipt can re-anchor altered content. That is an existing trust-boundary limit, not a newly introduced fail-open path in this diff.
+
+No source edits, scheduler execution, network/model/public actions, or formal acceptance performed.

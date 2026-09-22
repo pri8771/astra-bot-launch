@@ -1,0 +1,32 @@
+{
+  "result": {
+    "availability": {
+      "x": {
+        "account_available": true,
+        "analytics_route": null,
+        "authorized": true,
+        "publishable": false,
+        "reason": "route malformed-route-type verified",
+        "route_id": "malformed-route-type",
+        "route_type": "telepathy"
+      }
+    },
+    "registry_error": null,
+    "registry_present": true
+  },
+  "safe_input": {
+    "bot": "social-a",
+    "capabilities": {
+      "draft": true,
+      "publish": false
+    },
+    "health_status": "verified",
+    "last_verified_at": "2026-09-22T11:00:00+00:00",
+    "persona": "social-a",
+    "platform": "x",
+    "publish_authorized": false,
+    "route_id": "malformed-route-type",
+    "route_type": "telepathy"
+  },
+  "source_sha": "3f10d0f6eb031c00fff679aae18aa8045d8bd025"
+}

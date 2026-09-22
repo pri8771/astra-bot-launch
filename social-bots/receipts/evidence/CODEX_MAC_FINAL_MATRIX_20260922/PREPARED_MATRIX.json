@@ -1,0 +1,638 @@
+{
+  "acceptance_eligible": true,
+  "artifacts": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "cases": [
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "case_id": "P0",
+      "context_sha256": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+      "evidence_bytes_sha256": "sha256:2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:260654a2dbf38372a9796ae25fc69eae6f3d3b649957d3fbd900321f039a6b0e",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt": "You are a bounded reasoning function for an autonomous social-content runtime.\nYou DO NOT act. You only rank candidate actions for the deterministic policy layer.\n\nGiven the CONTEXT JSON below, return a SINGLE JSON object and NOTHING else — no\nprose, no explanation, no chain-of-thought. Do not use any tools.\n\nOutput schema (all numeric fields are floats in [0,1]):\n{\n  \"alternatives\": [\n    {\"action\": <one of ALLOWED_ACTIONS>, \"rationale\": <=200 chars,\n      \"expected_value\": f, \"expected_learning\": f, \"relevance\": f,\n      \"confidence\": f, \"risk\": f, \"cost\": f, \"reversibility\": f,\n      \"duplication_risk\": f, \"evidence_refs\": [signal ids or []]}\n  ],\n  \"recommended_action\": <must equal one alternative's action>,\n  \"uncertainties\": [<=3 short strings]\n}\n\nRules:\n- Consider the evidence honestly. Weak/thin/unsourced evidence should favor\n  RESEARCH_MORE or NO_ACTION. A duplicate should favor NO_ACTION.\n- recommended_action is advisory; include at least NO_ACTION and one other option.\n- Never propose PUBLISH/SEND/SPEND/DELETE or any action outside ALLOWED_ACTIONS.\n- Cite only evidence ids that appear in CONTEXT; never invent an evidence ref.\n\nALLOWED_ACTIONS: NO_ACTION, RESEARCH_MORE, CREATE_CANDIDATE, CONTINUE_EXPERIMENT, CLOSE_EXPERIMENT\n\nCONTEXT:\n{\n  \"allowed_actions\": [\n    \"NO_ACTION\",\n    \"RESEARCH_MORE\",\n    \"CREATE_CANDIDATE\",\n    \"CONTINUE_EXPERIMENT\",\n    \"CLOSE_EXPERIMENT\"\n  ],\n  \"is_duplicate\": false,\n  \"objective\": \"grow a durable, factually sound audience without publishing anything unreviewed\",\n  \"pending_count\": 0,\n  \"persona\": {\n    \"display_name\": \"The Ledger\",\n    \"id\": \"social-a\",\n    \"kind\": \"general\"\n  },\n  \"prior_hypotheses\": 0,\n  \"signal\": {\n    \"has_source\": true,\n    \"id\": \"sig-2d5104012837\",\n    \"provenance\": \"live-capture\",\n    \"summary\": \"We\\u2019re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.\",\n    \"tags\": [],\n    \"title\": \"Threads Expands Podcast Toolkit for Creators and Listeners\"\n  }\n}\n",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "prompt_context_sha256": "sha256:773b07a8914ee335ba32badd8e0810f0b4dae71c88cdf5789bbb4b4cb6357dba",
+      "prompt_sha256": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+      "role": "persona-baseline"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "case_id": "P1",
+      "context_sha256": "sha256:ba84869ed56202ac74b5ecc91d6fa609b0e37f7b8f686ab334d3853ea7d8b60d",
+      "evidence_bytes_sha256": "sha256:2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:260654a2dbf38372a9796ae25fc69eae6f3d3b649957d3fbd900321f039a6b0e",
+      "persona_id": "social-b",
+      "persona_slot": "variant_b",
+      "prompt": "You are a bounded reasoning function for an autonomous social-content runtime.\nYou DO NOT act. You only rank candidate actions for the deterministic policy layer.\n\nGiven the CONTEXT JSON below, return a SINGLE JSON object and NOTHING else — no\nprose, no explanation, no chain-of-thought. Do not use any tools.\n\nOutput schema (all numeric fields are floats in [0,1]):\n{\n  \"alternatives\": [\n    {\"action\": <one of ALLOWED_ACTIONS>, \"rationale\": <=200 chars,\n      \"expected_value\": f, \"expected_learning\": f, \"relevance\": f,\n      \"confidence\": f, \"risk\": f, \"cost\": f, \"reversibility\": f,\n      \"duplication_risk\": f, \"evidence_refs\": [signal ids or []]}\n  ],\n  \"recommended_action\": <must equal one alternative's action>,\n  \"uncertainties\": [<=3 short strings]\n}\n\nRules:\n- Consider the evidence honestly. Weak/thin/unsourced evidence should favor\n  RESEARCH_MORE or NO_ACTION. A duplicate should favor NO_ACTION.\n- recommended_action is advisory; include at least NO_ACTION and one other option.\n- Never propose PUBLISH/SEND/SPEND/DELETE or any action outside ALLOWED_ACTIONS.\n- Cite only evidence ids that appear in CONTEXT; never invent an evidence ref.\n\nALLOWED_ACTIONS: NO_ACTION, RESEARCH_MORE, CREATE_CANDIDATE, CONTINUE_EXPERIMENT, CLOSE_EXPERIMENT\n\nCONTEXT:\n{\n  \"allowed_actions\": [\n    \"NO_ACTION\",\n    \"RESEARCH_MORE\",\n    \"CREATE_CANDIDATE\",\n    \"CONTINUE_EXPERIMENT\",\n    \"CLOSE_EXPERIMENT\"\n  ],\n  \"is_duplicate\": false,\n  \"objective\": \"grow a durable, factually sound audience without publishing anything unreviewed\",\n  \"pending_count\": 0,\n  \"persona\": {\n    \"display_name\": \"Tidepool\",\n    \"id\": \"social-b\",\n    \"kind\": \"general\"\n  },\n  \"prior_hypotheses\": 0,\n  \"signal\": {\n    \"has_source\": true,\n    \"id\": \"sig-2d5104012837\",\n    \"provenance\": \"live-capture\",\n    \"summary\": \"We\\u2019re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.\",\n    \"tags\": [],\n    \"title\": \"Threads Expands Podcast Toolkit for Creators and Listeners\"\n  }\n}\n",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "prompt_context_sha256": "sha256:fff1e93c3b5371f86ffe8ac843c7a81946ad43439b7d03d00a549763199a0a99",
+      "prompt_sha256": "sha256:f777fb3e1f1448d04a335b6fe8f3b23698735e895dc4a0ac8e687e9d0925583f",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "case_id": "P2",
+      "context_sha256": "sha256:d9f136709f694cbad464620e5c3846a195549c390d416b3b8fad559d726ebfab",
+      "evidence_bytes_sha256": "sha256:2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:260654a2dbf38372a9796ae25fc69eae6f3d3b649957d3fbd900321f039a6b0e",
+      "persona_id": "social-c",
+      "persona_slot": "variant_c",
+      "prompt": "You are a bounded reasoning function for an autonomous social-content runtime.\nYou DO NOT act. You only rank candidate actions for the deterministic policy layer.\n\nGiven the CONTEXT JSON below, return a SINGLE JSON object and NOTHING else — no\nprose, no explanation, no chain-of-thought. Do not use any tools.\n\nOutput schema (all numeric fields are floats in [0,1]):\n{\n  \"alternatives\": [\n    {\"action\": <one of ALLOWED_ACTIONS>, \"rationale\": <=200 chars,\n      \"expected_value\": f, \"expected_learning\": f, \"relevance\": f,\n      \"confidence\": f, \"risk\": f, \"cost\": f, \"reversibility\": f,\n      \"duplication_risk\": f, \"evidence_refs\": [signal ids or []]}\n  ],\n  \"recommended_action\": <must equal one alternative's action>,\n  \"uncertainties\": [<=3 short strings]\n}\n\nRules:\n- Consider the evidence honestly. Weak/thin/unsourced evidence should favor\n  RESEARCH_MORE or NO_ACTION. A duplicate should favor NO_ACTION.\n- recommended_action is advisory; include at least NO_ACTION and one other option.\n- Never propose PUBLISH/SEND/SPEND/DELETE or any action outside ALLOWED_ACTIONS.\n- Cite only evidence ids that appear in CONTEXT; never invent an evidence ref.\n\nALLOWED_ACTIONS: NO_ACTION, RESEARCH_MORE, CREATE_CANDIDATE, CONTINUE_EXPERIMENT, CLOSE_EXPERIMENT\n\nCONTEXT:\n{\n  \"allowed_actions\": [\n    \"NO_ACTION\",\n    \"RESEARCH_MORE\",\n    \"CREATE_CANDIDATE\",\n    \"CONTINUE_EXPERIMENT\",\n    \"CLOSE_EXPERIMENT\"\n  ],\n  \"is_duplicate\": false,\n  \"objective\": \"grow a durable, factually sound audience without publishing anything unreviewed\",\n  \"pending_count\": 0,\n  \"persona\": {\n    \"display_name\": \"Switchboard\",\n    \"id\": \"social-c\",\n    \"kind\": \"general\"\n  },\n  \"prior_hypotheses\": 0,\n  \"signal\": {\n    \"has_source\": true,\n    \"id\": \"sig-2d5104012837\",\n    \"provenance\": \"live-capture\",\n    \"summary\": \"We\\u2019re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.\",\n    \"tags\": [],\n    \"title\": \"Threads Expands Podcast Toolkit for Creators and Listeners\"\n  }\n}\n",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "prompt_context_sha256": "sha256:7cbe29a918dee632cc02b04c48fec8068dc66b82484089026ca20b2c300af0b1",
+      "prompt_sha256": "sha256:ab0aa0968611923c7d9e0549ee9b000297ac1e47f4ae506efbbfe77bafc3ca38",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "case_id": "P3",
+      "context_sha256": "sha256:234c95b908979f116d42519298259bd75bfc10ebb203c3a435671ef2225ace72",
+      "evidence_bytes_sha256": "sha256:2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:260654a2dbf38372a9796ae25fc69eae6f3d3b649957d3fbd900321f039a6b0e",
+      "persona_id": "cultural-primandir-atman",
+      "persona_slot": "cultural",
+      "prompt": "You are a bounded reasoning function for an autonomous social-content runtime.\nYou DO NOT act. You only rank candidate actions for the deterministic policy layer.\n\nGiven the CONTEXT JSON below, return a SINGLE JSON object and NOTHING else — no\nprose, no explanation, no chain-of-thought. Do not use any tools.\n\nOutput schema (all numeric fields are floats in [0,1]):\n{\n  \"alternatives\": [\n    {\"action\": <one of ALLOWED_ACTIONS>, \"rationale\": <=200 chars,\n      \"expected_value\": f, \"expected_learning\": f, \"relevance\": f,\n      \"confidence\": f, \"risk\": f, \"cost\": f, \"reversibility\": f,\n      \"duplication_risk\": f, \"evidence_refs\": [signal ids or []]}\n  ],\n  \"recommended_action\": <must equal one alternative's action>,\n  \"uncertainties\": [<=3 short strings]\n}\n\nRules:\n- Consider the evidence honestly. Weak/thin/unsourced evidence should favor\n  RESEARCH_MORE or NO_ACTION. A duplicate should favor NO_ACTION.\n- recommended_action is advisory; include at least NO_ACTION and one other option.\n- Never propose PUBLISH/SEND/SPEND/DELETE or any action outside ALLOWED_ACTIONS.\n- Cite only evidence ids that appear in CONTEXT; never invent an evidence ref.\n\nALLOWED_ACTIONS: NO_ACTION, RESEARCH_MORE, CREATE_CANDIDATE, CONTINUE_EXPERIMENT, CLOSE_EXPERIMENT\n\nCONTEXT:\n{\n  \"allowed_actions\": [\n    \"NO_ACTION\",\n    \"RESEARCH_MORE\",\n    \"CREATE_CANDIDATE\",\n    \"CONTINUE_EXPERIMENT\",\n    \"CLOSE_EXPERIMENT\"\n  ],\n  \"is_duplicate\": false,\n  \"objective\": \"grow a durable, factually sound audience without publishing anything unreviewed\",\n  \"pending_count\": 0,\n  \"persona\": {\n    \"display_name\": \"Sadhana Notes\",\n    \"id\": \"cultural-primandir-atman\",\n    \"kind\": \"cultural\"\n  },\n  \"prior_hypotheses\": 0,\n  \"signal\": {\n    \"has_source\": true,\n    \"id\": \"sig-2d5104012837\",\n    \"provenance\": \"live-capture\",\n    \"summary\": \"We\\u2019re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.\",\n    \"tags\": [],\n    \"title\": \"Threads Expands Podcast Toolkit for Creators and Listeners\"\n  }\n}\n",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-2d5104012837",
+          "provenance": "live-capture",
+          "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+          "tags": [],
+          "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+        }
+      },
+      "prompt_context_sha256": "sha256:f1c8d12494a80bd35dc6656236b272667719627d053193d2541c12c181922798",
+      "prompt_sha256": "sha256:c782349217a63f05aa9d1e34f16192b2a1ab254b40351cad5b78067cc838285d",
+      "role": "persona-only-variant-cultural"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-72aefb0b9d06",
+          "provenance": "live-capture",
+          "tags": [],
+          "title": "TikTok and Amplify launch new creator-led content series for brands"
+        }
+      },
+      "case_id": "E0",
+      "context_sha256": "sha256:1a19d9affd8168244968bccade14a3af2957d3e5d693e8ca8138c1372c0c452c",
+      "evidence_bytes_sha256": "sha256:72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+      "evidence_id": "E2",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:05840ef85dd3e3d52bbf418806125c74d6bbdb92f9c9cfc8cda9bed5f668d0c3",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt": "You are a bounded reasoning function for an autonomous social-content runtime.\nYou DO NOT act. You only rank candidate actions for the deterministic policy layer.\n\nGiven the CONTEXT JSON below, return a SINGLE JSON object and NOTHING else — no\nprose, no explanation, no chain-of-thought. Do not use any tools.\n\nOutput schema (all numeric fields are floats in [0,1]):\n{\n  \"alternatives\": [\n    {\"action\": <one of ALLOWED_ACTIONS>, \"rationale\": <=200 chars,\n      \"expected_value\": f, \"expected_learning\": f, \"relevance\": f,\n      \"confidence\": f, \"risk\": f, \"cost\": f, \"reversibility\": f,\n      \"duplication_risk\": f, \"evidence_refs\": [signal ids or []]}\n  ],\n  \"recommended_action\": <must equal one alternative's action>,\n  \"uncertainties\": [<=3 short strings]\n}\n\nRules:\n- Consider the evidence honestly. Weak/thin/unsourced evidence should favor\n  RESEARCH_MORE or NO_ACTION. A duplicate should favor NO_ACTION.\n- recommended_action is advisory; include at least NO_ACTION and one other option.\n- Never propose PUBLISH/SEND/SPEND/DELETE or any action outside ALLOWED_ACTIONS.\n- Cite only evidence ids that appear in CONTEXT; never invent an evidence ref.\n\nALLOWED_ACTIONS: NO_ACTION, RESEARCH_MORE, CREATE_CANDIDATE, CONTINUE_EXPERIMENT, CLOSE_EXPERIMENT\n\nCONTEXT:\n{\n  \"allowed_actions\": [\n    \"NO_ACTION\",\n    \"RESEARCH_MORE\",\n    \"CREATE_CANDIDATE\",\n    \"CONTINUE_EXPERIMENT\",\n    \"CLOSE_EXPERIMENT\"\n  ],\n  \"is_duplicate\": false,\n  \"objective\": \"grow a durable, factually sound audience without publishing anything unreviewed\",\n  \"pending_count\": 0,\n  \"persona\": {\n    \"display_name\": \"The Ledger\",\n    \"id\": \"social-a\",\n    \"kind\": \"general\"\n  },\n  \"prior_hypotheses\": 0,\n  \"signal\": {\n    \"has_source\": true,\n    \"id\": \"sig-72aefb0b9d06\",\n    \"provenance\": \"live-capture\",\n    \"summary\": \"TikTok and Amplify have joined forces to announce The Next Episode, a new content initiative designed to help brands move beyond traditional short-form content and invest in creator-led series. As demand for longer-form, episodic entertainment continues to grow, the new initiative connects brands with Amplify's creator network to develop and produce original, social-first series, with eligible brands able to access production support through TikTok alongside their media investment.\",\n    \"tags\": [],\n    \"title\": \"TikTok and Amplify launch new creator-led content series for brands\"\n  }\n}\n",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-72aefb0b9d06",
+          "provenance": "live-capture",
+          "summary": "TikTok and Amplify have joined forces to announce The Next Episode, a new content initiative designed to help brands move beyond traditional short-form content and invest in creator-led series. As demand for longer-form, episodic entertainment continues to grow, the new initiative connects brands with Amplify's creator network to develop and produce original, social-first series, with eligible brands able to access production support through TikTok alongside their media investment.",
+          "tags": [],
+          "title": "TikTok and Amplify launch new creator-led content series for brands"
+        }
+      },
+      "prompt_context_sha256": "sha256:a641b50e42db9bfa6ccdd0d72f82c0bb363e1e5b659662ccb12e2f853e91b8e4",
+      "prompt_sha256": "sha256:e3ce101df3d210cfe719236faf7e9e01e2443e7b2705db522f10644eb8906861",
+      "role": "evidence-only-variant"
+    }
+  ],
+  "engineering_only_reasons": [],
+  "held_constant": {
+    "allowed_actions_vocabulary": [
+      "NO_ACTION",
+      "RESEARCH_MORE",
+      "CREATE_CANDIDATE",
+      "CONTINUE_EXPERIMENT",
+      "CLOSE_EXPERIMENT"
+    ],
+    "is_duplicate": false,
+    "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+    "pending_count": 0,
+    "policy_posture": "adaptive-required, fail-closed, no public effect",
+    "prior_hypotheses": 0,
+    "public_effect_allowed": false
+  },
+  "isolation": {
+    "all_isolated": true,
+    "case_count": 5,
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:ba84869ed56202ac74b5ecc91d6fa609b0e37f7b8f686ab334d3853ea7d8b60d",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:f777fb3e1f1448d04a335b6fe8f3b23698735e895dc4a0ac8e687e9d0925583f"
+        }
+      },
+      {
+        "comparison": "P0|P2",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:d9f136709f694cbad464620e5c3846a195549c390d416b3b8fad559d726ebfab",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:ab0aa0968611923c7d9e0549ee9b000297ac1e47f4ae506efbbfe77bafc3ca38"
+        }
+      },
+      {
+        "comparison": "P0|P3",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:234c95b908979f116d42519298259bd75bfc10ebb203c3a435671ef2225ace72",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:c782349217a63f05aa9d1e34f16192b2a1ab254b40351cad5b78067cc838285d"
+        }
+      },
+      {
+        "comparison": "P0|E0",
+        "digest_layer": {
+          "context_sha256_a": "sha256:378f6f51d42a9a08187a59126bba94b65d2c4eabbf4425310dd7955a4f56eb4b",
+          "context_sha256_b": "sha256:1a19d9affd8168244968bccade14a3af2957d3e5d693e8ca8138c1372c0c452c",
+          "differing_variables": [
+            "evidence"
+          ],
+          "ok": true
+        },
+        "expected_variable": "evidence",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "signal"
+          ],
+          "expected_key": "signal",
+          "ok": true,
+          "prompt_sha256_a": "sha256:b089e36e451b56344be80f3f42c7b679e93c075da164a2b61ac898ac08bb8a58",
+          "prompt_sha256_b": "sha256:e3ce101df3d210cfe719236faf7e9e01e2443e7b2705db522f10644eb8906861"
+        }
+      }
+    ],
+    "distinct_contexts": true
+  },
+  "lane": "mac-local",
+  "live_execution_performed": false,
+  "note": "PREPARE-ONLY artifact. No adaptive/model provider was constructed or invoked while building this matrix.",
+  "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+  "planned_call_count": 5,
+  "prepared_at": "2026-09-22T20:01:36Z",
+  "provider_config": {
+    "auth_route": "owner-local",
+    "endpoint": "http://127.0.0.1:11434",
+    "format": "json",
+    "injected_runner": false,
+    "keep_alive": 0,
+    "max_response_bytes": 1048576,
+    "model": "qwen3.5:9b",
+    "model_digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "seed": 0,
+      "temperature": 0
+    },
+    "provider_id": "ollama-local-v1",
+    "provider_mode": "ollama-local",
+    "remote_fallback": false,
+    "retry_allowed": false,
+    "stream": false,
+    "think": false,
+    "timeout_s": 120
+  },
+  "provider_config_sha256": "sha256:93b7751ec38b743605a93d8c061961a943ff6dba56233a995cbd2e4de827ba11",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "run_scope": "v04-mac-local-20260922",
+  "schema_version": "v1",
+  "snapshots": [
+    {
+      "captured_at": "2026-09-22T19:39:31+00:00",
+      "provenance_label": "live-capture",
+      "raw_bytes_sha256": "sha256:2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+      "receipt": {
+        "canonical_id": "src-892d51f634a2658e",
+        "capture_mode": "live",
+        "collector_name": "sbots.source-collector",
+        "collector_version": "1.3.0",
+        "content_bytes": 409722,
+        "content_hash": "2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+        "error": null,
+        "extracted": {},
+        "extraction_error": null,
+        "extraction_status": "not_attempted",
+        "fetcher_name": "urllib",
+        "final_url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/",
+        "http_status": 200,
+        "partial": false,
+        "provenance": "live-capture",
+        "receipt_id": "cap-740a506e997e48e9",
+        "retrieved_at": "2026-09-22T19:39:31+00:00",
+        "source_url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/",
+        "status": "ok",
+        "transport_trusted": true
+      },
+      "receipt_sha256": "sha256:260654a2dbf38372a9796ae25fc69eae6f3d3b649957d3fbd900321f039a6b0e",
+      "signal": {
+        "captured_at": "2026-09-22T19:39:31+00:00",
+        "extracted_signal_sha256": "f5e33cc6f4e46032338a5f4e973f9dd932d80d3426c87995283a009af2e9a013",
+        "extraction_lineage": {
+          "block_tags": [
+            "p",
+            "li",
+            "h2",
+            "h3"
+          ],
+          "body_selector": "div.entry-content",
+          "canonical_url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/",
+          "classification": "public-source-capture-and-offline-extraction-only",
+          "excluded": [
+            "script",
+            "style",
+            "noscript",
+            "navigation outside article body"
+          ],
+          "extracted_text_sha256": "4c5475a61edaba1e88ff19c91c145a547811decaab7e833e9c835c950b9c1f8f",
+          "extraction_status": "ok",
+          "extractor_source_sha256": "41eb4505585524bed7caf4339bddb55a132ed61ed8c804a089876381b259c8f8",
+          "extractor_version": "bots-evidence-html-v1",
+          "final_url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/",
+          "matrix_built": false,
+          "model_calls": 0,
+          "original_receipt_unchanged": true,
+          "paragraph_count": 9,
+          "published": {
+            "precision": "timestamp-with-offset",
+            "selector": "first time.published@datetime",
+            "value": "2026-09-16T07:53:31-07:00"
+          },
+          "raw_sha256": "2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+          "receipt_file_sha256": "58d5534726ca6cd799890868daaec034280806ffcfa8517996cd7c60468a9f98",
+          "receipt_id": "cap-740a506e997e48e9",
+          "retrieved_at": "2026-09-22T19:39:31+00:00",
+          "runtime": "Python standard-library html.parser; whitespace-collapse v1",
+          "schema_version": 1,
+          "signal_sha256": "f5e33cc6f4e46032338a5f4e973f9dd932d80d3426c87995283a009af2e9a013",
+          "signal_supporting_paragraph_indices": [
+            0,
+            2,
+            3,
+            7
+          ],
+          "snapshot_id": "E1",
+          "source_suitability": "pending-lead-review",
+          "title_selector": "first h1"
+        },
+        "id": "sig-2d5104012837",
+        "provenance": "live-capture",
+        "source": "urllib",
+        "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+        "tags": [],
+        "title": "Threads Expands Podcast Toolkit for Creators and Listeners",
+        "url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/"
+      },
+      "snapshot_id": "E1"
+    },
+    {
+      "captured_at": "2026-09-22T11:28:42+00:00",
+      "provenance_label": "live-capture",
+      "raw_bytes_sha256": "sha256:72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+      "receipt": {
+        "canonical_id": "src-5161f63379a47e46",
+        "capture_mode": "live",
+        "collector_name": "sbots.source-collector",
+        "collector_version": "1.3.0",
+        "content_bytes": 74480,
+        "content_hash": "72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+        "error": null,
+        "extracted": {},
+        "extraction_error": null,
+        "extraction_status": "not_attempted",
+        "fetcher_name": "urllib",
+        "final_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+        "http_status": 200,
+        "partial": false,
+        "provenance": "live-capture",
+        "receipt_id": "cap-9701ad2cb45c4b19",
+        "retrieved_at": "2026-09-22T11:28:42+00:00",
+        "source_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+        "status": "ok",
+        "transport_trusted": true
+      },
+      "receipt_sha256": "sha256:05840ef85dd3e3d52bbf418806125c74d6bbdb92f9c9cfc8cda9bed5f668d0c3",
+      "signal": {
+        "captured_at": "2026-09-22T11:28:42+00:00",
+        "extracted_signal_sha256": "f0c08517f2e06991fdb1a73c92938190dd6e2e97950092f88f799cf10baa53bc",
+        "extraction_lineage": {
+          "block_tags": [
+            "p",
+            "li",
+            "h2",
+            "h3"
+          ],
+          "body_selector": "div.page-article-main-content_*",
+          "canonical_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+          "classification": "public-source-capture-and-offline-extraction-only",
+          "excluded": [
+            "script",
+            "style",
+            "noscript",
+            "navigation outside article body"
+          ],
+          "extracted_text_sha256": "43e0891e4bdb373cbaca255f8a8b9b8cbff431f4416b627c1f24a55bf950cfbd",
+          "extraction_status": "ok",
+          "extractor_source_sha256": "41eb4505585524bed7caf4339bddb55a132ed61ed8c804a089876381b259c8f8",
+          "extractor_version": "bots-evidence-html-v1",
+          "final_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+          "matrix_built": false,
+          "model_calls": 0,
+          "original_receipt_unchanged": true,
+          "paragraph_count": 11,
+          "published": {
+            "precision": "date",
+            "selector": "span.article-basic-date-time_*",
+            "value": "September 14, 2026"
+          },
+          "raw_sha256": "72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+          "receipt_file_sha256": "08755929630fa107a781343046b8cb469cf98a2bb4313f716d4946f6c420ae00",
+          "receipt_id": "cap-9701ad2cb45c4b19",
+          "retrieved_at": "2026-09-22T11:28:42+00:00",
+          "runtime": "Python standard-library html.parser; whitespace-collapse v1",
+          "schema_version": 1,
+          "signal_sha256": "f0c08517f2e06991fdb1a73c92938190dd6e2e97950092f88f799cf10baa53bc",
+          "signal_supporting_paragraph_indices": [
+            0,
+            1
+          ],
+          "snapshot_id": "E2",
+          "source_suitability": "pending-lead-review",
+          "title_selector": "first h1"
+        },
+        "id": "sig-72aefb0b9d06",
+        "provenance": "live-capture",
+        "source": "urllib",
+        "summary": "TikTok and Amplify have joined forces to announce The Next Episode, a new content initiative designed to help brands move beyond traditional short-form content and invest in creator-led series. As demand for longer-form, episodic entertainment continues to grow, the new initiative connects brands with Amplify's creator network to develop and produce original, social-first series, with eligible brands able to access production support through TikTok alongside their media investment.",
+        "tags": [],
+        "title": "TikTok and Amplify launch new creator-led content series for brands",
+        "url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU"
+      },
+      "snapshot_id": "E2"
+    }
+  ]
+}

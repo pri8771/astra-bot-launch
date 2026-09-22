@@ -1,0 +1,14 @@
+# V0.8 account-route type schema enforcement
+
+State **READY_FOR_LEAD_REVIEW**. Recommendation **RECOMMEND_ACCEPT** for bounded engineering only; formal ChatGPT lead verdict requested.
+
+- Canonical `f88794a54aff28b4de0af6ed430ee1ca73843a6b` includes LEAD-058 acceptance of parent `3f10d0f6eb031c00fff679aae18aa8045d8bd025` and LEAD-059 release of the whole-registry route-type schema repair. The documented enum is exactly `API | browser | Buffer | manual | unsupported`.
+- Draft [PR12](https://github.com/pri8771/astra-bot-launch/pull/12). Candidate `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`, tree `34b88114a05d3700c5220c3b0b927ca241de4aa8`, parent `3f10d0f6eb031c00fff679aae18aa8045d8bd025`. The source diff is two files: three production lines plus one 86-line focused test module.
+- Cause: registry ingest required a `route_type` key but did not validate membership. `_route_ok` rejected only literal `unsupported`, so an unknown type such as `telepathy` could become available and draft-authorized when health and freshness passed. See `bots-route-schema-diagnostic-20260922.md` and `bots-route-schema-repro-20260922.txt`.
+- Repair: `load_routes` now rejects non-string or unknown route types against the exact documented, case-sensitive enum. Any malformed route rejects the whole registry. `unsupported` remains parse-valid and is still ineligible through the existing gate. Freshness, exact-scope selection, ambiguity and capability behavior are unchanged.
+- Evidence: accepted-parent focused module ran five tests with nine expected failing subcases. Candidate affected suite passed 45/45. Full suite ran 744: 742 passed and two existing genuine-live skips in 3.632s. Independent bounded review passed its five focused checks. Syntax compilation and diff check passed. See `commands.txt`, retained logs, `source-checksums.txt`, and `manifest.sha256`.
+- Roles: Codex root is author/integration owner; bounded agent performed independent mechanical review and assembled this scratch packet; ChatGPT is formal acceptor.
+- Proof limit: all evidence is synthetic/offline engineering evidence. It does not prove a provider/account/host route, authorize a public effect, satisfy a live gate, or promote Bots V1.3. No provider, account, host, public, model or scheduler action occurred.
+- Requested action: issue an exact-SHA formal verdict for `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`; do not infer live or version completion from this packet.
+
+Native evidence: [checks](../receipts/evidence/CODEX-ROUTE-SCHEMA-REPAIR-20260922/checks.json), [manifest](../receipts/evidence/CODEX-ROUTE-SCHEMA-REPAIR-20260922/manifest.sha256).

@@ -1,0 +1,60 @@
+{
+  "candidate": {
+    "accepted_parent": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+    "commit": "9de61f6c8db9d06b11e9c71a8f84b2f7802633c7",
+    "pull_request": "https://github.com/pri8771/astra-bot-launch/pull/15",
+    "release_ref": "309fafc",
+    "semantic_commit": "3d6ab60",
+    "tree": "be23e6784c23db399db423f918ca4df912f2f252"
+  },
+  "checks": [
+    {
+      "exit": 1,
+      "log": "baseline-red.log",
+      "name": "accepted-base regression red",
+      "result": "3 methods, 8 expected failures"
+    },
+    {
+      "exit": 0,
+      "log": "focused-green-pre-lint.log",
+      "name": "focused reconciliation regressions",
+      "result": "3 passed at semantic commit before lint-only commit"
+    },
+    {
+      "exit": 0,
+      "log": "fencing-pre-lint.log",
+      "name": "fencing suite",
+      "result": "10 passed at semantic commit"
+    },
+    {
+      "exit": 0,
+      "log": "worker-pre-lint.log",
+      "name": "worker suite",
+      "result": "4 passed at semantic commit"
+    },
+    {
+      "exit": 0,
+      "log": "changed-files-ruff-fix.log",
+      "name": "changed-file Ruff fix",
+      "result": "2 import/noqa findings fixed in lint-only commit"
+    },
+    {
+      "exit": 0,
+      "log": "full.log",
+      "name": "final full",
+      "result": "764 run, 762 passed, 2 genuine-live skips, 3.623s"
+    },
+    {
+      "exit": 0,
+      "log": "fresh-process-proof.log",
+      "name": "two fresh process persistent unsafe proof",
+      "result": "2 blocked failures, 0 finish, 0 decisions, queue unchanged"
+    }
+  ],
+  "limitations": [
+    "synthetic local engineering evidence only",
+    "retry/backoff/exhaustion implementation remains held",
+    "no live model/provider/account/network/public action",
+    "no SB-V11 or V1.3 promotion implied"
+  ]
+}

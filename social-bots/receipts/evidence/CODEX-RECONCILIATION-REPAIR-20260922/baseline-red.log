@@ -1,0 +1,104 @@
+FFFFFFFF
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_only_literal_true_is_safe_and_safe_unit_proceeds (__main__.ReconciliationGateTest.test_only_literal_true_is_safe_and_safe_unit_proceeds) (safe={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 112, in test_only_literal_true_is_safe_and_safe_unit_proceeds
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+======================================================================
+FAIL: test_unsafe_release_does_not_delete_takeover_workers_lease (__main__.ReconciliationGateTest.test_unsafe_release_does_not_delete_takeover_workers_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 148, in test_unsafe_release_does_not_delete_takeover_workers_lease
+    run_cycle.assert_not_called()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 947, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected 'run_cycle' to not have been called. Called 1 times.
+Calls: [call('social-a', 'social-a', fence=<runtime.leasing.Fence object at 0x105f33bd0>, require_adaptive=None)].
+
+======================================================================
+FAIL: test_unsafe_stale_then_fresh_remain_blocked_without_product_mutation (__main__.ReconciliationGateTest.test_unsafe_stale_then_fresh_remain_blocked_without_product_mutation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/test_reconciliation_gate_base.py", line 82, in test_unsafe_stale_then_fresh_remain_blocked_without_product_mutation
+    self._assert_blocked(first, run_cycle)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/tmp/test_reconciliation_gate_base.py", line 56, in _assert_blocked
+    self.assertEqual(result["outcome"], "blocked_reconciliation_unsafe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no_action' != 'blocked_reconciliation_unsafe'
+- no_action
++ blocked_reconciliation_unsafe
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.026s
+
+FAILED (failures=8)

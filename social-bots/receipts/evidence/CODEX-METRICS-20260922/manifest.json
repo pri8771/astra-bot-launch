@@ -1,0 +1,46 @@
+{
+  "baseline-repro.py": {
+    "bytes": 1637,
+    "sha256": "c821712402333fbc3face792ef7c8c20cde347bc1c2299337764cae35a6f35cf"
+  },
+  "baseline.txt": {
+    "bytes": 690,
+    "sha256": "c60769831d1b6554dd8b29ef808f583e6263e0f0974ea9cc6dcdcd3c6db63ba3"
+  },
+  "checks.json": {
+    "bytes": 1310,
+    "sha256": "a16367b5fe188831856770885f287f3ba88b229ba903ee42cd368defa04edac0"
+  },
+  "focused.txt": {
+    "bytes": 3625,
+    "sha256": "48035cdb219427ee998533f5d7bea36e4086dc9b33b6c13089d3aa809d67b59d"
+  },
+  "full.txt": {
+    "bytes": 6495,
+    "sha256": "844d538bf2d186616b5cd4761c27183f0b6d083de74a7b60fd2ef85b09d0bf70"
+  },
+  "mechanical-check.txt": {
+    "bytes": 839,
+    "sha256": "29ed16c85b913bcc20b280c0e7b4b82ec1d6b77f2a55d7459d6eec963147edaf"
+  },
+  "next-route-diagnosis.md": {
+    "bytes": 2093,
+    "sha256": "a304b3186c3e272e6c203ba3ba42a71737956317d90452375eb2d35dc6bad7de"
+  },
+  "next-route-repro.txt": {
+    "bytes": 346,
+    "sha256": "1c77237edf87a766ec2b2cea61f4f0fd8d57228ecdb126484b63d30ef4f8139e"
+  },
+  "overflow-baseline.txt": {
+    "bytes": 315,
+    "sha256": "1a26c416035ed10ffc687d8808d4cde6558679f484f5cf70808e779db9055f2f"
+  },
+  "overflow-repro.py": {
+    "bytes": 1880,
+    "sha256": "a85c27bf719ee5365a8264678d2cac9ba186cb4c5b1f6d68d163084ce3cfbe08"
+  },
+  "scope-diagnostic.md": {
+    "bytes": 5059,
+    "sha256": "2b7ca42ce3053a8348d773d9c25fd90772fd3883004ba55c412518246ad64cab"
+  }
+}

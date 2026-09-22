@@ -1,0 +1,22 @@
+{
+  "source_sha": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+  "source_tree": "e32431ca3a73b9c15e6b8ed291e88aa823f189a5",
+  "commands": [
+    {
+      "command": "python3 -m unittest discover -s tests -q",
+      "cwd": "social-bots",
+      "exit_code": 0,
+      "result": "723 run, 721 passed, 2 existing genuine evidence skips"
+    },
+    {
+      "command": "python3 -m compileall -q runtime/pipeline.py runtime/receipts.py tests/test_prospective_baseline_validation.py tests/test_review_receipt_anchor.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence_class": "synthetic_engineering_only",
+  "formal_acceptance": false
+}

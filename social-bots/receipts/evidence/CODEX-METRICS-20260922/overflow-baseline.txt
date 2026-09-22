@@ -1,0 +1,6 @@
+metrics_module=/Users/pchordia/Downloads/swarm_codex/review/bots-metrics-source/social-bots/runtime/metrics.py
+source_head=9d497b4567e022a8e7f93a3ee890af206272b5be
+normalize_huge_int=OverflowError: int too large to convert to float
+finite_snapshot_inputs=[1e+308, 1e+308]
+snapshot_aggregate=inf
+delta_aggregate=inf

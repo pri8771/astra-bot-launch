@@ -1,0 +1,5 @@
+python3 -m py_compile social-bots/runtime/account_routes.py social-bots/tests/test_account_route_schema.py
+exit=0
+
+git diff --check 3f10d0f6eb031c00fff679aae18aa8045d8bd025 a4e7926c79231bfadfc55b56a70a741cc85a2b4e
+exit=0

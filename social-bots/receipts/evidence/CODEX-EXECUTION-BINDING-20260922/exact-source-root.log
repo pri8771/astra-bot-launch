@@ -1,0 +1,37 @@
+{
+  "coherent_matrix_swap": {
+    "denied": true,
+    "provider_constructed": 0,
+    "reason": "execution_matrix_binding_mismatch",
+    "slots": 0
+  },
+  "evidence_kind": "engineering-only-offline",
+  "fixture_note": "existing generic engineering PERSONAS/default snapshots; not live product proof",
+  "omitted_binding_direct_dispatch": {
+    "callable_calls": 0,
+    "denied": true,
+    "reason": "no canonical manifest authorizes artifact='SB-V04-002' lane='windows-core' run_scope='v04-divergence-test'. Rejected candidates: engineering-only.json: missing or invalid required binding field 'source_sha'; missing or invalid required binding field 'source_tree'; missing or invalid required binding field 'execution_matrix_sha256'",
+    "slots": 0
+  },
+  "owner_grant_activated": false,
+  "positive": {
+    "execution_matrix_sha256": "sha256:1d4b0045502ba22dbd2b8d1b7c09c7746131f2810ecc9241c02dcfed8ab30668",
+    "outcomes": [
+      "proposal_received",
+      "proposal_received",
+      "proposal_received",
+      "proposal_received",
+      "proposal_received"
+    ],
+    "provider": "offline sentinel",
+    "results": 5,
+    "slots": 5,
+    "source_sha": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "source_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc"
+  },
+  "product_acceptance_evidence": false,
+  "source_identity": {
+    "sha": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc"
+  }
+}

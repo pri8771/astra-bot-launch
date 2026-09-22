@@ -1,0 +1,10 @@
+test_finite_snapshot_sum_overflow_is_unavailable_with_coverage (__main__.FiniteMetricBoundaryTest.test_finite_snapshot_sum_overflow_is_unavailable_with_coverage) ... ok
+test_fresh_invalid_values_are_missing_and_raw_is_retained (__main__.FiniteMetricBoundaryTest.test_fresh_invalid_values_are_missing_and_raw_is_retained) ... ok
+test_legacy_invalid_values_count_missing_and_do_not_poison (__main__.FiniteMetricBoundaryTest.test_legacy_invalid_values_count_missing_and_do_not_poison) ... ok
+test_ratio_overflow_is_missing (__main__.FiniteMetricBoundaryTest.test_ratio_overflow_is_missing) ... ok
+test_snapshot_delta_overflow_is_missing_with_reason (__main__.FiniteMetricBoundaryTest.test_snapshot_delta_overflow_is_missing_with_reason) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.003s
+
+OK

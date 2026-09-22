@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "accepted_source_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+    "accepted_tree_sha": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+    "release_coordination_commit": "ed3aee4cf21da403f92ef565f66e48a1824b67c2",
+    "release_path": "social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "evidence_class": "ENGINEERING_SYNTHETIC_LOCAL"
+  },
+  "files": [
+    {
+      "path": "bots-lead062-lease-dedup-audit.txt",
+      "bytes": 2335,
+      "sha256": "1aacfed5d3108907ddfb65c880cbdbd1c9617da9318b03cb3773da9dc0729c78"
+    },
+    {
+      "path": "bots-lead062-unsafe-reconcile-repro.log",
+      "bytes": 899,
+      "sha256": "6e7d8c87868f77faf42cc639a691517d727e2b14481302646107ae3c8065f68f"
+    },
+    {
+      "path": "bots-lead062-unsafe-reconcile-repro.py",
+      "bytes": 1936,
+      "sha256": "37ff71e4ade5a65ff13ffe2aa9483fa5e422b69012e0af0da6ef3426751e60cd"
+    },
+    {
+      "path": "bots-lead062-unsafe-reconcile-root.log",
+      "bytes": 899,
+      "sha256": "d49e1d161037c6bb8702b5838d74f4b6432b63fe662af71e172612a88d2bbc9a"
+    },
+    {
+      "path": "bots-v11-reliability-audit-first-gap.md",
+      "bytes": 5236,
+      "sha256": "2e1744ed51013a07d8146b2ef99f37149bdb0f2c54a1d142d205e8d9f9361b7d"
+    },
+    {
+      "path": "bots-v11-unavailable-retry-repro.log",
+      "bytes": 4409,
+      "sha256": "743ad625e41b34761405da2dd93bc68898cba7fbcc4de8dfa7673d4d4e8b97bd"
+    },
+    {
+      "path": "bots-v11-unavailable-retry-repro.py",
+      "bytes": 3560,
+      "sha256": "92e9d6ff7c5abcf7b877ddb5ab99144a93521cc421353c51f00c7157e24485b7"
+    },
+    {
+      "path": "bots-v11-unavailable-retry-root.log",
+      "bytes": 4353,
+      "sha256": "a463807df2e9b4eb9299673070fad70127842f7d1da5a27eccccb121ebf23d4a"
+    },
+    {
+      "path": "review.md",
+      "bytes": 5167,
+      "sha256": "67503ffb38beacb0e8274d10bf0970c9f90aa09835ff3df5262a8c32baca001f"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 341,
+      "sha256": "5df76bbbc9151a6edf6975005c011cfaa7ba5124f6ff90ec687be10da1a7313c"
+    }
+  ]
+}

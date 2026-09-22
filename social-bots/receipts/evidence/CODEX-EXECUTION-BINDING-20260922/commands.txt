@@ -1,0 +1,14 @@
+Exactsource cwd /Users/pchordia/Downloads/swarm_codex/review/bots-binding-source
+HEAD fec97738ec0e9407415f60228f7c3938613396c3 tree43e80b92d8ae559db55a41ed33329695e6fd03fc
+PYTHONPATH="$PWD/social-bots" python3 -m unittest discover -s social-bots/tests -q
+772run770passed2genuine-live skips3.852s exit0.
+PYTHONPATH="$PWD/social-bots" python3 /tmp/bots-binding-exact-source.py
+Agent andindependentroot both exit0; realreadonlyGitidentity, offlineprovider only, temporary5slot/resultbinding andzero-effectnegativepaths,cleanup.
+Focusedfromsocial-botscwd: PYTHONPATH="$PWD" python3 -m unittest -q tests.test_v04_authorization_gate tests.test_v04_divergence_prepare tests.test_model_dispatch_gate
+90passed; testhelperoriginallyrepeatedP0 forbudgetexhaustion, changedtoactualorderedcases preserving6thcallrefusal; retainedoriginalfailure.
+Newfocused: PYTHONPATH="$PWD/social-bots" python3 -m unittest social-bots/tests/test_v04_execution_binding.py -v
+8passed. No live calls.
+/Users/pchordia/Downloads/swarm_codex/review/jobs-source/.venv/bin/ruff check social-bots/runtime/authorization.py social-bots/runtime/divergence_prepare.py social-bots/runtime/model_dispatch.py social-bots/tests/test_v04_execution_binding.py
+exit0. Parentinheritedimport/type/noqa findingsretained; tinymechanicalnormalization withinchangedfiles, publicexceptionreexportpreserved.
+python3 -m py_compile [three runtime files] andgitdiff--check passed.
+Baselinecoherentmatrixswap source8c86898 reproduction already nativeac36e6f; thisrepairbaseaccepted9de61 hasidenticalauthorization/batch/dispatchblobs. No new baseline reset.
