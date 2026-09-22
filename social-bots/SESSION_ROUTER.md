@@ -1,4 +1,4 @@
-# Session router — LEAD-058 — LIVE V1.3 TARGET
+# Session router — LEAD-059 — LIVE V1.3 TARGET
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -14,7 +14,11 @@ Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method:
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Current released assignment — SB-V13-002 reproduce-first adversarial audit:** inspect current normalized metrics/provenance behavior for invalid source identifiers, malformed/naive/reversed observation windows and timestamps, compatibility-kind mixing, malformed legacy observations, and persona/content/experiment traceability. Produce a diagnostic first. If no defect is found, return an engineering acceptance packet candidate; if a concrete defect is reproduced, make only the smallest repair and verify it. Preserve PR9 finite-number behavior. No live analytics/account/provider/model/public/scheduler action.
+**Parallel direct Codex assignments:**
+1. **SB-V13-002 reproduce-first adversarial audit** continues unchanged: provenance source validity, observation/window validity, compatibility semantics, malformed legacy observation defense, and traceability. No source edit until a concrete defect is reproduced.
+2. **V0.8 route_type schema SP1**: validate `route_type` at registry ingest against exactly `API|browser|Buffer|manual|unsupported`; reject the whole registry on any undocumented value; keep valid `unsupported` parsed but unavailable. Preserve LEAD-056/057/058 freshness, selection, capability and community behavior. No boolean/type expansion beyond this documented enum.
+
+No live analytics/account/provider/model/public/scheduler action.
 
 No Fable routing/message/assignment/handoff is authorized.
 
