@@ -1,8 +1,9 @@
-"""Sanitized start / finish / failure receipts + an append-only index.
+"""Sanitized start / finish / failure / review receipts + an append-only index.
 
 Every bounded work unit writes a start receipt, then exactly one terminal
 receipt (finish or failure). Receipts are the audit trail ChatGPT reviews;
-they never contain secrets.
+they never contain secrets. Review receipts are content-review anchors, not
+worker lifecycle completion events.
 """
 from __future__ import annotations
 
@@ -37,8 +38,8 @@ def _sanitize(obj):
 
 def write_receipt(namespace: str, kind: str, task_id: str, worker_id: str,
                   lease_id: str | None, detail: dict) -> Path:
-    """kind in {'start','finish','failure'}. Returns the receipt path."""
-    assert kind in {"start", "finish", "failure"}
+    """kind in {'start','finish','failure','review'}. Returns the receipt path."""
+    assert kind in {"start", "finish", "failure", "review"}
     rid = f"{now_iso().replace(':', '').replace('-', '')}-{kind}-{uuid.uuid4().hex[:8]}"
     receipt = {
         "receipt_id": rid,
