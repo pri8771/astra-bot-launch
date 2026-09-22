@@ -2,13 +2,13 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-061** (`lead-reviews/LEAD-061_2026-09-22T0740.md`).  
+Current lead review: **LEAD-062** (`lead-reviews/LEAD-062_2026-09-22T0805.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
 ## Current verified activity
 
-### Fable Integrator — EXISTING OWNERSHIP PRESERVED / NO NEW HANDOFF
+### Fable — HISTORICAL EVIDENCE ONLY / NO ACTIVE HANDOFF
 
 - Verified worker session: `s-20260921T211438Z-d5589881`. It ingested LEAD-048/050 V1.7-only scope after a container restore and correctly did not emit a second heartbeat for the same session.
 - Signed material worker history is verified through `af3fded92eaba5e68c8088737b68c6f043e40a5e`.
@@ -185,3 +185,12 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Route focused 45 pass; metrics focused 43 pass; full 761 run / 759 pass / 0 fail / 0 error / 2 existing genuine-live skips; py_compile/diff clean. No exact-SHA CI.
 - Next dependency-safe work is a read-only V0.7→V1.3 live-readiness gap audit on the accepted composition; no code edits or live actions during that audit.
 - No Fable handoff or external effect.
+
+## LEAD-062 live-readiness confirmation and reliability audit release
+
+- Native readiness audit `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0` is **CONFIRMED** as a truthful derived audit. Disposition: **REVIEW_BLOCKED_FOR_LIVE_PROMOTION**.
+- It pins accepted composition `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3` / tree `72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a` and ten V0.4→V1.3 readiness rows against 18 canonical contracts.
+- First authorized V0.4 canary remains accepted; exactly-one-call authority is consumed; duplicate call excluded; controlled divergence/SB-EVD-002 remain open.
+- Persistent host facts, three genuine V0.6 dry runs, V0.8 exact route readbacks, V0.9 public canaries/measurement, and V1.0–V1.2 operational predecessors remain distinct open gates.
+- Canonical active metadata is reconciled to owner target **LIVE V1.3**, Codex direct implementation, **no Fable handoff**, LEAD-062 current. Stale V1.7/Fable active text is not executable.
+- Next dependency-safe assignment: read-only/reproduce-first SB-V11-001/002 reliability audit. No tests/source edits until a concrete gap is reproduced.
