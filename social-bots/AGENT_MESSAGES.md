@@ -397,7 +397,6 @@ Lead lane:
 - Continue preparing acceptance packets and integration contracts through V2.3/V3.0.
 - Own cross-lane integration assignment and canonical artifact acceptance.
 - Target SB-V20-099 V2.0 engineering-readiness bundle today.
-
 Evidence / source refs:
 - `EXECUTION_TO_V2_TODAY.md`
 - `TEAM_LANES.md`
@@ -497,7 +496,6 @@ Done:
 Evidence:
 - Intelligence branch commits `ecad87e6...`, `cbd781ca...`.
 - Detailed review `lead-reviews/LEAD-017_2026-09-20T2152.md`.
-
 Next:
 - Intelligence closes collector trust/HTTPS and assessor authority.
 - Windows Core and Mac QA push their first checkpoints.
@@ -1007,3 +1005,31 @@ Source refs:
 - `social-bots/STATE.json`
 - `social-bots/WORKER_PERFORMANCE.md`
 - private Issue #3 LEAD-047 comment.
+
+## 2026-09-21T20:51:00-04:00 — CHATGPT -> CLAUDE — LEAD-050 — V1.7 SCOPE INGESTION STALL
+
+Done:
+- Rechecked setup PR #1 and current canonical LIVE V1.7 scope. PR #1 remains open/unmerged, so canonical coordination remains `chatgpt/social-bots-plan-20260920`.
+- Inspected Issue #3 and current Fable/Acceptance branch evidence; neither lane has produced a fresh worker/reviewer session or result after LEAD-048.
+- Classified Fable as STALE / ACTION REQUIRED and Acceptance as STALE / ACTION REQUIRED.
+- Corrected Fable branch instructions that were still LEAD-047/V2.3-oriented to the owner-approved **LIVE V1.7 only, then hard stop** scope.
+- Refreshed Mac Acceptance to V1.7-only independent review. Lead-authored handoff commits are coordination only and are not worker heartbeats, tests, source progress, or acceptance evidence.
+- Created `lead-reviews/LEAD-050_2026-09-22T0051.md` and posted the concise status to private Issue #3.
+- No artifact, version, or operational acceptance status changed.
+
+Evidence:
+- Canonical V1.7 scope: `delivery/V17_LIVE.md`, `delivery/V17_SCOPE.json`, `delivery/V17_ACCEPTANCE.md`.
+- Fable pre-review head `347de2b5c91c774670c3b884cc542c88fa6eabfa`; latest material worker checkpoint remains `a204ad0827748a4e9661f1945b8e025d53d0ae09`.
+- LEAD-050 Fable coordination commits: `c24f4b8f0407af813bfaed665f0d1ec3c1cd8b22`, `a06211fdd0d3643dc0adf0d925c5240dce800cd7`.
+- Acceptance pre-review head `bd6cbde805684efb2a4bbf06c3886cefdb842650`; LEAD-050 coordination commits: `affa85946f95ada7c1b18341a7f78899623c9caa`, `b8bcc48aa53aa229218c233a34e73b3b6b8a670c`.
+- Issue #3 had no worker-generated progress comment after LEAD-048 at review cutoff.
+
+Next:
+- Fable: start a genuinely fresh top-level session, read current V17 scope, emit exactly one `SESSION_ONCE`, update CURRENT_PROGRESS truthfully, then execute only the V1.7 repair/integration queue with zero live calls/public effects/spend.
+- Acceptance: start a fresh local-Mac review session with one `SESSION_ONCE`, then independently audit an actual post-LEAD-050 Fable worker candidate; do not edit runtime source.
+- Cursor/Core/Intelligence remain parked; canary remains frozen; worker-pc remains out until repo clone/auth is demonstrably healthy.
+
+Blockers:
+- `SB-V04-002` and `SB-V04-004` remain blocked on fresh explicit owner authorization; `SB-EVD-002` remains withheld.
+- `SB-R07-041` still requires an actual repaired candidate plus independent audit.
+- No additional Claude/adaptive/product-model call, public effect, PAYG/new spend, main/public release, destructive action, credential exposure, fabricated evidence, engagement manipulation, or SwarmAI dependency is authorized.
