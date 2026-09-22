@@ -1,0 +1,31 @@
+{
+  "source_sha": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+  "tree_sha": "9ce20742d0ae2e9ec66230579e0ebe05cdccd2e5",
+  "evidence_class": "engineering_only",
+  "environment": "synthetic deterministic providers and temporary state, no native scheduler or real SESSION_ONCE/model call",
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "social-bots",
+      "exit": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": ".",
+      "exit": 0
+    }
+  ],
+  "completed_utc": "2026-09-22T04:09:16.990258+00:00"
+}

@@ -1,6 +1,11 @@
 # Compact Codex session record
 
-## Verified review checkpoint — 2026-09-22T04:10Z
+## Due-rotation repair checkpoint — 2026-09-22T04:10:55.259916+00:00
+
+- Isolated Codex84f8f05 repairs the cursor-after-completion failure window in submitted b5fd038. Two red regressions;39focusedpass;713fullrun/711pass/2genuine-evidence skips. [Native repair](../../social-bots/lead-reviews/CODEX_ROTATION_REPAIR_20260922.md). Lead review pending; no live effect or Fable routing.
+- Swarm R27e193e454/PR20 is submitted with20PG crash tests x5,33affectedchecks,494fullpass/0skip. R28a held. Jobs6ae659f/PR14 review requested, no verdict observed. All native input/host/time grants remain required.
+
+## Verified review checkpoint — 2026-09-22T04:03Z
 
 - Bots canonical290eaef contains actual LEAD-053 acceptance of host-test-only7acc169 and the previously missing LEAD-052 detail. Real-host/V0.7 acceptance remains ungranted; owner host/route/reviewer facts pending. No SESSION_ONCE repeat, model/public action or Fable routing.
 - Swarm canonical51270d6 records R27c-R1 bounded acceptance atfb34b2c and direct Codex R27e assignment. Codex ACKed; isolated R27e candidate da441b5 is running required real-child-process/PG checks, with R28a held. Independent R02c candidate1c9ff44/PR19 has60missiontests pass; lead review requested. Native evidence stays in Swarm.

@@ -1,0 +1,35 @@
+test_cursor_write_failure_prevents_any_unit_execution (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_write_failure_prevents_any_unit_execution) ... FAIL
+test_cursor_is_durable_before_cycle_can_fail (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_is_durable_before_cycle_can_fail) ... FAIL
+
+======================================================================
+FAIL: test_cursor_write_failure_prevents_any_unit_execution (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_write_failure_prevents_any_unit_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-rotation-source/social-bots/tests/test_due_rotation.py", line 131, in test_cursor_write_failure_prevents_any_unit_execution
+    cycle.assert_not_called()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 947, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected 'run_cycle' to not have been called. Called 1 times.
+Calls: [call('social-a', 'social-a', fence=<runtime.leasing.Fence object at 0x10a6d2a50>, require_adaptive=None)].
+
+======================================================================
+FAIL: test_cursor_is_durable_before_cycle_can_fail (tests.test_due_rotation.ClaimOneRotationTest.test_cursor_is_durable_before_cycle_can_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-rotation-source/social-bots/tests/test_due_rotation.py", line 145, in test_cursor_is_durable_before_cycle_can_fail
+    self.assertEqual(seen, ["social-a"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [None] != ['social-a']
+
+First differing element 0:
+None
+'social-a'
+
+- [None]
++ ['social-a']
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.022s
+
+FAILED (failures=2)
