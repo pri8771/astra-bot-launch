@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T07:32:00Z",
+  "updated_at": "2026-09-22T08:13:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -539,30 +539,37 @@
       "name": "Reliability hardening and fault-injection harness",
       "type": "implementation_and_tests",
       "version_gate": "V1.1",
-      "owner": "Claude-Core",
-      "status": "PLANNED",
+      "owner": "Codex",
+      "status": "CHANGES_REQUIRED",
       "canonical_ref": "social-bots/artifact-packets/SB-V11-001.md",
       "depends_on": [
         "SB-V03-006"
       ],
       "story_points": 4,
-      "evidence": [],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "evidence": [
+        "LEAD-062 read-only diagnostic at accepted composition 8c86898d1c6641adbf5c9884e1aa7ab2923b1af3 reproduced unsafe reconciliation proceeding to decision/finish despite safe=false",
+        "same diagnostic reproduced unchanged blocked_reasoning_unavailable retry opportunity across four fresh processes with no durable ceiling/backoff/exhausted state",
+        "LEAD-063 releases only persistent fail-closed reconciliation repair first; retry implementation remains held pending separate release under specified policy"
+      ],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-063_2026-09-22T0813.md"
     },
     {
       "id": "SB-V11-002",
       "name": "Reliability acceptance bundle",
       "type": "acceptance_bundle",
       "version_gate": "V1.1",
-      "owner": "Claude-Core",
-      "status": "PLANNED",
+      "owner": "ChatGPT",
+      "status": "BLOCKED",
       "canonical_ref": "social-bots/artifact-packets/SB-V11-002.md",
       "depends_on": [
         "SB-V11-001"
       ],
       "story_points": 3,
-      "evidence": [],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "evidence": [
+        "blocked on SB-V11-001 repair and later independent reliability acceptance evidence",
+        "LEAD-063 explicitly does not promote V1.1 from diagnostic-only evidence"
+      ],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-063_2026-09-22T0813.md"
     },
     {
       "id": "SB-V12-001",
