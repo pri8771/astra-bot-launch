@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T03:44:00Z",
+  "updated_at": "2026-09-22T04:18:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-053",
+    "lead_release": "LEAD-054",
     "last_review": "LEAD-051",
     "target": "V1.7",
     "target_kind": "operational_live",
@@ -127,11 +127,13 @@
     "codex_repair": {
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
-      "base": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+      "base": "7acc1695d2961267580a156f31df6a5991476654",
       "activity": "direct_isolated_repairs_by_owner_direction",
-      "assignment": "Codex may implement concrete review findings directly in isolated repair branches; ChatGPT remains formal acceptor; no Fable handoff.",
+      "assignment": "Codex may continue concrete review fixes directly in isolated repair branches only; no Fable routing; ChatGPT remains formal acceptor.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
-      "operational_acceptance": false
+      "operational_acceptance": false,
+      "latest_accepted_candidate": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+      "latest_accepted_checkpoint": "V1.7 due-rotation crash-window engineering repair"
     }
   },
   "tests": {
@@ -212,15 +214,33 @@
       "classification": "author-run submission evidence; not independent acceptance execution",
       "independent_ci": "none found",
       "production_predicates_changed": false
+    },
+    "codex_due_rotation_author_submission": {
+      "exact_source": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+      "base": "7acc1695d2961267580a156f31df6a5991476654",
+      "focused": {
+        "passed": 39
+      },
+      "full": {
+        "run": 713,
+        "passed": 711,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "red_regressions_before_edit": 2,
+      "classification": "author-run engineering submission evidence; no independent CI",
+      "live_scheduler_sessions": 0,
+      "live_model_calls": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-053",
-    "review_ref": "social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md",
-    "review_type": "exact_sha_r07_072_test_isolation_formal_verdict",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md",
+    "review_id": "LEAD-054",
+    "review_ref": "social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md",
+    "review_type": "exact_sha_due_rotation_crash_window_formal_verdict",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md",
     "accepted_now": [
-      "SB-R07-072"
+      "V17-due-rotation-repair@84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -294,11 +314,12 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "SB-R07-072 ACCEPTED at exact 7acc1695d2961267580a156f31df6a5991476654 strictly as a test-only portable host-preflight isolation repair.",
-      "GitHub compare proves one-file test-only delta from e9678f8; production host predicates are unchanged.",
-      "Codex author tests report 711/709/0/0/2 and 11 host tests; no independent CI exists, so those runs are not mislabeled independent acceptance.",
-      "Owner prohibits new Fable routing. Codex handles concrete fixes directly in isolated repair branches; ChatGPT remains formal acceptor.",
-      "Official phase remains V0.4.x; V0.7 genuine host/model/reviewer/time prerequisites remain open."
+      "V1.7 due-rotation crash-window repair ACCEPTED ENGINEERING at exact 84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d.",
+      "Prior behavior persisted rotation only after run_one_unit returned; candidate persists the real claim under the lease fence before reconciliation/useful work.",
+      "Cursor write failure prevents decision.run_cycle; later cycle failure retains rotation; LeaseHeld candidates never advance the cursor.",
+      "Codex author evidence reports 39 focused pass and 713/711/0/0/2 full-suite result; no exact-SHA CI exists and author runs are not mislabeled independent acceptance.",
+      "No registry milestone artifact is invented for this V1.7 engineering checkpoint; V0.7 operational gates remain open.",
+      "Owner prohibits new Fable routing; Codex remains direct isolated implementer and ChatGPT formal acceptor."
     ]
   },
   "public_actions": {
