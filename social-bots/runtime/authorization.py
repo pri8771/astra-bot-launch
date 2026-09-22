@@ -54,7 +54,8 @@ import hashlib
 import json
 import os
 import re
-from dataclasses import dataclass, asdict, field
+import subprocess
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -89,6 +90,62 @@ _REQUIRED_FIELDS = (
 ) + _REQUIRED_FALSE_FIELDS
 
 _ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]{2,95}$")
+BOUND_ARTIFACTS = frozenset({"SB-V04-002", "SB-V04-004"})
+_BINDING_FIELDS = ("source_sha", "source_tree", "execution_matrix_sha256")
+
+
+@dataclass(frozen=True)
+class ExecutionBinding:
+    """Exact reviewed execution closure, not a caller-supplied digest claim."""
+
+    matrix_json: str
+
+    @property
+    def digest(self) -> str:
+        return sha256_bytes(self.matrix_json.encode("utf-8"))
+
+    def closure(self) -> dict:
+        return json.loads(self.matrix_json)
+
+
+def source_identity() -> tuple[str, str]:
+    """Read the checkout containing this code; reject modified implementation."""
+    root = ROOT.parent
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    def git(*args):
+        return subprocess.run(
+            ["git", "--no-optional-locks", "-C", str(root), *args],
+            capture_output=True, text=True, check=True, env=env)
+    try:
+        identity = git("rev-parse", "HEAD", "HEAD^{tree}").stdout.splitlines()
+        git("diff", "--quiet", "HEAD", "--")
+        untracked = git("ls-files", "--others", "--exclude-standard", "--",
+                        "social-bots/runtime", "social-bots/bin", "*.py").stdout
+        if untracked or len(identity) != 2:
+            raise ValueError("untracked implementation or unavailable identity")
+        return identity[0], identity[1]
+    except (OSError, subprocess.SubprocessError, ValueError) as exc:
+        raise AuthorizationDenied("source_identity_unavailable_or_modified") from exc
+
+
+def _validate_execution_binding(manifest: dict, binding: ExecutionBinding | None,
+                                *, artifact: str, lane: str, run_scope: str) -> None:
+    if artifact not in BOUND_ARTIFACTS:
+        return
+    if not isinstance(binding, ExecutionBinding):
+        raise AuthorizationDenied("execution_binding_required")
+    if source_identity() != (manifest["source_sha"], manifest["source_tree"]):
+        raise AuthorizationDenied("source_binding_mismatch")
+    if binding.digest != manifest["execution_matrix_sha256"]:
+        raise AuthorizationDenied("execution_matrix_binding_mismatch")
+    try:
+        closure = binding.closure()
+        if (closure["lane"] != lane or closure["run_scope"] != run_scope
+                or artifact not in closure["artifacts"]
+                or not set(closure["artifacts"]).issubset(manifest["artifact_scope"])):
+            raise ValueError("scope mismatch")
+    except (KeyError, TypeError, ValueError) as exc:
+        raise AuthorizationDenied("execution_binding_scope_mismatch") from exc
 
 
 class AuthorizationDenied(Exception):
@@ -157,6 +214,13 @@ def validate_manifest(manifest, *, now: datetime | None = None) -> list[str]:
     if not isinstance(scope, list) or not scope or not all(
             isinstance(a, str) and a.strip() for a in scope):
         errs.append("artifact_scope must be a non-empty list of artifact ids")
+    if isinstance(scope, list) and any(a in BOUND_ARTIFACTS for a in scope
+                                      if isinstance(a, str)):
+        for name in _BINDING_FIELDS:
+            pattern = r"[0-9a-f]{40}" if name != "execution_matrix_sha256" else r"sha256:[0-9a-f]{64}"
+            value = manifest.get(name)
+            if not isinstance(value, str) or re.fullmatch(pattern, value) is None:
+                errs.append(f"missing or invalid required binding field {name!r}")
 
     # Subscription-authenticated Claude Code provider only.
     if manifest["provider_mode"] != "claude-cli":
@@ -229,6 +293,9 @@ class CallSlot:
     outcome: str | None = None
     outcome_recorded_at: str | None = None
     detail: dict = field(default_factory=dict)
+    source_sha: str | None = None
+    source_tree: str | None = None
+    execution_matrix_sha256: str | None = None
 
 
 class CallBudget:
@@ -306,18 +373,26 @@ class CallBudget:
         return self._high_water()
 
     def reserve(self, *, manifest_id: str, manifest_digest: str, lane: str,
-                artifact: str, context_digest: str | None = None) -> CallSlot:
+                artifact: str, context_digest: str | None = None,
+                source_sha: str | None = None, source_tree: str | None = None,
+                execution_matrix_sha256: str | None = None,
+                expected_contexts: tuple[str, ...] | None = None) -> CallSlot:
         """Atomically consume the next slot. MUST be called BEFORE spawning.
 
         Raises ``CallBudgetExhausted`` when the exact authorized count is spent.
         """
         for n in range(self._high_water() + 1, self.max_calls + 1):
+            if expected_contexts is not None and (
+                    n > len(expected_contexts) or context_digest != expected_contexts[n - 1]):
+                raise AuthorizationDenied("execution_case_order_mismatch")
             path = self._slot_path(n)
             slot = CallSlot(
                 slot=n, run_scope=self.run_scope, manifest_id=manifest_id,
                 manifest_digest=manifest_digest,
                 reserved_at=_now().replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-                lane=lane, artifact=artifact, context_digest=context_digest)
+                lane=lane, artifact=artifact, context_digest=context_digest,
+                source_sha=source_sha, source_tree=source_tree,
+                execution_matrix_sha256=execution_matrix_sha256)
             payload = json.dumps(asdict(slot), indent=2, sort_keys=True).encode("utf-8")
             try:
                 fd = os.open(str(path), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
@@ -328,7 +403,7 @@ class CallBudget:
                     fh.write(payload)
                     fh.flush()
                     os.fsync(fh.fileno())
-            except BaseException:
+            except BaseException:  # noqa: TRY203 - document irreversible slot consumption
                 # The slot stays consumed on purpose: we cannot know whether a
                 # spawn followed, and over-counting is the safe direction.
                 raise
@@ -411,6 +486,9 @@ class ExecutionGrant:
     granted_at: str
     authorship_attested_by_code: bool = False   # see the module docstring
     retry_allowed: bool = False
+    source_sha: str | None = None
+    source_tree: str | None = None
+    execution_matrix_sha256: str | None = None
 
 
 def posture_violations(*, injected_runner: bool) -> list[str]:
@@ -427,7 +505,8 @@ def posture_violations(*, injected_runner: bool) -> list[str]:
 
 def authorize(*, artifact: str, lane: str, run_scope: str,
               manifest_dir: str | Path | None = None,
-              injected_runner: bool = False) -> ExecutionGrant:
+              injected_runner: bool = False,
+              execution_binding: ExecutionBinding | None = None) -> ExecutionGrant:
     """Authorize ONE live adaptive batch, or raise ``AuthorizationDenied``.
 
     Call this **before** constructing a provider or spawning anything. There is no
@@ -476,6 +555,8 @@ def authorize(*, artifact: str, lane: str, run_scope: str,
             # A manifest cannot waive process posture; this is a hard stop, not a
             # reason to try the next candidate manifest.
             raise AuthorizationDenied("; ".join(posture))
+        _validate_execution_binding(manifest, execution_binding, artifact=artifact,
+                                    lane=lane, run_scope=run_scope)
         return ExecutionGrant(
             manifest_id=manifest["manifest_id"],
             manifest_path=str(path),
@@ -487,6 +568,8 @@ def authorize(*, artifact: str, lane: str, run_scope: str,
             max_calls=min(int(manifest["max_calls"]), HARD_MAX_CALLS),
             expires_at=manifest["expires_at"],
             granted_at=now.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            source_sha=manifest.get("source_sha"), source_tree=manifest.get("source_tree"),
+            execution_matrix_sha256=manifest.get("execution_matrix_sha256"),
         )
 
     raise AuthorizationDenied(
@@ -496,11 +579,13 @@ def authorize(*, artifact: str, lane: str, run_scope: str,
 
 def gate_status(*, artifact: str, lane: str, run_scope: str,
                 manifest_dir: str | Path | None = None,
-                injected_runner: bool = False) -> dict:
+                injected_runner: bool = False,
+                execution_binding: ExecutionBinding | None = None) -> dict:
     """Non-raising view of the gate, for reports and the prepare-only CLI."""
     try:
         grant = authorize(artifact=artifact, lane=lane, run_scope=run_scope,
-                          manifest_dir=manifest_dir, injected_runner=injected_runner)
+                          manifest_dir=manifest_dir, injected_runner=injected_runner,
+                          execution_binding=execution_binding)
     except AuthorizationDenied as exc:
         directory = Path(manifest_dir) if manifest_dir is not None else MANIFEST_DIR
         return {

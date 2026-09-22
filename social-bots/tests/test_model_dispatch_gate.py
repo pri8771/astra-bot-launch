@@ -35,7 +35,11 @@ from runtime import reasoning_cli  # noqa: E402
 from runtime import reasoning_receipt as rr  # noqa: E402
 from runtime.reasoning import ReasoningContext  # noqa: E402
 
-from tests.test_v04_authorization_gate import valid_manifest  # noqa: E402
+from tests.test_v04_authorization_gate import (  # noqa: E402
+    FIXTURE_SOURCE_SHA,
+    FIXTURE_SOURCE_TREE,
+    valid_manifest,
+)
 
 ART, LANE, SCOPE = "SB-TEST-GATE", "windows-core", "gate-test"
 
@@ -620,25 +624,46 @@ class BatchTokenAdoptionTest(_GateCase):
         super().setUp()
         from tests.test_v04_divergence_prepare import PERSONAS, build, default_snapshots
         self.matrix = build()
+        self.binding = dp.execution_binding(self.matrix)
         self.personas, self.snapshots = PERSONAS, default_snapshots()
-        _write_manifest(self.manifests, run_scope=self.matrix.run_scope)   # SB-V04-002 scope
+        _write_manifest(
+            self.manifests, run_scope=self.matrix.run_scope,
+            execution_matrix_sha256=self.binding.digest)   # SB-V04-002 scope
+        self.source_patch = mock.patch.object(
+            authorization, "source_identity",
+            return_value=(FIXTURE_SOURCE_SHA, FIXTURE_SOURCE_TREE))
+        self.source_patch.start()
         self.grant = authorization.ExecutionGrant(
             manifest_id="AUTH-FIXTURE-0001", manifest_path="(fixture)",
             manifest_digest="sha256:fixture", created_by="test-fixture",
             owner_authorization_ref="engineering fixture", artifact="SB-V04-002",
             lane="windows-core", run_scope=self.matrix.run_scope,
             provider_mode="claude-cli", max_calls=5, expires_at="2099-01-01T00:00:00Z",
-            granted_at="2026-09-21T00:00:00Z")
+            granted_at="2026-09-21T00:00:00Z", source_sha=FIXTURE_SOURCE_SHA,
+            source_tree=FIXTURE_SOURCE_TREE,
+            execution_matrix_sha256=self.binding.digest)
         self.batch_budget = authorization.CallBudget(self.matrix.run_scope, 5, home=self.tmp)
 
     def _run(self, provider, case_id="P0"):
         case = self.matrix.case(case_id)
-        return dp._execute_one_case(
-            case, provider, self.batch_budget, grant=self.grant, draft={},
-            persona=self.personas[case.persona_slot], objective=self.matrix.objective,
-            snapshot_signal=self.snapshots[case.evidence_id].signal,
-            pending_count=0, is_duplicate=False, prior_hypotheses=0,
-            manifest_dir=self.manifests)
+        prior = model_dispatch.current_scope()
+        model_dispatch.configure(
+            self.grant.artifact, self.grant.lane, self.matrix.run_scope,
+            manifest_dir=self.manifests, home=self.tmp,
+            execution_binding=self.binding)
+        try:
+            return dp._execute_one_case(
+                case, provider, self.batch_budget, grant=self.grant, draft={},
+                persona=self.personas[case.persona_slot], objective=self.matrix.objective,
+                snapshot_signal=self.snapshots[case.evidence_id].signal,
+                pending_count=0, is_duplicate=False, prior_hypotheses=0,
+                manifest_dir=self.manifests, execution_binding=self.binding)
+        finally:
+            model_dispatch.set_scope(prior)
+
+    def tearDown(self):
+        self.source_patch.stop()
+        super().tearDown()
 
     def test_provider_gate_adopts_the_batch_reservation_without_a_second_slot(self):
         fn = _counting()
