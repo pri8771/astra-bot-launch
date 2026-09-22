@@ -1,0 +1,13 @@
+test_both_v04_artifacts_refuse_direct_dispatch_without_binding (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_both_v04_artifacts_refuse_direct_dispatch_without_binding) ... ok
+test_coherent_objective_prompt_and_evidence_changes_fail_before_provider_or_budget (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_coherent_objective_prompt_and_evidence_changes_fail_before_provider_or_budget) ... ok
+test_direct_p0_ignores_caller_supplied_p1_digest_and_records_actual_p0 (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_direct_p0_ignores_caller_supplied_p1_digest_and_records_actual_p0) ... ok
+test_exact_binding_reaches_only_offline_sentinel_and_records_binding (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_exact_binding_reaches_only_offline_sentinel_and_records_binding) ... ok
+test_missing_or_wrong_source_binding_is_denied (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_missing_or_wrong_source_binding_is_denied) ... ok
+test_readonly_source_identity_rejects_tracked_and_untracked_runtime_changes (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_readonly_source_identity_rejects_tracked_and_untracked_runtime_changes) ... ok
+test_reserved_p0_token_cannot_dispatch_p1_under_the_same_binding (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_reserved_p0_token_cannot_dispatch_p1_under_the_same_binding) ... ok
+test_reserved_token_rejects_missing_or_different_binding_without_second_slot (social-bots.tests.test_v04_execution_binding.ExecutionBindingTest.test_reserved_token_rejects_missing_or_different_binding_without_second_slot) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.101s
+
+OK

@@ -1,0 +1,221 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> social-bots/runtime/authorization.py:51:1
+   |
+49 |   manifest produces evidence that visibly says so.
+50 |   """
+51 | / from __future__ import annotations
+52 | |
+53 | | import hashlib
+54 | | import json
+55 | | import os
+56 | | import re
+57 | | from dataclasses import dataclass, asdict, field
+58 | | from datetime import datetime, timezone
+59 | | from pathlib import Path
+   | |________________________^
+60 |
+61 |   ROOT = Path(__file__).resolve().parent.parent
+   |
+help: Organize imports
+   |
+56 | import re
+   - from dataclasses import dataclass, asdict, field
+57 + from dataclasses import asdict, dataclass, field
+58 | from datetime import datetime, timezone
+   |
+
+TRY203 Remove exception handler; error is immediately re-raised
+   --> social-bots/runtime/authorization.py:331:13
+    |
+329 |                       fh.flush()
+330 |                       os.fsync(fh.fileno())
+331 | /             except BaseException:
+332 | |                 # The slot stays consumed on purpose: we cannot know whether a
+333 | |                 # spawn followed, and over-counting is the safe direction.
+334 | |                 raise
+    | |_____________________^
+335 |               return slot
+336 |           raise CallBudgetExhausted(
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> social-bots/runtime/divergence_prepare.py:51:1
+   |
+49 |   engineering-only in every artifact this module writes.
+50 |   """
+51 | / from __future__ import annotations
+52 | |
+53 | | import hashlib
+54 | | import json
+55 | | import os
+56 | | from dataclasses import dataclass, asdict, field
+57 | | from datetime import datetime, timezone
+58 | | from pathlib import Path
+59 | |
+60 | | from . import authorization, reasoning_cli
+61 | | from .reasoning import ReasoningContext, ReasoningProposal, validate_proposal
+62 | | from .reasoning_receipt import (
+63 | |     ReceiptError,
+64 | |     bounded_context,
+65 | |     context_digest,
+66 | |     differing_variables,
+67 | |     proposal_divergence,
+68 | |     proposal_from_receipt,
+69 | |     validate_receipt,
+70 | | )
+   | |_^
+71 |
+72 |   MATRIX_SCHEMA_VERSION = "v1"
+   |
+help: Organize imports
+   |
+55 | import os
+   - from dataclasses import dataclass, asdict, field
+56 + from dataclasses import asdict, dataclass, field
+57 | from datetime import datetime, timezone
+   |
+
+UP037 [*] Remove quotes from type annotation
+   --> social-bots/runtime/divergence_prepare.py:158:55
+    |
+156 |     def from_bytes(snapshot_id: str, signal: dict, raw: bytes, receipt: dict,
+157 |                    *, provenance_label: str = ENGINEERING_FIXTURE,
+158 |                    captured_at: str | None = None) -> "EvidenceSnapshot":
+    |                                                       ^^^^^^^^^^^^^^^^^^
+159 |         return EvidenceSnapshot(
+160 |             snapshot_id=snapshot_id,
+    |
+help: Remove quotes
+    |
+157 |                    *, provenance_label: str = ENGINEERING_FIXTURE,
+    -                    captured_at: str | None = None) -> "EvidenceSnapshot":
+158 +                    captured_at: str | None = None) -> EvidenceSnapshot:
+159 |         return EvidenceSnapshot(
+    |
+
+ISC004 Unparenthesized implicit string concatenation in collection
+   --> social-bots/runtime/divergence_prepare.py:441:23
+    |
+439 |       case = matrix.case(case_id)
+440 |       if receipt.get("context_digest") != case.context_sha256:
+441 |           return None, [f"{case_id}: receipt context_digest {receipt.get('context_digest')!r} "
+    |  _______________________^
+442 | |                       f"does not bind to the prepared case context {case.context_sha256!r}"]
+    | |___________________________________________________________________________________________^
+443 |       try:
+444 |           proposal = proposal_from_receipt(receipt)
+    |
+help: Did you forget a comma?
+help: Wrap implicitly concatenated strings in parentheses
+
+UP037 [*] Remove quotes from type annotation
+   --> social-bots/runtime/divergence_prepare.py:455:31
+    |
+454 | def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict],
+455 |                       budget: "authorization.CallBudget | None" = None) -> dict:
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456 |     """Validate per-case receipts and report material divergence per comparison.
+    |
+help: Remove quotes
+    |
+454 | def divergence_report(matrix: PreparedMatrix, receipts: dict[str, dict],
+    -                       budget: "authorization.CallBudget | None" = None) -> dict:
+455 +                       budget: authorization.CallBudget | None = None) -> dict:
+456 |     """Validate per-case receipts and report material divergence per comparison.
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> social-bots/runtime/model_dispatch.py:49:1
+   |
+47 |   OFFLINE evidence stay distinguishable. Nothing here performs a model call itself.
+48 |   """
+49 | / from __future__ import annotations
+50 | |
+51 | | import threading
+52 | | from contextlib import contextmanager
+53 | | from dataclasses import dataclass, asdict
+54 | | from pathlib import Path
+55 | | from typing import Any, Callable
+56 | |
+57 | | from . import authorization
+58 | | from .authorization import AuthorizationDenied, CallBudgetExhausted
+   | |___________________________________________________________________^
+59 |
+60 |   LIVE_MODEL = "LIVE_MODEL"
+   |
+help: Organize imports
+   |
+52 | from contextlib import contextmanager
+   - from dataclasses import dataclass, asdict
+53 + from dataclasses import asdict, dataclass
+54 | from pathlib import Path
+   |
+
+UP035 [*] Import from `collections.abc` instead: `Callable`
+  --> social-bots/runtime/model_dispatch.py:55:1
+   |
+53 | from dataclasses import dataclass, asdict
+54 | from pathlib import Path
+55 | from typing import Any, Callable
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+56 |
+57 | from . import authorization
+   |
+help: Import from `collections.abc`
+   |
+54 | from pathlib import Path
+   - from typing import Any, Callable
+55 + from typing import Any
+56 + from collections.abc import Callable
+57 |
+   |
+
+F401 [*] `.authorization.CallBudgetExhausted` imported but unused
+  --> social-bots/runtime/model_dispatch.py:58:49
+   |
+57 | from . import authorization
+58 | from .authorization import AuthorizationDenied, CallBudgetExhausted
+   |                                                 ^^^^^^^^^^^^^^^^^^^
+59 |
+60 | LIVE_MODEL = "LIVE_MODEL"
+   |
+help: Remove unused import: `.authorization.CallBudgetExhausted`
+   |
+57 | from . import authorization
+   - from .authorization import AuthorizationDenied, CallBudgetExhausted
+58 + from .authorization import AuthorizationDenied
+59 |
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> social-bots/runtime/model_dispatch.py:202:5
+    |
+200 | def classify(fn: Any) -> str:
+201 |     """LIVE_MODEL unless ``fn`` is exactly a policy-owned non-live type."""
+202 |     from . import reasoning, reasoning_receipt          # lazy: avoids import cycles
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+203 |     t = type(fn)
+204 |     if t is reasoning_receipt.ReceiptReplay:
+    |
+help: Organize imports
+    |
+201 |     """LIVE_MODEL unless ``fn`` is exactly a policy-owned non-live type."""
+    -     from . import reasoning, reasoning_receipt          # lazy: avoids import cycles
+202 +     from . import reasoning, reasoning_receipt  # lazy: avoids import cycles
+203 |     t = type(fn)
+    |
+
+RUF059 Unpacked variable `grant` is never used
+   --> social-bots/runtime/model_dispatch.py:314:13
+    |
+312 |             raise DispatchRefused(st.last.refusal)
+313 |         try:
+314 |             grant, budget, slot = _reserve(scope, context_digest=context_digest,
+    |             ^^^^^
+315 |                                            provider_id=provider_id)
+316 |         except AuthorizationDenied as exc:            # includes CallBudgetExhausted
+    |
+help: Prefix it with an underscore or any other dummy variable pattern
+
+Found 11 errors.
+[*] 8 fixable with the `--fix` option (2 hidden fixes can be enabled with the `--unsafe-fixes` option).

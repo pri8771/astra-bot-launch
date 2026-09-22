@@ -1,0 +1,42 @@
+======================================================================
+ERROR: test_budget_exhaustion_stops_before_a_sixth_call (tests.test_v04_divergence_prepare.ExecutionMechanicsTest.test_budget_exhaustion_stops_before_a_sixth_call)
+The sixth invocation is refused by the budget, not attempted.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/tests/test_v04_divergence_prepare.py", line 509, in test_budget_exhaustion_stops_before_a_sixth_call
+    self._run(provider)
+    ~~~~~~~~~^^^^^^^^^^
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/tests/test_v04_divergence_prepare.py", line 422, in _run
+    return dp._execute_one_case(
+           ~~~~~~~~~~~~~~~~~~~~^
+        case, provider, self.budget, grant=self.grant, draft={},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        pending_count=0, is_duplicate=False, prior_hypotheses=0,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        manifest_dir=self.manifests, execution_binding=self.binding)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/runtime/divergence_prepare.py", line 791, in _execute_one_case
+    with model_dispatch.reserved(scope, context_digest=case.context_sha256,
+         ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                 provider_id=getattr(provider, "provider_id", "batch")) \
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/runtime/model_dispatch.py", line 273, in reserved
+    grant, budget, slot = _reserve(scope, context_digest=context_digest, provider_id=provider_id)
+                          ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/runtime/model_dispatch.py", line 252, in _reserve
+    slot = budget.reserve(manifest_id=grant.manifest_id, manifest_digest=grant.manifest_digest,
+                          lane=grant.lane, artifact=grant.artifact,
+    ...<2 lines>...
+                          execution_matrix_sha256=grant.execution_matrix_sha256,
+                          expected_contexts=expected_contexts)
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-binding-source/social-bots/runtime/authorization.py", line 387, in reserve
+    raise AuthorizationDenied("execution_case_order_mismatch")
+runtime.authorization.AuthorizationDenied: execution_case_order_mismatch
+
+----------------------------------------------------------------------
+Ran 90 tests in 0.110s
+
+FAILED (errors=1)
