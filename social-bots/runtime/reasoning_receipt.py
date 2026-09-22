@@ -113,7 +113,25 @@ def bounded_context(ctx: ReasoningContext) -> dict:
         "pending_count": ctx.pending_count,
         "is_duplicate": ctx.is_duplicate,
         "prior_hypotheses": int((ctx.state_summary or {}).get("hypotheses", 0)),
+        # V1.4 / D2: persona-scoped audience evidence is part of what was
+        # reasoned over, so it is part of the digest — present only when any
+        # exists (older contexts keep their digest).
+        **_audience_projection(ctx.state_summary),
     }
+
+
+def _audience_projection(state_summary: dict | None) -> dict:
+    aud = (state_summary or {}).get("audience") or {}
+    learned = aud.get("learned") or []
+    unlearned = int(aud.get("unlearned_count") or 0)
+    if not learned and not unlearned:
+        return {}
+    return {"audience": {
+        "learned": [{"hypothesis_id": h.get("hypothesis_id"),
+                     "statement": h.get("statement"),
+                     "confidence": h.get("confidence")} for h in learned[:3]],
+        "unlearned_count": unlearned,
+    }}
 
 
 def context_digest(bounded: dict) -> str:

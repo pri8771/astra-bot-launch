@@ -262,6 +262,29 @@ def close(exp: Experiment, treatment_observation, *, now: datetime | None = None
     return exp
 
 
+def close_without_observation(exp: Experiment, *, now: datetime | None = None,
+                              reason: str = "no treatment observation recorded for the "
+                                            "observation window") -> Experiment:
+    """Close an elapsed experiment for which NO treatment measurement exists.
+
+    The honest outcome is INCONCLUSIVE (missing data is never zero effect and
+    never success); nothing is fabricated in place of the absent observation.
+    Refuses before the window elapses, like ``close``.
+    """
+    if not can_close(exp, now=now):
+        raise ValueError("cannot close before required observation window "
+                         "(no stop criterion triggered)")
+    now = now or datetime.now(timezone.utc)
+    exp.status = CLOSED
+    exp.closed_at = now.isoformat()
+    exp.outcome = INCONCLUSIVE
+    exp.result = {"reason": reason, "primary_metric": exp.primary_metric,
+                  "baseline_observation_id": exp.baseline_ref().observation_id,
+                  "treatment_observation_id": None, "baseline": exp.baseline_ref().value,
+                  "treatment": None}
+    return exp
+
+
 def to_learning_ref(exp: Experiment) -> dict | None:
     """Evidence ref for feeding audience/strategy — only for a real effect.
 

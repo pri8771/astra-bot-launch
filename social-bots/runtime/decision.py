@@ -13,8 +13,11 @@ Design commitments (AUTONOMY_CONTRACT.md):
 from __future__ import annotations
 
 from dataclasses import dataclass, field, asdict
+from datetime import datetime, timezone
 
 from . import paths, research, pipeline, analytics, reasoning, model_dispatch
+from . import account_routes, audience, experiment_engine, metrics, platform_selection
+from . import content_intelligence as ci
 from .reasoning import Candidate, no_action as _no_action, ReasoningContext
 from .state import RuntimeState, PersonaState
 from .personas import load as load_persona
@@ -87,6 +90,12 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         "fence": fence.token() if fence is not None else None,
     }
 
+    # -- MEASURE / CLOSEOUT (V1.5 / D2): elapsed engine experiments of THIS
+    # persona close honestly (INCONCLUSIVE without a measurement); their durable
+    # writes join the cycle's fenced commit below, whatever path the cycle takes.
+    closeout = _closeout_experiments(bot, persona_id)
+    record["closeout"] = closeout["summary"]
+
     # -- OBSERVE: this persona's unconsumed evidence only ------------------
     # Consumption is tracked per-signal, per-PERSONA (not a whole-inbox
     # fingerprint, not runtime-wide): a signal arriving after an earlier cycle,
@@ -121,7 +130,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         record["schedule"] = _schedule(persona, changed=False)
         rt.data["counters"]["no_action"] += 1
         rt.data["recovery"]["last_clean_tick"] = now_iso()
-        _commit(fence, bot, rt, ps, record)
+        _commit(fence, bot, rt, ps, record, closeout["effects"])
         return record
 
     # -- ORIENT ------------------------------------------------------------
@@ -140,11 +149,18 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     provider = reasoning.resolve_provider(require_adaptive=require_adaptive)
     effective_require = (reasoning.adaptive_required() if require_adaptive is None
                          else bool(require_adaptive))
+    # V1.4 / D2: this persona's OWN learned audience evidence reaches reasoning
+    # (and the model prompt / context digest) — never another persona's.
+    audience_summary = _audience_summary(bot, persona_id)
+    record["orient"]["known"].append(
+        f"audience (persona-scoped): {audience_summary['learned_count']} learned, "
+        f"{audience_summary['unlearned_count']} unlearned hypothesis(es)")
     ctx = ReasoningContext(
         persona=persona, objective=_current_objective(persona), top_signal=top_signal,
         pending_count=len(pending), is_duplicate=dup, draft=draft,
         state_summary={"hypotheses": ps.hypothesis_count(),
-                       "cycles": rt.data["counters"]["cycles"]})
+                       "cycles": rt.data["counters"]["cycles"],
+                       "audience": audience_summary})
     record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
                            "adaptive": getattr(provider, "adaptive", False),
                            "adaptive_required": effective_require,
@@ -202,7 +218,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
         # stays pending until a valid reasoning route is available.
         record["observe"]["consumed_this_cycle"] = None
         record["observe"]["pending_after"] = len(pending)
-        _commit(fence, bot, rt, ps, record)
+        _commit(fence, bot, rt, ps, record, closeout["effects"])
         return record
 
     # -- SCORE + CHOOSE (policy chooses among the provider's alternatives) ---
@@ -260,7 +276,7 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     record["observe"]["pending_after"] = len(pending) - 1
     rt.data["observation_fingerprint"] = record["observe"]["observation_fingerprint"]
     rt.data["recovery"]["last_clean_tick"] = now_iso()
-    _commit(fence, bot, rt, ps, record, effects)
+    _commit(fence, bot, rt, ps, record, _chain(closeout["effects"], effects))
     return record
 
 
@@ -282,6 +298,175 @@ def _schedule(persona: dict, changed: bool) -> dict:
     return {"next_check_in_hours": hours,
             "trigger": "deterministic timer + new-signal event",
             "note": "wait on events/timers, not constant polling"}
+
+
+# --------------------------------------------------------------------------- #
+# V1.7 D2 — the V1.2–V1.6 producers wired into the ordinary cycle
+# --------------------------------------------------------------------------- #
+def _chain(*effects):
+    """Compose optional zero-arg effect closures into one (or None)."""
+    fns = [f for f in effects if f is not None]
+    if not fns:
+        return None
+
+    def run():
+        for f in fns:
+            f()
+    return run
+
+
+def _strategy_weights(persona: dict) -> dict:
+    strat = persona.get("platform_strategy") or {}
+    weights = {p: 0.5 for p in strat.get("secondary") or []}
+    weights.update({p: 1.0 for p in strat.get("primary") or []})
+    return weights
+
+
+def _content_format(candidate: dict) -> str:
+    """What the candidate can actually carry. Text-only unless an asset exists."""
+    if candidate.get("content_format"):
+        return str(candidate["content_format"])
+    if candidate.get("video_asset"):
+        return "video"
+    if candidate.get("image_asset"):
+        return "image"
+    return "text"
+
+
+def _platform_history(bot: str, persona_id: str) -> dict:
+    """Per-platform performance from REAL normalized observations of this persona.
+
+    Only PRESENT derived rates count (V1.3: missing is never zero); a platform
+    with no present measurement has no history entry and stays EXPLORATORY.
+    """
+    acc: dict[str, list] = {}
+    for row in metrics.observations_for(bot):
+        if row.get("persona") != persona_id:
+            continue
+        try:
+            obs = metrics.NormalizedObservation(**row)
+        except TypeError:
+            continue
+        rates = [d["value"] for d in metrics.derive_all(obs).values()
+                 if d.get("availability") == metrics.PRESENT
+                 and isinstance(d.get("value"), (int, float))]
+        if not rates:
+            continue
+        acc.setdefault(obs.platform, []).append(sum(rates) / len(rates))
+    return {p: {"performance": max(0.0, min(1.0, sum(v) / len(v))), "samples": len(v)}
+            for p, v in acc.items()}
+
+
+def _select_platform(bot: str, persona: dict, candidate: dict) -> dict:
+    """V1.2 platform selection with a truthful NO_PLATFORM outcome.
+
+    Availability comes only from the credential-free account route registry.
+    With no registry the loop may still draft for the persona's primary platform
+    in an explicitly EXPLORATORY, unverified mode (nothing is publishable); with
+    a registry and no eligible platform the result is NO_PLATFORM.
+    """
+    weights = _strategy_weights(persona)
+    platforms = list(weights)
+    avail = account_routes.availability_for(bot, persona["id"], platforms)
+    fmt = _content_format(candidate)
+    sel = platform_selection.select_platforms(
+        persona_strategy=weights, content_format=fmt,
+        availability=avail["availability"], history=_platform_history(bot, persona["id"]))
+    out = {
+        "content_format": fmt,
+        "registry_present": avail["registry_present"],
+        "registry_error": avail["registry_error"],
+        "ranked": sel["ranked"], "selectable": sel["selectable"],
+        "blocked": sel["blocked"], "unsuitable": sel["unsuitable"],
+        "any_historical_basis": sel["any_historical_basis"],
+    }
+    if sel["selectable"]:
+        platform = sel["selectable"][0]
+        out.update(platform=platform, mode="registry_route",
+                   route_id=avail["availability"][platform].get("route_id"),
+                   publishable=bool(avail["availability"][platform].get("publishable")))
+    elif not avail["registry_present"]:
+        primary = (persona.get("platform_strategy") or {}).get("primary") or platforms[:1]
+        out.update(platform=primary[0] if primary else None, mode="exploratory_unverified",
+                   route_id=None, publishable=False,
+                   note="no account route registry: drafting for the persona's primary "
+                        "platform without any verified route; not publishable")
+    else:
+        out.update(platform=None, mode="no_platform", route_id=None, publishable=False)
+    return out
+
+
+def _audience_summary(bot: str, persona_id: str) -> dict:
+    """V1.4: this persona's OWN audience hypotheses, learned ones first.
+
+    Confidence is derived from decayed real observations (``audience.confidence``);
+    unlearned hypotheses are counted, never given a number.
+    """
+    learned, unlearned = [], 0
+    for hyp in audience.list_hypotheses(bot, persona_id):
+        conf = audience.confidence(hyp)
+        if conf["status"] == "learned":
+            learned.append({"hypothesis_id": hyp.id, "statement": hyp.statement,
+                            "segment": hyp.segment, "confidence": conf["confidence"],
+                            "freshness_days": conf["freshness_days"],
+                            "evidence_count": len(conf["evidence_refs"])})
+        else:
+            unlearned += 1
+    learned.sort(key=lambda h: h["confidence"], reverse=True)
+    return {"scope": {"bot": bot, "persona": persona_id}, "learned": learned[:3],
+            "learned_count": len(learned), "unlearned_count": unlearned}
+
+
+def _treatment_observation(bot: str, persona_id: str, exp) -> "metrics.NormalizedObservation | None":
+    rows = [r for r in metrics.observations_for(bot)
+            if r.get("persona") == persona_id and r.get("experiment_id") == exp.id
+            and (r.get("window_end") or r.get("collected_at") or "") >= (exp.started_at or "")]
+    if not rows:
+        return None
+    rows.sort(key=lambda r: r.get("window_end") or r.get("collected_at") or "")
+    try:
+        return metrics.NormalizedObservation(**rows[-1])
+    except TypeError:
+        return None
+
+
+def _closeout_experiments(bot: str, persona_id: str) -> dict:
+    """V1.5: close this persona's RUNNING engine experiments whose window elapsed.
+
+    A treatment observation is read from the normalized metric store by
+    experiment id; when none exists the outcome is INCONCLUSIVE (never success,
+    never zero effect). Durable writes are returned as an effect closure so they
+    run under the cycle's fence.
+    """
+    now = datetime.now(timezone.utc)
+    closed, summary = [], []
+    for row in experiment_engine.list_experiments(bot, persona_id):
+        if row.get("status") != experiment_engine.RUNNING:
+            continue
+        try:
+            exp = experiment_engine.Experiment(**row)
+        except TypeError:
+            continue
+        if not experiment_engine.window_elapsed(exp, now=now):
+            continue
+        treatment = _treatment_observation(bot, persona_id, exp)
+        if treatment is None:
+            experiment_engine.close_without_observation(exp, now=now)
+        else:
+            experiment_engine.close(exp, treatment, now=now)
+        ref = experiment_engine.to_learning_ref(exp)
+        closed.append(exp)
+        summary.append({"experiment_id": exp.id, "outcome": exp.outcome,
+                        "reason": (exp.result or {}).get("reason"),
+                        "treatment_observation_id": (exp.result or {}).get(
+                            "treatment_observation_id"),
+                        "learning_ref": ref})
+
+    def effects():
+        for exp in closed:
+            experiment_engine.save_experiment(bot, persona_id, exp)
+
+    return {"summary": summary, "effects": effects if closed else None}
 
 
 def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
@@ -320,12 +505,44 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                     {"verified": True, "note": "dedup gate held"},
                     {"updated": False}, None)
         reviewed = pipeline.review(persona, draft)
-        platform = persona["platform_strategy"]["primary"][0]
+
+        # ---- PLATFORM SELECTION (V1.2 / D2): real routes decide ------------
+        selection = _select_platform(bot, persona, reviewed)
+        if selection["platform"] is None:
+            def no_platform_effects():
+                rt.record_action({"action": "CREATE_CANDIDATE_NO_PLATFORM",
+                                  "persona": persona["id"],
+                                  "content_id": reviewed["content_id"],
+                                  "blocked": selection["blocked"],
+                                  "unsuitable": selection["unsuitable"],
+                                  "registry_error": selection["registry_error"]})
+                analytics.emit(analytics.make_event(
+                    bot, persona["id"], "correction", content_id=reviewed["content_id"],
+                    metrics={"no_platform": 1}))
+            execute = {"performed": False, "outcome": "no_platform",
+                       "effect": "NO_PLATFORM: no available, authorized platform route can "
+                                 "carry this content; no experiment, no queue entry",
+                       "content_id": reviewed["content_id"],
+                       "platform_selection": selection}
+            verify = {"verified": True, "withheld": True,
+                      "published": False, "publish_authorized": False,
+                      "review_passed": reviewed["review_passed"],
+                      "within_platform_limit": None,
+                      "final_review_bound": False, "final_text_sha256": None,
+                      "experiment_registered": False, "queued": False,
+                      "platform_selection": selection,
+                      "note": "no platform; candidate correctly did NOT proceed"}
+            learn = {"updated": False, "note": "no platform; nothing registered"}
+            return (execute, verify, learn, no_platform_effects)
+        platform = selection["platform"]
         payload = pipeline.format_for_platform(reviewed, platform)
         # ---- FINAL-CONTENT REVIEW BINDING (V1.7 C05/C06) -------------------
         # Every check is re-run over the exact rendered text and bound to its
         # hash; enqueue refuses anything unbound or mismatched.
         final = pipeline.final_review(persona, reviewed, payload)
+        # ---- LINEAGE + NOVELTY (V1.6 / D2): persona-scoped, never cross-persona
+        variant = pipeline.variant_from_payload(payload)
+        novelty = ci.check_novelty(bot, variant)
 
         # ---- REQUIRED-REVIEW GATE (deterministic publication gate) --------
         # A failed factual/voice/cultural review or a platform-limit failure
@@ -345,6 +562,9 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                                              if not c["passed"]],
                                   "reasons": final["reasons"],
                                   "final_text_sha256": final["final_text_sha256"]})
+        if not novelty.get("novel", True):
+            gate_failures.append({"gate": "novelty", "novelty": novelty,
+                                  "platform": platform})
         if gate_failures:
             def withheld_effects():
                 rt.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
@@ -367,6 +587,8 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                       "within_platform_limit": payload["within_limit"],
                       "final_review_bound": final["passed"],
                       "final_text_sha256": final["final_text_sha256"],
+                      "platform_selection": selection, "novelty": novelty,
+                      "lineage": payload.get("lineage"),
                       "experiment_registered": False, "queued": False,
                       "note": "required gate failed; candidate correctly did NOT proceed"}
             learn = {"updated": False,
@@ -397,7 +619,10 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                                "content_key": pipeline.content_key(reviewed),
                                "persona": persona["id"], "platform": platform,
                                "review_passed": reviewed["review_passed"],
-                               "final_text_sha256": final["final_text_sha256"]})
+                               "final_text_sha256": final["final_text_sha256"],
+                               "concept_id": payload.get("concept_id"),
+                               "lineage": payload.get("lineage")})
+            ci.record_variant(bot, variant)          # persona-scoped lineage history
             pipeline.enqueue(bot, reviewed, payload, exp.experiment_id)
             analytics.emit(analytics.make_event(
                 bot, persona["id"], "candidate_created", platform=platform,
@@ -429,6 +654,8 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             "within_platform_limit": payload["within_limit"],
             "final_review_bound": True,
             "final_text_sha256": final["final_text_sha256"],
+            "platform_selection": selection, "novelty": novelty,
+            "lineage": payload.get("lineage"),
             "note": "queued only; no external effect; publish_authorized must be False",
         }
         learn = {"updated": True,

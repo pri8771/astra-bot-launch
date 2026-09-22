@@ -134,7 +134,27 @@ def _bounded_context(ctx: ReasoningContext) -> dict:
         "is_duplicate": ctx.is_duplicate,
         "prior_hypotheses": int(ctx.state_summary.get("hypotheses", 0)),
         "allowed_actions": list(ACTION_VOCAB),
+        **_audience_block(ctx.state_summary),
     }
+
+
+def _audience_block(state_summary: dict | None) -> dict:
+    """V1.4 / D2: the persona's OWN learned audience evidence, when any exists.
+
+    Absent when there is none, so contexts without audience data keep their
+    prior shape and digest. Only compact, inert facts are projected.
+    """
+    aud = (state_summary or {}).get("audience") or {}
+    learned = aud.get("learned") or []
+    unlearned = int(aud.get("unlearned_count") or 0)
+    if not learned and not unlearned:
+        return {}
+    return {"audience": {
+        "learned": [{"hypothesis_id": h.get("hypothesis_id"),
+                     "statement": h.get("statement"),
+                     "confidence": h.get("confidence")} for h in learned[:3]],
+        "unlearned_count": unlearned,
+    }}
 
 
 _PROMPT_TEMPLATE = """\

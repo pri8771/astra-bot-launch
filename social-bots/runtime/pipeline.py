@@ -231,7 +231,29 @@ def format_for_platform(candidate: dict, platform: str) -> dict:
         "facts_preserved": preserved,
         "silent_truncation": False,
         "content_id": variant.content_id,
+        # Enough to rebuild the variant for lineage/novelty (V1.6) without
+        # carrying a non-serializable object in the queue payload.
+        "concept_id": variant.concept_id,
+        "persona": variant.persona,
+        "hook": variant.hook,
+        "char_count": variant.char_count,
+        "asset_plan": dict(variant.asset_plan),
     }
+
+
+def variant_from_payload(payload: dict) -> "ci.PlatformVariant":
+    """Rebuild the PlatformVariant a payload was rendered from (for lineage/novelty)."""
+    return ci.PlatformVariant(
+        content_id=payload["content_id"], concept_id=payload["concept_id"],
+        persona=payload["persona"], platform=payload["platform"],
+        native_format=payload["native_format"], hook=payload.get("hook", ""),
+        text=payload["text"], char_count=payload.get("char_count", len(payload["text"])),
+        char_limit=payload["char_limit"], within_limit=bool(payload["within_limit"]),
+        status=payload["status"], withheld_reason=payload.get("withheld_reason", ""),
+        fact_bindings=list(payload.get("fact_bindings") or []),
+        dropped_framing=payload.get("dropped_framing", 0),
+        asset_plan=dict(payload.get("asset_plan") or {}),
+        lineage=dict(payload.get("lineage") or {}))
 
 
 # --------------------------------------------------------------------------- #
