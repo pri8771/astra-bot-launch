@@ -29,9 +29,11 @@ and triage. It does not cover writing `worker_once.py` itself (see
 ### Environment variables `worker_once.py` reads
 
 A production worker invocation requires an available, authorized adaptive provider.
-The default baseline mode is deterministic and is refused with exit code `6`
+The default baseline mode is deterministic and yields a blocked unit outcome
 (`BLOCKED_REASONING_UNAVAILABLE`) unless the invocation explicitly opts into a
-diagnostic deterministic run. Configure provider posture only after its own grant;
+diagnostic deterministic run. Completed units, including blocked decisions, may
+exit `0`: inspect the receipt/work outcome as well as the process exit code.
+Exit `6` specifically records an unauthorized live model route refusal. Configure provider posture only after its own grant;
 the scheduler package alone does not make reasoning available.
 
 | Variable | Effect |
