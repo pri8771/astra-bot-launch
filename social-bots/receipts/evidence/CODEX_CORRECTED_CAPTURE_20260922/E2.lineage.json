@@ -1,0 +1,45 @@
+{
+  "block_tags": [
+    "p",
+    "li",
+    "h2",
+    "h3"
+  ],
+  "body_selector": "div.page-article-main-content_*",
+  "canonical_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+  "classification": "public-source-capture-and-offline-extraction-only",
+  "excluded": [
+    "script",
+    "style",
+    "noscript",
+    "navigation outside article body"
+  ],
+  "extracted_text_sha256": "43e0891e4bdb373cbaca255f8a8b9b8cbff431f4416b627c1f24a55bf950cfbd",
+  "extraction_status": "ok",
+  "extractor_source_sha256": "41eb4505585524bed7caf4339bddb55a132ed61ed8c804a089876381b259c8f8",
+  "extractor_version": "bots-evidence-html-v1",
+  "final_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+  "matrix_built": false,
+  "model_calls": 0,
+  "original_receipt_unchanged": true,
+  "paragraph_count": 11,
+  "published": {
+    "precision": "date",
+    "selector": "span.article-basic-date-time_*",
+    "value": "September 14, 2026"
+  },
+  "raw_sha256": "72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+  "receipt_file_sha256": "08755929630fa107a781343046b8cb469cf98a2bb4313f716d4946f6c420ae00",
+  "receipt_id": "cap-9701ad2cb45c4b19",
+  "retrieved_at": "2026-09-22T11:28:42+00:00",
+  "runtime": "Python standard-library html.parser; whitespace-collapse v1",
+  "schema_version": 1,
+  "signal_sha256": "f0c08517f2e06991fdb1a73c92938190dd6e2e97950092f88f799cf10baa53bc",
+  "signal_supporting_paragraph_indices": [
+    0,
+    1
+  ],
+  "snapshot_id": "E2",
+  "source_suitability": "pending-lead-review",
+  "title_selector": "first h1"
+}

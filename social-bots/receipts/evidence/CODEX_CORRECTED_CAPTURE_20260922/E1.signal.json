@@ -1,0 +1,19 @@
+{
+  "published": {
+    "precision": "timestamp-with-offset",
+    "selector": "first time.published@datetime",
+    "value": "2026-09-16T07:53:31-07:00"
+  },
+  "snapshot_id": "E1",
+  "source_capture_receipt_id": "cap-740a506e997e48e9",
+  "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+  "summary_method": "extractive-fixed-source-specific-paragraphs",
+  "supporting_paragraph_indices": [
+    0,
+    2,
+    3,
+    7
+  ],
+  "title": "Threads Expands Podcast Toolkit for Creators and Listeners",
+  "url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/"
+}
