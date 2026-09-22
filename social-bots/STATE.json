@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T07:40:00Z",
+  "updated_at": "2026-09-22T08:05:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,17 +22,17 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-061",
+    "lead_release": "LEAD-062",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.3",
     "auto_continue_after_target": false,
-    "contract": "delivery/V17_LIVE.md",
-    "scope_filter": "delivery/V17_SCOPE.json",
-    "acceptance_contract": "delivery/V17_ACCEPTANCE.md",
-    "owner_instruction": "Owner explicitly changed Bots goal to V1.3 with genuine live tests; direct Codex implementation/no Fable.",
-    "supersedes": "prior V1.7 ceiling/target; preserves all genuine V0.7→V1.3 gates",
+    "contract": "lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "scope_filter": "owner target V1.3; no new live grants",
+    "acceptance_contract": "MILESTONE_MANIFEST.md + lead-accepted genuine evidence",
+    "owner_instruction": "Owner target is LIVE V1.3 with genuine tests; Codex direct implementation for new concrete repairs; no Fable handoff.",
+    "supersedes": "prior V1.7/Fable execution text; preserves all genuine V0.4→V1.3 evidence gates",
     "future_roadmap": "preserved and parked; not deleted or accepted",
     "authority_change": "development target only; no fresh model/public/account/host/scheduler/spend/deployment/main-merge grant",
     "worker_consumption": "verified_acknowledged_in_session_s-20260921T211438Z-d5589881"
@@ -43,9 +43,9 @@
       "branch_head": "6d6cae422c0527a94da8be8df73d1a0caf0f71b3",
       "latest_verified_material_checkpoint": "af3fded92eaba5e68c8088737b68c6f043e40a5e",
       "last_verified_session_id": "s-20260921T211438Z-d5589881",
-      "activity": "existing_ownership_preserved_no_new_handoff",
-      "assignment": "Existing unrelated ownership preserved. Owner explicitly prohibits new Social Bots routing/message/assignment/handoff to Fable; Codex handles new concrete repairs only in isolated repair branches pending ChatGPT acceptance.",
-      "scope": "sole implementation/integration owner for enabled recovery and live V1.7 only; existing shared runtime edits allowed; later features parked; stop development at V1.7",
+      "activity": "historical_evidence_only_no_new_handoff",
+      "assignment": "Preserve historical evidence only. Owner prohibits new Social Bots routing/message/assignment/handoff to Fable.",
+      "scope": "historical V1.7-era evidence only; not active execution ownership",
       "branch_name_is_historical": true,
       "superseded_restrictions": [
         "LEAD-045/046 pause",
@@ -74,7 +74,7 @@
       ],
       "submitted_future_work_disposition": "preserve; not a V1.7 acceptance prerequisite unless narrowly reused in an enabled production path",
       "operational_acceptance": false,
-      "lead_disposition": "SB-R07-041 remains ACCEPTED narrowly. No new Fable task is authorized.",
+      "lead_disposition": "Historical evidence preserved; Codex owns new concrete implementation work through owner target V1.3.",
       "handoff_note": "Worker scope consumption and material progress are verified. Current branch head includes LEAD-051 lead-authored instruction/ack commits after material worker head af3fded; lead commits are not worker progress."
     },
     "cursor_recovery": {
@@ -83,7 +83,7 @@
       "latest_verified_material_worker_source": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
       "latest_verified_session_id": "s-20260921T191500Z-a23cc77e",
       "activity": "parked_evidence_only",
-      "assignment": "preserve evidence; no new overlapping implementation; Fable owns enabled shared recovery through live V1.7",
+      "assignment": "preserve evidence only; no overlapping implementation",
       "handoff_note": "Current branch head is lead-authored park coordination, not worker progress."
     },
     "core": {
@@ -128,12 +128,12 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v13_live_readiness_gap_audit",
-      "assignment": "Read-only/reproduce-first V0.7→V1.3 live-readiness gap audit on accepted composition. Reconcile accepted engineering/live evidence, missing live evidence, owner gates, and dependency-safe offline next work. No live actions.",
+      "activity": "direct_v13_reliability_readonly_audit",
+      "assignment": "Read-only/reproduce-first SB-V11-001/002 reliability audit on accepted composition. No new tests/source edits until a concrete current-code gap is reproduced and returned for lead release.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
       "latest_accepted_candidate": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
-      "latest_accepted_checkpoint": "PR14 accepted engineering composition of PR12+PR13",
+      "latest_accepted_checkpoint": "accepted PR14 composition",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT",
       "parallel_assignments": [
@@ -409,16 +409,23 @@
       },
       "classification": "author/integration engineering evidence; no exact-SHA CI",
       "live_actions": 0
+    },
+    "codex_live_readiness_audit": {
+      "accepted_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "accepted_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "evidence": "b58ba6d79192e676ac24c06ed2bdbd8d01959ea0",
+      "rows": 10,
+      "recommendation": "REVIEW_BLOCKED_FOR_LIVE_PROMOTION",
+      "source_changes": 0,
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-061",
-    "review_ref": "social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md",
-    "review_type": "pr14_composition_exact_sha_and_live_readiness_audit_release",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md",
-    "accepted_now": [
-      "PR14-composition@8c86898d1c6641adbf5c9884e1aa7ab2923b1af3"
-    ],
+    "review_id": "LEAD-062",
+    "review_ref": "social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "review_type": "live_readiness_audit_confirmation_scope_reconciliation_reliability_audit_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md",
+    "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -491,11 +498,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR14 exact 8c86898d1c6641adbf5c9884e1aa7ab2923b1af3 ACCEPTED ENGINEERING as pure composition of accepted PR12+PR13 changes.",
-      "Composition evidence: six changed blobs match accepted candidates; all other base paths unchanged; 45 route + 43 metrics focused pass; 761/759/0/0/2 full; no exact-SHA CI.",
-      "No new behavior introduced by composition; official product phase remains V0.4.x.",
-      "Next dependency-safe assignment is read-only V0.7→V1.3 live-readiness gap audit against accepted composition.",
-      "No Fable or live external actions authorized."
+      "LEAD-061 live-readiness audit at b58ba6d... confirmed; live promotion remains REVIEW_BLOCKED.",
+      "First authorized V0.4 canary remains accepted; one-call grant consumed; second call excluded; controlled divergence and SB-EVD-002 remain open.",
+      "Persistent-host facts, three genuine V0.6 dry runs, V0.8 account route evidence, V0.9 public canaries, and V1.0–V1.2 operational predecessors remain distinct open gates.",
+      "STATE/routing metadata reconciled to owner target LIVE V1.3, Codex direct implementation, no Fable handoff; stale V1.7/Fable instructions removed from active fields.",
+      "Next dependency-safe assignment: read-only/reproduce-first SB-V11-001/002 reliability audit; no source/test edits until a concrete gap is reproduced."
     ]
   },
   "public_actions": {
@@ -516,11 +523,11 @@
     "current_label": "V0.3 accepted; V0.4 adaptive thinking in progress; controlled empirical divergence still authority-blocked",
     "previous_completed": "V0.3",
     "immediate_target": "V0.4",
-    "execution_target": "V1.7",
-    "execution_ceiling": "V1.7",
+    "execution_target": "V1.3",
+    "execution_ceiling": "V1.3",
     "execution_target_kind": "operational_live",
     "auto_continue_after_target": false,
-    "today_engineering_target": "integrate and prove live V1.7 only, with required recovery/guard repairs and exact real-evidence gates",
+    "today_engineering_target": "finish dependency-safe engineering and evidence work toward LIVE V1.3 while preserving all genuine predecessor gates",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
     "long_term_target_state": "parked_not_authorized_for_current_work",
@@ -530,9 +537,9 @@
       "V3.0"
     ],
     "active_strategic_checkpoints": [
-      "V1.7"
+      "V1.3"
     ],
-    "promotion_rule": "lead-accepted artifacts in MILESTONE_MANIFEST.md plus exact real evidence; development stops after accepted V1.7",
+    "promotion_rule": "lead-accepted artifacts in MILESTONE_MANIFEST.md plus sequential genuine evidence through V1.3; stop after accepted V1.3 unless owner changes scope",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
@@ -543,11 +550,11 @@
     ]
   },
   "next_recovery": [
-    "Fable repairs the R07-041 engineering-seam no-scope capability bypass with zero live calls and exact sentinel regressions",
-    "Acceptance independently audits repaired R07-041, R07-071, due rotation and C05/C06/C07 negative controls",
-    "Fable continues only enabled <=V1.7 zero-live integration while owner-gated operational evidence remains blocked",
-    "Use the preflight gate dossier to request/perform only specifically authorized host/account/model/public/measurement steps",
-    "Submit final live V1.7 packet and stop development; do not auto-continue to V1.8 or V3.0"
+    "Preserve accepted engineering composition 8c86898d and confirmed live-readiness audit b58ba6d as current frontier.",
+    "Codex performs read-only/reproduce-first SB-V11-001/002 reliability audit; no tests/source changes until a concrete current-code gap is reproduced and lead releases a repair.",
+    "Request/use only explicit owner inputs for persistent host, fresh model authorization/manifest, exact account destinations, public actions and elapsed measurement windows.",
+    "Do not route new Social Bots work to Fable; preserve Fable branches as historical evidence only.",
+    "Promote sequentially only from genuine accepted evidence; target is LIVE V1.3, then stop."
   ],
   "priority_zero": {
     "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
@@ -574,21 +581,21 @@
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-051_2026-09-21T2155.md",
+    "lead_review_current": "lead-reviews/LEAD-062_2026-09-22T0805.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
     "live_progress_issue": 3,
     "recovery_plan": "RECOVERY_TO_V07.md",
     "next_round_baseline": "next-round/BASELINE.json",
     "active_campaign_release": "delivery/ACTIVE_EXECUTION.json",
-    "current_execution_contract": "delivery/V17_LIVE.md",
-    "campaign_scope": "delivery/V17_SCOPE.json",
+    "current_execution_contract": "lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "campaign_scope": "LIVE V1.3 owner target; Codex direct; no Fable; no new live grants",
     "agent_entrypoint": "../CLAUDE.md",
     "session_start": "coordination/SESSION_START.md",
     "read_router": "coordination/READ_ROUTER.md",
     "compact_state": "state/CURRENT.md",
-    "fable_assignment": "assignments/FABLE_5_1.md",
-    "cursor_assignment": "assignments/CURSOR_RECOVERY.md",
-    "pause_policy": "No pause just because periodic heartbeat comments are absent. Stop out-of-scope feature work at V1.7, respond to real conflicts/safety/owner changes, and never infer current liveness from a historical start receipt."
+    "fable_assignment": "historical only; no active handoff",
+    "cursor_assignment": "historical evidence only",
+    "pause_policy": "Do not infer liveness from historical heartbeats. Codex may continue only explicitly released dependency-safe work. Genuine live gates require owner facts/authorization and exact evidence."
   }
 }
