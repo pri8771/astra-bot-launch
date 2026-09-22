@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "verifier_id": "SB-R07-044",
+  "source": {
+    "matrix_path": "/Users/pchordia/Downloads/swarm_codex/coordination/astra-bot-launch/social-bots/receipts/evidence/CODEX_MAC_FINAL_MATRIX_20260922/PREPARED_MATRIX.json",
+    "receipts_dir": "/tmp/bots-v04-mac-prepared-runtime-20260922/receipts",
+    "budget_home": "/tmp/bots-v04-mac-prepared-runtime-20260922"
+  },
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "required_comparisons_present": true,
+  "divergence_report": {
+    "run_scope": "v04-mac-local-20260922",
+    "generated_at": "2026-09-22T21:53:05Z",
+    "cases": [
+      {
+        "case": "P0",
+        "receipt_present": true,
+        "receipt_kind": "sanitized-real-canary",
+        "provider_id": "ollama-local-v1",
+        "valid": true,
+        "recommended_action": "NO_ACTION"
+      },
+      {
+        "case": "P1",
+        "receipt_present": true,
+        "receipt_kind": "sanitized-real-canary",
+        "provider_id": "ollama-local-v1",
+        "valid": true,
+        "recommended_action": "NO_ACTION"
+      },
+      {
+        "case": "P2",
+        "receipt_present": true,
+        "receipt_kind": "sanitized-real-canary",
+        "provider_id": "ollama-local-v1",
+        "valid": true,
+        "recommended_action": "NO_ACTION"
+      },
+      {
+        "case": "P3",
+        "receipt_present": true,
+        "receipt_kind": "sanitized-real-canary",
+        "provider_id": "ollama-local-v1",
+        "valid": true,
+        "recommended_action": "RESEARCH_MORE"
+      },
+      {
+        "case": "E0",
+        "receipt_present": true,
+        "receipt_kind": "sanitized-real-canary",
+        "provider_id": "ollama-local-v1",
+        "valid": true,
+        "recommended_action": "NO_ACTION"
+      }
+    ],
+    "comparisons": [
+      {
+        "recommended_changed": false,
+        "ranking_changed": false,
+        "estimates_changed": true,
+        "material": true,
+        "recommended_a": "NO_ACTION",
+        "recommended_b": "NO_ACTION",
+        "ranking_a": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "ranking_b": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "comparison": "P0|P1",
+        "variable": "persona",
+        "reason": null
+      },
+      {
+        "recommended_changed": false,
+        "ranking_changed": false,
+        "estimates_changed": true,
+        "material": true,
+        "recommended_a": "NO_ACTION",
+        "recommended_b": "NO_ACTION",
+        "ranking_a": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "ranking_b": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "comparison": "P0|P2",
+        "variable": "persona",
+        "reason": null
+      },
+      {
+        "recommended_changed": true,
+        "ranking_changed": false,
+        "estimates_changed": true,
+        "material": true,
+        "recommended_a": "NO_ACTION",
+        "recommended_b": "RESEARCH_MORE",
+        "ranking_a": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "ranking_b": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "comparison": "P0|P3",
+        "variable": "persona",
+        "reason": null
+      },
+      {
+        "recommended_changed": false,
+        "ranking_changed": false,
+        "estimates_changed": true,
+        "material": true,
+        "recommended_a": "NO_ACTION",
+        "recommended_b": "NO_ACTION",
+        "ranking_a": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "ranking_b": [
+          "RESEARCH_MORE",
+          "NO_ACTION"
+        ],
+        "comparison": "P0|E0",
+        "variable": "evidence",
+        "reason": null
+      }
+    ],
+    "errors": [],
+    "all_comparisons_material": true,
+    "receipt_kinds": [
+      "sanitized-real-canary"
+    ],
+    "all_receipts_real_adaptive": true,
+    "call_slot_binding": {
+      "checked": true,
+      "unbound_cases": [],
+      "manifest_ids": [
+        "manifest-v04-mac-local-20260922"
+      ],
+      "slots_consumed": 5
+    },
+    "acceptance_evidence_eligible": true,
+    "acceptance_authority": "ChatGPT lead \u2014 this report never self-accepts"
+  },
+  "independent_rejections": [],
+  "self_declared_real_labels_alone": false,
+  "ledger_bound": true,
+  "all_comparisons_material": true,
+  "verdict": "LEDGER_BOUND_MATERIAL_ENGINEERING",
+  "acceptance_claim": false,
+  "acceptance_authority": "ChatGPT lead \u2014 this verifier never self-accepts",
+  "live_model_call_performed": false,
+  "evidence_class": "ENGINEERING",
+  "note": "LEDGER_BOUND_MATERIAL is necessary evidence for lead review of a completed live batch; it is not ACCEPTED and not a version promotion."
+}

@@ -1,0 +1,12 @@
+{
+  "consumed_signal_ids": [],
+  "created_at": "2026-09-22T21:55:53+00:00",
+  "goals": [],
+  "hypotheses": {},
+  "pending_decisions": [],
+  "persona_id": "social-c",
+  "runtime": "social-c",
+  "schema_version": 1,
+  "updated_at": "2026-09-22T21:55:53+00:00",
+  "working_state": {}
+}

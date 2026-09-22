@@ -1,0 +1,69 @@
+{
+  "adaptive": true,
+  "alternatives": [
+    {
+      "action": "NO_ACTION",
+      "confidence": 0.9,
+      "cost": 0.0,
+      "duplication_risk": 0.0,
+      "evidence_refs": [
+        "sig-2d5104012837"
+      ],
+      "expected_learning": 0.05,
+      "expected_value": 0.1,
+      "rationale": "Signal is informational only; no immediate action required per objective to avoid publishing unreviewed content.",
+      "relevance": 0.6,
+      "reversibility": 1.0,
+      "risk": 0.0
+    },
+    {
+      "action": "RESEARCH_MORE",
+      "confidence": 0.7,
+      "cost": 0.2,
+      "duplication_risk": 0.0,
+      "evidence_refs": [
+        "sig-2d5104012837"
+      ],
+      "expected_learning": 0.8,
+      "expected_value": 0.4,
+      "rationale": "Investigate specific Threads podcast features to assess potential for future durable audience growth strategies.",
+      "relevance": 0.8,
+      "reversibility": 1.0,
+      "risk": 0.1
+    }
+  ],
+  "context": {
+    "is_duplicate": false,
+    "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+    "pending_count": 0,
+    "persona": {
+      "display_name": "Tidepool",
+      "id": "social-b",
+      "kind": "general"
+    },
+    "prior_hypotheses": 0,
+    "signal": {
+      "has_source": true,
+      "id": "sig-2d5104012837",
+      "provenance": "live-capture",
+      "tags": [],
+      "title": "Threads Expands Podcast Toolkit for Creators and Listeners"
+    }
+  },
+  "context_digest": "sha256:ba84869ed56202ac74b5ecc91d6fa609b0e37f7b8f686ab334d3853ea7d8b60d",
+  "evidence_refs": [
+    "sig-2d5104012837"
+  ],
+  "generated_at": "2026-09-22T21:53:05Z",
+  "proposal_id": "prop-P1-2026-09-22T21:53:05Z",
+  "provider_id": "ollama-local-v1",
+  "receipt_kind": "sanitized-real-canary",
+  "recommended_action": "NO_ACTION",
+  "schema_version": "v0.4",
+  "source_task": "SB-V04-005",
+  "uncertainties": [
+    "Future platform feature stability",
+    "Audience reaction to new tools",
+    "Internal review capacity"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "detail": {
+    "fence_generation": 1,
+    "persona": "social-a",
+    "reconcile_required": false,
+    "started_at": "2026-09-22T21:55:32+00:00",
+    "took_over_from": null
+  },
+  "kind": "start",
+  "lease_id": "65c56665cb19496aa2f31755ccf01c3a",
+  "namespace": "social-a",
+  "receipt_id": "20260922T215532+0000-start-dd982d0b",
+  "recorded_at": "2026-09-22T21:55:32+00:00",
+  "task_id": "cycle:social-a",
+  "worker_id": "w-Apple-M5-65905-96bf22"
+}

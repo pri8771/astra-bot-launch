@@ -1,0 +1,26 @@
+{
+  "detail": {
+    "candidate_succeeded": false,
+    "chosen_action": "NO_ACTION",
+    "cycle": 1,
+    "fence_generation": 1,
+    "outcome": "no_action",
+    "persona": "social-c",
+    "policy_selected": null,
+    "provider_recommended": null,
+    "reconciled": {
+      "queue_items": 0,
+      "safe": true,
+      "unauthorized_published": 0
+    },
+    "verified": true,
+    "withheld": false
+  },
+  "kind": "finish",
+  "lease_id": "6b13e782652240d88bae646bf3753d95",
+  "namespace": "social-c",
+  "receipt_id": "20260922T215553+0000-finish-e06e2147",
+  "recorded_at": "2026-09-22T21:55:53+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-Apple-M5-65987-60bf23"
+}

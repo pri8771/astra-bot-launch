@@ -1,0 +1,60 @@
+{
+  "blockers": [],
+  "evidence_class": "ENGINEERING",
+  "host": {
+    "hostname": "Apple-M5-Pro-87",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "platform_release": "25.6.0",
+    "root_fs": null,
+    "workspace_fs": null
+  },
+  "live_claim": false,
+  "locking": {
+    "fcntl_flock_available": true,
+    "strong_path": "posix-flock"
+  },
+  "notes": "SB-R07-072 preflight only. Never claim V0.7 LIVE acceptance from this receipt. Ephemeral Cloud Agent / CCR / overlay hosts must be UNSUITABLE; continue dependency-safe non-LIVE artifacts.",
+  "permissions": {
+    "euid": 501,
+    "uid": 501,
+    "writable_repo": true
+  },
+  "persistence_signals": {
+    "cursor_env": false,
+    "ephemeral_markers": []
+  },
+  "preflight_id": "SB-R07-072",
+  "python": {
+    "executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "version": "3.14.7"
+  },
+  "recorded_at": "2026-09-22T21:54:50Z",
+  "repo": {
+    "git_dir_present": true,
+    "path": "/private/tmp/bots-mac-matrix-source-20260922/social-bots"
+  },
+  "scheduling": {
+    "crontab": "/usr/bin/crontab",
+    "launchctl": "/bin/launchctl",
+    "schtasks": null,
+    "systemctl": null,
+    "systemd_user": {
+      "argv": [
+        "systemctl",
+        "--user",
+        "is-system-running"
+      ],
+      "output": "systemctl not on PATH",
+      "returncode": null
+    }
+  },
+  "schema_version": 1,
+  "suitable_for_v07_live_scheduler": true,
+  "verdict": "SUITABLE_PERSISTENT_HOST_CANDIDATE",
+  "zero_spend": {
+    "ANTHROPIC_API_KEY_present": false,
+    "CLAUDE_CODE_OAUTH_TOKEN_present": false,
+    "policy": "no PAYG / no new spend; subscription route only when authorized"
+  }
+}

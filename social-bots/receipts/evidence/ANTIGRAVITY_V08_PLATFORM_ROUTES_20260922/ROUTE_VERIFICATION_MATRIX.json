@@ -1,0 +1,113 @@
+{
+  "social-a/social-a": {
+    "x": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no eligible route: route-x-social-a: route_type unsupported"
+    },
+    "instagram": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-a/social-a on instagram"
+    },
+    "tiktok": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-a/social-a on tiktok"
+    },
+    "reddit": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no eligible route: route-reddit-social-a: route never verified (last_verified_at absent or stale)"
+    },
+    "facebook": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-a/social-a on facebook"
+    }
+  },
+  "social-b/social-b": {
+    "x": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-b/social-b on x"
+    },
+    "instagram": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no eligible route: route-instagram-social-b: route never verified (last_verified_at absent or stale)"
+    },
+    "tiktok": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-b/social-b on tiktok"
+    },
+    "reddit": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-b/social-b on reddit"
+    },
+    "facebook": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no eligible route: route-facebook-social-b: route never verified (last_verified_at absent or stale)"
+    }
+  },
+  "social-c/social-c": {
+    "x": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-c/social-c on x"
+    },
+    "instagram": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-c/social-c on instagram"
+    },
+    "tiktok": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no eligible route: route-tiktok-social-c: route never verified (last_verified_at absent or stale)"
+    },
+    "reddit": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-c/social-c on reddit"
+    },
+    "facebook": {
+      "account_available": false,
+      "authorized": false,
+      "publishable": false,
+      "route_id": null,
+      "reason": "no route for social-c/social-c on facebook"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "branch": "codex/bots-mac-matrix-source-20260922",
+  "candidates_tried": [
+    {
+      "bot": "social-b",
+      "result": "claimed",
+      "task_id": "cycle:social-b"
+    }
+  ],
+  "canonical_sha": "1d8f72b504cf0bb65ebe249fa55778061ccacabe",
+  "claim_outcome": "claimed",
+  "claimed_bot": "social-b",
+  "claimed_task": "cycle:social-b",
+  "direction_id": "LEAD-068",
+  "direction_source": "state-json-fallback",
+  "duration_seconds": 0.48,
+  "error": null,
+  "exit_code": 0,
+  "finished_at": "2026-09-22T21:55:42Z",
+  "heartbeat_emitted": true,
+  "invocation_id": "inv-20260922T215542Z-520d3406",
+  "lane": "core",
+  "live_model_call": false,
+  "reasoning_route": {
+    "grant_manifest_id": null,
+    "live_route_requested": false,
+    "mode": "baseline",
+    "permitted": true,
+    "reason": "reasoning mode 'baseline' is not a live model route"
+  },
+  "runtime": {
+    "host": "Apple-M5-Pro-87",
+    "pid": 65954,
+    "platform": "Darwin",
+    "platform_release": "25.6.0",
+    "python": "3.14.7"
+  },
+  "scheduler": "launchd",
+  "schema_version": 1,
+  "session_id": "s-20260922T215542Z-023f9cb4",
+  "started_at": "2026-09-22T21:55:42Z",
+  "status": "complete",
+  "work_outcome": "no_action",
+  "work_summary": {
+    "bot": "social-b",
+    "chosen_action": "NO_ACTION",
+    "finish_receipt": "20260922T215542+0000-finish-0e58420d.json",
+    "lease_id": "ba6dbf4c481d41ecae20bd977a8df873",
+    "lease_released": true,
+    "outcome": "no_action",
+    "persona": "social-b",
+    "start_receipt": "20260922T215542+0000-start-438672bf.json",
+    "task_id": "cycle:social-b",
+    "verified": true,
+    "withheld": false,
+    "worker_id": "w-Apple-M5-65954-1eec19"
+  }
+}

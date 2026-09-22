@@ -1,0 +1,16 @@
+{
+  "detail": {
+    "fence_generation": 1,
+    "persona": "social-c",
+    "reconcile_required": false,
+    "started_at": "2026-09-22T21:55:53+00:00",
+    "took_over_from": null
+  },
+  "kind": "start",
+  "lease_id": "6b13e782652240d88bae646bf3753d95",
+  "namespace": "social-c",
+  "receipt_id": "20260922T215553+0000-start-bf82f333",
+  "recorded_at": "2026-09-22T21:55:53+00:00",
+  "task_id": "cycle:social-c",
+  "worker_id": "w-Apple-M5-65987-60bf23"
+}

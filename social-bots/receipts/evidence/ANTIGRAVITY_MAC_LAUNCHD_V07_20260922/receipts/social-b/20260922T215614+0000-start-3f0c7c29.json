@@ -1,0 +1,16 @@
+{
+  "detail": {
+    "fence_generation": 1,
+    "persona": "social-b",
+    "reconcile_required": false,
+    "started_at": "2026-09-22T21:56:14+00:00",
+    "took_over_from": null
+  },
+  "kind": "start",
+  "lease_id": "beec71a2245a4a07b9dbca9c29ae6f84",
+  "namespace": "social-b",
+  "receipt_id": "20260922T215614+0000-start-3f0c7c29",
+  "recorded_at": "2026-09-22T21:56:14+00:00",
+  "task_id": "cycle:social-b",
+  "worker_id": "w-Apple-M5-66068-a02384"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "manifest_id": "manifest-v04-mac-local-20260922",
+  "created_by": "Antigravity implementation finisher per owner /goal directive",
+  "created_at": "2026-09-22T21:49:00Z",
+  "owner_authorization_ref": "owner directive: /goal keep going until V0.7 is live",
+  "artifact_scope": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "run_scope": "v04-mac-local-20260922",
+  "lane": "mac-local",
+  "provider_mode": "ollama-local",
+  "max_calls": 5,
+  "expires_at": "2026-09-23T01:49:00Z",
+  "retry_allowed": false,
+  "public_effect_allowed": false,
+  "spend_authorized": false,
+  "api_key_allowed": false,
+  "injected_runner_allowed": false,
+  "source_sha": "3bad0541fde8afb584bc6e396ea093b5d1f3c407",
+  "source_tree": "781fc16b1b0a982c7014ea04942437d6ada803e6",
+  "execution_matrix_sha256": "sha256:30e0fe731b9f8cf00ead92cfbf9a2e4412e0834b0cd3fdeb9706d2ed813b740f"
+}

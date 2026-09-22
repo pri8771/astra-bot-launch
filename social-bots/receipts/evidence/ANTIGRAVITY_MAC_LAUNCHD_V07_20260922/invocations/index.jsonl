@@ -1,0 +1,10 @@
+{"invocation_id": "inv-20260922T215529Z-fed2fa75", "lane": "core", "phase": "open", "recorded_at": "2026-09-22T21:55:29Z", "session_id": "s-20260922T215529Z-346b2f3b"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260922T215529Z-fed2fa75", "lane": "core", "phase": "close", "recorded_at": "2026-09-22T21:55:32Z", "session_id": "s-20260922T215529Z-346b2f3b", "status": "complete", "work_outcome": "no_action"}
+{"invocation_id": "inv-20260922T215542Z-520d3406", "lane": "core", "phase": "open", "recorded_at": "2026-09-22T21:55:42Z", "session_id": "s-20260922T215542Z-023f9cb4"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260922T215542Z-520d3406", "lane": "core", "phase": "close", "recorded_at": "2026-09-22T21:55:42Z", "session_id": "s-20260922T215542Z-023f9cb4", "status": "complete", "work_outcome": "no_action"}
+{"invocation_id": "inv-20260922T215552Z-4113545a", "lane": "core", "phase": "open", "recorded_at": "2026-09-22T21:55:52Z", "session_id": "s-20260922T215552Z-303c4120"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260922T215552Z-4113545a", "lane": "core", "phase": "close", "recorded_at": "2026-09-22T21:55:53Z", "session_id": "s-20260922T215552Z-303c4120", "status": "complete", "work_outcome": "no_action"}
+{"invocation_id": "inv-20260922T215603Z-1044c230", "lane": "core", "phase": "open", "recorded_at": "2026-09-22T21:56:03Z", "session_id": "s-20260922T215603Z-961c8b42"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260922T215603Z-1044c230", "lane": "core", "phase": "close", "recorded_at": "2026-09-22T21:56:04Z", "session_id": "s-20260922T215603Z-961c8b42", "status": "complete", "work_outcome": "no_action"}
+{"invocation_id": "inv-20260922T215614Z-473bbf10", "lane": "core", "phase": "open", "recorded_at": "2026-09-22T21:56:14Z", "session_id": "s-20260922T215614Z-3b74ab96"}
+{"claim_outcome": "claimed", "exit_code": 0, "invocation_id": "inv-20260922T215614Z-473bbf10", "lane": "core", "phase": "close", "recorded_at": "2026-09-22T21:56:14Z", "session_id": "s-20260922T215614Z-3b74ab96", "status": "complete", "work_outcome": "no_action"}

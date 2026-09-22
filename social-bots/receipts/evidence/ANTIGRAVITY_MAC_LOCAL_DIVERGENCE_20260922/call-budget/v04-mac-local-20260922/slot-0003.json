@@ -1,0 +1,20 @@
+{
+  "artifact": "SB-V04-002",
+  "context_digest": "sha256:d9f136709f694cbad464620e5c3846a195549c390d416b3b8fad559d726ebfab",
+  "detail": {
+    "adaptive": true,
+    "provider_id": "ollama-local-v1",
+    "recommended_action": "NO_ACTION"
+  },
+  "execution_matrix_sha256": "sha256:30e0fe731b9f8cf00ead92cfbf9a2e4412e0834b0cd3fdeb9706d2ed813b740f",
+  "lane": "mac-local",
+  "manifest_digest": "sha256:7fe61c99c2597514796b146cf4d2a49b16b690b769b211753ee9d91ef7ec05a5",
+  "manifest_id": "manifest-v04-mac-local-20260922",
+  "outcome": "proposal_received",
+  "outcome_recorded_at": "2026-09-22T21:52:31Z",
+  "reserved_at": "2026-09-22T21:52:12Z",
+  "run_scope": "v04-mac-local-20260922",
+  "slot": 3,
+  "source_sha": "3bad0541fde8afb584bc6e396ea093b5d1f3c407",
+  "source_tree": "781fc16b1b0a982c7014ea04942437d6ada803e6"
+}

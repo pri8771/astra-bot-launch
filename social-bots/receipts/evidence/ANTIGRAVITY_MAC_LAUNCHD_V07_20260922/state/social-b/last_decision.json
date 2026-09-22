@@ -1,0 +1,67 @@
+{
+  "alternatives": [
+    {
+      "action": "NO_ACTION",
+      "duplication_risk": 0.0,
+      "expected_learning": 0.0,
+      "expected_value": 0.05,
+      "rationale": "no unconsumed evidence since last observation",
+      "reversibility": 1.0,
+      "risk": 0.0
+    }
+  ],
+  "bot": "social-b",
+  "chosen": {
+    "action": "NO_ACTION",
+    "duplication_risk": 0.0,
+    "expected_learning": 0.0,
+    "expected_value": 0.05,
+    "rationale": "no unconsumed evidence since last observation",
+    "reversibility": 1.0,
+    "risk": 0.0
+  },
+  "chosen_reason": "no unconsumed evidence since last observation",
+  "closeout": [],
+  "cycle": 2,
+  "execute": {
+    "effect": "none",
+    "outcome": "no_action",
+    "performed": false
+  },
+  "fence": {
+    "generation": 1,
+    "lease_id": "beec71a2245a4a07b9dbca9c29ae6f84",
+    "task_id": "cycle:social-b",
+    "worker_id": "w-Apple-M5-66068-a02384"
+  },
+  "learn": {
+    "updated": false
+  },
+  "observe": {
+    "changed": false,
+    "consumed_count": 0,
+    "observation_fingerprint": null,
+    "pending_count": 0,
+    "total_signals": 0
+  },
+  "orient": {
+    "inferred": [],
+    "known": [],
+    "objective": "grow shares for Tidepool via evidence-based experiments",
+    "summary": "no new signals; nothing to reconsider",
+    "uncertain": []
+  },
+  "outcome": "no_action",
+  "persona": "social-b",
+  "recorded_at": "2026-09-22T21:56:14+00:00",
+  "required_authority": "none",
+  "schedule": {
+    "next_check_in_hours": 24,
+    "note": "wait on events/timers, not constant polling",
+    "trigger": "deterministic timer + new-signal event"
+  },
+  "verify": {
+    "note": "no effect to verify",
+    "verified": true
+  }
+}

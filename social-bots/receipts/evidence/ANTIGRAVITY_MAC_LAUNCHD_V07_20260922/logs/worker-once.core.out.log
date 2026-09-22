@@ -1,0 +1,55 @@
+{
+  "session_id": "s-20260922T215529Z-346b2f3b",
+  "invocation_id": "inv-20260922T215529Z-fed2fa75",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+{
+  "session_id": "s-20260922T215542Z-023f9cb4",
+  "invocation_id": "inv-20260922T215542Z-520d3406",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-b",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+{
+  "session_id": "s-20260922T215552Z-303c4120",
+  "invocation_id": "inv-20260922T215552Z-4113545a",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-c",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+{
+  "session_id": "s-20260922T215603Z-961c8b42",
+  "invocation_id": "inv-20260922T215603Z-1044c230",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-a",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}
+{
+  "session_id": "s-20260922T215614Z-3b74ab96",
+  "invocation_id": "inv-20260922T215614Z-473bbf10",
+  "claim_outcome": "claimed",
+  "claimed_task": "cycle:social-b",
+  "work_outcome": "no_action",
+  "heartbeat_emitted": true,
+  "live_model_call": false,
+  "reasoning_mode": "baseline",
+  "exit_code": 0
+}

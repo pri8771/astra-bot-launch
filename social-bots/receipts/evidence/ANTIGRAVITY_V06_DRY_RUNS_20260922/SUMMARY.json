@@ -1,0 +1,36 @@
+{
+  "artifact_id": "SB-R07-061",
+  "source_code_ref": "UNKNOWN",
+  "home": "/var/folders/fg/lmdhrms177s93m879bkgvjzr0000gn/T/sbots-dryrun-iayf1rta",
+  "manifest_dir": "/tmp/bots-v06-manifests",
+  "all_passed": true,
+  "any_published": false,
+  "any_publish_authorized": false,
+  "model_calls_used_total": 0,
+  "runs": [
+    {
+      "bot": "social-a",
+      "persona": "social-a",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-f373b37a23c9",
+      "public_effect_budget": 0
+    },
+    {
+      "bot": "social-b",
+      "persona": "social-b",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-afe98c87525d",
+      "public_effect_budget": 0
+    },
+    {
+      "bot": "social-c",
+      "persona": "social-c",
+      "outcome": "candidate_created",
+      "passed": true,
+      "run_id": "dry-aca77e6612c6",
+      "public_effect_budget": 0
+    }
+  ]
+}

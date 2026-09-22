@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "dry-f373b37a23c9",
+  "artifact_id": "SB-R07-061",
+  "version_target": "V0.6",
+  "bot": "social-a",
+  "persona": "social-a",
+  "started_at": "2026-09-22T21:56:37+00:00",
+  "finished_at": "2026-09-22T21:56:37+00:00",
+  "source_code_ref": "UNKNOWN",
+  "config_hash": "UNKNOWN",
+  "persona_hash": "1ddc56a1212708b27b2b491563707896ec61108e592284d748a07a63c52ad9f6",
+  "objective_hash": "d0583bafb6d54b492a6e8b2950d12ea9dc23d59070d647330ffe7bfb72247b85",
+  "host_alias": "engineering-host",
+  "scheduler_or_invoker": "sbots.dry_run_runner",
+  "authorization_manifest_ref": "zero-public-effect-authority",
+  "evidence_refs": [
+    "sig-b310cb172ddf"
+  ],
+  "provider_runs": [],
+  "model_call_budget": 0,
+  "model_calls_used": 0,
+  "public_effect_budget": 0,
+  "public_effects_attempted": 0,
+  "public_effects_verified": 0,
+  "result": "candidate_created",
+  "limitations": [
+    "engineering dry-run; no live model call",
+    "zero-public-effect authority profile"
+  ],
+  "receipt_refs": [
+    "/var/folders/fg/lmdhrms177s93m879bkgvjzr0000gn/T/sbots-dryrun-iayf1rta/state/social-a/last_decision.json"
+  ],
+  "authority_profile": {
+    "can_public_post": false,
+    "can_spend": false,
+    "can_message_users": false
+  },
+  "queue_snapshot": [
+    {
+      "published": false,
+      "publish_authorized": false,
+      "platform": "x"
+    }
+  ],
+  "reconciliation": []
+}

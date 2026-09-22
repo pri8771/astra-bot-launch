@@ -1,0 +1,14 @@
+{
+  "beats": 5,
+  "current_task_id": "cycle:social-b",
+  "heartbeat_at": "2026-09-22T21:56:14+00:00",
+  "host_alias": "local",
+  "last_receipt": "20260922T215614+0000-finish-385b9992.json",
+  "lease_id": "beec71a2245a4a07b9dbca9c29ae6f84",
+  "next_safe_action": "release_lease",
+  "pid": 66068,
+  "source_ref": "social-bots/runtime",
+  "started_at": "2026-09-22T21:56:14+00:00",
+  "status": "done",
+  "worker_id": "w-Apple-M5-66068-a02384"
+}
