@@ -17,7 +17,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import decision, research, pipeline, analytics, isolation, worker  # noqa: E402
+from runtime import decision, research, pipeline, analytics, isolation, paths, worker  # noqa: E402
+from runtime.jsonstore import append_jsonl  # noqa: E402
 from runtime.personas import load as load_persona  # noqa: E402
 
 GEN = "social-a"
@@ -147,10 +148,14 @@ class ProductionReadPathTest(unittest.TestCase):
         # it must see ALL personas' queue entries (so a takeover can verify the
         # whole external-effect surface), which is exactly admin_all_records.
         bot = GEN
-        pipeline.enqueue(bot, {"content_id": "c-a", "persona": GEN, "signal_id": "s",
-                               "signature_move": "m"}, {"platform": "x"}, "exp-a")
-        pipeline.enqueue(bot, {"content_id": "c-b", "persona": CUL, "signal_id": "s",
-                               "signature_move": "m"}, {"platform": "x"}, "exp-b")
+        # Raw FIXTURE queue rows: this test proves the reconciliation READ path.
+        # The production writer ``pipeline.enqueue`` refuses payloads without a
+        # final-content review binding (V1.7 C05/C06).
+        for cid, persona, exp in (("c-a", GEN, "exp-a"), ("c-b", CUL, "exp-b")):
+            append_jsonl(paths.content_dir(bot) / "publish_queue.jsonl",
+                         {"content_id": cid, "persona": persona, "bot": bot, "platform": "x",
+                          "experiment_id": exp, "payload": {"platform": "x"},
+                          "publish_authorized": False, "published": False})
         rec = worker._reconcile(bot)
         # Sees BOTH personas' entries (runtime-wide), and none published unauthorized.
         self.assertEqual(rec["queue_items"], 2)

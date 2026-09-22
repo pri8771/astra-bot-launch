@@ -37,6 +37,10 @@ class CulturalReviewBinding:
     reviewed_at: str = ""
     policy_ref: str = "persona.source_requirements.named_reviewer"
     advertising_disallowed: bool = True
+    # V1.7 C06 / G-CULTURAL: the sha256 of the EXACT final rendered text the
+    # reviewer saw. ``pipeline.final_review`` refuses a cultural pass whose
+    # binding does not name the final text being queued.
+    content_sha256: str | None = None
 
     def as_dict(self) -> dict:
         d = asdict(self)
@@ -57,8 +61,8 @@ def _normalize_refs(refs: Iterable | None) -> tuple:
 def make_binding(*, candidate_id: str, reviewer_id: str, reviewer_version: str,
                  evidence_refs, status: str, rationale: str = "",
                  reviewed_at: str | None = None,
-                 policy_ref: str = "persona.source_requirements.named_reviewer"
-                 ) -> CulturalReviewBinding:
+                 policy_ref: str = "persona.source_requirements.named_reviewer",
+                 content_sha256: str | None = None) -> CulturalReviewBinding:
     """Construct a binding; does not itself grant operational acceptance."""
     return CulturalReviewBinding(
         candidate_id=candidate_id,
@@ -70,6 +74,7 @@ def make_binding(*, candidate_id: str, reviewer_id: str, reviewer_version: str,
         reviewed_at=reviewed_at or now_iso(),
         policy_ref=policy_ref,
         advertising_disallowed=True,
+        content_sha256=content_sha256,
     )
 
 
@@ -93,9 +98,16 @@ def binding_from_candidate(candidate: dict) -> CulturalReviewBinding | None:
             reviewed_at=raw.get("reviewed_at") or now_iso(),
             policy_ref=raw.get("policy_ref") or "persona.source_requirements.named_reviewer",
             advertising_disallowed=bool(raw.get("advertising_disallowed", True)),
+            content_sha256=raw.get("content_sha256") or None,
         )
     except Exception:
         return None
+
+
+def bound_to_content(binding: CulturalReviewBinding | None, final_text_sha256: str) -> bool:
+    """True only when the binding names exactly this final rendered text."""
+    return binding is not None and bool(binding.content_sha256) \
+        and binding.content_sha256 == final_text_sha256
 
 
 def validate_binding(binding: CulturalReviewBinding | None, *,

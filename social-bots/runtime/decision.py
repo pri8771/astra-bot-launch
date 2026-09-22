@@ -322,6 +322,10 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
         reviewed = pipeline.review(persona, draft)
         platform = persona["platform_strategy"]["primary"][0]
         payload = pipeline.format_for_platform(reviewed, platform)
+        # ---- FINAL-CONTENT REVIEW BINDING (V1.7 C05/C06) -------------------
+        # Every check is re-run over the exact rendered text and bound to its
+        # hash; enqueue refuses anything unbound or mismatched.
+        final = pipeline.final_review(persona, reviewed, payload)
 
         # ---- REQUIRED-REVIEW GATE (deterministic publication gate) --------
         # A failed factual/voice/cultural review or a platform-limit failure
@@ -335,6 +339,12 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             gate_failures.append({"gate": "platform_limit",
                                   "platform": platform,
                                   "char_limit": payload["char_limit"]})
+        if not final["passed"]:
+            gate_failures.append({"gate": "final_review",
+                                  "checks": [c for c in final["checks"].values()
+                                             if not c["passed"]],
+                                  "reasons": final["reasons"],
+                                  "final_text_sha256": final["final_text_sha256"]})
         if gate_failures:
             def withheld_effects():
                 rt.record_action({"action": "CREATE_CANDIDATE_WITHHELD",
@@ -355,19 +365,25 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                       "published": False, "publish_authorized": False,
                       "review_passed": reviewed["review_passed"],
                       "within_platform_limit": payload["within_limit"],
+                      "final_review_bound": final["passed"],
+                      "final_text_sha256": final["final_text_sha256"],
                       "experiment_registered": False, "queued": False,
                       "note": "required gate failed; candidate correctly did NOT proceed"}
             learn = {"updated": False,
                      "note": "no hypothesis registered; a withheld candidate is not evidence of a launch"}
             return (execute, verify, learn, withheld_effects)
 
+        # PROSPECTIVE registration (V1.7 C07): the metric is predeclared, the
+        # baseline is explicitly NOT measured, and there is no outcome, decision
+        # or confidence until real post-window evidence exists.
+        metric = persona["success_metric_hierarchy"][0]
         exp = pipeline.Experiment(
             experiment_id=f"exp-{reviewed['content_id']}",
             bot=bot, persona=persona["id"], platform=platform,
             hypothesis=persona["audience_hypotheses"][0],
-            baseline={"metric": persona["success_metric_hierarchy"][0], "value": "unknown-pre-post"},
+            baseline=pipeline.prospective_baseline(metric),
             intervention=f"publish 1 {reviewed['signature_move']} candidate on {platform}",
-            success_metric=persona["success_metric_hierarchy"][0],
+            success_metric=metric,
             stop_criteria="no lift above baseline noise within window; or policy flag",
             observation_window_hours=48,
         )
@@ -380,7 +396,8 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             rt.record_content({"content_id": reviewed["content_id"],
                                "content_key": pipeline.content_key(reviewed),
                                "persona": persona["id"], "platform": platform,
-                               "review_passed": reviewed["review_passed"]})
+                               "review_passed": reviewed["review_passed"],
+                               "final_text_sha256": final["final_text_sha256"]})
             pipeline.enqueue(bot, reviewed, payload, exp.experiment_id)
             analytics.emit(analytics.make_event(
                 bot, persona["id"], "candidate_created", platform=platform,
@@ -390,9 +407,10 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
                 content_id=reviewed["content_id"], experiment_id=exp.experiment_id,
                 metrics={"publish_authorized": 0}))
             ps.upsert_hypothesis(
-                hid=hid, statement=exp.hypothesis, confidence=0.5,
-                evidence=[f"experiment {exp.experiment_id} registered; "
-                          f"awaiting {exp.observation_window_hours}h window"])
+                hid=hid, statement=exp.hypothesis, confidence=None,
+                evidence=[f"experiment {exp.experiment_id} registered PROSPECTIVE; "
+                          f"awaiting {exp.observation_window_hours}h window after "
+                          f"an actual publication"])
             rt.record_action({"action": "CREATE_CANDIDATE",
                               "persona": persona["id"],
                               "content_id": reviewed["content_id"],
@@ -409,12 +427,16 @@ def _execute(bot: str, persona: dict, chosen: Candidate, authority: Authority,
             "published": False,
             "review_passed": reviewed["review_passed"],
             "within_platform_limit": payload["within_limit"],
+            "final_review_bound": True,
+            "final_text_sha256": final["final_text_sha256"],
             "note": "queued only; no external effect; publish_authorized must be False",
         }
         learn = {"updated": True,
                  "hypothesis_id": hid,
-                 "confidence": 0.5,
-                 "note": "hypothesis registered; confidence updates only after real post-window evidence"}
+                 "confidence": None,
+                 "status": pipeline.PROSPECTIVE,
+                 "note": "prospective registration: no baseline measured, no outcome, "
+                         "no confidence until real post-window evidence"}
         return ({"performed": True, "outcome": "candidate_created",
                  "effect": "candidate reviewed + experiment registered + queued (unpublished)",
                  "content_id": reviewed["content_id"], "experiment_id": exp.experiment_id},

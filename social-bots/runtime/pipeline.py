@@ -9,7 +9,8 @@ external effect.
 from __future__ import annotations
 
 import hashlib
-from dataclasses import dataclass, field
+import json
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from . import paths, factcheck, content_intelligence as ci, cultural_review as cr
@@ -134,6 +135,9 @@ def cultural_review(persona: dict, candidate: dict) -> dict:
 
 
 def review(persona: dict, candidate: dict) -> dict:
+    """Draft-level review. Stamps a binding over EXACTLY the inputs reviewed, so a
+    later edit to the candidate (or a re-format) is detectable by ``final_review``
+    and ``enqueue`` (V1.7 C05/C06)."""
     checks = {
         "fact": fact_check(persona, candidate),
         "voice": voice_review(persona, candidate),
@@ -142,6 +146,8 @@ def review(persona: dict, candidate: dict) -> dict:
     candidate["review"] = checks
     candidate["review_passed"] = all(c["passed"] for c in checks.values())
     candidate["status"] = "reviewed" if candidate["review_passed"] else "withheld"
+    candidate["review_binding"] = {"reviewed_sha256": reviewed_digest(candidate),
+                                   "reviewed_at": now_iso()}
     return candidate
 
 
@@ -161,8 +167,9 @@ def _concept_from_candidate(candidate: dict):
     if candidate.get("content_concept") is not None:
         return candidate["content_concept"]
     if candidate.get("segments"):
-        return ci.new_concept(candidate["persona"], list(candidate["segments"]),
-                              series_id=candidate.get("series_id"))
+        concept = ci.new_concept(candidate["persona"], list(candidate["segments"]),
+                                 series_id=candidate.get("series_id"))
+        return _stable_concept(concept, candidate)
     segs: list = []
     for fs in candidate.get("fact_segments") or []:
         segs.append(ci.Segment.fact(fs["text"], fs["binding_ref"]))
@@ -172,8 +179,29 @@ def _concept_from_candidate(candidate: dict):
         segs.append(ci.Segment.framing(candidate["body"]))
     if not segs:
         segs.append(ci.Segment.framing(""))
-    return ci.new_concept(candidate["persona"], segs,
-                          series_id=candidate.get("series_id"))
+    concept = ci.new_concept(candidate["persona"], segs, series_id=candidate.get("series_id"))
+    return _stable_concept(concept, candidate)
+
+
+def _stable_concept(concept, candidate: dict):
+    """Give a candidate-derived concept a DETERMINISTIC id (V1.7 C05 lineage).
+
+    ``new_concept`` mints a random id, and the platform hashtag tail is derived
+    from it, so the same candidate rendered twice produced different final text.
+    A reviewer (human cultural review, G-CULTURAL) signs the hash of the text they
+    saw; the runtime must be able to render that exact text again. The id is
+    therefore a function of persona + content_id, and lineage stays truthful:
+    one candidate, one concept.
+    """
+    if not candidate.get("content_id"):
+        return concept
+    basis = f"{candidate.get('persona')}|{candidate['content_id']}".encode("utf-8")
+    stable_id = "cc-" + hashlib.sha256(basis).hexdigest()[:12]
+    try:
+        return replace(concept, concept_id=stable_id)
+    except TypeError:                                 # not a dataclass instance
+        concept.concept_id = stable_id
+        return concept
 
 
 def format_for_platform(candidate: dict, platform: str) -> dict:
@@ -207,6 +235,171 @@ def format_for_platform(candidate: dict, platform: str) -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Final-content review binding (V1.7 C05/C06; LEAD-050 item 5)
+#
+# Draft-level review looks at hook/body/claims; platform formatting then renders
+# the FINAL text (it may drop framing). Nothing may be queued unless the factual,
+# voice, cultural and platform checks were run over that exact final text and the
+# result is bound to its hash. Formatting again, editing the candidate or editing
+# the payload invalidates the binding; ``enqueue`` refuses unbound or mismatched
+# payloads; ``verify_queued_entry`` re-checks the exact bytes a consumer reads.
+# --------------------------------------------------------------------------- #
+class ReviewBindingError(ValueError):
+    """A payload reached the queue without a review bound to its exact final content."""
+
+
+# Keys the review itself writes; everything else on the candidate is a reviewed input.
+_REVIEW_OUTPUT_KEYS = frozenset({"review", "review_passed", "status", "review_binding"})
+
+
+def _canonical(obj) -> bytes:
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+
+
+def reviewed_digest(candidate: dict) -> str:
+    """sha256 over every reviewed input of a candidate (its own review output excluded)."""
+    inputs = {k: v for k, v in candidate.items() if k not in _REVIEW_OUTPUT_KEYS}
+    return hashlib.sha256(_canonical(inputs)).hexdigest()
+
+
+def text_digest(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def final_review(persona: dict, candidate: dict, payload: dict) -> dict:
+    """Run every review over the FINAL rendered text and bind the result to its hash.
+
+    The binding (also stored on ``payload["review_binding"]``) names the exact
+    content id / persona / runtime / platform and the sha256 of ``payload["text"]``.
+    ``passed`` is False when the candidate changed since its draft review, when any
+    check fails on the final text, or when the platform gate is not READY.
+    """
+    reasons: list[str] = []
+    draft = candidate.get("review_binding") or {}
+    draft_ok = bool(draft) and draft.get("reviewed_sha256") == reviewed_digest(candidate)
+    if not draft_ok:
+        reasons.append("candidate changed after its draft review (or was never reviewed)")
+    text = payload.get("text")
+    if not isinstance(text, str):
+        reasons.append("payload carries no rendered text")
+        text = ""
+
+    final_view = dict(candidate)
+    final_view["hook"] = ""
+    final_view["body"] = text                          # exactly what would be published
+    has_facts = bool(candidate.get("fact_segments") or candidate.get("segments")
+                     or candidate.get("content_concept"))
+    platform_ok = bool(payload.get("within_limit")) and payload.get("status") == ci.READY \
+        and not payload.get("silent_truncation") \
+        and (bool(payload.get("facts_preserved")) or not has_facts)
+    checks = {
+        "fact": fact_check(persona, final_view),
+        "voice": voice_review(persona, final_view),
+        "cultural": cultural_review(persona, final_view),
+        "platform": {"check": "platform", "passed": platform_ok,
+                     "reason": ("ready within limit" if platform_ok else
+                                f"status={payload.get('status')!r} within_limit="
+                                f"{payload.get('within_limit')!r} facts_preserved="
+                                f"{payload.get('facts_preserved')!r}")},
+    }
+    # G-CULTURAL: a required cultural pass must name THIS final text, not merely
+    # the candidate id — an attributable review over exact final content.
+    cultural = checks["cultural"]
+    if cultural.get("required") and cultural.get("passed"):
+        if not cr.bound_to_content(cr.binding_from_candidate(candidate), text_digest(text)):
+            checks["cultural"] = dict(cultural, passed=False, status=cr.WITHHELD,
+                                      reason="cultural review is not bound to the final "
+                                             "rendered text (content_sha256 missing or "
+                                             "mismatched)")
+    reasons += [f"{k}: {c.get('reason')}" for k, c in checks.items() if not c["passed"]]
+    binding = {
+        "final_text_sha256": text_digest(text),
+        "draft_reviewed_sha256": draft.get("reviewed_sha256"),
+        "content_id": candidate.get("content_id"),
+        "persona": candidate.get("persona"),
+        "bot": candidate.get("bot"),
+        "platform": payload.get("platform"),
+        "checks": checks,
+        "passed": draft_ok and all(c["passed"] for c in checks.values()),
+        "reasons": reasons,
+        "bound_at": now_iso(),
+    }
+    payload["review_binding"] = binding
+    return binding
+
+
+def verify_payload_binding(bot: str, candidate: dict, payload: dict) -> dict:
+    """Raise ``ReviewBindingError`` unless ``payload`` carries a passed final review
+    bound to its exact current text and to this candidate/persona/runtime/platform."""
+    binding = payload.get("review_binding")
+    if not isinstance(binding, dict) or not binding:
+        raise ReviewBindingError("payload has no final-content review binding; run "
+                                 "final_review after format_for_platform")
+    problems: list[str] = []
+    if not binding.get("passed"):
+        problems.append("final review did not pass: " + "; ".join(binding.get("reasons") or []))
+    text = payload.get("text")
+    if not isinstance(text, str) or binding.get("final_text_sha256") != text_digest(text):
+        problems.append("payload text differs from the reviewed final text")
+    if binding.get("draft_reviewed_sha256") != reviewed_digest(candidate):
+        problems.append("candidate changed after its review")
+    for key, expected in (("content_id", candidate.get("content_id")),
+                          ("persona", candidate.get("persona")),
+                          ("platform", payload.get("platform")),
+                          ("bot", bot)):
+        if binding.get(key) != expected:
+            problems.append(f"binding {key} {binding.get(key)!r} != {expected!r}")
+    if candidate.get("bot") != bot:
+        problems.append(f"candidate runtime {candidate.get('bot')!r} != queue runtime {bot!r}")
+    if problems:
+        raise ReviewBindingError("; ".join(problems))
+    return binding
+
+
+def _queue_path(bot: str) -> Path:
+    """The canonical publish-queue file; never read or written through a link."""
+    p = paths.content_dir(bot) / "publish_queue.jsonl"
+    if p.is_symlink():
+        raise ReviewBindingError(f"publish queue for {bot!r} is a symlink; refusing to "
+                                 f"operate through a link")
+    return p
+
+
+def verify_queued_entry(bot: str, entry: dict) -> dict:
+    """Re-verify the exact bytes a consumer is about to act on against the binding.
+
+    Any publisher/canary MUST call this before acting on a queue entry: it catches
+    a late write to the queue, a replaced payload, a wrong-runtime entry and a
+    symlinked queue. Returns ``{"verified": bool, "problems": [...]}``.
+    """
+    problems: list[str] = []
+    binding = entry.get("review_binding")
+    payload = entry.get("payload") or {}
+    text = payload.get("text")
+    if not isinstance(binding, dict) or not binding:
+        problems.append("entry has no review binding")
+        binding = {}
+    if not binding.get("passed"):
+        problems.append("bound review did not pass")
+    if not isinstance(text, str) or text_digest(text) != entry.get("final_text_sha256") \
+            or entry.get("final_text_sha256") != binding.get("final_text_sha256"):
+        problems.append("payload text does not match the bound final text")
+    if entry.get("bot") != bot or binding.get("bot") != bot:
+        problems.append(f"entry is not scoped to runtime {bot!r}")
+    if entry.get("persona") != binding.get("persona") \
+            or entry.get("content_id") != binding.get("content_id") \
+            or entry.get("platform") != binding.get("platform") \
+            or payload.get("platform") != binding.get("platform"):
+        problems.append("entry fields do not match the binding")
+    try:
+        _queue_path(bot)
+    except ReviewBindingError as exc:
+        problems.append(str(exc))
+    return {"verified": not problems, "problems": problems,
+            "final_text_sha256": entry.get("final_text_sha256")}
+
+
+# --------------------------------------------------------------------------- #
 # Dedup — against the persona's own content history
 # --------------------------------------------------------------------------- #
 def content_key(candidate: dict) -> str:
@@ -236,8 +429,32 @@ def is_duplicate(bot: str, candidate: dict) -> bool:
 # --------------------------------------------------------------------------- #
 # Experiment registry
 # --------------------------------------------------------------------------- #
+PROSPECTIVE = "PROSPECTIVE"
+NOT_MEASURED = "NOT_MEASURED"
+MEASURED = "MEASURED"
+
+
+class ExperimentRegistrationError(ValueError):
+    """An experiment carried a fabricated baseline, outcome or confidence."""
+
+
+def prospective_baseline(metric: str) -> dict:
+    """The only honest pre-publication baseline: the metric name and NO value."""
+    return {"metric": metric, "value": None, "status": NOT_MEASURED,
+            "note": "no pre-publication measurement exists; prospective registration"}
+
+
 @dataclass
 class Experiment:
+    """A registered, PROSPECTIVE experiment (V1.7 C07).
+
+    Registration happens BEFORE publication, so at that moment there is no
+    baseline measurement, no outcome and no confidence. Those fields therefore
+    default to None and ``register_experiment`` refuses any value in them: a
+    number that was never measured is a fabricated performance record. A real
+    pre-publication baseline is allowed only with provenance (``status``
+    MEASURED, ``measured_at``, ``source``).
+    """
     experiment_id: str
     bot: str
     persona: str
@@ -250,12 +467,47 @@ class Experiment:
     observation_window_hours: int
     cost_budget: str = "none"
     result: dict | None = None
-    confidence: float = 0.0
+    confidence: float | None = None
     decision: str | None = None
     registered_at: str = field(default_factory=now_iso)
+    status: str = PROSPECTIVE
+    window: dict = field(default_factory=lambda: {
+        "opens_at": None, "closes_at": None,
+        "note": "opens only when the candidate is actually published"})
+
+
+def validate_prospective(exp: Experiment | dict) -> list[str]:
+    """Violations that would make a registration a fabricated performance record."""
+    d = exp.__dict__ if isinstance(exp, Experiment) else dict(exp)
+    errs: list[str] = []
+    if d.get("status") != PROSPECTIVE:
+        errs.append(f"status {d.get('status')!r} is not {PROSPECTIVE}; only prospective "
+                    f"experiments are registered")
+    for fld in ("result", "decision", "confidence"):
+        if d.get(fld) is not None:
+            errs.append(f"{fld} must be None at registration (got {d.get(fld)!r})")
+    baseline = d.get("baseline")
+    if not isinstance(baseline, dict):
+        errs.append("baseline must be a dict")
+    elif baseline.get("value") is not None:
+        if baseline.get("status") != MEASURED or not baseline.get("measured_at") \
+                or not baseline.get("source"):
+            errs.append("baseline carries a value without measurement provenance "
+                        "(status MEASURED, measured_at, source)")
+    window = d.get("window") or {}
+    if not isinstance(window, dict) or window.get("opens_at") is not None \
+            or window.get("closes_at") is not None:
+        errs.append("observation window cannot be open before publication")
+    hours = d.get("observation_window_hours")
+    if isinstance(hours, bool) or not isinstance(hours, int) or hours < 1:
+        errs.append("observation_window_hours must be a positive integer")
+    return errs
 
 
 def register_experiment(exp: Experiment) -> Path:
+    errs = validate_prospective(exp)
+    if errs:
+        raise ExperimentRegistrationError("; ".join(errs))
     p = paths.experiments_dir(exp.bot) / f"{exp.experiment_id}.json"
     write_json(p, exp.__dict__)
     append_jsonl(paths.experiments_dir(exp.bot) / "index.jsonl",
@@ -269,6 +521,14 @@ def register_experiment(exp: Experiment) -> Path:
 # --------------------------------------------------------------------------- #
 def enqueue(bot: str, candidate: dict, platform_payload: dict,
             experiment_id: str | None) -> dict:
+    """Queue a candidate whose FINAL text carries a passed, matching review binding.
+
+    Refuses (``ReviewBindingError``) an unbound payload, a payload edited after
+    its final review, a candidate edited after review, a persona/platform/runtime
+    mismatch, or a symlinked queue file. Queuing is never an external effect.
+    """
+    binding = verify_payload_binding(bot, candidate, platform_payload)
+    queue = _queue_path(bot)
     entry = {
         "queued_at": now_iso(),
         "content_id": candidate["content_id"],
@@ -278,11 +538,13 @@ def enqueue(bot: str, candidate: dict, platform_payload: dict,
         "platform": platform_payload["platform"],
         "experiment_id": experiment_id,
         "payload": platform_payload,
+        "final_text_sha256": binding["final_text_sha256"],
+        "review_binding": binding,
         "publish_authorized": False,   # hard default: never publish without explicit authority
         "published": False,
         "publication_id": None,
     }
-    append_jsonl(paths.content_dir(bot) / "publish_queue.jsonl", entry)
+    append_jsonl(queue, entry)
     return entry
 
 
@@ -296,4 +558,4 @@ def admin_publish_queue(bot: str) -> list[dict]:
     deliberate runtime-wide reads (e.g. takeover reconciliation) go through
     ``isolation.admin_all_records(bot, "publish_queue")``.
     """
-    return read_jsonl(paths.content_dir(bot) / "publish_queue.jsonl")
+    return read_jsonl(_queue_path(bot))

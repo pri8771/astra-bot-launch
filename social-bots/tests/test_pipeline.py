@@ -46,6 +46,7 @@ class PipelineTest(unittest.TestCase):
         p = personas.load("social-a")
         cand = pipeline.review(p, pipeline.ideate(p, SIGNAL))
         payload = pipeline.format_for_platform(cand, "x")
+        pipeline.final_review(p, cand, payload)       # V1.7 C05/C06: bind to final text
         entry = pipeline.enqueue("social-a", cand, payload, "exp-1")
         self.assertFalse(entry["publish_authorized"])
         self.assertFalse(entry["published"])

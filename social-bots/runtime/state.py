@@ -258,13 +258,18 @@ class PersonaState:
         write_json(_persona_file(self.bot, self.persona_id), self.data)
 
     # --- hypotheses (evidence-tied learning, persona-private) ---------------
-    def upsert_hypothesis(self, hid: str, statement: str, confidence: float,
+    def upsert_hypothesis(self, hid: str, statement: str, confidence: float | None,
                           evidence: list[str]) -> None:
-        confidence = max(0.0, min(1.0, confidence))
+        """``confidence`` None means UNKNOWN (a prospective registration with no
+        evidence yet); a number is only ever written from real observed evidence
+        (V1.7 C07: no fabricated prior)."""
+        if confidence is not None:
+            confidence = round(max(0.0, min(1.0, float(confidence))), 3)
         h = self.data["hypotheses"].get(hid, {"evidence": []})
         h.update({
             "statement": statement,
-            "confidence": round(confidence, 3),
+            "confidence": confidence,
+            "status": "PROSPECTIVE" if confidence is None else "EVIDENCED",
             "updated_at": now_iso(),
         })
         h.setdefault("evidence", [])

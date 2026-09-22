@@ -19,7 +19,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import decision, research, pipeline, isolation, worker  # noqa: E402
+from runtime import decision, research, pipeline, isolation, paths, worker  # noqa: E402
+from runtime.jsonstore import append_jsonl  # noqa: E402
 from runtime.state import BotState, PersonaState  # noqa: E402
 
 
@@ -70,10 +71,14 @@ class IsolationContractTest(unittest.TestCase):
             experiment_id="exp-c-b1", bot=bot, persona=pb, platform="x",
             hypothesis="h", baseline={}, intervention="i", success_metric="m",
             stop_criteria="s", observation_window_hours=48))
-        pipeline.enqueue(bot, {"content_id": "c-a1", "persona": pa, "signal_id": "s",
-                               "signature_move": "m"}, {"platform": "x"}, "exp-c-a1")
-        pipeline.enqueue(bot, {"content_id": "c-b1", "persona": pb, "signal_id": "s",
-                               "signature_move": "m"}, {"platform": "x"}, "exp-c-b1")
+        # Raw FIXTURE queue rows: this test proves READ isolation. The production
+        # writer ``pipeline.enqueue`` refuses payloads without a final-content
+        # review binding (V1.7 C05/C06), so the fixture is written directly.
+        for cid, persona, exp in (("c-a1", pa, "exp-c-a1"), ("c-b1", pb, "exp-c-b1")):
+            append_jsonl(paths.content_dir(bot) / "publish_queue.jsonl",
+                         {"content_id": cid, "persona": persona, "bot": bot, "platform": "x",
+                          "experiment_id": exp, "payload": {"platform": "x"},
+                          "publish_authorized": False, "published": False})
         analytics.emit(analytics.make_event(bot, pa, "candidate_created", platform="x", content_id="c-a1"))
         analytics.emit(analytics.make_event(bot, pb, "correction", platform="x", content_id="c-b1"))
 
