@@ -20,7 +20,7 @@ import socket
 import uuid
 from collections.abc import Callable
 
-from . import leasing, receipts, decision
+from . import decision, leasing, receipts
 from .heartbeat import Heartbeat
 from .jsonstore import now_iso
 
@@ -199,7 +199,7 @@ def run_one_unit(task_id: str, bot: str, persona_id: str, *,
                 "took_over_by_generation": (exc.on_disk or {}).get("generation"),
                 "start_receipt": os.path.basename(start),
                 "heartbeat_beats": hb.beats}
-    except Exception as exc:  # noqa: BLE001 — record any failure as a receipt.
+    except Exception as exc:
         receipts.write_receipt(
             bot, "failure", task_id, worker_id, lease.lease_id,
             {"persona": persona_id, "error_type": type(exc).__name__, "error": str(exc)[:300]})
