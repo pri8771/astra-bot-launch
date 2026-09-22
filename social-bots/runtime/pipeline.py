@@ -10,10 +10,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
+import re
+from datetime import datetime
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 
-from . import paths, factcheck, content_intelligence as ci, cultural_review as cr
+from . import paths, factcheck, receipts, content_intelligence as ci, cultural_review as cr
 from .jsonstore import read_json, write_json, append_jsonl, read_jsonl, now_iso
 
 
@@ -346,8 +349,67 @@ def final_review(persona: dict, candidate: dict, payload: dict) -> dict:
         "reasons": reasons,
         "bound_at": now_iso(),
     }
+    cultural_binding = candidate.get("cultural_review_binding")
+    if cultural_binding is not None:
+        binding["cultural_review_binding"] = cultural_binding
+    if binding["passed"]:
+        _review_receipt_dir(binding["bot"])
+        receipt_path = receipts.write_receipt(
+            binding["bot"], "review", f"review:{binding['content_id']}:{binding['platform']}",
+            "final-review", None, {
+                "review_digest": _binding_digest(binding),
+                "final_text_sha256": binding["final_text_sha256"],
+                **{key: binding[key] for key in ("bot", "persona", "content_id", "platform")},
+            })
+        binding["review_receipt_id"] = receipt_path.stem
     payload["review_binding"] = binding
     return binding
+
+
+def _binding_digest(binding: dict) -> str:
+    core = {key: value for key, value in binding.items() if key != "review_receipt_id"}
+    return hashlib.sha256(_canonical(core)).hexdigest()
+
+
+def _review_receipt_dir(bot: str) -> Path:
+    root = paths.base() / "receipts"
+    if root.is_symlink() or (root / bot).is_symlink():
+        raise ReviewBindingError("review receipt directory is a symlink")
+    return paths.receipts_dir(bot)
+
+
+def _review_receipt_problems(bot: str, binding: dict) -> list[str]:
+    """Check a separate durable receipt, not just mutable queue hashes.
+
+    This audit anchor is not a signature or protection against an actor who
+    can rewrite both the queue and the local receipt store.
+    """
+    rid = binding.get("review_receipt_id")
+    if not isinstance(rid, str) or not re.fullmatch(r"[A-Za-z0-9+_.-]+", rid) \
+            or rid in {".", ".."}:
+        return ["missing or invalid review receipt reference"]
+    try:
+        path = _review_receipt_dir(bot) / f"{rid}.json"
+        if path.is_symlink():
+            return ["review receipt is a symlink"]
+        receipt = read_json(path)
+    except (OSError, ValueError, ReviewBindingError):
+        return ["review receipt is unreadable"]
+    if not isinstance(receipt, dict):
+        return ["review receipt is missing or invalid"]
+    detail = receipt.get("detail")
+    if not isinstance(detail, dict):
+        return ["review receipt detail is invalid"]
+    if receipt.get("receipt_id") != rid or receipt.get("kind") != "review" \
+            or receipt.get("namespace") != bot or receipt.get("worker_id") != "final-review" \
+            or receipt.get("task_id") != f"review:{binding.get('content_id')}:{binding.get('platform')}":
+        return ["review receipt identity does not match the binding"]
+    if detail.get("review_digest") != _binding_digest(binding) \
+            or detail.get("final_text_sha256") != binding.get("final_text_sha256") \
+            or any(detail.get(key) != binding.get(key)
+                   for key in ("bot", "persona", "content_id", "platform")):
+        return ["review receipt does not match the bound review"]
+    return []
 
 
 def verify_payload_binding(bot: str, candidate: dict, payload: dict) -> dict:
@@ -373,6 +435,7 @@ def verify_payload_binding(bot: str, candidate: dict, payload: dict) -> dict:
             problems.append(f"binding {key} {binding.get(key)!r} != {expected!r}")
     if candidate.get("bot") != bot:
         problems.append(f"candidate runtime {candidate.get('bot')!r} != queue runtime {bot!r}")
+    problems.extend(_review_receipt_problems(bot, binding))
     if problems:
         raise ReviewBindingError("; ".join(problems))
     return binding
@@ -413,6 +476,7 @@ def verify_queued_entry(bot: str, entry: dict) -> dict:
             or entry.get("platform") != binding.get("platform") \
             or payload.get("platform") != binding.get("platform"):
         problems.append("entry fields do not match the binding")
+    problems.extend(_review_receipt_problems(bot, binding))
     try:
         _queue_path(bot)
     except ReviewBindingError as exc:
@@ -512,10 +576,27 @@ def validate_prospective(exp: Experiment | dict) -> list[str]:
     if not isinstance(baseline, dict):
         errs.append("baseline must be a dict")
     elif baseline.get("value") is not None:
-        if baseline.get("status") != MEASURED or not baseline.get("measured_at") \
-                or not baseline.get("source"):
-            errs.append("baseline carries a value without measurement provenance "
-                        "(status MEASURED, measured_at, source)")
+        if baseline.get("metric") != d.get("success_metric"):
+            errs.append("baseline metric must match success_metric")
+        value = baseline["value"]
+        if isinstance(value, bool) or not isinstance(value, (int, float)) \
+                or (isinstance(value, float) and not math.isfinite(value)):
+            errs.append("baseline value must be a finite number")
+        if baseline.get("status") != MEASURED:
+            errs.append("baseline value requires status MEASURED")
+        source = baseline.get("source")
+        if not isinstance(source, str) or not source.strip():
+            errs.append("baseline source must be a nonempty provenance reference")
+        measured_at = baseline.get("measured_at")
+        try:
+            measured = datetime.fromisoformat(measured_at.replace("Z", "+00:00")) \
+                if isinstance(measured_at, str) else None
+            if measured is None or measured.utcoffset() is None:
+                raise ValueError("timezone required")
+        except ValueError:
+            errs.append("baseline measured_at must be a timezone-aware ISO-8601 timestamp")
+    elif baseline.get("status") not in (None, NOT_MEASURED):
+        errs.append("baseline without a value cannot claim a measurement")
     window = d.get("window") or {}
     if not isinstance(window, dict) or window.get("opens_at") is not None \
             or window.get("closes_at") is not None:
