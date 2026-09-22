@@ -1,0 +1,16 @@
+{
+  "E2_raw_and_receipt_preserved": true,
+  "matrix_built": false,
+  "model_calls": 0,
+  "offline_reextraction_byte_identical": true,
+  "outputs_sha256": {
+    "E1.extracted.txt": "4c5475a61edaba1e88ff19c91c145a547811decaab7e833e9c835c950b9c1f8f",
+    "E1.lineage.json": "a9bf01cda75a20d9d2b80c55f682d4089bbead4780c73a3fc5ef40518f7bd00f",
+    "E1.receipt.json": "58d5534726ca6cd799890868daaec034280806ffcfa8517996cd7c60468a9f98",
+    "E1.signal.json": "f5e33cc6f4e46032338a5f4e973f9dd932d80d3426c87995283a009af2e9a013",
+    "E2.extracted.txt": "43e0891e4bdb373cbaca255f8a8b9b8cbff431f4416b627c1f24a55bf950cfbd",
+    "E2.lineage.json": "b32f89eb8d6d7b5723945a6d37dcc4b09653b048c00b4e1a282ef51162ebc135",
+    "E2.receipt.json": "08755929630fa107a781343046b8cb469cf98a2bb4313f716d4946f6c420ae00",
+    "E2.signal.json": "f0c08517f2e06991fdb1a73c92938190dd6e2e97950092f88f799cf10baa53bc"
+  }
+}
