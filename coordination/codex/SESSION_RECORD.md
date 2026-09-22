@@ -36,3 +36,9 @@ owner_actions[]: project_id / gate_id / missing_action / existing_authority_ref 
 next_resume: project_id / artifact_id / required_reads / exact_next_command_or_action
 
 Never record ACCEPTED or COMPLETE without the actual applicable lead decision. Codex's review recommendation uses READY_FOR_LEAD_REVIEW / RECOMMEND_ACCEPT / REWORK_SUGGESTED or the native worker equivalents. Before ending, mark ended implementation sessions truthfully and avoid implying a stopped model continues in the background.
+
+## Delivery checkpoint — 2026-09-22T02:39Z
+
+Review proposals: [Jobs #13](https://github.com/pri8771/jobs/pull/13) at `7d6a500d15900eb3c7b8809c1afa68eb54c18b5f`, [Bots #5](https://github.com/pri8771/astra-bot-launch/pull/5) initial evidence `b603f1b0338b98fdba97a03721a4768dedce9bf3`, [Swarm #17](https://github.com/pri8771/swarmai/pull/17) initial evidence `741da208812357d801343a39de5d9a24b0590315`. Native review request messages were delivered to the existing ChatGPT lead tasks; no new formal verdict or Fable repair ACK observed. Transport delivery is not a running repair. ChatGPT tasks cannot be waited by wait_threads; bounded read_thread is available. No schedule changed.
+
+Subsequent local Swarm observation found uncommitted terminal attempt2 **failed / repair_required** at `02:11:59Z`, stdout digest `45a5236057ab57c53c555542f17a4d945f06f4d21c5699c863dc0131eb7e47f2`. Its local health checks pass; mission proof does not. Worker originals remain untouched; sanitized record and failed-attempt preservation request stay in Swarm PR #17. Next resume: fetch native refs, read actual verdict/worker ACK or new evidence first; continue current bounded repairs without taking implementation ownership. No claim of background coordination.
