@@ -108,3 +108,7 @@ LEAD056@647c41a accepts exact30a2ebd metrics repair and releases24h/+5m freshnes
 ## Continuation — route-order diagnostic
 
 Canonical647c41a/LEAD056 still current. Exact route-freshness candidateccfbaf7 PR10 and evidencecc27e3f await formal verdict. A bounded read-only diagnostic, independently repeated by root, found JSON-order-dependent selection of revoked versus healthy matching routes. Native CODEX_ROUTE_ORDER_20260922.md records REWORK_FOUND and requests the smallest explicit tie-break/ambiguity policy. No source change, SESSION_ONCE emission, model/account/public/scheduler action or Fable handoff. Target V1.3 remains uncompleted; no live gate promoted.
+
+## Continuation — live frontier audit
+
+Canonical647c41a unchanged. CODEX_LIVE_FRONTIER_20260922.md separates already-consumed canary authority, missing fresh model manifest/expiry, persistent ownerhost/scheduler facts and later reviewer/account/analytics evidence. Existing conditional account setup permission is preserved. No genuine live execution is currently available from these records; do not replace it with fixtures or another timer. PR10/sourceccfbaf7 and route-order policy request remain pending, with no Fable dispatch.
