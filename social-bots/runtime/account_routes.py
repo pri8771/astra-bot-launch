@@ -128,6 +128,24 @@ def _route_ok(route: dict, *, now: datetime | None = None) -> tuple[bool, str]:
     return True, f"route {route.get('route_id')} {health}"
 
 
+def select_route(routes: list[dict], bot: str, persona: str, platform: str,
+                 *, now: datetime | None = None) -> tuple[dict | None, str]:
+    """LEAD-057: select only a unique eligible exact-scope route, never by order."""
+    matches = [r for r in routes if r.get("platform") == platform and r.get("bot") == bot
+               and r.get("persona") == persona]
+    if not matches:
+        return None, f"no route for {bot}/{persona} on {platform}"
+    evaluated_at = now or datetime.now(timezone.utc)
+    evaluated = [(r, _route_ok(r, now=evaluated_at)) for r in matches]
+    eligible = [(r, why) for r, (ok, why) in evaluated if ok]
+    if len(eligible) == 1:
+        return eligible[0]
+    if len(eligible) > 1:
+        return None, f"ambiguous multiple eligible routes for {bot}/{persona} on {platform}"
+    reasons = sorted(f"{r.get('route_id')}: {why}" for r, (_, why) in evaluated)
+    return None, "no eligible route: " + "; ".join(reasons)
+
+
 def availability_for(bot: str, persona: str, platforms, home: str | Path | None = None,
                      *, now: datetime | None = None) -> dict:
     """Per-platform availability for ``select_platforms`` plus the registry state."""
@@ -150,24 +168,22 @@ def availability_for(bot: str, persona: str, platforms, home: str | Path | None 
                                       "reason": "no account route registry (unverified)"}
         return out
     out["registry_present"] = True
+    now = now or datetime.now(timezone.utc)
     for p in platforms:
-        matches = [r for r in routes if r.get("platform") == p and r.get("bot") == bot
-                   and r.get("persona") == persona]
-        if not matches:
+        route, why = select_route(routes, bot, persona, p, now=now)
+        if route is None:
             out["availability"][p] = {"account_available": False, "authorized": False,
                                       "publishable": False, "route_id": None,
-                                      "reason": f"no route for {bot}/{persona} on {p}"}
+                                      "reason": why}
             continue
-        route = matches[0]
-        ok, why = _route_ok(route, now=now)
         caps = route.get("capabilities") or {}
         out["availability"][p] = {
-            "account_available": ok,
-            "authorized": ok and bool(caps.get("draft")),
-            "publishable": ok and bool(caps.get("publish")) and route.get("publish_authorized") is True,
+            "account_available": True,
+            "authorized": bool(caps.get("draft")),
+            "publishable": bool(caps.get("publish")) and route.get("publish_authorized") is True,
             "route_id": route.get("route_id"),
             "route_type": route.get("route_type"),
             "analytics_route": route.get("analytics_route"),
-            "reason": why if ok else why,
+            "reason": why,
         }
     return out
