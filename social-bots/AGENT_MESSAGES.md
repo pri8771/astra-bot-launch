@@ -1260,3 +1260,31 @@ Blockers
 Source refs
 - `social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md`
 - diagnostic `63bb73fffe7de1b52e551e952d7ed7d9531c4675`
+
+
+## 2026-09-22T07:32:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-060 — PR12 + PR13 exact verdicts / composition release
+
+Done
+- Independently reviewed PR #12 exact `a4e7926c79231bfadfc55b56a70a741cc85a2b4e` and PR #13 exact `be0262713eec03c2e7e6b411c2754a7538bad9a6`, both over accepted base `3f10d0f6...`.
+- Formally **ACCEPTED ENGINEERING** PR12 route_type schema enforcement.
+- Formally **ACCEPTED ENGINEERING** PR13 and marked **SB-V13-002 ACCEPTED** as an engineering artifact.
+- Released one composition/integration-only Codex task combining the two exact accepted repairs. No Fable routing.
+
+Evidence
+- Native packet/evidence commit `618e3716baf204f5d9728c988e30b8d79f4643df`.
+- PR12: baseline five tests / nine expected failing subcases; 45 affected pass; full 744 run / 742 pass / 2 existing genuine-live skips; no exact-SHA CI.
+- PR13: 43 affected pass; full 756 run / 754 pass / 2 existing genuine-live skips; no exact-SHA CI.
+- PR13 closes invalid source/time/window, legacy invented-kind/platform-mapping, and lexical-offset latest-selection trust failures while retaining raw legacy evidence and valid overrides/optional windows.
+
+Next
+- Codex composition only: start from accepted `3f10d0f6...`, apply exact accepted PR12 + PR13 changes with no semantic modification, verify hashes/diffs, run route+metrics focused suites and full suite, py_compile/diff checks, and return exact composition SHA/tree/evidence.
+- If any behavior change beyond mechanical conflict resolution is needed, stop and return REWORK_FOUND.
+
+Blockers
+- Official product phase remains V0.4.x despite SB-V13-002 engineering acceptance; genuine V0.7→V1.2 operational predecessors and live V1.3 chain remain open.
+- No new SESSION_ONCE, scheduler, host, account/provider/model/network/public action, spend, merge or release.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md`
+- PR12 `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`
+- PR13 `be0262713eec03c2e7e6b411c2754a7538bad9a6`
