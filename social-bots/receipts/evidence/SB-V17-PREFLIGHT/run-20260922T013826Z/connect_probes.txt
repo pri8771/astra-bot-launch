@@ -1,0 +1,9 @@
+x.com -> curl: (56) CONNECT tunnel failed, response 403
+api.x.com -> curl: (56) CONNECT tunnel failed, response 403
+reddit.com -> curl: (56) CONNECT tunnel failed, response 403
+oauth.reddit.com -> curl: (56) CONNECT tunnel failed, response 403
+instagram.com -> curl: (56) CONNECT tunnel failed, response 403
+graph.facebook.com -> curl: (56) CONNECT tunnel failed, response 403
+tiktok.com -> curl: (56) CONNECT tunnel failed, response 403
+youtube.com -> curl: (56) CONNECT tunnel failed, response 403
+api.github.com -> 200 

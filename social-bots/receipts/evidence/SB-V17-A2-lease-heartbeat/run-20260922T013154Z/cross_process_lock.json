@@ -1,0 +1,14 @@
+{
+  "acquired_by": [
+    "proc-6-3762"
+  ],
+  "acquired_count": 1,
+  "error_count": 0,
+  "errors": [],
+  "flock_available": true,
+  "held_count": 7,
+  "processes_spawned": 8,
+  "single_owner_ok": true,
+  "start_method": "spawn (independent interpreters)",
+  "task_id": "cycle:social-a"
+}

@@ -1,0 +1,103 @@
+test_concurrent_personas_no_lost_update (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_concurrent_personas_no_lost_update) ... ok
+test_runtime_task_id_ignores_persona (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_runtime_task_id_ignores_persona) ... ok
+test_second_persona_on_runtime_blocked_while_held (tests.test_concurrency.SharedRuntimeConcurrencyTest.test_second_persona_on_runtime_blocked_while_held) ... ok
+test_concurrent_fresh_create_single_owner (tests.test_concurrency.StaleTakeoverRaceTest.test_concurrent_fresh_create_single_owner) ... ok
+test_concurrent_stale_takeover_single_owner (tests.test_concurrency.StaleTakeoverRaceTest.test_concurrent_stale_takeover_single_owner) ... ok
+test_decision_log_and_last_decision_written_inside_fence (tests.test_fencing.LeaseFencingTest.test_decision_log_and_last_decision_written_inside_fence) ... ok
+test_fence_invalid_after_takeover (tests.test_fencing.LeaseFencingTest.test_fence_invalid_after_takeover) ... ok
+test_fenced_commit_refuses_after_fence_loss (tests.test_fencing.LeaseFencingTest.test_fenced_commit_refuses_after_fence_loss) ... ok
+test_generation_increments_on_takeover_and_is_inspectable (tests.test_fencing.LeaseFencingTest.test_generation_increments_on_takeover_and_is_inspectable) ... ok
+test_old_owner_cycle_commits_nothing_after_midcycle_takeover (tests.test_fencing.LeaseFencingTest.test_old_owner_cycle_commits_nothing_after_midcycle_takeover) ... ok
+test_stale_owner_cannot_write_decision_log_after_takeover (tests.test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_decision_log_after_takeover) ... ok
+test_stale_owner_cannot_write_success_finish_receipt_after_takeover (tests.test_fencing.LeaseFencingTest.test_stale_owner_cannot_write_success_finish_receipt_after_takeover) ... ok
+test_stale_owner_in_migration_path_leaves_no_write (tests.test_fencing.LeaseFencingTest.test_stale_owner_in_migration_path_leaves_no_write) ... ok
+test_takeover_worker_becomes_owner_and_commits (tests.test_fencing.LeaseFencingTest.test_takeover_worker_becomes_owner_and_commits) ... ok
+test_worker_run_one_unit_stands_down_on_fence_loss (tests.test_fencing.LeaseFencingTest.test_worker_run_one_unit_stands_down_on_fence_loss) ... ok
+test_atomic_acquire_rejects_overlap (tests.test_leasing.LeasingTest.test_atomic_acquire_rejects_overlap) ... ok
+test_release_only_by_owner (tests.test_leasing.LeasingTest.test_release_only_by_owner) ... ok
+test_renew_keeps_ownership (tests.test_leasing.LeasingTest.test_renew_keeps_ownership) ... ok
+test_stale_takeover_sets_reconcile (tests.test_leasing.LeasingTest.test_stale_takeover_sets_reconcile) ... ok
+test_concurrent_processes_produce_exactly_one_winner (tests.test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_concurrent_processes_produce_exactly_one_winner)
+N processes racing the same session_id → 1 durable record, N-1 duplicates. ... ok
+test_flock_availability_is_exported_for_host_assertions (tests.test_v07_session_heartbeat.AtomicCrossProcessEmitTest.test_flock_availability_is_exported_for_host_assertions)
+Deployments must be able to refuse the weak non-POSIX path. ... ok
+test_a_second_heartbeat_for_one_session_is_refused (tests.test_v07_session_heartbeat.DurableWriteTest.test_a_second_heartbeat_for_one_session_is_refused)
+ONE SESSION = ONE HEARTBEAT is structural: the second emit raises. ... ok
+test_cadence_and_status_are_the_session_once_contract (tests.test_v07_session_heartbeat.DurableWriteTest.test_cadence_and_status_are_the_session_once_contract)
+New sessions must carry SESSION_ONCE/STARTED, not a legacy timed cadence. ... ok
+test_distinct_sessions_append_distinct_records (tests.test_v07_session_heartbeat.DurableWriteTest.test_distinct_sessions_append_distinct_records)
+Recurring liveness is a sequence of sessions, each with its own record. ... ok
+test_emit_writes_both_the_ledger_and_the_latest_view (tests.test_v07_session_heartbeat.DurableWriteTest.test_emit_writes_both_the_ledger_and_the_latest_view)
+A heartbeat lands in the append-only log and in HEARTBEAT.json. ... ok
+test_legacy_records_without_session_ids_do_not_block_new_sessions (tests.test_v07_session_heartbeat.DurableWriteTest.test_legacy_records_without_session_ids_do_not_block_new_sessions)
+Pre-existing schema-2 lane logs must not be invalidated or rewritten. ... ok
+test_new_session_id_is_unique (tests.test_v07_session_heartbeat.DurableWriteTest.test_new_session_id_is_unique)
+Generated ids must not collide, or the duplicate guard would misfire. ... ok
+test_required_fields_are_present (tests.test_v07_session_heartbeat.DurableWriteTest.test_required_fields_are_present)
+The protocol's minimum heartbeat fields must all be recorded. ... ok
+test_runtime_identity_carries_no_secrets (tests.test_v07_session_heartbeat.DurableWriteTest.test_runtime_identity_carries_no_secrets)
+Host identification is coarse: no user, path, address or env value. ... ok
+test_started_at_is_stamped_from_the_real_clock_at_emit (tests.test_v07_session_heartbeat.DurableWriteTest.test_started_at_is_stamped_from_the_real_clock_at_emit)
+No backfill: a supplied timestamp is overwritten, not honoured. ... ok
+test_comment_body_states_the_session_facts (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_comment_body_states_the_session_facts)
+The visibility comment must carry the same facts as the durable record. ... ok
+test_durable_write_succeeds_with_no_github_transport (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_durable_write_succeeds_with_no_github_transport)
+Missing gh is recorded as a skip reason; the heartbeat still lands. ... ok
+test_failed_post_never_raises_and_never_claims_success (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_failed_post_never_raises_and_never_claims_success)
+Any gh failure returns (False, reason) rather than propagating. ... ok
+test_raising_transport_is_swallowed_into_a_reason (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_raising_transport_is_swallowed_into_a_reason)
+A transport that throws must not take down the session. ... ok
+test_successful_post_is_reported (tests.test_v07_session_heartbeat.IssueVisibilityTest.test_successful_post_is_reported)
+A genuinely successful comment is recorded as posted. ... ok
+test_a_held_task_is_skipped_and_the_next_is_claimed (tests.test_v07_worker_once.ClaimOneTest.test_a_held_task_is_skipped_and_the_next_is_claimed)
+No-overlap is a skip, not a wait and not a contention failure. ... ok
+test_all_tasks_held_claims_nothing (tests.test_v07_worker_once.ClaimOneTest.test_all_tasks_held_claims_nothing)
+When every candidate is live-held, the invocation claims none. ... ok
+test_only_the_first_claimable_task_runs (tests.test_v07_worker_once.ClaimOneTest.test_only_the_first_claimable_task_runs)
+Three candidates, one invocation: exactly one unit executes. ... ok
+test_acknowledgement_records_what_was_consumed (tests.test_v07_worker_once.DirectionTest.test_acknowledgement_records_what_was_consumed)
+The lead can see, from the repo alone, which SHA a session acted on. ... ok
+test_direction_is_read_from_git_without_gh_or_a_token (tests.test_v07_worker_once.DirectionTest.test_direction_is_read_from_git_without_gh_or_a_token)
+Plain git show against the canonical branch is the whole transport. ... ok
+test_exact_canonical_sha_is_recorded (tests.test_v07_worker_once.DirectionTest.test_exact_canonical_sha_is_recorded)
+An audit must be able to say which coordination state a session acted on. ... ok
+test_failed_fetch_degrades_honestly_instead_of_failing (tests.test_v07_worker_once.DirectionTest.test_failed_fetch_degrades_honestly_instead_of_failing)
+An offline host reads the last known ref and records fetch_ok=false. ... ok
+test_frozen_lane_activity_is_read_as_a_halt (tests.test_v07_worker_once.DirectionTest.test_frozen_lane_activity_is_read_as_a_halt)
+A lane the lead froze must not claim work on its next scheduled session. ... ok
+test_live_model_calls_are_not_authorized_by_default (tests.test_v07_worker_once.DirectionTest.test_live_model_calls_are_not_authorized_by_default)
+Absent an explicit grant, a consumed direction never authorizes a model call. ... ok
+test_machine_readable_directions_file_wins_over_state_fallback (tests.test_v07_worker_once.DirectionTest.test_machine_readable_directions_file_wins_over_state_fallback)
+When the lead writes a directions file, it is authoritative for that lane. ... ok
+test_missing_canonical_branch_raises (tests.test_v07_worker_once.DirectionTest.test_missing_canonical_branch_raises)
+With no canonical ref at all, a session cannot pretend it read direction. ... ok
+test_a_crashed_invocation_is_visible_in_the_audit (tests.test_v07_worker_once.InvocationReceiptTest.test_a_crashed_invocation_is_visible_in_the_audit)
+An abandoned open receipt is reported, not silently reclaimed. ... ok
+test_a_receipt_without_a_route_decision_is_counted_as_such (tests.test_v07_worker_once.InvocationReceiptTest.test_a_receipt_without_a_route_decision_is_counted_as_such)
+``live_model_call`` alone means nothing; the route decision is the evidence. ... ok
+test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one (tests.test_v07_worker_once.InvocationReceiptTest.test_a_refused_live_route_is_counted_distinctly_from_a_permitted_one)
+The audit must distinguish 'no live call' from 'never checked'. ... ok
+test_index_records_both_phases (tests.test_v07_worker_once.InvocationReceiptTest.test_index_records_both_phases)
+The index carries an open and a close row so crashes are countable. ... ok
+test_receipt_opens_incomplete_and_closes_terminal (tests.test_v07_worker_once.InvocationReceiptTest.test_receipt_opens_incomplete_and_closes_terminal)
+A crash mid-unit leaves 'incomplete', never a missing or success record. ... ok
+test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_a_successful_invocation_leaves_one_heartbeat_and_one_receipt)
+The two independent durable traces every scheduled session must leave. ... ok
+test_direction_is_acknowledged_for_the_session (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_direction_is_acknowledged_for_the_session)
+Every invocation records the direction it consumed, for the lead to read. ... ok
+test_halted_lane_exits_five_and_claims_nothing (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_halted_lane_exits_five_and_claims_nothing)
+A frozen lane runs, records, and stands down without touching a task. ... ok
+test_no_overlap_exits_three_and_still_writes_both_traces (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_no_overlap_exits_three_and_still_writes_both_traces)
+A fully contended invocation is benign but still fully evidenced. ... ok
+test_repeated_invocations_produce_a_sequence_of_sessions (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_repeated_invocations_produce_a_sequence_of_sessions)
+Recurring liveness is repeated bounded invocations, each with its own pair. ... ok
+test_reusing_a_session_id_is_refused (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_reusing_a_session_id_is_refused)
+A reused session id would forge a second heartbeat for one session. ... DUPLICATE HEARTBEAT: session 's-dup' already has a durable heartbeat in lane 'windows-core'; ONE SESSION = ONE HEARTBEAT
+ok
+test_the_heartbeat_records_the_canonical_sha_it_consumed (tests.test_v07_worker_once.WorkerOnceEndToEndTest.test_the_heartbeat_records_the_canonical_sha_it_consumed)
+Direction is consumed before the heartbeat so the attestation is real. ... ok
+
+----------------------------------------------------------------------
+Ran 58 tests in 3.202s
+
+OK

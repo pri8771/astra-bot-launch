@@ -1,0 +1,56 @@
+{
+  "checkout": "/tmp/claude-0/-home-user-astra-bot-launch/9a7235da-c18f-596a-a941-7a2768675c0f/scratchpad/prefix-347de2b/social-bots",
+  "classification": "REAL_PROCESS_ACTUAL_MODULE_REPRODUCTION",
+  "evidence_class": "ENGINEERING (OFFLINE_FIXTURE sentinels, REAL_PROCESS execution)",
+  "external_model_calls": 0,
+  "has_model_dispatch_gate": false,
+  "network_calls": 0,
+  "probes": [
+    {
+      "defect_reproduced": true,
+      "engine_outcome": "no_action",
+      "expected_safe_dispatches": 0,
+      "observed_sentinel_dispatches_engine": 1,
+      "observed_sentinel_dispatches_provider": 1,
+      "probe": "direct_model_callable_without_grant"
+    },
+    {
+      "defect_reproduced": true,
+      "expected_safe_dispatches": 0,
+      "observed_sentinel_dispatches": 1,
+      "probe": "false_fixture_label_authorization_exemption"
+    },
+    {
+      "defect_reproduced": true,
+      "errors": [],
+      "expected_max_dispatches": 1,
+      "grant_present": false,
+      "ledger": null,
+      "observed_sentinel_dispatches": 4,
+      "probe": "concurrent_one_slot_budget",
+      "refusals": 0,
+      "threads": 4
+    },
+    {
+      "defect_reproduced": true,
+      "expected_max_dispatches": 1,
+      "grant_present": false,
+      "ledger": null,
+      "observed_sentinel_dispatches": 2,
+      "probe": "reentrant_one_slot_budget"
+    },
+    {
+      "defect_reproduced": true,
+      "grant_max_calls": null,
+      "grant_present": false,
+      "ledger": null,
+      "observed_sentinel_dispatches": 2,
+      "probe": "same_grant_new_wrappers"
+    }
+  ],
+  "public_effects": 0,
+  "reproduced": 5,
+  "runtime_acceptance_changed": false,
+  "sbots_home": "/tmp/sbots-probe-lb90pd5q",
+  "total": 5
+}

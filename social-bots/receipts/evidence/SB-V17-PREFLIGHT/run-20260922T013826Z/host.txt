@@ -1,0 +1,45 @@
+utc=20260922T013826Z
+head_sha=b5fd038846e7fbf2c5728f6e154b75c26512daf7
+uname=Linux vm 6.18.44-fc-v37 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+user=root uid=0
+python=Python 3.11.15
+pid1=process_api
+uptime=817.11s
+hostname=vm
+container_markers: dockerenv=no cgroup=9:name=systemd:/ 8:pids:/ 7:blkio:/ 6:freezer:/ 5:devices:/ 4:memory:/ 3:cpuset:/ 2:cpuacct:/ 1:cpu:/ 0::/ 
+tool claude=/opt/node22/bin/claude
+tool gh=ABSENT
+tool git=/usr/bin/git
+tool crontab=ABSENT
+tool systemctl=/usr/bin/systemctl
+tool launchctl=ABSENT
+tool at=ABSENT
+tool ollama=ABSENT
+tool docker=/usr/bin/docker
+tool node=/opt/node22/bin/node
+tool npm=/opt/node22/bin/npm
+tool curl=/usr/bin/curl
+claude_version=2.1.278 (Claude Code)
+proxy_env: HTTPS_PROXY_set=yes
+cred_env_names_present (names only, never values):
+  AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY
+  CCR_AUTO_MODE_USER_ENV_KEYS_FACT
+  CCR_SESSION_PROFILE
+  CLAUDE_CODE_CHILD_SESSION
+  CLAUDE_CODE_MESSAGING_TOKEN
+  CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V2
+  CLAUDE_CODE_REMOTE_SESSION_ID
+  CLAUDE_CODE_SESSION_ATTENDED
+  CLAUDE_CODE_SESSION_ID
+  CLAUDE_CODE_SYNC_SESSION_REFS
+  CLAUDE_SESSION_INGRESS_TOKEN_FILE
+  CLOUDSDK_AUTH_ACCESS_TOKEN
+  GH_TOKEN
+  GITHUB_TOKEN
+  GIT_CONFIG_KEY_0
+  GIT_CONFIG_KEY_1
+  GIT_CONFIG_KEY_2
+  MAX_THINKING_TOKENS
+  SESSION_INGRESS_URL
+scheduler: cron_dir=present systemd=absent

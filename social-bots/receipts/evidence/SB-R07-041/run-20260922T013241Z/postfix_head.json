@@ -1,0 +1,95 @@
+{
+  "checkout": "/home/user/astra-bot-launch/social-bots",
+  "classification": "REAL_PROCESS_ACTUAL_MODULE_REPRODUCTION",
+  "evidence_class": "ENGINEERING (OFFLINE_FIXTURE sentinels, REAL_PROCESS execution)",
+  "external_model_calls": 0,
+  "has_model_dispatch_gate": true,
+  "network_calls": 0,
+  "probes": [
+    {
+      "defect_reproduced": false,
+      "engine_outcome": "blocked_reasoning_unavailable",
+      "expected_safe_dispatches": 0,
+      "observed_sentinel_dispatches_engine": 0,
+      "observed_sentinel_dispatches_provider": 0,
+      "probe": "direct_model_callable_without_grant"
+    },
+    {
+      "defect_reproduced": false,
+      "expected_safe_dispatches": 0,
+      "observed_sentinel_dispatches": 0,
+      "probe": "false_fixture_label_authorization_exemption"
+    },
+    {
+      "defect_reproduced": false,
+      "errors": [],
+      "expected_max_dispatches": 1,
+      "grant_present": true,
+      "ledger": {
+        "consumed": 1,
+        "max_calls": 5,
+        "outcomes": [
+          {
+            "outcome": "proposal_received",
+            "slot": 1
+          }
+        ],
+        "remaining": 4,
+        "reserved_not_recorded": [],
+        "retry_permitted": false,
+        "run_scope": "probe-concurrent"
+      },
+      "observed_sentinel_dispatches": 1,
+      "probe": "concurrent_one_slot_budget",
+      "refusals": 3,
+      "threads": 4
+    },
+    {
+      "defect_reproduced": false,
+      "expected_max_dispatches": 1,
+      "grant_present": true,
+      "ledger": {
+        "consumed": 1,
+        "max_calls": 5,
+        "outcomes": [
+          {
+            "outcome": "provider_unavailable",
+            "slot": 1
+          }
+        ],
+        "remaining": 4,
+        "reserved_not_recorded": [],
+        "retry_permitted": false,
+        "run_scope": "probe-reentrant"
+      },
+      "observed_sentinel_dispatches": 1,
+      "probe": "reentrant_one_slot_budget"
+    },
+    {
+      "defect_reproduced": false,
+      "grant_max_calls": 1,
+      "grant_present": true,
+      "ledger": {
+        "consumed": 1,
+        "max_calls": 5,
+        "outcomes": [
+          {
+            "outcome": "proposal_received",
+            "slot": 1
+          }
+        ],
+        "remaining": 4,
+        "reserved_not_recorded": [],
+        "retry_permitted": false,
+        "run_scope": "probe-wrappers"
+      },
+      "observed_sentinel_dispatches": 1,
+      "probe": "same_grant_new_wrappers"
+    }
+  ],
+  "public_effects": 0,
+  "reproduced": 0,
+  "runtime_acceptance_changed": false,
+  "sbots_home": "/tmp/sbots-probe-g54n8t8t",
+  "total": 5
+}
