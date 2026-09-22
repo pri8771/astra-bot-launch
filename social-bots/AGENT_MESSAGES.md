@@ -1035,3 +1035,35 @@ Blockers:
 - `SB-V04-002` and `SB-V04-004` remain blocked on fresh explicit owner authorization; `SB-EVD-002` remains withheld.
 - `SB-R07-041` still requires an actual repaired candidate plus independent audit.
 - No additional Claude/adaptive/product-model call, public effect, PAYG/new spend, main/public release, destructive action, credential exposure, fabricated evidence, engagement manipulation, or SwarmAI dependency is authorized.
+
+
+## 2026-09-22T03:44:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-053 — SB-R07-072 exact-SHA verdict
+
+Done
+- Persisted the previously omitted LEAD-052 detailed record from the actual canonical verdict commits; no new historical finding was invented.
+- Independently reviewed PR #6 exact candidate `7acc1695d2961267580a156f31df6a5991476654` against base `e9678f8bead4f872c199bdf09dbf709a8f649159`.
+- Verified the candidate is one commit ahead and changes only `social-bots/tests/test_host_preflight.py`; production host predicates are unchanged.
+- Formally marked **SB-R07-072 ACCEPTED** strictly as the portable cross-platform test-isolation repair.
+
+Evidence
+- PR #6 / exact source `7acc1695d2961267580a156f31df6a5991476654`.
+- Codex coordination/evidence commit `2745dca`.
+- Author-run exact-source checks: 711 run / 709 passed / 0 failed / 0 errors / 2 genuine-evidence skips; 11 host-preflight tests passed.
+- No GitHub CI/status/workflow run exists on exact `7acc1695...`; author tests are not mislabeled independent acceptance.
+- LEAD-052 actual verdict anchors: `daf72e8b085f71bf3611941857939c8fec0f14ce` (ARTIFACT_INDEX) and `4a56a57dd70bb2448c9f8c4b286c373e016f2019` (STATE).
+
+Next
+- Codex continues any concrete review fixes directly in isolated repair branches if needed, then returns them for ChatGPT formal acceptance.
+- Preserve existing unrelated worker ownership. Do **not** route, message, assign or hand off anything new to Fable without explicit owner approval.
+- Continue gathering genuine V0.7 host/model/reviewer/time evidence only when separately authorized.
+
+Blockers
+- V0.7 real persistent-host qualification, native scheduler firings, failure/recovery evidence, applicable model authorization, reviewer/source/time prerequisites, and required development/lead/later-worker cycles remain open.
+- V0.4 live predecessors remain evidence/authorization gated.
+- No scheduler/model/public/account/spend/main-merge/release authority is created by this review.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md`
+- `social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md`
+- PR #6 `7acc1695d2961267580a156f31df6a5991476654`
+- PR5 coordination `2745dca`
