@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-21T20:36:00Z",
+  "updated_at": "2026-09-22T02:36:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -2263,13 +2263,18 @@
       "name": "V0.4 live-route and authorization hardening audit",
       "type": "recovery_checkpoint",
       "version_gate": "V0.4-recovery",
-      "owner": "Cursor",
-      "status": "READY",
+      "owner": "Fable",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-041.md",
       "depends_on": [],
       "story_points": 1,
-      "evidence": [],
-      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+      "evidence": [
+        "Fable repair 0bca4e654923932c755c89c20a85ec79b37d0a10 makes no dispatch scope fail closed for EngineeringStub and injected-runner seams; seams execute only under explicit policy-owned ENGINEERING scope and remain refused in production scope",
+        "Codex independent macOS execution on production-equivalent f0f1307cf99c181cf07f113672d5308cf5528386 passed 118 focused checks with harmless sentinels and no live model/network/public effect",
+        "Tested f0f1307 is production/test equivalent to Fable e9678f8bead4f872c199bdf09dbf709a8f649159; later difference is SESSION_INSTRUCTIONS only",
+        "Formal ChatGPT lead verdict LEAD-052 accepts this recovery artifact narrowly; acceptance does not promote V0.4 or grant model/host/public authority"
+      ],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md"
     },
     {
       "id": "SB-R07-042",
@@ -2526,15 +2531,19 @@
       "name": "V0.7 persistent-host preflight and selection receipt",
       "type": "recovery_checkpoint",
       "version_gate": "V0.7-recovery",
-      "owner": "Cursor",
-      "status": "READY",
+      "owner": "Fable",
+      "status": "CHANGES_REQUIRED",
       "canonical_ref": "social-bots/artifact-packets/recovery-v07/SB-R07-072.md",
       "depends_on": [
         "SB-R07-071"
       ],
       "story_points": 1,
-      "evidence": [],
-      "last_verified_ref": "social-bots/RECOVERY_TO_V07.md"
+      "evidence": [
+        "Codex independent macOS full discovery at f0f1307 ran 707 tests: 703 passed, 2 failed, 2 skipped, 0 errors",
+        "Both failures are portable test-isolation defects in tests/test_host_preflight.py: Linux scheduler binaries are mocked without mocking platform.system(), so Darwin follows launchctl path and fails before attestation",
+        "No real persistent-host suitability verdict is implied; repair is limited to SP1 test isolation unless a separate production defect is demonstrated"
+      ],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-052_2026-09-22T0236.md"
     },
     {
       "id": "SB-R07-073",
