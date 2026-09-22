@@ -1,15 +1,25 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T00:15:43Z",
+  "updated_at": "2026-09-22T01:55:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
   "setup_pr": 1,
   "status": "v03_closed_v04_in_progress",
-  "runtime_scope": {"autonomous_bots":["social-a","social-b","social-c"],"general_personas_required":3,"general_personas_built":3,"cultural_persona_workspaces_required":2,"cultural_persona_workspaces_built":2},
-  "independence": {"depends_on_swarmai":false,"policy":"Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."},
+  "runtime_scope": {
+    "autonomous_bots": ["social-a", "social-b", "social-c"],
+    "general_personas_required": 3,
+    "general_personas_built": 3,
+    "cultural_persona_workspaces_required": 2,
+    "cultural_persona_workspaces_built": 2
+  },
+  "independence": {
+    "depends_on_swarmai": false,
+    "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
+  },
   "campaign": {
     "lead_release": "LEAD-048",
+    "last_review": "LEAD-051",
     "target": "V1.7",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.7",
@@ -21,55 +31,74 @@
     "supersedes": "LEAD-047 V2.3/V3.0 campaign and all older automatic continuation beyond V1.7",
     "future_roadmap": "preserved and parked; not deleted or accepted",
     "authority_change": "scope and code work only; no fresh model/public/spend grant",
-    "worker_consumption": "not_yet_verified"
+    "worker_consumption": "verified_acknowledged_in_session_s-20260921T211438Z-d5589881"
   },
   "worker_lanes": {
     "fable_fasttrack": {
       "branch": "fable/social-bots-v23-fasttrack-20260921",
-      "branch_head": "347de2b5c91c774670c3b884cc542c88fa6eabfa",
-      "latest_verified_material_checkpoint": "a204ad0827748a4e9661f1945b8e025d53d0ae09",
+      "branch_head": "6d6cae422c0527a94da8be8df73d1a0caf0f71b3",
+      "latest_verified_material_checkpoint": "af3fded92eaba5e68c8088737b68c6f043e40a5e",
       "last_verified_session_id": "s-20260921T211438Z-d5589881",
-      "activity": "v17_scope_released_awaiting_worker_ack",
-      "assignment": "social-bots/delivery/V17_LIVE.md",
-      "scope": "sole implementation/integration owner for recovery and live V1.7 only; existing shared runtime edits allowed; later features parked; stop development at V1.7",
+      "activity": "active_v17_integration_r07_041_changes_required",
+      "assignment": "social-bots/delivery/V17_LIVE.md plus branch SESSION_INSTRUCTIONS.md",
+      "scope": "sole implementation/integration owner for enabled recovery and live V1.7 only; existing shared runtime edits allowed; later features parked; stop development at V1.7",
       "branch_name_is_historical": true,
-      "superseded_restrictions": ["LEAD-045/046 pause","LEAD-043 new-files-only"],
+      "superseded_restrictions": ["LEAD-045/046 pause", "LEAD-043 new-files-only"],
       "superseded_execution_targets": ["V2.3 fast-track", "automatic continuation to V3.0"],
-      "worker_reported_suite": "523 discovered; 521 passed; 0 failed; 0 errors; 2 skipped",
-      "submitted_engineering": ["SB-S20-001","SB-S23-001","SB-S23-002","SB-S23-003","SB-S23-004","SB-S23-005","SB-S23-006","SB-S23-007","SB-S23-008"],
+      "worker_reported_suite": "12c807e: 559 discovered / 557 passed / 2 skipped; b5fd038: 569 discovered / 567 passed / 2 skipped; c4d31fee: 678 passed / 2 skipped",
+      "submitted_engineering": [
+        "SB-S20-001", "SB-S23-001", "SB-S23-002", "SB-S23-003", "SB-S23-004", "SB-S23-005", "SB-S23-006", "SB-S23-007", "SB-S23-008",
+        "SB-R07-041@12c807e", "V17-due-rotation@b5fd038", "V17-C05-C06-C07@c4d31fee", "V17-producer-consolidation@3da19a9c", "V17-preflight@af3fded"
+      ],
       "submitted_future_work_disposition": "preserve; not a V1.7 acceptance prerequisite unless narrowly reused in an enabled production path",
       "operational_acceptance": false,
-      "handoff_note": "Observed head is lead-authored LEAD-047 assignment delivery, not new worker acknowledgement or implementation; LEAD-048 consumption is unverified."
+      "lead_disposition": "SB-R07-041 remains CHANGES_REQUIRED because EngineeringStub/injected-runner seams can execute arbitrary caller-supplied callables/runners with no dispatch scope; no-scope must fail closed and explicit engineering scope must be required.",
+      "handoff_note": "Worker scope consumption and material progress are verified. Current branch head includes LEAD-051 lead-authored instruction/ack commits after material worker head af3fded; lead commits are not worker progress."
     },
     "cursor_recovery": {
       "branch": "cursor/social-bots-recovery-v07-20260921",
       "branch_head": "bf18ac0083b15194c011b18dc791f4bd3d3e8019",
       "latest_verified_material_worker_source": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
       "latest_verified_session_id": "s-20260921T191500Z-a23cc77e",
-      "activity": "parked_safe_handoff_instruction_delivered",
-      "assignment": "preserve and push existing local work at a safe boundary; no new overlapping implementation; Fable owns shared recovery through live V1.7",
-      "handoff_note": "Current branch head is lead-authored park/ack delivery, not worker progress."
+      "activity": "parked_evidence_only",
+      "assignment": "preserve evidence; no new overlapping implementation; Fable owns enabled shared recovery through live V1.7",
+      "handoff_note": "Current branch head is lead-authored park coordination, not worker progress."
     },
-    "core": {"branch":"claude/social-bots-windows-core-host","last_verified_material_source_from_descendant_lane":"a73b7b58de8f3669795b81637bff55247d67943c","activity":"parked_evidence_only","assignment":"preserve evidence; no overlapping implementation"},
-    "intelligence": {"branch":"claude/social-bots-intelligence-repair-v2","last_verified_worker_head":"205295531e7755a5045fb1e458d3964d986edd56","activity":"parked_evidence_only","assignment":"preserve evidence; integrator may selectively consolidate existing V1.7 producers without accepting unresolved semantics or building future growth modules"},
+    "core": {
+      "branch": "claude/social-bots-windows-core-host",
+      "last_verified_material_source_from_descendant_lane": "a73b7b58de8f3669795b81637bff55247d67943c",
+      "activity": "parked_evidence_only",
+      "assignment": "preserve evidence; no overlapping implementation"
+    },
+    "intelligence": {
+      "branch": "claude/social-bots-intelligence-repair-v2",
+      "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
+      "activity": "parked_evidence_only",
+      "assignment": "preserve evidence; integrator may selectively consolidate existing V1.7 producers without accepting unresolved semantics or building future growth modules"
+    },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
-      "branch_head": "bd6cbde805684efb2a4bbf06c3886cefdb842650",
+      "branch_head": "6b42ee5c0db31c242d8173e006ea0a124c181650",
       "latest_verified_material_worker_head": "72e380bda71561429154e67bc07636b89143a488",
-      "activity": "independent_review_only_v17_scope",
-      "assignment": "independently review actual enabled <=V1.7 candidate routes, R07-071/R07-041 and required real evidence; no runtime edits or unauthorized model calls; unused future specialist acceptance is not a V1.7 prerequisite",
+      "activity": "stale_action_required_independent_review_only_v17",
+      "assignment": "independently audit repaired R07-041 seam, R07-071, due-rotation, C05/C06/C07 and enabled V1.7 boundary; no runtime edits or unauthorized model calls",
       "host_scope_note": "A Mac lane name does not prove local Mac execution. Prior acceptance was a single POSIX host/filesystem.",
-      "handoff_note": "Observed head is lead-authored review assignment delivery, not a fresh reviewer heartbeat or result."
+      "handoff_note": "Current branch head is lead-authored LEAD-051 review assignment; no fresh independent reviewer result is claimed."
     },
-    "v04_live_canary": {"branch":"claude/social-bots-v04-live-canary","activity":"frozen_evidence_only_authorization_consumed","assignment":"preserve evidence; no further product-model/canary calls without fresh applicable grant"},
-    "development_sessions_live": null,
+    "v04_live_canary": {
+      "branch": "claude/social-bots-v04-live-canary",
+      "activity": "frozen_evidence_only_authorization_consumed",
+      "assignment": "preserve evidence; no further product-model/canary calls without fresh applicable grant"
+    },
+    "development_sessions_live": "fable_session_materially_active_at_lead051_cutoff; acceptance_not_evidenced_active",
     "historical_development_sessions_evidenced": true,
     "social_bot_recurring_runtime_liveness": "not_verified",
     "heartbeat_validation": {
       "policy": "ONE_SESSION_ONE_HEARTBEAT",
-      "truth_rule": "One real SESSION_ONCE after current coordination is read in a genuinely fresh session; none repeated on resume/compaction; no periodic in-session heartbeat or soak.",
+      "truth_rule": "One real SESSION_ONCE at fresh-session start after current coordination is read; none repeated on resume/compaction; no periodic in-session heartbeat or soak.",
       "periodic_soak_superseded": true,
       "last_verified_fable_session": "s-20260921T211438Z-d5589881",
+      "fable_resume_rule_applied": "same session resumed after container restore; no second heartbeat expected",
       "issue3_visibility": "human visibility only, not evidence of artifact correctness",
       "v07_liveness_rule": "Actual native OS-scheduled sessions and invocation receipts on a verified persistent host, plus actual development artifact/lead cycles; not a kept-open chat."
     }
@@ -82,36 +111,44 @@
     "latest_verified_core_descendant_reported_suite": "312 passed, 1 skipped",
     "cursor_r07_071_worker_reported_suite": "314 passed, 1 skipped",
     "cursor_latest_worker_reported_suite": "416 tests reported, 2 skipped",
-    "fable_fasttrack_worker_reported_suite": "523 discovered, 521 passed, 2 skipped",
+    "fable_fasttrack_historical_worker_reported_suite": "523 discovered, 521 passed, 2 skipped",
+    "fable_r07_041_worker_reported_suite": "559 discovered, 557 passed, 2 skipped at 12c807e",
+    "fable_due_rotation_worker_reported_suite": "569 discovered, 567 passed, 2 skipped at b5fd038",
+    "fable_c05_c06_c07_worker_reported_suite": "678 passed, 2 skipped at c4d31fee",
     "intelligence_latest_worker_reported_full_suite": 195,
     "historical_github_ci_run_id": 35555060783,
     "historical_github_ci_status": "success; not evidence for the present candidate",
-    "lead047_delivery_validator_tests": {"passed":30,"scope":"isolated owner-supplied delivery package"},
-    "lead047_source_excerpt_probes": {"defect_scenarios_reproduced":6,"full_repo_execution":false,"real_model_calls":0},
-    "lead047_runtime_full_suite_independently_run": false,
-    "lead048_new_runtime_tests_run": false
+    "lead047_delivery_validator_tests": {"passed": 30, "scope": "isolated owner-supplied delivery package"},
+    "lead047_source_excerpt_probes": {"defect_scenarios_reproduced": 6, "full_repo_execution": false, "real_model_calls": 0},
+    "lead051_source_audit": {
+      "candidate": "12c807e970b4d7a8f92a7d5db7b7b3a3856c46d6",
+      "finding": "EngineeringStub/injected-runner no-scope execution capability remains",
+      "real_model_calls": 0,
+      "independent_full_suite_run": false
+    }
   },
   "lead_review": {
-    "review_id": "LEAD-048",
-    "review_ref": "social-bots/lead-reviews/LEAD-048_LIVE_V17_SCOPE_20260921.md",
-    "review_type": "owner_scope_change_not_runtime_acceptance",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-047_DELIVERY_RELEASE_20260921.md",
+    "review_id": "LEAD-051",
+    "review_ref": "social-bots/lead-reviews/LEAD-051_2026-09-21T2155.md",
+    "review_type": "active_v17_candidate_source_audit_and_assignment",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-050_2026-09-22T0051.md",
     "accepted_now": [],
-    "accepted_existing": ["SB-CTL-006","SB-CTL-012","SB-V03-001","SB-V03-002","SB-V03-003","SB-V03-004","SB-V03-005","SB-V03-006","SB-EVD-001","SB-V04-001","SB-V04-003","SB-V04-005","SB-V05-001","SB-V13-001","SB-V14-001"],
-    "submitted_recovery": ["SB-R07-071","SB-R07-042","SB-R07-044","SB-R07-051","SB-R07-052","SB-R07-053","SB-R07-061","SB-R07-072"],
-    "submitted_fable_engineering": ["SB-S20-001","SB-S23-001","SB-S23-002","SB-S23-003","SB-S23-004","SB-S23-005","SB-S23-006","SB-S23-007","SB-S23-008"],
-    "changes_required": ["SB-R07-041","SB-V05-002","SB-V15-001","SB-V16-001","SB-V17-001","SB-V20-002"],
-    "active_changes_required": ["SB-R07-041","SB-V05-002","SB-V15-001","SB-V16-001","SB-V17-001"],
+    "accepted_existing": ["SB-CTL-006", "SB-CTL-012", "SB-V03-001", "SB-V03-002", "SB-V03-003", "SB-V03-004", "SB-V03-005", "SB-V03-006", "SB-EVD-001", "SB-V04-001", "SB-V04-003", "SB-V04-005", "SB-V05-001", "SB-V13-001", "SB-V14-001"],
+    "submitted_recovery": ["SB-R07-071", "SB-R07-042", "SB-R07-044", "SB-R07-051", "SB-R07-052", "SB-R07-053", "SB-R07-061", "SB-R07-072"],
+    "submitted_fable_engineering": ["SB-S20-001", "SB-S23-001", "SB-S23-002", "SB-S23-003", "SB-S23-004", "SB-S23-005", "SB-S23-006", "SB-S23-007", "SB-S23-008", "V17-due-rotation@b5fd038", "V17-C05-C06-C07@c4d31fee", "V17-producer-consolidation@3da19a9c", "V17-preflight@af3fded"],
+    "changes_required": ["SB-R07-041", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001", "SB-V20-002"],
+    "active_changes_required": ["SB-R07-041", "SB-V05-002", "SB-V15-001", "SB-V16-001", "SB-V17-001"],
     "deferred_changes_required": ["SB-V20-002"],
     "withheld": ["SB-EVD-002"],
-    "blocked": ["SB-V04-002","SB-V04-004","SB-V06-001","SB-V06-002","SB-V06-003","SB-V07-002","SB-V07-005"],
-    "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md (apply to enabled/reused V1.7 paths only)",
+    "blocked": ["SB-V04-002", "SB-V04-004", "SB-V06-001", "SB-V06-002", "SB-V06-003", "SB-V07-002", "SB-V07-005"],
+    "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "Owner narrowed target to live V1.7 only. Future roadmap/code retained and parked; no auto-continue.",
-      "Observed heads contain no new material runtime repair since the previous audit; latest Fable head is lead-authored direction, not worker progress.",
-      "Fable remains sole integrator for shared active runtime. Later strategy/planner/specialist/H1-H4 completion is no longer a prerequisite; disable unsafe unused future routes or fix the narrow shared boundary.",
-      "All original <=V1.7 operational gates remain; real community reads/decisions/drafts do not imply sent replies.",
-      "This turn changes scope and routing, not runtime source, accepted artifact status or official version. No new live-model/public/spend grant."
+      "Fable has verified material post-LEAD-050 V1.7 work and is ACTIVE; scope consumption is no longer unverified.",
+      "12c807e substantially improves live dispatch/budget fencing but R07-041 remains CHANGES_REQUIRED because arbitrary EngineeringStub/injected-runner seams can execute with no dispatch scope.",
+      "b5fd038, c4d31fee, 3da19a9c and af3fded are submitted engineering/blocker evidence pending independent Acceptance review; no artifact promotion from self-report.",
+      "Mac Acceptance remains STALE/ACTION_REQUIRED with no fresh independent post-LEAD-050 result.",
+      "Fable preflight truthfully shows ephemeral-host/native-scheduler/account/route blockers; these do not satisfy operational evidence.",
+      "Official phase remains V0.4.x and no new live-model/public/spend authority exists."
     ]
   },
   "public_actions": {
@@ -140,30 +177,47 @@
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
     "long_term_target_state": "parked_not_authorized_for_current_work",
-    "strategic_checkpoints": ["V1.7","V2.3","V3.0"],
+    "strategic_checkpoints": ["V1.7", "V2.3", "V3.0"],
     "active_strategic_checkpoints": ["V1.7"],
     "promotion_rule": "lead-accepted artifacts in MILESTONE_MANIFEST.md plus exact real evidence; development stops after accepted V1.7",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
-    "v04_promotion_blocked_until": ["SB-V04-002","SB-V04-004","SB-EVD-002"]
+    "v04_promotion_blocked_until": ["SB-V04-002", "SB-V04-004", "SB-EVD-002"]
   },
   "next_recovery": [
-    "Fable preserves actual latest work, reads LEAD-048 and applies V17_SCOPE before selecting any next task",
-    "repair and independently test enabled V1.7 authority/budgets, heartbeat/leases, final review and honest dry-run semantics",
-    "preflight host/accounts/provider routes read-only and prepare precise external gate dossier early",
-    "integrate recovery and V0.8-V1.7 features with real permitted proof; no future strategy/planner/specialist prerequisite",
-    "submit final live V1.7 packet and stop development; do not auto-continue to V1.8 or V3.0"
+    "Fable repairs the R07-041 engineering-seam no-scope capability bypass with zero live calls and exact sentinel regressions",
+    "Acceptance independently audits repaired R07-041, R07-071, due rotation and C05/C06/C07 negative controls",
+    "Fable continues only enabled <=V1.7 zero-live integration while owner-gated operational evidence remains blocked",
+    "Use the preflight gate dossier to request/perform only specifically authorized host/account/model/public/measurement steps",
+    "Submit final live V1.7 packet and stop development; do not auto-continue to V1.8 or V3.0"
   ],
-  "priority_zero": {"artifact":"SB-V04-002/SB-V04-004 empirical divergence gate","status":"BLOCKED_OWNER_AUTHORIZATION","plan":"social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md","required_future_batch_calls":5,"owner_authorized_bounded_existing_subscription_call":false,"authorization_consumed":true,"additional_spend_authorized":false,"public_effect_allowed":false},
-  "remote_worker_infrastructure": {"control_plane":"pri8771/remote-workers","worker":"worker-pc","capacity":1,"status":"excluded_from_critical_path_until_private_repo_clone_auth_fixed","last_social_bots_actions_run":35615370153,"last_social_bots_task_result":"Repository clone failed before Claude/tests","policy":"Do not redispatch until private-repo clone/auth is demonstrably fixed. Worker results are evidence, not project authority."},
+  "priority_zero": {
+    "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
+    "status": "BLOCKED_OWNER_AUTHORIZATION",
+    "plan": "social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md",
+    "required_future_batch_calls": 5,
+    "owner_authorized_bounded_existing_subscription_call": false,
+    "authorization_consumed": true,
+    "additional_spend_authorized": false,
+    "public_effect_allowed": false
+  },
+  "remote_worker_infrastructure": {
+    "control_plane": "pri8771/remote-workers",
+    "worker": "worker-pc",
+    "capacity": 1,
+    "status": "excluded_from_critical_path_until_private_repo_clone_auth_fixed",
+    "last_social_bots_actions_run": 35615370153,
+    "last_social_bots_task_result": "Repository clone failed before Claude/tests",
+    "policy": "Do not redispatch until private-repo clone/auth is demonstrably fixed. Worker results are evidence, not project authority."
+  },
   "management_model": {
     "style": "artifact_oriented",
     "artifact_registry": "ARTIFACT_INDEX.json",
     "milestone_manifest": "MILESTONE_MANIFEST.md",
     "artifact_contract": "ARTIFACT_MANAGEMENT.md",
     "worker_packets": "artifact-packets/",
-    "lead_review_current": "lead-reviews/LEAD-048_LIVE_V17_SCOPE_20260921.md",
+    "lead_review_current": "lead-reviews/LEAD-051_2026-09-21T2155.md",
     "session_router": "SESSION_ROUTER.md",
     "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
     "live_progress_issue": 3,
