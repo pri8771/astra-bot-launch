@@ -40,3 +40,25 @@ Never record ACCEPTED or COMPLETE without the actual applicable lead decision. C
 `review_state`: READY_FOR_LEAD_SUITABILITY_REVIEW; no self-acceptance.
 `blocker`: final-divergence-input suitability and any subsequent matrix/owner model-call gate remain lead-controlled.
 `next_action`: lead review of the frozen bytes, receipts, signals and relevance notes in `social-bots/lead-reviews/CODEX_CURRENT_CAPTURE_PREP_20260922.md`; no capture retry or model action before disposition.
+
+## 2026-09-22 portfolio implementation checkpoint
+
+`session_id`: `codex-v17-v07-implementation-20260922`
+
+`role`: coordinator and bounded repair executor; ChatGPT remains formal
+acceptance authority.
+
+`updated_at`: `2026-09-22T13:03:59Z`
+
+`target_scope`: Jobs V1.7, Social Bots V0.7 owner ceiling, and SwarmAI V1.7.
+The native Bots state remains V0.4.x; this record does not replace its native
+scope or release a later milestone.
+
+| Project | Current source/evidence | Classification | Next permitted action |
+|---|---|---|---|
+| Jobs | `origin/main@1a4efbb`; owner-input request `codex/portfolio-rollup-20260922@350b11f` | **REVIEW_BLOCKED** — G14–G17 have no genuine product-path proof; worker activity is UNKNOWN after its stale five-minute report | Obtain explicit bounded live-frontier inputs, then independently review the unaccepted `dd2e0de` batch before any assignment |
+| Social Bots | canonical `chatgpt/social-bots-plan-20260920@7451465`; capture source `033b973`; integrity review `7119645` | **RECOMMEND_ACCEPT** for E1/E2 byte/receipt integrity only; **REVIEW_BLOCKED** for suitability, model activation, and V0.7 progression | Formal lead disposition of E1/E2; no matrix, provider call, host, scheduler, or new SESSION_ONCE before it |
+| SwarmAI | failed evidence `codex/swarm-r28d3-evidence-20260922@e917825`; repair `codex/swarm-r28d3-async-gateway-20260922@e87c523` | **REWORK_FOUND** for the one released live-local mission; repair **READY_FOR_LEAD_REVIEW** | Independent exact-SHA lead review and a successor one-run release before any second live invocation |
+
+No project was merged, deployed, dispatched to Fable, or coupled to another
+project runtime. Existing native heartbeat rules remain unchanged.
