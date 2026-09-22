@@ -81,3 +81,14 @@ Review proposals: [Jobs #13](https://github.com/pri8771/jobs/pull/13) at `7d6a50
 Subsequent local Swarm observation found uncommitted terminal attempt2 **failed / repair_required** at `02:11:59Z`, stdout digest `45a5236057ab57c53c555542f17a4d945f06f4d21c5699c863dc0131eb7e47f2`. Its local health checks pass; mission proof does not. Worker originals remain untouched; sanitized record and failed-attempt preservation request stay in Swarm PR #17. Next resume: fetch native refs, read actual verdict/worker ACK or new evidence first; continue current bounded repairs without taking implementation ownership. No claim of background coordination.
 
 Final readback: all three review requests are visible in their existing ChatGPT task histories; no formal verdict or worker repair ACK observed. Management state: CHECKPOINTED_RETURNING. No background coordinator/scheduler created. Current derived rollup is Jobs PR #13; Swarm local-failure evidence commit `44822c19b914232b1e7aebfc6aacd7dd3cd8ffda`. Existing implementation/product processes remain owned by their current workers.
+
+
+## Direct repair checkpoint — 2026-09-22T04:38:46.435734+00:00
+
+Owner reaffirmed direct Codex completion/no Fable handoff and asked for more agents. All three existing bounded mechanical agents were used in parallel; root remains the single source writer per isolated repair branch. No new worker task, runtime, scheduler or SESSION_ONCE was created.
+
+Bots canonical0e390f147ed86d8c09aa34269ffc0d9be1f9a601 preserves actual LEAD-053/054 engineering verdicts. New candidate9d497b4567e022a8e7f93a3ee890af206272b5be ([PR8](https://github.com/pri8771/astra-bot-launch/pull/8)) repairs C05/C06/C07 queue review anchoring and measured-baseline validation;723run/721pass/2genuine-evidence skips plus89mechanical focused pass. [Native packet](../../social-bots/lead-reviews/CODEX_INTEGRITY_20260922.md) and [source-bound hashed evidence](../../social-bots/receipts/evidence/CODEX-INTEGRITY-20260922/manifest.json). READY_FOR_LEAD_REVIEW / REVIEW_BLOCKED for formal verdict; no V0.7 live acceptance.
+
+Jobs source10a3a23924fdde6b040082ef030ad1286591b9a9 ([PR15](https://github.com/pri8771/jobs/pull/15)) fixes native CRM relinking/merged-contact history,446pass/1host-limited skip, Ruff/mypy74. Native record `pri8771/jobs:coordination/reviews/CODEX_CRM_20260922.md`. Swarm remains on released R27e; legacy-row repair and exact-SHA verification are in progress, R28a held. Derived combined status stays in Jobs STATUS.md; no queue is copied here.
+
+Jobs/Swarm lead-task transports expose delivered requests as completed user-only turns with no returned assistant verdict. Delivery is not review or acceptance; existing canonical refs remain authoritative. Live input/host/model/reviewer grants remain pending; no authority inferred from silence.

@@ -1,0 +1,18 @@
+{
+  "source_sha": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+  "source_tree": "e32431ca3a73b9c15e6b8ed291e88aa823f189a5",
+  "recorded_utc": "2026-09-22T04:37:25.408930+00:00",
+  "evidence_class": "synthetic_engineering_only",
+  "formal_acceptance": false,
+  "files": {
+    "full-tests.txt": {
+      "sha256": "02e63e318f18c4840031101581b14a16fee5f3bf76112bf8a5bfa5579a3d63b5"
+    },
+    "mechanical-review.txt": {
+      "sha256": "9cda097e19b374609a200b4cb0c20fee92c64973714e2d3d0593fb9a8be0e8b5"
+    },
+    "checks.json": {
+      "sha256": "996d5397bed7d2a35e3a399df317f63046761bbe9734c6e7033c1ad5f4503523"
+    }
+  }
+}
