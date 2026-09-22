@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T07:05:00Z",
+  "updated_at": "2026-09-22T07:32:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-059",
+    "lead_release": "LEAD-060",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -128,8 +128,8 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v13_parallel_bounded_repairs",
-      "assignment": "Continue SB-V13-002 reproduce-first audit unchanged. Separately repair account route_type enum validation in isolated branch: reject whole registry on undocumented route type; preserve valid unsupported as parsed but unavailable; no new boolean contract.",
+      "activity": "direct_v13_composition_after_two_acceptances",
+      "assignment": "Create isolated composition branch from accepted base 3f10d0f6 containing exact accepted PR12+PR13 changes only; run targeted route+metrics suites and full suite; no semantic modifications.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
       "latest_accepted_candidate": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
@@ -139,6 +139,10 @@
       "parallel_assignments": [
         "SB-V13-002 reproduce-first provenance/window audit (no source edits until reproduced defect)",
         "V0.8 route_type schema SP1 repair (ACCOUNT_REGISTRY_SCHEMA enum only)"
+      ],
+      "latest_accepted_candidates": [
+        "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+        "be0262713eec03c2e7e6b411c2754a7538bad9a6"
       ]
     }
   },
@@ -349,14 +353,53 @@
       ],
       "repair_status": "RELEASED_TO_CODEX_SP1",
       "live_account_calls": 0
+    },
+    "codex_route_schema_author_submission": {
+      "exact_source": "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+      "tree": "34b88114a05d3700c5220c3b0b927ca241de4aa8",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "affected": {
+        "passed": 45
+      },
+      "full": {
+        "run": 744,
+        "passed": 742,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "baseline": "5 tests / 9 expected failing subcases",
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "codex_v13_provenance_author_submission": {
+      "exact_source": "be0262713eec03c2e7e6b411c2754a7538bad9a6",
+      "tree": "f572da02fcbc60bfeb4d6f620e96aeea43193501",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "affected": {
+        "passed": 43
+      },
+      "full": {
+        "run": 756,
+        "passed": 754,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "artifact": "SB-V13-002",
+      "live_actions": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-059",
-    "review_ref": "social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md",
-    "review_type": "route_type_schema_rework_release_parallel_v13_audit",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md",
-    "accepted_now": [],
+    "review_id": "LEAD-060",
+    "review_ref": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md",
+    "review_type": "pr12_route_schema_and_pr13_v13_provenance_exact_sha_verdicts",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md",
+    "accepted_now": [
+      "PR12-route-schema@a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+      "SB-V13-002@be0262713eec03c2e7e6b411c2754a7538bad9a6"
+    ],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -429,12 +472,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "Documented route_type enum defect reproduced at accepted 3f10d0f6: undocumented 'telepathy' route is currently admitted as available/authorized.",
-      "Root cause is ingest schema validation gap: load_routes checks presence but not enum membership, while _route_ok rejects only literal unsupported.",
-      "Bounded repair released: reject whole registry on any undocumented route_type; valid unsupported remains parseable but unavailable.",
-      "No new boolean type contract is inferred beyond the documented route_type enum.",
-      "SB-V13-002 metrics provenance/window diagnostic continues unchanged in parallel; no source edits there unless a concrete defect is reproduced.",
-      "No Fable routing or external/live action."
+      "PR12 exact a4e7926c79231bfadfc55b56a70a741cc85a2b4e ACCEPTED ENGINEERING for exact documented route_type enum validation at registry ingest.",
+      "PR13 exact be0262713eec03c2e7e6b411c2754a7538bad9a6 ACCEPTED ENGINEERING and SB-V13-002 marked ACCEPTED for provenance/window/compatibility/legacy fail-closed semantics.",
+      "PR12 and PR13 are disjoint one-commit children of accepted base 3f10d0f6 and can be mechanically composed without intended behavior changes.",
+      "Next released task is composition/integration only: combine exact accepted changes, run targeted route+metrics suites and full suite, stop on any required semantic modification.",
+      "Official product phase remains V0.4.x; live V1.3 promotion remains blocked by genuine earlier operational gates."
     ]
   },
   "public_actions": {
