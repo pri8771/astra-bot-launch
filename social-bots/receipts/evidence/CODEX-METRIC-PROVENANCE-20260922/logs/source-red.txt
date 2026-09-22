@@ -1,0 +1,137 @@
+test_derived_ratio_and_snapshot_delta_are_unavailable_for_bad_source (test_metrics_provenance.MetricsProvenanceTest.test_derived_ratio_and_snapshot_delta_are_unavailable_for_bad_source) ... FAIL
+test_legacy_bad_source_is_retained_but_excluded_from_trace_and_aggregate (test_metrics_provenance.MetricsProvenanceTest.test_legacy_bad_source_is_retained_but_excluded_from_trace_and_aggregate) ... FAIL
+test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) ... 
+  test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source='') ... FAIL
+  test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source='   ') ... FAIL
+  test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=17) ... FAIL
+  test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=None) ... FAIL
+  test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=False) ... FAIL
+test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) ... 
+  test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source='') ... FAIL
+  test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source='   ') ... FAIL
+  test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source=17) ... FAIL
+  test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source=None) ... FAIL
+test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) ... FAIL
+test_valid_provenance_and_all_identity_fields_survive_record_and_trace (test_metrics_provenance.MetricsProvenanceTest.test_valid_provenance_and_all_identity_fields_survive_record_and_trace) ... ok
+
+======================================================================
+FAIL: test_derived_ratio_and_snapshot_delta_are_unavailable_for_bad_source (test_metrics_provenance.MetricsProvenanceTest.test_derived_ratio_and_snapshot_delta_are_unavailable_for_bad_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 104, in test_derived_ratio_and_snapshot_delta_are_unavailable_for_bad_source
+    self.assertEqual(bad_delta.availability, metrics.MISSING)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'present' != 'missing'
+- present
++ missing
+
+
+======================================================================
+FAIL: test_legacy_bad_source_is_retained_but_excluded_from_trace_and_aggregate (test_metrics_provenance.MetricsProvenanceTest.test_legacy_bad_source_is_retained_but_excluded_from_trace_and_aggregate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 79, in test_legacy_bad_source_is_retained_but_excluded_from_trace_and_aggregate
+    self.assertEqual(trace["observation_count"], 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 39, in test_normalize_rejects_empty_whitespace_and_nonstring_source
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source='   ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 39, in test_normalize_rejects_empty_whitespace_and_nonstring_source
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=17)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 39, in test_normalize_rejects_empty_whitespace_and_nonstring_source
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 39, in test_normalize_rejects_empty_whitespace_and_nonstring_source
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_normalize_rejects_empty_whitespace_and_nonstring_source (test_metrics_provenance.MetricsProvenanceTest.test_normalize_rejects_empty_whitespace_and_nonstring_source) (source=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 39, in test_normalize_rejects_empty_whitespace_and_nonstring_source
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 46, in test_record_defends_direct_dataclass_construction
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source='   ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 46, in test_record_defends_direct_dataclass_construction
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source=17)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 46, in test_record_defends_direct_dataclass_construction
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction) (source=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 46, in test_record_defends_direct_dataclass_construction
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_record_defends_direct_dataclass_construction (test_metrics_provenance.MetricsProvenanceTest.test_record_defends_direct_dataclass_construction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-provenance-source/social-bots/tests/test_metrics_provenance.py", line 48, in test_record_defends_direct_dataclass_construction
+    self.assertEqual(metrics.observations_for("bot-a"), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'account_alias': 'account-a', 'collected[7070 chars]00'}] != []
+
+First list contains 4 additional elements.
+First extra element 0:
+{'account_alias': 'account-a', 'collected_at': '2026-09-22T11:00:00+00:00', 'content_id': 'content-1', 'experiment_id': 'experiment-a', 'normalization_version': '1.1.1', 'normalized': {'click': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'click', 'value': None}, 'completion': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'completion', 'value': None}, 'conversion': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'conversion', 'value': None}, 'follow': {'availability': 'missing', 'metric_kind': 'delta', 'raw_name': None, 'raw_value': None, 'semantic': 'follow', 'value': None}, 'reach': {'availability': 'present', 'metric_kind': 'cumulative_snapshot', 'raw_name': 'impressions', 'raw_value': 10.0, 'semantic': 'reach', 'value': 10.0}, 'reply': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'reply', 'value': None}, 'save': {'availability': 'not_supported', 'metric_kind': None, 'raw_name': None, 'raw_value': None, 'semantic': 'save', 'value': None}, 'share': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'share', 'value': None}, 'view': {'availability': 'missing', 'metric_kind': 'cumulative_snapshot', 'raw_name': None, 'raw_value': None, 'semantic': 'view', 'value': None}}, 'observation_id': 'obs-0ac84d5ef2524735', 'persona': 'persona-a', 'platform': 'x', 'raw_metrics': {'impressions': 10, 'url_clicks': 2}, 'source': '', 'unmapped_raw': ['url_clicks'], 'window_end': '2026-09-22T11:00:00+00:00', 'window_start': '2026-09-22T10:00:00+00:00'}
+
+Diff is 13350 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+FAILED (failures=12)

@@ -130,3 +130,13 @@ Canonical e4035aa / LEAD057 formally accepts PR10 exactccfbaf7865557ba30d9148bcc
 Jobs lead4d5b82f accepts source832d85f candidate-reply attribution and releases bounded golden-workflow resumption from that exact source. Native evidence80448a7 retains463 full passes/1 host skip and exact PostgreSQL replay/cleanup0. A /tmp-only diagnostic is now tracing the existing first8 golden steps through production services, stopping at the next meaningful defect. Swarm sourcea06b8a8 PR23 remains in formal review; hosted CI evidence3389fab confirms account gating before any runner or step.
 
 User was asked for Bots' missing persistent host/runtime/existing scheduler facts; no response or new authority inferred. No new SESSION_ONCE, model/account/provider/public action, Fable dispatch, scheduler, merge or deployment. Genuine version goals remain open.
+
+## Continuation — accepted route selection; two bounded repairs ready
+
+Canonical f88794a54aff28b4de0af6ed430ee1ca73843a6b includes LEAD058 acceptance of exact3f10d0f/PR11 and release of SB-V13-002 provenance/window audit, plus LEAD059 release of separate route-type enum repair. No new SESSION_ONCE is emitted on this continuation.
+
+Metrics candidate be0262713eec03c2e7e6b411c2754a7538bad9a6/treef572da02fcbc60bfeb4d6f620e96aeea43193501 (PR13) closes reproduced invalid source/window/time-order and legacy kind/mapping claims.43affectedpass; full756run754pass2existingliveskips3.638s. Native CODEX_METRIC_PROVENANCE_20260922.md links exact code, red-before and source-bound evidence. Route schema candidate a4e7926c79231bfadfc55b56a70a741cc85a2b4e/tree34b88114a05d3700c5220c3b0b927ca241de4aa8 (PR12) enforces the documented enum across the entire registry;45affectedpass,744run742pass2liveskips3.632s,5independentreviewchecks. Native CODEX_ROUTE_SCHEMA_REPAIR_20260922.md links its separate packet. Both are RECOMMEND_ACCEPT engineering only, pending ChatGPT verdict; no account or genuine analytics proof claimed.
+
+Jobs accepted832d85f now has a complete17step synthetic workflow plus full6message same-database replay independently repeated by root on actual disposable PostgreSQL/cleanup0. Native evidence2d564220ad5158aa653bdf7119252159c8cfc108; exactgolden formalreviewrequested. Swarm canonicalabcb5f still has no PR23a06b8a8 or PR19 1c9ff44 verdict; R28c held. Heartbeat07:19:43Z repeats meaningful02:08:48Z; terminalattempt2FAILED remains authoritative.
+
+Persistenthost/runtime/existingschedulerfacts remain unanswered, freshmodelmanifest notgranted, livegatesopen. No Fable handoff, external model/account/public/mailbox/application action, newtimer, merge or deployment. Jobs STATUS.md remains derivedcombinedstatus; queues stay native.

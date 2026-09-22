@@ -1,0 +1,33 @@
+{
+  "aggregate": {
+    "bot": "social-a",
+    "by_platform": {
+      "tiktok": {
+        "kinds": {
+          "delta": {
+            "aggregation": "sum_non_overlapping_deltas",
+            "count": 1,
+            "excluded_overlapping": 0,
+            "kind": "delta",
+            "value": 7.0
+          }
+        },
+        "missing": 0,
+        "not_supported": 0,
+        "present": 1
+      }
+    },
+    "note": "kind-aware: deltas summed; cumulative snapshots reduced to latest-per-series then summed (never summed over time); gauges/rates averaged; missing excluded (not treated as 0)",
+    "semantic": "follow"
+  },
+  "normalized_window": [
+    "2026-09-22T02:00:00+00:00",
+    "2026-09-22T01:00:00+00:00"
+  ],
+  "stored_count": 1,
+  "stored_window": [
+    "2026-09-22T02:00:00+00:00",
+    "2026-09-22T01:00:00+00:00"
+  ],
+  "temp_home": "/var/folders/fg/lmdhrms177s93m879bkgvjzr0000gn/T/bots-metrics-window-6t2c4e2g"
+}

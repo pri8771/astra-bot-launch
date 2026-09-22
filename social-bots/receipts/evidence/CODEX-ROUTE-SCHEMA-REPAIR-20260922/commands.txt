@@ -1,0 +1,23 @@
+BASE=3f10d0f6eb031c00fff679aae18aa8045d8bd025
+CANDIDATE=a4e7926c79231bfadfc55b56a70a741cc85a2b4e
+
+Red-before focused module on accepted base:
+PYTHONPATH=social-bots python3 -m unittest tests.test_account_route_schema
+Result: exit 1; Ran 5 tests; FAILED (failures=9). See bots-route-schema-red.log.
+
+Candidate affected route/schema/community suite:
+PYTHONPATH=social-bots python3 -m unittest <45 affected route/schema/community tests>
+Result: exit 0; Ran 45 tests; OK. See bots-route-schema-focused.log.
+
+Candidate full offline suite:
+PYTHONPATH=social-bots python3 -m unittest discover -s social-bots/tests
+Result: exit 0; Ran 744 tests in 3.632s; OK (skipped=2 genuine-live tests). See bots-route-schema-full.log.
+
+Independent bounded review:
+PYTHONPATH=social-bots python3 social-bots/tests/test_account_route_schema.py
+Result: exit 0; Ran 5 tests; OK. See bots-route-schema-review.log.
+
+Static checks:
+python3 -m py_compile social-bots/runtime/account_routes.py social-bots/tests/test_account_route_schema.py
+git diff --check 3f10d0f6eb031c00fff679aae18aa8045d8bd025 a4e7926c79231bfadfc55b56a70a741cc85a2b4e
+Result: both exit 0.
