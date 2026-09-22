@@ -125,7 +125,7 @@ def _persona_content_ids(bot: str, persona: str) -> set[str]:
 
 
 def _route_aliases(bot: str, persona: str, *, now: datetime | None = None) -> tuple[bool, set[str], dict]:
-    """(registry_present, aliases of this persona's routes, reply-authorized route by alias)."""
+    """(registry_present, persona aliases, unique reply routes by platform and alias)."""
     try:
         routes = account_routes.load_routes()
     except account_routes.RouteRegistryError:
@@ -134,9 +134,15 @@ def _route_aliases(bot: str, persona: str, *, now: datetime | None = None) -> tu
         return False, set(), {}
     mine = [r for r in routes if r.get("bot") == bot and r.get("persona") == persona]
     aliases = {r.get("account_alias") for r in mine if r.get("account_alias")}
-    reply_ok = {r.get("account_alias"): r for r in mine
-                if account_routes._route_ok(r, now=now)[0]
-                and (r.get("capabilities") or {}).get("reply") and r.get("reply_authorized") is True}
+    reply_ok = {}
+    now = now or datetime.now(timezone.utc)
+    platforms = {r["platform"] for r in mine if isinstance(r.get("platform"), str)}
+    for platform in platforms:
+        route, _ = account_routes.select_route(mine, bot, persona, platform, now=now)
+        if (route is not None and route.get("account_alias")
+                and (route.get("capabilities") or {}).get("reply")
+                and route.get("reply_authorized") is True):
+            reply_ok[(platform, route["account_alias"])] = route
     return True, aliases, reply_ok
 
 
@@ -270,11 +276,11 @@ def run_community_cycle(bot: str, persona_id: str, *, signals=None, fence=None,
             payload = pipeline.format_for_platform(cand, platform)
             final = pipeline.final_review(persona, cand, payload)
             route = None
-            if sig.account_alias in reply_routes:
+            selected = reply_routes.get((platform, sig.account_alias))
+            if selected is not None:
                 route = community.AuthorizedRoute(account_alias=sig.account_alias,
                                                   authorized=True,
-                                                  granted_by=reply_routes[sig.account_alias]
-                                                  .get("route_id", ""))
+                                                  granted_by=selected.get("route_id", ""))
             community.clear_for_effect(proposal, route, lambda _p: bool(final["passed"]))
             reply = {"recorded_at": now_iso(), "bot": bot, "persona": persona_id,
                      "signal_id": sig.id, "thread_id": sig.thread_id,

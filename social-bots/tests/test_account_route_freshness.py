@@ -112,7 +112,7 @@ class RouteFreshnessTest(unittest.TestCase):
         present, aliases, reply_ok = community_loop._route_aliases(BOT, PERSONA, now=NOW)
         self.assertTrue(present)
         self.assertEqual(aliases, {"alias-revoked", "alias-stale", "alias-missing", "alias-fresh"})
-        self.assertEqual(set(reply_ok), {"alias-fresh"})
+        self.assertEqual(set(reply_ok), {("x", "alias-fresh")})
 
         signals = [community.CommunitySignal.ingest(
             thread_id=f"thread-{alias}",
