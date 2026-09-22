@@ -22,6 +22,7 @@ Truth table for platform selection (``availability_for``):
 from __future__ import annotations
 
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import paths
@@ -33,6 +34,8 @@ _REQUIRED = ("route_id", "platform", "bot", "persona", "route_type", "capabiliti
 _SECRET_MARKERS = ("password", "passwd", "token", "cookie", "secret", "totp",
                    "recovery", "session", "private_key", "apikey", "api_key")
 _UNHEALTHY = {"unhealthy", "revoked", "suspended", "locked", "expired"}
+VERIFICATION_MAX_AGE = timedelta(hours=24)
+VERIFICATION_FUTURE_ALLOWANCE = timedelta(minutes=5)
 
 
 class RouteRegistryError(ValueError):
@@ -90,7 +93,28 @@ def load_routes(home: str | Path | None = None) -> list[dict] | None:
     return routes
 
 
-def _route_ok(route: dict) -> tuple[bool, str]:
+def verification_freshness(value: object, *, now: datetime | None = None) -> tuple[bool, str]:
+    """LEAD-056: require aware verification within 24 hours / +5 minutes."""
+    if not isinstance(value, str) or not value.strip():
+        return False, "route verification timestamp missing"
+    try:
+        verified = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return False, "route verification timestamp malformed"
+    if verified.tzinfo is None or verified.utcoffset() is None:
+        return False, "route verification timestamp must be timezone-aware"
+    now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None or now.utcoffset() is None:
+        return False, "route verification evaluation time must be timezone-aware"
+    age = now - verified
+    if age < -VERIFICATION_FUTURE_ALLOWANCE:
+        return False, "route verification timestamp exceeds 5-minute future allowance"
+    if age > VERIFICATION_MAX_AGE:
+        return False, "route verification stale (older than 24 hours)"
+    return True, "route verification current"
+
+
+def _route_ok(route: dict, *, now: datetime | None = None) -> tuple[bool, str]:
     if route.get("route_type") == "unsupported":
         return False, "route_type unsupported"
     health = str(route.get("health_status") or "unverified").lower()
@@ -98,10 +122,14 @@ def _route_ok(route: dict) -> tuple[bool, str]:
         return False, f"route health {health}"
     if health in ("unverified", "unknown", ""):
         return False, "route never verified (last_verified_at absent or stale)"
+    fresh, why = verification_freshness(route.get("last_verified_at"), now=now)
+    if not fresh:
+        return False, why
     return True, f"route {route.get('route_id')} {health}"
 
 
-def availability_for(bot: str, persona: str, platforms, home: str | Path | None = None) -> dict:
+def availability_for(bot: str, persona: str, platforms, home: str | Path | None = None,
+                     *, now: datetime | None = None) -> dict:
     """Per-platform availability for ``select_platforms`` plus the registry state."""
     platforms = list(platforms)
     out = {"registry_present": False, "registry_error": None, "availability": {}}
@@ -131,7 +159,7 @@ def availability_for(bot: str, persona: str, platforms, home: str | Path | None 
                                       "reason": f"no route for {bot}/{persona} on {p}"}
             continue
         route = matches[0]
-        ok, why = _route_ok(route)
+        ok, why = _route_ok(route, now=now)
         caps = route.get("capabilities") or {}
         out["availability"][p] = {
             "account_available": ok,
