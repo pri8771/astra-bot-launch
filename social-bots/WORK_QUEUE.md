@@ -1,4 +1,4 @@
-# Work queue — LEAD-053 — stop at LIVE V1.7
+# Work queue — LEAD-054 — stop at LIVE V1.7
 
 Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V1.7 only**, not V1.8+, V2.3 or V3.0. Active contract: `delivery/V17_LIVE.md`; scope filter: `delivery/V17_SCOPE.json`; exit criteria: `delivery/V17_ACCEPTANCE.md`.
 
@@ -13,10 +13,11 @@ Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V
 ## Immediate order
 
 1. **Codex direct repair mode:** concrete review findings are implemented only in isolated Codex repair branches and returned for ChatGPT formal acceptance. No Fable handoff.
-2. **SB-R07-072 is ACCEPTED at exact `7acc1695d2961267580a156f31df6a5991476654`** as the portable host-preflight test-isolation repair only. Do not merge or treat it as real-host/V0.7 acceptance unless separately authorized.
-3. Preserve the real-evidence critical chain: V0.4 controlled divergence under fresh authorization; V0.5 real current-source review; V0.6 three real unpublished adaptive loops; V0.7 verified persistent owner host + native scheduler firings + failure/recovery + genuine dev/lead/later-worker cycles.
-4. Keep existing submitted V1.7 engineering evidence stable for review. No V1.8+ work.
-5. Submit final LIVE V1.7 packet only when all genuine gates are satisfied, then stop.
+2. **SB-R07-072 remains ACCEPTED** at exact `7acc1695...` as the portable host-test isolation repair only.
+3. **V1.7 due-rotation crash-window repair is ACCEPTED ENGINEERING** at exact `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`. It closes the post-completion cursor window under the lease fence; this is not scheduler/live acceptance.
+4. Preserve the real-evidence critical chain: V0.4 controlled divergence under fresh authorization; V0.5 real current-source review; V0.6 three real unpublished adaptive loops; V0.7 verified persistent owner host + native scheduler firings + failure/recovery + genuine dev/lead/later-worker cycles.
+5. Keep existing submitted V1.7 engineering evidence stable for review. No V1.8+ work.
+6. Submit final LIVE V1.7 packet only when all genuine gates are satisfied, then stop.
 
 ## Submitted evidence awaiting independent review
 
