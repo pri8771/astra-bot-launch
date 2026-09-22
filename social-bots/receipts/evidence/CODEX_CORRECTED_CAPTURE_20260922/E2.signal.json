@@ -1,0 +1,17 @@
+{
+  "published": {
+    "precision": "date",
+    "selector": "span.article-basic-date-time_*",
+    "value": "September 14, 2026"
+  },
+  "snapshot_id": "E2",
+  "source_capture_receipt_id": "cap-9701ad2cb45c4b19",
+  "summary": "TikTok and Amplify have joined forces to announce The Next Episode, a new content initiative designed to help brands move beyond traditional short-form content and invest in creator-led series. As demand for longer-form, episodic entertainment continues to grow, the new initiative connects brands with Amplify's creator network to develop and produce original, social-first series, with eligible brands able to access production support through TikTok alongside their media investment.",
+  "summary_method": "extractive-fixed-source-specific-paragraphs",
+  "supporting_paragraph_indices": [
+    0,
+    1
+  ],
+  "title": "TikTok and Amplify launch new creator-led content series for brands",
+  "url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU"
+}
