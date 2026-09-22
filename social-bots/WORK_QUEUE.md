@@ -1,6 +1,6 @@
-# Work queue — LEAD-054 — stop at LIVE V1.7
+# Work queue — LEAD-055 — target LIVE V1.3
 
-Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V1.7 only**, not V1.8+, V2.3 or V3.0. Active contract: `delivery/V17_LIVE.md`; scope filter: `delivery/V17_SCOPE.json`; exit criteria: `delivery/V17_ACCEPTANCE.md`.
+Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
 ## Current lane truth
 
@@ -14,10 +14,10 @@ Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V
 
 1. **Codex direct repair mode:** concrete review findings are implemented only in isolated Codex repair branches and returned for ChatGPT formal acceptance. No Fable handoff.
 2. **SB-R07-072 remains ACCEPTED** at exact `7acc1695...` as the portable host-test isolation repair only.
-3. **V1.7 due-rotation crash-window repair is ACCEPTED ENGINEERING** at exact `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`. It closes the post-completion cursor window under the lease fence; this is not scheduler/live acceptance.
-4. Preserve the real-evidence critical chain: V0.4 controlled divergence under fresh authorization; V0.5 real current-source review; V0.6 three real unpublished adaptive loops; V0.7 verified persistent owner host + native scheduler firings + failure/recovery + genuine dev/lead/later-worker cycles.
-5. Keep existing submitted V1.7 engineering evidence stable for review. No V1.8+ work.
-6. Submit final LIVE V1.7 packet only when all genuine gates are satisfied, then stop.
+3. **V1.7-era due-rotation crash-window repair remains ACCEPTED ENGINEERING** at exact `84f8f05...`; it is reusable infrastructure evidence, not a V1.3 live gate.
+4. **PR #8 content-integrity repair is ACCEPTED ENGINEERING** at exact `9d497b4567e022a8e7f93a3ee890af206272b5be`: separate scoped final-review receipt anchor + strict measured-baseline validation. This does not prove receipt immutability or genuine baseline provenance.
+5. **Codex SP1 RELEASED:** repair V1.3 metrics validity on current source: bool/NaN/±inf must not become PRESENT; legacy invalid PRESENT observations must not contaminate aggregation; preserve raw provenance/MISSING semantics; red-before/green-after + affected/full tests. No V1.8+ work.
+6. Preserve and satisfy every genuine V0.7→V1.3 gate in order. Submit final LIVE V1.3 packet only when genuine prerequisites are independently accepted, then stop.
 
 ## Submitted evidence awaiting independent review
 
@@ -30,7 +30,7 @@ Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V
 
 ## Operational blockers remain factual
 
-Fable's current execution environment is an **ephemeral Linux VM**, not a verified persistent owner-controlled host with native scheduling. Its preflight records social-platform CONNECT-403 restrictions, no canonical live authorization manifest, no account registry entries and no named cultural reviewer. Those conditions block applicable operational evidence; they do not waive it.
+Operational/live prerequisites remain factual and unwaived: persistent owner host, native scheduler/session evidence, applicable model/source/reviewer/time inputs, and subsequent V0.8→V1.3 gates must be satisfied with genuine evidence. Synthetic/fixture checks remain engineering evidence only.
 
 ## Authority and heartbeat
 
