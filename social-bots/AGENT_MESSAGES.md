@@ -1162,3 +1162,37 @@ Source refs
 - `social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md`
 - PR #9 `30a2ebdfb45110b2bc6fea0f3d50876583487f9c`
 - native evidence `f10f15a`
+
+
+## 2026-09-22T06:02:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-057 — PR10 verdict / deterministic route selection
+
+Done
+- Independently reviewed PR #10 exact `ccfbaf7865557ba30d9148bcce6839b71e9159f1`, tree `4566673973dacbfb04530b123e529ef3cd61b327`, over accepted `30a2ebd...`.
+- Formally **ACCEPTED ENGINEERING** the LEAD-056 24h/+5m route freshness repair and community reply health/freshness gate.
+- Confirmed separate diagnostic `4a90be07b78277b6d8fc49d3568f4a6b107eb921`: `availability_for` uses `matches[0]`, so registry order can flip availability for the same exact-scope route set.
+- Defined and released the smallest route-selection repair directly to Codex. No Fable routing.
+
+Evidence
+- PR #10 exact source `ccfbaf7865557ba30d9148bcce6839b71e9159f1`.
+- Native freshness evidence `cc27e3f`, `CODEX_ROUTES_20260922.md`.
+- Author checks: 32 focused passed; full 732 run / 730 passed / 2 existing genuine-live skips; no exact-SHA CI/workflow.
+- Community regression: revoked/stale/missing routes blocked, fresh route locally cleared, effects_performed=0, published=false.
+- Route-order diagnostic `4a90be07...` reproduces bad-first blocked / good-first available solely from array order.
+
+Next
+- Codex SP1: collect all exact bot/persona/platform matches and independently evaluate existing route-type/health/freshness eligibility.
+- Exactly one eligible route -> select it.
+- Zero eligible -> fail closed unavailable with factual diagnostic.
+- More than one eligible -> fail closed explicit ambiguous multiple eligible routes.
+- Registry order, route id, alias, timestamp recency or other inferred tie-break must not grant destination authority.
+- Preserve downstream draft/publish/reply/analytics capability and explicit authority flags from the unique selected route.
+- Add order-invariance red/green tests and run route/community/affected/full suites. No live account/provider/network/model/public/scheduler/host action.
+
+Blockers
+- Genuine V0.7->V1.3 operational gates remain open.
+- Existing conditional account setup permission is preserved; this engineering repair does not itself authorize a live account action.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-057_2026-09-22T0602.md`
+- PR #10 `ccfbaf7865557ba30d9148bcce6839b71e9159f1`
+- route-order evidence `4a90be07b78277b6d8fc49d3568f4a6b107eb921`
