@@ -1318,3 +1318,32 @@ Source refs
 - `social-bots/lead-reviews/LEAD-061_2026-09-22T0740.md`
 - PR14 `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`
 - native evidence `37d1d8aeece063daeeb860fbafeb312e32615ca4`
+
+
+## 2026-09-22T08:05:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-062 — readiness audit confirmed / state reconciled / SB-V11 audit released
+
+Done
+- Confirmed native live-readiness audit `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0` as a truthful derived V0.4→V1.3 readiness record.
+- Confirmed disposition **REVIEW_BLOCKED_FOR_LIVE_PROMOTION**.
+- Reconciled canonical active metadata to owner target **LIVE V1.3**, Codex direct implementation, no Fable handoff, and LEAD-062 current review.
+- Removed stale active V1.7/Fable execution language from STATE/router/queue; remaining V1.7 references are historical/strategic evidence only.
+- Released read-only/reproduce-first SB-V11-001/002 reliability audit. No source edits or new tests until a concrete current-code gap is reproduced.
+
+Evidence
+- Accepted composition pinned by audit: `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3` / tree `72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a`.
+- Audit machine record contains 10 readiness rows and pins 18 canonical contracts at LEAD-061.
+- First authorized V0.4 canary remains accepted; one-call grant consumed; duplicate call excluded.
+- Controlled divergence/SB-EVD-002, persistent host facts, three genuine V0.6 dry runs, V0.8 exact account route readbacks, V0.9 canaries/measurement, and V1.0–V1.2 operational predecessors remain open.
+
+Next
+- Codex SB-V11 read-only audit: inspect existing reliability behavior for crash-before/after-commit, duplicate invocation/delivery, stale lease/fence/takeover, restart/reconciliation, provider/account/reasoning outage classification, bounded retry/dead-letter behavior, idempotency/effect journals, and duplicate content/experiment/effect eligibility.
+- Reuse existing tests/evidence. Do not add tests or edit source unless a concrete current-code gap is reproduced and returned for lead release.
+
+Blockers
+- No fresh model manifest/expiry.
+- Persistent owner host facts remain pending.
+- No new scheduler/host/account/provider/model/network/public action, SESSION_ONCE, spend, merge, deploy, or Fable handoff is authorized.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md`
+- audit `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0`
