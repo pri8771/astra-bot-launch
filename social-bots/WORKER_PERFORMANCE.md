@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-059** (`lead-reviews/LEAD-059_2026-09-22T0705.md`).  
+Current lead review: **LEAD-060** (`lead-reviews/LEAD-060_2026-09-22T0732.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -168,4 +168,12 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Bounded Codex SP1 released: registry-ingest enum validation exactly matching schema `API|browser|Buffer|manual|unsupported`; any unknown type rejects the whole registry; valid `unsupported` still parses but is unavailable.
 - No boolean-schema contract is added where the document does not define one.
 - SB-V13-002 metrics audit continues separately and remains reproduce-first/no-source-edit-until-failure.
+- No live external action or Fable handoff.
+
+## LEAD-060 dual exact-SHA acceptance
+
+- PR12 exact `a4e7926c79231bfadfc55b56a70a741cc85a2b4e` / tree `34b88114a05d3700c5220c3b0b927ca241de4aa8` is **ACCEPTED ENGINEERING** for documented route_type enum validation. Author evidence: baseline 5 tests/9 expected failing subcases; 45 affected pass; full 744 run / 742 pass / 2 existing genuine-live skips; no exact-SHA CI.
+- PR13 exact `be0262713eec03c2e7e6b411c2754a7538bad9a6` / tree `f572da02fcbc60bfeb4d6f620e96aeea43193501` is **ACCEPTED ENGINEERING** and SB-V13-002 is ACCEPTED as an engineering artifact. Author evidence: 43 affected pass; full 756 run / 754 pass / 2 existing genuine-live skips; no exact-SHA CI.
+- PR13 retains malformed legacy rows as raw evidence while excluding them from stronger trace/aggregate/derived claims; valid kind overrides and optional windows remain supported.
+- Next task is composition only: combine both accepted disjoint repairs on base `3f10d0f6...`, verify exact diffs/hashes, run targeted and full suites, and make no new behavior changes.
 - No live external action or Fable handoff.
