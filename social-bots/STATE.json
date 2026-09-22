@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T08:13:00Z",
+  "updated_at": "2026-09-22T18:54:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,17 +22,17 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-063",
-    "last_review": "LEAD-063",
-    "target": "V1.3",
+    "lead_release": "LEAD-066",
+    "last_review": "LEAD-066",
+    "target": "V1.7",
     "target_kind": "operational_live",
-    "hard_stop_after": "V1.3",
+    "hard_stop_after": "V1.7",
     "auto_continue_after_target": false,
     "contract": "lead-reviews/LEAD-062_2026-09-22T0805.md",
     "scope_filter": "owner target V1.3; no new live grants",
     "acceptance_contract": "MILESTONE_MANIFEST.md + lead-accepted genuine evidence",
-    "owner_instruction": "Owner target is LIVE V1.3 with genuine tests; Codex direct implementation for new concrete repairs; no Fable handoff.",
-    "supersedes": "prior V1.7/Fable execution text; preserves all genuine V0.4→V1.3 evidence gates",
+    "owner_instruction": "Owner target is accepted LIVE V1.7; Codex-direct newly released work; no Fable dispatch.",
+    "supersedes": "temporary V2.0 pause and later V2.3/V2.7 proposal for Bots; all sequential genuine-live predecessor gates remain",
     "future_roadmap": "preserved and parked; not deleted or accepted",
     "authority_change": "development target only; no fresh model/public/account/host/scheduler/spend/deployment/main-merge grant",
     "worker_consumption": "verified_acknowledged_in_session_s-20260921T211438Z-d5589881"
@@ -44,7 +44,7 @@
       "latest_verified_material_checkpoint": "af3fded92eaba5e68c8088737b68c6f043e40a5e",
       "last_verified_session_id": "s-20260921T211438Z-d5589881",
       "activity": "historical_evidence_only_no_new_handoff",
-      "assignment": "Preserve historical evidence only. Owner prohibits new Social Bots routing/message/assignment/handoff to Fable.",
+      "assignment": "Preserve historical evidence only; no new Social Bots dispatch to Fable.",
       "scope": "historical V1.7-era evidence only; not active execution ownership",
       "branch_name_is_historical": true,
       "superseded_restrictions": [
@@ -128,12 +128,12 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v11_reconciliation_repair_first",
-      "assignment": "Implement persistent fail-closed unsafe reconciliation gate only: run existing read-only reconciliation before every unit; unsafe => no decision cycle/effects/finish receipt, truthful blocked/failure receipt, release only own lease; unchanged unsafe condition blocks subsequent fresh processes. Retry implementation held.",
+      "activity": "direct_v17_blocker_clearance",
+      "assignment": "Parallel bounded preparation only: (1) replace stale E1 and add deterministic extraction/signal lineage for E1/E2; (2) implement minimal loopback-only Ollama LOCAL provider adapter/tests from accepted PR16 binding source; (3) reproduce fail-fast batch behavior offline only. No real inference/model/public/scheduler action.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
-      "latest_accepted_checkpoint": "accepted PR14 composition",
+      "latest_accepted_candidate": "fec97738ec0e9407415f60228f7c3938613396c3",
+      "latest_accepted_checkpoint": "PR16 execution-binding engineering acceptance",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT",
       "parallel_assignments": [
@@ -432,10 +432,10 @@
     }
   },
   "lead_review": {
-    "review_id": "LEAD-063",
-    "review_ref": "social-bots/lead-reviews/LEAD-063_2026-09-22T0813.md",
-    "review_type": "sb_v11_rework_reconciliation_release_retry_policy_v04_dormant_request",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "review_id": "LEAD-066",
+    "review_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md",
+    "review_type": "pr17_suitability_local_provider_release_v17_reconciliation",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-065_2026-09-22T0934.md",
     "accepted_now": [],
     "accepted_existing": [
       "SB-CTL-006",
@@ -511,11 +511,12 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "SB-V11-001 CHANGES_REQUIRED: unsafe reconciliation is detected but ignored; unchanged reasoning-unavailable signal has no durable retry ceiling/block state.",
-      "Persistent reconciliation rule required because releasing the owned lease clears reconcile_required on the next empty-slot acquisition.",
-      "Released only reconciliation repair: run read-only reconcile before every unit; unsafe remains fail-closed across fresh processes with no decision cycle/new effects/finish receipt.",
-      "Retry policy specified (3 attempts; 15m then 60m backoff; third => exhausted; later-signal fairness; fingerprint rearm; explicit audited operator reset) but implementation is HELD.",
-      "Dormant V0.4 five-call owner approval request + non-executable manifest template prepared; prior one-call grant remains consumed and no live calls are authorized."
+      "PR17 capture integrity accepted, but final E1/E2 divergence pair requires rework.",
+      "E2 is current/relevant; E1 June 4 is too old for September current-evidence causal acceptance.",
+      "Both captures require deterministic extraction/signal lineage bound to raw bytes and receipts before final suitability.",
+      "Owner target/hard stop is accepted LIVE V1.7; official product remains V0.4.x.",
+      "Minimal loopback-only Ollama local-provider adapter/tests released from accepted PR16 binding source; no real inference authorized.",
+      "Offline fail-fast batch reproduction released; retry implementation remains held."
     ]
   },
   "public_actions": {
@@ -536,11 +537,11 @@
     "current_label": "V0.3 accepted; V0.4 adaptive thinking in progress; controlled empirical divergence still authority-blocked",
     "previous_completed": "V0.3",
     "immediate_target": "V0.4",
-    "execution_target": "V1.3",
-    "execution_ceiling": "V1.3",
+    "execution_target": "V1.7",
+    "execution_ceiling": "V1.7",
     "execution_target_kind": "operational_live",
     "auto_continue_after_target": false,
-    "today_engineering_target": "finish dependency-safe engineering and evidence work toward LIVE V1.3 while preserving all genuine predecessor gates",
+    "today_engineering_target": "clear dependency-safe engineering blockers toward accepted LIVE V1.7 without inferring live grants",
     "operational_v2": "blocked_real_account_public_measurement_evidence",
     "long_term_target": "V3.0",
     "long_term_target_state": "parked_not_authorized_for_current_work",
@@ -551,9 +552,9 @@
       "V3.0"
     ],
     "active_strategic_checkpoints": [
-      "V1.3"
+      "V1.7"
     ],
-    "promotion_rule": "lead-accepted artifacts in MILESTONE_MANIFEST.md plus sequential genuine evidence through V1.3; stop after accepted V1.3 unless owner changes scope",
+    "promotion_rule": "sequential lead-accepted genuine evidence through V1.7; stop after accepted V1.7 unless owner changes scope",
     "v04_real_canary_required": true,
     "v04_real_canary_artifact": "SB-V04-005",
     "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
@@ -633,5 +634,37 @@
     "duplicate_call": "EXCLUDED",
     "zero_new_spend": true,
     "authorized": false
+  },
+  "pr17_suitability": {
+    "pr": 17,
+    "exact_source": "da53159704e3e1dfefb8d7e4d2518fdc889317fb",
+    "tree": "32a7e6c18f2fea4e6f6f32b5d7ae65af56f18e6d",
+    "capture_integrity": "ACCEPTED",
+    "final_pair_suitability": "REWORK_REQUIRED",
+    "e2": "SUITABLE_PENDING_LINEAGE_EXTRACTION",
+    "e1": "REPLACE_FOR_RECENCY",
+    "reasons": [
+      "E1 published 2026-06-04 is too old for September current-evidence causal acceptance",
+      "both receipts extraction_status=not_attempted",
+      "model-facing signal summaries are not yet bound to accepted extraction output from exact frozen raw bytes"
+    ]
+  },
+  "local_v04_provider_preparation": {
+    "status": "ENGINEERING_RELEASED_NO_INFERENCE",
+    "base_source": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "base_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc",
+    "provider_mode": "ollama-local",
+    "endpoint": "http://127.0.0.1:11434",
+    "initial_model": "qwen3.5:9b",
+    "remote_fallback": false,
+    "model_download": false,
+    "daemon_change": false,
+    "attempts": 5,
+    "retries": 0,
+    "live_inference_authorized": false
+  },
+  "fail_fast_batch_diagnostic": {
+    "status": "REPRODUCTION_RELEASED_NO_SOURCE_EDIT",
+    "expected_contract": "first non-proposal_received stops batch; failed slot consumed; later slots unconsumed; no retry"
   }
 }
