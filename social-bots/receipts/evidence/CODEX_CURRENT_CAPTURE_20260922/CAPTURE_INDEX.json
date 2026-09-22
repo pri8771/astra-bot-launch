@@ -1,0 +1,41 @@
+{
+  "capture_scope": "two-current-public-candidates-only",
+  "final_execution_manifest_built": false,
+  "live_model_call_performed": false,
+  "release": "LEAD-065",
+  "schema_version": 1,
+  "sources": [
+    {
+      "capture_receipt_id": "cap-7920a4414afe4fe4",
+      "captured_at": "2026-09-22T11:28:42+00:00",
+      "collector_name": "sbots.source-collector",
+      "collector_version": "1.3.0",
+      "final_url": "https://about.fb.com/news/2026/06/reels-is-shaping-indias-video-first-future-across-gen-z-women-bharat/",
+      "provenance": "live-capture",
+      "raw_file": "E1.raw",
+      "raw_sha256": "adf1d1b5f7006431bf3806479d8a227a4152cf5472a879865f9606586bdc069d",
+      "receipt_file": "E1.receipt.json",
+      "receipt_sha256": "d4aa9f7fc89bd06edd995d1a4c30a4ba121aa0abd6cbf6d73cf4c3fc7e63088e",
+      "relevance_note": "Current audience evidence for persona and content reasoning: platform-specific Reels discovery, genres, and cohort engagement.",
+      "signal_file": "E1.signal.json",
+      "snapshot_id": "E1",
+      "url": "https://about.fb.com/news/2026/06/reels-is-shaping-indias-video-first-future-across-gen-z-women-bharat/"
+    },
+    {
+      "capture_receipt_id": "cap-9701ad2cb45c4b19",
+      "captured_at": "2026-09-22T11:28:42+00:00",
+      "collector_name": "sbots.source-collector",
+      "collector_version": "1.3.0",
+      "final_url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU",
+      "provenance": "live-capture",
+      "raw_file": "E2.raw",
+      "raw_sha256": "72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+      "receipt_file": "E2.receipt.json",
+      "receipt_sha256": "08755929630fa107a781343046b8cb469cf98a2bb4313f716d4946f6c420ae00",
+      "relevance_note": "Current content-format evidence for persona and content reasoning: creator-led episodic series designed for deeper sustained engagement.",
+      "signal_file": "E2.signal.json",
+      "snapshot_id": "E2",
+      "url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU"
+    }
+  ]
+}

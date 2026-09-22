@@ -25,3 +25,68 @@ owner_actions[]: project_id / gate_id / missing_action / existing_authority_ref 
 next_resume: project_id / artifact_id / required_reads / exact_next_command_or_action
 
 Never record ACCEPTED or COMPLETE without the actual applicable lead decision. Codex's review recommendation uses READY_FOR_LEAD_REVIEW / RECOMMEND_ACCEPT / REWORK_SUGGESTED or the native worker equivalents. Before ending, mark ended implementation sessions truthfully and avoid implying a stopped model continues in the background.
+
+## 2026-09-22 current public capture checkpoint
+
+`session_id`: `codex-current-capture-prep-20260922`
+`role`: coordinator / released capture-preparation executor
+`target_scope`: LEAD-065 only; exactly two public current-source captures; no model/provider, matrix activation, account, posting, spend, host, or scheduler action.
+`updated_at`: `2026-09-22T11:28:42+00:00`
+`project`: Social Bots
+`coordination_ref`: `chatgpt/social-bots-plan-20260920@7451465a74bd06a2676efd7a04cd0f60a86463c5`
+`source_ref`: `codex/bots-execution-binding-20260922@fec97738ec0e9407415f60228f7c3938613396c3` (tree `43e80b92d8ae559db55a41ed33329695e6fd03fc`)
+`artifact`: LEAD-065 current-public capture preparation
+`activity`: exactly two accepted-collector captures frozen: E1 Meta Reels India (`cap-7920a4414afe4fe4`) and E2 TikTok creator-led series (`cap-9701ad2cb45c4b19`), each `ok` / trusted `live-capture` / HTTP 200; raw hashes and receipt-file hashes are in `social-bots/receipts/evidence/CODEX_CURRENT_CAPTURE_20260922/CAPTURE_INDEX.json`.
+`review_state`: READY_FOR_LEAD_SUITABILITY_REVIEW; no self-acceptance.
+`blocker`: final-divergence-input suitability and any subsequent matrix/owner model-call gate remain lead-controlled.
+`next_action`: lead review of the frozen bytes, receipts, signals and relevance notes in `social-bots/lead-reviews/CODEX_CURRENT_CAPTURE_PREP_20260922.md`; no capture retry or model action before disposition.
+
+## 2026-09-22 portfolio implementation checkpoint
+
+`session_id`: `codex-v17-v07-implementation-20260922`
+
+`role`: coordinator and bounded repair executor; ChatGPT remains formal
+acceptance authority.
+
+`updated_at`: `2026-09-22T13:03:59Z`
+
+`target_scope`: Jobs V1.7, Social Bots V0.7 owner ceiling, and SwarmAI V1.7.
+The native Bots state remains V0.4.x; this record does not replace its native
+scope or release a later milestone.
+
+| Project | Current source/evidence | Classification | Next permitted action |
+|---|---|---|---|
+| Jobs | `origin/main@1a4efbb`; owner-input request `codex/portfolio-rollup-20260922@350b11f` | **REVIEW_BLOCKED** — G14–G17 have no genuine product-path proof; worker activity is UNKNOWN after its stale five-minute report | Obtain explicit bounded live-frontier inputs, then independently review the unaccepted `dd2e0de` batch before any assignment |
+| Social Bots | canonical `chatgpt/social-bots-plan-20260920@7451465`; capture source `033b973`; integrity review `7119645` | **RECOMMEND_ACCEPT** for E1/E2 byte/receipt integrity only; **REVIEW_BLOCKED** for suitability, model activation, and V0.7 progression | Formal lead disposition of E1/E2; no matrix, provider call, host, scheduler, or new SESSION_ONCE before it |
+| SwarmAI | failed evidence `codex/swarm-r28d3-evidence-20260922@e917825`; repair `codex/swarm-r28d3-async-gateway-20260922@e87c523` | **REWORK_FOUND** for the one released live-local mission; repair **READY_FOR_LEAD_REVIEW** | Independent exact-SHA lead review and a successor one-run release before any second live invocation |
+
+No project was merged, deployed, dispatched to Fable, or coupled to another
+project runtime. Existing native heartbeat rules remain unchanged.
+
+## 2026-09-22 Swarm R28d-4 source-review checkpoint
+
+`session_id`: `codex-v17-v07-implementation-20260922`
+
+`updated_at`: `2026-09-22T14:32:05Z`
+
+`project`: SwarmAI
+
+`coordination_ref`: `coordination/swarm-control@49f7ab27fd6706a9e13c7b071ae886a877c9aeb4`
+
+`source_ref`: `codex/swarm-r28d3-async-gateway-20260922@86f8e0c90e399c683d68ba9628ef48af4723f33f`
+
+`evidence_ref`: `codex/swarm-r28d4-cancellation-record-20260922@6e549d790c8f58cf315d9d7c97af214fb85f5141`
+
+`classification`: **RECOMMEND_ACCEPT_FOR_LEAD_REVIEW** for source only. The
+candidate drains a cancelled worker before cleanup and retains a successful
+`pending_apply` worktree for the existing explicit reviewed-apply path.
+
+`live_gate`: The original R28d `live_local` one-shot remains the failed,
+consumed invocation recorded at
+`codex/swarm-r28d3-evidence-20260922@e91782593d61db36d110a3bdc85851b85bd5e6e7`.
+No replacement model call, receipt, or live acceptance is claimed.
+
+`next_action`: Formal lead source disposition, followed only if released by a
+new exact-SHA successor assignment. The existing single five-minute Swarm
+stream remains state-only after meaningful activity at `2026-09-22T02:08:48Z`;
+no takeover or new watcher was created.
