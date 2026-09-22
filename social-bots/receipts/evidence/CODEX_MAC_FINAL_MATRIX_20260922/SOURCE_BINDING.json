@@ -1,0 +1,29 @@
+{
+  "classification": "PREPARE_ONLY_ENGINEERING",
+  "execution_matrix_sha256": "sha256:30e0fe731b9f8cf00ead92cfbf9a2e4412e0834b0cd3fdeb9706d2ed813b740f",
+  "manifest_created": false,
+  "model_calls": 0,
+  "persona_files": {
+    "baseline": {
+      "path": "social-bots/personas/social-a.json",
+      "sha256": "1ddc56a1212708b27b2b491563707896ec61108e592284d748a07a63c52ad9f6"
+    },
+    "cultural": {
+      "path": "social-bots/personas/cultural-primandir-atman.json",
+      "sha256": "113ee1dccf0a3ce2f42e969c1b5220f86ada702a49801dff80a2503bde90953e"
+    },
+    "variant_b": {
+      "path": "social-bots/personas/social-b.json",
+      "sha256": "b043fccb5e093d5a8990f73bae83328c35e9d09a870d570028efcdaf9d6df8cb"
+    },
+    "variant_c": {
+      "path": "social-bots/personas/social-c.json",
+      "sha256": "5ae1a0b6dc7b47021c76f70bb359255e93a2cb18838cf310716f6dab1a5baae1"
+    }
+  },
+  "prepared_matrix_file_sha256": "1549df4070e8c172cdeaa393cfc2d2d46c615e649f6691f9c99f0032b6cfe4a1",
+  "required_review": "exact source composition plus prepared matrix; no owner grant inferred",
+  "source_sha": "3bad0541fde8afb584bc6e396ea093b5d1f3c407",
+  "source_tree": "781fc16b1b0a982c7014ea04942437d6ada803e6",
+  "source_worktree": "/tmp/bots-mac-matrix-source-20260922"
+}

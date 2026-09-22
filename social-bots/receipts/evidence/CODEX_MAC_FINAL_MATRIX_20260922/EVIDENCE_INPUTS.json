@@ -1,0 +1,56 @@
+{
+  "E1": {
+    "lineage_file_sha256": "a9bf01cda75a20d9d2b80c55f682d4089bbead4780c73a3fc5ef40518f7bd00f",
+    "projection": "accepted collector.to_operational_signal; exact extracted title/summary, empty tags; full lineage and signal SHA retained in execution closure",
+    "raw_sha256": "2d51040128376b474391f4527c326d0d62255f61ce55da4fc0d1e334db2dc3b6",
+    "receipt_file_sha256": "58d5534726ca6cd799890868daaec034280806ffcfa8517996cd7c60468a9f98",
+    "receipt_id": "cap-740a506e997e48e9",
+    "signal": {
+      "published": {
+        "precision": "timestamp-with-offset",
+        "selector": "first time.published@datetime",
+        "value": "2026-09-16T07:53:31-07:00"
+      },
+      "snapshot_id": "E1",
+      "source_capture_receipt_id": "cap-740a506e997e48e9",
+      "summary": "We’re announcing new Threads tools for podcast creators and listeners, giving creators more ways to share their shows and listeners more ways to have conversations around the podcasts they love. Show off your podcast: You can now display banners across your profile and posts, so listeners can more easily find your show. Share your best work: Feature your favorite episode with the episode picker, and make your podcast links appear as a tappable card. Get to know your audience: Insights now show the reach and engagement Threads is driving for a podcast, including clicks and saves.",
+      "summary_method": "extractive-fixed-source-specific-paragraphs",
+      "supporting_paragraph_indices": [
+        0,
+        2,
+        3,
+        7
+      ],
+      "title": "Threads Expands Podcast Toolkit for Creators and Listeners",
+      "url": "https://about.fb.com/news/2026/09/threads-expands-podcast-toolkit-for-creators-and-listeners/"
+    },
+    "signal_file_sha256": "f5e33cc6f4e46032338a5f4e973f9dd932d80d3426c87995283a009af2e9a013",
+    "source_path": "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922"
+  },
+  "E2": {
+    "lineage_file_sha256": "b32f89eb8d6d7b5723945a6d37dcc4b09653b048c00b4e1a282ef51162ebc135",
+    "projection": "accepted collector.to_operational_signal; exact extracted title/summary, empty tags; full lineage and signal SHA retained in execution closure",
+    "raw_sha256": "72aefb0b9d06e72f08e10a12e18df6d81108ce430f0b7a5ffec941c31c410cce",
+    "receipt_file_sha256": "08755929630fa107a781343046b8cb469cf98a2bb4313f716d4946f6c420ae00",
+    "receipt_id": "cap-9701ad2cb45c4b19",
+    "signal": {
+      "published": {
+        "precision": "date",
+        "selector": "span.article-basic-date-time_*",
+        "value": "September 14, 2026"
+      },
+      "snapshot_id": "E2",
+      "source_capture_receipt_id": "cap-9701ad2cb45c4b19",
+      "summary": "TikTok and Amplify have joined forces to announce The Next Episode, a new content initiative designed to help brands move beyond traditional short-form content and invest in creator-led series. As demand for longer-form, episodic entertainment continues to grow, the new initiative connects brands with Amplify's creator network to develop and produce original, social-first series, with eligible brands able to access production support through TikTok alongside their media investment.",
+      "summary_method": "extractive-fixed-source-specific-paragraphs",
+      "supporting_paragraph_indices": [
+        0,
+        1
+      ],
+      "title": "TikTok and Amplify launch new creator-led content series for brands",
+      "url": "https://newsroom.tiktok.com/tiktok-and-amplify-launch-new-creator-led-content-series-for-brands?lang=en-AU"
+    },
+    "signal_file_sha256": "f0c08517f2e06991fdb1a73c92938190dd6e2e97950092f88f799cf10baa53bc",
+    "source_path": "social-bots/receipts/evidence/CODEX_CORRECTED_CAPTURE_20260922"
+  }
+}
