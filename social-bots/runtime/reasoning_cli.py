@@ -315,11 +315,23 @@ class ClaudeCodeReasoningProvider:
         return self._runner is _CAPTURED_REAL_CLI_RUNNER
 
     def _authorization_block(self) -> str | None:
-        """The reason a real spawn is not authorized, or None if it is."""
+        """The reason a real spawn is not authorized, or None if it is.
+
+        SB-R07-041: a real spawn needs the configured dispatch scope AND a
+        canonical scoped manifest with budget remaining (``model_dispatch``), not
+        merely *any* manifest on disk.
+        """
+        from . import model_dispatch
         if not self._spawns_for_real():
+            # An injected runner is an engineering seam. Under a production
+            # dispatch scope (a scheduled worker run) it is refused outright, so
+            # a wrapper around the real launcher cannot ride the seam into a
+            # live call; outside such a scope it launches nothing by contract.
+            scope = model_dispatch.current_scope()
+            if scope is not None and not scope.allow_engineering_stubs:
+                return "injected runner refused under a production dispatch scope"
             return None
-        from .live_route_guard import any_live_authorization
-        ok, reason = any_live_authorization()
+        ok, reason = model_dispatch.availability()
         return None if ok else f"live model call not authorized: {reason}"
 
     def available(self) -> bool:
@@ -348,8 +360,22 @@ class ClaudeCodeReasoningProvider:
             self._last_reason = blocked
             return None
         prompt = build_prompt(ctx)
+        from . import model_dispatch
+
+        def _spawn(_ctx):
+            return self._runner(prompt, timeout_s=self._timeout_s, model=self._model)
+        # The real launcher is a LIVE dispatch: scoped grant + durable slot BEFORE
+        # the subprocess exists (SB-R07-041 / C04). An injected runner is a test
+        # seam that launches nothing and is marked as such for the gate.
+        real = self._spawns_for_real()
+        if not real:
+            _spawn.__sbots_injected_runner__ = True
         try:
-            result = self._runner(prompt, timeout_s=self._timeout_s, model=self._model)
+            result = model_dispatch.dispatch(_spawn, ctx, provider_id=self.provider_id,
+                                             live=True if real else False)
+        except model_dispatch.AuthorizationDenied as exc:
+            self._last_reason = f"live model call refused: {exc}"
+            return None
         except CLIUnavailable as exc:
             self._last_reason = f"cli unavailable: {exc}"
             return None

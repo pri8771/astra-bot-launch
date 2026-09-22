@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field, asdict
 
-from . import paths, research, pipeline, analytics, reasoning
+from . import paths, research, pipeline, analytics, reasoning, model_dispatch
 from .reasoning import Candidate, no_action as _no_action, ReasoningContext
 from .state import RuntimeState, PersonaState
 from .personas import load as load_persona
@@ -148,7 +148,12 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     record["reasoning"] = {"provider": getattr(provider, "provider_id", "unknown"),
                            "adaptive": getattr(provider, "adaptive", False),
                            "adaptive_required": effective_require,
-                           "available": provider.available()}
+                           "available": provider.available(),
+                           # SB-R07-041 / C04: what the shared pre-dispatch gate
+                           # actually did for this cycle (class, slot, outcome),
+                           # so LIVE_MODEL and offline evidence never blur.
+                           "dispatch": None,
+                           "live_model_call": False}
 
     # Resolve a proposal, then VALIDATE it before scoring/execution. Any of:
     # provider unavailable, no proposal, or a proposal that fails the schema
@@ -157,11 +162,18 @@ def run_cycle(bot: str, persona_id: str, authority: Authority | None = None,
     block_reason = None
     proposal = None
     if not provider.available():
-        block_reason = getattr(provider, "reason", "no reasoning provider available")
+        block_reason = getattr(provider, "reason", None) or "no reasoning provider available"
     else:
+        model_dispatch.clear_last()
         proposal = provider.propose(ctx)
+        dispatched = model_dispatch.last_record()
+        record["reasoning"]["dispatch"] = dispatched.as_dict() if dispatched else None
+        record["reasoning"]["live_model_call"] = bool(
+            dispatched is not None and dispatched.invoked
+            and dispatched.dispatch_class == model_dispatch.LIVE_MODEL)
         if proposal is None:
-            block_reason = "provider returned no usable proposal"
+            block_reason = getattr(provider, "reason", None) or \
+                "provider returned no usable proposal"
         else:
             contract_errors = reasoning.validate_proposal(proposal, ctx)
             if contract_errors:

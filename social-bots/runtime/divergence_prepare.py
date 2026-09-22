@@ -682,7 +682,8 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
                       *, grant: authorization.ExecutionGrant, draft: dict,
                       persona: dict, objective: str, snapshot_signal: dict,
                       pending_count: int, is_duplicate: bool,
-                      prior_hypotheses: int) -> dict:
+                      prior_hypotheses: int,
+                      manifest_dir: str | Path | None = None) -> dict:
     """Reserve a slot, invoke ONCE, record the outcome truthfully. Never retries.
 
     ATOMIC PRE-SPAWN ACCOUNTING: the slot is reserved before ``provider.propose``
@@ -692,8 +693,11 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
     try again.
 
     Not a public entry point: callers must go through ``execute_batch`` so the
-    authorization gate cannot be skipped. Tests exercise this directly with an
-    injected provider, which is engineering-only evidence.
+    authorization gate cannot be skipped. The reservation itself re-authorizes
+    from the canonical manifest in ``manifest_dir`` at dispatch time
+    (``model_dispatch``), so a hand-built ``grant`` buys nothing: tests that
+    exercise this directly need a fixture manifest, and that is engineering-only
+    evidence.
     """
     # BIND FIRST. The context is rebuilt from caller-supplied personas/snapshots,
     # so without this check the batch could invoke something other than what was
@@ -718,17 +722,30 @@ def _execute_one_case(case: PreparedCase, provider, budget: authorization.CallBu
             f"the prepared case (prepared {case.prompt_context_sha256}, actual "
             f"{actual_prompt_digest})")
 
-    slot = budget.reserve(manifest_id=grant.manifest_id,
-                          manifest_digest=grant.manifest_digest,
-                          lane=grant.lane, artifact=grant.artifact,
-                          context_digest=case.context_sha256)
-    try:
-        proposal = provider.propose(ctx)
-    except Exception as exc:                          # noqa: BLE001 - outcome, not retry
-        budget.record_outcome(slot, "provider_exception",
-                              {"error_type": type(exc).__name__})
-        return {"case": case.case_id, "slot": slot.slot, "outcome": "provider_exception",
-                "proposal": None}
+    # SB-R07-041 / C04: the slot is reserved through the shared gate and handed to
+    # the provider as a single-use token, so the provider's own deep gate adopts
+    # THIS reservation instead of consuming a second slot. A reentrant or
+    # concurrent call inside the provider cannot reuse the token. The gate
+    # re-authorizes from the canonical manifest here, at dispatch time, and
+    # raises ``AuthorizationDenied`` (stale/expired/absent manifest, posture,
+    # exhausted budget) BEFORE anything is invoked and with no slot consumed.
+    # The ledger root is the budget's own directory, so the slot the gate
+    # reserves is the slot this function records.
+    from . import model_dispatch
+    scope = model_dispatch.DispatchScope(
+        artifact=grant.artifact, lane=grant.lane, run_scope=budget.run_scope,
+        manifest_dir=str(manifest_dir) if manifest_dir is not None else None,
+        home=str(budget.dir.parent.parent))
+    with model_dispatch.reserved(scope, context_digest=case.context_sha256,
+                                 provider_id=getattr(provider, "provider_id", "batch")) \
+            as (_grant, _budget, slot):
+        try:
+            proposal = provider.propose(ctx)
+        except Exception as exc:                      # noqa: BLE001 - outcome, not retry
+            budget.record_outcome(slot, "provider_exception",
+                                  {"error_type": type(exc).__name__})
+            return {"case": case.case_id, "slot": slot.slot,
+                    "outcome": "provider_exception", "proposal": None}
     if proposal is None:
         budget.record_outcome(slot, "provider_unavailable",
                               {"reason": getattr(provider, "reason", None)})
@@ -780,15 +797,26 @@ def execute_batch(matrix: PreparedMatrix, *, lane: str, artifact: str = "SB-V04-
     provider = provider_factory() if provider_factory is not None else \
         reasoning_cli.ClaudeCodeReasoningProvider()
 
+    # SB-R07-041 / C04: the provider's own deep gate consults the process-wide
+    # dispatch scope; hold it to THIS batch's artifact/lane/run scope/manifest
+    # dir for the duration and restore whatever was there before.
+    from . import model_dispatch
+    prior_scope = model_dispatch.current_scope()
+    model_dispatch.configure(artifact, lane, matrix.run_scope,
+                             manifest_dir=manifest_dir, home=home)
     results = []
-    for case in matrix.cases:
-        results.append(_execute_one_case(
-            case, provider, budget, grant=grant, draft=draft or {},
-            persona=personas[case.persona_slot], objective=matrix.objective,
-            snapshot_signal=snapshots[case.evidence_id].signal,
-            pending_count=matrix.held_constant["pending_count"],
-            is_duplicate=matrix.held_constant["is_duplicate"],
-            prior_hypotheses=matrix.held_constant["prior_hypotheses"]))
+    try:
+        for case in matrix.cases:
+            results.append(_execute_one_case(
+                case, provider, budget, grant=grant, draft=draft or {},
+                persona=personas[case.persona_slot], objective=matrix.objective,
+                snapshot_signal=snapshots[case.evidence_id].signal,
+                pending_count=matrix.held_constant["pending_count"],
+                is_duplicate=matrix.held_constant["is_duplicate"],
+                prior_hypotheses=matrix.held_constant["prior_hypotheses"],
+                manifest_dir=manifest_dir))
+    finally:
+        model_dispatch.set_scope(prior_scope)
     return {"grant": asdict(grant), "results": results, "budget": budget.audit()}
 
 

@@ -40,7 +40,9 @@ def _model(alts, recommended):
         return reasoning.ReasoningProposal(
             alternatives=alts, recommended_action=recommended, uncertainties=[],
             provider_id="model-adaptive-v0", adaptive=True)
-    return build
+    # SB-R07-041: declared engineering stub; a raw callable is a LIVE route and
+    # would be refused (no scoped manifest) before the policy boundary is reached.
+    return reasoning.EngineeringStub(build)
 
 
 class PolicyBoundaryTest(unittest.TestCase):

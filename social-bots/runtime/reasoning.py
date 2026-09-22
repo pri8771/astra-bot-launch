@@ -349,20 +349,91 @@ class ContextualReasoningProvider:
 # is a fail-closed stub: with no model callable configured it is UNAVAILABLE and
 # ``propose`` returns None so the engine blocks instead of faking autonomy.
 # --------------------------------------------------------------------------- #
+class EngineeringStub:
+    """Policy-owned wrapper declaring a callable ENGINEERING-ONLY (never a model
+    or network call). It is the only way a unit test may register a synthetic
+    adaptive proposal source without a canonical authorization manifest.
+
+    Exemption is by EXACT type in ``model_dispatch.classify`` — a subclass, an
+    ``adaptive=False`` attribute or any other label does not exempt — and a
+    production dispatch scope (``allow_engineering_stubs=False``, the default set
+    by ``bin/worker_once.py`` / ``bin/run_worker.py``) refuses stubs outright, so a
+    mis-wired stub can never pose as adaptive autonomy in a scheduled run.
+    """
+
+    def __init__(self, fn: Callable[[ReasoningContext], ReasoningProposal | None],
+                 *, label: str = "engineering-stub"):
+        if not callable(fn):
+            raise TypeError("EngineeringStub needs a callable")
+        self._fn = fn
+        self.label = label
+
+    def __call__(self, ctx: ReasoningContext) -> ReasoningProposal | None:
+        return self._fn(ctx)
+
+
 class ModelReasoningProvider:
+    """Adaptive provider over a process-registered callable.
+
+    SB-R07-041 (LEAD-047 P0): the callable is NEVER invoked directly. Every
+    ``propose`` goes through ``model_dispatch.dispatch``, which refuses a live
+    callable without a configured dispatch scope + canonical scoped manifest,
+    reserves a durable call slot BEFORE invoking, refuses reentry, and records the
+    outcome. Direct-library callers, env variables and labels cannot bypass it:
+    only exact policy-owned non-live types (receipt replay, engineering stub) run
+    without a grant, and those are classified in the decision record.
+    """
     provider_id = "model-adaptive-v0"
     adaptive = True
 
     def __init__(self, model_callable: Callable[[ReasoningContext], ReasoningProposal] | None = None):
         self._model = model_callable
+        self._last_reason: str | None = None
+
+    @property
+    def reason(self) -> str | None:
+        return self._last_reason
 
     def available(self) -> bool:
-        return self._model is not None
+        from . import model_dispatch
+        if self._model is None:
+            self._last_reason = "no reasoning route wired"
+            return False
+        cls = model_dispatch.classify(self._model)
+        if cls == model_dispatch.LIVE_MODEL:
+            ok, reason = model_dispatch.availability()
+            self._last_reason = None if ok else f"live model call not authorized: {reason}"
+            return ok
+        scope = model_dispatch.current_scope()
+        if cls == model_dispatch.ENGINEERING_STUB and scope is not None \
+                and not scope.allow_engineering_stubs:
+            self._last_reason = "engineering stub refused under a production dispatch scope"
+            return False
+        self._last_reason = None
+        return True
 
     def propose(self, ctx: ReasoningContext) -> ReasoningProposal | None:
+        from . import model_dispatch
         if self._model is None:
+            self._last_reason = "no reasoning route wired"
             return None  # fail closed: no reasoning route wired
-        proposal = self._model(ctx)
+        try:
+            proposal = model_dispatch.dispatch(self._model, ctx, provider_id=self.provider_id)
+        except model_dispatch.AuthorizationDenied as exc:
+            # Usually refused BEFORE any invocation (no scope / no manifest /
+            # exhausted / stale / reentrant / posture) — no slot consumed. If the
+            # callable itself raised a refusal after being dispatched (e.g. it
+            # re-entered the gate), the slot IS consumed and the ledger says so.
+            rec = model_dispatch.last_record()
+            if rec is not None and rec.invoked:
+                self._last_reason = f"provider exception after dispatch: {exc}"
+            else:
+                self._last_reason = f"live model call refused: {exc}"
+            return None
+        except Exception as exc:                      # noqa: BLE001 - slot already consumed
+            self._last_reason = f"provider exception: {type(exc).__name__}"
+            return None
+        self._last_reason = None
         # A model that returns nothing usable is treated as unavailable, not faked.
         # Schema/authority validation of a non-empty proposal is the engine's
         # single gate (``decision`` calls ``validate_proposal`` before scoring),

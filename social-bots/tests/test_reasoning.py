@@ -64,7 +64,9 @@ class ReasoningTest(unittest.TestCase):
                 recommended_action="NO_ACTION", uncertainties=["stub"],
                 provider_id="model-adaptive-v0", adaptive=True)
         os.environ["SBOTS_REASONING"] = "model"
-        reasoning.register_model_callable(fake_model)
+        # SB-R07-041: a raw callable is a LIVE route and is refused without a
+        # scoped manifest; a unit test declares its stub through the policy type.
+        reasoning.register_model_callable(reasoning.EngineeringStub(fake_model))
         p = reasoning.resolve_provider()
         self.assertTrue(p.available())
         seed("social-b")

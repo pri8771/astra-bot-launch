@@ -30,7 +30,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import worker, leasing, live_route_guard  # noqa: E402
+from runtime import worker, leasing, live_route_guard, model_dispatch  # noqa: E402
 
 EXIT_LIVE_ROUTE_REFUSED = 6
 
@@ -41,22 +41,40 @@ def _allow_deterministic() -> bool:
 
 
 def main() -> int:
+    """Process entry. The SB-R07-041 dispatch scope ``_main`` installs is undone on
+    every exit path so an in-process caller (tests) never inherits it."""
+    prior_scope = model_dispatch.current_scope()
+    try:
+        return _main()
+    finally:
+        model_dispatch.set_scope(prior_scope)
+
+
+def _main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
         return 2
     bot = sys.argv[1]
     persona = sys.argv[2] if len(sys.argv) > 2 else bot
     lane = os.environ.get("SBOTS_LANE", "windows-core")
+    artifact = os.environ.get("SBOTS_ARTIFACT", "SB-RUNTIME-WORKER")
+    manifest_dir = os.environ.get("SBOTS_MANIFEST_DIR") or None
     # Refuse a live model route before acquiring a lease or constructing a provider.
     route = live_route_guard.check(
-        artifact=os.environ.get("SBOTS_ARTIFACT", "SB-RUNTIME-WORKER"),
+        artifact=artifact,
         lane=lane,
         run_scope=f"run-worker:{bot}",
-        manifest_dir=os.environ.get("SBOTS_MANIFEST_DIR") or None,
+        manifest_dir=manifest_dir,
     )
     if not route.permitted:
         print(f"LIVE ROUTE REFUSED: {route.reason}", file=sys.stderr)
         return EXIT_LIVE_ROUTE_REFUSED
+    # SB-R07-041 / C04: one dispatch scope for every live-capable provider this
+    # process may construct; the shared gate re-authorizes and reserves a durable
+    # slot before each invocation and refuses engineering seams under it.
+    model_dispatch.configure(artifact, lane, f"run-worker:{bot}",
+                             manifest_dir=manifest_dir,
+                             home=os.environ.get("SBOTS_HOME") or None)
     # Production V0.4 default: require adaptive reasoning (fail closed). A diagnostic
     # override (None -> env-driven posture) is allowed only when explicitly opted in.
     require_adaptive = None if _allow_deterministic() else True

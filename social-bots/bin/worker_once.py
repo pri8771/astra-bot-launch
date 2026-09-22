@@ -57,7 +57,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import direction as direction_mod  # noqa: E402
 from runtime import invocation as invocation_mod  # noqa: E402
-from runtime import leasing, live_route_guard, worker  # noqa: E402
+from runtime import leasing, live_route_guard, model_dispatch, worker  # noqa: E402
 from runtime import session_heartbeat as sh  # noqa: E402
 
 EXIT_OK = 0
@@ -103,6 +103,17 @@ def claim_one(bots: list[str], *, require_adaptive: bool | None,
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Process entry. The SB-R07-041 dispatch scope ``_main`` installs is undone on
+    every exit path so an in-process caller (tests) never inherits a production
+    scope from a previous invocation."""
+    prior_scope = model_dispatch.current_scope()
+    try:
+        return _main(argv)
+    finally:
+        model_dispatch.set_scope(prior_scope)
+
+
+def _main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--lane", required=True)
@@ -152,6 +163,13 @@ def main(argv: list[str] | None = None) -> int:
         inv.close(exit_code=EXIT_LIVE_ROUTE_REFUSED, error=route.reason)
         print(f"LIVE ROUTE REFUSED: {route.reason}", file=sys.stderr)
         return EXIT_LIVE_ROUTE_REFUSED
+
+    # (0b) SB-R07-041 / C04: hold every live-capable provider this process may
+    # construct to ONE dispatch scope (same artifact/lane/run scope/manifest dir
+    # as the route guard). The gate re-authorizes and reserves a durable slot
+    # before each invocation; engineering seams are refused under this scope.
+    model_dispatch.configure("SB-V07-001", args.lane, f"worker-once:{args.lane}",
+                             manifest_dir=args.manifest_dir, home=args.home)
 
     # (1) Direction next, so the heartbeat can attest the SHA this session read.
     # Any unexpected failure here is caught too: the documented contract is that

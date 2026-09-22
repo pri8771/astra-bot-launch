@@ -327,27 +327,43 @@ def proposal_from_receipt(receipt: dict, ctx: ReasoningContext | None = None
 # Replay callable — register with ``reasoning.register_model_callable`` and set
 # ``SBOTS_REASONING=model`` to run the adaptive path end-to-end from receipts.
 # --------------------------------------------------------------------------- #
-def replay_callable(receipts: list[dict]):
+class ReceiptReplay:
+    """Policy-owned replay of already-recorded real receipts. Calls nothing.
+
+    ``model_dispatch`` exempts this EXACT type from live accounting because it
+    cannot perform a model call: it only returns the receipt whose context digest
+    matches the live context, or ``None`` (fail closed). A subclass or a look-alike
+    object is classified LIVE and refused without a grant.
+    """
+
+    def __init__(self, receipts: list[dict]):
+        index: dict[str, dict] = {}
+        for r in receipts:
+            errs = validate_receipt(r)
+            if errs:
+                raise ReceiptError("cannot index invalid receipt: " + "; ".join(errs))
+            index[r["context_digest"]] = r
+        self._index = index
+
+    @property
+    def receipt_count(self) -> int:
+        return len(self._index)
+
+    def __call__(self, ctx: ReasoningContext) -> ReasoningProposal | None:
+        digest = context_digest(bounded_context(ctx))
+        receipt = self._index.get(digest)
+        if receipt is None:
+            return None
+        return proposal_from_receipt(receipt, ctx)
+
+
+def replay_callable(receipts: list[dict]) -> ReceiptReplay:
     """Build a model callable that returns the receipt matching a live context.
 
     Returns ``None`` (fail closed) when no receipt matches the context digest, so
     an unmatched cycle blocks rather than fabricating adaptive output.
     """
-    index: dict[str, dict] = {}
-    for r in receipts:
-        errs = validate_receipt(r)
-        if errs:
-            raise ReceiptError("cannot index invalid receipt: " + "; ".join(errs))
-        index[r["context_digest"]] = r
-
-    def _call(ctx: ReasoningContext) -> ReasoningProposal | None:
-        digest = context_digest(bounded_context(ctx))
-        receipt = index.get(digest)
-        if receipt is None:
-            return None
-        return proposal_from_receipt(receipt, ctx)
-
-    return _call
+    return ReceiptReplay(receipts)
 
 
 # --------------------------------------------------------------------------- #

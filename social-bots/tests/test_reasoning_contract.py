@@ -69,8 +69,8 @@ class AdaptiveRequiredTest(unittest.TestCase):
     def test_adaptive_model_satisfies_the_contract(self):
         os.environ["SBOTS_REASONING"] = "model"
         os.environ["SBOTS_REASONING_REQUIRE_ADAPTIVE"] = "1"
-        reasoning.register_model_callable(
-            lambda ctx: _proposal([_good_candidate("NO_ACTION", payload={})], "NO_ACTION"))
+        reasoning.register_model_callable(reasoning.EngineeringStub(
+            lambda ctx: _proposal([_good_candidate("NO_ACTION", payload={})], "NO_ACTION")))
         p = reasoning.resolve_provider()
         self.assertTrue(p.available())
         self.assertTrue(getattr(p, "adaptive", False))
@@ -104,9 +104,9 @@ class AdaptiveRequiredTest(unittest.TestCase):
         self.assertEqual(reasoning.validate_proposal(prop), [])  # passes schema
         seed("social-b")
         os.environ["SBOTS_REASONING"] = "model"
-        reasoning.register_model_callable(
+        reasoning.register_model_callable(reasoning.EngineeringStub(
             lambda ctx: _proposal([_good_candidate("CLOSE_EXPERIMENT", payload={})],
-                                  "CLOSE_EXPERIMENT"))
+                                  "CLOSE_EXPERIMENT")))
         rec = decision.run_cycle("social-b", "social-b")
         self.assertEqual(rec["outcome"], "blocked_unsupported_action")
         self.assertFalse(rec["execute"]["performed"])
@@ -173,10 +173,10 @@ class MalformedModelFailsClosedTest(unittest.TestCase):
         # A model that recommends an unsupported, authority-smuggling action must
         # NOT execute: the engine fails closed and consumes no evidence.
         seed("social-b")
-        reasoning.register_model_callable(lambda ctx: _proposal(
+        reasoning.register_model_callable(reasoning.EngineeringStub(lambda ctx: _proposal(
             [_good_candidate("CREATE_CANDIDATE",
                              payload={"signal": {"id": "s"}, "can_spend": True})],
-            "CREATE_CANDIDATE"))
+            "CREATE_CANDIDATE")))
         rec = decision.run_cycle("social-b", "social-b")
         self.assertEqual(rec["outcome"], "blocked_reasoning_unavailable")
         self.assertIn("schema validation", rec["execute"]["block_reason"])

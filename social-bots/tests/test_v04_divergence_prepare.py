@@ -7,6 +7,7 @@ SB-V04-002/SB-V04-004 acceptance remains owner-authorization-blocked.
 """
 import copy
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -373,12 +374,21 @@ class ExecutionMechanicsTest(unittest.TestCase):
 
     These exercise reserve-before-spawn, truthful outcome recording and no-retry
     without any provider call. They are not evidence that a batch may run: every
-    public path into this code still goes through the denied gate above.
+    public path into this code still goes through the denied gate above. Since
+    SB-R07-041 the per-case reservation re-authorizes from the canonical
+    manifest at dispatch time, so a FIXTURE manifest (never a real grant) is
+    written to a temp dir; the hand-built ``ExecutionGrant`` alone buys nothing.
     """
 
     def setUp(self):
+        from tests.test_v04_authorization_gate import valid_manifest
         self.matrix = build()
         self.tmp = Path(tempfile.mkdtemp())
+        self.manifests = self.tmp / "authorizations"
+        self.manifests.mkdir()
+        (self.manifests / "fixture.json").write_text(
+            json.dumps(valid_manifest(run_scope=self.matrix.run_scope)), encoding="utf-8")
+        self._api_key = os.environ.pop("ANTHROPIC_API_KEY", None)
         self.grant = authorization.ExecutionGrant(
             manifest_id="AUTH-FIXTURE-0001", manifest_path="(fixture)",
             manifest_digest="sha256:fixture", created_by="test-fixture",
@@ -388,13 +398,32 @@ class ExecutionMechanicsTest(unittest.TestCase):
             granted_at="2026-09-21T00:00:00Z")
         self.budget = authorization.CallBudget(self.matrix.run_scope, 5, home=self.tmp)
 
+    def tearDown(self):
+        if self._api_key is not None:
+            os.environ["ANTHROPIC_API_KEY"] = self._api_key
+
     def _run(self, provider, case_id="P0"):
         case = self.matrix.case(case_id)
         return dp._execute_one_case(
             case, provider, self.budget, grant=self.grant, draft={},
             persona=PERSONAS[case.persona_slot], objective=self.matrix.objective,
             snapshot_signal=default_snapshots()[case.evidence_id].signal,
-            pending_count=0, is_duplicate=False, prior_hypotheses=0)
+            pending_count=0, is_duplicate=False, prior_hypotheses=0,
+            manifest_dir=self.manifests)
+
+    def test_a_hand_built_grant_without_a_canonical_manifest_buys_nothing(self):
+        """SB-R07-041 direct-library bypass: the grant object is not the authority."""
+        class Provider:
+            reason = None
+
+            def propose(self, ctx):
+                raise AssertionError("provider must not be reached without a manifest")
+
+        for p in self.manifests.glob("*.json"):
+            p.unlink()
+        with self.assertRaises(authorization.AuthorizationDenied):
+            self._run(Provider())
+        self.assertEqual(self.budget.consumed(), 0)
 
     def test_slot_is_reserved_before_the_provider_is_called(self):
         """Atomic pre-spawn accounting: the budget moves before propose() runs."""
