@@ -96,14 +96,14 @@
       "branch": "claude/social-bots-intelligence-repair-v2",
       "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
       "activity": "parked_evidence_only",
-      "assignment": "preserve evidence; integrator may selectively consolidate existing V1.7 producers without accepting unresolved semantics or building future growth modules"
+      "assignment": "preserve historical evidence only; no active implementation assignment under current V1.3 Codex ownership"
     },
     "mac_qa": {
       "branch": "claude/social-bots-mac-qa-control",
       "branch_head": "6b42ee5c0db31c242d8173e006ea0a124c181650",
       "latest_verified_material_worker_head": "72e380bda71561429154e67bc07636b89143a488",
       "activity": "stale_action_required_independent_review_only_v17",
-      "assignment": "independently audit repaired R07-041 seam, R07-071, due-rotation, C05/C06/C07 and enabled V1.7 boundary; no runtime edits or unauthorized model calls",
+      "assignment": "independent review-only historical lane; no active V1.7 implementation assignment; review future Codex candidates only when explicitly released",
       "host_scope_note": "A Mac lane name does not prove local Mac execution. Prior acceptance was a single POSIX host/filesystem.",
       "handoff_note": "Current branch head is lead-authored LEAD-051 review assignment; no fresh independent reviewer result is claimed."
     },
@@ -532,6 +532,7 @@
     "long_term_target": "V3.0",
     "long_term_target_state": "parked_not_authorized_for_current_work",
     "strategic_checkpoints": [
+      "V1.3",
       "V1.7",
       "V2.3",
       "V3.0"
