@@ -2,13 +2,13 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-051** (`lead-reviews/LEAD-051_2026-09-21T2155.md`).  
+Current lead review: **LEAD-053** (`lead-reviews/LEAD-053_2026-09-22T0344.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution ceiling: **LIVE V1.7 only, then hard stop**.
 
 ## Current verified activity
 
-### Fable Integrator — ACTIVE
+### Fable Integrator — EXISTING OWNERSHIP PRESERVED / NO NEW HANDOFF
 
 - Verified worker session: `s-20260921T211438Z-d5589881`. It ingested LEAD-048/050 V1.7-only scope after a container restore and correctly did not emit a second heartbeat for the same session.
 - Signed material worker history is verified through `af3fded92eaba5e68c8088737b68c6f043e40a5e`.
@@ -18,11 +18,9 @@ Current execution ceiling: **LIVE V1.7 only, then hard stop**.
 - `3da19a9c...` selectively consolidated V1.7 Intelligence producers (metrics, audience, experiment engine, community, platform selection) while excluding future V2.0 growth modules.
 - `af3fded...` submitted a read-only V1.7 host/provider/account gate dossier. It truthfully records an ephemeral Linux VM, no native scheduler, social-platform CONNECT-403 restrictions, no canonical live authorization manifest, no account registry entries and no named cultural reviewer.
 
-**Lead disposition of R07-041:** **CHANGES_REQUIRED.** The raw live-callable and real CLI paths are materially improved, with canonical re-authorization and durable pre-dispatch call-budget reservation. However, exact policy-owned `EngineeringStub` and injected-runner seams are currently executable when **no dispatch scope exists**, while their constructors accept arbitrary caller-supplied callables/runners. That leaves a caller-controlled no-grant execution capability. No-scope must fail closed; engineering seams may run only under an explicit policy-owned engineering scope and must remain refused in production scopes. This repair is zero-live and requires harmless sentinel regressions.
+**Lead disposition of R07-041:** **ACCEPTED narrowly at LEAD-052.** Repair `0bca4e...` makes no-scope fail closed for EngineeringStub/injected-runner seams, permits them only inside the policy-owned ENGINEERING scope, and keeps production scope fail-closed. Independent Mac focused evidence passed 118/118 at production-equivalent `f0f1307...`. This does not promote V0.4 or authorize live effects.
 
-The current tests themselves confirm the policy gap by explicitly asserting that a declared EngineeringStub runs outside production with no scope. This is evidence for the finding, not acceptance.
-
-**Disposition:** Fable remains sole enabled implementation/integration owner through V1.7. Repair R07-041 first; then continue only non-overlapping zero-live/offline V1.7 work. No V1.8+/V2.3/V3.0 continuation.
+**Disposition:** Existing Fable ownership and evidence are preserved, but owner now explicitly prohibits any new routing/message/assignment/handoff to Fable. Concrete new fixes are Codex-direct in isolated repair branches; ChatGPT remains formal acceptor.
 
 ### Mac Acceptance — STALE / ACTION REQUIRED
 
@@ -74,8 +72,9 @@ The current tests themselves confirm the policy gap by explicitly asserting that
 | SB-V15-001 | CHANGES_REQUIRED | historical registry status; integrated candidate needs independent reconciliation |
 | SB-V16-001 | CHANGES_REQUIRED | integrated candidate needs independent audit |
 | SB-V17-001 | CHANGES_REQUIRED | integrated candidate needs independent audit |
-| SB-R07-041 | CHANGES_REQUIRED | engineering/injected seam no-scope capability bypass remains |
+| SB-R07-041 | ACCEPTED | narrow authority-boundary repair accepted at `0bca4e...`; no version/live promotion |
 | SB-R07-071 | SUBMITTED | atomic session uniqueness source; independent QA required |
+| SB-R07-072 | ACCEPTED | exact `7acc1695...`; portable host-test isolation only; production predicates unchanged; not host qualification |
 | `b5fd038` V1.7 due rotation | SUBMITTED ENGINEERING | worker tests green; independent review required |
 | `c4d31fee` C05/C06/C07 | SUBMITTED ENGINEERING | final-review/prospective semantics; independent negative controls required |
 | `3da19a9c` producer consolidation | SUBMITTED ENGINEERING | selective <=V1.7 integration only |
@@ -100,8 +99,16 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 
 ## Current concurrency implication
 
-- **Fable:** ACTIVE sole integrator; repair R07-041 seam, then continue <=V1.7 only.
-- **Acceptance:** STALE / ACTION REQUIRED; review-only.
+- **Fable:** existing ownership/evidence preserved; no new handoff without fresh owner approval.
+- **Acceptance:** independent review-only.
 - **Cursor/Core/Intelligence:** PARKED / evidence-only.
 - **Canary:** FROZEN / evidence-only.
 - **worker-pc:** excluded until private-repo clone/auth is demonstrably fixed.
+
+## LEAD-053 exact candidate review
+
+- Codex isolated repair PR #6 exact source: `7acc1695d2961267580a156f31df6a5991476654`, base `e9678f8bead4f872c199bdf09dbf709a8f649159`.
+- GitHub compare: one commit ahead, one changed file only: `social-bots/tests/test_host_preflight.py`; no production runtime predicate changed.
+- Author-run submission evidence: 711 run / 709 passed / 0 failed / 0 errors / 2 genuine-evidence skips; host module 11 passed. No independent CI/workflow exists for this exact SHA, so those counts are not labeled independent acceptance.
+- ChatGPT formal verdict: **SB-R07-072 ACCEPTED at exact SHA** strictly as the portable test-isolation repair. V0.7 host/model/reviewer/time prerequisites remain open.
+- No Fable handoff, scheduler/model/public/account/spend/merge/release action was authorized.
