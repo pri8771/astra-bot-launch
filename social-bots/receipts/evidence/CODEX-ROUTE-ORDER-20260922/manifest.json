@@ -1,0 +1,14 @@
+{
+  "causal-note.md": {
+    "bytes": 1434,
+    "sha256": "b86678da3c7554f967a4e42523db67b16d30cb84b1b7736dabcd76943d45c634"
+  },
+  "observed.json": {
+    "bytes": 473,
+    "sha256": "e6db8177c21a5ddcac6d49c7eaf1ff9eed1b6dc679355c2954905d1df51906d9"
+  },
+  "reproduce.py": {
+    "bytes": 1515,
+    "sha256": "dcbb0042b84e8c2a22587b1b250bcb5ddf06a6caf9206a77a957f051f2ea4026"
+  }
+}

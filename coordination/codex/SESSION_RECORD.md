@@ -104,3 +104,7 @@ Owner target remains BotsV1.3 (peers Jobs/SwarmV2.0). Current native LEAD055@0d5
 ## 2026-09-22 — LEAD056 and route repair checkpoint
 
 LEAD056@647c41a accepts exact30a2ebd metrics repair and releases24h/+5m freshness. Sourceccfbaf7865557ba30d9148bcce6839b71e9159f1 / PR10 nowreadyforreview;32focused/732run730pass2live skips. Native CODEX_ROUTES_20260922 record links source-bound evidence and red-before community health bypass. Genuine-provider connectivity remains unproved. No new SESSION_ONCE, scheduler, host change, Fable dispatch or public/model/account call.
+
+## Continuation — route-order diagnostic
+
+Canonical647c41a/LEAD056 still current. Exact route-freshness candidateccfbaf7 PR10 and evidencecc27e3f await formal verdict. A bounded read-only diagnostic, independently repeated by root, found JSON-order-dependent selection of revoked versus healthy matching routes. Native CODEX_ROUTE_ORDER_20260922.md records REWORK_FOUND and requests the smallest explicit tie-break/ambiguity policy. No source change, SESSION_ONCE emission, model/account/public/scheduler action or Fable handoff. Target V1.3 remains uncompleted; no live gate promoted.
