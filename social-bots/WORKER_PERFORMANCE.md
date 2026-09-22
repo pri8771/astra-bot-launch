@@ -2,7 +2,7 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-056** (`lead-reviews/LEAD-056_2026-09-22T0501.md`).  
+Current lead review: **LEAD-057** (`lead-reviews/LEAD-057_2026-09-22T0602.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
 Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
@@ -141,3 +141,12 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - Next reproduced defect: `account_routes.py::_route_ok` ignores `last_verified_at`; missing/2020 verification can still yield account_available and draft authorization.
 - Lead contract: freshness <=24h; future clock skew <=5m; timestamp required, timezone-aware and parseable; exactly 24h old allowed, older stale; >+5m future invalid.
 - Codex SP1 released with deterministic time injection and no live account call. No Fable routing.
+
+## LEAD-057 route freshness + order determinism
+
+- PR #10 exact `ccfbaf7865557ba30d9148bcce6839b71e9159f1` / tree `4566673973dacbfb04530b123e529ef3cd61b327` is **ACCEPTED ENGINEERING** for LEAD-056 24h inclusive/+5m inclusive route freshness plus community consumer reuse of the same health/freshness gate.
+- Author evidence: 32 focused pass; full 732 run / 730 pass / 0 fail / 0 error / 2 existing genuine-live skips. No exact-SHA CI/workflow.
+- Community-cycle regression confirms revoked/stale/missing routes blocked, fresh route locally cleared, `effects_performed=0`, `published=false`; no real send.
+- Separate diagnostic `4a90be07...` reproduces first-match order dependence in `availability_for`.
+- Product rule fixed: all exact-scope matches are evaluated; exactly one eligible route selects; zero eligible fails closed; multiple eligible fails closed ambiguous. No inferred tie-break or destination authority.
+- Codex SP1 released directly; no Fable routing or live account/provider/model/public/scheduler action.
