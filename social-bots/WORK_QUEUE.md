@@ -1,25 +1,39 @@
-# Work queue — LEAD-048 — stop at LIVE V1.7
+# Work queue — LEAD-051 — stop at LIVE V1.7
 
-Current official version remains **V0.4.x**. New owner execution ceiling is **V1.7 live**, not V2.3 or V3.0. Active contract: `delivery/V17_LIVE.md`; task filter: `delivery/V17_SCOPE.json`.
+Current official version remains **V0.4.x**. Owner execution ceiling is **LIVE V1.7 only**, not V1.8+, V2.3 or V3.0. Active contract: `delivery/V17_LIVE.md`; scope filter: `delivery/V17_SCOPE.json`; exit criteria: `delivery/V17_ACCEPTANCE.md`.
+
+## Current lane truth
+
+- **Fable Integrator — ACTIVE.** Worker session `s-20260921T211438Z-d5589881` ingested the V1.7-only scope and produced signed material work through `af3fded92eaba5e68c8088737b68c6f043e40a5e`.
+- **Mac Acceptance — STALE / ACTION REQUIRED.** No fresh independent post-LEAD-050 reviewer result is visible.
+- **Cursor/Core/Intelligence — PARKED / evidence-only.** No overlapping source work.
+- **V0.4 canary — FROZEN / evidence preservation.** No further model call authorized.
+- **worker-pc — outside critical path** until private-repo clone/auth is demonstrably repaired.
 
 ## Immediate order
 
-1. Preserve actual worker head/local changes; read latest direction; pin baseline and verify scope selection cannot pull V1.8+.
-2. Repair enabled V1.7 direct model-callable authorization and pre-dispatch/shared budgets; independently re-run heartbeat/lease tests. Fix final-content review and honest prospective experiment semantics. Disable unsafe unused future routes rather than finish the specialist product.
-3. Do read-only host/provider/account/alias preflight now; record exact missing grants, routes and owner actions once.
-4. Close V0.4 divergence, V0.5 real evidence, V0.6 three real unpublished runs and V0.7 native scheduled/lead-worker proof when authorized.
-5. Verify required accounts/analytics; run only specifically approved V0.9 canaries; prove V1.0 three-bot operation.
-6. Implement/integrate V1.1 reliability, V1.2 route-aware platform selection, V1.3 analytics semantics, V1.4 scoped audience learning, V1.5 real experiment closeout and V1.6 native factual content lineage.
-7. Real V1.7 community input -> scoped memory -> reviewed decision/reply draft -> next check; independent final packet. Stop feature development and do not advance to V1.8.
+1. **Fable: repair SB-R07-041 engineering-seam capability bypass, zero live calls.** Current `12c807e` makes raw/live callable and real Claude CLI routes manifest/budget gated, but exact `EngineeringStub` and injected-runner seams can still execute arbitrary caller-supplied callables/runners when no dispatch scope exists. No-scope must fail closed. Engineering seams may execute only inside an explicit policy-owned engineering scope (`allow_engineering_stubs=True` or equivalently strong capability); production scopes refuse them.
+2. Fable adds harmless-sentinel negative tests for EngineeringStub/injected-runner no-scope refusal, explicit-engineering-scope allow, production-scope refusal, raw/live manifest gating, concurrency/reentry/shared-budget preservation; run focused and full suite.
+3. **Acceptance independently audits repaired R07-041** with zero real inference, then executes `SB-R07-071` multiprocess/session race against the pinned candidate.
+4. Acceptance independently exercises submitted `b5fd038` due-work rotation/anti-starvation and `c4d31fee...` C05/C06/C07 negative controls: final-text edit, wrong scope/persona/platform, replacement/symlink/late write, cultural final-text hash binding, prospective experiment with no fabricated baseline/outcome/confidence.
+5. Fable continues only non-overlapping zero-live V1.7 integration after the seam repair. `3da19a9c...` producer consolidation and `af3fded...` preflight/gate dossier are submitted engineering evidence, not acceptance.
+6. Preserve the real-evidence critical chain: V0.4 controlled divergence only under fresh owner authorization + lead manifest; V0.5 real current-source review; V0.6 three real unpublished adaptive loops; V0.7 native scheduler on a verified persistent host; V0.8 account/route verification; bounded public canaries only with explicit authorization; then V1.1–V1.7 exact acceptance artifacts.
+7. Submit final LIVE V1.7 packet and **stop feature development**. Do not advance to V1.8 or later without a new owner request.
 
-All work uses existing artifact packets in small commits. Safe offline implementation can run ahead of an authority-blocked real test within V1.7; no evidence/authority gate may be skipped. Later production H1–H4, strategy/planner/specialist and multi-brand integration are parked, not prerequisites.
+## Submitted evidence awaiting independent review
 
-## Ownership and evidence
+- `12c807e...` R07-041/C04 — **CHANGES_REQUIRED** for engineering-seam no-scope bypass despite substantial raw/live gate improvement.
+- `b5fd038...` scheduler due-work anti-starvation — submitted engineering evidence.
+- `c4d31fee...` C05/C06/C07 final-content review binding + prospective experiments — submitted engineering evidence.
+- `3da19a9c...` selected V1.7 producer consolidation — submitted engineering evidence.
+- `af3fded...` read-only host/provider/account gate dossier — useful blocker evidence only.
 
-Fable is sole integrator; keep its historical v23-fasttrack branch name. Cursor/legacy source lanes parked at safe handoff; QA review-only. Preserve unpushed/incoming work. A start heartbeat is not continuous liveness, and lead comments are not worker acknowledgements.
+## Operational blockers remain factual
 
-Latest inspected heads at scope change are in ACTIVE_EXECUTION.json. No new material repair or independent runtime test was verified in this turn. Historic 523 discovered/521 passed/2 skipped remains worker-reported evidence only. No artifact status/version promotion.
+Fable's current execution environment is an **ephemeral Linux VM**, not a verified persistent owner-controlled host with native scheduling. Its preflight records social-platform CONNECT-403 restrictions, no canonical live authorization manifest, no account registry entries and no named cultural reviewer. Those conditions block applicable operational evidence; they do not waive it.
 
-## Gates unchanged
+## Authority and heartbeat
 
-No new live product-model, public-effect, spending or main-merge grant. Earlier conditional necessary owned-account/verified Unsubscriber-alias setup scope remains, without public/model authority. Real read-only community behavior does not imply sent replies. One fresh session = one heartbeat; no periodic watcher.
+No new live product-model call, public effect, account mutation, spending, destructive action, secret exposure, main/public release or SwarmAI dependency is authorized. The prior V0.4 exactly-one canary authorization is consumed.
+
+Canonical heartbeat policy is **ONE SESSION = ONE HEARTBEAT**. The old FAST_5M/SOAK experiment is superseded. A resumed/compacted continuation of the same session must not emit another heartbeat; V0.7 recurring liveness is proven by separate OS-scheduled bounded invocations on a real persistent host.
