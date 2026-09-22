@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T03:44:00Z",
+  "updated_at": "2026-09-22T07:32:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -624,15 +624,21 @@
       "name": "Metric semantics/provenance acceptance",
       "type": "acceptance_bundle",
       "version_gate": "V1.3",
-      "owner": "Claude-Intelligence",
-      "status": "PLANNED",
+      "owner": "Codex",
+      "status": "ACCEPTED",
       "canonical_ref": "social-bots/artifact-packets/SB-V13-002.md",
       "depends_on": [
         "SB-V13-001"
       ],
       "story_points": 2,
-      "evidence": [],
-      "last_verified_ref": "chatgpt/social-bots-plan-20260920"
+      "evidence": [
+        "PR13 exact be0262713eec03c2e7e6b411c2754a7538bad9a6 / tree f572da02fcbc60bfeb4d6f620e96aeea43193501",
+        "accepted-base diagnostics reproduced invalid provenance source, malformed/naive/reversed windows, legacy invented metric-kind/platform-mapping claims, and lexical offset ordering",
+        "candidate validates provenance/time/window metadata before persistence and excludes invalid legacy rows from stronger trace/aggregate/derived claims while retaining raw evidence",
+        "candidate affected suite 43 passed; full suite 756 run / 754 passed / 2 existing genuine-live skips; no exact-SHA CI",
+        "formal ChatGPT verdict LEAD-060 accepts engineering artifact only; live V1.3 promotion remains blocked by earlier genuine operational predecessors"
+      ],
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-060_2026-09-22T0732.md"
     },
     {
       "id": "SB-V14-001",
