@@ -186,3 +186,10 @@ Jobsconfig PR24 exact413a18e/treef40e443a readywith488pass1hostskip58focused,Ruf
 ## Continuation — source/matrix binding ready
 
 PR16fec97738ec0e9407415f60228f7c3938613396c3/tree43e80b92d8ae559db55a41ed33329695e6fd03fc implementsLEAD064bindingonly.770pass2liveskips;90existing/8newfocused; actualGitidentityoffline5slotproof repeatedbyroot, negativeszeroeffect. Native CODEX_EXECUTION_BINDING_20260922.md hashesreviewevidenceandretainsdiagnoses. RECOMMEND_ACCEPTpendingformalverdict. Noownergrantactivation/capture/livecall; currentexample/RFCinputsunsuitableforfinalacceptance; retryheld. SwarmR29aclarification463ee66 permitsnewidentities/dynamicallyvalidatedlegacy andhistorical-unbound readcompat; rootimplementingisolatedfromba458eb, agentsowndisjointtests. JobsPR24verdictpending. NoSESSION_ONCE/Fable/scheduler/spend/merge/deploy.
+
+
+### 2026-09-22 09:58 UTC — existing capture frontier
+
+Binding PR16 remains ready at fec97738ec0e9407415f60228f7c3938613396c3, tree 43e80b92d8ae559db55a41ed33329695e6fd03fc, evidence 4301053d7c184c8f35e676dac9ca95f7cffbcaac. Canonical LEAD064 remains 47bd5e680f364d21bdff7a070257a2b6d2d0fcf1. A bounded read-only agent verified that the retained Example Domain/RFC8259 receipts and raw hashes match the existing freeze, but found no additional suitable repository-local pair. LEAD064 explicitly excludes this pair from final product acceptance. See social-bots/lead-reviews/CODEX_EXISTING_CAPTURE_INVENTORY_20260922.md for exact capture hashes and scope of the inventory.
+
+Final V0.4 evidence preparation is REVIEW_BLOCKED until suitable current public captures are explicitly released, collected through the accepted collector and lead-reviewed. Binding acceptance and any later owner five-call grant are separate gates. Retry implementation remains held. No new capture, network/model/provider/account/host action, grant activation, SESSION_ONCE, scheduler, spend, merge, deployment or Fable handoff occurred. Detailed continuation notes remain in the local portfolio journal; no background operation is claimed.
