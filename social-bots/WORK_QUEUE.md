@@ -1,4 +1,4 @@
-# Work queue — LEAD-060 — target LIVE V1.3
+# Work queue — LEAD-061 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
@@ -22,8 +22,9 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 7. **PR #11 route-selection repair is ACCEPTED ENGINEERING** at exact `3f10d0f6eb031c00fff679aae18aa8045d8bd025`: unique eligible route selection, fail-closed zero/multiple matches, platform+alias community scope.
 8. **SB-V13-002 is ACCEPTED ENGINEERING** at exact `be0262713eec03c2e7e6b411c2754a7538bad9a6`: provenance/time-window/compatibility/legacy fail-closed boundaries now verified with synthetic/local evidence.
 9. **PR #12 route_type schema repair is ACCEPTED ENGINEERING** at exact `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`: documented enum enforced at registry ingest; unknown type rejects whole registry; valid `unsupported` remains parsed/ineligible.
-10. **Codex composition RELEASED:** from accepted base `3f10d0f6...`, compose exact accepted PR12 + PR13 changes only; verify hashes/diffs, run route+metrics focused suites and full suite; no semantic edits beyond mechanical conflict resolution.
-11. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
+10. **PR #14 composition is ACCEPTED ENGINEERING** at exact `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`: exact accepted PR12 + PR13 changes compose without new behavior.
+11. **Codex read-only RELEASED — V0.7→V1.3 live-readiness gap audit:** reconcile accepted engineering/live evidence, missing live evidence, owner gates, and dependency-safe offline next work on accepted composition. No live actions.
+12. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
