@@ -43,7 +43,7 @@ def route(bot, persona, platform, *, health="verified", draft=True, publish=Fals
          "capabilities": {"read": True, "draft": draft, "publish": publish, "reply": False,
                           "dm": False, "analytics": False},
          "publish_authorized": publish_authorized, "health_status": health,
-         "last_verified_at": "2026-09-21T00:00:00Z", "verification_method": "fixture"}
+         "last_verified_at": datetime.now(timezone.utc).isoformat(), "verification_method": "fixture"}
     r.update(extra)
     return r
 

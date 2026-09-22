@@ -124,7 +124,7 @@ def _persona_content_ids(bot: str, persona: str) -> set[str]:
     return {i for i in ids if i}
 
 
-def _route_aliases(bot: str, persona: str) -> tuple[bool, set[str], dict]:
+def _route_aliases(bot: str, persona: str, *, now: datetime | None = None) -> tuple[bool, set[str], dict]:
     """(registry_present, aliases of this persona's routes, reply-authorized route by alias)."""
     try:
         routes = account_routes.load_routes()
@@ -135,7 +135,8 @@ def _route_aliases(bot: str, persona: str) -> tuple[bool, set[str], dict]:
     mine = [r for r in routes if r.get("bot") == bot and r.get("persona") == persona]
     aliases = {r.get("account_alias") for r in mine if r.get("account_alias")}
     reply_ok = {r.get("account_alias"): r for r in mine
-                if (r.get("capabilities") or {}).get("reply") and r.get("reply_authorized") is True}
+                if account_routes._route_ok(r, now=now)[0]
+                and (r.get("capabilities") or {}).get("reply") and r.get("reply_authorized") is True}
     return True, aliases, reply_ok
 
 
@@ -214,7 +215,7 @@ def run_community_cycle(bot: str, persona_id: str, *, signals=None, fence=None,
         raise ValueError(f"persona {persona_id} runs on {persona['runtime']}, not {bot}")
     now = now or datetime.now(timezone.utc)
     ledger = read_ledger(bot, persona_id)
-    registry_present, aliases, reply_routes = _route_aliases(bot, persona_id)
+    registry_present, aliases, reply_routes = _route_aliases(bot, persona_id, now=now)
     own_content = _persona_content_ids(bot, persona_id)
 
     ingested: list[community.CommunitySignal] = []

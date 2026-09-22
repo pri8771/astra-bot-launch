@@ -40,7 +40,7 @@ def route(alias="alias-x", *, reply=False, reply_authorized=False):
             "account_alias": alias, "capabilities": {"read": True, "draft": True,
                                                      "publish": False, "reply": reply},
             "publish_authorized": False, "reply_authorized": reply_authorized,
-            "health_status": "verified", "last_verified_at": "2026-09-21T00:00:00Z"}
+            "health_status": "verified", "last_verified_at": datetime.now(timezone.utc).isoformat()}
 
 
 def write_registry(routes):
