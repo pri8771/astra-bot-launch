@@ -28,15 +28,16 @@ and triage. It does not cover writing `worker_once.py` itself (see
 
 ### Environment variables `worker_once.py` reads
 
-None of these need to be set for a working install; they exist for
-tests/diagnostics and for the reasoning posture, not for the scheduling
-package itself. Set them in the unit/task/agent's environment block only if
-you deliberately want the non-default behavior:
+A production worker invocation requires an available, authorized adaptive provider.
+The default baseline mode is deterministic and is refused with exit code `6`
+(`BLOCKED_REASONING_UNAVAILABLE`) unless the invocation explicitly opts into a
+diagnostic deterministic run. Configure provider posture only after its own grant;
+the scheduler package alone does not make reasoning available.
 
 | Variable | Effect |
 |---|---|
 | `SBOTS_HOME` | Overrides the runtime data root (heartbeats, leases, receipts, invocation records). Defaults to the `social-bots` directory itself when unset. The systemd unit and launchd agent set it directly; Task Scheduler XML cannot carry environment variables, so the Windows installer passes the same value as `--home` instead (`-SbotsHome`, default `<RepoRoot>\social-bots`). |
-| `SBOTS_REASONING` | Selects the reasoning provider mode (e.g. `baseline`, `contextual`, `model`). Leave unset for the default deterministic baseline unless a specific artifact calls for another mode. |
+| `SBOTS_REASONING` | Selects the reasoning provider mode (e.g. `baseline`, `contextual`, `model`). The default deterministic baseline cannot satisfy the production worker adaptive requirement. |
 | `SBOTS_WORKER_ALLOW_DETERMINISTIC` | Diagnostics-only opt-in to a non-adaptive provider. Do not set this for a production scheduled install; `worker_once.py`'s own `--allow-deterministic` flag is the explicit, auditable way to opt in per invocation when a diagnostic run genuinely needs it. |
 
 ## Install
@@ -192,3 +193,27 @@ quietly rather than erroring).
   dependent V0.7 evidence artifact (e.g. SB-V07-002), based on inspecting the
   actual heartbeat/invocation evidence a host produces, not on this runbook
   existing or having been followed once.
+
+
+## Mac prepare-only checkpoint — 2026-09-22
+
+The owner selected this Mac for the first bounded local inference experiment. That selection does not attest persistent unattended hosting or authorize scheduler installation/firing. LEAD066/067 released this read-only preparation only.
+
+Observed source: accepted `d8a211fc32802c59b07b1739bef47f9c551ed8dc`, tree `169c386c471b813585e6f441d0be88fcf1ba0158`, temporary checkout `/tmp/bots-ollama-local-20260922`. Receipt: `../receipts/evidence/CODEX_MAC_HOST_PREPARE_20260922/HOST_PREFLIGHT.json`. It records `INCONCLUSIVE_NEED_OWNER_CONFIRMATION`, `suitable_for_v07_live_scheduler=false`, `live_claim=false`.
+
+Read-only checks: Mac installer shell syntax and plist syntax passed; 31 existing scheduling/host-preflight tests passed. `persistent_host_preflight.py` collected facts without `--owner-attested-persistent`. No installer, worker, SESSION_ONCE, scheduler registration/readback/firing, launchctl mutation or inference was executed. The collector uses Linux findmnt, so Mac filesystem types remain unknown; scheduler binary presence is not a registration or persistence check.
+
+| Activation fact | Current disposition |
+|---|---|
+| First inference test host | Owner's Mac selected |
+| Persistent unattended host attestation | Not supplied |
+| Durable accepted checkout, runtime/report/log roots | Not selected; /tmp checkout is not a deployment |
+| Worker lane and source branch | Awaiting lead assignment |
+| Existing scheduler owner, label and cadence | Not inspected or approved |
+| Sleep, reboot, login/logout and uptime expectations | Not supplied |
+| Recurring worker/provider authority | Not granted |
+| Scheduler-fired receipts | None created by this preparation |
+
+Existing assets remain the implementation: `bin/worker_once.py`, `runtime/host_preflight.py`, `bin/persistent_host_preflight.py`, `scheduling/macos/com.socialbots.workeronce.plist`, and `scheduling/macos/install_launchd.sh`. The installer has no dry-run mode and must not be used as a preview. SB-R07-073/074 remain PLANNED.
+
+The accepted `ollama-local` route serves the separately bound five-case divergence experiment. `reasoning.resolve_provider` does not expose that route as a scheduled-worker mode. An experiment grant must never be reused as recurring-worker authority. No new worker implementation is included in this preparation.
