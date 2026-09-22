@@ -11,7 +11,17 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import reasoning, decision, research, pipeline  # noqa: E402
+from runtime import reasoning, decision, research, pipeline, model_dispatch  # noqa: E402
+
+
+def setUpModule():
+    # LEAD-051: engineering stubs run only under the explicit, policy-owned
+    # ENGINEERING dispatch scope; a test module declares it, production never does.
+    model_dispatch.configure_engineering()
+
+
+def tearDownModule():
+    model_dispatch.clear()
 
 
 def seed(bot, url="https://example.org/s", prov="live-capture", tags=("a", "b")):

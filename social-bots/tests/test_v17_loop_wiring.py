@@ -209,7 +209,8 @@ class AudienceEvidenceTest(_Case):
         os.environ["SBOTS_REASONING"] = "model"
         reasoning.register_model_callable(reasoning.EngineeringStub(capture))
         seed("social-b")
-        rec = decision.run_cycle("social-b", "social-b")
+        with model_dispatch.engineering_scope():          # stubs run only here (LEAD-051)
+            rec = decision.run_cycle("social-b", "social-b")
         self.assertEqual(rec["outcome"], "no_action")
         aud = seen["ctx"].state_summary["audience"]
         self.assertEqual(aud["scope"], {"bot": "social-b", "persona": "social-b"})

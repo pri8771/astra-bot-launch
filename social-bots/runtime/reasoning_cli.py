@@ -343,12 +343,15 @@ class ClaudeCodeReasoningProvider:
         """
         from . import model_dispatch
         if not self._spawns_for_real():
-            # An injected runner is an engineering seam. Under a production
-            # dispatch scope (a scheduled worker run) it is refused outright, so
-            # a wrapper around the real launcher cannot ride the seam into a
-            # live call; outside such a scope it launches nothing by contract.
+            # An injected runner is an engineering seam (LEAD-051): it runs ONLY
+            # under the policy-owned ENGINEERING scope. No scope is not a
+            # capability, and a production scope (a scheduled worker run)
+            # refuses outright, so a wrapper around the real launcher can never
+            # ride the seam into a live call.
             scope = model_dispatch.current_scope()
-            if scope is not None and not scope.allow_engineering_stubs:
+            if scope is None:
+                return "injected runner refused: no engineering dispatch scope"
+            if not scope.allow_engineering_stubs:
                 return "injected runner refused under a production dispatch scope"
             return None
         ok, reason = model_dispatch.availability()

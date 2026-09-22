@@ -216,17 +216,35 @@ class DirectLibraryBypassTest(_GateCase):
         self.assertIsNone(rec["observe"]["consumed_this_cycle"])   # evidence stays pending
         self.assertEqual(rec["observe"]["pending_after"], 1)
 
-    def test_a_declared_stub_runs_outside_production_and_is_labelled_offline(self):
-        fn = _counting()
+    def test_a_declared_stub_runs_only_under_the_engineering_scope(self):
+        """LEAD-051: no scope is not a capability. EngineeringStub(live_like) is
+        refused with no scope, runs only under the policy-owned ENGINEERING scope
+        (recorded as engineering, non-live evidence) and is refused under a
+        production scope (see ScopedDispatchTest)."""
+        fn = _counting()                                   # a live-like sentinel
+        provider = reasoning.ModelReasoningProvider(reasoning.EngineeringStub(fn))
+        self.assertFalse(provider.available())
+        self.assertIn("no engineering dispatch scope", provider.reason)
+        self.assertIsNone(provider.propose(_ctx()))
+        with self.assertRaises(model_dispatch.DispatchRefused):
+            model_dispatch.dispatch(reasoning.EngineeringStub(fn), _ctx(), provider_id="s")
+        self.assertEqual(fn.calls, [])
         _seed("social-b")
         with _Env(SBOTS_REASONING="model"):
             reasoning.register_model_callable(reasoning.EngineeringStub(fn))
-            rec = decision.run_cycle("social-b", "social-b")
+            blocked = decision.run_cycle("social-b", "social-b")
+            self.assertEqual(blocked["outcome"], "blocked_reasoning_unavailable")
+            self.assertIn("no engineering dispatch scope", blocked["execute"]["block_reason"])
+            self.assertEqual(fn.calls, [])
+            with model_dispatch.engineering_scope():
+                rec = decision.run_cycle("social-b", "social-b")
         self.assertEqual(rec["outcome"], "no_action")
         self.assertEqual(len(fn.calls), 1)
         self.assertEqual(rec["reasoning"]["dispatch"]["dispatch_class"],
                          model_dispatch.ENGINEERING_STUB)
+        self.assertEqual(rec["reasoning"]["dispatch"]["scope_kind"], "engineering")
         self.assertFalse(rec["reasoning"]["live_model_call"])
+        self.assertIsNone(model_dispatch.current_scope())    # scope never leaks
 
     def test_receipt_replay_is_never_a_live_call(self):
         _seed("social-b")
@@ -415,15 +433,28 @@ class ScopedDispatchTest(_GateCase):
         self.assertIn("engineering stub refused", rec["execute"]["block_reason"])
         self.assertEqual(fn.calls, [])
 
-    def test_a_scope_that_allows_stubs_still_never_counts_them_as_live(self):
+    def test_the_engineering_scope_is_policy_owned_and_never_live(self):
+        """Seams can be enabled only under the ENGINEERING artifact id; under that
+        scope a stub runs (non-live, no slot) while a live callable is refused
+        even though a fixture manifest exists on disk."""
         fn = _counting()
-        model_dispatch.configure(ART, LANE, SCOPE, manifest_dir=self.manifests, home=self.tmp,
-                                 allow_engineering_stubs=True)
+        with self.assertRaises(ValueError):            # a production id cannot enable seams
+            model_dispatch.configure(ART, LANE, SCOPE, manifest_dir=self.manifests,
+                                     home=self.tmp, allow_engineering_stubs=True)
+        model_dispatch.configure_engineering()
         provider = reasoning.ModelReasoningProvider(reasoning.EngineeringStub(fn))
         self.assertTrue(provider.available())
         self.assertIsNotNone(provider.propose(_ctx()))
-        self.assertEqual(model_dispatch.last_record().dispatch_class,
-                         model_dispatch.ENGINEERING_STUB)
+        rec = model_dispatch.last_record()
+        self.assertEqual((rec.dispatch_class, rec.scope_kind, rec.invoked),
+                         (model_dispatch.ENGINEERING_STUB, "engineering", True))
+        self.assertEqual(self.budget().consumed(), 0)
+        live = _counting()
+        self.assertFalse(reasoning.ModelReasoningProvider(live).available())
+        with self.assertRaises(model_dispatch.DispatchRefused) as ctx:
+            model_dispatch.dispatch(live, _ctx(), provider_id="live")
+        self.assertIn("ENGINEERING scope", str(ctx.exception))
+        self.assertEqual(live.calls, [])
         self.assertEqual(self.budget().consumed(), 0)
 
     def test_dropped_batch_token_is_never_adopted_by_a_later_call(self):
@@ -528,7 +559,10 @@ class RealLauncherGateTest(_GateCase):
         self.assertEqual((rec.dispatch_class, rec.invoked, rec.slot),
                          (model_dispatch.LIVE_MODEL, True, 1))
 
-    def test_injected_runner_is_a_seam_outside_production_and_refused_inside(self):
+    def test_injected_runner_runs_only_under_the_engineering_scope(self):
+        """LEAD-051: an injected runner is refused with no scope, runs only inside
+        the explicit ENGINEERING scope (recorded NOT_LIVE / engineering) and is
+        refused under a production scope."""
         calls = []
 
         def runner(prompt, *, timeout_s, model):
@@ -536,12 +570,33 @@ class RealLauncherGateTest(_GateCase):
             return reasoning_cli.CLIResult(returncode=0, stdout="{}", stderr="")
 
         provider = reasoning_cli.ClaudeCodeReasoningProvider(runner=runner)
-        self.assertTrue(provider.available())           # no scope: engineering seam
+        self.assertFalse(provider.available())          # no scope: refused
+        self.assertIn("no engineering dispatch scope", provider.reason)
+        self.assertIsNone(provider.propose(_ctx()))
+        self.assertEqual(calls, [])
+        with model_dispatch.engineering_scope():
+            self.assertTrue(provider.available())
+            provider.propose(_ctx())
+        self.assertEqual(len(calls), 1)
+        rec = model_dispatch.last_record()
+        self.assertEqual((rec.dispatch_class, rec.scope_kind, rec.invoked),
+                         (model_dispatch.NOT_LIVE, "engineering", True))
         model_dispatch.configure(ART, LANE, SCOPE, manifest_dir=self.manifests, home=self.tmp)
         self.assertFalse(provider.available())
         self.assertIn("injected runner refused", provider.reason)
         self.assertIsNone(provider.propose(_ctx()))
-        self.assertEqual(calls, [])
+        self.assertEqual(len(calls), 1)
+
+    def test_a_wrapper_around_the_real_launcher_is_refused_with_no_scope(self):
+        """A caller cannot reach the real CLI by wrapping the launcher in an
+        'injected' runner and omitting scope (the tripwire proves no spawn)."""
+        def wrapper(prompt, *, timeout_s, model):       # would launch for real
+            return reasoning_cli._CAPTURED_REAL_CLI_RUNNER(prompt, timeout_s=timeout_s,
+                                                           model=model)
+
+        provider = reasoning_cli.ClaudeCodeReasoningProvider(runner=wrapper)
+        self.assertFalse(provider.available())
+        self.assertIsNone(provider.propose(_ctx()))
 
     def test_a_wrapper_around_the_real_launcher_cannot_ride_the_seam_in_production(self):
         _write_manifest(self.manifests, artifact_scope=[ART], lane=LANE, run_scope=SCOPE)

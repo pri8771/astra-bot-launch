@@ -25,7 +25,17 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from runtime import reasoning, reasoning_cli, decision, research  # noqa: E402
+from runtime import reasoning, reasoning_cli, decision, research, model_dispatch  # noqa: E402
+
+
+def setUpModule():
+    # LEAD-051: injected CLI runners are engineering seams that run only under the
+    # explicit, policy-owned ENGINEERING dispatch scope (never in production).
+    model_dispatch.configure_engineering()
+
+
+def tearDownModule():
+    model_dispatch.clear()
 from runtime.reasoning import ReasoningContext  # noqa: E402
 from runtime.reasoning_cli import CLIResult, CLIUnavailable, ClaudeCodeReasoningProvider  # noqa: E402
 

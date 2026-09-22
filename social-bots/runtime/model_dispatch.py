@@ -25,14 +25,15 @@ Rules
    ``ExecutionGrant`` buys nothing here.
 3. Reentrancy: a callable that re-enters a live dispatch on the same thread is
    refused. A second thread must win its own slot.
-4. The only invocations exempt from live accounting are exact instances of the
-   policy-owned non-live types: ``reasoning_receipt.ReceiptReplay`` (replays
-   real receipts, calls nothing) and ``reasoning.EngineeringStub`` (declared
-   engineering-only stub), plus the CLI provider's own injected-runner seam.
-   Subclasses, attributes, ``adaptive=False`` labels or any other marker do NOT
-   exempt. Engineering seams (stubs, injected runners) are refused under a
-   production scope (``allow_engineering_stubs=False``), so a mis-wired seam
-   cannot masquerade as adaptive autonomy in a scheduled run.
+4. The only invocation exempt from live accounting is an exact
+   ``reasoning_receipt.ReceiptReplay`` (replays validated real receipts, calls
+   nothing). Engineering seams — exact ``reasoning.EngineeringStub`` and the CLI
+   provider's injected-runner closure — run ONLY under the policy-owned
+   ENGINEERING scope installed by ``configure_engineering()`` /
+   ``engineering_scope()`` (LEAD-051): with no scope they are refused like any
+   live callable (no-scope is not a capability), and under a production scope
+   they are refused outright. Subclasses, attributes, ``adaptive=False`` labels
+   or any other marker do NOT exempt anything.
 5. The batch executor may reserve first and let the provider adopt that single
    reservation (``reserved()``), so a prepared five-call batch keeps exact
    per-case accounting without double consumption.
@@ -61,6 +62,11 @@ RECEIPT_REPLAY = "RECEIPT_REPLAY"
 ENGINEERING_STUB = "ENGINEERING_STUB"
 NOT_LIVE = "NOT_LIVE"                      # the CLI provider's injected-runner seam
 
+# The ONLY artifact id under which engineering seams may run. Production
+# entrypoints never configure it; a decision record citing it is never LIVE.
+ENGINEERING_ARTIFACT = "ENGINEERING"
+ENGINEERING_LANE = "engineering"
+
 _SEAM_LABEL = {ENGINEERING_STUB: "engineering stub", NOT_LIVE: "injected runner"}
 
 
@@ -80,6 +86,10 @@ class DispatchScope:
     def as_dict(self) -> dict:
         return asdict(self)
 
+    @property
+    def kind(self) -> str:
+        return "engineering" if self.allow_engineering_stubs else "production"
+
 
 @dataclass
 class DispatchRecord:
@@ -91,6 +101,7 @@ class DispatchRecord:
     manifest_id: str | None = None
     outcome: str | None = None
     refusal: str | None = None
+    scope_kind: str | None = None             # "production" | "engineering" | None
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -111,13 +122,44 @@ def _state():
 
 def configure(artifact: str, lane: str, run_scope: str, *, manifest_dir=None, home=None,
               allow_engineering_stubs: bool = False) -> DispatchScope:
-    """Set the process-wide dispatch scope (production entrypoints call this once)."""
+    """Set the process-wide PRODUCTION dispatch scope (entrypoints call this once).
+
+    Engineering seams cannot be enabled here under any other artifact id: the
+    only scope that runs them is the policy-owned one from
+    ``configure_engineering()`` (LEAD-051), so a flag on a production scope
+    cannot quietly turn stubs on.
+    """
+    if allow_engineering_stubs and str(artifact) != ENGINEERING_ARTIFACT:
+        raise ValueError("engineering seams may only be enabled in the policy-owned "
+                         "ENGINEERING scope (use model_dispatch.configure_engineering)")
     scope = DispatchScope(artifact=str(artifact), lane=str(lane), run_scope=str(run_scope),
                           manifest_dir=str(manifest_dir) if manifest_dir is not None else None,
                           home=str(home) if home is not None else None,
                           allow_engineering_stubs=bool(allow_engineering_stubs))
     set_scope(scope)
     return scope
+
+
+def configure_engineering(run_scope: str = "engineering-seams", *,
+                          home=None) -> DispatchScope:
+    """Install the policy-owned ENGINEERING scope: the only scope under which an
+    ``EngineeringStub`` or an injected CLI runner may run. Unit tests and
+    offline dry runs call this explicitly; production entrypoints never do.
+    Live callables are still refused under it (no manifest is consulted)."""
+    return configure(ENGINEERING_ARTIFACT, ENGINEERING_LANE, run_scope, home=home,
+                     allow_engineering_stubs=True)
+
+
+@contextmanager
+def engineering_scope(run_scope: str = "engineering-seams", *, home=None):
+    """``with engineering_scope():`` — ENGINEERING scope for the block, prior scope
+    restored afterwards (never leaks into a later production configuration)."""
+    prior = current_scope()
+    configure_engineering(run_scope, home=home)
+    try:
+        yield current_scope()
+    finally:
+        set_scope(prior)
 
 
 def set_scope(scope: DispatchScope | None) -> None:
@@ -228,16 +270,30 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
 
     scope = scope or _SCOPE
     if cls in (ENGINEERING_STUB, NOT_LIVE):
-        if scope is not None and not scope.allow_engineering_stubs:
+        # LEAD-051: a seam runs ONLY under the policy-owned ENGINEERING scope.
+        # No scope is not a capability; a production scope refuses outright.
+        if scope is None or not scope.allow_engineering_stubs:
+            where = ("no engineering dispatch scope (seams run only under "
+                     "model_dispatch.configure_engineering)" if scope is None
+                     else "a production dispatch scope")
             st.last = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=False,
-                                     refusal=f"{_SEAM_LABEL[cls]} refused under a production "
-                                             f"dispatch scope")
+                                     scope_kind=scope.kind if scope else None,
+                                     refusal=f"{_SEAM_LABEL[cls]} refused: {where}")
             raise DispatchRefused(st.last.refusal)
         st.last = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=True,
-                                 outcome="engineering_seam")
+                                 scope_kind=scope.kind, outcome="engineering_seam")
         return fn(ctx)
 
     # ---- LIVE_MODEL ------------------------------------------------------
+    if scope is not None and scope.allow_engineering_stubs:
+        # The ENGINEERING scope never authorizes a live callable: it consults no
+        # manifest and reserves nothing. Live routes need a production scope.
+        st.last = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=False,
+                                 scope_kind=scope.kind,
+                                 refusal="live callable refused under the ENGINEERING scope; "
+                                         "a live model route needs a production scope with "
+                                         "a canonical authorization manifest")
+        raise DispatchRefused(st.last.refusal)
     adopted = st.token
     if adopted is not None:
         st.token = None                               # single use
@@ -266,7 +322,7 @@ def dispatch(fn: Callable[[Any], Any], ctx: Any, *, provider_id: str, live: bool
     st.active += 1
     rec = DispatchRecord(dispatch_class=cls, provider_id=provider_id, invoked=True,
                          slot=slot.slot, run_scope=slot.run_scope,
-                         manifest_id=slot.manifest_id)
+                         manifest_id=slot.manifest_id, scope_kind="production")
     st.last = rec
     try:
         value = fn(ctx)
@@ -302,6 +358,8 @@ def availability(scope: DispatchScope | None = None) -> tuple[bool, str]:
     scope = scope or _SCOPE
     if scope is None:
         return False, "no dispatch scope configured"
+    if scope.allow_engineering_stubs:
+        return False, "ENGINEERING scope never authorizes a live model call"
     posture = authorization.posture_violations(injected_runner=False)
     if posture:
         return False, "; ".join(posture)

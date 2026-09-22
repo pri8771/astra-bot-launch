@@ -221,8 +221,11 @@ class SpawnPointGuardTest(unittest.TestCase):
             self.assertIsNone(provider.propose(ctx))
         self.assertIn("not authorized", provider.reason)
 
-    def test_an_injected_runner_is_exempt_because_it_spawns_nothing(self):
-        """The test seam must keep working; it launches no subprocess."""
+    def test_an_injected_runner_runs_only_under_the_engineering_scope(self):
+        """The test seam launches no subprocess, but it is not a no-grant
+        capability either (LEAD-051): refused with no scope, usable only inside
+        the explicit policy-owned ENGINEERING scope."""
+        from runtime import model_dispatch
         from runtime.reasoning_cli import CLIResult, ClaudeCodeReasoningProvider
         calls = []
 
@@ -232,7 +235,11 @@ class SpawnPointGuardTest(unittest.TestCase):
 
         provider = ClaudeCodeReasoningProvider(runner=runner)
         with EnvGuard(ANTHROPIC_API_KEY=None):
-            self.assertTrue(provider.available())
+            self.assertFalse(provider.available())
+            self.assertIn("no engineering dispatch scope", provider.reason)
+            with model_dispatch.engineering_scope():
+                self.assertTrue(provider.available())
+        self.assertEqual(calls, [])
 
     def test_resolve_provider_cannot_produce_a_usable_live_route(self):
         """SBOTS_REASONING=claude-cli resolves, but the provider refuses to run."""

@@ -352,13 +352,14 @@ class ContextualReasoningProvider:
 class EngineeringStub:
     """Policy-owned wrapper declaring a callable ENGINEERING-ONLY (never a model
     or network call). It is the only way a unit test may register a synthetic
-    adaptive proposal source without a canonical authorization manifest.
+    adaptive proposal source without a canonical authorization manifest — and
+    even then it executes ONLY under the explicit ENGINEERING dispatch scope
+    (``model_dispatch.configure_engineering`` / ``engineering_scope``), never
+    with no scope and never under a production scope (LEAD-051: wrapping a
+    callable in this type is not a no-grant execution capability).
 
-    Exemption is by EXACT type in ``model_dispatch.classify`` — a subclass, an
-    ``adaptive=False`` attribute or any other label does not exempt — and a
-    production dispatch scope (``allow_engineering_stubs=False``, the default set
-    by ``bin/worker_once.py`` / ``bin/run_worker.py``) refuses stubs outright, so a
-    mis-wired stub can never pose as adaptive autonomy in a scheduled run.
+    Classification is by EXACT type in ``model_dispatch.classify`` — a subclass,
+    an ``adaptive=False`` attribute or any other label changes nothing.
     """
 
     def __init__(self, fn: Callable[[ReasoningContext], ReasoningProposal | None],
@@ -405,9 +406,12 @@ class ModelReasoningProvider:
             self._last_reason = None if ok else f"live model call not authorized: {reason}"
             return ok
         scope = model_dispatch.current_scope()
-        if cls == model_dispatch.ENGINEERING_STUB and scope is not None \
-                and not scope.allow_engineering_stubs:
-            self._last_reason = "engineering stub refused under a production dispatch scope"
+        if cls == model_dispatch.ENGINEERING_STUB and (
+                scope is None or not scope.allow_engineering_stubs):
+            # LEAD-051: a stub runs only under the policy-owned ENGINEERING scope.
+            self._last_reason = ("engineering stub refused: no engineering dispatch scope"
+                                 if scope is None else
+                                 "engineering stub refused under a production dispatch scope")
             return False
         self._last_reason = None
         return True
