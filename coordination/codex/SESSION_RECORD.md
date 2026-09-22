@@ -62,3 +62,31 @@ scope or release a later milestone.
 
 No project was merged, deployed, dispatched to Fable, or coupled to another
 project runtime. Existing native heartbeat rules remain unchanged.
+
+## 2026-09-22 Swarm R28d-4 source-review checkpoint
+
+`session_id`: `codex-v17-v07-implementation-20260922`
+
+`updated_at`: `2026-09-22T14:32:05Z`
+
+`project`: SwarmAI
+
+`coordination_ref`: `coordination/swarm-control@49f7ab27fd6706a9e13c7b071ae886a877c9aeb4`
+
+`source_ref`: `codex/swarm-r28d3-async-gateway-20260922@86f8e0c90e399c683d68ba9628ef48af4723f33f`
+
+`evidence_ref`: `codex/swarm-r28d4-cancellation-record-20260922@6e549d790c8f58cf315d9d7c97af214fb85f5141`
+
+`classification`: **RECOMMEND_ACCEPT_FOR_LEAD_REVIEW** for source only. The
+candidate drains a cancelled worker before cleanup and retains a successful
+`pending_apply` worktree for the existing explicit reviewed-apply path.
+
+`live_gate`: The original R28d `live_local` one-shot remains the failed,
+consumed invocation recorded at
+`codex/swarm-r28d3-evidence-20260922@e91782593d61db36d110a3bdc85851b85bd5e6e7`.
+No replacement model call, receipt, or live acceptance is claimed.
+
+`next_action`: Formal lead source disposition, followed only if released by a
+new exact-SHA successor assignment. The existing single five-minute Swarm
+stream remains state-only after meaningful activity at `2026-09-22T02:08:48Z`;
+no takeover or new watcher was created.
