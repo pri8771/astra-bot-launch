@@ -1,15 +1,33 @@
 {
-  "schema_version": 1,
-  "lane": "mac-qa",
-  "reviewed_at": "2026-09-21T23:52:46Z",
-  "lead_review": "LEAD-047",
-  "official_phase": "V0.4.x_in_progress",
-  "session_status": "REVIEW_ONLY_ACTION_REQUIRED",
-  "accepted": ["SB-V03-004", "SB-V04-005"],
-  "submitted_for_independent_review": ["SB-R07-071", "SB-S23-008"],
-  "changes_required_to_reaudit_after_repair": ["SB-R07-041"],
-  "next_assignment": "Remain review-only. Start one genuinely fresh review session and emit exactly one SESSION_ONCE heartbeat after reading canonical LEAD-047 coordination. Do not edit runtime source and do not invoke a real model. Independently reproduce the pinned R07-071 multiprocess duplicate-session race; then, once Fable submits the LEAD-047 R07-041/shared-guard repair, audit direct-library no-grant refusal, false-fixture/capability refusal, pre-dispatch budget concurrency/reentry/wrapper behavior, and retained-output integrity with harmless sentinels and real candidate modules. Independently rerun/audit the specialist lifecycle bundle and the integrated candidate using exact source/command/result evidence. Preserve true fixture/in-process/POSIX scope and report any host limitations.",
-  "authorization_consumed": true,
-  "no_live_model_calls_authorized": true,
-  "notes": "LEAD-047 parks Cursor/legacy implementation and releases Fable as sole integrator under social-bots/delivery/FINAL_RUN.md. QA remains independent review-only. Lead source audit reproduced six sentinel failure scenarios but did not run the full current checkout; QA must test the actual candidate rather than accepting copied-source probes or worker self-report. No artifact or version is promoted by this assignment."
+  "lead_review": "LEAD-050",
+  "updated_at": "2026-09-22T00:51:00Z",
+  "lane": "ACCEPTANCE",
+  "branch": "claude/social-bots-mac-qa-control",
+  "status": "STALE_ACTION_REQUIRED",
+  "role": "independent_review_only",
+  "scope": "LIVE_V1_7_ONLY",
+  "hard_stop_after": "V1.7",
+  "worker_acknowledged": false,
+  "official_phase": "V0.4.x / V0.4 in progress",
+  "current_branch_state": "At the LEAD-050 review cutoff there was no fresh post-LEAD-048 reviewer session, reviewer heartbeat, or independent result; prior branch head was lead-authored assignment only.",
+  "next": [
+    "Start a fresh top-level local-Mac review session and emit exactly one SESSION_ONCE heartbeat.",
+    "Confirm an actual post-LEAD-050 Fable worker implementation commit before treating that lane as active.",
+    "Independently execute SB-R07-071 multiprocess/session race when applicable.",
+    "Audit repaired direct/ad-hoc model-callable authorization with a harmless sentinel and zero real inference.",
+    "Audit shared durable budget accounting under concurrency, re-entry and failure.",
+    "Audit heartbeat/session lease durability, retained-output/final-review integrity, and persona-scoped prospective experiment boundaries.",
+    "Review read-only persistent-host/account/provider preflight evidence for LIVE V1.7."
+  ],
+  "prohibitions": [
+    "No runtime/product source edits in Acceptance.",
+    "No additional live Claude/adaptive/product-model call.",
+    "No public posting/reply/message or other social effect.",
+    "No PAYG/new spend.",
+    "No destructive action or credential exposure.",
+    "No fabricated operational evidence or engagement manipulation.",
+    "No main/public release.",
+    "No SwarmAI dependency.",
+    "Do not thaw the V0.4 live-canary worktree or synthesize V0.4 causal-divergence evidence."
+  ]
 }
