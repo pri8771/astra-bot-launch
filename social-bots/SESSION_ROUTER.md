@@ -1,4 +1,4 @@
-# Session router — LEAD-062 — LIVE V1.3 TARGET
+# Session router — LEAD-063 — LIVE V1.3 TARGET
 
 ## Fable: HISTORICAL EVIDENCE ONLY — NO ACTIVE HANDOFF
 
@@ -12,7 +12,11 @@ Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method:
 
 Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
 
-**Current direct Codex assignment — SB-V11-001/002 reliability read-only audit:** inspect and reproduce existing reliability behavior on accepted composition `8c86898d...` against the current V1.1 artifact contracts. Cover crash-before/after-commit, duplicate invocation/delivery, stale lease/fence loss/takeover, restart/reconciliation, unavailable reasoning/research/account/provider paths, bounded retry/dead-letter behavior, idempotency/effect-journal controls, and duplicate experiment/content/effect eligibility. **Do not add tests or edit source until a concrete current-code gap is reproduced and returned for lead release.**
+**Current direct Codex assignment — SB-V11 unsafe-reconciliation repair only:** on accepted composition `8c86898d...`, run the existing read-only reconciliation before every bounded unit. If `safe is not True`, do not call `decision.run_cycle`, do not create new product effects, do not write a normal finish receipt, write a truthful blocked/failure receipt, and release only the current worker's owned lease. A fresh later process must reconcile again so unchanged unsafe evidence remains blocked even though `reconcile_required` resets on an empty slot.
+
+**Retry implementation is HELD.** Policy is specified in LEAD-063 but no retry source/test change is authorized until a separate release.
+
+**V0.4 five-call batch is PREPARATION ONLY.** Dormant request/template exist under `lead-reviews/`; no runtime authorization manifest is active and no live call is authorized.
 
 No live analytics/account/provider/model/public/scheduler action.
 
