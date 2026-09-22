@@ -1,4 +1,4 @@
-# Session router — LEAD-053 — LIVE V1.7 ONLY
+# Session router — LEAD-054 — LIVE V1.7 ONLY
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -10,7 +10,7 @@ R07-041 is already ACCEPTED narrowly by LEAD-052. R07-072 test isolation is ACCE
 
 ## Codex: direct isolated repair lane
 
-Codex may implement concrete review findings directly in isolated repair branches. ChatGPT remains formal acceptor. Current accepted repair branch: `codex/bots-host-tests-20260922@7acc1695...`. No scheduler/model/public/account/spend authority is implied.
+Codex may implement concrete review findings directly in isolated repair branches. ChatGPT remains formal acceptor. Accepted Codex repairs: `codex/bots-host-tests-20260922@7acc1695...` (portable host-test isolation) and `codex/bots-rotation-durability-20260922@84f8f05b...` (due-rotation crash-window durability). No scheduler/model/public/account/spend authority is implied. `84f8f05...` is engineering-only; it does not satisfy native scheduler or SESSION_ONCE evidence.
 
 ## Acceptance: independent review-only
 
