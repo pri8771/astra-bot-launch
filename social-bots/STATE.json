@@ -22,7 +22,7 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-055",
+    "lead_release": "LEAD-056",
     "last_review": "LEAD-051",
     "target": "V1.3",
     "target_kind": "operational_live",
@@ -129,11 +129,11 @@
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
       "activity": "direct_v13_reproduce_rootcause_repair_verify",
-      "assignment": "SP1 V1.3 metrics validity repair: reject bool/nonfinite PRESENT values at normalize; defensively exclude legacy invalid PRESENT values in aggregation; preserve raw provenance/MISSING semantics; add red/green tests and run affected/full suite.",
+      "assignment": "V0.8 route freshness SP1: require timezone-aware last_verified_at, 24h freshness horizon, +5m future skew allowance, deterministic now injection, fail closed on missing/malformed/naive/stale/future; no live account call.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "9d497b4567e022a8e7f93a3ee890af206272b5be",
-      "latest_accepted_checkpoint": "C05/C06 review-anchor + C07 measured-baseline integrity engineering repair",
+      "latest_accepted_candidate": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "latest_accepted_checkpoint": "V1.3 finite metrics engineering repair",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT"
     }
@@ -256,15 +256,42 @@
       "existing_metric_tests": 21,
       "repair_status": "RELEASED_TO_CODEX_SP1",
       "live_actions": 0
+    },
+    "codex_metrics_author_submission": {
+      "exact_source": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "base": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "focused": {
+        "passed": 26
+      },
+      "full": {
+        "run": 728,
+        "passed": 726,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "account_route_freshness_reproduction": {
+      "source": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "symptom": "missing and 2020 last_verified_at both yield account_available=True and draft authorized when health_status=verified",
+      "root_cause": "_route_ok ignores last_verified_at entirely",
+      "contract": {
+        "freshness_hours": 24,
+        "future_clock_skew_minutes": 5
+      },
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
     }
   },
   "lead_review": {
-    "review_id": "LEAD-055",
-    "review_ref": "social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md",
-    "review_type": "pr8_content_integrity_exact_sha_and_v13_goal_release",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md",
+    "review_id": "LEAD-056",
+    "review_ref": "social-bots/lead-reviews/LEAD-056_2026-09-22T0501.md",
+    "review_type": "pr9_metrics_exact_sha_and_v08_route_freshness_contract",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-055_2026-09-22T0501.md",
     "accepted_now": [
-      "PR8-content-integrity@9d497b4567e022a8e7f93a3ee890af206272b5be"
+      "PR9-finite-metrics@30a2ebdfb45110b2bc6fea0f3d50876583487f9c"
     ],
     "accepted_existing": [
       "SB-CTL-006",
@@ -338,11 +365,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR #8 exact 9d497b4567e022a8e7f93a3ee890af206272b5be ACCEPTED ENGINEERING for C05/C06 separate scoped review receipt anchoring and C07 strict measured-baseline shape/provenance validation.",
-      "Receipt store is only a local audit anchor; acceptance does not claim cryptographic immutability or genuine live measurement.",
-      "Owner development target superseded to Bots V1.3 genuine-live; no new model/public/account/host/scheduler/spend/deploy/merge grant.",
-      "V1.3 metrics diagnostic reproduced bool/NaN/infinity accepted as PRESENT and aggregation contamination; bounded SP1 guard released directly to Codex.",
-      "No Fable routing; Codex implements concrete fixes in isolated branches, ChatGPT remains formal acceptor."
+      "PR #9 exact 30a2ebdfb45110b2bc6fea0f3d50876583487f9c ACCEPTED ENGINEERING for finite-value admission, legacy invalid metric defense, and overflow containment.",
+      "Author evidence: 26 focused pass, 728/726/0/0/2 full; no exact-SHA CI and no live analytics claim.",
+      "Account route freshness defect reproduced: _route_ok ignores last_verified_at and can present missing/ancient verification as current availability.",
+      "Lead contract fixed at 24h freshness with +5m future skew allowance; missing/malformed/naive/stale/future-out-of-window fail closed.",
+      "Bounded V0.8 freshness repair released directly to Codex; no live account call and no Fable routing."
     ]
   },
   "public_actions": {
