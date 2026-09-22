@@ -57,7 +57,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from runtime import direction as direction_mod  # noqa: E402
 from runtime import invocation as invocation_mod  # noqa: E402
-from runtime import leasing, live_route_guard, model_dispatch, worker  # noqa: E402
+from runtime import due_rotation, leasing, live_route_guard, model_dispatch, worker  # noqa: E402
 from runtime import session_heartbeat as sh  # noqa: E402
 
 EXIT_OK = 0
@@ -76,19 +76,25 @@ def _allow_deterministic(flag: bool) -> bool:
 
 
 def claim_one(bots: list[str], *, require_adaptive: bool | None,
-              tried: list | None = None) -> tuple[dict | None, list]:
+              tried: list | None = None, home: str | Path | None = None,
+              session_id: str | None = None) -> tuple[dict | None, list]:
     """Run the FIRST claimable bot's bounded unit. At most one unit ever runs.
 
     Claiming is not a separate probe-then-acquire step: each candidate's unit is
     attempted directly, and a ``LeaseHeld`` simply moves to the next candidate.
     That removes the probe/acquire race entirely — there is no window in which a
     task looks free but is taken before the real acquire.
+
+    Candidates are tried in ROTATED order (``runtime.due_rotation``): a durable
+    cursor shared by every scheduler process starts each invocation after the
+    bot that was claimed last, so a runtime that always has work cannot starve
+    the others (V1.7 §A first-bot starvation). Only a real claim advances it.
     """
     # The caller may pass the list in so the partial record survives an
     # exception: a unit that took a lease and then failed must not be reported
     # as though no candidate was ever attempted.
     tried = tried if tried is not None else []
-    for bot in bots:
+    for bot in due_rotation.ordered(bots, home):
         task_id = worker.runtime_task_id(bot)
         try:
             result = worker.run_one_unit(task_id, bot, bot,
@@ -98,6 +104,7 @@ def claim_one(bots: list[str], *, require_adaptive: bool | None,
                           "holder": (held.holder or {}).get("worker_id")})
             continue
         tried.append({"bot": bot, "task_id": task_id, "result": "claimed"})
+        due_rotation.record_claim(bot, bots, home, session_id=session_id)
         return result, tried
     return None, tried
 
@@ -248,7 +255,8 @@ def _main(argv: list[str] | None = None) -> int:
     require_adaptive = None if _allow_deterministic(args.allow_deterministic) else True
     tried: list = []
     try:
-        result, tried = claim_one(bots, require_adaptive=require_adaptive, tried=tried)
+        result, tried = claim_one(bots, require_adaptive=require_adaptive, tried=tried,
+                                  home=args.home, session_id=session_id)
     except Exception as exc:                       # noqa: BLE001 - record, then fail
         inv.update(claim_outcome=invocation_mod.CLAIM_ERROR, work_outcome="unit_failed",
                    candidates_tried=tried)
