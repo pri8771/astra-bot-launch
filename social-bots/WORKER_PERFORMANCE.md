@@ -2,9 +2,9 @@
 
 Purpose: track implementation reliability by artifact and task type. Worker submissions never self-accept.
 
-Current lead review: **LEAD-054** (`lead-reviews/LEAD-054_2026-09-22T0418.md`).  
+Current lead review: **LEAD-055** (`lead-reviews/LEAD-055_2026-09-22T0501.md`).  
 Official phase: **V0.4.x / V0.4 in progress**. V0.3 is accepted and closed.  
-Current execution ceiling: **LIVE V1.7 only, then hard stop**.
+Current execution target/ceiling: **LIVE V1.3, genuine tests, then hard stop**. Prior V1.7 ceiling is superseded.
 
 ## Current verified activity
 
@@ -122,3 +122,13 @@ V0.7 recurring liveness still requires repeated real **OS-scheduled bounded work
 - User reports a separate 49-test bounded mechanical review with no defect, but that transcript was not present in published `f4e8d56` evidence and is not used as independent execution evidence here.
 - Verdict: **ACCEPTED ENGINEERING**, not V0.7 operational acceptance and not version promotion.
 - No Fable handoff. Codex remains direct isolated implementer under owner direction.
+
+## LEAD-055 PR8 + V1.3 direct-repair review
+
+- PR #8 exact `9d497b4567e022a8e7f93a3ee890af206272b5be` over accepted `84f8f05...` is **ACCEPTED ENGINEERING** for the bounded C05/C06 review-anchor and C07 measured-baseline validation repair.
+- Review receipts are intentionally local audit anchors, not signatures/immutable stores. Baseline shape validation is not proof of a genuine source measurement.
+- Author full evidence reports 723 run / 721 pass / 2 existing genuine-evidence skips; separate bounded agent reports 89 focused pass; no exact-SHA GitHub CI/workflow exists.
+- New V1.3 diagnostic reproduces bool/NaN/±inf accepted as PRESENT by `runtime/metrics.py` and potentially persisted/aggregated to nonfinite outputs. Existing 21 metric tests miss these cases.
+- Root cause: Python bool is an int subclass and current normalize/aggregate use broad `isinstance(...,(int,float))` checks without finite validation.
+- **Codex SP1 released:** finite, non-bool PRESENT predicate + legacy-invalid aggregation defense + provenance/MISSING preservation + red/green/full evidence.
+- Owner target is V1.3 genuine-live; no new external/live grant and no Fable handoff.
