@@ -122,3 +122,11 @@ Jobs integration e1dbfeb6d4ddac9c49a5ac2b3d8d0a5c6ebc8273 was independently acce
 Swarm R28b-1 exact2ebaa5a was accepted at4fa4bd0. R28b-2 source a06b8a82925daa4dd08a137cb1eb724aaa2d4efb / PR23 is now ready for formal review, with source-bound native evidence99a7b2c736abf45335e63f41eb602825796a1c6f:578 passed, real PostgreSQL authority/admission checks, Ruff and mypy171 passed. CP1 attempt2 remains FAILED, with lead provenance acknowledgement at933fe98; no third attempt authorized. R28c stays held.
 
 Derived portfolio status is Jobs coordination/codex/STATUS.md at41c34c0. Native queues are not duplicated here. No Fable handoff, live promotion, main merge, deployment or background-operation claim.
+
+## Continuation — LEAD057 accepted freshness; route selection ready
+
+Canonical e4035aa / LEAD057 formally accepts PR10 exactccfbaf7865557ba30d9148bcce6839b71e9159f1 and releases the explicit unique-eligible route policy. Codex implemented the bounded repair on codex/bots-route-selection-20260922: source3f10d0f6eb031c00fff679aae18aa8045d8bd025, tree9efb375fe672df97526b6edf86d629c421d8a5b3, draftPR11. The shared selector removes registry-order authority; community reply clearance uses the selected platform and alias. Accepted-parent red reproducer had6 expected failures; candidate25 affected checks pass; full739 run,737 pass,2 existing genuine-live skips. Native review/evidence is CODEX_ROUTE_SELECTION_20260922.md and receipts/evidence/CODEX-ROUTE-SELECTION-20260922. Recommendation RECOMMEND_ACCEPT is engineering only; exact-source formal review is next.
+
+Jobs lead4d5b82f accepts source832d85f candidate-reply attribution and releases bounded golden-workflow resumption from that exact source. Native evidence80448a7 retains463 full passes/1 host skip and exact PostgreSQL replay/cleanup0. A /tmp-only diagnostic is now tracing the existing first8 golden steps through production services, stopping at the next meaningful defect. Swarm sourcea06b8a8 PR23 remains in formal review; hosted CI evidence3389fab confirms account gating before any runner or step.
+
+User was asked for Bots' missing persistent host/runtime/existing scheduler facts; no response or new authority inferred. No new SESSION_ONCE, model/account/provider/public action, Fable dispatch, scheduler, merge or deployment. Genuine version goals remain open.

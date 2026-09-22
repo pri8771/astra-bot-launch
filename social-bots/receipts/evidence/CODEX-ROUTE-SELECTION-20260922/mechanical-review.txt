@@ -1,0 +1,13 @@
+Bots LEAD-057 route-selection source review
+Date: 2026-09-22
+Source: /Users/pchordia/Downloads/swarm_codex/review/bots-selection-source
+Base: ccfbaf7865557ba30d9148bcce6839b71e9159f1
+Scope: read-only review of account route selection and community propagation; no tests or network actions.
+
+RESULT: No concrete defect found in the bounded diff.
+
+- account_routes.select_route filters exact bot/persona/platform scope, evaluates every match through the accepted route-type, health, and freshness gate using one evaluation time, selects exactly one eligible route, fails closed on zero, and returns an explicit ambiguity for multiple eligible routes. Selection does not depend on registry order or capability flags.
+- availability_for consumes only that selected route. Draft and publish capability/explicit publish authority are evaluated after unique route selection; unavailable and ambiguous results expose no route id or authority.
+- community_loop retains all persona aliases only for signal scope validation. Reply clearance is keyed by (platform, account_alias), populated only from each platform's uniquely selected eligible route, then additionally requires reply capability and explicit reply_authorized. Multiple eligible routes yield no reply authority, and a route from another platform cannot clear the candidate.
+
+Validation limit: source inspection only. Runtime/order-invariance tests, full-suite results, and external account behavior were not independently executed in this review.

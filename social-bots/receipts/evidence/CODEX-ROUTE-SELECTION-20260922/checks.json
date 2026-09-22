@@ -1,0 +1,18 @@
+{
+  "accepted_parent_baseline": {
+    "cwd": "/Users/pchordia/Downloads/swarm_codex/review/bots-routes-source/social-bots",
+    "command": "python3 -m unittest discover -s /Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests -p test_account_route_selection.py -v",
+    "result": "exit 1; 7 run, 6 expected failures, 1 pass"
+  },
+  "candidate_focused": {
+    "cwd": "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots",
+    "command": "python3 -m unittest -v tests.test_account_route_selection tests.test_account_route_freshness tests.test_v17_community_path",
+    "result": "exit 0; 25 passed"
+  },
+  "candidate_full": {
+    "cwd": "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots",
+    "command": "python3 -m unittest discover -s tests",
+    "result": "exit 0; 739 run, 737 passed, 2 existing genuine-evidence skips; 3.618s"
+  },
+  "additional": ["py_compile passed", "git diff --check passed", "bounded source review found no concrete defect"]
+}

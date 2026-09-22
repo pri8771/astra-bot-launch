@@ -1,0 +1,133 @@
+test_community_blocks_alias_when_two_routes_are_eligible_for_platform (test_account_route_selection.AccountRouteSelectionTest.test_community_blocks_alias_when_two_routes_are_eligible_for_platform) ... FAIL
+test_community_does_not_use_eligible_alias_from_different_platform (test_account_route_selection.AccountRouteSelectionTest.test_community_does_not_use_eligible_alias_from_different_platform) ... FAIL
+test_downstream_flags_come_only_from_unique_selected_route (test_account_route_selection.AccountRouteSelectionTest.test_downstream_flags_come_only_from_unique_selected_route) ... FAIL
+test_multiple_eligible_is_explicit_ambiguity_and_order_invariant (test_account_route_selection.AccountRouteSelectionTest.test_multiple_eligible_is_explicit_ambiguity_and_order_invariant) ... FAIL
+test_only_exact_scope_matches_participate (test_account_route_selection.AccountRouteSelectionTest.test_only_exact_scope_matches_participate) ... ok
+test_unique_eligible_is_order_invariant_among_revoked_and_stale (test_account_route_selection.AccountRouteSelectionTest.test_unique_eligible_is_order_invariant_among_revoked_and_stale) ... FAIL
+test_zero_eligible_has_same_factual_diagnostic_across_orders (test_account_route_selection.AccountRouteSelectionTest.test_zero_eligible_has_same_factual_diagnostic_across_orders) ... FAIL
+
+======================================================================
+FAIL: test_community_blocks_alias_when_two_routes_are_eligible_for_platform (test_account_route_selection.AccountRouteSelectionTest.test_community_blocks_alias_when_two_routes_are_eligible_for_platform)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 119, in test_community_blocks_alias_when_two_routes_are_eligible_for_platform
+    self.assertFalse(reply["cleared_for_effect"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_community_does_not_use_eligible_alias_from_different_platform (test_account_route_selection.AccountRouteSelectionTest.test_community_does_not_use_eligible_alias_from_different_platform)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 125, in test_community_does_not_use_eligible_alias_from_different_platform
+    self.assertFalse(reply["cleared_for_effect"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_downstream_flags_come_only_from_unique_selected_route (test_account_route_selection.AccountRouteSelectionTest.test_downstream_flags_come_only_from_unique_selected_route)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 99, in test_downstream_flags_come_only_from_unique_selected_route
+    self.assertEqual(results[0], results[1])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'account_available': False, 'authorized': False, 'publishable'[109 chars]ked'} != {'account_available': True, 'authorized': False, 'publishable':[124 chars]ied'}
+- {'account_available': False,
+?                       ^^^^
+
++ {'account_available': True,
+?                       ^^^
+
+-  'analytics_route': 'wrong',
++  'analytics_route': 'selected-analytics',
+   'authorized': False,
+-  'publishable': False,
+?                 ^^^^
+
++  'publishable': True,
+?                 ^^^
+
+-  'reason': 'route health revoked',
++  'reason': 'route selected verified',
+-  'route_id': 'revoked',
+?               ^ ^^^
+
++  'route_id': 'selected',
+?               ^ ^^^^
+
+   'route_type': 'API'}
+
+======================================================================
+FAIL: test_multiple_eligible_is_explicit_ambiguity_and_order_invariant (test_account_route_selection.AccountRouteSelectionTest.test_multiple_eligible_is_explicit_ambiguity_and_order_invariant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 78, in test_multiple_eligible_is_explicit_ambiguity_and_order_invariant
+    self.assertEqual(results[0], results[1])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'acc[82 chars]ible-a', 'route_type': 'API', 'analytics_route[57 chars]ied'} != {'acc[82 chars]ible-b', 'route_type': 'API', 'analytics_route[57 chars]ied'}
+  {'account_available': True,
+   'analytics_route': 'analytics-default',
+   'authorized': True,
+   'publishable': False,
+-  'reason': 'route eligible-a verified',
+?                            ^
+
++  'reason': 'route eligible-b verified',
+?                            ^
+
+-  'route_id': 'eligible-a',
+?                        ^
+
++  'route_id': 'eligible-b',
+?                        ^
+
+   'route_type': 'API'}
+
+======================================================================
+FAIL: test_unique_eligible_is_order_invariant_among_revoked_and_stale (test_account_route_selection.AccountRouteSelectionTest.test_unique_eligible_is_order_invariant_among_revoked_and_stale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 58, in test_unique_eligible_is_order_invariant_among_revoked_and_stale
+    self.assertEqual(results[0], results[1])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'acc[75 chars]d': 'revoked', 'route_type': 'API', 'analytics[58 chars]ked'} != {'acc[75 chars]d': 'stale', 'route_type': 'API', 'analytics_r[82 chars]rs)'}
+  {'account_available': False,
+   'analytics_route': 'analytics-default',
+   'authorized': False,
+   'publishable': False,
+-  'reason': 'route health revoked',
++  'reason': 'route verification stale (older than 24 hours)',
+-  'route_id': 'revoked',
+?               ^ -----
+
++  'route_id': 'stale',
+?               ^^^^
+
+   'route_type': 'API'}
+
+======================================================================
+FAIL: test_zero_eligible_has_same_factual_diagnostic_across_orders (test_account_route_selection.AccountRouteSelectionTest.test_zero_eligible_has_same_factual_diagnostic_across_orders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pchordia/Downloads/swarm_codex/review/bots-selection-source/social-bots/tests/test_account_route_selection.py", line 66, in test_zero_eligible_has_same_factual_diagnostic_across_orders
+    self.assertEqual(results[0], results[1])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'acc[75 chars]d': 'revoked', 'route_type': 'API', 'analytics[58 chars]ked'} != {'acc[75 chars]d': 'stale', 'route_type': 'API', 'analytics_r[82 chars]rs)'}
+  {'account_available': False,
+   'analytics_route': 'analytics-default',
+   'authorized': False,
+   'publishable': False,
+-  'reason': 'route health revoked',
++  'reason': 'route verification stale (older than 24 hours)',
+-  'route_id': 'revoked',
+?               ^ -----
+
++  'route_id': 'stale',
+?               ^^^^
+
+   'route_type': 'API'}
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.010s
+
+FAILED (failures=6)
