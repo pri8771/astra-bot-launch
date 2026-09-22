@@ -1,10 +1,10 @@
-# Work queue — LEAD-061 — target LIVE V1.3
+# Work queue — LEAD-062 — target LIVE V1.3
 
 Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
 ## Current lane truth
 
-- **Fable Integrator — EXISTING OWNERSHIP PRESERVED / NO NEW HANDOFF.** Owner explicitly directs Codex to finish concrete fixes directly. Do not route, message, assign or hand off new Social Bots work to Fable without fresh owner approval.
+- **Fable — HISTORICAL EVIDENCE ONLY / NO ACTIVE HANDOFF.** Preserve prior branch/evidence; owner directs new Social Bots implementation to Codex. Do not route, message, assign or hand off new work to Fable.
 - **Mac Acceptance — independent review-only.** No runtime source edits; author tests never self-accept.
 - **Cursor/Core/Intelligence — PARKED / evidence-only.** No overlapping source work.
 - **V0.4 canary — FROZEN / evidence preservation.** No further model call authorized.
@@ -23,8 +23,9 @@ Current official version remains **V0.4.x**. Owner development target/ceiling is
 8. **SB-V13-002 is ACCEPTED ENGINEERING** at exact `be0262713eec03c2e7e6b411c2754a7538bad9a6`: provenance/time-window/compatibility/legacy fail-closed boundaries now verified with synthetic/local evidence.
 9. **PR #12 route_type schema repair is ACCEPTED ENGINEERING** at exact `a4e7926c79231bfadfc55b56a70a741cc85a2b4e`: documented enum enforced at registry ingest; unknown type rejects whole registry; valid `unsupported` remains parsed/ineligible.
 10. **PR #14 composition is ACCEPTED ENGINEERING** at exact `8c86898d1c6641adbf5c9884e1aa7ab2923b1af3`: exact accepted PR12 + PR13 changes compose without new behavior.
-11. **Codex read-only RELEASED — V0.7→V1.3 live-readiness gap audit:** reconcile accepted engineering/live evidence, missing live evidence, owner gates, and dependency-safe offline next work on accepted composition. No live actions.
-12. Preserve and satisfy every genuine V0.7→V1.3 gate in order; final LIVE V1.3 promotion requires independently accepted genuine evidence.
+11. **LEAD-061 live-readiness audit CONFIRMED** at native evidence `b58ba6d79192e676ac24c06ed2bdbd8d01959ea0`: live promotion remains REVIEW_BLOCKED; ten rows separate accepted engineering/live proof, missing live proof, owner gates and safe offline work.
+12. **Codex read-only RELEASED — SB-V11-001/002 reliability audit:** inspect/reproduce existing crash, duplicate, stale-fence, restart/reconciliation, outage, bounded-retry/dead-letter and duplicate-effect behavior. Do not add tests or edit source until a concrete current-code gap is reproduced and returned for lead release.
+13. Preserve and satisfy every genuine V0.4→V1.3 gate in sequence; final LIVE V1.3 promotion requires independently accepted genuine evidence.
 
 ## Submitted evidence awaiting independent review
 
