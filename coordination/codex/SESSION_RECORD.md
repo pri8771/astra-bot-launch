@@ -1,5 +1,13 @@
 # Compact Codex session record
 
+## Direct-completion checkpoint — 2026-09-22T03:44Z
+
+- Latest owner directs Codex to finish; **NO_FABLE_HANDOFF**. Earlier approval-to-handoff text below is superseded, not a current blocker. Codex directly owns isolated repair work; no worker checkout is overwritten and ChatGPT keeps formal acceptance.
+- Jobs code PR14 publishes `3d9cc95d03b0b8c146d10423060d97ee9736212c` and native 437-pass/1-skip evidence. New synthetic audit reproduced wrong-job packet dispatch and unverified success promotion; bounded repair in progress. G14–G17 unpassed; approved input request pending.
+- Bots code PR6 publishes `7acc1695d2961267580a156f31df6a5991476654`; [native repair and evidence](../../social-bots/lead-reviews/CODEX_REPAIR_20260922.md). 709 pass/2 genuine-evidence skips. Request independent review and actual missing LEAD-052 record; owner host/route/reviewer context pending. No model/public action or SESSION_ONCE repeat.
+- Swarm exact repair `fb34b2c00fc7cc2c81cb481dfa35df8e259bc04e`: 474 pass/0skip,33 PG checks x5,Ruff/mypy. Native source/evidence: `pri8771/swarmai:docs/coordination/reviews/CODEX_REPAIR_20260922.md`. R27e/R28a held for real verdict; failed attempt2 retained; no third live call.
+- All three candidates remain author-checked/REVIEW_BLOCKED for independent acceptance. Current combined table is Jobs `coordination/codex/STATUS.md`; do not duplicate its queues here. No Fable routing, new watcher, main merge, public deployment or spend. No background-operation promise.
+
 ## Local repair checkpoint — 2026-09-22T03:12Z
 
 - Owner authorized isolated fixes and explicitly withheld Fable handoff approval. Existing lead tasks received a hold on previous routing requests. No repair dispatch/ACK, push, merge or new scheduler. Same resumed session; no SESSION_ONCE repeat.
