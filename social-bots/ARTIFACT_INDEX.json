@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T08:13:00Z",
+  "updated_at": "2026-09-22T18:54:00Z",
   "canonical_branch": "chatgpt/social-bots-plan-20260920",
   "status_values": [
     "PLANNED",
@@ -283,9 +283,11 @@
         "first authorized real canary proves one genuine subscription-authenticated adaptive invocation and valid alternative proposal",
         "Core repaired single-variable divergence engineering tests and adaptive receipt replay, but replay/synthetic receipts are not causal live-model evidence",
         "three persona-only comparisons plus one evidence-only comparison require new genuine adaptive evaluations",
-        "owner's prior one-call authorization is consumed; no further live model calls are authorized, so empirical acceptance is authorization-blocked"
+        "owner's prior one-call authorization is consumed; no further live model calls are authorized, so empirical acceptance is authorization-blocked",
+        "LEAD-066 accepts PR17 capture-package integrity but requires final input rework: E2 is current/relevant; E1 June 4 is too stale for the September current-evidence claim; both require deterministic extraction/signal lineage bound to frozen raw bytes/receipts",
+        "Local Ollama adapter engineering is released separately; no live/local inference authority exists"
       ],
-      "last_verified_ref": "social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md"
     },
     {
       "id": "SB-V04-003",
@@ -323,9 +325,11 @@
         "synthetic adaptive receipts are engineering fixtures and cannot satisfy real adaptive causal-divergence acceptance",
         "one accepted live receipt cannot prove counterfactual persona/evidence divergence",
         "future clean acceptance plan uses a fixed five-call controlled matrix only after fresh explicit owner authorization",
-        "no additional live model call is authorized; artifact is BLOCKED rather than falsely accepted from replay"
+        "no additional live model call is authorized; artifact is BLOCKED rather than falsely accepted from replay",
+        "LEAD-066 accepts PR17 capture-package integrity but requires final input rework: E2 is current/relevant; E1 June 4 is too stale for the September current-evidence claim; both require deterministic extraction/signal lineage bound to frozen raw bytes/receipts",
+        "Local Ollama adapter engineering is released separately; no live/local inference authority exists"
       ],
-      "last_verified_ref": "social-bots/lead-reviews/LEAD-037_2026-09-21T1717.md"
+      "last_verified_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md"
     },
     {
       "id": "SB-V05-001",
