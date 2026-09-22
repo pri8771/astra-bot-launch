@@ -1,0 +1,95 @@
+{
+  "all_isolated": true,
+  "case_count": 5,
+  "comparisons": [
+    {
+      "comparison": "P0|P1",
+      "digest_layer": {
+        "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+        "context_sha256_b": "sha256:1306f5baab4f66bcf4f604dc19d6ae27b21b30833e0bcab61e4deb849f0295b6",
+        "differing_variables": [
+          "persona"
+        ],
+        "ok": true
+      },
+      "expected_variable": "persona",
+      "isolated": true,
+      "prompt_layer": {
+        "differing_keys": [
+          "persona"
+        ],
+        "expected_key": "persona",
+        "ok": true,
+        "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+        "prompt_sha256_b": "sha256:bd1da46f533a3b9d446ac1c6c33e390b0ca654c156d0d9b9ffc1c4f0a9e465c7"
+      }
+    },
+    {
+      "comparison": "P0|P2",
+      "digest_layer": {
+        "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+        "context_sha256_b": "sha256:68db7ab9ab9abb71764953b8b3f313946c6ac0ec8acabc425af26c715190874b",
+        "differing_variables": [
+          "persona"
+        ],
+        "ok": true
+      },
+      "expected_variable": "persona",
+      "isolated": true,
+      "prompt_layer": {
+        "differing_keys": [
+          "persona"
+        ],
+        "expected_key": "persona",
+        "ok": true,
+        "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+        "prompt_sha256_b": "sha256:e1471b089fde27eb1164c8dbf0a17fc0d96674329588c90223380e20f87b5226"
+      }
+    },
+    {
+      "comparison": "P0|P3",
+      "digest_layer": {
+        "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+        "context_sha256_b": "sha256:8476f7b20075f63a73fe7a20fed30eeaff48aa0b3aebfa8eb3da83475b3bf0a5",
+        "differing_variables": [
+          "persona"
+        ],
+        "ok": true
+      },
+      "expected_variable": "persona",
+      "isolated": true,
+      "prompt_layer": {
+        "differing_keys": [
+          "persona"
+        ],
+        "expected_key": "persona",
+        "ok": true,
+        "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+        "prompt_sha256_b": "sha256:6575a3729bdf511c07de804296400b0a87f78857ff98369c6520fa91f83a45af"
+      }
+    },
+    {
+      "comparison": "P0|E0",
+      "digest_layer": {
+        "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+        "context_sha256_b": "sha256:1c7c085bde1925572f3bc45d93781640c46e3dba3599b4386f32543c988520a0",
+        "differing_variables": [
+          "evidence"
+        ],
+        "ok": true
+      },
+      "expected_variable": "evidence",
+      "isolated": true,
+      "prompt_layer": {
+        "differing_keys": [
+          "signal"
+        ],
+        "expected_key": "signal",
+        "ok": true,
+        "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+        "prompt_sha256_b": "sha256:f95d74c207771918426033a9ef96d6d5f35e48eb504064f58188bbe2ec231ef2"
+      }
+    }
+  ],
+  "distinct_contexts": true
+}

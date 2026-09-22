@@ -1,0 +1,46 @@
+{
+  "authority": {
+    "authorized": false,
+    "canonical_manifest_created": false,
+    "live_calls_authorized": 0,
+    "owner_authorization_received": false
+  },
+  "checks": [
+    {
+      "exit": 0,
+      "log": "verify-written.json",
+      "name": "current-code written matrix verification",
+      "result": "verified=true; prompt bytes verified; all four comparisons isolated"
+    },
+    {
+      "exit": 0,
+      "log": "audit.json",
+      "name": "raw evidence versus receipt hashes",
+      "result": "E1 and E2 exact raw SHA-256 equal collector content_hash"
+    },
+    {
+      "exit": 0,
+      "log": "gate-denied.json",
+      "name": "authorization gate",
+      "result": "authorized=false and live_execution_permitted=false for both artifacts"
+    },
+    {
+      "exit": 0,
+      "log": "matrix-binding-repro.log",
+      "name": "real gate/runner matrix-swap reproduction",
+      "result": "different internally consistent matrix under same artifact/run/lane reached offline sentinel propose; stopped before external provider/network"
+    }
+  ],
+  "decision": "CONFIRMED: review packet is concrete, but activation is unsafe until exact source/tree and reviewed matrix closure are machine-bound and verified pre-budget/pre-provider.",
+  "limitations": [
+    "E1/E2 are genuine public HTTPS captures, not fixtures, but are controlled public documents rather than product-private/current social-feed evidence",
+    "no live model/provider/network/account/host/scheduler action performed in this audit",
+    "no SESSION_ONCE and no runtime grant files created"
+  ],
+  "source": {
+    "accepted_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+    "clean": true,
+    "freeze_producer_sha": "22d6234f560e0dce26e6503d32c51058cb7ce0be",
+    "tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a"
+  }
+}

@@ -1,0 +1,9 @@
+Working directory: /Users/pchordia/Downloads/swarm_codex/review/bots-composition-source/social-bots
+
+Pure read/hash verification under current accepted source:
+PYTHONPATH="$PWD" python3 bin/prepare_divergence_matrix.py verify --matrix "$PWD/worker-reports/cursor-recovery/evidence/SB-R07-042/freeze/PREPARED_MATRIX.json" --prompts-dir "$PWD/worker-reports/cursor-recovery/evidence/SB-R07-042/freeze/prompts" > /tmp/bots-v04-approval-preparation-20260922/verify-written.json
+Observed exit 0; verified=true, prompt_bytes_verified=true, all isolated.
+
+Fail-closed gate query against an intentionally empty /tmp manifest directory:
+PYTHONPATH="$PWD" python3 bin/prepare_divergence_matrix.py gate --lane cursor-recovery --run-scope v04-divergence-freeze --manifest-dir /tmp/bots-v04-approval-preparation-20260922/empty-manifests > /tmp/bots-v04-approval-preparation-20260922/gate-denied.json
+Observed exit 0; both SB-V04-002 and SB-V04-004 authorized=false, live_execution_permitted=false, manifests_present=[]. This command only reads gate state; it does not construct a provider or write runtime grant/budget state.

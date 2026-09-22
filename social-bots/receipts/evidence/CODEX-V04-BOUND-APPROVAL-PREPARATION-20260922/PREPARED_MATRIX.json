@@ -1,0 +1,567 @@
+{
+  "acceptance_eligible": true,
+  "artifacts": [
+    "SB-V04-002",
+    "SB-V04-004"
+  ],
+  "cases": [
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "tags": [
+            "divergence-e1",
+            "example-domain",
+            "public-web"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "case_id": "P0",
+      "context_sha256": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+      "evidence_bytes_sha256": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:6a07b87262c0f87995e1c29ecc77a393d8ba61e5f17c581a5cefbe435047b410",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "summary": "Live HTTPS capture of the public example.com homepage used as controlled evidence snapshot E1 for the V0.4 divergence matrix.",
+          "tags": [
+            "public-web",
+            "example-domain",
+            "divergence-e1"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "prompt_context_sha256": "sha256:7fb2c70ddb1c8758a4b642ae174d303c4219b27dec04e25afc86f898fa78b725",
+      "prompt_sha256": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+      "role": "persona-baseline"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "tags": [
+            "divergence-e1",
+            "example-domain",
+            "public-web"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "case_id": "P1",
+      "context_sha256": "sha256:1306f5baab4f66bcf4f604dc19d6ae27b21b30833e0bcab61e4deb849f0295b6",
+      "evidence_bytes_sha256": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:6a07b87262c0f87995e1c29ecc77a393d8ba61e5f17c581a5cefbe435047b410",
+      "persona_id": "social-b",
+      "persona_slot": "variant_b",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Tidepool",
+          "id": "social-b",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "summary": "Live HTTPS capture of the public example.com homepage used as controlled evidence snapshot E1 for the V0.4 divergence matrix.",
+          "tags": [
+            "public-web",
+            "example-domain",
+            "divergence-e1"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "prompt_context_sha256": "sha256:a85d383c8c59c785a56c2cbf9c20c9b06ed273fc3f8282820f3d996e42c88a41",
+      "prompt_sha256": "sha256:bd1da46f533a3b9d446ac1c6c33e390b0ca654c156d0d9b9ffc1c4f0a9e465c7",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "tags": [
+            "divergence-e1",
+            "example-domain",
+            "public-web"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "case_id": "P2",
+      "context_sha256": "sha256:68db7ab9ab9abb71764953b8b3f313946c6ac0ec8acabc425af26c715190874b",
+      "evidence_bytes_sha256": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:6a07b87262c0f87995e1c29ecc77a393d8ba61e5f17c581a5cefbe435047b410",
+      "persona_id": "social-c",
+      "persona_slot": "variant_c",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Switchboard",
+          "id": "social-c",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "summary": "Live HTTPS capture of the public example.com homepage used as controlled evidence snapshot E1 for the V0.4 divergence matrix.",
+          "tags": [
+            "public-web",
+            "example-domain",
+            "divergence-e1"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "prompt_context_sha256": "sha256:21d47440a86e4adbadfb5308095537ff5fd89b67c793052eb9add8c42ab221ac",
+      "prompt_sha256": "sha256:e1471b089fde27eb1164c8dbf0a17fc0d96674329588c90223380e20f87b5226",
+      "role": "persona-only-variant"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "tags": [
+            "divergence-e1",
+            "example-domain",
+            "public-web"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "case_id": "P3",
+      "context_sha256": "sha256:8476f7b20075f63a73fe7a20fed30eeaff48aa0b3aebfa8eb3da83475b3bf0a5",
+      "evidence_bytes_sha256": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+      "evidence_id": "E1",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:6a07b87262c0f87995e1c29ecc77a393d8ba61e5f17c581a5cefbe435047b410",
+      "persona_id": "cultural-primandir-atman",
+      "persona_slot": "cultural",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "Sadhana Notes",
+          "id": "cultural-primandir-atman",
+          "kind": "cultural"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-ff67a9d764d6",
+          "provenance": "live-capture",
+          "summary": "Live HTTPS capture of the public example.com homepage used as controlled evidence snapshot E1 for the V0.4 divergence matrix.",
+          "tags": [
+            "public-web",
+            "example-domain",
+            "divergence-e1"
+          ],
+          "title": "Example Domain public homepage"
+        }
+      },
+      "prompt_context_sha256": "sha256:4ac37bfa30ce4ca6ad04abb3c6a9121dc5ae43b519c5af7cfd285d5733de7169",
+      "prompt_sha256": "sha256:6575a3729bdf511c07de804296400b0a87f78857ff98369c6520fa91f83a45af",
+      "role": "persona-only-variant-cultural"
+    },
+    {
+      "bounded_context": {
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-61a5378f4255",
+          "provenance": "live-capture",
+          "tags": [
+            "divergence-e2",
+            "json",
+            "rfc8259",
+            "standards"
+          ],
+          "title": "RFC 8259 JavaScript Object Notation (JSON)"
+        }
+      },
+      "case_id": "E0",
+      "context_sha256": "sha256:1c7c085bde1925572f3bc45d93781640c46e3dba3599b4386f32543c988520a0",
+      "evidence_bytes_sha256": "sha256:61a5378f4255c720beb2a4b4a63b29540147c140f36988bf086291989b4cd2d7",
+      "evidence_id": "E2",
+      "evidence_provenance": "live-capture",
+      "evidence_receipt_sha256": "sha256:893ee66ff1f016f8b0a723a8da1ed59e482acca87dd5d621b0b19358fcaa6109",
+      "persona_id": "social-a",
+      "persona_slot": "baseline",
+      "prompt_context": {
+        "allowed_actions": [
+          "NO_ACTION",
+          "RESEARCH_MORE",
+          "CREATE_CANDIDATE",
+          "CONTINUE_EXPERIMENT",
+          "CLOSE_EXPERIMENT"
+        ],
+        "is_duplicate": false,
+        "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+        "pending_count": 0,
+        "persona": {
+          "display_name": "The Ledger",
+          "id": "social-a",
+          "kind": "general"
+        },
+        "prior_hypotheses": 0,
+        "signal": {
+          "has_source": true,
+          "id": "sig-61a5378f4255",
+          "provenance": "live-capture",
+          "summary": "Live HTTPS capture of RFC 8259 plain text from rfc-editor.org used as controlled evidence snapshot E2, materially different from E1.",
+          "tags": [
+            "standards",
+            "json",
+            "rfc8259",
+            "divergence-e2"
+          ],
+          "title": "RFC 8259 JavaScript Object Notation (JSON)"
+        }
+      },
+      "prompt_context_sha256": "sha256:83bb6739033a6f2cbe6d4addd58511299537a2710e6bee3442e473b645e4a147",
+      "prompt_sha256": "sha256:f95d74c207771918426033a9ef96d6d5f35e48eb504064f58188bbe2ec231ef2",
+      "role": "evidence-only-variant"
+    }
+  ],
+  "engineering_only_reasons": [],
+  "held_constant": {
+    "allowed_actions_vocabulary": [
+      "NO_ACTION",
+      "RESEARCH_MORE",
+      "CREATE_CANDIDATE",
+      "CONTINUE_EXPERIMENT",
+      "CLOSE_EXPERIMENT"
+    ],
+    "is_duplicate": false,
+    "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+    "pending_count": 0,
+    "policy_posture": "adaptive-required, fail-closed, no public effect",
+    "prior_hypotheses": 0,
+    "public_effect_allowed": false
+  },
+  "isolation": {
+    "all_isolated": true,
+    "case_count": 5,
+    "comparisons": [
+      {
+        "comparison": "P0|P1",
+        "digest_layer": {
+          "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+          "context_sha256_b": "sha256:1306f5baab4f66bcf4f604dc19d6ae27b21b30833e0bcab61e4deb849f0295b6",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+          "prompt_sha256_b": "sha256:bd1da46f533a3b9d446ac1c6c33e390b0ca654c156d0d9b9ffc1c4f0a9e465c7"
+        }
+      },
+      {
+        "comparison": "P0|P2",
+        "digest_layer": {
+          "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+          "context_sha256_b": "sha256:68db7ab9ab9abb71764953b8b3f313946c6ac0ec8acabc425af26c715190874b",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+          "prompt_sha256_b": "sha256:e1471b089fde27eb1164c8dbf0a17fc0d96674329588c90223380e20f87b5226"
+        }
+      },
+      {
+        "comparison": "P0|P3",
+        "digest_layer": {
+          "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+          "context_sha256_b": "sha256:8476f7b20075f63a73fe7a20fed30eeaff48aa0b3aebfa8eb3da83475b3bf0a5",
+          "differing_variables": [
+            "persona"
+          ],
+          "ok": true
+        },
+        "expected_variable": "persona",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "persona"
+          ],
+          "expected_key": "persona",
+          "ok": true,
+          "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+          "prompt_sha256_b": "sha256:6575a3729bdf511c07de804296400b0a87f78857ff98369c6520fa91f83a45af"
+        }
+      },
+      {
+        "comparison": "P0|E0",
+        "digest_layer": {
+          "context_sha256_a": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+          "context_sha256_b": "sha256:1c7c085bde1925572f3bc45d93781640c46e3dba3599b4386f32543c988520a0",
+          "differing_variables": [
+            "evidence"
+          ],
+          "ok": true
+        },
+        "expected_variable": "evidence",
+        "isolated": true,
+        "prompt_layer": {
+          "differing_keys": [
+            "signal"
+          ],
+          "expected_key": "signal",
+          "ok": true,
+          "prompt_sha256_a": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+          "prompt_sha256_b": "sha256:f95d74c207771918426033a9ef96d6d5f35e48eb504064f58188bbe2ec231ef2"
+        }
+      }
+    ],
+    "distinct_contexts": true
+  },
+  "lane": "cursor-recovery",
+  "live_execution_performed": false,
+  "note": "PREPARE-ONLY artifact. No adaptive/model provider was constructed or invoked while building this matrix.",
+  "objective": "grow a durable, factually sound audience without publishing anything unreviewed",
+  "planned_call_count": 5,
+  "prepared_at": "2026-09-21T19:37:40Z",
+  "provider_config": {
+    "anthropic_api_key_expected_absent": true,
+    "auth_route": "existing-subscription",
+    "injected_runner": false,
+    "model": null,
+    "provider_id": "claude-code-subscription-v1",
+    "provider_mode": "claude-cli",
+    "retry_allowed": false,
+    "timeout_s": 60
+  },
+  "provider_config_sha256": "sha256:b7ad9f5fcfa9e5adb4ea9795416f79b22581678a0ac4e804e22e62e6c0a86a37",
+  "required_comparisons": [
+    [
+      "P0",
+      "P1",
+      "persona"
+    ],
+    [
+      "P0",
+      "P2",
+      "persona"
+    ],
+    [
+      "P0",
+      "P3",
+      "persona"
+    ],
+    [
+      "P0",
+      "E0",
+      "evidence"
+    ]
+  ],
+  "run_scope": "v04-divergence-freeze",
+  "schema_version": "v1",
+  "snapshots": [
+    {
+      "captured_at": "2026-09-21T19:37:40+00:00",
+      "provenance_label": "live-capture",
+      "raw_bytes_sha256": "sha256:ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+      "receipt": {
+        "capture_mode": "live",
+        "collector_name": "sbots.source-collector",
+        "collector_receipt_id": "cap-930c10094e914375",
+        "collector_version": "1.3.0",
+        "content_bytes": 559,
+        "content_hash": "ff67a9d764d6a2367a187734e697f6a53217db9a21c101d410a113ca871a299d",
+        "fetcher_name": "urllib",
+        "final_url": "https://example.com/",
+        "http_status": 200,
+        "kind": "sbots-collector-v05-live-capture",
+        "provenance": "live-capture",
+        "retrieved_at": "2026-09-21T19:37:40+00:00",
+        "source_url": "https://example.com/",
+        "status": "ok",
+        "transport_trusted": true
+      },
+      "receipt_sha256": "sha256:6a07b87262c0f87995e1c29ecc77a393d8ba61e5f17c581a5cefbe435047b410",
+      "signal": {
+        "captured_at": "2026-09-21T19:37:40+00:00",
+        "id": "sig-ff67a9d764d6",
+        "provenance": "live-capture",
+        "source": "urllib",
+        "summary": "Live HTTPS capture of the public example.com homepage used as controlled evidence snapshot E1 for the V0.4 divergence matrix.",
+        "tags": [
+          "public-web",
+          "example-domain",
+          "divergence-e1"
+        ],
+        "title": "Example Domain public homepage",
+        "url": "https://example.com/"
+      },
+      "snapshot_id": "E1"
+    },
+    {
+      "captured_at": "2026-09-21T19:37:40+00:00",
+      "provenance_label": "live-capture",
+      "raw_bytes_sha256": "sha256:61a5378f4255c720beb2a4b4a63b29540147c140f36988bf086291989b4cd2d7",
+      "receipt": {
+        "capture_mode": "live",
+        "collector_name": "sbots.source-collector",
+        "collector_receipt_id": "cap-23b5ab6d8b504a76",
+        "collector_version": "1.3.0",
+        "content_bytes": 28360,
+        "content_hash": "61a5378f4255c720beb2a4b4a63b29540147c140f36988bf086291989b4cd2d7",
+        "fetcher_name": "urllib",
+        "final_url": "https://www.rfc-editor.org/rfc/rfc8259.txt",
+        "http_status": 200,
+        "kind": "sbots-collector-v05-live-capture",
+        "provenance": "live-capture",
+        "retrieved_at": "2026-09-21T19:37:40+00:00",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc8259.txt",
+        "status": "ok",
+        "transport_trusted": true
+      },
+      "receipt_sha256": "sha256:893ee66ff1f016f8b0a723a8da1ed59e482acca87dd5d621b0b19358fcaa6109",
+      "signal": {
+        "captured_at": "2026-09-21T19:37:40+00:00",
+        "id": "sig-61a5378f4255",
+        "provenance": "live-capture",
+        "source": "urllib",
+        "summary": "Live HTTPS capture of RFC 8259 plain text from rfc-editor.org used as controlled evidence snapshot E2, materially different from E1.",
+        "tags": [
+          "standards",
+          "json",
+          "rfc8259",
+          "divergence-e2"
+        ],
+        "title": "RFC 8259 JavaScript Object Notation (JSON)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8259.txt"
+      },
+      "snapshot_id": "E2"
+    }
+  ]
+}

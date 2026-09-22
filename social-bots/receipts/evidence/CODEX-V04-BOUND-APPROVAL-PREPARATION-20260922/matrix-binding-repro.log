@@ -1,0 +1,20 @@
+{
+  "external_provider_constructed": false,
+  "mutated_context_sha256": "sha256:a7cfa25bfd96223e6cce14569e18d533cd1b18a31013d79c3b9049a1bdca25c3",
+  "mutated_prompt_sha256": "sha256:fa4759811d47735cbc5e0344daeb9fdf25c31089e1605eb2932a6c380f39a8c3",
+  "network_calls": 0,
+  "result": "CONFIRMED_MATRIX_NOT_BOUND_BY_AUTHORIZATION",
+  "reviewed_context_sha256": "sha256:5003898fecb28b542e6587ed6ac879e10853b9c86ca3b871648c984c4829d218",
+  "reviewed_prompt_sha256": "sha256:44e4072409b628b78fabfee100e4e4ecb8abc474652af187782041d972d94f37",
+  "same_case_count": true,
+  "same_lane": true,
+  "same_run_scope": true,
+  "sentinel_events": [
+    "constructed",
+    "propose_reached"
+  ],
+  "source_sha": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "stopped": "STOP_BEFORE_ANY_EXTERNAL_PROVIDER_ACTION",
+  "temp_directory_removed_on_exit": true,
+  "temporary_slot_count": 1
+}
