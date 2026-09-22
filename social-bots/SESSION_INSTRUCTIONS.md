@@ -1,4 +1,4 @@
-# Mac QA / Acceptance — SESSION_INSTRUCTIONS — LEAD-050
+# Mac QA / Acceptance — SESSION_INSTRUCTIONS — LEAD-051
 
 Branch: `claude/social-bots-mac-qa-control`
 Canonical coordination: `chatgpt/social-bots-plan-20260920`
@@ -8,37 +8,40 @@ Execution ceiling: **LIVE V1.7 only, then hard stop**
 
 ## Status at lead review
 
-**STALE / ACTION REQUIRED.** No fresh reviewer session, reviewer heartbeat, or independent result has landed after the LEAD-048 V1.7-only scope release.
+**STALE / ACTION REQUIRED.** Fable is now materially active and has submitted current V1.7 candidate work, but this Acceptance branch still has no fresh independent post-LEAD-050 review result.
 
-Start a genuinely fresh top-level review session on the actual local Mac and emit exactly one durable `SESSION_ONCE` heartbeat. Update the lane progress report truthfully. Do not edit runtime/product source.
+Start a fresh top-level local-Mac review session if the previous reviewer session is no longer active; a genuinely fresh session emits exactly one durable `SESSION_ONCE`. If resuming the same prior session, do not fabricate a second heartbeat. Update `CURRENT_PROGRESS.md` truthfully. Do not edit runtime/product source.
 
 ## Read first
 
-Fetch current canonical coordination and read:
+Fetch current canonical coordination and Fable head, then read:
 - `social-bots/delivery/V17_LIVE.md`
 - `social-bots/delivery/V17_SCOPE.json`
 - `social-bots/delivery/V17_ACCEPTANCE.md`
 - `social-bots/STATE.json`
 - `social-bots/SESSION_ROUTER.md`
 - `social-bots/WORK_QUEUE.md`
-- `social-bots/ARTIFACT_INDEX.json`
 - latest `social-bots/AGENT_MESSAGES.md`
-
-The historical Fable branch name does not authorize V1.8+/V2.3/V3.0 work. Acceptance scope ends at LIVE V1.7.
+- Fable `social-bots/SESSION_INSTRUCTIONS.md`
+- Fable current reports/evidence.
 
 ## Ordered independent review work
 
-1. Confirm an actual **post-LEAD-050 Fable worker commit** exists before treating the implementation lane as active. Lead-authored instruction/ack commits are not worker progress.
-2. Independently execute the `SB-R07-071` real multiprocess/session race against the pinned candidate when applicable; report exact host/process/round counts and results.
-3. After Fable repairs the direct/ad-hoc model-callable path, audit it with a harmless local sentinel. Prove the callable cannot execute without a valid canonical scoped authorization manifest. Zero real inference.
-4. Independently stress shared budget accounting across concurrency/re-entry/wrappers and failure paths; verify reservation occurs before dispatch and crash/exception accounting fails closed.
-5. Independently test heartbeat/session lease durability and crash/concurrency semantics. One review session emits one `SESSION_ONCE`; do not synthesize or backfill heartbeat evidence.
-6. Audit retained-output integrity and final-content review binding against replacement/symlink/late-write/wrong-scope cases.
-7. Audit prospective persona-scoped experiment persistence/read boundaries and reject ambiguous whole-runtime production readers.
-8. Review read-only persistent-host/account/provider preflight evidence for V1.7. Do not perform live product-model calls, public effects, paid actions, account mutations, or deployment/release actions.
+1. **R07-041 repaired candidate first.** Do not accept Fable `12c807e` as final R07-041. Lead review found that exact `EngineeringStub` and injected-runner seams can execute arbitrary caller-supplied callables/runners when no dispatch scope exists. Wait for the repair that makes no-scope fail closed, then independently prove with harmless sentinels:
+   - EngineeringStub arbitrary sentinel does not invoke with no scope;
+   - injected CLI runner/wrapper does not invoke with no scope;
+   - explicit policy-owned engineering scope is required for engineering seams;
+   - production scope refuses those seams;
+   - raw/live callable remains manifest-gated;
+   - no real model/provider call occurs.
+2. Independently execute the real `SB-R07-071` multiprocess/session race against the current candidate where applicable; report host/process/round counts and exact result.
+3. Independently exercise `b5fd038` due-work rotation/anti-starvation behavior, including multiple bots/due items and restart-safe deterministic selection where the implementation claims it.
+4. Independently audit `c4d31fee...` C05/C06/C07 negative controls: final rendered text edited after review, wrong scope/persona/platform, replacement/symlink/late write, cultural final-text hash binding, and prospective experiment state with no fabricated baseline/outcome/confidence.
+5. Audit the consolidated V1.7 producer modules and enabled dispatcher import/selection boundary. Unused V1.8+/V2.3/V3.0 routes must remain unreachable from the V1.7 dispatcher.
+6. Review `af3fded...` preflight/gate dossier only as factual blocker evidence. Do not turn an ephemeral Linux host, CONNECT-403 routes, absent account registry, or absent native scheduler into operational acceptance.
 
-For every candidate, inspect actual source/tests/receipts and record exact source SHA, test counts, environment limitations, and PASS/FAIL/CHANGES_REQUIRED reasoning. Do not accept artifacts from worker self-report alone.
+For every candidate, inspect actual source/tests/receipts and record exact SHA, commands/results, environment limitations, and PASS/FAIL/CHANGES_REQUIRED reasoning. Worker-local green tests are evidence inputs, not acceptance.
 
 ## Hard authority limits
 
-No runtime source edits in this lane. No additional Claude/adaptive/product-model call, public posting/reply/message, PAYG/new spend, destructive action, credential exposure, fabricated operational evidence, engagement manipulation, main/public release, or SwarmAI dependency is authorized. The V0.4 causal-divergence gate remains blocked pending fresh explicit owner authorization; the V0.4 live-canary worktree stays frozen for evidence preservation.
+No runtime source edits. No additional Claude/adaptive/product-model call, public posting/reply/message, PAYG/new spend, account mutation, destructive action, credential exposure, fabricated evidence, engagement manipulation, main/public release, or SwarmAI dependency is authorized. The V0.4 causal-divergence gate remains blocked pending fresh explicit owner authorization and a lead-created scoped manifest; the historical canary worktree remains frozen.
