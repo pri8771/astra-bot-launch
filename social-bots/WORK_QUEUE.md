@@ -1,6 +1,6 @@
-# Work queue — LEAD-063 — target LIVE V1.3
+# Work queue — LEAD-066 — target LIVE V1.7
 
-Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.3**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
+Current official version remains **V0.4.x**. Owner development target/ceiling is now **LIVE V1.7**, with genuine live tests and a hard stop at accepted V1.3. This supersedes the prior V1.7 ceiling but grants no model/public/account/host/scheduler/spend/deploy/merge authority.
 
 ## Current lane truth
 
@@ -48,3 +48,13 @@ Operational/live prerequisites remain factual and unwaived: persistent owner hos
 No new live product-model call, scheduler installation, public effect, account mutation, spending, destructive action, secret exposure, main/public release or SwarmAI dependency is authorized. No new Fable assignment or handoff is authorized. The prior V0.4 exactly-one canary authorization is consumed.
 
 Canonical heartbeat policy is **ONE SESSION = ONE HEARTBEAT**. The old FAST_5M/SOAK experiment is superseded. A resumed/compacted continuation of the same session must not emit another heartbeat; V0.7 recurring liveness is proven by separate OS-scheduled bounded invocations on a real persistent host.
+
+
+## LEAD-066 current releases
+
+- **PR17 capture integrity ACCEPTED; final pair suitability REWORK_REQUIRED.** Keep E2 TikTok (published Sep 14). Replace E1 Meta (published Jun 4) with a materially distinct public Social Bots-domain source published within 30 days unless later lead-approved otherwise. For both, bind deterministic extraction/signal lineage to exact raw bytes and receipts. Do not rebuild the final matrix until suitability returns.
+- **LOCAL provider adapter ENGINEERING RELEASED.** Accepted base: `fec97738ec0e9407415f60228f7c3938613396c3` / tree `43e80b92d8ae559db55a41ed33329695e6fd03fc`. Expected files: `runtime/authorization.py`, `runtime/divergence_prepare.py`, new `runtime/reasoning_local.py`, and `runtime/model_dispatch.py` only if necessary, plus focused tests. Codex direct owns implementation. No real inference.
+- **LOCAL provider contract:** distinct `ollama-local` mode; loopback-only `127.0.0.1:11434`; initial model `qwen3.5:9b`; exact endpoint/model/config included in execution binding; no remote fallback, API/OpenRouter fallback, pull/download, daemon start/restart or fallback model; five durable attempts, no retries, no sixth attempt.
+- **Fail-fast batch diagnostic RELEASED:** offline reproduction only. Confirm whether a non-`proposal_received` case permits the next case to reserve/execute. No source edit until confirmed and separately released.
+- **Retry/backoff implementation remains HELD.**
+- **SB-R07-073/074 remain PLANNED.**
