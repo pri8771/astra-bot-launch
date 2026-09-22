@@ -1,0 +1,127 @@
+{"seeded_signal_id": "sig-ac4ecadbc585", "home": "/tmp/bots-v11-root-home.hffFdv"}
+{"consumed_this_cycle": null, "cycle": 1, "live_model_call": false, "next_check_in_hours": 6, "outcome": "blocked_reasoning_unavailable", "pending_after": 1, "provider": "unavailable-adaptive-required(mode=baseline)", "provider_available": false}
+{"consumed_this_cycle": null, "cycle": 2, "live_model_call": false, "next_check_in_hours": 6, "outcome": "blocked_reasoning_unavailable", "pending_after": 1, "provider": "unavailable-adaptive-required(mode=baseline)", "provider_available": false}
+{"consumed_this_cycle": null, "cycle": 3, "live_model_call": false, "next_check_in_hours": 6, "outcome": "blocked_reasoning_unavailable", "pending_after": 1, "provider": "unavailable-adaptive-required(mode=baseline)", "provider_available": false}
+{"consumed_this_cycle": null, "cycle": 4, "live_model_call": false, "next_check_in_hours": 6, "outcome": "blocked_reasoning_unavailable", "pending_after": 1, "provider": "unavailable-adaptive-required(mode=baseline)", "provider_available": false}
+{
+  "consumed_ids": [],
+  "consumed_this_cycle": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "cycles": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "dead_letter_or_block_files": [],
+  "decision_count": 4,
+  "last_decision": {
+    "alternatives": [],
+    "bot": "social-b",
+    "chosen": {
+      "action": "BLOCKED_REASONING_UNAVAILABLE",
+      "rationale": "adaptive reasoning required but no adaptive provider is available (configured mode is non-adaptive)"
+    },
+    "chosen_reason": "reasoning required to interpret changed evidence but failed closed: adaptive reasoning required but no adaptive provider is available (configured mode is non-adaptive)",
+    "closeout": [],
+    "cycle": 4,
+    "execute": {
+      "block_reason": "adaptive reasoning required but no adaptive provider is available (configured mode is non-adaptive)",
+      "effect": "none",
+      "outcome": "blocked_reasoning_unavailable",
+      "performed": false
+    },
+    "fence": null,
+    "learn": {
+      "updated": false
+    },
+    "observe": {
+      "changed": true,
+      "consumed_count": 0,
+      "consumed_this_cycle": null,
+      "observation_fingerprint": "a083551774044844",
+      "pending_after": 1,
+      "pending_count": 1,
+      "total_signals": 1
+    },
+    "orient": {
+      "inferred": [
+        "topic tags: ['reliability']"
+      ],
+      "known": [
+        "signal sig-ac4ecadbc585 from reliability-harness (fixture)",
+        "audience (persona-scoped): 0 learned, 0 unlearned hypothesis(es)"
+      ],
+      "objective": "grow shares for Tidepool via evidence-based experiments",
+      "summary": "1 unconsumed signal(s); deciding on the oldest this cycle",
+      "uncertain": [
+        "external audience reaction (no post yet)",
+        "reasoning unavailable/invalid"
+      ]
+    },
+    "outcome": "blocked_reasoning_unavailable",
+    "persona": "social-b",
+    "reasoning": {
+      "adaptive": false,
+      "adaptive_required": true,
+      "available": false,
+      "dispatch": null,
+      "live_model_call": false,
+      "provider": "unavailable-adaptive-required(mode=baseline)",
+      "uncertainties": [
+        "adaptive reasoning required but no adaptive provider is available (configured mode is non-adaptive)"
+      ]
+    },
+    "recorded_at": "2026-09-22T08:10:13+00:00",
+    "required_authority": "none",
+    "schedule": {
+      "next_check_in_hours": 6,
+      "note": "wait on events/timers, not constant polling",
+      "trigger": "deterministic timer + new-signal event"
+    },
+    "verify": {
+      "note": "no effect; blocked",
+      "verified": true
+    }
+  },
+  "live_model_calls": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "next_check_hours": [
+    6,
+    6,
+    6,
+    6
+  ],
+  "outcomes": [
+    "blocked_reasoning_unavailable",
+    "blocked_reasoning_unavailable",
+    "blocked_reasoning_unavailable",
+    "blocked_reasoning_unavailable"
+  ],
+  "pending_after": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "pending_signal_ids": [
+    "sig-ac4ecadbc585"
+  ],
+  "result": "REPRODUCED_UNBOUNDED_UNAVAILABLE_RETRY",
+  "runtime_cycles": 4,
+  "runtime_files": [
+    "memory/social-b/decisions.jsonl",
+    "memory/social-b/signals_inbox.jsonl",
+    "state/social-b/bot_state.json",
+    "state/social-b/last_decision.json",
+    "state/social-b/persona-social-b.json"
+  ]
+}

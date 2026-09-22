@@ -1,0 +1,27 @@
+{
+  "decision_called_after_unsafe_reconcile": 1,
+  "finish_reconciled": {
+    "queue_items": 1,
+    "safe": false,
+    "unauthorized_published": 1
+  },
+  "prior_lease": "4a24192704314b97a0bb062a447a39c4",
+  "source_head": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+  "temp_runtime": "/var/folders/fg/lmdhrms177s93m879bkgvjzr0000gn/T/bots-lead062-aut7x52m",
+  "worker_result": {
+    "bot": "social-b",
+    "chosen_action": "NO_ACTION",
+    "finish_receipt": "20260922T080710+0000-finish-da9fb545.json",
+    "heartbeat_beats": 5,
+    "lease_id": "874b308b3bba4717bf6b7f8c6f998d72",
+    "lease_released": true,
+    "outcome": "no_action",
+    "persona": "social-b",
+    "start_receipt": "20260922T080710+0000-start-aeaf5a54.json",
+    "task_id": "cycle:social-b",
+    "took_over_from": "4a24192704314b97a0bb062a447a39c4",
+    "verified": true,
+    "withheld": false,
+    "worker_id": "takeover"
+  }
+}
