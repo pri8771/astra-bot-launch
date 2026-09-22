@@ -1067,3 +1067,34 @@ Source refs
 - `social-bots/lead-reviews/LEAD-053_2026-09-22T0344.md`
 - PR #6 `7acc1695d2961267580a156f31df6a5991476654`
 - PR5 coordination `2745dca`
+
+
+## 2026-09-22T04:18:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-054 — due-rotation crash-window exact-SHA verdict
+
+Done
+- Independently reviewed PR #7 exact candidate `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d` against accepted base `7acc1695d2961267580a156f31df6a5991476654`.
+- Reproduced the prior source-level crash window: rotation was persisted only after `run_one_unit` completion/release.
+- Verified the candidate persists the actual claim under the acquired lease generation fence before reconciliation/useful work.
+- Formally ACCEPTED the bounded **V1.7 due-rotation crash-window engineering repair** at exact SHA. No registry milestone artifact was invented.
+
+Evidence
+- PR #7 exact source `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`.
+- Native Codex evidence `f4e8d566b98f9bfeeaa2bf2c3945db0185bbf072`, `CODEX_ROTATION_REPAIR_20260922.md`.
+- Two new regressions fail against the base before edit.
+- Author checks: 39 focused passed; full 713 run / 711 passed / 0 failed / 0 errors / 2 unchanged genuine-evidence skips; no exact-SHA CI/workflow.
+- Source review confirms cursor writes use crash-safe fsync+replace and the callback is inside `Fence.fenced_commit`.
+- User-reported separate 49-test mechanical review was not present in the published native evidence and was not used as independent execution evidence.
+
+Next
+- Codex may continue only concrete review findings in isolated repair branches and return them for ChatGPT formal acceptance.
+- Do not route, message, assign or hand off anything new to Fable.
+- Preserve the V0.4–V0.7 genuine live chain and request owner host/route/reviewer/time facts where required.
+
+Blockers
+- V0.7 persistent-owner-host qualification, native scheduler firings, SESSION_ONCE/invocation evidence, failure/recovery/takeover on the real host, applicable model grants, reviewer/source/time prerequisites, and required development/lead/later-worker cycles remain open.
+- No scheduler/model/public/account/spend/main-merge/release authority is created by this verdict.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-054_2026-09-22T0418.md`
+- PR #7 `84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d`
+- coordination evidence `f4e8d566b98f9bfeeaa2bf2c3945db0185bbf072`
