@@ -1,0 +1,692 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-22T20:10:00Z",
+  "coordination_repo": "pri8771/astra-bot-launch",
+  "coordination_path": "social-bots/",
+  "setup_branch": "chatgpt/social-bots-plan-20260920",
+  "setup_pr": 1,
+  "status": "v03_closed_v04_in_progress",
+  "runtime_scope": {
+    "autonomous_bots": [
+      "social-a",
+      "social-b",
+      "social-c"
+    ],
+    "general_personas_required": 3,
+    "general_personas_built": 3,
+    "cultural_persona_workspaces_required": 2,
+    "cultural_persona_workspaces_built": 2
+  },
+  "independence": {
+    "depends_on_swarmai": false,
+    "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
+  },
+  "campaign": {
+    "lead_release": "LEAD-068",
+    "last_review": "LEAD-068",
+    "target": "V1.7",
+    "target_kind": "operational_live",
+    "hard_stop_after": "V1.7",
+    "auto_continue_after_target": false,
+    "contract": "lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "scope_filter": "owner target V1.3; no new live grants",
+    "acceptance_contract": "MILESTONE_MANIFEST.md + lead-accepted genuine evidence",
+    "owner_instruction": "Owner target is accepted LIVE V1.7; Codex-direct newly released work; no Fable dispatch.",
+    "supersedes": "temporary V2.0 pause and later V2.3/V2.7 proposal for Bots; all sequential genuine-live predecessor gates remain",
+    "future_roadmap": "preserved and parked; not deleted or accepted",
+    "authority_change": "development target only; no fresh model/public/account/host/scheduler/spend/deployment/main-merge grant",
+    "worker_consumption": "verified_acknowledged_in_session_s-20260921T211438Z-d5589881"
+  },
+  "worker_lanes": {
+    "fable_fasttrack": {
+      "branch": "fable/social-bots-v23-fasttrack-20260921",
+      "branch_head": "6d6cae422c0527a94da8be8df73d1a0caf0f71b3",
+      "latest_verified_material_checkpoint": "af3fded92eaba5e68c8088737b68c6f043e40a5e",
+      "last_verified_session_id": "s-20260921T211438Z-d5589881",
+      "activity": "historical_evidence_only_no_new_handoff",
+      "assignment": "Preserve historical evidence only; no new Social Bots dispatch to Fable.",
+      "scope": "historical V1.7-era evidence only; not active execution ownership",
+      "branch_name_is_historical": true,
+      "superseded_restrictions": [
+        "LEAD-045/046 pause",
+        "LEAD-043 new-files-only"
+      ],
+      "superseded_execution_targets": [
+        "V2.3 fast-track",
+        "automatic continuation to V3.0"
+      ],
+      "worker_reported_suite": "12c807e: 559 discovered / 557 passed / 2 skipped; b5fd038: 569 discovered / 567 passed / 2 skipped; c4d31fee: 678 passed / 2 skipped",
+      "submitted_engineering": [
+        "SB-S20-001",
+        "SB-S23-001",
+        "SB-S23-002",
+        "SB-S23-003",
+        "SB-S23-004",
+        "SB-S23-005",
+        "SB-S23-006",
+        "SB-S23-007",
+        "SB-S23-008",
+        "SB-R07-041@12c807e",
+        "V17-due-rotation@b5fd038",
+        "V17-C05-C06-C07@c4d31fee",
+        "V17-producer-consolidation@3da19a9c",
+        "V17-preflight@af3fded"
+      ],
+      "submitted_future_work_disposition": "preserve; not a V1.7 acceptance prerequisite unless narrowly reused in an enabled production path",
+      "operational_acceptance": false,
+      "lead_disposition": "Historical evidence preserved; Codex owns new concrete implementation work through owner target V1.3.",
+      "handoff_note": "Worker scope consumption and material progress are verified. Current branch head includes LEAD-051 lead-authored instruction/ack commits after material worker head af3fded; lead commits are not worker progress."
+    },
+    "cursor_recovery": {
+      "branch": "cursor/social-bots-recovery-v07-20260921",
+      "branch_head": "bf18ac0083b15194c011b18dc791f4bd3d3e8019",
+      "latest_verified_material_worker_source": "d7ecb256d430f437f4ad9249480b6430af52ecf9",
+      "latest_verified_session_id": "s-20260921T191500Z-a23cc77e",
+      "activity": "parked_evidence_only",
+      "assignment": "preserve evidence only; no overlapping implementation",
+      "handoff_note": "Current branch head is lead-authored park coordination, not worker progress."
+    },
+    "core": {
+      "branch": "claude/social-bots-windows-core-host",
+      "last_verified_material_source_from_descendant_lane": "a73b7b58de8f3669795b81637bff55247d67943c",
+      "activity": "parked_evidence_only",
+      "assignment": "preserve evidence; no overlapping implementation"
+    },
+    "intelligence": {
+      "branch": "claude/social-bots-intelligence-repair-v2",
+      "last_verified_worker_head": "205295531e7755a5045fb1e458d3964d986edd56",
+      "activity": "parked_evidence_only",
+      "assignment": "preserve historical evidence only; no active implementation assignment under current V1.3 Codex ownership"
+    },
+    "mac_qa": {
+      "branch": "claude/social-bots-mac-qa-control",
+      "branch_head": "6b42ee5c0db31c242d8173e006ea0a124c181650",
+      "latest_verified_material_worker_head": "72e380bda71561429154e67bc07636b89143a488",
+      "activity": "stale_action_required_independent_review_only_v17",
+      "assignment": "independent review-only historical lane; no active V1.7 implementation assignment; review future Codex candidates only when explicitly released",
+      "host_scope_note": "A Mac lane name does not prove local Mac execution. Prior acceptance was a single POSIX host/filesystem.",
+      "handoff_note": "Current branch head is lead-authored LEAD-051 review assignment; no fresh independent reviewer result is claimed."
+    },
+    "v04_live_canary": {
+      "branch": "claude/social-bots-v04-live-canary",
+      "activity": "frozen_evidence_only_authorization_consumed",
+      "assignment": "preserve evidence; no further product-model/canary calls without fresh applicable grant"
+    },
+    "development_sessions_live": "fable_session_materially_active_at_lead051_cutoff; acceptance_not_evidenced_active",
+    "historical_development_sessions_evidenced": true,
+    "social_bot_recurring_runtime_liveness": "not_verified",
+    "heartbeat_validation": {
+      "policy": "ONE_SESSION_ONE_HEARTBEAT",
+      "truth_rule": "One real SESSION_ONCE at fresh-session start after current coordination is read; none repeated on resume/compaction; no periodic in-session heartbeat or soak.",
+      "periodic_soak_superseded": true,
+      "last_verified_fable_session": "s-20260921T211438Z-d5589881",
+      "fable_resume_rule_applied": "same session resumed after container restore; no second heartbeat expected",
+      "issue3_visibility": "human visibility only, not evidence of artifact correctness",
+      "v07_liveness_rule": "Actual native OS-scheduled sessions and invocation receipts on a verified persistent host, plus actual development artifact/lead cycles; not a kept-open chat."
+    },
+    "codex_repair": {
+      "branch": "codex/bots-host-tests-20260922",
+      "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
+      "base": "7acc1695d2961267580a156f31df6a5991476654",
+      "activity": "direct_composition_and_final_matrix_prepare_only",
+      "assignment": "Mechanically compose accepted PR19+PR20+PR21 over accepted PR18 d8a211fc; no semantic edits. On exact composition source, prepare/freeze final P0/P1/P2/P3/E0 matrix using accepted PR21 E1/E2 signals and accepted ollama-local config. Produce source/tree/matrix/prompt/evidence digests, isolation report, no-active-manifest proof, zero call slots. No inference.",
+      "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
+      "operational_acceptance": false,
+      "latest_accepted_candidate": "d8a211fc32802c59b07b1739bef47f9c551ed8dc",
+      "latest_accepted_checkpoint": "PR18 LOCAL provider + read-only CI accepted engineering",
+      "no_fable_handoff": true,
+      "formal_acceptor": "ChatGPT",
+      "parallel_assignments": [
+        "SB-V13-002 reproduce-first provenance/window audit (no source edits until reproduced defect)",
+        "V0.8 route_type schema SP1 repair (ACCOUNT_REGISTRY_SCHEMA enum only)"
+      ],
+      "latest_accepted_candidates": [
+        "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+        "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+        "89057863423c3ad6e995dcd57cad4a61da2a6099"
+      ]
+    }
+  },
+  "tests": {
+    "core_v03_independently_verified_full_suite": 130,
+    "core_v03_full_suite_evidence_commit": "436787b0a63fdae0e89c224a54054607e32b5187",
+    "v03_independent_acceptance_checks": 37,
+    "v03_independent_acceptance_focused_tests": 36,
+    "latest_verified_core_descendant_reported_suite": "312 passed, 1 skipped",
+    "cursor_r07_071_worker_reported_suite": "314 passed, 1 skipped",
+    "cursor_latest_worker_reported_suite": "416 tests reported, 2 skipped",
+    "fable_fasttrack_historical_worker_reported_suite": "523 discovered, 521 passed, 2 skipped",
+    "fable_r07_041_worker_reported_suite": "559 discovered, 557 passed, 2 skipped at 12c807e",
+    "fable_due_rotation_worker_reported_suite": "569 discovered, 567 passed, 2 skipped at b5fd038",
+    "fable_c05_c06_c07_worker_reported_suite": "678 passed, 2 skipped at c4d31fee",
+    "intelligence_latest_worker_reported_full_suite": 195,
+    "historical_github_ci_run_id": 35555060783,
+    "historical_github_ci_status": "success; not evidence for the present candidate",
+    "lead047_delivery_validator_tests": {
+      "passed": 30,
+      "scope": "isolated owner-supplied delivery package"
+    },
+    "lead047_source_excerpt_probes": {
+      "defect_scenarios_reproduced": 6,
+      "full_repo_execution": false,
+      "real_model_calls": 0
+    },
+    "lead051_source_audit": {
+      "candidate": "12c807e970b4d7a8f92a7d5db7b7b3a3856c46d6",
+      "finding": "EngineeringStub/injected-runner no-scope execution capability remains",
+      "real_model_calls": 0,
+      "independent_full_suite_run": false
+    },
+    "codex_20260922_independent_mac": {
+      "tested_source": "f0f1307cf99c181cf07f113672d5308cf5528386",
+      "production_equivalent": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+      "r07_041_repair": "0bca4e654923932c755c89c20a85ec79b37d0a10",
+      "focused": {
+        "run": 118,
+        "passed": 118,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "full": {
+        "run": 707,
+        "passed": 703,
+        "failed": 2,
+        "errors": 0,
+        "skipped": 2
+      },
+      "host_preflight": {
+        "run": 7,
+        "passed": 5,
+        "failed": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "finding": "R07-041 focused boundaries pass independently; two full-suite failures are Darwin test-isolation defects, not a real-host suitability verdict",
+      "live_calls": 0
+    },
+    "codex_r07_072_author_submission": {
+      "exact_source": "7acc1695d2961267580a156f31df6a5991476654",
+      "base": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+      "full": {
+        "run": 711,
+        "passed": 709,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "host_preflight": {
+        "run": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "classification": "author-run submission evidence; not independent acceptance execution",
+      "independent_ci": "none found",
+      "production_predicates_changed": false
+    },
+    "codex_due_rotation_author_submission": {
+      "exact_source": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+      "base": "7acc1695d2961267580a156f31df6a5991476654",
+      "focused": {
+        "passed": 39
+      },
+      "full": {
+        "run": 713,
+        "passed": 711,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "red_regressions_before_edit": 2,
+      "classification": "author-run engineering submission evidence; no independent CI",
+      "live_scheduler_sessions": 0,
+      "live_model_calls": 0
+    },
+    "codex_content_integrity_author_submission": {
+      "exact_source": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "base": "84f8f05b22d33dcfc1edd0d2fc8d98ddcc3e1b6d",
+      "full": {
+        "run": 723,
+        "passed": 721,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "agent_focused_reported": 89,
+      "classification": "author/agent engineering evidence; no exact-SHA CI; formal verdict from independent source review",
+      "live_actions": 0
+    },
+    "v13_metrics_reproduction": {
+      "source": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "symptom": "bool, NaN and +/-infinity accepted as PRESENT and may persist/aggregate to nonfinite results",
+      "root_cause": "isinstance(value,(int,float)) accepts bool and nonfinite floats in normalize/aggregate",
+      "existing_metric_tests": 21,
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_actions": 0
+    },
+    "codex_metrics_author_submission": {
+      "exact_source": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "base": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+      "focused": {
+        "passed": 26
+      },
+      "full": {
+        "run": 728,
+        "passed": 726,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "account_route_freshness_reproduction": {
+      "source": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "symptom": "missing and 2020 last_verified_at both yield account_available=True and draft authorized when health_status=verified",
+      "root_cause": "_route_ok ignores last_verified_at entirely",
+      "contract": {
+        "freshness_hours": 24,
+        "future_clock_skew_minutes": 5
+      },
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
+    },
+    "codex_route_freshness_author_submission": {
+      "exact_source": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "tree": "4566673973dacbfb04530b123e529ef3cd61b327",
+      "base": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+      "focused": {
+        "passed": 32
+      },
+      "full": {
+        "run": 732,
+        "passed": 730,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "account_route_order_reproduction": {
+      "source": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "evidence": "4a90be07b78277b6d8fc49d3568f4a6b107eb921",
+      "symptom": "same exact-scope revoked+fresh routes return blocked vs authorized solely from registry order because availability_for uses matches[0]",
+      "root_cause": "first-match selection instead of eligibility-based deterministic selection",
+      "contract": "select unique eligible exact-scope route; zero eligible fail closed; multiple eligible fail closed ambiguous; registry order never authority",
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
+    },
+    "codex_route_selection_author_submission": {
+      "exact_source": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "tree": "9efb375fe672df97526b6edf86d629c421d8a5b3",
+      "base": "ccfbaf7865557ba30d9148bcce6839b71e9159f1",
+      "baseline": {
+        "run": 7,
+        "expected_failures": 6
+      },
+      "focused": {
+        "passed": 25
+      },
+      "full": {
+        "run": 739,
+        "passed": 737,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "account_route_type_reproduction": {
+      "source": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "evidence": "63bb73fffe7de1b52e551e952d7ed7d9531c4675",
+      "symptom": "route_type='telepathy' admitted account_available=true and authorized=true",
+      "root_cause": "load_routes validates route_type presence but not documented enum; _route_ok rejects only literal unsupported",
+      "allowed_route_types": [
+        "API",
+        "browser",
+        "Buffer",
+        "manual",
+        "unsupported"
+      ],
+      "repair_status": "RELEASED_TO_CODEX_SP1",
+      "live_account_calls": 0
+    },
+    "codex_route_schema_author_submission": {
+      "exact_source": "a4e7926c79231bfadfc55b56a70a741cc85a2b4e",
+      "tree": "34b88114a05d3700c5220c3b0b927ca241de4aa8",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "affected": {
+        "passed": 45
+      },
+      "full": {
+        "run": 744,
+        "passed": 742,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "baseline": "5 tests / 9 expected failing subcases",
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "codex_v13_provenance_author_submission": {
+      "exact_source": "be0262713eec03c2e7e6b411c2754a7538bad9a6",
+      "tree": "f572da02fcbc60bfeb4d6f620e96aeea43193501",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "affected": {
+        "passed": 43
+      },
+      "full": {
+        "run": 756,
+        "passed": 754,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/mechanical engineering evidence; no exact-SHA CI",
+      "artifact": "SB-V13-002",
+      "live_actions": 0
+    },
+    "codex_composition_author_submission": {
+      "exact_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "base": "3f10d0f6eb031c00fff679aae18aa8045d8bd025",
+      "route_focused": {
+        "passed": 45
+      },
+      "metrics_focused": {
+        "passed": 43
+      },
+      "full": {
+        "run": 761,
+        "passed": 759,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 2
+      },
+      "classification": "author/integration engineering evidence; no exact-SHA CI",
+      "live_actions": 0
+    },
+    "codex_live_readiness_audit": {
+      "accepted_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "accepted_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "evidence": "b58ba6d79192e676ac24c06ed2bdbd8d01959ea0",
+      "rows": 10,
+      "recommendation": "REVIEW_BLOCKED_FOR_LIVE_PROMOTION",
+      "source_changes": 0,
+      "live_actions": 0
+    },
+    "codex_v11_reliability_diagnostic": {
+      "accepted_source": "8c86898d1c6641adbf5c9884e1aa7ab2923b1af3",
+      "accepted_tree": "72bccc0dc5ee9eaf2919dcdfd0ac35b568719c5a",
+      "evidence": "a2d108f",
+      "findings": [
+        "unsafe reconciliation safe=false ignored and decision.run_cycle + verified finish proceed",
+        "same oldest signal can hit blocked_reasoning_unavailable across fresh processes without durable retry ceiling/backoff/exhausted state"
+      ],
+      "classification": "synthetic engineering diagnostic; no full live host/scheduler/provider proof",
+      "live_actions": 0
+    }
+  },
+  "lead_review": {
+    "review_id": "LEAD-068",
+    "review_ref": "social-bots/lead-reviews/LEAD-068_2026-09-22T2010.md",
+    "review_type": "pr19_pr20_pr21_exact_verdicts_and_final_matrix_prepare_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-067_2026-09-22T1920.md",
+    "accepted_now": [
+      "PR19-failfast@f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+      "PR20-mac-prepare@f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+      "PR21-corrected-captures@89057863423c3ad6e995dcd57cad4a61da2a6099"
+    ],
+    "accepted_existing": [
+      "SB-CTL-006",
+      "SB-CTL-012",
+      "SB-V03-001",
+      "SB-V03-002",
+      "SB-V03-003",
+      "SB-V03-004",
+      "SB-V03-005",
+      "SB-V03-006",
+      "SB-EVD-001",
+      "SB-V04-001",
+      "SB-V04-003",
+      "SB-V04-005",
+      "SB-V05-001",
+      "SB-V13-001",
+      "SB-V14-001"
+    ],
+    "submitted_recovery": [
+      "SB-R07-071",
+      "SB-R07-042",
+      "SB-R07-044",
+      "SB-R07-051",
+      "SB-R07-052",
+      "SB-R07-053",
+      "SB-R07-061",
+      "SB-R07-072"
+    ],
+    "submitted_fable_engineering": [
+      "SB-S20-001",
+      "SB-S23-001",
+      "SB-S23-002",
+      "SB-S23-003",
+      "SB-S23-004",
+      "SB-S23-005",
+      "SB-S23-006",
+      "SB-S23-007",
+      "SB-S23-008",
+      "V17-due-rotation@b5fd038",
+      "V17-C05-C06-C07@c4d31fee",
+      "V17-producer-consolidation@3da19a9c",
+      "V17-preflight@af3fded"
+    ],
+    "changes_required": [
+      "SB-V05-002",
+      "SB-V15-001",
+      "SB-V16-001",
+      "SB-V17-001",
+      "SB-V20-002",
+      "SB-V11-001"
+    ],
+    "active_changes_required": [
+      "SB-V05-002",
+      "SB-V15-001",
+      "SB-V16-001",
+      "SB-V17-001"
+    ],
+    "deferred_changes_required": [
+      "SB-V20-002"
+    ],
+    "withheld": [
+      "SB-EVD-002"
+    ],
+    "blocked": [
+      "SB-V04-002",
+      "SB-V04-004",
+      "SB-V06-001",
+      "SB-V06-002",
+      "SB-V06-003",
+      "SB-V07-002",
+      "SB-V07-005",
+      "SB-V11-002"
+    ],
+    "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
+    "key_findings": [
+      "PR18 exact d8a211fc... accepted engineering for LOCAL Ollama adapter and read-only CI port.",
+      "LOCAL grant cannot invoke Claude/raw spoofed callable; exact policy-owned local invocation type/config/provider ID required.",
+      "Exact-head GitHub Actions run 35773340055 succeeded on Python 3.11.",
+      "Fail-fast defect confirmed at b188f03; minimal stop-on-first-non-proposal_received repair released separately.",
+      "Capture correction remains read-only public prep only; real local inference/final matrix remain unauthorized."
+    ]
+  },
+  "public_actions": {
+    "posting_authorized": false,
+    "spend_authorized": false,
+    "customer_messages_authorized": false,
+    "destructive_actions_authorized": false,
+    "v04_canary_existing_subscription_call_authorized": false,
+    "v04_canary_authorization_consumed": true,
+    "duplicate_live_call_incident": "Second call at approximately 2026-09-21T16:53Z exceeded the exact-one authorization and remains excluded from acceptance.",
+    "future_v04_divergence_batch_authorized": false,
+    "future_v04_divergence_batch_requires": "fresh explicit owner approval matching dormant five-call request; lead activation of canonical scoped manifest with 2h expiry",
+    "no_further_live_model_calls": true,
+    "account_setup_scope": "owner's conditional necessary existing-account/verified Unsubscriber Google Cloud alias setup allowance; verify real mechanism/necessity/consent; not a public/model/spend grant"
+  },
+  "version": {
+    "current": "V0.4.x",
+    "current_label": "V0.3 accepted; V0.4 adaptive thinking in progress; controlled empirical divergence still authority-blocked",
+    "previous_completed": "V0.3",
+    "immediate_target": "V0.4",
+    "execution_target": "V1.7",
+    "execution_ceiling": "V1.7",
+    "execution_target_kind": "operational_live",
+    "auto_continue_after_target": false,
+    "today_engineering_target": "clear dependency-safe engineering blockers toward accepted LIVE V1.7 without inferring live grants",
+    "operational_v2": "blocked_real_account_public_measurement_evidence",
+    "long_term_target": "V3.0",
+    "long_term_target_state": "parked_not_authorized_for_current_work",
+    "strategic_checkpoints": [
+      "V1.3",
+      "V1.7",
+      "V2.3",
+      "V3.0"
+    ],
+    "active_strategic_checkpoints": [
+      "V1.7"
+    ],
+    "promotion_rule": "sequential lead-accepted genuine evidence through V1.7; stop after accepted V1.7 unless owner changes scope",
+    "v04_real_canary_required": true,
+    "v04_real_canary_artifact": "SB-V04-005",
+    "v04_real_canary_status": "ACCEPTED_FROM_FIRST_AUTHORIZED_CALL",
+    "v04_promotion_blocked_until": [
+      "SB-V04-002",
+      "SB-V04-004",
+      "SB-EVD-002"
+    ]
+  },
+  "next_recovery": [
+    "Preserve accepted engineering composition 8c86898d and confirmed live-readiness audit b58ba6d as current frontier.",
+    "Codex performs read-only/reproduce-first SB-V11-001/002 reliability audit; no tests/source changes until a concrete current-code gap is reproduced and lead releases a repair.",
+    "Request/use only explicit owner inputs for persistent host, fresh model authorization/manifest, exact account destinations, public actions and elapsed measurement windows.",
+    "Do not route new Social Bots work to Fable; preserve Fable branches as historical evidence only.",
+    "Promote sequentially only from genuine accepted evidence; target is LIVE V1.3, then stop."
+  ],
+  "priority_zero": {
+    "artifact": "SB-V04-002/SB-V04-004 empirical divergence gate",
+    "status": "BLOCKED_OWNER_AUTHORIZATION",
+    "plan": "social-bots/V04_DIVERGENCE_ACCEPTANCE_PLAN.md",
+    "required_future_batch_calls": 5,
+    "owner_authorized_bounded_existing_subscription_call": false,
+    "authorization_consumed": true,
+    "additional_spend_authorized": false,
+    "public_effect_allowed": false
+  },
+  "remote_worker_infrastructure": {
+    "control_plane": "pri8771/remote-workers",
+    "worker": "worker-pc",
+    "capacity": 1,
+    "status": "excluded_from_critical_path_until_private_repo_clone_auth_fixed",
+    "last_social_bots_actions_run": 35615370153,
+    "last_social_bots_task_result": "Repository clone failed before Claude/tests",
+    "policy": "Do not redispatch until private-repo clone/auth is demonstrably fixed. Worker results are evidence, not project authority."
+  },
+  "management_model": {
+    "style": "artifact_oriented",
+    "artifact_registry": "ARTIFACT_INDEX.json",
+    "milestone_manifest": "MILESTONE_MANIFEST.md",
+    "artifact_contract": "ARTIFACT_MANAGEMENT.md",
+    "worker_packets": "artifact-packets/",
+    "lead_review_current": "lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "session_router": "SESSION_ROUTER.md",
+    "heartbeat_protocol": "HEARTBEAT_ASSIGNMENT_PROTOCOL.md",
+    "live_progress_issue": 3,
+    "recovery_plan": "RECOVERY_TO_V07.md",
+    "next_round_baseline": "next-round/BASELINE.json",
+    "active_campaign_release": "delivery/ACTIVE_EXECUTION.json",
+    "current_execution_contract": "lead-reviews/LEAD-062_2026-09-22T0805.md",
+    "campaign_scope": "LIVE V1.3 owner target; Codex direct; no Fable; no new live grants",
+    "agent_entrypoint": "../CLAUDE.md",
+    "session_start": "coordination/SESSION_START.md",
+    "read_router": "coordination/READ_ROUTER.md",
+    "compact_state": "state/CURRENT.md",
+    "fable_assignment": "historical only; no active handoff",
+    "cursor_assignment": "historical evidence only",
+    "pause_policy": "Do not infer liveness from historical heartbeats. Codex may continue only explicitly released dependency-safe work. Genuine live gates require owner facts/authorization and exact evidence."
+  },
+  "reliability_retry_policy": {
+    "scope": "same bot/persona/signal repeatedly BLOCKED_REASONING_UNAVAILABLE under unchanged blocker",
+    "blocker_identity": "bot + persona_id + signal_id + blocker_class(reasoning_unavailable) + deterministic blocker_fingerprint(provider/mode/adaptive-required/dispatch-authorization availability/stable reason code)",
+    "attempt_ceiling": 3,
+    "backoff_minutes_after_attempt_1": 15,
+    "backoff_minutes_after_attempt_2": 60,
+    "after_attempt_3": "EXHAUSTED_NO_AUTOMATIC_RETRY",
+    "fairness": "BACKOFF/EXHAUSTED signals remain unconsumed but are skipped for automatic selection so oldest other eligible unconsumed signal may proceed",
+    "rearm": "only materially changed blocker fingerprint or no blocker; time/process restart alone never reset exhausted",
+    "operator_reset": "explicit audited exact bot/persona/signal/fingerprint/actor-reference/reason/timestamp; grants no model authority",
+    "implementation_status": "SPECIFIED_HELD_NOT_RELEASED"
+  },
+  "v04_divergence_preparation": {
+    "status": "DORMANT_NOT_AUTHORIZED",
+    "owner_request": "social-bots/lead-reviews/V04_DIVERGENCE_OWNER_APPROVAL_REQUEST_20260922.md",
+    "dormant_manifest": "social-bots/lead-reviews/V04_DIVERGENCE_5CALL_DORMANT_MANIFEST.json",
+    "max_calls": 5,
+    "prior_one_call_grant": "CONSUMED",
+    "duplicate_call": "EXCLUDED",
+    "zero_new_spend": true,
+    "authorized": false
+  },
+  "pr17_suitability": {
+    "pr": 17,
+    "exact_source": "da53159704e3e1dfefb8d7e4d2518fdc889317fb",
+    "tree": "32a7e6c18f2fea4e6f6f32b5d7ae65af56f18e6d",
+    "capture_integrity": "ACCEPTED",
+    "final_pair_suitability": "ACCEPTED_VIA_PR21_CORRECTION",
+    "e2": "SUITABLE_TIKTOK_2026-09-14",
+    "e1": "SUITABLE_META_THREADS_2026-09-16",
+    "reasons": [
+      "E1 published 2026-06-04 is too old for September current-evidence causal acceptance",
+      "both receipts extraction_status=not_attempted",
+      "model-facing signal summaries are not yet bound to accepted extraction output from exact frozen raw bytes"
+    ],
+    "corrected_pair_source": "89057863423c3ad6e995dcd57cad4a61da2a6099",
+    "corrected_pair_tree": "7bced4eaad8cbcf6b903eb1d90095afa906cb803"
+  },
+  "local_v04_provider_preparation": {
+    "status": "ACCEPTED_ENGINEERING_NO_INFERENCE",
+    "base_source": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "base_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc",
+    "provider_mode": "ollama-local",
+    "endpoint": "http://127.0.0.1:11434",
+    "initial_model": "qwen3.5:9b",
+    "remote_fallback": false,
+    "model_download": false,
+    "daemon_change": false,
+    "attempts": 5,
+    "retries": 0,
+    "live_inference_authorized": false,
+    "accepted_source": "d8a211fc32802c59b07b1739bef47f9c551ed8dc",
+    "accepted_tree": "169c386c471b813585e6f441d0be88fcf1ba0158",
+    "ci_run_id": 35773340055,
+    "ci_conclusion": "success"
+  },
+  "fail_fast_batch_diagnostic": {
+    "status": "ACCEPTED_ENGINEERING",
+    "evidence": "b188f03",
+    "exact_source": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "observed": "first-case provider_unavailable/provider_exception/invalid_proposal each continue through all 5 and consume all 5",
+    "repair_contract": "stop after first non-proposal_received; failed slot retained; later cases unattempted/unconsumed; no retry",
+    "accepted_source": "f65bf9626d84d0632ef1a9dbbb35ec0ac9736e22",
+    "accepted_tree": "735a2c59fc5557cb15bbd1adfe84222e6264b049"
+  },
+  "mac_host_preparation": {
+    "status": "ACCEPTED_ENGINEERING_PREPARE_ONLY",
+    "source": "f05483d0391d6452344c1e6dbb1c3d2c2de62627",
+    "tree": "90189e58f0f267e0f3ad52ca7f879f08e58e90cb",
+    "persistent_host_accepted": false,
+    "scheduler_authorized": false
+  }
+}

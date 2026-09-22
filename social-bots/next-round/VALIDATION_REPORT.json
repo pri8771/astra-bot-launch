@@ -1,0 +1,30 @@
+{
+  "classification": "ENGINEERING_PLAN_VALIDATION_ONLY",
+  "canonical_baseline": "eeb4a39a9bcd813d8ca691db142851206129bf50",
+  "closure_tasks": 32,
+  "closure_dependency_edges": 51,
+  "unique_existing_artifact_references": 70,
+  "graph_validation": "PASS",
+  "duplicate_closure_ids": 0,
+  "missing_local_closure_dependencies": 0,
+  "local_closure_cycles": 0,
+  "validator_tests": {"discovered": 18, "passed": 18, "failed": 0, "errors": 0, "skipped": 0},
+  "commands": ["python -m unittest test_validate_plan -v", "python validate_plan.py"],
+  "working_directory": "isolated copy of social-bots/next-round",
+  "actual_repository_artifact_reference_check": "NOT_PERFORMED_IN_LOCAL_RUN",
+  "actual_work_card_heading_check": "NOT_PERFORMED_IN_LOCAL_RUN",
+  "strict_candidate_command": "python3 social-bots/next-round/validate_plan.py --repo-root .",
+  "runtime_tests": "NOT_RUN",
+  "live_model_calls": 0,
+  "public_effects": 0,
+  "account_or_alias_creations": 0,
+  "active_worker_source_changes": false,
+  "artifact_acceptance_changes": false,
+  "product_version_changes": false,
+  "limits": [
+    "This validates the new closure graph and validator behavior, not the entire existing 300-artifact registry.",
+    "The positive reference/heading unit test uses a labeled fixture universe; it is not proof that repository references exist.",
+    "Run strict reference and heading validation against the actual integrated candidate before activating the next round.",
+    "Planning improvements are not evidence that the Social Bots runtime works."
+  ]
+}
