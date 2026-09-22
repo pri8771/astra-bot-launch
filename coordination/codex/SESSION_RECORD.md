@@ -1,5 +1,16 @@
 # Compact Codex session record
 
+## Local repair checkpoint — 2026-09-22T03:12Z
+
+- Owner authorized isolated fixes and explicitly withheld Fable handoff approval. Existing lead tasks received a hold on previous routing requests. No repair dispatch/ACK, push, merge or new scheduler. Same resumed session; no SESSION_ONCE repeat.
+- Jobs: local repair `3d9cc95d03b0b8c146d10423060d97ee9736212c` from `dd2e0deb15ce0ff8983c4ed502e3e17206db2e80`; bounded lifecycle/alerts and replay semantics repaired; 437 pass/1 host-limited skip plus Ruff/mypy. Native `pri8771/jobs:coordination/reviews/CODEX_REPAIR_20260922.md` and `coordination/codex/evidence/20260922-repair/manifest.json` hold exact evidence. G14–G17 remain unpassed.
+- Bots: canonical `4a56a57dd70bb2448c9f8c4b286c373e016f2019` records narrow LEAD-052 acceptance of R07-041; referenced detailed review is absent. Local test-only SB-R07-072 repair `7acc1695d2961267580a156f31df6a5991476654` from `e9678f8bead4f872c199bdf09dbf709a8f649159`: 711 run/709 pass/2 live-evidence skips. [Native packet](../../social-bots/lead-reviews/CODEX_REPAIR_20260922.md), [hashed evidence](../../social-bots/receipts/evidence/CODEX-REPAIR-20260922/manifest.json).
+- SwarmAI: canonical `b2c788f1cd38e7940bd71967b61292ef2858e74c`; local R27c-R1 repair `aa85f061afa50996c2b90732ecdb253d56c9bfcc` from `05fe7807db3509d68dd8a86a0616c9e8ffaa2307`: full 471 pass, 30 PostgreSQL focused x5, Ruff/mypy pass. Native `pri8771/swarmai:docs/coordination/reviews/CODEX_REPAIR_20260922.md` links source/evidence. Failed attempt2 retained; R27e/R28a held.
+- Codex authored these candidates; all repair verdicts are REVIEW_BLOCKED pending independent review/ChatGPT authority, not self-accepted. Genuine targets remain Jobs1.7/Bots0.7/Swarm1.7; no later scope.
+- Dedicated Jobs and Swarm test databases are separate and stopped. Existing services/heartbeats unchanged. Next: owner approval of the prepared handoff, fresh expected-base/dirty/ownership checks, then existing Fable-session/lead routing and actual ACK. No background operation is claimed.
+
+Earlier entries below are historical, including prior immediate-routing text superseded by the current approval hold.
+
 ## Actual management checkpoint — 2026-09-22T02:32Z
 
 - Session: `01a0c6e2-5109-75f2-905e-6550217395aa`; role: Codex coordinator / independent review preparation. No implementation takeover. Same session resumed after owner clarification; no duplicate SESSION_ONCE.

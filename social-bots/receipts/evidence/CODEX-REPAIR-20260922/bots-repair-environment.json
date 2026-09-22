@@ -1,0 +1,82 @@
+{
+  "python": "3.14.7",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "packages": [
+    {
+      "name": "aiofiles",
+      "version": "25.1.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22"
+    },
+    {
+      "name": "fb-idb",
+      "version": "1.1.7"
+    },
+    {
+      "name": "GDAL",
+      "version": "3.13.1"
+    },
+    {
+      "name": "grpclib",
+      "version": "0.4.9"
+    },
+    {
+      "name": "h2",
+      "version": "4.3.0"
+    },
+    {
+      "name": "hpack",
+      "version": "4.2.0"
+    },
+    {
+      "name": "hyperframe",
+      "version": "6.1.0"
+    },
+    {
+      "name": "mlx",
+      "version": "0.31.1"
+    },
+    {
+      "name": "multidict",
+      "version": "6.7.1"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.1"
+    },
+    {
+      "name": "pillow",
+      "version": "12.2.0"
+    },
+    {
+      "name": "pip",
+      "version": "26.2.1"
+    },
+    {
+      "name": "protobuf",
+      "version": "7.35.1"
+    },
+    {
+      "name": "qrcode",
+      "version": "8.2"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "treelib",
+      "version": "1.8.0"
+    },
+    {
+      "name": "wheel",
+      "version": "0.47.0"
+    }
+  ],
+  "source_sha": "7acc1695d2961267580a156f31df6a5991476654",
+  "tree_sha": "6825991c67d33802086dec2368990a3fb450c3ba",
+  "remote_worker_sha": "e9678f8bead4f872c199bdf09dbf709a8f649159",
+  "source_clean": true
+}

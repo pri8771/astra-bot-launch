@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-22T03:10:47.740015+00:00",
+  "evidence_class": "engineering_only",
+  "source_sha": "7acc1695d2961267580a156f31df6a5991476654",
+  "dispatched": false,
+  "formal_acceptance": false,
+  "files": {
+    "bots-final-checks.txt": {
+      "sha256": "89891333d3d76d2932f3b0e992bb309916c4309dff9dcde0e11b24c1b12d74dd"
+    },
+    "bots-final-checks.json": {
+      "sha256": "7d2c5c1827970c4ccf23b426f4d172f1539b6c447bd66178b3a40a226ff5ac2e"
+    },
+    "bots-repair-environment.json": {
+      "sha256": "15db81636c50b649c3b80514d35469d8e4b96828f6d5a1d682edb44deb8bbf8f"
+    }
+  }
+}
