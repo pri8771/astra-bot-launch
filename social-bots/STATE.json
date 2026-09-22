@@ -23,7 +23,7 @@
   },
   "campaign": {
     "lead_release": "LEAD-062",
-    "last_review": "LEAD-051",
+    "last_review": "LEAD-062",
     "target": "V1.3",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.3",
