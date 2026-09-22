@@ -1,4 +1,4 @@
-# Session router — LEAD-054 — LIVE V1.7 ONLY
+# Session router — LEAD-055 — LIVE V1.3 TARGET
 
 ## Fable: existing ownership preserved — NO NEW HANDOFF
 
@@ -8,9 +8,15 @@ Owner direction supersedes any pending repair dispatch: **do not route, message,
 
 R07-041 is already ACCEPTED narrowly by LEAD-052. R07-072 test isolation is ACCEPTED at exact `7acc1695d2961267580a156f31df6a5991476654` by LEAD-053.
 
-## Codex: direct isolated repair lane
+## Codex: direct isolated implementation owner
 
-Codex may implement concrete review findings directly in isolated repair branches. ChatGPT remains formal acceptor. Accepted Codex repairs: `codex/bots-host-tests-20260922@7acc1695...` (portable host-test isolation) and `codex/bots-rotation-durability-20260922@84f8f05b...` (due-rotation crash-window durability). No scheduler/model/public/account/spend authority is implied. `84f8f05...` is engineering-only; it does not satisfy native scheduler or SESSION_ONCE evidence.
+Owner target is now **LIVE V1.3**, genuine tests, direct Codex/no Fable. Method: reproduce → root-cause → smallest repair → verify → detailed notes. Bounded mechanical agents may assist but never self-accept.
+
+Accepted engineering checkpoints include `7acc1695...`, `84f8f05...`, and PR #8 `9d497b4567e022a8e7f93a3ee890af206272b5be`.
+
+**Current released SP1 repair:** V1.3 metrics validity in `runtime/metrics.py`: reject bool/nonfinite mapped values from PRESENT normalization; defensively exclude legacy invalid PRESENT values from aggregation; preserve raw provenance/MISSING semantics; add focused red/green and full verification. No broader analytics redesign without a separately reproduced defect.
+
+No Fable routing/message/assignment/handoff is authorized.
 
 ## Acceptance: independent review-only
 
@@ -27,9 +33,9 @@ Ordered work:
 
 No new overlapping source. Preserve prior evidence and already-existing material. Fable owns enabled shared-runtime implementation through the V1.7 ceiling.
 
-## V0.4 canary: FROZEN / evidence preservation
+## Live gates through V1.3
 
-The exactly-one authorization was consumed. Do not execute another product-model/canary call without fresh explicit owner authorization and a matching canonical scoped lead manifest.
+All genuine V0.7→V1.3 gates remain evidence-gated. The target change does not authorize model calls, public/account actions, host designation, scheduler installation/firing, spend, deployment, merge or release. A synthetic engineering pass never substitutes for a genuine-live prerequisite.
 
 ## worker-pc: OUTSIDE CRITICAL PATH
 
