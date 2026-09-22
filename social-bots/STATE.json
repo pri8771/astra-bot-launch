@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-22T18:54:00Z",
+  "updated_at": "2026-09-22T19:20:00Z",
   "coordination_repo": "pri8771/astra-bot-launch",
   "coordination_path": "social-bots/",
   "setup_branch": "chatgpt/social-bots-plan-20260920",
@@ -22,8 +22,8 @@
     "policy": "Social Bots must remain fully functional without SwarmAI; any future integration requires separate explicit owner authorization."
   },
   "campaign": {
-    "lead_release": "LEAD-066",
-    "last_review": "LEAD-066",
+    "lead_release": "LEAD-067",
+    "last_review": "LEAD-067",
     "target": "V1.7",
     "target_kind": "operational_live",
     "hard_stop_after": "V1.7",
@@ -128,12 +128,12 @@
       "branch": "codex/bots-host-tests-20260922",
       "exact_candidate": "7acc1695d2961267580a156f31df6a5991476654",
       "base": "7acc1695d2961267580a156f31df6a5991476654",
-      "activity": "direct_v17_blocker_clearance",
-      "assignment": "Parallel bounded preparation only: (1) replace stale E1 and add deterministic extraction/signal lineage for E1/E2; (2) implement minimal loopback-only Ollama LOCAL provider adapter/tests from accepted PR16 binding source; (3) reproduce fail-fast batch behavior offline only. No real inference/model/public/scheduler action.",
+      "activity": "direct_failfast_repair_plus_capture_lineage_prep",
+      "assignment": "Implement minimal execute_batch fail-fast repair only; separately continue read-only E1 replacement + deterministic extraction lineage for E1/E2. No real inference/final matrix/manifest activation.",
       "r07_072_disposition": "ACCEPTED exact SHA by LEAD-053 as portable test-isolation repair only",
       "operational_acceptance": false,
-      "latest_accepted_candidate": "fec97738ec0e9407415f60228f7c3938613396c3",
-      "latest_accepted_checkpoint": "PR16 execution-binding engineering acceptance",
+      "latest_accepted_candidate": "d8a211fc32802c59b07b1739bef47f9c551ed8dc",
+      "latest_accepted_checkpoint": "PR18 LOCAL provider + read-only CI accepted engineering",
       "no_fable_handoff": true,
       "formal_acceptor": "ChatGPT",
       "parallel_assignments": [
@@ -432,11 +432,13 @@
     }
   },
   "lead_review": {
-    "review_id": "LEAD-066",
-    "review_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md",
-    "review_type": "pr17_suitability_local_provider_release_v17_reconciliation",
-    "previous_review_ref": "social-bots/lead-reviews/LEAD-065_2026-09-22T0934.md",
-    "accepted_now": [],
+    "review_id": "LEAD-067",
+    "review_ref": "social-bots/lead-reviews/LEAD-067_2026-09-22T1920.md",
+    "review_type": "pr18_local_adapter_ci_acceptance_and_failfast_release",
+    "previous_review_ref": "social-bots/lead-reviews/LEAD-066_2026-09-22T1854.md",
+    "accepted_now": [
+      "PR18-local-adapter-ci@d8a211fc32802c59b07b1739bef47f9c551ed8dc"
+    ],
     "accepted_existing": [
       "SB-CTL-006",
       "SB-CTL-012",
@@ -511,12 +513,11 @@
     ],
     "additional_operational_findings": "delivery/reviews/LEAD047_AUDIT.md plus LEAD-051 engineering-seam no-scope finding",
     "key_findings": [
-      "PR17 capture integrity accepted, but final E1/E2 divergence pair requires rework.",
-      "E2 is current/relevant; E1 June 4 is too old for September current-evidence causal acceptance.",
-      "Both captures require deterministic extraction/signal lineage bound to raw bytes and receipts before final suitability.",
-      "Owner target/hard stop is accepted LIVE V1.7; official product remains V0.4.x.",
-      "Minimal loopback-only Ollama local-provider adapter/tests released from accepted PR16 binding source; no real inference authorized.",
-      "Offline fail-fast batch reproduction released; retry implementation remains held."
+      "PR18 exact d8a211fc... accepted engineering for LOCAL Ollama adapter and read-only CI port.",
+      "LOCAL grant cannot invoke Claude/raw spoofed callable; exact policy-owned local invocation type/config/provider ID required.",
+      "Exact-head GitHub Actions run 35773340055 succeeded on Python 3.11.",
+      "Fail-fast defect confirmed at b188f03; minimal stop-on-first-non-proposal_received repair released separately.",
+      "Capture correction remains read-only public prep only; real local inference/final matrix remain unauthorized."
     ]
   },
   "public_actions": {
@@ -650,7 +651,7 @@
     ]
   },
   "local_v04_provider_preparation": {
-    "status": "ENGINEERING_RELEASED_NO_INFERENCE",
+    "status": "ACCEPTED_ENGINEERING_NO_INFERENCE",
     "base_source": "fec97738ec0e9407415f60228f7c3938613396c3",
     "base_tree": "43e80b92d8ae559db55a41ed33329695e6fd03fc",
     "provider_mode": "ollama-local",
@@ -661,10 +662,17 @@
     "daemon_change": false,
     "attempts": 5,
     "retries": 0,
-    "live_inference_authorized": false
+    "live_inference_authorized": false,
+    "accepted_source": "d8a211fc32802c59b07b1739bef47f9c551ed8dc",
+    "accepted_tree": "169c386c471b813585e6f441d0be88fcf1ba0158",
+    "ci_run_id": 35773340055,
+    "ci_conclusion": "success"
   },
   "fail_fast_batch_diagnostic": {
-    "status": "REPRODUCTION_RELEASED_NO_SOURCE_EDIT",
-    "expected_contract": "first non-proposal_received stops batch; failed slot consumed; later slots unconsumed; no retry"
+    "status": "REWORK_FOUND_REPAIR_RELEASED",
+    "evidence": "b188f03",
+    "exact_source": "fec97738ec0e9407415f60228f7c3938613396c3",
+    "observed": "first-case provider_unavailable/provider_exception/invalid_proposal each continue through all 5 and consume all 5",
+    "repair_contract": "stop after first non-proposal_received; failed slot retained; later cases unattempted/unconsumed; no retry"
   }
 }
