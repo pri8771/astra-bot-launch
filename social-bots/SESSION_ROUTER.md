@@ -1,31 +1,27 @@
-# Session router — LEAD-051 — LIVE V1.7 ONLY
+# Session router — LEAD-053 — LIVE V1.7 ONLY
 
-## Fable: sole integrator — ACTIVE / R07-041 CHANGES_REQUIRED
+## Fable: existing ownership preserved — NO NEW HANDOFF
 
 Branch: `fable/social-bots-v23-fasttrack-20260921` (historical name, not scope).
-Assignment: `social-bots/delivery/V17_LIVE.md` plus current branch `social-bots/SESSION_INSTRUCTIONS.md`.
-Ceiling: **LIVE V1.7 only**. After accepted V1.7, stop feature development; no V1.8+/V2.3/V3.0 continuation without a fresh owner request.
 
-Verified current worker activity: session `s-20260921T211438Z-d5589881` ingested LEAD-048/050 and pushed signed V1.7 work through `af3fded92eaba5e68c8088737b68c6f043e40a5e`.
+Owner direction supersedes any pending repair dispatch: **do not route, message, assign or hand off new Social Bots work to Fable without fresh owner approval.** Preserve existing unrelated ownership and submitted evidence; no overlapping source work is created here.
 
-Immediate dependency-ready work:
-1. repair the remaining R07-041 engineering-seam/no-scope capability bypass with zero live calls;
-2. add harmless-sentinel regressions and run focused/full suite;
-3. continue non-overlapping <=V1.7 offline integration only after that boundary is repaired.
+R07-041 is already ACCEPTED narrowly by LEAD-052. R07-072 test isolation is ACCEPTED at exact `7acc1695d2961267580a156f31df6a5991476654` by LEAD-053.
 
-Current submitted evidence `b5fd038`, `c4d31fee...`, `3da19a9c...`, `af3fded...` is preserved pending independent review. Worker-local green tests do not self-accept artifacts.
+## Codex: direct isolated repair lane
 
-## Acceptance: independent review-only — STALE / ACTION REQUIRED
+Codex may implement concrete review findings directly in isolated repair branches. ChatGPT remains formal acceptor. Current accepted repair branch: `codex/bots-host-tests-20260922@7acc1695...`. No scheduler/model/public/account/spend authority is implied.
+
+## Acceptance: independent review-only
 
 Branch: `claude/social-bots-mac-qa-control`.
 No runtime/product source edits. No real model call.
 
 Ordered work:
-1. independently audit the repaired R07-041 seam: no-scope refusal for arbitrary EngineeringStub/injected-runner execution; explicit engineering scope only; production scope refusal; raw/live manifest gating;
-2. execute R07-071 multiprocess/session race;
-3. audit due-work anti-starvation and C05/C06/C07 final-content/prospective-experiment negative controls;
-4. verify enabled V1.7 producer/dispatcher boundary keeps parked future modules unreachable;
-5. treat Fable C09 preflight as blocker evidence, not operational acceptance.
+1. preserve the accepted R07-041 authority-boundary verdict;
+2. treat R07-072 author-run 709/11 test counts as author evidence only, not independent execution;
+3. independently review any future Codex isolated candidate before artifact promotion when required;
+4. treat host/provider/account preflight as blocker evidence, not operational acceptance.
 
 ## Cursor / legacy Core / Intelligence: PARKED / evidence-only
 
