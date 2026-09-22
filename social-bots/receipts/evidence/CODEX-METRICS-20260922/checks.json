@@ -1,0 +1,33 @@
+{
+  "source_sha": "30a2ebdfb45110b2bc6fea0f3d50876583487f9c",
+  "tree": "9391cc8604418f418fb69df30124b9d856926ee7",
+  "base": "9d497b4567e022a8e7f93a3ee890af206272b5be",
+  "canonical_contract": "0d5b183c9b6d0b3a30307b4b4ddbb49b3a297960 LEAD-055",
+  "evidence_class": "ENGINEERING",
+  "checks": [
+    {
+      "command": "python3 -m unittest -v tests.test_metrics tests.test_metrics_finite",
+      "cwd": "social-bots",
+      "exit": 0,
+      "result": "26 passed",
+      "log": "focused.txt"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests",
+      "cwd": "social-bots",
+      "exit": 0,
+      "result": "728 run, 726 passed, 2 existing genuine-evidence skips",
+      "log": "full.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    }
+  ],
+  "notes": [
+    "Same source tree verified before commit; no code edit after these checks.",
+    "Bounded mechanical agent supplied reviewed regression candidate, root integrated it and owns source changes; not a formal independent verdict.",
+    "Root additionally reproduced ratio click1e308/reach1e-308=>PRESENT inf and snapshot difference -1e308 to1e308=>PRESENT inf before repair; new cases now MISSING/None.",
+    "Raw provenance remains intact; no account/model/network/public/host/scheduler action or migration."
+  ]
+}

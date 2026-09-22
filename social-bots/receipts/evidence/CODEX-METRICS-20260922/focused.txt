@@ -1,0 +1,33 @@
+test_aggregate_excludes_missing_and_groups_by_platform (tests.test_metrics.MetricsTest.test_aggregate_excludes_missing_and_groups_by_platform) ... ok
+test_cumulative_snapshots_not_summed_over_time (tests.test_metrics.MetricsTest.test_cumulative_snapshots_not_summed_over_time)
+snapshots 100 then 150 views must NOT aggregate to 250. ... ok
+test_deltas_may_sum_over_non_overlapping_windows (tests.test_metrics.MetricsTest.test_deltas_may_sum_over_non_overlapping_windows)
+valid non-overlapping deltas 100 + 50 may aggregate to 150. ... ok
+test_derived_missing_on_zero_denominator (tests.test_metrics.MetricsTest.test_derived_missing_on_zero_denominator) ... ok
+test_derived_missing_when_input_missing (tests.test_metrics.MetricsTest.test_derived_missing_when_input_missing) ... ok
+test_derived_records_formula_and_version (tests.test_metrics.MetricsTest.test_derived_records_formula_and_version) ... ok
+test_explicit_zero_is_present (tests.test_metrics.MetricsTest.test_explicit_zero_is_present) ... ok
+test_identifiers_and_provenance_retained (tests.test_metrics.MetricsTest.test_identifiers_and_provenance_retained) ... ok
+test_metric_declares_semantic_kind (tests.test_metrics.MetricsTest.test_metric_declares_semantic_kind) ... ok
+test_missing_is_not_zero (tests.test_metrics.MetricsTest.test_missing_is_not_zero) ... ok
+test_no_false_equivalence_across_platforms (tests.test_metrics.MetricsTest.test_no_false_equivalence_across_platforms) ... ok
+test_no_window_treated_as_stale (tests.test_metrics.MetricsTest.test_no_window_treated_as_stale) ... ok
+test_not_supported_distinct_from_missing (tests.test_metrics.MetricsTest.test_not_supported_distinct_from_missing) ... ok
+test_overlapping_delta_windows_not_double_counted (tests.test_metrics.MetricsTest.test_overlapping_delta_windows_not_double_counted) ... ok
+test_snapshot_delta_rejects_decrease (tests.test_metrics.MetricsTest.test_snapshot_delta_rejects_decrease) ... ok
+test_snapshot_delta_requires_comparable_series (tests.test_metrics.MetricsTest.test_snapshot_delta_requires_comparable_series) ... ok
+test_snapshot_to_delta_derivation_records_derivation (tests.test_metrics.MetricsTest.test_snapshot_to_delta_derivation_records_derivation) ... ok
+test_stale_window_marked (tests.test_metrics.MetricsTest.test_stale_window_marked) ... ok
+test_supported_but_missing_metric_retains_expected_kind (tests.test_metrics.MetricsTest.test_supported_but_missing_metric_retains_expected_kind) ... ok
+test_trace_content_to_persona_and_experiment (tests.test_metrics.MetricsTest.test_trace_content_to_persona_and_experiment) ... ok
+test_unmapped_raw_retained_not_blended (tests.test_metrics.MetricsTest.test_unmapped_raw_retained_not_blended) ... ok
+test_finite_snapshot_sum_overflow_is_unavailable_with_coverage (tests.test_metrics_finite.FiniteMetricBoundaryTest.test_finite_snapshot_sum_overflow_is_unavailable_with_coverage) ... ok
+test_fresh_invalid_values_are_missing_and_raw_is_retained (tests.test_metrics_finite.FiniteMetricBoundaryTest.test_fresh_invalid_values_are_missing_and_raw_is_retained) ... ok
+test_legacy_invalid_values_count_missing_and_do_not_poison (tests.test_metrics_finite.FiniteMetricBoundaryTest.test_legacy_invalid_values_count_missing_and_do_not_poison) ... ok
+test_ratio_overflow_is_missing (tests.test_metrics_finite.FiniteMetricBoundaryTest.test_ratio_overflow_is_missing) ... ok
+test_snapshot_delta_overflow_is_missing_with_reason (tests.test_metrics_finite.FiniteMetricBoundaryTest.test_snapshot_delta_overflow_is_missing_with_reason) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.006s
+
+OK

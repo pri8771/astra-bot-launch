@@ -1,0 +1,8 @@
+source_head=9d497b4567e022a8e7f93a3ee890af206272b5be
+normalize input=True type=bool availability=present value=1.0 finite=True
+normalize input=nan type=float availability=present value=nan finite=False
+normalize input=inf type=float availability=present value=inf finite=False
+normalize input=-inf type=float availability=present value=-inf finite=False
+persisted_count=4
+persisted_values=[1.0, nan, inf, -inf]
+aggregate={'kinds': {'cumulative_snapshot': {'kind': 'cumulative_snapshot', 'aggregation': 'latest_per_series_then_sum', 'value': nan, 'series_count': 4, 'count': 4, 'note': 'snapshots never summed over time; latest per series'}}, 'present': 4, 'missing': 0, 'not_supported': 0}
