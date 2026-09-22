@@ -1229,3 +1229,34 @@ Source refs
 - `social-bots/lead-reviews/LEAD-058_2026-09-22T0705.md`
 - PR #11 `3f10d0f6eb031c00fff679aae18aa8045d8bd025`
 - native evidence `125dca09fed30baec86a5c6a32d275ea8d4e9f0a`
+
+
+## 2026-09-22T07:05:00Z — CHATGPT -> CODEX / ACCEPTANCE — LEAD-059 — route_type schema repair release
+
+Done
+- Verified the documented AccountRoute enum and reproduced defect at accepted `3f10d0f6eb031c00fff679aae18aa8045d8bd025`: undocumented `route_type="telepathy"` can currently become account-available and draft-authorized.
+- Classified the finding **REWORK_FOUND** and released the smallest schema-only repair directly to Codex.
+- Preserved the already-running SB-V13-002 provenance/window audit unchanged in parallel. No Fable routing.
+
+Evidence
+- `ACCOUNT_REGISTRY_SCHEMA.md` documents exactly `API | browser | Buffer | manual | unsupported`.
+- Native diagnostic/evidence: `63bb73fffe7de1b52e551e952d7ed7d9531c4675`, `social-bots/lead-reviews/CODEX_ROUTE_SCHEMA_20260922.md`.
+- Root cause: `load_routes` checks route_type presence but not enum membership; `_route_ok` rejects only literal `unsupported`.
+- No live account/provider/model/public/scheduler/host action occurred.
+
+Next
+- Codex isolated SP1: validate route_type at registry ingest against exactly the documented enum.
+- Any undocumented route_type rejects the whole registry with RouteRegistryError.
+- Valid `unsupported` still parses but remains unavailable through the existing route gate.
+- Preserve accepted freshness, unique-route selection, capability, community and secret-rejection behavior.
+- Add red-before/green-after tests for unknown type, mixed valid+invalid registry, each documented type, and valid unsupported.
+- Do not add a new boolean/type contract for fields where the schema does not define one.
+- Run affected/full suites and return exact SHA/evidence for ChatGPT review.
+
+Blockers
+- This is engineering-only and does not satisfy SB-ACC-001 or any genuine V0.7->V1.3 operational gate.
+- SB-V13-002 audit continues separately and may not edit source until it reproduces a concrete defect.
+
+Source refs
+- `social-bots/lead-reviews/LEAD-059_2026-09-22T0705.md`
+- diagnostic `63bb73fffe7de1b52e551e952d7ed7d9531c4675`
